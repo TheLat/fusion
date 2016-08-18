@@ -115,12 +115,19 @@ while x <= len(all):
                 s = s.split(":")
                 f.write("\n%s-%s:%s" % (s[0], s[0], s[1]))
                 z = z + 1
-        f.write("\nTM: ")
+        f.write("\nTM:")
         z = 1
         while z <= 50:
             if z in all[str(x)]["TM"].keys() or z in all[str(y)]["TM"].keys():
                 f.write(" %s" % z)
             z = z + 1
+        f.write("\nHM:")
+        z = 1
+        while z <= 50:
+            if z in all[str(x)]["HM"].keys() or z in all[str(y)]["HM"].keys():
+                f.write(" %s" % z)
+            z = z + 1
+
         f.write("\n\n")
         y = y + 1
     x = x + 1
