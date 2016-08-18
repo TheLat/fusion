@@ -85,14 +85,13 @@ while x <= len(all):
         f.write("\nSPEED: %s" % SPEED)
         f.write("\nMOVES:")
         z = 0
-        while z < len(all[str(x)]["MOVES"]):
-            if z % 2 == 0:
-                f.write("\n%s" % all[str(x)]["MOVES"][z])
-            z = z + 1
-        z = 0
-        while z < len(all[str(y)]["MOVES"]):
-            if z % 2 == 1:
-                f.write("\n%s" % all[str(y)]["MOVES"][z])
+        while z < len(all[str(x)]["MOVES"]) or z < len(all[str(y)]["MOVES"]):
+            if z < len(all[str(x)]["MOVES"]):
+                if z % 2 == 0:
+                    f.write("\n%s" % all[str(x)]["MOVES"][z])
+            if z < len(all[str(y)]["MOVES"]):
+                if z % 2 == 1:
+                    f.write("\n%s" % all[str(y)]["MOVES"][z])
             z = z + 1
         f.write("\nEVOLUTION:")
         if x != y:
