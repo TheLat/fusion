@@ -54,8 +54,10 @@ while s != "":
         moves[t]["SELF"] = s[6:]
     elif s.startswith("TARGET"):
         moves[t]["TARGET"] = s[8:]
-    elif s.startswith("QUEUE"):
+    elif s.startswith("QUEUE:"):
         moves[t]["QUEUE"] = s[7:]
+    elif s.startswith("QUEUE_ONLY"):
+        moves[t]["QUEUE_ONLY"] = s[12:]
     elif s.startswith("DESC"):
         moves[t]["DESC"] = s[6:]
     elif s.startswith("CRITICAL"):
@@ -68,8 +70,10 @@ while s != "":
 f.close()
 
 for s in moves.keys():
-    if "PP" not in moves[s].keys():
+    if "PP" not in moves[s].keys() and "QUEUE_ONLY" not in moves[s].keys():
         print "Error:  %s has no PP." % s
+    if "PP" in moves[s].keys() and "QUEUE_ONLY" in moves[s].keys():
+        print "Error:  %s has PP and is a queue-only move." % s
     if "QUEUE" in moves[s].keys():
         t = moves[s]["QUEUE"].split(" ")
         x = 0
@@ -161,6 +165,8 @@ for s in mon.keys():
     while x < len(mon[s]["MOVES"]):
         if mon[s]["MOVES"][x] not in moves.keys():
             print "Error:  %s references move %s that is not defined." % (mon[s]["NAME"], mon[s]["MOVES"][x])
+        if "QUEUE_ONLY" in moves[mon[s]["MOVES"][x]].keys():
+            print "Error:  %s references queue-only move %s." % (mon[s]["NAME"], mon[s]["MOVES"][x])
         x = x + 1
     x = 0
     if "EVOLUTION" in mon[s].keys():
