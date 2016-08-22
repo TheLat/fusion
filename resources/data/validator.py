@@ -144,7 +144,15 @@ while s != "":
     if s.startswith("EVOLUTION"):
         mon[t]["EVOLUTION"] = []
         s = f.readline().replace("\n", "")
+        ev = {}
+        ev["NONE"] = True
         while not s.startswith("TM"):
+            u = s.split(":")[1]
+            if "LEVEL" in u:
+                u = u.split(" ")[0]
+            if u in ev.keys():
+                print "Error:  %s contains multiple evolutions with the same trigger %s." % (mon[t]["NAME"], u)
+            ev[u] = True
             mon[t]["EVOLUTION"].append(s.split(":")[0])
             s = f.readline().replace("\n", "")
     if s.startswith("TM"):
