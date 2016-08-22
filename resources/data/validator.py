@@ -61,7 +61,7 @@ while s != "":
     elif s.startswith("DESC"):
         moves[t]["DESC"] = s[6:]
     elif s.startswith("CRITICAL"):
-        moves[t]["CRITICAL"] = s[6:]
+        moves[t]["CRITICAL"] = s[10:]
     else:
         print "Error:  Unknown symbol %s" % s
     s = f.readline().replace("\n", "")
@@ -106,6 +106,9 @@ for s in moves.keys():
             if t[x].split(":")[0] not in status.keys():
                 print "Error:  %s inflicts status %s which does not exist." % (s, t[x])
             x = x + 1
+    if "CRITICAL" in moves[s].keys():
+        if moves[s]["CRITICAL"] != "HIGH" and moves[s]["CRITICAL"] != "NORMAL":
+            print "Error:  %s has not defined critical hit chance %s." % (s, moves[s]["CRITICAL"])
 
 print "Loading creature database."
 f = open("mon.dat")
