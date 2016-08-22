@@ -17,7 +17,7 @@ List of changes:
 - Any story event that asks you to choose between pokemon that can't be found in the wild (the fossils, Hitmonlee and Hitmonchan, etc.) will grant you all the pokemon instead.  This does not apply to the starter pokemon at the beginning.
 - Beating the Elite 4 will give you the option of getting more money or another pick from the starter pokemon.
 - The Elite 4 will allow you to challenge them in Hardcore Mode, where all of their pokemon have leveled up once for every time you've beaten them.
-- TMs will be rechargeable.  Not sure where to put the TM recharger yet.
+- TMs will be rechargeable instead of one-shots.  Not sure where to put the TM recharger yet.
 - Critical hit chance will be done on an individual attack basis for multi-attacks
 - Focus Energy will multiply your critical chance by 4 instead of dividing it by 4.
 - You will be able to explore the S.S. Anne area after the boat leaves and you will be able to push the truck to get Mew.  I am unsure of the validity of this in the original game, but it seems as good a place as any to let you get Mew.
@@ -25,4 +25,7 @@ List of changes:
 - The Safari Zone will be normal combat.  That area was bullshit.
 - To deal with the fact that this game is not multiplayer, the Trade Stone item is added to allow you to evolve anything that contains at least part Kadabra, Machoke, Haunter, or Graveler.  You will need two trade stones to fully evolve fusions of those 4.
 - Ghost attacks will deal double-damage against psychics, like they're supposed to.
+- Item duplication and MISSINGNO will not exist.  Use that master ball carefully.
+- TMs and HMs will be forgettable.
+
 
