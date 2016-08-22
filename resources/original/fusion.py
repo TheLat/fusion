@@ -64,7 +64,7 @@ y = 1
 while x <= len(all):
     y = 1
     while y <= len(all):
-        print "Fusing " + all[str(x)]["NAME"] + all[str(x)]["SURNAME"] + " and " + all[str(y)]["NAME"] + all[str(y)]["SURNAME"]
+        print "Fusing " + all[str(x)]["NAME"] + all[str(x)]["SURNAME"] + " and " + all[str(y)]["NAME"] + all[str(y)]["SURNAME"] + " into " + all[str(x)]["NAME"] + all[str(y)]["SURNAME"]
         f.write("NUMBER: %s-%s" % (x, y))
         f.write("\nNAME: %s%s" % (all[str(x)]["NAME"], all[str(y)]["SURNAME"]))
         f.write("\nTYPE1: %s" % all[str(x)]["TYPE1"])
