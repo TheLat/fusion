@@ -93,26 +93,42 @@ while x <= len(all):
                     f.write("\n%s" % all[str(y)]["MOVES"][z])
             z = z + 1
         f.write("\nEVOLUTION:")
+        ev = []
         if x != y:
             z = 0
             while "EVOLUTION" in all[str(x)].keys() and z < len(all[str(x)]["EVOLUTION"]):
                 s = all[str(x)]["EVOLUTION"][z]
                 s = s.split(":")
-                f.write("\n%s-%s:%s" % (s[0], y, s[1]))
+                ev.append("\n%s-%s:%s" % (s[0], y, s[1]))
                 z = z + 1
             z = 0
             while "EVOLUTION" in all[str(y)].keys() and z < len(all[str(y)]["EVOLUTION"]):
                 s = all[str(y)]["EVOLUTION"][z]
                 s = s.split(":")
-                f.write("\n%s-%s:%s" % (x, s[0], s[1]))
+                ev.append("\n%s-%s:%s" % (x, s[0], s[1]))
                 z = z + 1
         else:
             z = 0
             while "EVOLUTION" in all[str(x)].keys() and z < len(all[str(x)]["EVOLUTION"]):
                 s = all[str(x)]["EVOLUTION"][z]
                 s = s.split(":")
-                f.write("\n%s-%s:%s" % (s[0], s[0], s[1]))
+                ev.append("\n%s-%s:%s" % (s[0], s[0], s[1]))
                 z = z + 1
+        ll = 100
+        ev2 = []
+        for e in ev:
+            if "LEVEL" in e:
+                ll = min(int(e.split(" ")[1]), ll)
+            else:
+                ev2.append(e)
+                print "This shouldn't happen yet."
+        for e in ev:
+            if "LEVEL" in e:
+                if int(e.split(" ")[1]) == ll:
+                    f.write(e)
+                    break
+        for e in ev2:
+            f.write(e)
         f.write("\nTM:")
         z = 1
         while z <= 50:
