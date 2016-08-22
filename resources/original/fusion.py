@@ -64,8 +64,8 @@ while x <= len(all):
     while y <= len(all):
         print "Fusing " + all[str(x)]["NAME"] + all[str(x)]["SURNAME"] + " and " + all[str(y)]["NAME"] + all[str(y)]["SURNAME"]
         f.write("NUMBER: %s-%s" % (x, y))
-        f.write("\nNAME: %s" % all[str(x)]["NAME"])
-        f.write("\nSURNAME: %s" % all[str(y)]["SURNAME"])
+        f.write("\nNAME: %s%s" % (all[str(x)]["NAME"], all[str(y)]["SURNAME"]))
+        #f.write("\nSURNAME: %s" % all[str(y)]["SURNAME"])
         f.write("\nTYPE1: %s" % all[str(x)]["TYPE1"])
         if all[str(x)]["TYPE1"] != all[str(y)]["TYPE1"]:
             f.write("\nTYPE2: %s" % all[str(y)]["TYPE1"])
@@ -87,10 +87,10 @@ while x <= len(all):
         z = 0
         while z < len(all[str(x)]["MOVES"]) or z < len(all[str(y)]["MOVES"]):
             if z < len(all[str(x)]["MOVES"]):
-                if z % 2 == 0:
+                if z % 2 == 1:
                     f.write("\n%s" % all[str(x)]["MOVES"][z])
             if z < len(all[str(y)]["MOVES"]):
-                if z % 2 == 1:
+                if z % 2 == 0:
                     f.write("\n%s" % all[str(y)]["MOVES"][z])
             z = z + 1
         f.write("\nEVOLUTION:")
