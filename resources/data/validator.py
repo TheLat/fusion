@@ -1,3 +1,5 @@
+import time
+start = time.time()
 print "Loading types."
 f = open("types.dat")
 s = f.readline().replace("\n", "")
@@ -185,3 +187,5 @@ for s in mon.keys():
             if mon[s]["EVOLUTION"][x] not in mon.keys():
                 print "Error:  %s evolves into %s that is not defined." % (mon[s]["NAME"], mon[s]["EVOLUTION"][x])
             x = x + 1
+
+print "Validation checks completed in %f seconds." % (time.time() - start)

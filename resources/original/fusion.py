@@ -1,3 +1,5 @@
+import time
+start = time.time()
 i = 0
 all = {}
 f = open("pokemon.dat", "rt")
@@ -147,4 +149,4 @@ while x <= len(all):
     x = x + 1
 
 f.close()
-
+print "Fusions completed in %f seconds." % (time.time() - start)
