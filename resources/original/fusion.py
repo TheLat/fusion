@@ -65,12 +65,11 @@ while x <= len(all):
         print "Fusing " + all[str(x)]["NAME"] + all[str(x)]["SURNAME"] + " and " + all[str(y)]["NAME"] + all[str(y)]["SURNAME"]
         f.write("NUMBER: %s-%s" % (x, y))
         f.write("\nNAME: %s%s" % (all[str(x)]["NAME"], all[str(y)]["SURNAME"]))
-        #f.write("\nSURNAME: %s" % all[str(y)]["SURNAME"])
         f.write("\nTYPE1: %s" % all[str(x)]["TYPE1"])
         if all[str(x)]["TYPE1"] != all[str(y)]["TYPE1"]:
             f.write("\nTYPE2: %s" % all[str(y)]["TYPE1"])
-        elif "TYPE2" in all[str(x)].keys():
-            f.write("\nTYPE2: %s" % all[str(x)]["TYPE2"])
+        #elif "TYPE2" in all[str(x)].keys():
+        #    f.write("\nTYPE2: %s" % all[str(x)]["TYPE2"])
         elif "TYPE2" in all[str(y)].keys():
             f.write("\nTYPE2: %s" % all[str(y)]["TYPE2"])
         HP = str((int(all[str(x)]["HP"]) + int(all[str(y)]["HP"]))/2)
