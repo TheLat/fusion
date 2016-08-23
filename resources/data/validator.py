@@ -7,6 +7,11 @@ types = {}
 status = {}
 moves = {}
 mon = {}
+special_list = []
+special_list.append("ENEMY_LAST")
+special_list.append("FIRST")
+special_list.append("POST_CONFUSE")
+special_list.append("RANDOM")
 while s != "":
     t = s.split(":")[0]
     types[t] = {}
@@ -117,7 +122,7 @@ for s in moves.keys():
         t = moves[s]["SPECIAL"].split(" ")
         x = 0
         while x < len(t):
-            if t[x] != "ENEMY_LAST" and t[x] != "FIRST" and t[x] != "POST_CONFUSE":
+            if t[x] not in special_list:
                 print "Error:  %s has not defined special modifier %s." % (s, t[x])
             x = x + 1
 
