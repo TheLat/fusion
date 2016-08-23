@@ -117,7 +117,7 @@ for s in moves.keys():
         t = moves[s]["SPECIAL"].split(" ")
         x = 0
         while x < len(t):
-            if t[x] != "ENEMY_LAST" and t[x] != "FIRST":
+            if t[x] != "ENEMY_LAST" and t[x] != "FIRST" and t[x] != "POST_CONFUSE":
                 print "Error:  %s has not defined special modifier %s." % (s, t[x])
             x = x + 1
 

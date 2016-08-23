@@ -94,7 +94,6 @@ while x <= len(all):
                 if z % 2 == 0:
                     f.write("\n%s" % all[str(y)]["MOVES"][z])
             z = z + 1
-        f.write("\nEVOLUTION:")
         ev = []
         if x != y:
             z = 0
@@ -118,19 +117,25 @@ while x <= len(all):
                 z = z + 1
         ll = 100
         ev2 = []
+        con = {}
+        con["NOTHING"] = True
         for e in ev:
             if "LEVEL" in e:
                 ll = min(int(e.split(" ")[1]), ll)
-            else:
-                ev2.append(e)
-                print "This shouldn't happen yet."
+        run = False
         for e in ev:
+            if not run:
+                f.write("\nEVOLUTION:")
+                run = True
             if "LEVEL" in e:
                 if int(e.split(" ")[1]) == ll:
+                    if e.split(":")[1] not in con.keys():
+                        f.write(e)
+                        con[e.split(":")[1]] = True
+            else:
+                if e.split(":")[1] not in con.keys():
                     f.write(e)
-                    break
-        for e in ev2:
-            f.write(e)
+                    con[e.split(":")[1]] = True
         f.write("\nTM:")
         z = 1
         while z <= 50:
