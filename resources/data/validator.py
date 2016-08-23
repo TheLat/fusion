@@ -113,6 +113,13 @@ for s in moves.keys():
     if "CRITICAL" in moves[s].keys():
         if moves[s]["CRITICAL"] != "HIGH" and moves[s]["CRITICAL"] != "NORMAL":
             print "Error:  %s has not defined critical hit chance %s." % (s, moves[s]["CRITICAL"])
+    if "SPECIAL" in moves[s].keys():
+        t = moves[s]["SPECIAL"].split(" ")
+        x = 0
+        while x < len(t):
+            if t[x] != "ENEMY_LAST" and t[x] != "FIRST":
+                print "Error:  %s has not defined special modifier %s." % (s, t[x])
+            x = x + 1
 
 print "Loading creature database."
 f = open("mon.dat")
