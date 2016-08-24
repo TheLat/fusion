@@ -13,6 +13,7 @@ special_list.append("FIRST")
 special_list.append("POST_CONFUSE")
 special_list.append("RANDOM")
 special_list.append("UNAVOIDABLE")
+special_list.append("PAYDAY")
 while s != "":
     t = s.split(":")[0]
     types[t] = {}
