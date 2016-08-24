@@ -12,6 +12,7 @@ special_list.append("ENEMY_LAST")
 special_list.append("FIRST")
 special_list.append("POST_CONFUSE")
 special_list.append("RANDOM")
+special_list.append("UNAVOIDABLE")
 while s != "":
     t = s.split(":")[0]
     types[t] = {}
