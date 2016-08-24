@@ -31,7 +31,7 @@ while s != "":
     if s.startswith("MOVES:"):
         all[i]["MOVES"] = []
         s = f.readline().replace("\n", "")
-        while not (s.startswith("EVOLUTION:") or s.startswith("TM:")):
+        while ":" not in s:
             all[i]["MOVES"].append(s)
             s = f.readline().replace("\n", "")
     if s.startswith("EVOLUTION:"):
