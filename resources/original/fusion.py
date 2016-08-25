@@ -64,9 +64,10 @@ y = 1
 while x <= len(all):
     y = 1
     while y <= len(all):
-        print "Fusing " + all[str(x)]["NAME"] + all[str(x)]["SURNAME"] + " and " + all[str(y)]["NAME"] + all[str(y)]["SURNAME"] + " into " + all[str(x)]["NAME"] + all[str(y)]["SURNAME"]
+        n = (all[str(x)]["NAME"] + all[str(y)]["SURNAME"]).replace("EEEE", "EE")
+        print "Fusing " + (all[str(x)]["NAME"] + all[str(x)]["SURNAME"]).replace("EEEE", "EE") + " and " + (all[str(y)]["NAME"] + all[str(y)]["SURNAME"]).replace("EEEE", "EE") + " into " + n
         f.write("NUMBER: %s-%s" % (x, y))
-        f.write("\nNAME: %s%s" % (all[str(x)]["NAME"], all[str(y)]["SURNAME"]))
+        f.write("\nNAME: %s" % n)
         f.write("\nTYPE1: %s" % all[str(x)]["TYPE1"])
         if all[str(x)]["TYPE1"] != all[str(y)]["TYPE1"]:
             f.write("\nTYPE2: %s" % all[str(y)]["TYPE1"])
@@ -133,6 +134,8 @@ while x <= len(all):
                         f.write(e)
                         con[e.split(":")[1]] = True
             else:
+                if "133" in e.split(":")[0] and ("WATER" in e.split(":")[1] or "THUNDER" in e.split(":")[1] or "FIRE" in e.split(":")[1]):
+                    continue
                 if e.split(":")[1] not in con.keys():
                     f.write(e)
                     con[e.split(":")[1]] = True
