@@ -15,6 +15,8 @@ special_list.append("RANDOM")
 special_list.append("UNAVOIDABLE")
 special_list.append("PAYDAY")
 special_list.append("SLEEPING_TARGET_ONLY")
+special_list.append("SELF_ON_MISS_ONLY")
+special_list.append("COUNTER")
 while s != "":
     t = s.split(":")[0]
     types[t] = {}
