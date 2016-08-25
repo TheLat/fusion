@@ -14,6 +14,7 @@ special_list.append("POST_CONFUSE")
 special_list.append("RANDOM")
 special_list.append("UNAVOIDABLE")
 special_list.append("PAYDAY")
+special_list.append("SLEEPING_TARGET_ONLY")
 while s != "":
     t = s.split(":")[0]
     types[t] = {}
