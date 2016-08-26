@@ -188,11 +188,15 @@ while s != "":
         s = f.readline().replace("\n", "")
 f.close()
 
+total = 0
+duplicate_names = 0
 for s in mon.keys():
+    total = total + 1
     for t in mon.keys():
         if t != s:
             if mon[s]["NAME"] == mon[t]["NAME"]:
                 print "Error:  %s and %s have the same name (%s)" % (s, t, mon[t]["NAME"])
+                duplicate_names = duplicate_names + 1
     x = 0
     while x < len(mon[s]["MOVES"]):
         if mon[s]["MOVES"][x] not in moves.keys():
@@ -207,4 +211,6 @@ for s in mon.keys():
                 print "Error:  %s evolves into %s that is not defined." % (mon[s]["NAME"], mon[s]["EVOLUTION"][x])
             x = x + 1
 
+print "%s pairs of pokemon have duplicate names." % (duplicate_names/2)
+print "%s total pokemon." % total
 print "Validation checks completed in %f seconds." % (time.time() - start)

@@ -10,6 +10,8 @@ while s != "":
         i = s.split(" ")[1]
         if i not in all.keys():
             all[i] = {}
+    if s.startswith("SWITCH: "):
+        all[i]["SWITCH"] = s.split(" ")[1]
     if s.startswith("NAME: "):
         all[i]["NAME"] = s.split(" ")[1]
     if s.startswith("SURNAME: "):
@@ -65,12 +67,24 @@ while x <= len(all):
     y = 1
     while y <= len(all):
         n = (all[str(x)]["NAME"] + all[str(y)]["SURNAME"]).replace("EEEE", "EE")
+        if n == "MUUK":
+            n = "MUK"
+        if n == "EEVVEE":
+            n = "EEVEE"
+        if n == "MEEW":
+            n = "MEW"
         print "Fusing " + (all[str(x)]["NAME"] + all[str(x)]["SURNAME"]).replace("EEEE", "EE") + " and " + (all[str(y)]["NAME"] + all[str(y)]["SURNAME"]).replace("EEEE", "EE") + " into " + n
         f.write("NUMBER: %s-%s" % (x, y))
         f.write("\nNAME: %s" % n)
         f.write("\nTYPE1: %s" % all[str(x)]["TYPE1"])
         if all[str(x)]["TYPE1"] != all[str(y)]["TYPE1"]:
-            f.write("\nTYPE2: %s" % all[str(y)]["TYPE1"])
+            if "SWITCH" in all[str(y)].keys():
+                if all[str(x)]["TYPE1"] != all[str(y)]["TYPE2"]:
+                    f.write("\nTYPE2: %s" % all[str(y)]["TYPE2"])
+                else:
+                    f.write("\nTYPE2: %s" % all[str(y)]["TYPE1"])
+            else:
+                f.write("\nTYPE2: %s" % all[str(y)]["TYPE1"])
         #elif "TYPE2" in all[str(x)].keys():
         #    f.write("\nTYPE2: %s" % all[str(x)]["TYPE2"])
         elif "TYPE2" in all[str(y)].keys():
