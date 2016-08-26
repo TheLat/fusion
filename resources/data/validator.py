@@ -186,6 +186,7 @@ while s != "":
     s = f.readline().replace("\n", "")
     if s == "":
         s = f.readline().replace("\n", "")
+
 f.close()
 
 total = 0
