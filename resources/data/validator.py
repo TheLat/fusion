@@ -128,8 +128,12 @@ for s in moves.keys():
         t = moves[s]["SPECIAL"].split(" ")
         x = 0
         while x < len(t):
-            if t[x] not in special_list:
+            if t[x].split(":")[0] not in special_list:
                 print "Error:  %s has not defined special modifier %s." % (s, t[x])
+            if t[x].split(":")[0] == "STATUS_IMMUNITY" and t[x].split(":")[1] not in types.keys():
+                print "Error:  %s references status immunity for undefined type %s." % (s, t[x].split(":")[1])
+            if t[x].split(":")[0] == "ACCURATE_IF" and t[x].split(":")[1] not in types.keys():
+                print "Error:  %s references accuracy boost for undefined type %s." % (s, t[x].split(":")[1])
             x = x + 1
 
 print "Loading HM database."
