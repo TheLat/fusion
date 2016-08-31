@@ -101,14 +101,18 @@ while x <= len(all):
         f.write("\nSPEED: %s" % SPEED)
         f.write("\nMOVES:")
         z = 0
+        m = []
         while z < len(all[str(x)]["MOVES"]) or z < len(all[str(y)]["MOVES"]):
             if z < len(all[str(x)]["MOVES"]):
                 if z % 2 == 1:
-                    f.write("\n%s" % all[str(x)]["MOVES"][z])
+                    m.append((int(all[str(x)]["MOVES"][z].split(" ")[0]), all[str(x)]["MOVES"][z]))
             if z < len(all[str(y)]["MOVES"]):
                 if z % 2 == 0:
-                    f.write("\n%s" % all[str(y)]["MOVES"][z])
+                    m.append((int(all[str(y)]["MOVES"][z].split(" ")[0]), all[str(y)]["MOVES"][z]))
             z = z + 1
+        m.sort(key=lambda tup: tup[0])
+        for move in m:
+            f.write("\n%s" % move[1])
         ev = []
         if x != y:
             z = 0
