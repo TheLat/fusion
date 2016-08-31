@@ -93,7 +93,7 @@ for s in moves.keys():
         t = moves[s]["QUEUE"].split(" ")
         x = 0
         while x < len(t):
-            if t[x] not in moves.keys():
+            if t[x].split("x")[0] not in moves.keys():
                 print "Error:  %s queues move %s that is not defined" % (s, t[x])
             x = x + 1
     if "TYPE" not in moves[s].keys():
