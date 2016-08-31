@@ -7,16 +7,9 @@ types = {}
 status = {}
 moves = {}
 mon = {}
+TM = {}
+HM = {}
 special_list = []
-special_list.append("ENEMY_LAST")
-special_list.append("FIRST")
-special_list.append("POST_CONFUSE")
-special_list.append("RANDOM")
-special_list.append("UNAVOIDABLE")
-special_list.append("PAYDAY")
-special_list.append("SLEEPING_TARGET_ONLY")
-special_list.append("SELF_ON_MISS_ONLY")
-special_list.append("COUNTER")
 while s != "":
     t = s.split(":")[0]
     types[t] = {}
@@ -31,6 +24,14 @@ for s in types.keys():
     for t in types[s].keys():
         if not t in types.keys():
             print "Error in %s: %s" % (s, t)
+
+f.close()
+print "Loading special cases."
+f = open("special.dat")
+s = f.readline().replace("\n", "")
+while s != "":
+    special_list.append(s)
+    s = f.readline().replace("\n", "")
 
 f.close()
 print "Loading status types."
@@ -131,6 +132,30 @@ for s in moves.keys():
                 print "Error:  %s has not defined special modifier %s." % (s, t[x])
             x = x + 1
 
+print "Loading HM database."
+f = open("HM.dat")
+s = f.readline().replace("\n", "")
+while s != "":
+    if s.split(":")[0] in HM.keys():
+        print "Error:  HM key %s already defined." % s.split(":")[0]
+    HM[s.split(":")[0]] = s.split(":")[1]
+    if s.split(":")[1] not in moves.keys():
+        print "Error:  HM %s references undefined move %s." % (s.split(":")[0], s.split(":")[1])
+    s = f.readline().replace("\n", "")
+
+f.close()
+print "Loading TM database."
+f = open("TM.dat")
+s = f.readline().replace("\n", "")
+while s != "":
+    if s.split(":")[0] in TM.keys():
+        print "Error:  TM key %s already defined." % s.split(":")[0]
+    TM[s.split(":")[0]] = s.split(":")[1]
+    if s.split(":")[1] not in moves.keys():
+        print "Error:  TM %s references undefined move %s." % (s.split(":")[0], s.split(":")[1])
+    s = f.readline().replace("\n", "")
+
+f.close()
 print "Loading creature database."
 f = open("mon.dat")
 s = f.readline().replace("\n", "")
