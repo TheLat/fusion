@@ -69,6 +69,8 @@ while s != "":
         moves[t]["TARGET"] = s[8:]
     elif s.startswith("QUEUE:"):
         moves[t]["QUEUE"] = s[7:]
+    elif s.startswith("ADDITIONAL:"):
+        moves[t]["ADDITIONAL"] = s[12:]
     elif s.startswith("QUEUE_ONLY"):
         moves[t]["QUEUE_ONLY"] = s[12:]
     elif s.startswith("DESC"):
@@ -96,6 +98,13 @@ for s in moves.keys():
             if t[x].split("x")[0] not in moves.keys():
                 print "Error:  %s queues move %s that is not defined" % (s, t[x])
             x = x + 1
+    if "ADDITIONAL" in moves[s].keys():
+        t = moves[s]["ADDITIONAL"].split(" ")
+        x = 0
+        while x < len(t):
+            if t[x].split("x")[0] not in moves.keys():
+                print "Error:  %s has additional move %s that is not defined" % (s, t[x])
+            x = x + 1
     if "TYPE" not in moves[s].keys():
         print "Error:  %s has no type." % s
     if "TYPE" in moves[s].keys():
@@ -120,9 +129,11 @@ for s in moves.keys():
         while x < len(t):
             if t[x].split(":")[0] not in status.keys():
                 print "Error:  %s inflicts status %s which does not exist." % (s, t[x])
+            if ":" in t[x] and t[x].split(":")[0] == "CLEAR_STATUS" and t[x].split(":")[1] not in status.keys():
+                print "Error:  %s clears status %s which does not exist." % (s, t[x])
             x = x + 1
     if "CRITICAL" in moves[s].keys():
-        if moves[s]["CRITICAL"] != "HIGH" and moves[s]["CRITICAL"] != "NORMAL":
+        if moves[s]["CRITICAL"] != "HIGH" and moves[s]["CRITICAL"] != "NORMAL" and moves[s]["CRITICAL"] != "NONE":
             print "Error:  %s has not defined critical hit chance %s." % (s, moves[s]["CRITICAL"])
     if "SPECIAL" in moves[s].keys():
         t = moves[s]["SPECIAL"].split(" ")
