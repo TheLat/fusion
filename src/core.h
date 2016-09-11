@@ -1,12 +1,54 @@
 #include <map>
+#include <vector>
 #include <string>
 
 using namespace std;
 
 // format is always types[ATTACKER][DEFENDER]
 std::map<string, std::map<string, float>> types;
+std::map<string, bool> special_case;
+std::map<string, bool> status;
 typedef std::map<string, std::map<string, float>>::iterator type_iter;
 
+enum STAT{
+	HP=0,
+	ATTACK,
+	DEFENSE,
+	SPECIAL,
+	SPEED,
+	SIZE
+};
+
+class move {
+public:
+	string name;
+	string type;
+	int power;
+	STAT defense;
+	int acc;
+	int pp;
+};
+
+void init_status(){
+	string line;
+	ifstream f("../resources/data/status.dat");
+	while (f.is_open()) {
+		while (std::getline(f, line)) {
+			status[line] = true;
+		}
+		f.close();
+	}
+}
+void init_special(){
+	string line;
+	ifstream f("../resources/data/special.dat");
+	while (f.is_open()) {
+		while (std::getline(f, line)) {
+			special_case[line] = true;
+		}
+		f.close();
+	}
+}
 
 void init_types(){
 	string line;
@@ -17,7 +59,6 @@ void init_types(){
 			a = f.get();
 			if (a != ':')
 				line = line + a;
-			cout << a << '\n';
 			if (a == ':') {
 				types[line];
 				while (a != '\n' && a != 0) {
@@ -48,7 +89,6 @@ void init_types(){
 				a = f2.get();
 			if (a != ':')
 				attack = attack + a;
-			cout << a << '\n';
 			if (a == ':') {
 				while (a == ':' || a == ' ') {
 					a = f2.get();
@@ -85,5 +125,4 @@ void init_types(){
 		}
 		f2.close();
 	}
-	printf("Hello world.");
 }
