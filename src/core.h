@@ -27,6 +27,12 @@ public:
 	STAT defense;
 	int acc;
 	int pp;
+	float crit_chance;
+	string desc;
+	vector<string> queue;
+	vector<string> self;
+	vector<string> target;
+	vector<string> special;
 };
 
 void init_status(){
