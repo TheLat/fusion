@@ -24,12 +24,13 @@ public:
 	string name;
 	string type;
 	int power;
-	STAT defense;
+	STAT attack, defense;
 	int acc;
 	int pp;
 	float crit_chance;
 	string desc;
 	vector<string> queue;
+	vector<string> additional;
 	vector<string> self;
 	vector<string> target;
 	vector<string> special;
@@ -132,3 +133,4 @@ void init_types(){
 		f2.close();
 	}
 }
+
