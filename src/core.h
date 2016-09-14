@@ -36,6 +36,26 @@ public:
 	vector<string> special;
 };
 
+class pokemon_template {
+public:
+	string number, name, type1, type2;
+        int stats[STAT.SIZE];
+        vector<pair<int, string>> learned;
+	vector<pair<string, string>> evolution;
+};
+
+class pokemon : public pokemon_template {
+public:
+	int IV[STAT.SIZE];
+	int EV[STAT.SIZE];
+	int curr_hp;
+	int pp[4];
+	int max_pp[4];
+	string moves[4];
+	vector<string> status;
+	string nickname;
+};
+
 void init_status(){
 	string line;
 	ifstream f("../resources/data/status.dat");
