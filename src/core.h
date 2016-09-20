@@ -170,8 +170,7 @@ void init_mon() {
 					a = f.get();
 					line = line + 1;
 				}
-				all_mon[key].learned.first = level;
-				all_mon[key].learned.second = line;
+				// TODO:  Make this push to the array.
 			}
 		if (line == "EVOLUTION") {
 			while (a == '\r' || a == '\n') {
