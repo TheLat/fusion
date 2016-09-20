@@ -10,5 +10,6 @@ void main() {
 	init_types();
 	init_special();
 	init_status();
+	init_mon();
 	int a = 0;
 }

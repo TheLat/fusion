@@ -4,13 +4,6 @@
 
 using namespace std;
 
-// format is always types[ATTACKER][DEFENDER]
-std::map<string, std::map<string, float>> types;
-std::map<string, bool> special_case;
-std::map<string, bool> status;
-std::map<string, mon_template> all_mon;
-typedef std::map<string, std::map<string, float>>::iterator type_iter;
-
 enum STAT{
 	HP=0,
 	ATTACK,
@@ -41,8 +34,8 @@ public:
 class mon_template {
 public:
 	string number, name, type1, type2;
-        int stats[STAT.SIZE];
-        vector<pair<int, string>> learned;
+	int stats[SIZE];
+	vector<pair<int, string>> learned;
 	vector<pair<string, string>> evolution;
 	std::map<int, bool> TM, HM;
 	bool defined;
@@ -50,8 +43,8 @@ public:
 
 class mon : public mon_template {
 public:
-	int IV[STAT.SIZE];
-	int EV[STAT.SIZE];
+	int IV[SIZE];
+	int EV[SIZE];
 	int curr_hp;
 	int pp[4];
 	int max_pp[4];
@@ -59,19 +52,35 @@ public:
 	vector<string> status;
 	string nickname;
 };
+
+
+
+// format is always types[ATTACKER][DEFENDER]
+std::map<string, std::map<string, float>> types;
+std::map<string, bool> special_case;
+std::map<string, bool> status;
+std::map<string, mon_template> all_mon;
+typedef std::map<string, std::map<string, float>>::iterator type_iter;
+
+
 void init_mon() {
-	string line, line2;
+	string line;
 	ifstream f("../resources/data/mon.dat");
 	char a = 1;
-	level = 0;
+	int level = 0;
 	string key;
+	a = f.get();
 	while (f.is_open()) {
 		line = "";
 		while (a == '\r' || a == '\n')
 			a = f.get();
 		while (a != ':') {
-			a = f.get();
 			line = line + a;
+			a = f.get();
+			if (a == EOF) {
+				f.close();
+				return;
+			}
 		}
 		while (a == ' ' || a == ':')
 			a = f.get();
@@ -81,6 +90,7 @@ void init_mon() {
 				key = key + a;
 				a = f.get();
 			}
+			all_mon[key].number = key;
 			all_mon[key].defined = true;
 		}
 		else if (line == "NAME") {
@@ -113,7 +123,7 @@ void init_mon() {
 				line = line + a;
 				a = f.get();
 			}
-			all_mon[key].stats[STAT.HP] = stoi(line);
+			all_mon[key].stats[HP] = stoi(line);
 		}
 		else if (line == "ATTACK") {
 			line = "";
@@ -121,7 +131,7 @@ void init_mon() {
 				line = line + a;
 				a = f.get();
 			}
-			all_mon[key].stats[STAT.ATTACK] = stoi(line);
+			all_mon[key].stats[ATTACK] = stoi(line);
 		}
 		else if (line == "DEFENSE") {
 			line = "";
@@ -129,7 +139,7 @@ void init_mon() {
 				line = line + a;
 				a = f.get();
 			}
-			all_mon[key].stats[STAT.DEFENSE] = stoi(line);
+			all_mon[key].stats[DEFENSE] = stoi(line);
 		}
 		else if (line == "SPECIAL") {
 			line = "";
@@ -137,7 +147,7 @@ void init_mon() {
 				line = line + a;
 				a = f.get();
 			}
-			all_mon[key].stats[STAT.SPECIAL] = stoi(line);
+			all_mon[key].stats[SPECIAL] = stoi(line);
 		}
 		else if (line == "SPEED") {
 			line = "";
@@ -145,14 +155,16 @@ void init_mon() {
 				line = line + a;
 				a = f.get();
 			}
-			all_mon[key].stats[STAT.SPEED] = stoi(line);
+			all_mon[key].stats[SPEED] = stoi(line);
 		}
 		else if (line == "MOVES") {
+			pair<int, string> tempmove;
 			while (true) {
 				while (a == '\r' || a == '\n')
 					a = f.get();
 				if (a == 'E' || a == 'T') {
-					while (a != ':") {
+					line = "";
+					while (a != ':') {
 						line = line + a;
 						a = f.get();
 					}
@@ -160,52 +172,63 @@ void init_mon() {
 						a = f.get();
 					break;
 				}
+				line = "";
 				while (a != ' ') {
 					line = line + a;
 					a = f.get();
 				}
 				level = stoi(line);
 				line = "";
+				a = f.get();
 				while (a != '\r' && a != '\n') {
+					line = line + a;
 					a = f.get();
-					line = line + 1;
 				}
-				// TODO:  Make this push to the array.
+				tempmove.first = level;
+				tempmove.second = line;
+				all_mon[key].learned.push_back(tempmove);
 			}
-		if (line == "EVOLUTION") {
-			while (a == '\r' || a == '\n') {
+		}
+ 		if (line == "EVOLUTION") {
+			while (a == '\r' || a == '\n')
 				a = f.get();
 			while (true) {
+				pair<string, string> tempev;
 				line = "";
 				while (a != ':') {
 					line = line + a;
 					a = f.get();
 				}
 				a = f.get();
-				line2 = line;
+				tempev.first = line;
 				line = "";
 				while (a != '\r' && a != '\n') {
 					line = line + a;
 					a = f.get();
 				}
-				//TODO:  Make pair of line and line2 and push to evolution
+				tempev.second = line;
+				all_mon[key].evolution.push_back(tempev);
 				while (a == '\r' || a == '\n') {
 					a = f.get();
 				}
 				if (a == 'T') {
 					line = "";
-					while (a != ' ') {
-						line = line + 1;
+					while (a != ':') {
+						line = line + a;
 						a = f.get();
 					}
+					while (a != ' ' && a != '\r' && a != '\n')
+						a = f.get();
 					break;
 				}
 			}
 		}
 		if (line == "TM") {
-			while (a == '\r' || a == '\n') {
+			while (a != '\r' && a != '\n') {
 				line = "";
-				while (a != ' ') {
+				while (a == ' ')
+					a = f.get();
+				while (a != ' ' && a != '\n') {
 					line = line + a;
 					a = f.get();
 				}
@@ -213,18 +236,21 @@ void init_mon() {
 			}
 		}
 		if (line == "HM") {
-			while (a == '\r' || a == '\n') {
+			while (a != '\r' && a != '\n') {
 				line = "";
-				while (a != ' ') {
+				while (a == ' ')
+					a = f.get();
+				while (a != ' ' && a != '\n') {
 					line = line + a;
 					a = f.get();
 				}
 				all_mon[key].HM[stoi(line)] = true;
+				a = f.get();
 			}
 		}
 	}
 }
-void init_status() {
+void init_status(){
 	string line;
 	ifstream f("../resources/data/status.dat");
 	while (f.is_open()) {
