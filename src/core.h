@@ -44,6 +44,7 @@ public:
         int stats[STAT.SIZE];
         vector<pair<int, string>> learned;
 	vector<pair<string, string>> evolution;
+	std::map<int, bool> TM, HM;
 	bool defined;
 };
 
@@ -59,9 +60,10 @@ public:
 	string nickname;
 };
 void init_mon() {
-	string line;
+	string line, line2;
 	ifstream f("../resources/data/mon.dat");
 	char a = 1;
+	level = 0;
 	string key;
 	while (f.is_open()) {
 		line = "";
@@ -128,6 +130,98 @@ void init_mon() {
 				a = f.get();
 			}
 			all_mon[key].stats[STAT.DEFENSE] = stoi(line);
+		}
+		else if (line == "SPECIAL") {
+			line = "";
+			while (a != '\r' && a != '\n') {
+				line = line + a;
+				a = f.get();
+			}
+			all_mon[key].stats[STAT.SPECIAL] = stoi(line);
+		}
+		else if (line == "SPEED") {
+			line = "";
+			while (a != '\r' && a != '\n') {
+				line = line + a;
+				a = f.get();
+			}
+			all_mon[key].stats[STAT.SPEED] = stoi(line);
+		}
+		else if (line == "MOVES") {
+			while (true) {
+				while (a == '\r' || a == '\n')
+					a = f.get();
+				if (a == 'E' || a == 'T') {
+					while (a != ':") {
+						line = line + a;
+						a = f.get();
+					}
+					while (a == ':' || a == ' ')
+						a = f.get();
+					break;
+				}
+				while (a != ' ') {
+					line = line + a;
+					a = f.get();
+				}
+				level = stoi(line);
+				line = "";
+				while (a != '\r' && a != '\n') {
+					a = f.get();
+					line = line + 1;
+				}
+				all_mon[key].learned.first = level;
+				all_mon[key].learned.second = line;
+			}
+		if (line == "EVOLUTION") {
+			while (a == '\r' || a == '\n') {
+				a = f.get();
+			while (true) {
+				line = "";
+				while (a != ':') {
+					line = line + a;
+					a = f.get();
+				}
+				a = f.get();
+				line2 = line;
+				line = "";
+				while (a != '\r' && a != '\n') {
+					line = line + a;
+					a = f.get();
+				}
+				//TODO:  Make pair of line and line2 and push to evolution
+				while (a == '\r' || a == '\n') {
+					a = f.get();
+				}
+				if (a == 'T') {
+					line = "";
+					while (a != ' ') {
+						line = line + 1;
+						a = f.get();
+					}
+					break;
+				}
+			}
+		}
+		if (line == "TM") {
+			while (a == '\r' || a == '\n') {
+				line = "";
+				while (a != ' ') {
+					line = line + a;
+					a = f.get();
+				}
+				all_mon[key].TM[stoi(line)] = true;
+			}
+		}
+		if (line == "HM") {
+			while (a == '\r' || a == '\n') {
+				line = "";
+				while (a != ' ') {
+					line = line + a;
+					a = f.get();
+				}
+				all_mon[key].HM[stoi(line)] = true;
+			}
 		}
 	}
 }
