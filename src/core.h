@@ -8,6 +8,7 @@ using namespace std;
 std::map<string, std::map<string, float>> types;
 std::map<string, bool> special_case;
 std::map<string, bool> status;
+std::map<string, mon_template> all_mon;
 typedef std::map<string, std::map<string, float>>::iterator type_iter;
 
 enum STAT{
@@ -34,17 +35,19 @@ public:
 	vector<string> self;
 	vector<string> target;
 	vector<string> special;
+	bool defined;
 };
 
-class pokemon_template {
+class mon_template {
 public:
 	string number, name, type1, type2;
         int stats[STAT.SIZE];
         vector<pair<int, string>> learned;
 	vector<pair<string, string>> evolution;
+	bool defined;
 };
 
-class pokemon : public pokemon_template {
+class mon : public mon_template {
 public:
 	int IV[STAT.SIZE];
 	int EV[STAT.SIZE];
@@ -55,8 +58,80 @@ public:
 	vector<string> status;
 	string nickname;
 };
-
-void init_status(){
+void init_mon() {
+	string line;
+	ifstream f("../resources/data/mon.dat");
+	char a = 1;
+	string key;
+	while (f.is_open()) {
+		line = "";
+		while (a == '\r' || a == '\n')
+			a = f.get();
+		while (a != ':') {
+			a = f.get();
+			line = line + a;
+		}
+		while (a == ' ' || a == ':')
+			a = f.get();
+		if (line == "NUMBER") {
+			key = "";
+			while (a != '\r' && a != '\n') {
+				key = key + a;
+				a = f.get();
+			}
+			all_mon[key].defined = true;
+		}
+		else if (line == "NAME") {
+			line = "";
+			while (a != '\r' && a != '\n') {
+				line = line + a;
+				a = f.get();
+			}
+			all_mon[key].name = line;
+		}
+		else if (line == "TYPE1") {
+			line = "";
+			while (a != '\r' && a != '\n') {
+				line = line + a;
+				a = f.get();
+			}
+			all_mon[key].type1 = line;
+		}
+		else if (line == "TYPE2") {
+			line = "";
+			while (a != '\r' && a != '\n') {
+				line = line + a;
+				a = f.get();
+			}
+			all_mon[key].type2 = line;
+		}
+		else if (line == "HP") {
+			line = "";
+			while (a != '\r' && a != '\n') {
+				line = line + a;
+				a = f.get();
+			}
+			all_mon[key].stats[STAT.HP] = stoi(line);
+		}
+		else if (line == "ATTACK") {
+			line = "";
+			while (a != '\r' && a != '\n') {
+				line = line + a;
+				a = f.get();
+			}
+			all_mon[key].stats[STAT.ATTACK] = stoi(line);
+		}
+		else if (line == "DEFENSE") {
+			line = "";
+			while (a != '\r' && a != '\n') {
+				line = line + a;
+				a = f.get();
+			}
+			all_mon[key].stats[STAT.DEFENSE] = stoi(line);
+		}
+	}
+}
+void init_status() {
 	string line;
 	ifstream f("../resources/data/status.dat");
 	while (f.is_open()) {
