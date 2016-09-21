@@ -13,11 +13,11 @@ enum STAT{
 	SIZE
 };
 
-class move {
+class power {
 public:
 	string name;
 	string type;
-	int power;
+	string pow;
 	STAT attack, defense;
 	int acc;
 	int pp;
@@ -29,6 +29,8 @@ public:
 	vector<string> target;
 	vector<string> special;
 	bool defined;
+	bool queue_only;
+	power(){ acc = 100; attack = ATTACK; defense = DEFENSE; crit_chance = 1.0f; pow = ""; pp = 0; defined = false; queue_only = false; }
 };
 
 class mon_template {
@@ -39,6 +41,7 @@ public:
 	vector<pair<string, string>> evolution;
 	std::map<int, bool> TM, HM;
 	bool defined;
+	mon_template() { defined = false; }
 };
 
 class mon : public mon_template {
@@ -60,15 +63,161 @@ std::map<string, std::map<string, float>> types;
 std::map<string, bool> special_case;
 std::map<string, bool> status;
 std::map<string, mon_template> all_mon;
+std::map<string, power> moves;
 typedef std::map<string, std::map<string, float>>::iterator type_iter;
 
+void init_moves() {
+	string line, key;
+	ifstream f("../resources/data/moves.dat");
+	char a = f.get();
+	while (a != EOF && f.is_open()) {
+		line = "";
+		while (a != ':') {
+			line = line + a;
+			a = f.get();
+		}
+		while (a == ':' || a == ' ')
+			a = f.get();
+		if (line == "MOVE") {
+			line = "";
+			while (a != '\r' && a != '\n') {
+				line = line + a;
+				a = f.get();
+			}
+			key = line;
+			moves[key].defined = true;
+			moves[key].name = key;
+		}
+		else if (line == "TYPE") {
+			line = "";
+			while (a != '\r' && a != '\n') {
+				line = line + a;
+				a = f.get();
+			}
+			moves[key].type = line;
+		}
+		else if (line == "POWER") {
+			line = "";
+			while (a != '\r' && a != '\n') {
+				line = line + a;
+				a = f.get();
+			}
+			moves[key].pow = line;
+		}
+		else if (line == "DEFENSE") {
+			line = "";
+			while (a != '\r' && a != '\n') {
+				line = line + a;
+				a = f.get();
+			}
+			if (line == "SPECIAL") {
+				moves[key].attack = SPECIAL;
+				moves[key].defense = SPECIAL;
+			}
+		}
+		else if (line == "QUEUE_ONLY") {
+			line = "";
+			while (a != '\r' && a != '\n') {
+				line = line + a;
+				a = f.get();
+			}
+			if (line == "YES") {
+				moves[key].queue_only = true;
+			}
+		}
+		else if (line == "ACC") {
+			line = "";
+			while (a != '\r' && a != '\n') {
+				line = line + a;
+				a = f.get();
+			}
+			moves[key].acc = stoi(line);
+		}
+		else if (line == "PP") {
+			line = "";
+			while (a != '\r' && a != '\n') {
+				line = line + a;
+				a = f.get();
+			}
+			moves[key].pp = stoi(line);
+		}
+		else if (line == "SELF") {
+			while (a != '\r' && a != '\n' && a != EOF) {
+				line = "";
+				while (a != ' ' && a != '\r' && a != '\n' && a != EOF) {
+					line = line + a;
+					a = f.get();
+				}
+				while (a == ' ')
+					a = f.get();
+				moves[key].self.push_back(line);
+			}
+		}
+		else if (line == "TARGET") {
+			while (a != '\r' && a != '\n' && a != EOF) {
+				line = "";
+				while (a != ' ' && a != '\r' && a != '\n' && a != EOF) {
+					line = line + a;
+					a = f.get();
+				}
+				while (a == ' ')
+					a = f.get();
+				moves[key].target.push_back(line);
+			}
+		}
+		else if (line == "QUEUE") {
+			while (a != '\r' && a != '\n' && a != EOF) {
+				line = "";
+				while (a != ' ' && a != '\r' && a != '\n' && a != EOF) {
+					line = line + a;
+					a = f.get();
+				}
+				while (a == ' ')
+					a = f.get();
+				moves[key].queue.push_back(line);
+			}
+		}
+		else if (line == "SPECIAL") {
+			while (a != '\r' && a != '\n' && a != EOF) {
+				line = "";
+				while (a != ' ' && a != '\r' && a != '\n' && a != EOF) {
+					line = line + a;
+					a = f.get();
+				}
+				while (a == ' ')
+					a = f.get();
+				moves[key].special.push_back(line);
+			}
+		}
+		else if (line == "ADDITIONAL") {
+			while (a != '\r' && a != '\n' && a != EOF) {
+				line = "";
+				while (a != ' ' && a != '\r' && a != '\n' && a != EOF) {
+					line = line + a;
+					a = f.get();
+				}
+				while (a == ' ')
+					a = f.get();
+				moves[key].additional.push_back(line);
+			}
+		}
+
+		while (a != '\n' && a != EOF)
+			a = f.get();
+		while (a == '\n' && a != EOF)
+			a = f.get();
+		if (a == EOF) {
+			f.close();
+			break;
+		}
+	}
+}
 
 void init_mon() {
-	string line;
+	string line, key;
 	ifstream f("../resources/data/mon.dat");
 	char a = 1;
 	int level = 0;
-	string key;
 	a = f.get();
 	while (f.is_open()) {
 		line = "";
