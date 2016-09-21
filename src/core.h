@@ -215,7 +215,7 @@ void init_moves() {
 
 void init_mon() {
 	string line, key;
-	ifstream f("../resources/data/mon.dat");
+	ifstream f("../resources/original/pokemon.dat");//f("../resources/data/mon.dat");
 	char a = 1;
 	int level = 0;
 	a = f.get();
@@ -249,6 +249,21 @@ void init_mon() {
 				a = f.get();
 			}
 			all_mon[key].name = line;
+		}
+		else if (line == "SURNAME") {
+			line = "";
+			while (a != '\r' && a != '\n') {
+				line = line + a;
+				a = f.get();
+			}
+			all_mon[key].name = all_mon[key].name + line;
+		}
+		else if (line == "SWITCH") {
+			line = "";
+			while (a != '\r' && a != '\n') {
+				line = line + a;
+				a = f.get();
+			}
 		}
 		else if (line == "TYPE1") {
 			line = "";
@@ -385,7 +400,7 @@ void init_mon() {
 			}
 		}
 		if (line == "HM") {
-			while (a != '\r' && a != '\n') {
+			while (a != '\r' && a != '\n' && a != EOF) {
 				line = "";
 				while (a == ' ')
 					a = f.get();
