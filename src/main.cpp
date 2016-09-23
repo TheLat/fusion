@@ -17,7 +17,7 @@ void main() {
 	e.make_mon(string("1"), 1, m1);
 	e.make_mon(string("1"), 50, m2);
 	e.make_mon(string("1"), 100, m3);
-	e.make_mon(string("130"), 100, m4);
-	e.damage(m4, m1, string("FIRE BLAST"));
+	e.make_mon(string("76"), 100, m4);
+	e.damage(m3, m4, string("RAZOR LEAF"));
 	int a = 0;
 }

@@ -88,7 +88,7 @@ public:
 		for (int x = 0; x < SIZE; x++)
 			out.EV[x] = 0;
 		for (int x = 0; x < SIZE; x++)
-			out.IV[x] = int(random(0.0, 15.0));
+			out.IV[x] = int(random(0.0, 15.999));
 		for (int x = 0; x < SIZE; x++)
 			out.stats[x] = all_mon[ID].stats[x];
 		out.number = ID;
@@ -112,7 +112,13 @@ public:
 		double pow = stoi(moves[move].pow);
 		if (pow == 0.0)
 			return 0;
-		double damage = ((((2.0 * attacker.level) + 10.0) * get_stat(attacker, moves[move].attack) * pow) / (250.0 * get_stat(defender, moves[move].defense)) + 2.0);
+		double damage = 2.0 * attacker.level;
+		damage = damage + 10.0;
+		damage *= get_stat(attacker, moves[move].attack);
+		damage *= pow;
+		damage /= 250.0;
+		damage /= get_stat(defender, moves[move].defense);
+		damage += 2.0;
 		if (defender.type1 != "")
 			damage *= types[moves[move].type][defender.type1];
 		if (defender.type2 != "")
