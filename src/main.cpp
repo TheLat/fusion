@@ -14,10 +14,11 @@ void main() {
 	e.init_moves();
 	e.init_mon();
 	mon m1, m2, m3, m4;
+	bool crit = false;
 	e.make_mon(string("1"), 1, m1);
 	e.make_mon(string("1"), 50, m2);
 	e.make_mon(string("1"), 100, m3);
 	e.make_mon(string("76"), 100, m4);
-	e.damage(m3, m4, string("RAZOR LEAF"));
-	int a = 0;
+	e.use_move(m3, m4, string("TWIN NEEDLE"));
+ 	int a = 0;
 }

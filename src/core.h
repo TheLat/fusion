@@ -83,6 +83,14 @@ private:
 	std::map<string, mon_template> all_mon;
 	std::map<string, power> moves;
 public:
+	bool in_status(mon& m, string s) {
+		for (unsigned i = 0; i < m.status.size(); ++i) {
+			if (m.status[i] == s) {
+				return true;
+			}
+		}
+		return false;
+	}
 	void make_mon(string ID, int level, mon& out) {
 		out.level = level;
 		for (int x = 0; x < SIZE; x++)
@@ -108,16 +116,40 @@ public:
 		double t = double(rand()) / double(RAND_MAX);
 		return min + t*delta;
 	}
-	int damage(mon& attacker, mon& defender, string move) {
+	void use_move(mon& attacker, mon& defender, string move) {
+		double pow = stoi(moves[move].pow);
+		bool crit;
+		int repeat = 1;
+		if (pow != 0.0) {
+			if (moves[move].pow.find(string("x2-5")) != -1) {
+				repeat = int(random(2.0, 5.9999)); // TODO:  ADJUST PROBABILITY HERE
+			}
+			else if (moves[move].pow.find(string("x2")) != -1) {
+				repeat = 2;
+			}
+		}
+		for (int i = 0; i < repeat; ++i) {
+			defender.curr_hp -= damage(attacker, defender, move, crit);
+			// TODO:  STATUS EFFECTS GO HERE
+		}
+	}
+	int damage(mon& attacker, mon& defender, string move, bool& crit) {
 		double pow = stoi(moves[move].pow);
 		if (pow == 0.0)
 			return 0;
+		double chance = attacker.stats[SPEED] / 4.0;
+		if (in_status(attacker, string("FOCUS")))
+			chance *= 4.0;
+		chance *= moves[move].crit_chance;
+		if (random(0.0, 256.0) < chance) {
+			crit = true;
+		}
 		double damage = 2.0 * attacker.level;
 		damage = damage + 10.0;
-		damage *= get_stat(attacker, moves[move].attack);
+		damage *= get_stat(attacker, moves[move].attack, false, crit);
 		damage *= pow;
 		damage /= 250.0;
-		damage /= get_stat(defender, moves[move].defense);
+		damage /= get_stat(defender, moves[move].defense, crit, false);
 		damage += 2.0;
 		if (defender.type1 != "")
 			damage *= types[moves[move].type][defender.type1];
@@ -125,10 +157,77 @@ public:
 			damage *= types[moves[move].type][defender.type2];
 		if ((attacker.type1 == moves[move].type) || (attacker.type2 == moves[move].type))
 			damage *= 1.5;
+		if (crit) {
+			damage *= 1.5;
+		}
 		damage *= random(0.85, 1.0);
 		return int(damage);
 	}
-	int get_stat(mon& m, STAT s) {
+	string get_buff_name(STAT s) {
+		switch (s) {
+		case ATTACK:
+			return string("ATTACK_UP");
+		case DEFENSE:
+			return string("DEFENSE_UP");
+		case SPEED:
+			return string("SPEED_UP");
+		case SPECIAL:
+			return string("SPECIAL_UP");
+		default:
+			return string("");
+		}
+	}
+	string get_debuff_name(STAT s) {
+		switch (s) {
+		case ATTACK:
+			return string("ATTACK_DOWN");
+		case DEFENSE:
+			return string("DEFENSE_DOWN");
+		case SPEED:
+			return string("SPEED_DOWN");
+		case SPECIAL:
+			return string("SPECIAL_DOWN");
+		default:
+			return string("");
+		}
+	}
+	double get_stat_modifier(int buff) {
+		if (buff < -6)
+			buff = -6;
+		if (buff > 6)
+			buff = 6;
+		switch (buff) {
+		case -6:
+			return 2.0 / 8.0;
+		case -5:
+			return 2.0 / 7.0;
+		case -4:
+			return 2.0 / 6.0;
+		case -3:
+			return 2.0 / 5.0;
+		case -2:
+			return 2.0 / 4.0;
+		case -1:
+			return 2.0 / 3.0;
+		case 0:
+			return 2.0 / 2.0;
+		case 1:
+			return 3.0 / 2.0;
+		case 2:
+			return 4.0 / 2.0;
+		case 3:
+			return 5.0 / 2.0;
+		case 4:
+			return 6.0 / 2.0;
+		case 5:
+			return 7.0 / 2.0;
+		case 6:
+			return 8.0 / 2.0;
+		default:
+			return 1.0;
+		}
+	}
+	int get_stat(mon& m, STAT s, bool ignore_buffs=false, bool ignore_debuffs=false) {
 		int ret;
 		if (s == HP) {
 			ret = m.stats[s] + m.IV[s];
@@ -137,15 +236,29 @@ public:
 			ret = ret * m.level;
 			ret = ret / 100;
 			ret = ret + m.level + 10;
-			return ret;
 		}
-		ret = m.stats[s] + m.IV[s];
-		ret = ret * 2;
-		ret = ret + (sqrt(min(65535, m.EV[s])) / 4);
-		ret = ret * m.level;
-		ret = ret / 100;
-		ret = ret + 5;
-		return ret;
+		else {
+			ret = m.stats[s] + m.IV[s];
+			ret = ret * 2;
+			ret = ret + (sqrt(min(65535, m.EV[s])) / 4);
+			ret = ret * m.level;
+			ret = ret / 100;
+			ret = ret + 5;
+		}
+		int buff = 0;
+		for (unsigned i = 0; i < m.status.size(); ++i) {
+			if (!ignore_buffs) {
+				if (m.status[i] == this->get_buff_name(s)) {
+					buff++;
+				}
+			}
+			if (!ignore_debuffs) {
+				if (m.status[i] == this->get_debuff_name(s)) {
+					buff--;
+				}
+			}
+		}
+		return int(ret * get_stat_modifier(buff));
 	}
 	void init_moves() {
 		string line, key;
