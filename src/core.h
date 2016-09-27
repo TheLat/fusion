@@ -32,7 +32,7 @@ public:
 	vector<string> special;
 	bool defined;
 	bool queue_only;
-	power(){ acc = 100; attack = ATTACK; defense = DEFENSE; crit_chance = 1.0f; pow = ""; pp = 0; defined = false; queue_only = false; }
+	power(){ acc = 100; attack = ATTACK; defense = DEFENSE; crit_chance = 1.0f; pow = "0"; pp = 0; defined = false; queue_only = false; }
 };
 
 class mon_template {
@@ -116,6 +116,17 @@ public:
 		double t = double(rand()) / double(RAND_MAX);
 		return min + t*delta;
 	}
+	bool status_immunity(mon& m, string move) {
+		for (int i = 0; i < moves[move].special.size(); ++i) {
+			if (moves[move].special[i].find(string("STATUS_IMMUNITY")) != -1) {
+				if (moves[move].special[i].find(m.type1) != -1)
+					return true;
+				if (moves[move].special[i].find(m.type2) != -1)
+					return true;
+			}
+		}
+		return false;
+	}
 	void use_move(mon& attacker, mon& defender, string move) {
 		double pow = stoi(moves[move].pow);
 		bool crit;
@@ -130,6 +141,9 @@ public:
 		}
 		for (int i = 0; i < repeat; ++i) {
 			defender.curr_hp -= damage(attacker, defender, move, crit);
+			if (!status_immunity(defender, move)) {
+				int j = 0;
+			}
 			// TODO:  STATUS EFFECTS GO HERE
 		}
 	}
