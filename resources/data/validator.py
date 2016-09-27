@@ -36,10 +36,10 @@ while s != "":
 f.close()
 print "Loading status types."
 f = open("status.dat")
-s = f.readline().replace("\n", "")
+s = f.readline().replace("\n", "").split(":")[0]
 while s != "":
     status[s] = True
-    s = f.readline().replace("\n", "")
+    s = f.readline().replace("\n", "").split(":")[0]
 
 f.close()
 print "Loading move database."
