@@ -36,10 +36,14 @@ while s != "":
 f.close()
 print "Loading status types."
 f = open("status.dat")
-s = f.readline().replace("\n", "").split(":")[0]
-while s != "":
-    status[s] = True
-    s = f.readline().replace("\n", "").split(":")[0]
+s = f.readline().replace("\n", "").split(":")
+while s[0] != "":
+    status[s[0]] = True
+    if len(s) > 1:
+        for t in s[1].split(" "):
+            if t != "NONVOLATILE" and t != "CHANCE" and t != "SINGLETON":
+                print "Error:  Status %s has unknown modifier %s." % (s, t)
+    s = f.readline().replace("\n", "").split(":")
 
 f.close()
 print "Loading move database."
