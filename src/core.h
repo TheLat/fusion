@@ -59,6 +59,17 @@ public:
 	string nickname;
 };
 
+class status_effect {
+public:
+	bool defined;
+	bool chance;
+	bool nonvolatile;
+	bool singleton;
+	bool specialcase;
+	string name;
+	status_effect() { defined = false; chance = false; nonvolatile = false; name = string(""); singleton = false; specialcase = false; }
+};
+
 typedef std::map<string, std::map<string, float>>::iterator type_iter;
 int min(int a, int b) {
 	if (a < b) {
@@ -79,7 +90,7 @@ private:
 	// format is always types[ATTACKER][DEFENDER]
 	std::map<string, std::map<string, float>> types;
 	std::map<string, bool> special_case;
-	std::map<string, bool> status;
+	std::map<string, status_effect> status;
 	std::map<string, mon_template> all_mon;
 	std::map<string, power> moves;
 public:
@@ -117,7 +128,7 @@ public:
 		return min + t*delta;
 	}
 	bool status_immunity(mon& m, string move) {
-		for (int i = 0; i < moves[move].special.size(); ++i) {
+		for (unsigned i = 0; i < moves[move].special.size(); ++i) {
 			if (moves[move].special[i].find(string("STATUS_IMMUNITY")) != -1) {
 				if (moves[move].special[i].find(m.type1) != -1)
 					return true;
@@ -127,10 +138,65 @@ public:
 		}
 		return false;
 	}
-	void use_move(mon& attacker, mon& defender, string move) {
+	bool apply_status(mon& m, string s) {
+		string s2, s3;
+		bool first = true;
+		s2 = "";
+		s3 = "";
+		if (s.find(':') != -1) {
+			for (unsigned i = 0; i < s.size(); ++i) {
+				if (s[i] == ':') {
+					first = false;
+					continue;
+				}
+				if (first)
+					s2 += s[i];
+				else
+					s3 += s[i];
+			}
+		}
+		else {
+			s2 = s;
+		}
+		if (s3 == "" && status[s2].chance)
+			s3 = "100";
+		if (!status[s2].defined)
+			return false;
+		if (status[s2].singleton) {
+			if (in_status(m, s2)) {
+				return false;
+			}
+		}
+		if (status[s2].chance) {
+			double c = double(stoi(s3));
+			if (random(0.0, 100.0) > c) {
+				return false;
+			}
+		}
+		if (!status[s2].specialcase) {
+			if (s2 == "SLEEP") {
+				int max;
+				if (s3 == "") {
+					max = int(random(1.0, 7.999));
+				}
+				else {
+					max = stoi(s3);
+				}
+				for (int i = 0; i < max; ++i) {
+					m.status.push_back(s2);
+				}
+			}
+			else {
+				m.status.push_back(s2);
+			}
+		}
+		return true;
+	}
+	bool use_move(mon& attacker, mon& defender, string move) {
 		double pow = stoi(moves[move].pow);
 		bool crit;
 		int repeat = 1;
+		bool success = false;
 		if (pow != 0.0) {
 			if (moves[move].pow.find(string("x2-5")) != -1) {
 				repeat = int(random(2.0, 5.9999)); // TODO:  ADJUST PROBABILITY HERE
@@ -142,10 +208,15 @@ public:
 		for (int i = 0; i < repeat; ++i) {
 			defender.curr_hp -= damage(attacker, defender, move, crit);
 			if (!status_immunity(defender, move)) {
-				int j = 0;
+				for (unsigned j = 0; j < moves[move].target.size(); ++j) {
+					success = success || apply_status(defender, moves[move].target[j]);
+				}
 			}
-			// TODO:  STATUS EFFECTS GO HERE
+			for (unsigned j = 0; j < moves[move].self.size(); ++j) {
+				success = success || apply_status(defender, moves[move].target[j]);
+			}
 		}
+		return success;
 	}
 	int damage(mon& attacker, mon& defender, string move, bool& crit) {
 		double pow = stoi(moves[move].pow);
@@ -639,14 +710,49 @@ public:
 		}
 	}
 	void init_status(){
-		string line;
+		string line, key;
 		ifstream f("../resources/data/status.dat");
+		char a = f.get();
 		while (f.is_open()) {
-			while (std::getline(f, line)) {
-				status[line] = true;
+			line = "";
+			while (a == '\r' || a == '\n')
+				a = f.get();
+			while (a != ':' && a != '\n') {
+				line = line + a;
+				a = f.get();
+				if (a == EOF) {
+					f.close();
+					return;
+				}
 			}
-			f.close();
+			key = line;
+			status[key].defined = true;
+			status[key].name = line;
+			while (true) {
+				if (a == '\n')
+					break;
+				while (a == ' ' || a == ':') {
+					a = f.get();
+				}
+				line = "";
+				while (a != ' ' && a != ':' && a != '\n') {
+					line = line + a;
+					a = f.get();
+				}
+				if (line == "NONVOLATILE")
+					status[key].nonvolatile = true;
+				else if (line == "CHANCE")
+					status[key].chance = true;
+				else if (line == "SINGLETON")
+					status[key].singleton = true;
+				else if (line == "SPECIALCASE")
+					status[key].specialcase = true;
+			}
+			while (a != '\n') {
+				a = f.get();
+			}
 		}
+		f.close();
 	}
 	void init_special(){
 		string line;
