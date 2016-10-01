@@ -138,6 +138,25 @@ public:
 		}
 		return false;
 	}
+	bool remove_status(mon& m, string s, bool all = false) {
+		bool success = false;
+		while (m.status.size() > 0 && m.status[0] == s) {
+			m.status.erase(m.status.begin());
+			if (!all)
+				return true;
+			success = true;
+		}
+		for (int i = 1; i < m.status.size(); ++i) {
+			if (m.status[i] == s) {
+				m.status.erase(m.status.begin() + i);
+				if (!all)
+					return true;
+				success = true;
+				i--;
+			}
+		}
+		return success;
+	}
 	bool apply_status(mon& m, string s) {
 		string s2, s3;
 		bool first = true;
@@ -161,6 +180,8 @@ public:
 		if (s3 == "" && status[s2].chance)
 			s3 = "100";
 		if (!status[s2].defined)
+			return false;
+		if (s2 == "POISON" && in_status(m, string("TOXIC")))
 			return false;
 		if (status[s2].singleton) {
 			if (in_status(m, s2)) {
@@ -189,6 +210,9 @@ public:
 			else {
 				m.status.push_back(s2);
 			}
+			if (s2 == "TOXIC") {
+				remove_status(m, string("POISON"), true);
+			}
 		}
 		return true;
 	}
@@ -197,6 +221,9 @@ public:
 		bool crit;
 		int repeat = 1;
 		bool success = false;
+		if (moves[move].acc < int(random(0.0, 100.0))) {
+			return false;
+		}
 		if (pow != 0.0) {
 			if (moves[move].pow.find(string("x2-5")) != -1) {
 				repeat = int(random(2.0, 5.9999)); // TODO:  ADJUST PROBABILITY HERE
@@ -209,12 +236,15 @@ public:
 			defender.curr_hp -= damage(attacker, defender, move, crit);
 			if (!status_immunity(defender, move)) {
 				for (unsigned j = 0; j < moves[move].target.size(); ++j) {
-					success = success || apply_status(defender, moves[move].target[j]);
+					success = apply_status(defender, moves[move].target[j]) || success;
 				}
 			}
 			for (unsigned j = 0; j < moves[move].self.size(); ++j) {
-				success = success || apply_status(defender, moves[move].target[j]);
+				success = apply_status(defender, moves[move].target[j]) || success;
 			}
+		}
+		for (int i = 0; i < moves[move].additional.size(); ++i) {
+			success = use_move(attacker, defender, moves[move].additional[i]) || success;
 		}
 		return success;
 	}

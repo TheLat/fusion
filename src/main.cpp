@@ -19,12 +19,6 @@ void main() {
 	e.make_mon(string("1"), 50, m2);
 	e.make_mon(string("1"), 100, m3);
 	e.make_mon(string("76"), 100, m4);
-	e.use_move(m3, m2, string("SPORE"));
-	e.use_move(m3, m4, string("TWIN NEEDLE"));
-	e.use_move(m3, m4, string("TWIN NEEDLE"));
-	e.use_move(m3, m4, string("TWIN NEEDLE"));
-	e.use_move(m3, m4, string("TWIN NEEDLE"));
-	e.use_move(m3, m4, string("TWIN NEEDLE"));
-	e.use_move(m3, m4, string("TWIN NEEDLE"));
+	e.use_move(m3, m4, string("TRI ATTACK"));
  	int a = 0;
 }
