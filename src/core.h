@@ -52,6 +52,7 @@ public:
 	int EV[SIZE];
 	int curr_hp;
 	int level;
+	int turn_count;
 	int pp[4];
 	int max_pp[4];
 	string moves[4];
@@ -119,7 +120,14 @@ public:
 		out.TM = all_mon[ID].TM;
 		out.curr_hp = get_stat(out, HP);
 		out.HM = all_mon[ID].HM;
-
+		out.turn_count = 0;
+		out.nickname = all_mon[ID].name;
+		for (int x = 0; x < all_mon[ID].learned.size(); ++x) {
+			// TODO:  Apply randomness with priority to forget the oldest move, but also be able to forget other
+			out.moves[x % 4] = all_mon[ID].learned[x].second;
+			out.pp[x % 4] = moves[all_mon[ID].learned[x].second].pp;
+			out.max_pp[x % 4] = moves[all_mon[ID].learned[x].second].pp;
+		}
 	}
 	double random(double min, double max) {
 		// range is inclusive.
@@ -215,6 +223,11 @@ public:
 			}
 		}
 		return true;
+	}
+	void use_status(mon& self, mon& other) {
+		for (unsigned i = 0; i < self.status.size(); ++i) {
+
+		}
 	}
 	bool use_move(mon& attacker, mon& defender, string move) {
 		double pow = stoi(moves[move].pow);
