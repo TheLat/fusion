@@ -19,6 +19,11 @@ void main() {
 	e.make_mon(string("1"), 50, m2);
 	e.make_mon(string("1"), 100, m3);
 	e.make_mon(string("76"), 100, m4);
-	e.use_move(m3, m4, string("TRI ATTACK"));
+	e.use_move(m3, m4, string("SPORE"));
+	e.use_move(m3, m4, string("POISON POWDER"));
+	e.use_move(m3, m4, string("EMBER"));
+	e.use_move(m3, m4, string("EMBER"));
+	e.use_move(m3, m4, string("EMBER"));
+	e.use_status(m4, m3);
  	int a = 0;
 }

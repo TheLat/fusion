@@ -226,7 +226,25 @@ public:
 	}
 	void use_status(mon& self, mon& other) {
 		for (unsigned i = 0; i < self.status.size(); ++i) {
-
+			if (self.status[i] == "POISON") {
+				// TODO: Animation goes here
+				self.curr_hp = self.curr_hp - int(double(get_stat(self, HP)) / 16.0);
+			}
+			else if (self.status[i] == "BURN") {
+				// TODO: Animation goes here
+				self.curr_hp = self.curr_hp - int(double(get_stat(self, HP)) / 16.0);
+			}
+			else if (self.status[i] == "SEED") {
+				// TODO: Animation goes here
+				self.curr_hp = self.curr_hp - int(double(get_stat(self, HP)) / 16.0);
+				other.curr_hp = other.curr_hp + int(double(get_stat(self, HP)) / 16.0);
+				if (other.curr_hp > get_stat(other, HP))
+					other.curr_hp = get_stat(other, HP);
+			}
+			else if (self.status[i] == "TOXIC") {
+				// TODO: Animation goes here
+				self.curr_hp = self.curr_hp - int(double(self.turn_count * get_stat(self, HP)) / 16.0);
+			}
 		}
 	}
 	bool use_move(mon& attacker, mon& defender, string move) {
