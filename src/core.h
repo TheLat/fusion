@@ -57,6 +57,7 @@ public:
 	int max_pp[4];
 	string moves[4];
 	vector<string> status;
+	vector<string> queue;
 	string nickname;
 };
 
@@ -122,7 +123,7 @@ public:
 		out.HM = all_mon[ID].HM;
 		out.turn_count = 0;
 		out.nickname = all_mon[ID].name;
-		for (int x = 0; x < all_mon[ID].learned.size(); ++x) {
+		for (unsigned x = 0; x < all_mon[ID].learned.size(); ++x) {
 			// TODO:  Apply randomness with priority to forget the oldest move, but also be able to forget other
 			out.moves[x % 4] = all_mon[ID].learned[x].second;
 			out.pp[x % 4] = moves[all_mon[ID].learned[x].second].pp;
@@ -154,7 +155,7 @@ public:
 				return true;
 			success = true;
 		}
-		for (int i = 1; i < m.status.size(); ++i) {
+		for (unsigned i = 1; i < m.status.size(); ++i) {
 			if (m.status[i] == s) {
 				m.status.erase(m.status.begin() + i);
 				if (!all)
@@ -271,11 +272,23 @@ public:
 				}
 			}
 			for (unsigned j = 0; j < moves[move].self.size(); ++j) {
-				success = apply_status(defender, moves[move].target[j]) || success;
+				success = apply_status(attacker, moves[move].self[j]) || success;
 			}
 		}
-		for (int i = 0; i < moves[move].additional.size(); ++i) {
+		for (unsigned i = 0; i < moves[move].additional.size(); ++i) {
 			success = use_move(attacker, defender, moves[move].additional[i]) || success;
+		}
+		for (unsigned i = 0; i < moves[move].queue.size(); ++i) {
+			if (moves[move].queue[i].find("x0-3") == -1)
+				attacker.queue.push_back(moves[move].queue[i]);
+			else {
+				string temp = moves[move].queue[i];
+				temp.erase(temp.find("x0-3"), 4);
+				// TODO:  Make probability shift match regular pokemon.
+				repeat = int(random(0.0, 3.999));
+				for (int j = 0; j < repeat; ++j)
+					attacker.queue.push_back(temp);
+			}
 		}
 		return success;
 	}
