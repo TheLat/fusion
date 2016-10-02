@@ -390,6 +390,8 @@ public:
 			ret = ret * m.level;
 			ret = ret / 100;
 			ret = ret + 5;
+			if (s == ATTACK && in_status(m, string("BURN")))
+				ret = ret / 2;
 		}
 		int buff = 0;
 		for (unsigned i = 0; i < m.status.size(); ++i) {
