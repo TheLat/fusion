@@ -571,6 +571,14 @@ public:
 					moves[key].additional.push_back(line);
 				}
 			}
+			else if (line == "DESC") {
+				line = "";
+				while (a != '\r' && a != '\n' && a != EOF) {
+					line = line + a;
+					a = f.get();
+				}
+				moves[key].desc = line;
+			}
 
 			while (a != '\n' && a != EOF)
 				a = f.get();
