@@ -258,7 +258,7 @@ public:
 		}
 		if (pow != 0.0) {
 			if (moves[move].pow.find(string("x2-5")) != -1) {
-				repeat = int(random(2.0, 5.9999)); // TODO:  ADJUST PROBABILITY HERE
+				repeat = weightedrand() + 2;
 			}
 			else if (moves[move].pow.find(string("x2")) != -1) {
 				repeat = 2;
@@ -284,8 +284,7 @@ public:
 			else {
 				string temp = moves[move].queue[i];
 				temp.erase(temp.find("x0-3"), 4);
-				// TODO:  Make probability shift match regular pokemon.
-				repeat = int(random(0.0, 3.999));
+				repeat = weightedrand();
 				for (int j = 0; j < repeat; ++j)
 					attacker.queue.push_back(temp);
 			}
@@ -915,6 +914,25 @@ public:
 				}
 			}
 			f2.close();
+		}
+	}
+	int weightedrand() {
+		int i = int(random(0.0, 7.999));
+		switch (i) {
+		case 0:
+		case 1:
+		case 2:
+			return 0;
+		case 3:
+		case 4:
+		case 5:
+			return 1;
+		case 6:
+			return 2;
+		case 7:
+			return 3;
+		default:
+			return 0;
 		}
 	}
 };
