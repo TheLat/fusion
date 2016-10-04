@@ -15,8 +15,8 @@ void main() {
 	e.init_mon();
 	mon m1, m2, m3, m4;
 	bool crit = false;
-	e.make_mon(string("1"), 100, m1);
-	e.make_mon(string("7"), 100, m2);
+	e.make_mon(string("3"), 100, m1);
+	e.make_mon(string("9"), 100, m2);
 	m1.queue.push_back(m1.moves[0]);
 	m2.queue.push_back(m2.moves[3]);
 	e.do_turn(m1, m2);

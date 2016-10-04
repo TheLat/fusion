@@ -317,6 +317,8 @@ public:
 		return success;
 	}
 	void do_turn_inner(mon& m1, mon& m2) {
+		m1.turn_count++;
+		m2.turn_count++;
 		if (in_status(m1, string("SLEEP"))) {
 			remove_status(m1, string("SLEEP"));
 			// TODO:  Sleep message
@@ -358,6 +360,7 @@ public:
 	}
 	void do_turn(mon& m1, mon& m2) {
 		// TODO:  Expand this to support items, fleeing, and switching.
+		// TODO:  Make handle nothing in queue.
 		if (in_special(m1.queue[0], string("FIRST")) && !in_special(m2.queue[0], string("FIRST"))) {
 			do_turn_inner(m1, m2);
 		}
