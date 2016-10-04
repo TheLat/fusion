@@ -143,6 +143,24 @@ public:
 		double t = double(rand()) / double(RAND_MAX);
 		return min + t*delta;
 	}
+	void heal_damage(mon& m, int heal_amount) {
+		if (heal_amount < 0) {
+			// TODO:  Error logic here
+			return;
+		}
+		m.curr_hp = m.curr_hp + heal_amount;
+		if (m.curr_hp > get_stat(m, HP))
+			m.curr_hp = get_stat(m, HP);
+	}
+	void deal_damage(mon& m, int damage_amount) {
+		if (damage_amount < 0) {
+			// TODO:  Error logic here
+			return;
+		}
+		m.curr_hp = m.curr_hp - damage_amount;
+		if (m.curr_hp < 0)
+			m.curr_hp = 0;
+	}
 	bool status_immunity(mon& m, string move) {
 		for (unsigned i = 0; i < moves[move].special.size(); ++i) {
 			if (moves[move].special[i].find(string("STATUS_IMMUNITY")) != -1) {
@@ -236,22 +254,20 @@ public:
 		for (unsigned i = 0; i < self.status.size(); ++i) {
 			if (self.status[i] == "POISON") {
 				// TODO: Animation goes here
-				self.curr_hp = self.curr_hp - int(double(get_stat(self, HP)) / 16.0);
+				deal_damage(self, int(double(get_stat(self, HP)) / 16.0));
 			}
 			else if (self.status[i] == "BURN") {
 				// TODO: Animation goes here
-				self.curr_hp = self.curr_hp - int(double(get_stat(self, HP)) / 16.0);
+				deal_damage(self, int(double(get_stat(self, HP)) / 16.0));
 			}
 			else if (self.status[i] == "SEED") {
 				// TODO: Animation goes here
-				self.curr_hp = self.curr_hp - int(double(get_stat(self, HP)) / 16.0);
-				other.curr_hp = other.curr_hp + int(double(get_stat(self, HP)) / 16.0);
-				if (other.curr_hp > get_stat(other, HP))
-					other.curr_hp = get_stat(other, HP);
+				deal_damage(self, int(double(get_stat(self, HP)) / 16.0));
+				heal_damage(other, int(double(get_stat(self, HP)) / 16.0));
 			}
 			else if (self.status[i] == "TOXIC") {
 				// TODO: Animation goes here
-				self.curr_hp = self.curr_hp - int(double(self.turn_count * get_stat(self, HP)) / 16.0);
+				deal_damage(self, int(self.turn_count * double(get_stat(self, HP)) / 16.0));
 			}
 		}
 	}
@@ -272,7 +288,9 @@ public:
 			}
 		}
 		for (int i = 0; i < repeat; ++i) {
-			defender.curr_hp -= damage(attacker, defender, move, crit);
+			int dam = damage(attacker, defender, move, crit);
+			// TODO: Logic for detecting that a move has an x0 modifier.
+			deal_damage(defender, dam);
 			if (!status_immunity(defender, move)) {
 				for (unsigned j = 0; j < moves[move].target.size(); ++j) {
 					success = apply_status(defender, moves[move].target[j]) || success;
@@ -298,7 +316,7 @@ public:
 		}
 		return success;
 	}
-	void do_turn(mon& m1, mon& m2) {
+	void do_turn_inner(mon& m1, mon& m2) {
 		if (in_status(m1, string("SLEEP"))) {
 			remove_status(m1, string("SLEEP"));
 			// TODO:  Sleep message
@@ -338,25 +356,25 @@ public:
 			// TODO:  Move announcement and KO-logic.
 		}
 	}
-	void get_order(mon& m1, mon& m2) {
+	void do_turn(mon& m1, mon& m2) {
 		// TODO:  Expand this to support items, fleeing, and switching.
 		if (in_special(m1.queue[0], string("FIRST")) && !in_special(m2.queue[0], string("FIRST"))) {
-			do_turn(m1, m2);
+			do_turn_inner(m1, m2);
 		}
 		else if (!in_special(m1.queue[0], string("FIRST")) && in_special(m2.queue[0], string("FIRST"))) {
-			do_turn(m2, m1);
+			do_turn_inner(m2, m1);
 		}
 		else if (in_special(m1.queue[0], string("FIRST")) && in_special(m2.queue[0], string("FIRST")) && (get_stat(m1, SPEED) > get_stat(m2, SPEED))) {
-			do_turn(m1, m2);
+			do_turn_inner(m1, m2);
 		}
 		else if (in_special(m1.queue[0], string("FIRST")) && in_special(m2.queue[0], string("FIRST")) && (get_stat(m1, SPEED) <= get_stat(m2, SPEED))) {
-			do_turn(m2, m1);
+			do_turn_inner(m2, m1);
 		}
 		else if (get_stat(m1, SPEED) > get_stat(m2, SPEED)) {
-			do_turn(m1, m2);
+			do_turn_inner(m1, m2);
 		}
 		else {
-			do_turn(m2, m1);
+			do_turn_inner(m2, m1);
 		}
 	}
 	int damage(mon& attacker, mon& defender, string move, bool& crit) {

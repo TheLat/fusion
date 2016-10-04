@@ -19,13 +19,13 @@ void main() {
 	e.make_mon(string("7"), 100, m2);
 	m1.queue.push_back(m1.moves[0]);
 	m2.queue.push_back(m2.moves[3]);
-	e.get_order(m1, m2);
+	e.do_turn(m1, m2);
 	m2.queue.push_back(m2.moves[3]);
-	e.get_order(m1, m2);
+	e.do_turn(m1, m2);
 	m1.queue.push_back(m1.moves[0]);
 	m2.queue.push_back(m2.moves[3]);
-	e.get_order(m1, m2);
+	e.do_turn(m1, m2);
 	m2.queue.push_back(m2.moves[3]);
-	e.get_order(m1, m2);
+	e.do_turn(m1, m2);
  	int a = 0;
 }
