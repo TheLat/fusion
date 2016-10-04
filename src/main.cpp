@@ -15,16 +15,17 @@ void main() {
 	e.init_mon();
 	mon m1, m2, m3, m4;
 	bool crit = false;
-	e.make_mon(string("1"), 1, m1);
-	e.make_mon(string("1"), 50, m2);
-	e.make_mon(string("1"), 100, m3);
-	e.make_mon(string("76"), 100, m4);
-	e.use_move(m3, m4, string("FIRE SPIN"));
-	e.use_move(m3, m4, string("FIRE SPIN"));
-	e.use_move(m3, m4, string("FIRE SPIN"));
-	e.use_move(m3, m4, string("FIRE SPIN"));
-	e.use_move(m3, m4, string("FIRE SPIN"));
-	e.use_move(m3, m4, string("FIRE SPIN"));
-	e.use_status(m4, m3);
+	e.make_mon(string("1"), 100, m1);
+	e.make_mon(string("7"), 100, m2);
+	m1.queue.push_back(m1.moves[0]);
+	m2.queue.push_back(m2.moves[3]);
+	e.get_order(m1, m2);
+	m2.queue.push_back(m2.moves[3]);
+	e.get_order(m1, m2);
+	m1.queue.push_back(m1.moves[0]);
+	m2.queue.push_back(m2.moves[3]);
+	e.get_order(m1, m2);
+	m2.queue.push_back(m2.moves[3]);
+	e.get_order(m1, m2);
  	int a = 0;
 }

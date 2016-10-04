@@ -104,6 +104,13 @@ public:
 		}
 		return false;
 	}
+	bool in_special(string move, string s) {
+		for (unsigned i = 0; i < moves[move].special.size(); ++i) {
+			if (moves[move].special[i] == s)
+				return true;
+		}
+		return false;
+	}
 	void make_mon(string ID, int level, mon& out) {
 		out.level = level;
 		for (int x = 0; x < SIZE; x++)
@@ -291,6 +298,67 @@ public:
 		}
 		return success;
 	}
+	void do_turn(mon& m1, mon& m2) {
+		if (in_status(m1, string("SLEEP"))) {
+			remove_status(m1, string("SLEEP"));
+			// TODO:  Sleep message
+		}
+		else if (in_status(m1, string("FREEZE"))) {
+			if (0.2 > random(0.0, 1.0)) {
+				remove_status(m1, string("FREEZE"));
+			}
+			// TODO:  Freeze message
+		}
+		else if (in_status(m1, string("PARALYZE")) && (0.25 > random(0.0, 1.0))) {
+			// TODO:  Paralyze message
+		}
+		else if (m1.queue[0] != "") {
+			use_move(m1, m2, m1.queue[0]);
+			m1.queue.erase(m1.queue.begin());
+			use_status(m1, m2);
+			// TODO:  Move announcement and KO-logic.
+		}
+		if (in_status(m2, string("SLEEP"))) {
+			remove_status(m2, string("SLEEP"));
+			// TODO:  Sleep message
+		}
+		else if (in_status(m2, string("FREEZE"))) {
+			if (0.2 > random(0.0, 1.0)) {
+				remove_status(m2, string("FREEZE"));
+			}
+			// TODO:  Freeze message
+		}
+		else if (in_status(m2, string("PARALYZE")) && (0.25 > random(0.0, 1.0))) {
+			// TODO:  Paralyze message
+		}
+		if (m2.queue[0] != "") {
+			use_move(m2, m1, m2.queue[0]);
+			m2.queue.erase(m2.queue.begin());
+			use_status(m2, m1);
+			// TODO:  Move announcement and KO-logic.
+		}
+	}
+	void get_order(mon& m1, mon& m2) {
+		// TODO:  Expand this to support items, fleeing, and switching.
+		if (in_special(m1.queue[0], string("FIRST")) && !in_special(m2.queue[0], string("FIRST"))) {
+			do_turn(m1, m2);
+		}
+		else if (!in_special(m1.queue[0], string("FIRST")) && in_special(m2.queue[0], string("FIRST"))) {
+			do_turn(m2, m1);
+		}
+		else if (in_special(m1.queue[0], string("FIRST")) && in_special(m2.queue[0], string("FIRST")) && (get_stat(m1, SPEED) > get_stat(m2, SPEED))) {
+			do_turn(m1, m2);
+		}
+		else if (in_special(m1.queue[0], string("FIRST")) && in_special(m2.queue[0], string("FIRST")) && (get_stat(m1, SPEED) <= get_stat(m2, SPEED))) {
+			do_turn(m2, m1);
+		}
+		else if (get_stat(m1, SPEED) > get_stat(m2, SPEED)) {
+			do_turn(m1, m2);
+		}
+		else {
+			do_turn(m2, m1);
+		}
+	}
 	int damage(mon& attacker, mon& defender, string move, bool& crit) {
 		double pow = stoi(moves[move].pow);
 		if (pow == 0.0)
@@ -404,6 +472,8 @@ public:
 			ret = ret + 5;
 			if (s == ATTACK && in_status(m, string("BURN")))
 				ret = ret / 2;
+			if (s == SPEED && in_status(m, string("PARALYZE")))
+				ret = ret / 4;
 		}
 		int buff = 0;
 		for (unsigned i = 0; i < m.status.size(); ++i) {
@@ -590,7 +660,6 @@ public:
 			}
 		}
 	}
-
 	void init_mon() {
 		string line, key;
 		ifstream f("../resources/original/pokemon.dat");//f("../resources/data/mon.dat");
@@ -847,7 +916,6 @@ public:
 			f.close();
 		}
 	}
-
 	void init_types(){
 		string line;
 		ifstream f("../resources/data/types.dat", ios::binary);
