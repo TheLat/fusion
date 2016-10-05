@@ -361,16 +361,18 @@ public:
 	void do_turn(mon& m1, mon& m2) {
 		// TODO:  Expand this to support items, fleeing, and switching.
 		// TODO:  Make handle nothing in queue.
-		if (in_special(m1.queue[0], string("FIRST")) && !in_special(m2.queue[0], string("FIRST"))) {
+		bool m1first = in_special(m1.queue[0], string("FIRST"));
+		bool m2first = in_special(m2.queue[0], string("FIRST"));
+		if (m1first && !m2first) {
 			do_turn_inner(m1, m2);
 		}
-		else if (!in_special(m1.queue[0], string("FIRST")) && in_special(m2.queue[0], string("FIRST"))) {
+		else if (!m1first && m2first) {
 			do_turn_inner(m2, m1);
 		}
-		else if (in_special(m1.queue[0], string("FIRST")) && in_special(m2.queue[0], string("FIRST")) && (get_stat(m1, SPEED) > get_stat(m2, SPEED))) {
+		else if (m1first && m2first && (get_stat(m1, SPEED) > get_stat(m2, SPEED))) {
 			do_turn_inner(m1, m2);
 		}
-		else if (in_special(m1.queue[0], string("FIRST")) && in_special(m2.queue[0], string("FIRST")) && (get_stat(m1, SPEED) <= get_stat(m2, SPEED))) {
+		else if (m1first && m2first && (get_stat(m1, SPEED) <= get_stat(m2, SPEED))) {
 			do_turn_inner(m2, m1);
 		}
 		else if (get_stat(m1, SPEED) > get_stat(m2, SPEED)) {
