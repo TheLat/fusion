@@ -130,11 +130,15 @@ public:
 		out.HM = all_mon[ID].HM;
 		out.turn_count = 0;
 		out.nickname = all_mon[ID].name;
+		int counter = 0;
 		for (unsigned x = 0; x < all_mon[ID].learned.size(); ++x) {
 			// TODO:  Apply randomness with priority to forget the oldest move, but also be able to forget other
-			out.moves[x % 4] = all_mon[ID].learned[x].second;
-			out.pp[x % 4] = moves[all_mon[ID].learned[x].second].pp;
-			out.max_pp[x % 4] = moves[all_mon[ID].learned[x].second].pp;
+			if (all_mon[ID].learned[x].first <= level) {
+				out.moves[counter % 4] = all_mon[ID].learned[counter].second;
+				out.pp[counter % 4] = moves[all_mon[ID].learned[counter].second].pp;
+				out.max_pp[counter % 4] = moves[all_mon[ID].learned[counter].second].pp;
+				counter++;
+			}
 		}
 	}
 	double random(double min, double max) {
