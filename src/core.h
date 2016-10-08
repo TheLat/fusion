@@ -52,6 +52,7 @@ public:
 	int EV[SIZE];
 	int curr_hp;
 	int level;
+	int exp;
 	int turn_count;
 	int pp[4];
 	int max_pp[4];
@@ -92,6 +93,7 @@ private:
 	// format is always types[ATTACKER][DEFENDER]
 	std::map<string, std::map<string, float>> types;
 	std::map<string, bool> special_case;
+	std::vector<int> level_to_exp;
 	std::map<string, status_effect> status;
 	std::map<string, mon_template> all_mon;
 	std::map<string, power> moves;
@@ -112,7 +114,8 @@ public:
 		return false;
 	}
 	void make_mon(string ID, int level, mon& out) {
-		out.level = level;
+		out.level = 0;
+		out.exp = level_to_exp[level];
 		for (int x = 0; x < SIZE; x++)
 			out.EV[x] = 0;
 		for (int x = 0; x < SIZE; x++)
@@ -130,14 +133,23 @@ public:
 		out.HM = all_mon[ID].HM;
 		out.turn_count = 0;
 		out.nickname = all_mon[ID].name;
+		level_up(out);
+	}
+	bool level_up(mon& out, bool confirm_learn=false) {
+		if (level_to_exp[out.level + 1] > out.exp)
+			return false;
 		int counter = 0;
-		for (unsigned x = 0; x < all_mon[ID].learned.size(); ++x) {
-			// TODO:  Apply randomness with priority to forget the oldest move, but also be able to forget other
-			if (all_mon[ID].learned[x].first <= level) {
-				out.moves[counter % 4] = all_mon[ID].learned[counter].second;
-				out.pp[counter % 4] = moves[all_mon[ID].learned[counter].second].pp;
-				out.max_pp[counter % 4] = moves[all_mon[ID].learned[counter].second].pp;
-				counter++;
+		while (out.level < 100 && level_to_exp[out.level + 1] <= out.exp) {
+			out.level++;
+			for (unsigned x = 0; x < all_mon[out.number].learned.size(); ++x) {
+				if (all_mon[out.number].learned[x].first == out.level) {
+					if (!confirm_learn) { // TODO:  OR Surface confirmation window
+						out.moves[counter % 4] = all_mon[out.number].learned[x].second;
+						out.pp[counter % 4] = moves[out.moves[counter % 4]].pp;
+						out.max_pp[counter % 4] = out.pp[counter % 4];
+						counter++;
+					}
+				}
 			}
 		}
 	}
@@ -946,6 +958,16 @@ public:
 			}
 		}
 		f.close();
+	}
+	void init_exp() {
+		string line;
+		ifstream f("../resources/data/exp.dat");
+		while (f.is_open()) {
+			while (std::getline(f, line)) {
+				level_to_exp.push_back(stoi(line));
+			}
+			f.close();
+		}
 	}
 	void init_special(){
 		string line;
