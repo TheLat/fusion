@@ -130,11 +130,15 @@ public:
 		out.HM = all_mon[ID].HM;
 		out.turn_count = 0;
 		out.nickname = all_mon[ID].name;
+		int counter = 0;
 		for (unsigned x = 0; x < all_mon[ID].learned.size(); ++x) {
 			// TODO:  Apply randomness with priority to forget the oldest move, but also be able to forget other
-			out.moves[x % 4] = all_mon[ID].learned[x].second;
-			out.pp[x % 4] = moves[all_mon[ID].learned[x].second].pp;
-			out.max_pp[x % 4] = moves[all_mon[ID].learned[x].second].pp;
+			if (all_mon[ID].learned[x].first <= level) {
+				out.moves[counter % 4] = all_mon[ID].learned[counter].second;
+				out.pp[counter % 4] = moves[all_mon[ID].learned[counter].second].pp;
+				out.max_pp[counter % 4] = moves[all_mon[ID].learned[counter].second].pp;
+				counter++;
+			}
 		}
 	}
 	double random(double min, double max) {
@@ -335,8 +339,15 @@ public:
 		else if (m1.queue[0] != "") {
 			use_move(m1, m2, m1.queue[0]);
 			m1.queue.erase(m1.queue.begin());
+			if (get_stat(m2, HP) == 0) {
+				// TODO:  KO-announcement and return value
+				return;
+			}
 			use_status(m1, m2);
-			// TODO:  Move announcement and KO-logic.
+			if (get_stat(m1, HP) == 0) {
+				// TODO:  KO-announcement and return value
+				return;
+			}
 		}
 		if (in_status(m2, string("SLEEP"))) {
 			remove_status(m2, string("SLEEP"));
@@ -354,8 +365,15 @@ public:
 		if (m2.queue[0] != "") {
 			use_move(m2, m1, m2.queue[0]);
 			m2.queue.erase(m2.queue.begin());
+			if (get_stat(m1, HP) == 0) {
+				// TODO:  KO-announcement and return value
+				return;
+			}
 			use_status(m2, m1);
-			// TODO:  Move announcement and KO-logic.
+			if (get_stat(m2, HP) == 0) {
+				// TODO:  KO-announcement and return value
+				return;
+			}
 		}
 	}
 	void do_turn(mon& m1, mon& m2) {
