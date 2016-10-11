@@ -41,7 +41,7 @@ while s[0] != "":
     status[s[0]] = True
     if len(s) > 1:
         for t in s[1].split(" "):
-            if t != "NONVOLATILE" and t != "CHANCE" and t != "SINGLETON":
+            if t != "NONVOLATILE" and t != "CHANCE" and t != "SINGLETON" and t != "SPECIALCASE":
                 print "Error:  Status %s has unknown modifier %s." % (s, t)
     s = f.readline().replace("\n", "").split(":")
 
@@ -187,6 +187,8 @@ while s != "":
         mon[t] = {}
     elif s.startswith("NAME"):
         mon[t]["NAME"] = s[6:]
+        if "RAPE" in mon[t]["NAME"]:
+            print "Error:  Mon %s(%s) has 'rape' in its name." % (mon[t]["NAME"], t)
     elif s.startswith("TYPE1"):
         mon[t]["TYPE1"] = s[7:]    
     elif s.startswith("TYPE2"):
@@ -227,6 +229,10 @@ while s != "":
         mon[t]["TM"] = s[4:]
     elif s.startswith("HM"):
         mon[t]["HM"] = s[4:]
+    if s.startswith("EXP_YIELD:"):
+        mon[t]["EXP_YIELD"] = int(s.split(" ")[1])
+        if mon[t]["EXP_YIELD"] == 0:
+            print "Error:  Mon %s has invalid EXP_YIELD." % t
     s = f.readline().replace("\n", "")
     if s == "":
         s = f.readline().replace("\n", "")
