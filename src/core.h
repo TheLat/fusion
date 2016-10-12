@@ -39,6 +39,7 @@ class mon_template {
 public:
 	string number, name, type1, type2;
 	int stats[SIZE];
+	int exp_yield;
 	vector<pair<int, string>> learned;
 	vector<pair<string, string>> evolution;
 	std::map<int, bool> TM, HM;
@@ -48,6 +49,7 @@ public:
 
 class mon : public mon_template {
 public:
+	bool wild;
 	int IV[SIZE];
 	int EV[SIZE];
 	int curr_hp;
@@ -128,6 +130,8 @@ public:
 		out.type2 = all_mon[ID].type2;
 		out.learned = all_mon[ID].learned;
 		out.evolution = all_mon[ID].evolution;
+		out.exp_yield = all_mon[ID].exp_yield;
+		out.wild = true;
 		out.TM = all_mon[ID].TM;
 		out.curr_hp = get_stat(out, HP);
 		out.HM = all_mon[ID].HM;
@@ -135,10 +139,28 @@ public:
 		out.nickname = all_mon[ID].name;
 		level_up(out);
 	}
+	void gain_exp(mon& winner, mon& loser, int num_fighters) {
+		double exp = 1.0;
+		if (!loser.wild)
+			exp *= 1.5;
+		exp *= loser.exp_yield;
+		exp *= loser.level;
+		exp /= 5.0;
+		exp /= double(num_fighters);
+		exp *= pow((2.0*double(loser.level) + 10.0), 2.5);
+		exp /= pow((double(winner.level + loser.level) + 10.0), 2.5);
+		exp += 1.0;
+		double diff = double(max(min(winner.level - loser.level, 5), -10)) / 10.0;
+		exp *= (1.0 - diff);
+		winner.exp += int(exp);
+		level_up(winner, false); // TODO:  Switch to true when confirmation boxes are in.
+	}
 	bool level_up(mon& out, bool confirm_learn=false) {
 		if (level_to_exp[out.level + 1] > out.exp)
 			return false;
 		int counter = 0;
+		while ((counter < 4) && (out.moves[counter] != ""))
+			counter++;
 		while (out.level < 100 && level_to_exp[out.level + 1] <= out.exp) {
 			out.level++;
 			for (unsigned x = 0; x < all_mon[out.number].learned.size(); ++x) {
@@ -152,6 +174,7 @@ public:
 				}
 			}
 		}
+		return true;
 	}
 	double random(double min, double max) {
 		// range is inclusive.
@@ -780,6 +803,14 @@ public:
 					a = f.get();
 				}
 				all_mon[key].type2 = line;
+			}
+			else if (line == "EXP_YIELD") {
+				line = "";
+				while (a != '\r' && a != '\n') {
+					line = line + a;
+					a = f.get();
+				}
+				all_mon[key].exp_yield = stoi(line);
 			}
 			else if (line == "HP") {
 				line = "";
