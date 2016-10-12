@@ -327,8 +327,9 @@ public:
 		bool crit;
 		int repeat = 1;
 		bool success = false;
+		bool miss = false;
 		if (moves[move].acc < int(random(0.0, 100.0))) {
-			return false;
+			miss = true;
 		}
 		if (pow != 0.0) {
 			if (moves[move].pow.find(string("x2-5")) != -1) {
@@ -338,21 +339,23 @@ public:
 				repeat = 2;
 			}
 		}
-		for (int i = 0; i < repeat; ++i) {
-			int dam = damage(attacker, defender, move, crit);
-			// TODO: Logic for detecting that a move has an x0 modifier.
-			deal_damage(defender, dam);
-			if (!status_immunity(defender, move)) {
-				for (unsigned j = 0; j < moves[move].target.size(); ++j) {
-					success = apply_status(defender, moves[move].target[j]) || success;
+		if (!miss) {
+			for (int i = 0; i < repeat; ++i) {
+				int dam = damage(attacker, defender, move, crit);
+				// TODO: Logic for detecting that a move has an x0 modifier.
+				deal_damage(defender, dam);
+				if (!status_immunity(defender, move)) {
+					for (unsigned j = 0; j < moves[move].target.size(); ++j) {
+						success = apply_status(defender, moves[move].target[j]) || success;
+					}
+				}
+				for (unsigned j = 0; j < moves[move].self.size(); ++j) {
+					success = apply_status(attacker, moves[move].self[j]) || success;
 				}
 			}
-			for (unsigned j = 0; j < moves[move].self.size(); ++j) {
-				success = apply_status(attacker, moves[move].self[j]) || success;
+			for (unsigned i = 0; i < moves[move].additional.size(); ++i) {
+				success = use_move(attacker, defender, moves[move].additional[i]) || success;
 			}
-		}
-		for (unsigned i = 0; i < moves[move].additional.size(); ++i) {
-			success = use_move(attacker, defender, moves[move].additional[i]) || success;
 		}
 		for (unsigned i = 0; i < moves[move].queue.size(); ++i) {
 			if (moves[move].queue[i].find("x0-3") == -1)
@@ -364,6 +367,10 @@ public:
 				for (int j = 0; j < repeat; ++j)
 					attacker.queue.push_back(temp);
 			}
+		}
+		attacker.queue.erase(attacker.queue.begin());
+		if (miss && in_special(move, string("CLEAR_QUEUE_ON_FAIL"))) {
+			clear_queue(attacker);
 		}
 		return success;
 	}
@@ -385,7 +392,6 @@ public:
 		}
 		else if (m1.queue[0] != "") {
 			use_move(m1, m2, m1.queue[0]);
-			m1.queue.erase(m1.queue.begin());
 			if (get_stat(m2, HP) == 0) {
 				// TODO:  KO-announcement and return value
 				return;
@@ -411,7 +417,6 @@ public:
 		}
 		if (m2.queue[0] != "") {
 			use_move(m2, m1, m2.queue[0]);
-			m2.queue.erase(m2.queue.begin());
 			if (get_stat(m1, HP) == 0) {
 				// TODO:  KO-announcement and return value
 				return;
