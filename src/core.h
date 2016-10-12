@@ -176,6 +176,18 @@ public:
 		}
 		return true;
 	}
+	void clear_queue(mon& m) {
+		while (m.queue.size() > 0) {
+			for (int i = 0; i < 4; ++i) {
+				if (m.moves[i] != "") {
+					if (m.queue[0] == m.moves[i]) {
+						m.pp[i]++;
+					}
+				}
+			}
+			m.queue.erase(m.queue.begin());
+		}
+	}
 	double random(double min, double max) {
 		// range is inclusive.
 		double delta = max - min;
