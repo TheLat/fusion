@@ -374,6 +374,11 @@ public:
 		}
 		return success;
 	}
+	bool is_KO(mon& m) {
+		if (get_stat(m, HP) <= 0)
+			return true;
+		return false;
+	}
 	void do_turn_inner(mon& m1, mon& m2) {
 		m1.turn_count++;
 		m2.turn_count++;
@@ -392,13 +397,17 @@ public:
 		}
 		else if (m1.queue[0] != "") {
 			use_move(m1, m2, m1.queue[0]);
-			if (get_stat(m2, HP) == 0) {
+			if (is_KO(m2)) {
 				// TODO:  KO-announcement and return value
+				// TODO:  EXP splitting
+				gain_exp(m1, m2, 1);
 				return;
 			}
 			use_status(m1, m2);
-			if (get_stat(m1, HP) == 0) {
+			if (is_KO(m1)) {
 				// TODO:  KO-announcement and return value
+				// TODO:  EXP splitting
+				gain_exp(m2, m1, 1);
 				return;
 			}
 		}
@@ -417,13 +426,17 @@ public:
 		}
 		if (m2.queue[0] != "") {
 			use_move(m2, m1, m2.queue[0]);
-			if (get_stat(m1, HP) == 0) {
+			if (is_KO(m1)) {
 				// TODO:  KO-announcement and return value
+				// TODO:  EXP splitting
+				gain_exp(m2, m1, 1);
 				return;
 			}
 			use_status(m2, m1);
-			if (get_stat(m2, HP) == 0) {
+			if (is_KO(m2)) {
 				// TODO:  KO-announcement and return value
+				// TODO:  EXP splitting
+				gain_exp(m1, m2, 1);
 				return;
 			}
 		}
