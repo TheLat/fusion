@@ -39,6 +39,7 @@ class mon_template {
 public:
 	string number, name, type1, type2;
 	int stats[SIZE];
+	int exp_yield;
 	vector<pair<int, string>> learned;
 	vector<pair<string, string>> evolution;
 	std::map<int, bool> TM, HM;
@@ -48,10 +49,12 @@ public:
 
 class mon : public mon_template {
 public:
+	bool wild;
 	int IV[SIZE];
 	int EV[SIZE];
 	int curr_hp;
 	int level;
+	int exp;
 	int turn_count;
 	int pp[4];
 	int max_pp[4];
@@ -92,6 +95,7 @@ private:
 	// format is always types[ATTACKER][DEFENDER]
 	std::map<string, std::map<string, float>> types;
 	std::map<string, bool> special_case;
+	std::vector<int> level_to_exp;
 	std::map<string, status_effect> status;
 	std::map<string, mon_template> all_mon;
 	std::map<string, power> moves;
@@ -112,7 +116,8 @@ public:
 		return false;
 	}
 	void make_mon(string ID, int level, mon& out) {
-		out.level = level;
+		out.level = 0;
+		out.exp = level_to_exp[level];
 		for (int x = 0; x < SIZE; x++)
 			out.EV[x] = 0;
 		for (int x = 0; x < SIZE; x++)
@@ -125,20 +130,62 @@ public:
 		out.type2 = all_mon[ID].type2;
 		out.learned = all_mon[ID].learned;
 		out.evolution = all_mon[ID].evolution;
+		out.exp_yield = all_mon[ID].exp_yield;
+		out.wild = true;
 		out.TM = all_mon[ID].TM;
 		out.curr_hp = get_stat(out, HP);
 		out.HM = all_mon[ID].HM;
 		out.turn_count = 0;
 		out.nickname = all_mon[ID].name;
+		level_up(out);
+	}
+	void gain_exp(mon& winner, mon& loser, int num_fighters) {
+		double exp = 1.0;
+		if (!loser.wild)
+			exp *= 1.5;
+		exp *= loser.exp_yield;
+		exp *= loser.level;
+		exp /= 5.0;
+		exp /= double(num_fighters);
+		exp *= pow((2.0*double(loser.level) + 10.0), 2.5);
+		exp /= pow((double(winner.level + loser.level) + 10.0), 2.5);
+		exp += 1.0;
+		double diff = double(max(min(winner.level - loser.level, 5), -10)) / 10.0;
+		exp *= (1.0 - diff);
+		winner.exp += int(exp);
+		level_up(winner, false); // TODO:  Switch to true when confirmation boxes are in.
+	}
+	bool level_up(mon& out, bool confirm_learn=false) {
+		if (level_to_exp[out.level + 1] > out.exp)
+			return false;
 		int counter = 0;
-		for (unsigned x = 0; x < all_mon[ID].learned.size(); ++x) {
-			// TODO:  Apply randomness with priority to forget the oldest move, but also be able to forget other
-			if (all_mon[ID].learned[x].first <= level) {
-				out.moves[counter % 4] = all_mon[ID].learned[counter].second;
-				out.pp[counter % 4] = moves[all_mon[ID].learned[counter].second].pp;
-				out.max_pp[counter % 4] = moves[all_mon[ID].learned[counter].second].pp;
-				counter++;
+		while ((counter < 4) && (out.moves[counter] != ""))
+			counter++;
+		while (out.level < 100 && level_to_exp[out.level + 1] <= out.exp) {
+			out.level++;
+			for (unsigned x = 0; x < all_mon[out.number].learned.size(); ++x) {
+				if (all_mon[out.number].learned[x].first == out.level) {
+					if (!confirm_learn) { // TODO:  OR Surface confirmation window
+						out.moves[counter % 4] = all_mon[out.number].learned[x].second;
+						out.pp[counter % 4] = moves[out.moves[counter % 4]].pp;
+						out.max_pp[counter % 4] = out.pp[counter % 4];
+						counter++;
+					}
+				}
 			}
+		}
+		return true;
+	}
+	void clear_queue(mon& m) {
+		while (m.queue.size() > 0) {
+			for (int i = 0; i < 4; ++i) {
+				if (m.moves[i] != "") {
+					if (m.queue[0] == m.moves[i]) {
+						m.pp[i]++;
+					}
+				}
+			}
+			m.queue.erase(m.queue.begin());
 		}
 	}
 	double random(double min, double max) {
@@ -280,8 +327,9 @@ public:
 		bool crit;
 		int repeat = 1;
 		bool success = false;
+		bool miss = false;
 		if (moves[move].acc < int(random(0.0, 100.0))) {
-			return false;
+			miss = true;
 		}
 		if (pow != 0.0) {
 			if (moves[move].pow.find(string("x2-5")) != -1) {
@@ -291,21 +339,23 @@ public:
 				repeat = 2;
 			}
 		}
-		for (int i = 0; i < repeat; ++i) {
-			int dam = damage(attacker, defender, move, crit);
-			// TODO: Logic for detecting that a move has an x0 modifier.
-			deal_damage(defender, dam);
-			if (!status_immunity(defender, move)) {
-				for (unsigned j = 0; j < moves[move].target.size(); ++j) {
-					success = apply_status(defender, moves[move].target[j]) || success;
+		if (!miss) {
+			for (int i = 0; i < repeat; ++i) {
+				int dam = damage(attacker, defender, move, crit);
+				// TODO: Logic for detecting that a move has an x0 modifier.
+				deal_damage(defender, dam);
+				if (!status_immunity(defender, move)) {
+					for (unsigned j = 0; j < moves[move].target.size(); ++j) {
+						success = apply_status(defender, moves[move].target[j]) || success;
+					}
+				}
+				for (unsigned j = 0; j < moves[move].self.size(); ++j) {
+					success = apply_status(attacker, moves[move].self[j]) || success;
 				}
 			}
-			for (unsigned j = 0; j < moves[move].self.size(); ++j) {
-				success = apply_status(attacker, moves[move].self[j]) || success;
+			for (unsigned i = 0; i < moves[move].additional.size(); ++i) {
+				success = use_move(attacker, defender, moves[move].additional[i]) || success;
 			}
-		}
-		for (unsigned i = 0; i < moves[move].additional.size(); ++i) {
-			success = use_move(attacker, defender, moves[move].additional[i]) || success;
 		}
 		for (unsigned i = 0; i < moves[move].queue.size(); ++i) {
 			if (moves[move].queue[i].find("x0-3") == -1)
@@ -318,7 +368,16 @@ public:
 					attacker.queue.push_back(temp);
 			}
 		}
+		attacker.queue.erase(attacker.queue.begin());
+		if (miss && in_special(move, string("CLEAR_QUEUE_ON_FAIL"))) {
+			clear_queue(attacker);
+		}
 		return success;
+	}
+	bool is_KO(mon& m) {
+		if (get_stat(m, HP) <= 0)
+			return true;
+		return false;
 	}
 	void do_turn_inner(mon& m1, mon& m2) {
 		m1.turn_count++;
@@ -338,14 +397,17 @@ public:
 		}
 		else if (m1.queue[0] != "") {
 			use_move(m1, m2, m1.queue[0]);
-			m1.queue.erase(m1.queue.begin());
-			if (get_stat(m2, HP) == 0) {
+			if (is_KO(m2)) {
 				// TODO:  KO-announcement and return value
+				// TODO:  EXP splitting
+				gain_exp(m1, m2, 1);
 				return;
 			}
 			use_status(m1, m2);
-			if (get_stat(m1, HP) == 0) {
+			if (is_KO(m1)) {
 				// TODO:  KO-announcement and return value
+				// TODO:  EXP splitting
+				gain_exp(m2, m1, 1);
 				return;
 			}
 		}
@@ -364,14 +426,17 @@ public:
 		}
 		if (m2.queue[0] != "") {
 			use_move(m2, m1, m2.queue[0]);
-			m2.queue.erase(m2.queue.begin());
-			if (get_stat(m1, HP) == 0) {
+			if (is_KO(m1)) {
 				// TODO:  KO-announcement and return value
+				// TODO:  EXP splitting
+				gain_exp(m2, m1, 1);
 				return;
 			}
 			use_status(m2, m1);
-			if (get_stat(m2, HP) == 0) {
+			if (is_KO(m2)) {
 				// TODO:  KO-announcement and return value
+				// TODO:  EXP splitting
+				gain_exp(m1, m2, 1);
 				return;
 			}
 		}
@@ -769,6 +834,14 @@ public:
 				}
 				all_mon[key].type2 = line;
 			}
+			else if (line == "EXP_YIELD") {
+				line = "";
+				while (a != '\r' && a != '\n') {
+					line = line + a;
+					a = f.get();
+				}
+				all_mon[key].exp_yield = stoi(line);
+			}
 			else if (line == "HP") {
 				line = "";
 				while (a != '\r' && a != '\n') {
@@ -946,6 +1019,16 @@ public:
 			}
 		}
 		f.close();
+	}
+	void init_exp() {
+		string line;
+		ifstream f("../resources/data/exp.dat");
+		while (f.is_open()) {
+			while (std::getline(f, line)) {
+				level_to_exp.push_back(stoi(line));
+			}
+			f.close();
+		}
 	}
 	void init_special(){
 		string line;
