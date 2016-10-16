@@ -82,11 +82,11 @@ public:
 		this->type2 = m.type2;
 		this->exp_yield = m.exp_yield;
 		this->learned.clear();
-		for (int i = 0; i < m.learned.size(); ++i) {
+		for (unsigned i = 0; i < m.learned.size(); ++i) {
 			this->learned.push_back(m.learned[i]);
 		}
 		this->evolution.clear();
-		for (int i = 0; i < m.evolution.size(); ++i) {
+		for (unsigned i = 0; i < m.evolution.size(); ++i) {
 			this->evolution.push_back(m.evolution[i]);
 		}
 		this->TM.clear();
@@ -100,15 +100,25 @@ public:
 		this->turn_count = m.turn_count;
 		this->nickname = m.nickname;
 		this->status.clear();
-		for (int i = 0; i < m.status.size(); ++i) {
+		for (unsigned i = 0; i < m.status.size(); ++i) {
 			this->status.push_back(m.status[i]);
 		}
 		this->queue.clear();
-		for (int i = 0; i < m.queue.size(); ++i) {
+		for (unsigned i = 0; i < m.queue.size(); ++i) {
 			this->queue.push_back(m.queue[i]);
 		}
 		return *this;
 	}
+};
+
+class player {
+public:
+	string name;
+	int wins, losses;
+	int money;
+	mon team[6];
+	mon storage[20][20];
+	// TODO:  INVENTORY
 };
 
 class status_effect {
@@ -161,6 +171,12 @@ public:
 				return true;
 		}
 		return false;
+	}
+	void swap_mon(mon& a, mon& b) {
+		mon temp;
+		temp = a;
+		a = b;
+		b = temp;
 	}
 	void make_mon(string ID, int level, mon& out) {
 		out.level = 0;
