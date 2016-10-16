@@ -107,6 +107,7 @@ public:
 		for (unsigned i = 0; i < m.queue.size(); ++i) {
 			this->queue.push_back(m.queue[i]);
 		}
+		this->defined = m.defined;
 		return *this;
 	}
 };
