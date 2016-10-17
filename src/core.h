@@ -1,3 +1,6 @@
+#ifndef CORE_HEADER
+#define CORE_HEADER
+
 #include <map>
 #include <vector>
 #include <string>
@@ -62,6 +65,61 @@ public:
 	vector<string> status;
 	vector<string> queue;
 	string nickname;
+	mon& operator=(mon& m) {
+		for (int i = 0; i < SIZE; ++i) {
+			this->IV[i] = m.IV[i];
+			this->EV[i] = m.EV[i];
+			this->stats[i] = m.stats[i];
+		}
+		for (int i = 0; i < 4; ++i) {
+			this->pp[i] = m.pp[i];
+			this->max_pp[i] = m.max_pp[i];
+			this->moves[i] = m.moves[i];
+		}
+		this->number = m.number;
+		this->name = m.name;
+		this->type1 = m.type1;
+		this->type2 = m.type2;
+		this->exp_yield = m.exp_yield;
+		this->learned.clear();
+		for (unsigned i = 0; i < m.learned.size(); ++i) {
+			this->learned.push_back(m.learned[i]);
+		}
+		this->evolution.clear();
+		for (unsigned i = 0; i < m.evolution.size(); ++i) {
+			this->evolution.push_back(m.evolution[i]);
+		}
+		this->TM.clear();
+		this->TM = m.TM;
+		this->HM.clear();
+		this->HM = m.HM;
+		this->wild = m.wild;
+		this->curr_hp = m.curr_hp;
+		this->level = m.level;
+		this->exp = m.exp;
+		this->turn_count = m.turn_count;
+		this->nickname = m.nickname;
+		this->status.clear();
+		for (unsigned i = 0; i < m.status.size(); ++i) {
+			this->status.push_back(m.status[i]);
+		}
+		this->queue.clear();
+		for (unsigned i = 0; i < m.queue.size(); ++i) {
+			this->queue.push_back(m.queue[i]);
+		}
+		this->defined = m.defined;
+		return *this;
+	}
+};
+
+class player {
+public:
+	string name;
+	int wins, losses;
+	int money;
+	mon team[6];
+	mon storage[20][20];
+	// TODO:  INVENTORY
 };
 
 class status_effect {
@@ -114,6 +172,12 @@ public:
 				return true;
 		}
 		return false;
+	}
+	void swap_mon(mon& a, mon& b) {
+		mon temp;
+		temp = a;
+		a = b;
+		b = temp;
 	}
 	void make_mon(string ID, int level, mon& out) {
 		out.level = 0;
@@ -1136,3 +1200,5 @@ public:
 		}
 	}
 };
+
+#endif
