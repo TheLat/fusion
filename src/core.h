@@ -197,11 +197,11 @@ public:
 		out.exp_yield = all_mon[ID].exp_yield;
 		out.wild = true;
 		out.TM = all_mon[ID].TM;
-		out.curr_hp = get_stat(out, HP);
 		out.HM = all_mon[ID].HM;
 		out.turn_count = 0;
 		out.nickname = all_mon[ID].name;
 		level_up(out);
+		out.curr_hp = get_stat(out, HP);
 	}
 	void gain_exp(mon& winner, mon& loser, int num_fighters) {
 		double exp = 1.0;
@@ -439,7 +439,7 @@ public:
 		return success;
 	}
 	bool is_KO(mon& m) {
-		if (get_stat(m, HP) <= 0)
+		if (m.curr_hp <= 0)
 			return true;
 		return false;
 	}
