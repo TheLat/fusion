@@ -69,7 +69,6 @@ public:
 		for (int i = 0; i < SIZE; ++i) {
 			this->IV[i] = m.IV[i];
 			this->EV[i] = m.EV[i];
-			this->stats[i] = m.stats[i];
 		}
 		for (int i = 0; i < 4; ++i) {
 			this->pp[i] = m.pp[i];
@@ -186,8 +185,6 @@ public:
 			out.EV[x] = 0;
 		for (int x = 0; x < SIZE; x++)
 			out.IV[x] = int(random(0.0, 15.999));
-		for (int x = 0; x < SIZE; x++)
-			out.stats[x] = all_mon[ID].stats[x];
 		out.number = ID;
 		out.name = all_mon[ID].name;
 		out.type1 = all_mon[ID].type1;
@@ -533,7 +530,7 @@ public:
 		double pow = stoi(moves[move].pow);
 		if (pow == 0.0)
 			return 0;
-		double chance = attacker.stats[SPEED] / 4.0;
+		double chance = all_mon[attacker.number].stats[SPEED] / 4.0;
 		if (in_status(attacker, string("FOCUS")))
 			chance *= 4.0;
 		chance *= moves[move].crit_chance;
@@ -626,7 +623,7 @@ public:
 	int get_stat(mon& m, STAT s, bool ignore_buffs=false, bool ignore_debuffs=false) {
 		int ret;
 		if (s == HP) {
-			ret = m.stats[s] + m.IV[s];
+			ret = all_mon[m.number].stats[s] + m.IV[s];
 			ret = ret * 2;
 			ret = ret + (sqrt(min(65535, m.EV[s])) / 4);
 			ret = ret * m.level;
@@ -634,7 +631,7 @@ public:
 			ret = ret + m.level + 10;
 		}
 		else {
-			ret = m.stats[s] + m.IV[s];
+			ret = all_mon[m.number].stats[s] + m.IV[s];
 			ret = ret * 2;
 			ret = ret + (sqrt(min(65535, m.EV[s])) / 4);
 			ret = ret * m.level;
