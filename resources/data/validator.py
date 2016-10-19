@@ -233,6 +233,10 @@ while s != "":
         mon[t]["EXP_YIELD"] = int(s.split(" ")[1])
         if mon[t]["EXP_YIELD"] == 0:
             print "Error:  Mon %s has invalid EXP_YIELD." % t
+    if s.startswith("CATCHRATE:"):
+        mon[t]["CATCHRATE"] = int(s.split(" ")[1])
+        if mon[t]["CATCHRATE"] <= 0:
+            print "Error:  Mon %s has invalid CATCHRATE." % t
     s = f.readline().replace("\n", "")
     if s == "":
         s = f.readline().replace("\n", "")

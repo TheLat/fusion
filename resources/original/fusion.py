@@ -22,6 +22,8 @@ while s != "":
         all[i]["TYPE2"] = s.split(" ")[1]
     if s.startswith("EXP_YIELD: "):
         all[i]["EXP_YIELD"] = int(s.split(" ")[1])
+    if s.startswith("CATCHRATE: "):
+        all[i]["CATCHRATE"] = int(s.split(" ")[1])
     if s.startswith("HP: "):
         all[i]["HP"] = s.split(" ")[1]
     if s.startswith("ATTACK: "):
@@ -90,6 +92,7 @@ while x <= len(all):
         elif "TYPE2" in all[str(y)].keys():
             f.write("\nTYPE2: %s" % all[str(y)]["TYPE2"])
         f.write("\nEXP_YIELD: %s" % ((all[str(x)]["EXP_YIELD"] + all[str(y)]["EXP_YIELD"])/2))
+        f.write("\nCATCHRATE: %s" % ((all[str(x)]["CATCHRATE"] + all[str(y)]["CATCHRATE"])/2))
         HP = str((int(all[str(x)]["HP"]) + int(all[str(y)]["HP"]))/2)
         f.write("\nHP: %s" % HP)
         ATTACK = str((int(all[str(x)]["ATTACK"]) + int(all[str(y)]["ATTACK"]))/2)
