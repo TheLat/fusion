@@ -446,7 +446,11 @@ public:
 					attacker.queue.push_back(temp);
 			}
 		}
-		attacker.queue.erase(attacker.queue.begin());
+		if (attacker.queue.size() > 0) {
+			if (attacker.queue[0] == move) {
+				attacker.queue.erase(attacker.queue.begin());
+			}
+		}
 		if (miss && in_special(move, string("CLEAR_QUEUE_ON_FAIL"))) {
 			clear_queue(attacker);
 		}
@@ -502,7 +506,7 @@ public:
 		else if (in_status(m2, string("PARALYZE")) && (0.25 > random(0.0, 1.0))) {
 			// TODO:  Paralyze message
 		}
-		if (m2.queue[0] != "") {
+		else if (m2.queue[0] != "") {
 			use_move(m2, m1, m2.queue[0]);
 			if (is_KO(m1)) {
 				// TODO:  KO-announcement and return value
@@ -538,7 +542,7 @@ public:
 			}
 		}
 		choice1 = 0;
-		choice2 = 0;
+		choice2 = 2;
 		while (true) {
 			// TODO: Implement player battle menu
 			if (choice1 == 0) { // Player has selected FIGHT
@@ -577,6 +581,9 @@ public:
 					if (!is_KO(p.team[i])) {
 						selected = i;
 						active_mon = p.team[selected];
+						if (i == 5)
+							i--;
+						break;
 					}
 				}
 				if (i == 6) {
