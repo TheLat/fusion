@@ -50,8 +50,14 @@ public:
 	mon_template() { defined = false; }
 };
 
-class mon : public mon_template {
+class mon {
 public:
+	string number, name, type1, type2;
+	int exp_yield;
+	vector<pair<int, string>> learned;
+	vector<pair<string, string>> evolution;
+	std::map<int, bool> TM, HM;
+	bool defined;
 	bool wild;
 	int IV[SIZE];
 	int EV[SIZE];
@@ -65,6 +71,7 @@ public:
 	vector<string> status;
 	vector<string> queue;
 	string nickname;
+	mon() { defined = false; }
 	mon& operator=(mon& m) {
 		for (int i = 0; i < SIZE; ++i) {
 			this->IV[i] = m.IV[i];
@@ -118,7 +125,16 @@ public:
 	int money;
 	mon team[6];
 	mon storage[20][20];
+	player() { wins = 0; losses = 0; money = 0; }
 	// TODO:  INVENTORY
+};
+
+class trainer {
+public:
+	string name;
+	int money_yield;
+	mon team[6];
+	trainer() { name = "DEFAULT_TRAINER_NAME"; money_yield = 0; }
 };
 
 class status_effect {
@@ -193,6 +209,7 @@ public:
 		out.evolution = all_mon[ID].evolution;
 		out.exp_yield = all_mon[ID].exp_yield;
 		out.wild = true;
+		out.defined = true;
 		out.TM = all_mon[ID].TM;
 		out.HM = all_mon[ID].HM;
 		out.turn_count = 0;
@@ -501,6 +518,12 @@ public:
 				return;
 			}
 		}
+	}
+	void battle(player& p, trainer& t) { // trainer battle
+		// TODO:  Implement trainer battle
+	}
+	void battle(player& p, mon& m) { // wild pokemon
+		// TODO:  Implement wild pokemon battle
 	}
 	void do_turn(mon& m1, mon& m2) {
 		// TODO:  Expand this to support items, fleeing, and switching.
