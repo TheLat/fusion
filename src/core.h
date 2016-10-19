@@ -524,6 +524,67 @@ public:
 	}
 	void battle(player& p, mon& m) { // wild pokemon
 		// TODO:  Implement wild pokemon battle
+		mon active_mon;
+		int selected, i;
+		int choice1, choice2, index;
+		double count;
+		for (i = 0; i < 6; ++i) {
+			if (p.team[i].defined) {
+				if (!is_KO(p.team[i])) {
+					active_mon = p.team[i];
+					selected = i;
+					break;
+				}
+			}
+		}
+		choice1 = 0;
+		choice2 = 0;
+		while (true) {
+			// TODO: Implement player battle menu
+			if (choice1 == 0) { // Player has selected FIGHT
+				active_mon.queue.push_back(active_mon.moves[choice2]);
+				active_mon.pp[choice2]--;
+			}
+			else if (choice1 == 1) { // Player has selected ITEM
+			}
+			else if (choice1 == 2) { // Player has selected Pokemon
+				p.team[selected] = active_mon;
+				selected = choice2;
+				active_mon = p.team[selected];
+				active_mon.queue.push_back(string(""));
+			}
+			else if (choice1 == 3) { // Player has selected RUN
+			}
+			count = 0.0;
+			for (i = 0; i < 4; i++) {
+				if (moves[m.moves[i]].defined) { // TODO: Make this factor in power points
+					count = count + 1.0;
+				}
+			}
+			count -= 0.0001;
+			index = int(random(0.0, count));
+			m.queue.push_back(m.moves[index]);
+			m.pp[index]--;
+			do_turn(active_mon, m);
+			if (is_KO(m)) {
+				// TODO:  Handle victory message.
+				break;
+			}
+			if (is_KO(active_mon)) {
+				// TODO:  Handle selection on KO
+				p.team[selected] = active_mon;
+				for (i = 0; i < 6; ++i) {
+					if (!is_KO(p.team[i])) {
+						selected = i;
+						active_mon = p.team[selected];
+					}
+				}
+				if (i == 6) {
+					// TODO:  Handle defeat
+					break;
+				}
+			}
+		}
 	}
 	void do_turn(mon& m1, mon& m2) {
 		// TODO:  Expand this to support items, fleeing, and switching.
