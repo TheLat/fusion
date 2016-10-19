@@ -42,7 +42,7 @@ class mon_template {
 public:
 	string number, name, type1, type2;
 	int stats[SIZE];
-	int exp_yield;
+	int exp_yield, catchrate;
 	vector<pair<int, string>> learned;
 	vector<pair<string, string>> evolution;
 	std::map<int, bool> TM, HM;
@@ -53,7 +53,7 @@ public:
 class mon {
 public:
 	string number, name, type1, type2;
-	int exp_yield;
+	int exp_yield, catchrate;
 	vector<pair<int, string>> learned;
 	vector<pair<string, string>> evolution;
 	std::map<int, bool> TM, HM;
@@ -208,6 +208,7 @@ public:
 		out.learned = all_mon[ID].learned;
 		out.evolution = all_mon[ID].evolution;
 		out.exp_yield = all_mon[ID].exp_yield;
+		out.catchrate = all_mon[ID].catchrate;
 		out.wild = true;
 		out.defined = true;
 		out.TM = all_mon[ID].TM;
@@ -993,6 +994,14 @@ public:
 					a = f.get();
 				}
 				all_mon[key].exp_yield = stoi(line);
+			}
+			else if (line == "CATCHRATE") {
+				line = "";
+				while (a != '\r' && a != '\n') {
+					line = line + a;
+					a = f.get();
+				}
+				all_mon[key].catchrate = stoi(line);
 			}
 			else if (line == "HP") {
 				line = "";
