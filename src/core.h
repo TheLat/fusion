@@ -215,7 +215,7 @@ public:
 			chance *= 2.0;
 		chance /= 3.0*double(get_stat(m, HP));
 		chance = 1048560.0 / sqrt(sqrt(16711680.0 / chance));
-		hard_probability = pow(chance / 65536.0, 4.0);
+		hard_probability = pow(chance / 65536.0, 4.0); // Debugging purposes only.
 		for (ret = 0; ret < 4; ++ret) {
 			if (random(0.0, 65536.0) > chance) {
 				break;
@@ -523,6 +523,9 @@ public:
 				return;
 			}
 		}
+		else {
+			m1.queue.erase(m1.queue.begin());
+		}
 		if (in_status(m2, string("SLEEP"))) {
 			remove_status(m2, string("SLEEP"));
 			// TODO:  Sleep message
@@ -552,6 +555,9 @@ public:
 				return;
 			}
 		}
+		else {
+			m2.queue.erase(m2.queue.begin());
+		}
 	}
 	void battle(player& p, trainer& t) { // trainer battle
 		// TODO:  Implement trainer battle
@@ -580,6 +586,28 @@ public:
 				active_mon.pp[choice2]--;
 			}
 			else if (choice1 == 1) { // Player has selected ITEM
+				// TODO:  Implement inventory
+				int out = 0;
+				active_mon.queue.insert(active_mon.queue.begin(), string(""));
+				if (choice2 == 0) {
+					out = attempt_capture(1.0, m); // Pokeball
+				}
+				else if (choice2 == 1) {
+					out = attempt_capture(1.5, m); // Great Ball
+				}
+				else if (choice2 == 2) {
+					out = attempt_capture(2.0, m); // Ultra Ball
+				}
+				if (out == 4) {
+					gain_exp(active_mon, m, 1); // TODO:  Implement exp split
+					p.team[selected] = active_mon;
+					for (int i = 0; i < 6; ++i) {
+						if (!p.team[i].defined) {
+							p.team[i] = m;
+							return;
+						}
+					}
+				}
 			}
 			else if (choice1 == 2) { // Player has selected Pokemon
 				p.team[selected] = active_mon;
