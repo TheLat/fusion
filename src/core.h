@@ -607,6 +607,7 @@ public:
 							return;
 						}
 					}
+					// TODO:  Implement storage
 				}
 			}
 			else if (choice1 == 2) { // Player has selected Pokemon
