@@ -194,6 +194,35 @@ public:
 		a = b;
 		b = temp;
 	}
+	int attempt_capture(float capture_power, mon& m) {
+		int ret = 0;
+		double chance, hard_probability;
+		chance = 3.0*double(get_stat(m, HP));
+		chance -= 2.0*double(m.curr_hp);
+		chance *= double(m.catchrate);
+		chance *= capture_power;
+		if (in_status(m, string("POISON")))
+			chance *= 1.5;
+		if (in_status(m, string("TOXIC")))
+			chance *= 1.5;
+		if (in_status(m, string("BURN")))
+			chance *= 1.5;
+		if (in_status(m, string("PARALYZE")))
+			chance *= 1.5;
+		if (in_status(m, string("SLEEP")))
+			chance *= 2.0;
+		if (in_status(m, string("FREEZE")))
+			chance *= 2.0;
+		chance /= 3.0*double(get_stat(m, HP));
+		chance = 1048560.0 / sqrt(sqrt(16711680.0 / chance));
+		hard_probability = pow(chance / 65536.0, 4.0);
+		for (ret = 0; ret < 4; ++ret) {
+			if (random(0.0, 65536.0) > chance) {
+				break;
+			}
+		}
+		return ret;
+	}
 	void make_mon(string ID, int level, mon& out) {
 		out.level = 0;
 		out.exp = level_to_exp[level];
