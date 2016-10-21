@@ -511,15 +511,11 @@ public:
 			use_move(m1, m2, m1.queue[0]);
 			if (is_KO(m2)) {
 				// TODO:  KO-announcement and return value
-				// TODO:  EXP splitting
-				gain_exp(m1, m2, 1);
 				return;
 			}
 			use_status(m1, m2);
 			if (is_KO(m1)) {
 				// TODO:  KO-announcement and return value
-				// TODO:  EXP splitting
-				gain_exp(m2, m1, 1);
 				return;
 			}
 		}
@@ -543,15 +539,11 @@ public:
 			use_move(m2, m1, m2.queue[0]);
 			if (is_KO(m1)) {
 				// TODO:  KO-announcement and return value
-				// TODO:  EXP splitting
-				gain_exp(m2, m1, 1);
 				return;
 			}
 			use_status(m2, m1);
 			if (is_KO(m2)) {
 				// TODO:  KO-announcement and return value
-				// TODO:  EXP splitting
-				gain_exp(m1, m2, 1);
 				return;
 			}
 		}
@@ -564,14 +556,12 @@ public:
 	}
 	void battle(player& p, mon& m) { // wild pokemon
 		// TODO:  Implement wild pokemon battle
-		mon active_mon;
 		int selected, i;
 		int choice1, choice2, index;
 		double count;
 		for (i = 0; i < 6; ++i) {
 			if (p.team[i].defined) {
 				if (!is_KO(p.team[i])) {
-					active_mon = p.team[i];
 					selected = i;
 					break;
 				}
@@ -582,13 +572,13 @@ public:
 		while (true) {
 			// TODO: Implement player battle menu
 			if (choice1 == 0) { // Player has selected FIGHT
-				active_mon.queue.push_back(active_mon.moves[choice2]);
-				active_mon.pp[choice2]--;
+				p.team[selected].queue.push_back(p.team[selected].moves[choice2]);
+				p.team[selected].pp[choice2]--;
 			}
 			else if (choice1 == 1) { // Player has selected ITEM
 				// TODO:  Implement inventory
 				int out = 0;
-				active_mon.queue.insert(active_mon.queue.begin(), string(""));
+				p.team[selected].queue.insert(p.team[selected].queue.begin(), string(""));
 				if (choice2 == 0) {
 					out = attempt_capture(1.0, m); // Pokeball
 				}
@@ -599,8 +589,7 @@ public:
 					out = attempt_capture(2.0, m); // Ultra Ball
 				}
 				if (out == 4) {
-					gain_exp(active_mon, m, 1); // TODO:  Implement exp split
-					p.team[selected] = active_mon;
+					gain_exp(p.team[selected], m, 1); // TODO:  Implement exp split
 					for (int i = 0; i < 6; ++i) {
 						if (!p.team[i].defined) {
 							p.team[i] = m;
@@ -611,10 +600,10 @@ public:
 				}
 			}
 			else if (choice1 == 2) { // Player has selected Pokemon
-				p.team[selected] = active_mon;
+				p.team[selected].queue.clear();
 				selected = choice2;
-				active_mon = p.team[selected];
-				active_mon.queue.push_back(string(""));
+				p.team[selected].queue.clear();
+				p.team[selected].queue.push_back(string(""));
 			}
 			else if (choice1 == 3) { // Player has selected RUN
 			}
@@ -628,18 +617,17 @@ public:
 			index = int(random(0.0, count));
 			m.queue.push_back(m.moves[index]);
 			m.pp[index]--;
-			do_turn(active_mon, m);
+			do_turn(p.team[selected], m);
 			if (is_KO(m)) {
 				// TODO:  Handle victory message.
+				gain_exp(p.team[selected], m, 1);
 				break;
 			}
-			if (is_KO(active_mon)) {
+			if (is_KO(p.team[selected])) {
 				// TODO:  Handle selection on KO
-				p.team[selected] = active_mon;
 				for (i = 0; i < 6; ++i) {
 					if (!is_KO(p.team[i])) {
 						selected = i;
-						active_mon = p.team[selected];
 						if (i == 5)
 							i--;
 						break;
