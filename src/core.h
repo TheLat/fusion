@@ -6,6 +6,10 @@
 #include <string>
 #include <math.h>
 #include <ctime>
+#include <stdio.h>
+#include <iostream>
+#include <fstream>
+#include <string>
 
 using namespace std;
 
@@ -172,6 +176,7 @@ private:
 	std::map<string, status_effect> status;
 	std::map<string, mon_template> all_mon;
 	std::map<string, power> moves;
+	player mc;
 public:
 	bool in_status(mon& m, string s) {
 		for (unsigned i = 0; i < m.status.size(); ++i) {
