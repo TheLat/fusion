@@ -17,6 +17,7 @@ void handleKeypress(unsigned char key, int x, int y) {
 	}
 }
 std::map<int, GLuint> tiles;
+std::vector<std::vector<int>> level;
 void loadTile(string filename, int index) {
 	int i;
 	unsigned char* image;
@@ -78,6 +79,27 @@ void initRendering() {
 		tmp = tmp + ".bmp";
 		loadTile(string("level_sprites/") + tmp, i);
 	}
+
+	ifstream f("../resources/levels/pallet-town.dat");
+	string line;
+	std::vector<int> empty;
+	int count;
+	while (f.is_open()) {
+		while (std::getline(f, line)) {
+			level.push_back(empty);
+			while (line.length() > 0) {
+				level[level.size() - 1].push_back(stoi(line));
+				count = 0;
+				while (line[count] != '\n' && line[count] != ' ' && count < line.length())
+					count++;
+				while (line[count] == ' ')
+					count++;
+				line.erase(0, count);
+			}
+		}
+		f.close();
+	}
+
 }
 //Called when the window is resized
 void handleResize(int w, int h) {
@@ -99,8 +121,24 @@ void drawScene() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glMatrixMode(GL_MODELVIEW); //Switch to the drawing perspective
 	glLoadIdentity(); //Reset the drawing perspective
-	glBindTexture(GL_TEXTURE_2D, tiles[num]);
 	glColor3f(1.0f, 1.0f, 1.0f);
+	for (int y = 0; y < level.size(); ++y) {
+		for (int x = 0; x < level[y].size(); ++x) {
+			glBindTexture(GL_TEXTURE_2D, tiles[level[y][x]]);
+			glBegin(GL_QUADS);
+			glTexCoord2f(0.0f, 0.0f);
+			glVertex3f(-1.0f + (float(x) / 16.0f), (float(-y) / 16.0f), -2.5f);
+			glTexCoord2f(1.0f, 0.0f);
+			glVertex3f(-1.0f + (float(x) / 16.0f) + (1.0f / 16.0f), (float(-y) / 16.0f), -2.5f);
+			glTexCoord2f(1.0f, 1.0f);
+			glVertex3f(-1.0f + (float(x) / 16.0f) + (1.0f / 16.0f), (float(-y) / 16.0f) + (1.0f / 16.0f), -2.5f);
+			glTexCoord2f(0.0f, 1.0f);
+			glVertex3f(-1.0f + (float(x) / 16.0f), (float(-y) / 16.0f) + (1.0f / 16.0f), -2.5f);
+			glEnd();
+		}
+	}
+	/*
+	glBindTexture(GL_TEXTURE_2D, tiles[num]);
 	glBegin(GL_QUADS); //Begin quadrilateral coordinates
 	glTexCoord2f(0.0, 0.0);
 	glVertex3f(-1.0f, -1.0f, -2.5f);
@@ -111,6 +149,7 @@ void drawScene() {
 	glTexCoord2f(0.0, 1.0);
 	glVertex3f(-1.0f, 1.0f, -2.5f);
 	glEnd(); //End quadrilateral coordinates
+	*/
 	glutSwapBuffers(); //Send the 3D scene to the screen
 	glutPostRedisplay();
 }
