@@ -151,6 +151,20 @@ public:
 	status_effect() { defined = false; chance = false; nonvolatile = false; name = string(""); singleton = false; specialcase = false; }
 };
 
+class location {
+public:
+	int x;
+	int y;
+	string level;
+};
+
+class level {
+public:
+	string name;
+	std::vector<std::vector<int>> data;
+	std::vector<location> teleport;
+};
+
 typedef std::map<string, std::map<string, float>>::iterator type_iter;
 int min(int a, int b) {
 	if (a < b) {
@@ -175,6 +189,7 @@ private:
 	std::map<string, status_effect> status;
 	std::map<string, mon_template> all_mon;
 	std::map<string, power> moves;
+	std::map<string, level> levels;
 	player mc;
 public:
 	bool in_status(mon& m, string s) {
