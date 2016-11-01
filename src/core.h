@@ -181,7 +181,7 @@ int max(int a, int b) {
 
 
 class engine {
-private:
+public: // TODO:  Change back to private
 	// format is always types[ATTACKER][DEFENDER]
 	std::map<string, std::map<string, float>> types;
 	std::map<string, bool> special_case;
@@ -813,6 +813,30 @@ public:
 			}
 		}
 		return int(ret * get_stat_modifier(buff));
+	}
+	void init_levels() {
+		init_level(string("pallet-town"));
+	}
+	void init_level(string levelname) {
+		ifstream f(("../resources/levels/" + levelname + ".dat").c_str());
+		string line;
+		std::vector<int> empty;
+		int count;
+		while (f.is_open()) {
+			while (std::getline(f, line)) {
+				levels[levelname].data.push_back(empty);
+				while (line.length() > 0) {
+					levels[levelname].data[levels[levelname].data.size() - 1].push_back(stoi(line));
+					count = 0;
+					while (line[count] != '\n' && line[count] != ' ' && count < line.length())
+						count++;
+					while (line[count] == ' ')
+						count++;
+					line.erase(0, count);
+				}
+			}
+			f.close();
+		}
 	}
 	void init_moves() {
 		string line, key;

@@ -7,7 +7,8 @@
 using namespace std;
 int num = 0;
 engine e;
-//Called when a key is pressed
+
+// Called when a key is pressed
 void handleKeypress(unsigned char key, int x, int y) {
 	printf("%i\n", int(key));
 	num++;
@@ -17,7 +18,6 @@ void handleKeypress(unsigned char key, int x, int y) {
 	}
 }
 std::map<int, GLuint> tiles;
-std::vector<std::vector<int>> level;
 void loadTile(string filename, int index) {
 	int i;
 	unsigned char* image;
@@ -80,26 +80,7 @@ void initRendering() {
 		loadTile(string("level_sprites/") + tmp, i);
 	}
 
-	ifstream f("../resources/levels/pallet-town.dat");
-	string line;
-	std::vector<int> empty;
-	int count;
-	while (f.is_open()) {
-		while (std::getline(f, line)) {
-			level.push_back(empty);
-			while (line.length() > 0) {
-				level[level.size() - 1].push_back(stoi(line));
-				count = 0;
-				while (line[count] != '\n' && line[count] != ' ' && count < line.length())
-					count++;
-				while (line[count] == ' ')
-					count++;
-				line.erase(0, count);
-			}
-		}
-		f.close();
-	}
-
+	e.init_levels();
 }
 //Called when the window is resized
 void handleResize(int w, int h) {
@@ -122,9 +103,9 @@ void drawScene() {
 	glMatrixMode(GL_MODELVIEW); //Switch to the drawing perspective
 	glLoadIdentity(); //Reset the drawing perspective
 	glColor3f(1.0f, 1.0f, 1.0f);
-	for (int y = 0; y < level.size(); ++y) {
-		for (int x = 0; x < level[y].size(); ++x) {
-			glBindTexture(GL_TEXTURE_2D, tiles[level[y][x]]);
+	for (int y = 0; y < e.levels[string("pallet-town")].data.size(); ++y) {
+		for (int x = 0; x < e.levels[string("pallet-town")].data[y].size(); ++x) {
+			glBindTexture(GL_TEXTURE_2D, tiles[e.levels[string("pallet-town")].data[y][x]]);
 			glBegin(GL_QUADS);
 			glTexCoord2f(0.0f, 0.0f);
 			glVertex3f(-1.0f + (float(x) / 16.0f), (float(-y) / 16.0f), -2.5f);
@@ -165,7 +146,7 @@ int main(int argc, char** argv) {
 	//Initialize GLUT
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
-	glutInitWindowSize(160, 144); //Set the window size
+	glutInitWindowSize(160*4, 144*4); //Set the window size
 	//Create the window
 	glutCreateWindow("Pokémon Fusion");
 	initRendering(); //Initialize rendering
