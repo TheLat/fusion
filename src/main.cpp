@@ -15,6 +15,19 @@ void handleKeypress(unsigned char key, int x, int y) {
 	switch (key) {
 	case 27: //Escape key
 		exit(0);
+		break;
+	case 'a':
+		e.mc.loc.x -= 1.0f;
+		break;
+	case 'd':
+		e.mc.loc.x += 1.0f;
+		break;
+	case 's':
+		e.mc.loc.y -= 1.0f;
+		break;
+	case 'w':
+		e.mc.loc.y += 1.0f;
+		break;
 	}
 }
 std::map<int, GLuint> tiles;
@@ -103,18 +116,18 @@ void drawScene() {
 	glMatrixMode(GL_MODELVIEW); //Switch to the drawing perspective
 	glLoadIdentity(); //Reset the drawing perspective
 	glColor3f(1.0f, 1.0f, 1.0f);
-	for (int y = 0; y < e.levels[string("pallet-town")].data.size(); ++y) {
-		for (int x = 0; x < e.levels[string("pallet-town")].data[y].size(); ++x) {
-			glBindTexture(GL_TEXTURE_2D, tiles[e.levels[string("pallet-town")].data[y][x]]);
+	for (int y = 0; y < e.levels[string("route1")].data.size(); ++y) {
+		for (int x = 0; x < e.levels[string("route1")].data[y].size(); ++x) {
+			glBindTexture(GL_TEXTURE_2D, tiles[e.levels[string("route1")].data[y][x]]);
 			glBegin(GL_QUADS);
 			glTexCoord2f(0.0f, 0.0f);
-			glVertex3f(-1.0f + (float(x) / 16.0f), (float(-y) / 16.0f), -2.5f);
+			glVertex3f(-1.0f + (float(x) / 16.0f) - (e.mc.loc.x/16.0f), (float(-y) / 16.0f) - (e.mc.loc.y/16.0f), -2.5f);
 			glTexCoord2f(1.0f, 0.0f);
-			glVertex3f(-1.0f + (float(x) / 16.0f) + (1.0f / 16.0f), (float(-y) / 16.0f), -2.5f);
+			glVertex3f(-1.0f + (float(x) / 16.0f) + (1.0f / 16.0f) - (e.mc.loc.x / 16.0f), (float(-y) / 16.0f) - (e.mc.loc.y / 16.0f), -2.5f);
 			glTexCoord2f(1.0f, 1.0f);
-			glVertex3f(-1.0f + (float(x) / 16.0f) + (1.0f / 16.0f), (float(-y) / 16.0f) + (1.0f / 16.0f), -2.5f);
+			glVertex3f(-1.0f + (float(x) / 16.0f) + (1.0f / 16.0f) - (e.mc.loc.x / 16.0f), (float(-y) / 16.0f) + (1.0f / 16.0f) - (e.mc.loc.y / 16.0f), -2.5f);
 			glTexCoord2f(0.0f, 1.0f);
-			glVertex3f(-1.0f + (float(x) / 16.0f), (float(-y) / 16.0f) + (1.0f / 16.0f), -2.5f);
+			glVertex3f(-1.0f + (float(x) / 16.0f) - (e.mc.loc.x / 16.0f), (float(-y) / 16.0f) + (1.0f / 16.0f) - (e.mc.loc.y / 16.0f), -2.5f);
 			glEnd();
 		}
 	}

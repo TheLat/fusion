@@ -21,6 +21,13 @@ enum STAT{
 	SIZE
 };
 
+class location {
+public:
+	double x;
+	double y;
+	string level;
+};
+
 class power {
 public:
 	string name;
@@ -128,6 +135,7 @@ public:
 	int money;
 	mon team[6];
 	mon storage[20][20];
+	location loc;
 	player() { wins = 0; losses = 0; money = 0; }
 	// TODO:  INVENTORY
 };
@@ -149,13 +157,6 @@ public:
 	bool specialcase;
 	string name;
 	status_effect() { defined = false; chance = false; nonvolatile = false; name = string(""); singleton = false; specialcase = false; }
-};
-
-class location {
-public:
-	int x;
-	int y;
-	string level;
 };
 
 class level {
