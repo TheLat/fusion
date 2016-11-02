@@ -815,6 +815,7 @@ public:
 		return int(ret * get_stat_modifier(buff));
 	}
 	void init_levels() {
+		init_level(string("route1"));
 		init_level(string("pallet-town"));
 	}
 	void init_level(string levelname) {
