@@ -17,16 +17,36 @@ void handleKeypress(unsigned char key, int x, int y) {
 		exit(0);
 		break;
 	case 'a':
+		if (e.mc.loc.x == 0.0f)
+			break;
+		if (e.blocking[e.levels[e.current_level].data[int(e.mc.loc.y)][int(e.mc.loc.x - 1)]])
+			break;
 		e.mc.loc.x -= 1.0f;
 		break;
 	case 'd':
+		if (e.mc.loc.x + 1 >= e.levels[e.current_level].data[int(e.mc.loc.y)].size())
+			break;
+		if (e.blocking[e.levels[e.current_level].data[int(e.mc.loc.y)][int(e.mc.loc.x + 1)]])
+			break;
 		e.mc.loc.x += 1.0f;
 		break;
 	case 's':
-		e.mc.loc.y -= 1.0f;
+		if (e.mc.loc.y + 1 >= e.levels[e.current_level].data.size())
+			break;
+		if (e.mc.loc.x >= e.levels[e.current_level].data[int(e.mc.loc.y + 1)].size())
+			break;
+		if (e.blocking[e.levels[e.current_level].data[int(e.mc.loc.y + 1)][int(e.mc.loc.x)]])
+			break;
+		e.mc.loc.y += 1.0f;
 		break;
 	case 'w':
-		e.mc.loc.y += 1.0f;
+		if (e.mc.loc.y == 0)
+			break;
+		if (e.mc.loc.x >= e.levels[e.current_level].data[int(e.mc.loc.y - 1)].size())
+			break;
+		if (e.blocking[e.levels[e.current_level].data[int(e.mc.loc.y - 1)][int(e.mc.loc.x)]])
+			break;
+		e.mc.loc.y -= 1.0f;
 		break;
 	}
 }
@@ -92,8 +112,6 @@ void initRendering() {
 		tmp = tmp + ".bmp";
 		loadTile(string("level_sprites/") + tmp, i);
 	}
-
-	e.init_levels();
 }
 //Called when the window is resized
 void handleResize(int w, int h) {
@@ -116,18 +134,26 @@ void drawScene() {
 	glMatrixMode(GL_MODELVIEW); //Switch to the drawing perspective
 	glLoadIdentity(); //Reset the drawing perspective
 	glColor3f(1.0f, 1.0f, 1.0f);
-	for (int y = 0; y < e.levels[string("route1")].data.size(); ++y) {
-		for (int x = 0; x < e.levels[string("route1")].data[y].size(); ++x) {
-			glBindTexture(GL_TEXTURE_2D, tiles[e.levels[string("route1")].data[y][x]]);
+	for (int i = 0; i < e.levels[e.current_level].teleport.size(); ++i) {
+		if (e.mc.loc.x == e.levels[e.current_level].teleport[i].first.x && e.mc.loc.y == e.levels[e.current_level].teleport[i].first.y) {
+			e.mc.loc.x = e.levels[e.current_level].teleport[i].second.x;
+			e.mc.loc.y = e.levels[e.current_level].teleport[i].second.y;
+			e.current_level = e.levels[e.current_level].teleport[i].second.level;
+			break;
+		}
+	}
+	for (int y = 0; y < e.levels[e.current_level].data.size(); ++y) {
+		for (int x = 0; x < e.levels[e.current_level].data[y].size(); ++x) {
+			glBindTexture(GL_TEXTURE_2D, tiles[e.levels[e.current_level].data[y][x]]);
 			glBegin(GL_QUADS);
 			glTexCoord2f(0.0f, 0.0f);
-			glVertex3f(-1.0f + (float(x) / 16.0f) - (e.mc.loc.x/16.0f), (float(-y) / 16.0f) - (e.mc.loc.y/16.0f), -2.5f);
+			glVertex3f(-1.0f + (float(x) / 16.0f) - (e.mc.loc.x/16.0f), (float(-y) / 16.0f) + (e.mc.loc.y/16.0f), -2.5f);
 			glTexCoord2f(1.0f, 0.0f);
-			glVertex3f(-1.0f + (float(x) / 16.0f) + (1.0f / 16.0f) - (e.mc.loc.x / 16.0f), (float(-y) / 16.0f) - (e.mc.loc.y / 16.0f), -2.5f);
+			glVertex3f(-1.0f + (float(x) / 16.0f) + (1.0f / 16.0f) - (e.mc.loc.x / 16.0f), (float(-y) / 16.0f) + (e.mc.loc.y / 16.0f), -2.5f);
 			glTexCoord2f(1.0f, 1.0f);
-			glVertex3f(-1.0f + (float(x) / 16.0f) + (1.0f / 16.0f) - (e.mc.loc.x / 16.0f), (float(-y) / 16.0f) + (1.0f / 16.0f) - (e.mc.loc.y / 16.0f), -2.5f);
+			glVertex3f(-1.0f + (float(x) / 16.0f) + (1.0f / 16.0f) - (e.mc.loc.x / 16.0f), (float(-y) / 16.0f) + (1.0f / 16.0f) + (e.mc.loc.y / 16.0f), -2.5f);
 			glTexCoord2f(0.0f, 1.0f);
-			glVertex3f(-1.0f + (float(x) / 16.0f) - (e.mc.loc.x / 16.0f), (float(-y) / 16.0f) + (1.0f / 16.0f) - (e.mc.loc.y / 16.0f), -2.5f);
+			glVertex3f(-1.0f + (float(x) / 16.0f) - (e.mc.loc.x / 16.0f), (float(-y) / 16.0f) + (1.0f / 16.0f) + (e.mc.loc.y / 16.0f), -2.5f);
 			glEnd();
 		}
 	}
@@ -155,6 +181,12 @@ int main(int argc, char** argv) {
 	e.init_status();
 	e.init_moves();
 	e.init_mon();
+	e.init_levels();
+	e.init_blocking();
+
+	e.mc.loc.x = 2.0;
+	e.mc.loc.y = 2.0;
+	e.current_level = "pallet-town";
 
 	//Initialize GLUT
 	glutInit(&argc, argv);
