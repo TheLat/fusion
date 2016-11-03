@@ -163,7 +163,7 @@ class level {
 public:
 	string name;
 	std::vector<std::vector<int>> data;
-	std::vector<location> teleport;
+	std::vector<std::pair<location, location>> teleport;
 };
 
 typedef std::map<string, std::map<string, float>>::iterator type_iter;
@@ -825,16 +825,47 @@ public:
 		std::vector<int> empty;
 		int count;
 		while (f.is_open()) {
-			while (std::getline(f, line)) {
-				levels[levelname].data.push_back(empty);
-				while (line.length() > 0) {
-					levels[levelname].data[levels[levelname].data.size() - 1].push_back(stoi(line));
-					count = 0;
-					while (line[count] != '\n' && line[count] != ' ' && count < line.length())
-						count++;
-					while (line[count] == ' ')
-						count++;
-					line.erase(0, count);
+			std::getline(f, line);
+			if (line == "NAME") {
+				std::getline(f, line);
+				levels[levelname].name = line;
+				continue;
+			}
+			if (line == "TELEPORT")
+			{
+				std::getline(f, line);
+				std::pair<location, location> temp;
+				while (line != "DATA") {
+					temp.first.level = levelname;
+					temp.first.x = double(stoi(line));
+					line.erase(0, line.find(" ") + 1);
+					temp.first.y = double(stoi(line));
+					line.erase(0, line.find(" ") + 1);
+					temp.second.level = "";
+					while (line[0] != ' ') {
+						temp.second.level += line[0];
+						line.erase(0, 1);
+					}
+					line.erase(0, 1);
+					temp.second.x = double(stoi(line));
+					line.erase(0, line.find(" ") + 1);
+					temp.second.y = double(stoi(line));
+					levels[levelname].teleport.push_back(temp);
+					std::getline(f, line);
+				}
+			}
+			if (line == "DATA") {
+				while (std::getline(f, line)) {
+					levels[levelname].data.push_back(empty);
+					while (line.length() > 0) {
+						levels[levelname].data[levels[levelname].data.size() - 1].push_back(stoi(line));
+						count = 0;
+						while (line[count] != '\n' && line[count] != ' ' && count < line.length())
+							count++;
+						while (line[count] == ' ')
+							count++;
+						line.erase(0, count);
+					}
 				}
 			}
 			f.close();

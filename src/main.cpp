@@ -23,10 +23,10 @@ void handleKeypress(unsigned char key, int x, int y) {
 		e.mc.loc.x += 1.0f;
 		break;
 	case 's':
-		e.mc.loc.y -= 1.0f;
+		e.mc.loc.y += 1.0f;
 		break;
 	case 'w':
-		e.mc.loc.y += 1.0f;
+		e.mc.loc.y -= 1.0f;
 		break;
 	}
 }
@@ -110,24 +110,34 @@ void handleResize(int w, int h) {
 		200.0);                //The far z clipping coordinate
 }
 //Draws the 3D scene
+
+string level = "pallet-town";
 void drawScene() {
 	//Clear information from last draw
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glMatrixMode(GL_MODELVIEW); //Switch to the drawing perspective
 	glLoadIdentity(); //Reset the drawing perspective
 	glColor3f(1.0f, 1.0f, 1.0f);
-	for (int y = 0; y < e.levels[string("route1")].data.size(); ++y) {
-		for (int x = 0; x < e.levels[string("route1")].data[y].size(); ++x) {
-			glBindTexture(GL_TEXTURE_2D, tiles[e.levels[string("route1")].data[y][x]]);
+	for (int i = 0; i < e.levels[level].teleport.size(); ++i) {
+		if (e.mc.loc.x == e.levels[level].teleport[i].first.x && e.mc.loc.y == e.levels[level].teleport[i].first.y) {
+			e.mc.loc.x = e.levels[level].teleport[i].second.x;
+			e.mc.loc.y = e.levels[level].teleport[i].second.y;
+			level = e.levels[level].teleport[i].second.level;
+			break;
+		}
+	}
+	for (int y = 0; y < e.levels[level].data.size(); ++y) {
+		for (int x = 0; x < e.levels[level].data[y].size(); ++x) {
+			glBindTexture(GL_TEXTURE_2D, tiles[e.levels[level].data[y][x]]);
 			glBegin(GL_QUADS);
 			glTexCoord2f(0.0f, 0.0f);
-			glVertex3f(-1.0f + (float(x) / 16.0f) - (e.mc.loc.x/16.0f), (float(-y) / 16.0f) - (e.mc.loc.y/16.0f), -2.5f);
+			glVertex3f(-1.0f + (float(x) / 16.0f) - (e.mc.loc.x/16.0f), (float(-y) / 16.0f) + (e.mc.loc.y/16.0f), -2.5f);
 			glTexCoord2f(1.0f, 0.0f);
-			glVertex3f(-1.0f + (float(x) / 16.0f) + (1.0f / 16.0f) - (e.mc.loc.x / 16.0f), (float(-y) / 16.0f) - (e.mc.loc.y / 16.0f), -2.5f);
+			glVertex3f(-1.0f + (float(x) / 16.0f) + (1.0f / 16.0f) - (e.mc.loc.x / 16.0f), (float(-y) / 16.0f) + (e.mc.loc.y / 16.0f), -2.5f);
 			glTexCoord2f(1.0f, 1.0f);
-			glVertex3f(-1.0f + (float(x) / 16.0f) + (1.0f / 16.0f) - (e.mc.loc.x / 16.0f), (float(-y) / 16.0f) + (1.0f / 16.0f) - (e.mc.loc.y / 16.0f), -2.5f);
+			glVertex3f(-1.0f + (float(x) / 16.0f) + (1.0f / 16.0f) - (e.mc.loc.x / 16.0f), (float(-y) / 16.0f) + (1.0f / 16.0f) + (e.mc.loc.y / 16.0f), -2.5f);
 			glTexCoord2f(0.0f, 1.0f);
-			glVertex3f(-1.0f + (float(x) / 16.0f) - (e.mc.loc.x / 16.0f), (float(-y) / 16.0f) + (1.0f / 16.0f) - (e.mc.loc.y / 16.0f), -2.5f);
+			glVertex3f(-1.0f + (float(x) / 16.0f) - (e.mc.loc.x / 16.0f), (float(-y) / 16.0f) + (1.0f / 16.0f) + (e.mc.loc.y / 16.0f), -2.5f);
 			glEnd();
 		}
 	}
