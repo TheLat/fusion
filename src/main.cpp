@@ -17,21 +17,33 @@ void handleKeypress(unsigned char key, int x, int y) {
 		exit(0);
 		break;
 	case 'a':
+		if (e.mc.loc.x == 0.0f)
+			break;
 		if (e.blocking[e.levels[e.current_level].data[int(e.mc.loc.y)][int(e.mc.loc.x - 1)]])
 			break;
 		e.mc.loc.x -= 1.0f;
 		break;
 	case 'd':
+		if (e.mc.loc.x + 1 >= e.levels[e.current_level].data[int(e.mc.loc.y)].size())
+			break;
 		if (e.blocking[e.levels[e.current_level].data[int(e.mc.loc.y)][int(e.mc.loc.x + 1)]])
 			break;
 		e.mc.loc.x += 1.0f;
 		break;
 	case 's':
+		if (e.mc.loc.y + 1 >= e.levels[e.current_level].data.size())
+			break;
+		if (e.mc.loc.x >= e.levels[e.current_level].data[int(e.mc.loc.y + 1)].size())
+			break;
 		if (e.blocking[e.levels[e.current_level].data[int(e.mc.loc.y + 1)][int(e.mc.loc.x)]])
 			break;
 		e.mc.loc.y += 1.0f;
 		break;
 	case 'w':
+		if (e.mc.loc.y == 0)
+			break;
+		if (e.mc.loc.x >= e.levels[e.current_level].data[int(e.mc.loc.y - 1)].size())
+			break;
 		if (e.blocking[e.levels[e.current_level].data[int(e.mc.loc.y - 1)][int(e.mc.loc.x)]])
 			break;
 		e.mc.loc.y -= 1.0f;
