@@ -191,6 +191,8 @@ public: // TODO:  Change back to private
 	std::map<string, mon_template> all_mon;
 	std::map<string, power> moves;
 	std::map<string, level> levels;
+	std::map<int, bool> blocking;
+	string current_level;
 	player mc;
 public:
 	bool in_status(mon& m, string s) {
@@ -1302,6 +1304,16 @@ public:
 			}
 		}
 		f.close();
+	}
+	void init_blocking() {
+		string line;
+		ifstream f("../resources/data/blocking-tiles.dat");
+		while (f.is_open()) {
+			while (std::getline(f, line)) {
+				blocking[stoi(line)] = true;
+			}
+			f.close();
+		}
 	}
 	void init_exp() {
 		string line;
