@@ -3,6 +3,8 @@ Pallet Town
 TELEPORT
 11 1 route1 9 36
 10 1 route1 8 36
+5 5 home 2 26
+13 5 rival-home 2 7 
 DATA
 1 1 1  0  1  1  1  1  1 0 4  4  0  1  1  1  1  1  0 1
 0 0 0  0  0  0  0  0  0 0 4  4  0  0  0  0  0  0  0 0

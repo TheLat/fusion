@@ -45,6 +45,8 @@ List of changes:
 - Leveling rates are gone.  Everything is on th Slow path now.
 - Pokemon use the current-gen EXP yields.
 - In addition to the normal EXP scaling, there is now a bonus and penalty for fighting things above and below your level.  Pokemon will receive a bonus 10% EXP for every level above their own a defeated enemy is, to a maximum bonus of 100%.  Pokemon will receive a 10% EXP penalty for every level they are above a defeated enemy pokemon, to a maximum of 50%.
+- Font size reduced.  Display size increased.
+- Different messages for x4 and x0.25 damage multipliers.
 
 Concerning Fusions:
 There are 22,801 pokemon that can appear in Pokemon: Fusion.  The developer can't inspect all of them.  Some may be duds with few or no attack moves (Pikachu-Bulbasaur is quite terrible).  Some things may happen that make no sense (things fused with Gengar will learn Hypnosis from Gengar or Dream Eater from Gengar, but not both).  As a way to balance this, fusions are compatible with every TM and HM that either parent could learn.
