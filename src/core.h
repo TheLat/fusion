@@ -820,6 +820,8 @@ public:
 	void init_levels() {
 		init_level(string("route1"));
 		init_level(string("pallet-town"));
+		init_level(string("home"));
+		init_level(string("rival-home"));
 	}
 	void init_level(string levelname) {
 		ifstream f(("../resources/levels/" + levelname + ".dat").c_str());

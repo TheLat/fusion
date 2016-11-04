@@ -103,7 +103,7 @@ void initRendering() {
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	string tmp;
-	for (int i = 0; i < 81; ++i) {
+	for (int i = 0; i < 83; ++i) {
 		tmp = to_string(i);
 		if (i < 100)
 			tmp = '0' + tmp;
