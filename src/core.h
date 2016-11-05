@@ -818,10 +818,13 @@ public:
 		return int(ret * get_stat_modifier(buff));
 	}
 	void init_levels() {
-		init_level(string("route1"));
-		init_level(string("pallet-town"));
-		init_level(string("home"));
-		init_level(string("rival-home"));
+		ifstream f("../resources/data/levels.dat");
+		string line;
+		while (f.is_open()) {
+			while (std::getline(f, line))
+				init_level(line);
+			f.close();
+		}
 	}
 	void init_level(string levelname) {
 		ifstream f(("../resources/levels/" + levelname + ".dat").c_str());
