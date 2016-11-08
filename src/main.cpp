@@ -102,8 +102,13 @@ void initRendering() {
 	glEnable(GL_TEXTURE_2D);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	ifstream f("../resources/data/level_sprites.dat");
 	string tmp;
-	for (int i = 0; i < 86; ++i) {
+	std::getline(f, tmp);
+	int total = stoi(tmp);
+	f.close();
+	for (int i = 0; i < total; ++i) {
 		tmp = to_string(i);
 		if (i < 100)
 			tmp = '0' + tmp;
