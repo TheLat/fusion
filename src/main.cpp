@@ -154,13 +154,13 @@ void drawScene() {
 			glBindTexture(GL_TEXTURE_2D, tiles[e.levels[e.current_level].data[y][x]]);
 			glBegin(GL_QUADS);
 			glTexCoord2f(0.0f, 0.0f);
-			glVertex3f(-1.0f + (float(x) / 5.0f) - ((e.mc.loc.x - 4.0f) / 5.0f), (float(-y) / 4.5f) - (0.5f / 4.5f) + (e.mc.loc.y / 4.5f), 0.0f);
+			glVertex3f(-1.0f + (float(x) / 5.0f) - ((e.mc.loc.x - 4.5f) / 5.0f), (float(-y) / 4.5f) - (0.5f / 4.5f) + (e.mc.loc.y / 4.5f), 0.0f);
 			glTexCoord2f(1.0f, 0.0f);
-			glVertex3f(-1.0f + (float(x) / 5.0f) + (1.0f / 5.0f) - ((e.mc.loc.x - 4.0f) / 5.0f), (float(-y) / 4.5f) - (0.5f / 4.5f) + (e.mc.loc.y / 4.5f), 0.0f);
+			glVertex3f(-1.0f + (float(x) / 5.0f) + (1.0f / 5.0f) - ((e.mc.loc.x - 4.5f) / 5.0f), (float(-y) / 4.5f) - (0.5f / 4.5f) + (e.mc.loc.y / 4.5f), 0.0f);
 			glTexCoord2f(1.0f, 1.0f);
-			glVertex3f(-1.0f + (float(x) / 5.0f) + (1.0f / 5.0f) - ((e.mc.loc.x - 4.0f) / 5.0f), (float(-y) / 4.5f) + (0.5f / 4.5f) + (e.mc.loc.y / 4.5f), 0.0f);
+			glVertex3f(-1.0f + (float(x) / 5.0f) + (1.0f / 5.0f) - ((e.mc.loc.x - 4.5f) / 5.0f), (float(-y) / 4.5f) + (0.5f / 4.5f) + (e.mc.loc.y / 4.5f), 0.0f);
 			glTexCoord2f(0.0f, 1.0f);
-			glVertex3f(-1.0f + (float(x) / 5.0f) - ((e.mc.loc.x - 4.0f) / 5.0f), (float(-y) / 4.5f) + (0.5f / 4.5f) + (e.mc.loc.y / 4.5f), 0.0f);
+			glVertex3f(-1.0f + (float(x) / 5.0f) - ((e.mc.loc.x - 4.5f) / 5.0f), (float(-y) / 4.5f) + (0.5f / 4.5f) + (e.mc.loc.y / 4.5f), 0.0f);
 			glEnd();
 		}
 	}
