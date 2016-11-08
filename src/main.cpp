@@ -127,10 +127,12 @@ void handleResize(int w, int h) {
 	glMatrixMode(GL_PROJECTION); //Switch to setting the camera perspective
 	//Set the camera perspective
 	glLoadIdentity(); //Reset the camera
-	gluPerspective(45.0,                  //The camera angle
+	gluOrtho2D(-1, 1, -1, 1);
+	/*gluPerspective(45.0,                  //The camera angle
 		(double)w / (double)h, //The width-to-height ratio
 		0.1,                   //The near z clipping coordinate
 		200.0);                //The far z clipping coordinate
+		*/
 }
 //Draws the 3D scene
 void drawScene() {
@@ -152,13 +154,13 @@ void drawScene() {
 			glBindTexture(GL_TEXTURE_2D, tiles[e.levels[e.current_level].data[y][x]]);
 			glBegin(GL_QUADS);
 			glTexCoord2f(0.0f, 0.0f);
-			glVertex3f(-1.0f + (float(x) / 16.0f) - (e.mc.loc.x/16.0f), (float(-y) / 16.0f) + (e.mc.loc.y/16.0f), -2.5f);
+			glVertex3f(-1.0f + (float(x) / 5.0f) - ((e.mc.loc.x - 4.0f) / 5.0f), (float(-y) / 4.5f) - (0.5f / 4.5f) + (e.mc.loc.y / 4.5f), 0.0f);
 			glTexCoord2f(1.0f, 0.0f);
-			glVertex3f(-1.0f + (float(x) / 16.0f) + (1.0f / 16.0f) - (e.mc.loc.x / 16.0f), (float(-y) / 16.0f) + (e.mc.loc.y / 16.0f), -2.5f);
+			glVertex3f(-1.0f + (float(x) / 5.0f) + (1.0f / 5.0f) - ((e.mc.loc.x - 4.0f) / 5.0f), (float(-y) / 4.5f) - (0.5f / 4.5f) + (e.mc.loc.y / 4.5f), 0.0f);
 			glTexCoord2f(1.0f, 1.0f);
-			glVertex3f(-1.0f + (float(x) / 16.0f) + (1.0f / 16.0f) - (e.mc.loc.x / 16.0f), (float(-y) / 16.0f) + (1.0f / 16.0f) + (e.mc.loc.y / 16.0f), -2.5f);
+			glVertex3f(-1.0f + (float(x) / 5.0f) + (1.0f / 5.0f) - ((e.mc.loc.x - 4.0f) / 5.0f), (float(-y) / 4.5f) + (0.5f / 4.5f) + (e.mc.loc.y / 4.5f), 0.0f);
 			glTexCoord2f(0.0f, 1.0f);
-			glVertex3f(-1.0f + (float(x) / 16.0f) - (e.mc.loc.x / 16.0f), (float(-y) / 16.0f) + (1.0f / 16.0f) + (e.mc.loc.y / 16.0f), -2.5f);
+			glVertex3f(-1.0f + (float(x) / 5.0f) - ((e.mc.loc.x - 4.0f) / 5.0f), (float(-y) / 4.5f) + (0.5f / 4.5f) + (e.mc.loc.y / 4.5f), 0.0f);
 			glEnd();
 		}
 	}
