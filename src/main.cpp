@@ -1,8 +1,9 @@
-#include "core.h"
 #include <iostream>
 #include <stdlib.h>
 #include "GL/glut.h"
 #include <string>
+#include "core.h"
+#include "graphics.h"
 
 using namespace std;
 int num = 0;
@@ -134,21 +135,8 @@ void handleResize(int w, int h) {
 		200.0);                //The far z clipping coordinate
 		*/
 }
-//Draws the 3D scene
-void drawScene() {
-	//Clear information from last draw
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glMatrixMode(GL_MODELVIEW); //Switch to the drawing perspective
-	glLoadIdentity(); //Reset the drawing perspective
-	glColor3f(1.0f, 1.0f, 1.0f);
-	for (int i = 0; i < e.levels[e.current_level].teleport.size(); ++i) {
-		if (e.mc.loc.x == e.levels[e.current_level].teleport[i].first.x && e.mc.loc.y == e.levels[e.current_level].teleport[i].first.y) {
-			e.mc.loc.x = e.levels[e.current_level].teleport[i].second.x;
-			e.mc.loc.y = e.levels[e.current_level].teleport[i].second.y;
-			e.current_level = e.levels[e.current_level].teleport[i].second.level;
-			break;
-		}
-	}
+
+void DrawLevel() {
 	for (int y = 0; y < e.levels[e.current_level].data.size(); ++y) {
 		for (int x = 0; x < e.levels[e.current_level].data[y].size(); ++x) {
 			glBindTexture(GL_TEXTURE_2D, tiles[e.levels[e.current_level].data[y][x]]);
@@ -164,19 +152,24 @@ void drawScene() {
 			glEnd();
 		}
 	}
-	/*
-	glBindTexture(GL_TEXTURE_2D, tiles[num]);
-	glBegin(GL_QUADS); //Begin quadrilateral coordinates
-	glTexCoord2f(0.0, 0.0);
-	glVertex3f(-1.0f, -1.0f, -2.5f);
-	glTexCoord2f(1.0, 0.0);
-	glVertex3f(1.0f, -1.0f, -2.5f);
-	glTexCoord2f(1.0, 1.0);
-	glVertex3f(1.0f, 1.0f, -2.5f);
-	glTexCoord2f(0.0, 1.0);
-	glVertex3f(-1.0f, 1.0f, -2.5f);
-	glEnd(); //End quadrilateral coordinates
-	*/
+}
+
+//Draws the 3D scene
+void drawScene() {
+	//Clear information from last draw
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glMatrixMode(GL_MODELVIEW); //Switch to the drawing perspective
+	glLoadIdentity(); //Reset the drawing perspective
+	glColor3f(1.0f, 1.0f, 1.0f);
+	for (int i = 0; i < e.levels[e.current_level].teleport.size(); ++i) {
+		if (e.mc.loc.x == e.levels[e.current_level].teleport[i].first.x && e.mc.loc.y == e.levels[e.current_level].teleport[i].first.y) {
+			e.mc.loc.x = e.levels[e.current_level].teleport[i].second.x;
+			e.mc.loc.y = e.levels[e.current_level].teleport[i].second.y;
+			e.current_level = e.levels[e.current_level].teleport[i].second.level;
+			break;
+		}
+	}
+	DrawLevel();
 	glutSwapBuffers(); //Send the 3D scene to the screen
 	glutPostRedisplay();
 }
