@@ -17,7 +17,7 @@ public:
 	std::map<int, GLuint> tiles;
 	std::map<string, GLuint> menu_tex;
 
-	void loadTile(string filename, int index) {
+	void load_tile(string filename, int index) {
 		int i;
 		unsigned char* image;
 		FILE* f = fopen(("../resources/" + filename).c_str(), "rb");
@@ -80,7 +80,7 @@ public:
 			if (i < 10)
 				tmp = '0' + tmp;
 			tmp = tmp + ".bmp";
-			loadTile(string("level_sprites/") + tmp, i);
+			load_tile(string("level_sprites/") + tmp, i);
 		}
 	}
 
@@ -126,6 +126,9 @@ public:
 		draw_level();
 		glutSwapBuffers(); //Send the 3D scene to the screen
 		glutPostRedisplay();
+	}
+	void alert(string s) {
+
 	}
 };
 
