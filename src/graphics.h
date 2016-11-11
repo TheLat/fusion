@@ -142,7 +142,7 @@ public:
 		glColor3f(1.0f, 1.0f, 1.0f);
 		e.handle_teleport();
 		draw_level();
-		alert(string("bbes!"));
+		alert(string("It's super effective!"));
 		glutSwapBuffers(); //Send the 3D scene to the screen
 		glutPostRedisplay();
 	}
