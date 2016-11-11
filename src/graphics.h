@@ -25,6 +25,7 @@ public:
 	std::map<int, GLuint> tiles;
 	std::map<string, GLuint> menu_tex;
 	std::map<string, string_lookup_data> string_lookup;
+	std::map<char, bool> chunk;
 
 	GLuint load_image(string filename) {
 		GLuint ret = 0;
@@ -134,6 +135,8 @@ public:
 			}
 			f3.close();
 		}
+		chunk[' '] = true;
+		chunk['-'] = true;
 	}
 
 	//Called when the window is resized
@@ -180,6 +183,15 @@ public:
 		glutSwapBuffers(); //Send the 3D scene to the screen
 		glutPostRedisplay();
 	}
+	int next_chunk(string& s, int index) {
+		int ret = index + 1;
+		while (!chunk[s[ret]] && ret < s.size())
+			ret++;
+		if (ret == s.size())
+			ret--;
+		return ret;
+	}
+
 	void alert(string s) {
 		draw_quad(-1.0f, -0.3f, 0.1f, 0.1f, menu_tex[string("corner-ul.bmp")]);
 		draw_quad(0.9f, -0.3f, 0.1f, 0.1f, menu_tex[string("corner-ur.bmp")]);
@@ -190,6 +202,21 @@ public:
 		draw_quad(-1.0f, -1.0f, 0.1f, 0.1f, menu_tex[string("corner-bl.bmp")]);
 		draw_quad(0.9f, -1.0f, 0.1f, 0.1f, menu_tex[string("corner-br.bmp")]);
 		draw_quad(-0.9f, -1.0f, 1.8f, 0.1f, menu_tex[string("bar-bottom.bmp")]);
+		float x = -0.9f;
+		float y = -0.5f;
+		float step = 0.1f;
+		string key;
+		for (int i = 0; i < s.size(); ++i) {
+			key = s[i] + string(".bmp");
+			if (string_lookup[key].defined)
+				key = string_lookup[key].value;
+			draw_quad(x, y, step, step, menu_tex[key]);
+			x = x + step;
+			if (x >= 0.9f || ((float(next_chunk(s, i) - i))*step + x > 0.9f)) {
+				x = -0.9f;
+				y -= step*2.0f;
+			}
+		}
 	}
 };
 
