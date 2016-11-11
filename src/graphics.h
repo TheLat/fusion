@@ -12,10 +12,19 @@
 #include <fstream>
 
 extern engine e;
+
+class string_lookup_data {
+public:
+	bool defined;
+	string value;
+	string_lookup_data() { defined = false; }
+};
+
 class graphics {
 public:
 	std::map<int, GLuint> tiles;
 	std::map<string, GLuint> menu_tex;
+	std::map<string, string_lookup_data> string_lookup;
 
 	GLuint load_image(string filename) {
 		GLuint ret = 0;
@@ -93,12 +102,37 @@ public:
 
 
 		ifstream f2("../resources/data/menu_sprites.dat");
-		string line;
 		while (f2.is_open()) {
-			while (std::getline(f2, line)) {
-				menu_tex[line] = load_image("../resources/menu_sprites/" + line);
+			while (std::getline(f2, tmp)) {
+				menu_tex[tmp] = load_image("../resources/menu_sprites/" + tmp);
 			}
 			f2.close();
+		}
+
+		ifstream f3("../resources/data/string_lookup.dat");
+		string l1, l2;
+		while (f3.is_open()) {
+			while (std::getline(f3, tmp)) {
+				bool first_char;
+				int i;
+				first_char = true;
+				i = 0;
+				l1 = "";
+				l2 = "";
+				while (first_char || tmp[i] != ' ') {
+					first_char = false;
+					l1 += tmp[i];
+					i++;
+				}
+				i++;
+				while (i < tmp.size()) {
+					l2 += tmp[i];
+					i++;
+				}
+				string_lookup[l1].defined = true;
+				string_lookup[l1].value = l2;
+			}
+			f3.close();
 		}
 	}
 
