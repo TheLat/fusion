@@ -179,7 +179,7 @@ public:
 		glColor3f(1.0f, 1.0f, 1.0f);
 		e.handle_teleport();
 		draw_level();
-		alert(string("It's super effective!"));
+		alert(string("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"));
 		glutSwapBuffers(); //Send the 3D scene to the screen
 		glutPostRedisplay();
 	}
@@ -191,7 +191,26 @@ public:
 			ret--;
 		return ret;
 	}
-
+	void draw_text(float x, float y, float width, float height, float size, string s) {
+		string key;
+		float x_curr = x;
+		float y_curr = y;
+		bool no_chunk_yet = true;
+		for (int i = 0; i < s.size(); ++i) {
+			if (chunk[s[i]])
+				no_chunk_yet = false;
+			key = s[i] + string(".bmp");
+			if (string_lookup[key].defined)
+				key = string_lookup[key].value;
+			draw_quad(x_curr, y_curr, size, size, menu_tex[key]);
+			x_curr += size;
+			if (x_curr >= x + width || (!no_chunk_yet && ((float(next_chunk(s, i) - i))*size + x_curr > 0.9f))) {
+				no_chunk_yet = true;
+				x_curr = x;
+				y_curr -= size*2.0f;
+			}
+		}
+	}
 	void alert(string s) {
 		draw_quad(-1.0f, -0.3f, 0.1f, 0.1f, menu_tex[string("corner-ul.bmp")]);
 		draw_quad(0.9f, -0.3f, 0.1f, 0.1f, menu_tex[string("corner-ur.bmp")]);
@@ -202,21 +221,7 @@ public:
 		draw_quad(-1.0f, -1.0f, 0.1f, 0.1f, menu_tex[string("corner-bl.bmp")]);
 		draw_quad(0.9f, -1.0f, 0.1f, 0.1f, menu_tex[string("corner-br.bmp")]);
 		draw_quad(-0.9f, -1.0f, 1.8f, 0.1f, menu_tex[string("bar-bottom.bmp")]);
-		float x = -0.9f;
-		float y = -0.5f;
-		float step = 0.1f;
-		string key;
-		for (int i = 0; i < s.size(); ++i) {
-			key = s[i] + string(".bmp");
-			if (string_lookup[key].defined)
-				key = string_lookup[key].value;
-			draw_quad(x, y, step, step, menu_tex[key]);
-			x = x + step;
-			if (x >= 0.9f || ((float(next_chunk(s, i) - i))*step + x > 0.9f)) {
-				x = -0.9f;
-				y -= step*2.0f;
-			}
-		}
+		draw_text(-0.9f, -0.5f, 1.8f, 0.4f, 0.1f, s);
 	}
 };
 
