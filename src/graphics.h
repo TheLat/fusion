@@ -17,10 +17,11 @@ public:
 	std::map<int, GLuint> tiles;
 	std::map<string, GLuint> menu_tex;
 
-	void load_tile(string filename, int index) {
+	GLuint load_image(string filename) {
+		GLuint ret = 0;
 		int i;
 		unsigned char* image;
-		FILE* f = fopen(("../resources/" + filename).c_str(), "rb");
+		FILE* f = fopen((filename).c_str(), "rb");
 		unsigned char info[54];
 		fread(info, sizeof(unsigned char), 54, f);
 		i = 0;
@@ -52,12 +53,16 @@ public:
 
 			}
 		}
-		glGenTextures(1, &(tiles[index]));
-		glBindTexture(GL_TEXTURE_2D, tiles[index]);
+		glGenTextures(1, &ret);
+		glBindTexture(GL_TEXTURE_2D, ret);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
 		delete[] image;
+		return ret;
+	}
+	void load_tile(string filename, int index) {
+		tiles[index] = load_image("../resources/" + filename);
 	}
 
 	//Initializes 3D rendering
@@ -81,6 +86,16 @@ public:
 				tmp = '0' + tmp;
 			tmp = tmp + ".bmp";
 			load_tile(string("level_sprites/") + tmp, i);
+		}
+
+
+		ifstream f2("../resources/data/menu_sprites.dat");
+		string line;
+		while (f2.is_open()) {
+			while (std::getline(f2, line)) {
+				menu_tex[line] = load_image("../resources/menu_sprites/" + line);
+			}
+			f2.close();
 		}
 	}
 
