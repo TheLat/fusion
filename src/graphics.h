@@ -57,7 +57,10 @@ public:
 		glBindTexture(GL_TEXTURE_2D, ret);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
+		if (step == 3)
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+		if (step == 4)
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
 		delete[] image;
 		return ret;
 	}
@@ -139,11 +142,20 @@ public:
 		glColor3f(1.0f, 1.0f, 1.0f);
 		e.handle_teleport();
 		draw_level();
+		alert(string("bbes!"));
 		glutSwapBuffers(); //Send the 3D scene to the screen
 		glutPostRedisplay();
 	}
 	void alert(string s) {
-
+		draw_quad(-1.0f, -0.3f, 0.1f, 0.1f, menu_tex[string("corner-ul.bmp")]);
+		draw_quad(0.9f, -0.3f, 0.1f, 0.1f, menu_tex[string("corner-ur.bmp")]);
+		draw_quad(-0.9f, -0.3, 1.8f, 0.1f, menu_tex[string("bar-top.bmp")]);
+		draw_quad(-1.0f, -0.9f, 0.1f, 0.6f, menu_tex[string("bar-left.bmp")]);
+		draw_quad(0.9f, -0.9f, 0.1f, 0.6f, menu_tex[string("bar-right.bmp")]);
+		draw_quad(-0.9f, -0.9f, 1.8f, 0.6f, menu_tex[string("space.bmp")]);
+		draw_quad(-1.0f, -1.0f, 0.1f, 0.1f, menu_tex[string("corner-bl.bmp")]);
+		draw_quad(0.9f, -1.0f, 0.1f, 0.1f, menu_tex[string("corner-br.bmp")]);
+		draw_quad(-0.9f, -1.0f, 1.8f, 0.1f, menu_tex[string("bar-bottom.bmp")]);
 	}
 };
 
