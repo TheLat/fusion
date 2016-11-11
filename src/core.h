@@ -1435,6 +1435,16 @@ public:
 			return 0;
 		}
 	}
+	void handle_teleport() {
+		for (int i = 0; i < levels[current_level].teleport.size(); ++i) {
+			if (mc.loc.x == levels[current_level].teleport[i].first.x && mc.loc.y == levels[current_level].teleport[i].first.y) {
+				mc.loc.x = levels[current_level].teleport[i].second.x;
+				mc.loc.y = levels[current_level].teleport[i].second.y;
+				current_level = levels[current_level].teleport[i].second.level;
+				break;
+			}
+		}
+	}
 };
 
 #endif

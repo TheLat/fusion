@@ -79,29 +79,31 @@ public:
 	void handleResize(int w, int h) {
 		//Tell OpenGL how to convert from coordinates to pixel values
 		double ratio = 160.0 / 144.0;
-		h = (int)(double(w) / ratio);
 		glViewport(0, 0, w, h);
 		glMatrixMode(GL_PROJECTION); //Switch to setting the camera perspective
 		//Set the camera perspective
 		glLoadIdentity(); //Reset the camera
 		gluOrtho2D(-1, 1, -1, 1);
 	}
-	void DrawLevel() {
+	void draw_level() {
 		for (int y = 0; y < e.levels[e.current_level].data.size(); ++y) {
 			for (int x = 0; x < e.levels[e.current_level].data[y].size(); ++x) {
-				glBindTexture(GL_TEXTURE_2D, tiles[e.levels[e.current_level].data[y][x]]);
-				glBegin(GL_QUADS);
-				glTexCoord2f(0.0f, 0.0f);
-				glVertex3f(-1.0f + (float(x) / 5.0f) - ((e.mc.loc.x - 4.5f) / 5.0f), (float(-y) / 4.5f) - (0.5f / 4.5f) + (e.mc.loc.y / 4.5f), 0.0f);
-				glTexCoord2f(1.0f, 0.0f);
-				glVertex3f(-1.0f + (float(x) / 5.0f) + (1.0f / 5.0f) - ((e.mc.loc.x - 4.5f) / 5.0f), (float(-y) / 4.5f) - (0.5f / 4.5f) + (e.mc.loc.y / 4.5f), 0.0f);
-				glTexCoord2f(1.0f, 1.0f);
-				glVertex3f(-1.0f + (float(x) / 5.0f) + (1.0f / 5.0f) - ((e.mc.loc.x - 4.5f) / 5.0f), (float(-y) / 4.5f) + (0.5f / 4.5f) + (e.mc.loc.y / 4.5f), 0.0f);
-				glTexCoord2f(0.0f, 1.0f);
-				glVertex3f(-1.0f + (float(x) / 5.0f) - ((e.mc.loc.x - 4.5f) / 5.0f), (float(-y) / 4.5f) + (0.5f / 4.5f) + (e.mc.loc.y / 4.5f), 0.0f);
-				glEnd();
+				draw_quad(-1.0f + (float(x) / 5.0f) - ((e.mc.loc.x - 4.5f) / 5.0f), (float(-y) / 4.5f) - (0.5f / 4.5f) + (e.mc.loc.y / 4.5f), 1.0f / 5.0f, 1.0f / 4.5f, tiles[e.levels[e.current_level].data[y][x]]);
 			}
 		}
+	}
+	void draw_quad(float x, float y, float width, float height, GLuint tex) {
+		glBindTexture(GL_TEXTURE_2D, tex);
+		glBegin(GL_QUADS);
+		glTexCoord2f(0.0f, 0.0f);
+		glVertex3f(x, y, 0.0f);
+		glTexCoord2f(1.0f, 0.0f);
+		glVertex3f(x + width, y, 0.0f);
+		glTexCoord2f(1.0f, 1.0f);
+		glVertex3f(x + width, y + height, 0.0f);
+		glTexCoord2f(0.0f, 1.0f);
+		glVertex3f(x, y + height, 0.0f);
+		glEnd();
 	}
 
 	//Draws the 3D scene
@@ -111,15 +113,8 @@ public:
 		glMatrixMode(GL_MODELVIEW); //Switch to the drawing perspective
 		glLoadIdentity(); //Reset the drawing perspective
 		glColor3f(1.0f, 1.0f, 1.0f);
-		for (int i = 0; i < e.levels[e.current_level].teleport.size(); ++i) {
-			if (e.mc.loc.x == e.levels[e.current_level].teleport[i].first.x && e.mc.loc.y == e.levels[e.current_level].teleport[i].first.y) {
-				e.mc.loc.x = e.levels[e.current_level].teleport[i].second.x;
-				e.mc.loc.y = e.levels[e.current_level].teleport[i].second.y;
-				e.current_level = e.levels[e.current_level].teleport[i].second.level;
-				break;
-			}
-		}
-		DrawLevel();
+		e.handle_teleport();
+		draw_level();
 		glutSwapBuffers(); //Send the 3D scene to the screen
 		glutPostRedisplay();
 	}
