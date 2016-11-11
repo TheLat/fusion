@@ -2,11 +2,20 @@
 #define GRAPHICS_HEADER
 
 #include "GL/glut.h"
+#include <map>
+#include <vector>
+#include <string>
+#include <math.h>
+#include <ctime>
+#include <stdio.h>
+#include <iostream>
+#include <fstream>
 
 extern engine e;
 class graphics {
 public:
 	std::map<int, GLuint> tiles;
+	std::map<string, GLuint> menu_tex;
 
 	void loadTile(string filename, int index) {
 		int i;
