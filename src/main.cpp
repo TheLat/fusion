@@ -69,6 +69,7 @@ int main(int argc, char** argv) {
 	e.init_mon();
 	e.init_levels();
 	e.init_blocking();
+	e.make_mon(string("51"), 50, e.mc.team[0]);
 
 	e.mc.loc.x = 2.0;
 	e.mc.loc.y = 2.0;

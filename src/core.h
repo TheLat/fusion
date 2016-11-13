@@ -62,11 +62,7 @@ public:
 
 class mon {
 public:
-	string number, name, type1, type2;
-	int exp_yield, catchrate;
-	vector<pair<int, string>> learned;
-	vector<pair<string, string>> evolution;
-	std::map<int, bool> TM, HM;
+	string number;
 	bool defined;
 	bool wild;
 	int IV[SIZE];
@@ -93,22 +89,6 @@ public:
 			this->moves[i] = m.moves[i];
 		}
 		this->number = m.number;
-		this->name = m.name;
-		this->type1 = m.type1;
-		this->type2 = m.type2;
-		this->exp_yield = m.exp_yield;
-		this->learned.clear();
-		for (unsigned i = 0; i < m.learned.size(); ++i) {
-			this->learned.push_back(m.learned[i]);
-		}
-		this->evolution.clear();
-		for (unsigned i = 0; i < m.evolution.size(); ++i) {
-			this->evolution.push_back(m.evolution[i]);
-		}
-		this->TM.clear();
-		this->TM = m.TM;
-		this->HM.clear();
-		this->HM = m.HM;
 		this->wild = m.wild;
 		this->curr_hp = m.curr_hp;
 		this->level = m.level;
@@ -221,7 +201,7 @@ public:
 		double chance, hard_probability;
 		chance = 3.0*double(get_stat(m, HP));
 		chance -= 2.0*double(m.curr_hp);
-		chance *= double(m.catchrate);
+		chance *= double(all_mon[m.number].catchrate);
 		chance *= capture_power;
 		if (in_status(m, string("POISON")))
 			chance *= 1.5;
@@ -253,17 +233,8 @@ public:
 		for (int x = 0; x < SIZE; x++)
 			out.IV[x] = int(random(0.0, 15.999));
 		out.number = ID;
-		out.name = all_mon[ID].name;
-		out.type1 = all_mon[ID].type1;
-		out.type2 = all_mon[ID].type2;
-		out.learned = all_mon[ID].learned;
-		out.evolution = all_mon[ID].evolution;
-		out.exp_yield = all_mon[ID].exp_yield;
-		out.catchrate = all_mon[ID].catchrate;
 		out.wild = true;
 		out.defined = true;
-		out.TM = all_mon[ID].TM;
-		out.HM = all_mon[ID].HM;
 		out.turn_count = 0;
 		out.nickname = all_mon[ID].name;
 		level_up(out);
@@ -273,7 +244,7 @@ public:
 		double exp = 1.0;
 		if (!loser.wild)
 			exp *= 1.5;
-		exp *= loser.exp_yield;
+		exp *= all_mon[loser.number].exp_yield;
 		exp *= loser.level;
 		exp /= 5.0;
 		exp /= double(num_fighters);
@@ -345,9 +316,9 @@ public:
 	bool status_immunity(mon& m, string move) {
 		for (unsigned i = 0; i < moves[move].special.size(); ++i) {
 			if (moves[move].special[i].find(string("STATUS_IMMUNITY")) != -1) {
-				if (moves[move].special[i].find(m.type1) != -1)
+				if (moves[move].special[i].find(all_mon[m.number].type1) != -1)
 					return true;
-				if (moves[move].special[i].find(m.type2) != -1)
+				if (moves[move].special[i].find(all_mon[m.number].type2) != -1)
 					return true;
 			}
 		}
@@ -704,11 +675,11 @@ public:
 		damage /= 250.0;
 		damage /= get_stat(defender, moves[move].defense, crit, false);
 		damage += 2.0;
-		if (defender.type1 != "")
-			damage *= types[moves[move].type][defender.type1];
-		if (defender.type2 != "")
-			damage *= types[moves[move].type][defender.type2];
-		if ((attacker.type1 == moves[move].type) || (attacker.type2 == moves[move].type))
+		if (all_mon[defender.number].type1 != "")
+			damage *= types[moves[move].type][all_mon[defender.number].type1];
+		if (all_mon[defender.number].type2 != "")
+			damage *= types[moves[move].type][all_mon[defender.number].type2];
+		if ((all_mon[attacker.number].type1 == moves[move].type) || (all_mon[attacker.number].type2 == moves[move].type))
 			damage *= 1.5;
 		if (crit) {
 			damage *= 1.5;
