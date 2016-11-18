@@ -13,6 +13,15 @@
 
 extern engine e;
 
+class quad {
+public:
+	float x;
+	float y;
+	float width;
+	float height;
+	GLuint tex;
+};
+
 class string_lookup_data {
 public:
 	bool defined;
@@ -26,6 +35,7 @@ public:
 	std::map<string, GLuint> menu_tex;
 	std::map<string, string_lookup_data> string_lookup;
 	std::map<char, bool> chunk;
+	std::vector<quad> draw_list;
 
 	GLuint load_image(string filename) {
 		GLuint ret = 0;
@@ -152,21 +162,30 @@ public:
 	void draw_level() {
 		for (int y = 0; y < e.levels[e.current_level].data.size(); ++y) {
 			for (int x = 0; x < e.levels[e.current_level].data[y].size(); ++x) {
-				draw_quad(-1.0f + (float(x) / 5.0f) - ((e.mc.loc.x - 4.5f) / 5.0f), (float(-y) / 4.5f) - (0.5f / 4.5f) + (e.mc.loc.y / 4.5f), 1.0f / 5.0f, 1.0f / 4.5f, tiles[e.levels[e.current_level].data[y][x]]);
+				push_quad(-1.0f + (float(x) / 5.0f) - ((e.mc.loc.x - 4.5f) / 5.0f), (float(-y) / 4.5f) - (0.5f / 4.5f) + (e.mc.loc.y / 4.5f), 1.0f / 5.0f, 1.0f / 4.5f, tiles[e.levels[e.current_level].data[y][x]]);
 			}
 		}
 	}
-	void draw_quad(float x, float y, float width, float height, GLuint tex) {
-		glBindTexture(GL_TEXTURE_2D, tex);
+	void push_quad(float x, float y, float width, float height, GLuint tex) {
+		quad q;
+		q.x = x;
+		q.y = y;
+		q.width = width;
+		q.height = height;
+		q.tex = tex;
+		draw_list.push_back(q);
+	}
+	void draw_quad(quad &q) {
+		glBindTexture(GL_TEXTURE_2D, q.tex);
 		glBegin(GL_QUADS);
 		glTexCoord2f(0.0f, 0.0f);
-		glVertex3f(x, y, 0.0f);
+		glVertex3f(q.x, q.y, 0.0f);
 		glTexCoord2f(1.0f, 0.0f);
-		glVertex3f(x + width, y, 0.0f);
+		glVertex3f(q.x + q.width, q.y, 0.0f);
 		glTexCoord2f(1.0f, 1.0f);
-		glVertex3f(x + width, y + height, 0.0f);
+		glVertex3f(q.x + q.width, q.y + q.height, 0.0f);
 		glTexCoord2f(0.0f, 1.0f);
-		glVertex3f(x, y + height, 0.0f);
+		glVertex3f(q.x, q.y + q.height, 0.0f);
 		glEnd();
 	}
 
@@ -177,9 +196,13 @@ public:
 		glMatrixMode(GL_MODELVIEW); //Switch to the drawing perspective
 		glLoadIdentity(); //Reset the drawing perspective
 		glColor3f(1.0f, 1.0f, 1.0f);
+		draw_list.clear();
 		e.handle_teleport();
 		draw_level();
 		alert(string("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"));
+		for (unsigned i = 0; i < draw_list.size(); i++) {
+			draw_quad(draw_list[i]);
+		}
 		glutSwapBuffers(); //Send the 3D scene to the screen
 		glutPostRedisplay();
 	}
@@ -209,7 +232,7 @@ public:
 			key = key + string(".bmp");
 			if (string_lookup[key].defined)
 				key = string_lookup[key].value;
-			draw_quad(x_curr, y_curr, size, size, menu_tex[key]);
+			push_quad(x_curr, y_curr, size, size, menu_tex[key]);
 			x_curr += size;
 			if (x_curr >= x + width || (!no_chunk_yet && ((float(next_chunk(s, i) - i))*size + x_curr > 0.9f))) {
 				no_chunk_yet = true;
@@ -219,15 +242,15 @@ public:
 		}
 	}
 	void alert(string s) {
-		draw_quad(-1.0f, -0.3f, 0.1f, 0.1f, menu_tex[string("corner-ul.bmp")]);
-		draw_quad(0.9f, -0.3f, 0.1f, 0.1f, menu_tex[string("corner-ur.bmp")]);
-		draw_quad(-0.9f, -0.3, 1.8f, 0.1f, menu_tex[string("bar-top.bmp")]);
-		draw_quad(-1.0f, -0.9f, 0.1f, 0.6f, menu_tex[string("bar-left.bmp")]);
-		draw_quad(0.9f, -0.9f, 0.1f, 0.6f, menu_tex[string("bar-right.bmp")]);
-		draw_quad(-0.9f, -0.9f, 1.8f, 0.6f, menu_tex[string("space.bmp")]);
-		draw_quad(-1.0f, -1.0f, 0.1f, 0.1f, menu_tex[string("corner-bl.bmp")]);
-		draw_quad(0.9f, -1.0f, 0.1f, 0.1f, menu_tex[string("corner-br.bmp")]);
-		draw_quad(-0.9f, -1.0f, 1.8f, 0.1f, menu_tex[string("bar-bottom.bmp")]);
+		push_quad(-1.0f, -0.3f, 0.1f, 0.1f, menu_tex[string("corner-ul.bmp")]);
+		push_quad(0.9f, -0.3f, 0.1f, 0.1f, menu_tex[string("corner-ur.bmp")]);
+		push_quad(-0.9f, -0.3, 1.8f, 0.1f, menu_tex[string("bar-top.bmp")]);
+		push_quad(-1.0f, -0.9f, 0.1f, 0.6f, menu_tex[string("bar-left.bmp")]);
+		push_quad(0.9f, -0.9f, 0.1f, 0.6f, menu_tex[string("bar-right.bmp")]);
+		push_quad(-0.9f, -0.9f, 1.8f, 0.6f, menu_tex[string("space.bmp")]);
+		push_quad(-1.0f, -1.0f, 0.1f, 0.1f, menu_tex[string("corner-bl.bmp")]);
+		push_quad(0.9f, -1.0f, 0.1f, 0.1f, menu_tex[string("corner-br.bmp")]);
+		push_quad(-0.9f, -1.0f, 1.8f, 0.1f, menu_tex[string("bar-bottom.bmp")]);
 		draw_text(-0.9f, -0.5f, 1.8f, 0.4f, 0.1f, s);
 	}
 };
