@@ -199,7 +199,14 @@ public:
 		for (int i = 0; i < s.size(); ++i) {
 			if (chunk[s[i]])
 				no_chunk_yet = false;
-			key = s[i] + string(".bmp");
+			key = s[i];
+			if (s[i] == '{') {
+				while (s[i] != '}') {
+					i++;
+					key = key + s[i];
+				}
+			}
+			key = key + string(".bmp");
 			if (string_lookup[key].defined)
 				key = string_lookup[key].value;
 			draw_quad(x_curr, y_curr, size, size, menu_tex[key]);
