@@ -1416,6 +1416,42 @@ public:
 			}
 		}
 	}
+	void input(bool up, bool down, bool left, bool right, bool select, bool start, bool confirm, bool cancel) {
+		if (true) { // TODO: Replace with check for menu stack
+			if (left) {
+				if (mc.loc.x == 0.0f)
+					return;
+				if (blocking[levels[current_level].data[int(mc.loc.y)][int(mc.loc.x - 1)]])
+					return;
+				mc.loc.x -= 1.0f;
+			}
+			if (right) {
+				if (mc.loc.x + 1 >= levels[current_level].data[int(mc.loc.y)].size())
+					return;
+				if (blocking[levels[current_level].data[int(mc.loc.y)][int(mc.loc.x + 1)]])
+					return;
+				mc.loc.x += 1.0f;
+			}
+			if (down) {
+				if (mc.loc.y + 1 >= levels[current_level].data.size())
+					return;
+				if (mc.loc.x >= levels[current_level].data[int(mc.loc.y + 1)].size())
+					return;
+				if (blocking[levels[current_level].data[int(mc.loc.y + 1)][int(mc.loc.x)]])
+					return;
+				mc.loc.y += 1.0f;
+			}
+			if (up) {
+				if (mc.loc.y == 0)
+					return;
+				if (mc.loc.x >= levels[current_level].data[int(mc.loc.y - 1)].size())
+					return;
+				if (blocking[levels[current_level].data[int(mc.loc.y - 1)][int(mc.loc.x)]])
+					return;
+				mc.loc.y -= 1.0f;
+			}
+		}
+	}
 };
 
 #endif
