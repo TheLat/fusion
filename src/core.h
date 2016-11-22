@@ -10,7 +10,12 @@
 #include <iostream>
 #include <fstream>
 
+
 using namespace std;
+
+class graphics;
+extern graphics g;
+extern mutex m;
 
 enum STAT{
 	HP=0,
@@ -1450,6 +1455,22 @@ public:
 					return;
 				mc.loc.y -= 1.0f;
 			}
+		}
+	}
+	void draw_level() {
+		for (int y = 0; y < levels[current_level].data.size(); ++y) {
+			for (int x = 0; x < levels[current_level].data[y].size(); ++x) {
+				g.push_quad(-1.0f + (float(x) / 5.0f) - ((mc.loc.x - 4.5f) / 5.0f), (float(-y) / 4.5f) - (0.5f / 4.5f) + (mc.loc.y / 4.5f), 1.0f / 5.0f, 1.0f / 4.5f, g.tiles[levels[current_level].data[y][x]]);
+			}
+		}
+	}
+	void main() {
+		while (true) {
+			m.lock();
+			g.draw_list.clear();
+			handle_teleport();
+			draw_level();
+			m.unlock();
 		}
 	}
 };

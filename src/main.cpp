@@ -1,8 +1,12 @@
-#include "core.h"
+#include <mutex>
+#include <thread>
 #include "graphics.h"
+#include "core.h"
+
 
 using namespace std;
 int num = 0;
+mutex m;
 engine e;
 graphics g;
 
@@ -12,7 +16,7 @@ void handleKeypress(unsigned char key, int x, int y) {
 	num++;
 	switch (key) {
 	case 27: //Escape key
-		exit(0);
+		exit(0); // TODO:  Make this not crash on closing.
 		break;
 	case 'a':
 		e.input(false, false, true, false, false, false, false, false);
@@ -37,6 +41,12 @@ void handleResize(int w, int h) {
 
 void drawScene() {
 	g.drawScene();
+}
+
+void core_main() {
+	while (true) {
+		e.main();
+	}
 }
 
 int main(int argc, char** argv) {
@@ -66,6 +76,7 @@ int main(int argc, char** argv) {
 	glutDisplayFunc(drawScene);
 	glutKeyboardFunc(handleKeypress);
 	glutReshapeFunc(handleResize);
+	thread t1(core_main);
 	glutMainLoop(); //Start the main loop
 
 	return 0;

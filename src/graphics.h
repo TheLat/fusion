@@ -11,8 +11,8 @@
 #include <iostream>
 #include <fstream>
 
-extern engine e;
-
+using namespace std;
+extern mutex m;
 class quad {
 public:
 	float x;
@@ -159,13 +159,6 @@ public:
 		glLoadIdentity(); //Reset the camera
 		gluOrtho2D(-1, 1, -1, 1);
 	}
-	void draw_level() {
-		for (int y = 0; y < e.levels[e.current_level].data.size(); ++y) {
-			for (int x = 0; x < e.levels[e.current_level].data[y].size(); ++x) {
-				push_quad(-1.0f + (float(x) / 5.0f) - ((e.mc.loc.x - 4.5f) / 5.0f), (float(-y) / 4.5f) - (0.5f / 4.5f) + (e.mc.loc.y / 4.5f), 1.0f / 5.0f, 1.0f / 4.5f, tiles[e.levels[e.current_level].data[y][x]]);
-			}
-		}
-	}
 	void push_quad(float x, float y, float width, float height, GLuint tex) {
 		quad q;
 		q.x = x;
@@ -191,20 +184,19 @@ public:
 
 	//Draws the 3D scene
 	void drawScene() {
+		m.lock();
 		//Clear information from last draw
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glMatrixMode(GL_MODELVIEW); //Switch to the drawing perspective
 		glLoadIdentity(); //Reset the drawing perspective
 		glColor3f(1.0f, 1.0f, 1.0f);
-		draw_list.clear();
-		e.handle_teleport();
-		draw_level();
 		alert(string("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"));
 		for (unsigned i = 0; i < draw_list.size(); i++) {
 			draw_quad(draw_list[i]);
 		}
 		glutSwapBuffers(); //Send the 3D scene to the screen
 		glutPostRedisplay();
+		m.unlock();
 	}
 	int next_chunk(string& s, int index) {
 		int ret = index + 1;
