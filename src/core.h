@@ -1425,6 +1425,7 @@ public:
 	}
 	void input(bool up, bool down, bool left, bool right, bool select, bool start, bool confirm, bool cancel) {
 		if (menus.size() == 0) {
+			// TODO:  Animations
 			if (left) {
 				if (mc.loc.x == 0.0f)
 					return;
