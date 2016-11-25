@@ -125,7 +125,7 @@ public:
 		while (f3.is_open()) {
 			while (std::getline(f3, tmp)) {
 				bool first_char;
-				int i;
+				unsigned i;
 				first_char = true;
 				i = 0;
 				l1 = "";
@@ -199,7 +199,7 @@ public:
 		m.unlock();
 	}
 	int next_chunk(string& s, int index) {
-		int ret = index + 1;
+		unsigned ret = index + 1;
 		while (!chunk[s[ret]] && ret < s.size())
 			ret++;
 		if (ret == s.size())
@@ -211,7 +211,7 @@ public:
 		float x_curr = x;
 		float y_curr = y;
 		bool no_chunk_yet = true;
-		for (int i = 0; i < s.size(); ++i) {
+		for (unsigned i = 0; i < s.size(); ++i) {
 			if (chunk[s[i]])
 				no_chunk_yet = false;
 			key = s[i];

@@ -806,7 +806,7 @@ public:
 		ifstream f(("../resources/levels/" + levelname + ".dat").c_str());
 		string line;
 		std::vector<int> empty;
-		int count;
+		unsigned count;
 		while (f.is_open()) {
 			std::getline(f, line);
 			if (line == "NAME") {
@@ -1412,7 +1412,7 @@ public:
 		}
 	}
 	void handle_teleport() {
-		for (int i = 0; i < levels[current_level].teleport.size(); ++i) {
+		for (unsigned i = 0; i < levels[current_level].teleport.size(); ++i) {
 			if (mc.loc.x == levels[current_level].teleport[i].first.x && mc.loc.y == levels[current_level].teleport[i].first.y) {
 				mc.loc.x = levels[current_level].teleport[i].second.x;
 				mc.loc.y = levels[current_level].teleport[i].second.y;
@@ -1458,9 +1458,9 @@ public:
 		}
 	}
 	void draw_level() {
-		for (int y = 0; y < levels[current_level].data.size(); ++y) {
-			for (int x = 0; x < levels[current_level].data[y].size(); ++x) {
-				g.push_quad(-1.0f + (float(x) / 5.0f) - ((mc.loc.x - 4.5f) / 5.0f), (float(-y) / 4.5f) - (0.5f / 4.5f) + (mc.loc.y / 4.5f), 1.0f / 5.0f, 1.0f / 4.5f, g.tiles[levels[current_level].data[y][x]]);
+		for (unsigned y = 0; y < levels[current_level].data.size(); ++y) {
+			for (unsigned x = 0; x < levels[current_level].data[y].size(); ++x) {
+				g.push_quad(-1.0f + (float(x) / 5.0f) - ((mc.loc.x - 4.5f) / 5.0f), (-float(y) / 4.5f) - (0.5f / 4.5f) + (mc.loc.y / 4.5f), 1.0f / 5.0f, 1.0f / 4.5f, g.tiles[levels[current_level].data[y][x]]);
 			}
 		}
 	}
