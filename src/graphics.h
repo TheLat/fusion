@@ -206,7 +206,7 @@ public:
 			ret--;
 		return ret;
 	}
-	void draw_text(float x, float y, float width, float height, float size, string s) {
+	void push_text(float x, float y, float width, float height, float size, string s) {
 		string key;
 		float x_curr = x;
 		float y_curr = y;
@@ -233,7 +233,7 @@ public:
 			}
 		}
 	}
-	void draw_box(float xmin, float ymin, float length, float height) {
+	void push_box(float xmin, float ymin, float length, float height) {
 		push_quad(xmin, ymin + height - 0.1f, 0.1f, 0.1f, menu_tex[string("corner-ul.bmp")]);
 		push_quad(xmin + length - 0.1f, ymin + height - 0.1f, 0.1f, 0.1f, menu_tex[string("corner-ur.bmp")]);
 		push_quad(xmin + 0.1f, ymin + height - 0.1f, length - 0.2f, 0.1f, menu_tex[string("bar-top.bmp")]);
@@ -245,8 +245,8 @@ public:
 		push_quad(xmin + 0.1f, ymin, length - 0.2f, 0.1f, menu_tex[string("bar-bottom.bmp")]);
 	}
 	void alert(string s) {
-		draw_box(-1.0f, -1.0f, 2.0f, 0.8f);
-		draw_text(-0.9f, -0.5f, 1.8f, 0.4f, 0.1f, s);
+		push_box(-1.0f, -1.0f, 2.0f, 0.8f);
+		push_text(-0.9f, -0.5f, 1.8f, 0.4f, 0.1f, s);
 	}
 };
 

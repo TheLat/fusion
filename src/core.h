@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <fstream>
+#include "menus.h"
 
 
 using namespace std;
@@ -177,6 +178,7 @@ public: // TODO:  Change back to private
 	std::map<string, power> moves;
 	std::map<string, level> levels;
 	std::map<int, bool> blocking;
+	std::vector<menu> menus;
 	string current_level;
 	player mc;
 public:
@@ -1422,7 +1424,7 @@ public:
 		}
 	}
 	void input(bool up, bool down, bool left, bool right, bool select, bool start, bool confirm, bool cancel) {
-		if (true) { // TODO: Replace with check for menu stack
+		if (menus.size() == 0) {
 			if (left) {
 				if (mc.loc.x == 0.0f)
 					return;
@@ -1430,14 +1432,14 @@ public:
 					return;
 				mc.loc.x -= 1.0f;
 			}
-			if (right) {
+			else if (right) {
 				if (mc.loc.x + 1 >= levels[current_level].data[int(mc.loc.y)].size())
 					return;
 				if (blocking[levels[current_level].data[int(mc.loc.y)][int(mc.loc.x + 1)]])
 					return;
 				mc.loc.x += 1.0f;
 			}
-			if (down) {
+			else if (down) {
 				if (mc.loc.y + 1 >= levels[current_level].data.size())
 					return;
 				if (mc.loc.x >= levels[current_level].data[int(mc.loc.y + 1)].size())
@@ -1446,7 +1448,7 @@ public:
 					return;
 				mc.loc.y += 1.0f;
 			}
-			if (up) {
+			else if (up) {
 				if (mc.loc.y == 0)
 					return;
 				if (mc.loc.x >= levels[current_level].data[int(mc.loc.y - 1)].size())
@@ -1455,7 +1457,15 @@ public:
 					return;
 				mc.loc.y -= 1.0f;
 			}
+			update_level();
 		}
+	}
+	void update_level() {
+		m.lock();
+		g.draw_list.clear();
+		handle_teleport();
+		draw_level();
+		m.unlock();
 	}
 	void draw_level() {
 		for (unsigned y = 0; y < levels[current_level].data.size(); ++y) {
@@ -1465,12 +1475,8 @@ public:
 		}
 	}
 	void main() {
+		update_level();
 		while (true) {
-			m.lock();
-			g.draw_list.clear();
-			handle_teleport();
-			draw_level();
-			m.unlock();
 		}
 	}
 };
