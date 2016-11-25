@@ -233,16 +233,19 @@ public:
 			}
 		}
 	}
+	void draw_box(float xmin, float ymin, float length, float height) {
+		push_quad(xmin, ymin + height - 0.1f, 0.1f, 0.1f, menu_tex[string("corner-ul.bmp")]);
+		push_quad(xmin + length - 0.1f, ymin + height - 0.1f, 0.1f, 0.1f, menu_tex[string("corner-ur.bmp")]);
+		push_quad(xmin + 0.1f, ymin + height - 0.1f, length - 0.2f, 0.1f, menu_tex[string("bar-top.bmp")]);
+		push_quad(xmin, ymin + 0.1f, 0.1f, height - 0.2f, menu_tex[string("bar-left.bmp")]);
+		push_quad(xmin + length - 0.1f, ymin + 0.1f, 0.1f, height - 0.2f, menu_tex[string("bar-right.bmp")]);
+		push_quad(xmin + 0.1f, ymin + 0.1f, length - 0.2f, height - 0.2f, menu_tex[string("space.bmp")]);
+		push_quad(xmin, ymin, 0.1f, 0.1f, menu_tex[string("corner-bl.bmp")]);
+		push_quad(xmin + length - 0.1f, ymin, 0.1f, 0.1f, menu_tex[string("corner-br.bmp")]);
+		push_quad(xmin + 0.1f, ymin, length - 0.2f, 0.1f, menu_tex[string("bar-bottom.bmp")]);
+	}
 	void alert(string s) {
-		push_quad(-1.0f, -0.3f, 0.1f, 0.1f, menu_tex[string("corner-ul.bmp")]);
-		push_quad(0.9f, -0.3f, 0.1f, 0.1f, menu_tex[string("corner-ur.bmp")]);
-		push_quad(-0.9f, -0.3, 1.8f, 0.1f, menu_tex[string("bar-top.bmp")]);
-		push_quad(-1.0f, -0.9f, 0.1f, 0.6f, menu_tex[string("bar-left.bmp")]);
-		push_quad(0.9f, -0.9f, 0.1f, 0.6f, menu_tex[string("bar-right.bmp")]);
-		push_quad(-0.9f, -0.9f, 1.8f, 0.6f, menu_tex[string("space.bmp")]);
-		push_quad(-1.0f, -1.0f, 0.1f, 0.1f, menu_tex[string("corner-bl.bmp")]);
-		push_quad(0.9f, -1.0f, 0.1f, 0.1f, menu_tex[string("corner-br.bmp")]);
-		push_quad(-0.9f, -1.0f, 1.8f, 0.1f, menu_tex[string("bar-bottom.bmp")]);
+		draw_box(-1.0f, -1.0f, 2.0f, 0.8f);
 		draw_text(-0.9f, -0.5f, 1.8f, 0.4f, 0.1f, s);
 	}
 };
