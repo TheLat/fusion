@@ -190,7 +190,7 @@ public:
 		glMatrixMode(GL_MODELVIEW); //Switch to the drawing perspective
 		glLoadIdentity(); //Reset the drawing perspective
 		glColor3f(1.0f, 1.0f, 1.0f);
-		alert(string("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"));
+		alert(string("{FEMALE} {FEMALE}{FEMALE}{FEMALE} {FEMALE}{FEMALE}{FEMALE}{FEMALE}{FEMALE} {FEMALE} {FEMALE}{FEMALE}{FEMALE} {FEMALE}{FEMALE}{FEMALE}{FEMALE}{FEMALE} {FEMALE} {FEMALE}{FEMALE}{FEMALE} {FEMALE}{FEMALE}{FEMALE}{FEMALE}{FEMALE} {FEMALE} {FEMALE}{FEMALE}{FEMALE} {FEMALE}{FEMALE}{FEMALE}{FEMALE}{FEMALE} {FEMALE} {FEMALE}{FEMALE}{FEMALE} {FEMALE}{FEMALE}{FEMALE}{FEMALE}{FEMALE} {FEMALE} {FEMALE}{FEMALE}{FEMALE} {FEMALE}{FEMALE}{FEMALE}{FEMALE}{FEMALE} {FEMALE} {FEMALE}{FEMALE}{FEMALE} {FEMALE}{FEMALE}{FEMALE}{FEMALE}{FEMALE} {FEMALE} {FEMALE}{FEMALE}{FEMALE} {FEMALE}{FEMALE}{FEMALE}{FEMALE}{FEMALE} {FEMALE} {FEMALE}{FEMALE}{FEMALE} {FEMALE}{FEMALE}{FEMALE}{FEMALE}{FEMALE} {FEMALE} {FEMALE}{FEMALE}{FEMALE} {FEMALE}{FEMALE}{FEMALE}{FEMALE}{FEMALE} {FEMALE} {FEMALE}{FEMALE}{FEMALE} {FEMALE}{FEMALE}{FEMALE}{FEMALE}{FEMALE} {FEMALE} {FEMALE}{FEMALE}{FEMALE} {FEMALE}{FEMALE}{FEMALE}{FEMALE}{FEMALE} {FEMALE} {FEMALE}{FEMALE}{FEMALE} {FEMALE}{FEMALE}{FEMALE}{FEMALE}{FEMALE} {FEMALE} {FEMALE}{FEMALE}{FEMALE} {FEMALE}{FEMALE}{FEMALE}{FEMALE}{FEMALE} {FEMALE} {FEMALE}{FEMALE}{FEMALE} {FEMALE}{FEMALE}{FEMALE}{FEMALE}{FEMALE} {FEMALE} {FEMALE}{FEMALE}{FEMALE} {FEMALE}{FEMALE}{FEMALE}{FEMALE}{FEMALE} {FEMALE} {FEMALE}{FEMALE}{FEMALE} {FEMALE}{FEMALE}{FEMALE}{FEMALE}{FEMALE} {FEMALE} {FEMALE}{FEMALE}{FEMALE} {FEMALE}{FEMALE}{FEMALE}{FEMALE}{FEMALE} {FEMALE} {FEMALE}{FEMALE}{FEMALE} {FEMALE}{FEMALE}{FEMALE}{FEMALE}{FEMALE} {FEMALE} {FEMALE}{FEMALE}{FEMALE} {FEMALE}{FEMALE}{FEMALE}{FEMALE}{FEMALE} {FEMALE} {FEMALE}{FEMALE}{FEMALE} {FEMALE}{FEMALE}{FEMALE}{FEMALE}{FEMALE} {FEMALE} {FEMALE}{FEMALE}{FEMALE} {FEMALE}{FEMALE}{FEMALE}{FEMALE}{FEMALE} {FEMALE} {FEMALE}{FEMALE}{FEMALE} {FEMALE}{FEMALE}{FEMALE}{FEMALE}{FEMALE} {FEMALE} {FEMALE}{FEMALE}{FEMALE} {FEMALE}{FEMALE}{FEMALE}{FEMALE}{FEMALE} {FEMALE} {FEMALE}{FEMALE}{FEMALE} {FEMALE}{FEMALE}{FEMALE}{FEMALE}{FEMALE} {FEMALE} {FEMALE}{FEMALE}{FEMALE} {FEMALE}{FEMALE}{FEMALE}{FEMALE}{FEMALE} {FEMALE} {FEMALE}{FEMALE}{FEMALE} {FEMALE}{FEMALE}{FEMALE}{FEMALE}{FEMALE} "));
 		for (unsigned i = 0; i < draw_list.size(); i++) {
 			draw_quad(draw_list[i]);
 		}
@@ -200,13 +200,20 @@ public:
 	}
 	int next_chunk(string& s, int index) {
 		unsigned ret = index + 1;
-		while (!chunk[s[ret]] && ret < s.size())
+		unsigned skip = 0;
+		while (!chunk[s[ret + skip]] && ret + skip < s.size()) {
+			if (s[ret + skip] == '{') {
+				while (s[ret + skip] != '}') {
+					skip++;
+				}
+			}
 			ret++;
+		}
 		if (ret == s.size())
 			ret--;
 		return ret;
 	}
-	void push_text(float x, float y, float width, float height, float size, string s) {
+	unsigned push_text(float x, float y, float width, float height, float size, string s) {
 		string key;
 		float x_curr = x;
 		float y_curr = y;
@@ -231,7 +238,10 @@ public:
 				x_curr = x;
 				y_curr -= size*2.0f;
 			}
+			if (y_curr < y - height)
+				return i;
 		}
+		return 0;
 	}
 	void push_box(float xmin, float ymin, float length, float height) {
 		push_quad(xmin, ymin + height - 0.1f, 0.1f, 0.1f, menu_tex[string("corner-ul.bmp")]);
@@ -246,7 +256,9 @@ public:
 	}
 	void alert(string s) {
 		push_box(-1.0f, -1.0f, 2.0f, 0.8f);
-		push_text(-0.9f, -0.5f, 1.8f, 0.4f, 0.1f, s);
+		unsigned x = 0;
+		x = push_text(-0.9f, -0.5f, 1.8f, 0.4f, 0.1f, s);
+		x = x + 1;
 	}
 };
 
