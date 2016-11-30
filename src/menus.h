@@ -83,11 +83,13 @@ public:
 			}
 		}
 	}
-	void main() {
+	vector<int> main() {
+		vector<int> choice;
 		while (!done) {
 			int a = 0;
 		}
 		pop_menu();
+		return choice;
 	}
 };
 
