@@ -1487,7 +1487,14 @@ public:
 			}
 			update_level();
 			if (get_tile(mc.loc.y, mc.loc.x) == 4) {
-				//TODO: ENCOUNTER
+				if (levels[current_level].encounters.size() > 0) {
+					if (random(0.0, 187.5) < 8.5) {
+						int choice = int(random(0.0, double(levels[current_level].encounters.size())));
+						encounter = std::to_string(levels[current_level].encounters[choice]);
+						int l = int(random(levels[current_level].level_range.first, levels[current_level].level_range.second + 1));
+						encounter_level = l;
+					}
+				}
 			}
 		}
 		else {
@@ -1525,6 +1532,12 @@ public:
 			if (alert != "") {
 				create_alert(alert);
 				alert = "";
+			}
+			if (encounter != "") {
+				mon m;
+				make_mon(encounter, encounter_level, m);
+				do_alert(string("A wild ") + m.nickname + string(" appeared!"));
+				encounter = "";
 			}
 			if (menus.size() > 0) {
 				menus[0].main();
