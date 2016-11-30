@@ -1460,9 +1460,6 @@ public:
 				mc.loc.y -= 1.0f;
 			}
 			update_level();
-			if (random(0.0, 100.0) < 10.0) {
-				alert = string("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz");
-			}
 		}
 		else {
 			menus[menus.size() - 1].input(up, down, left, right, select, start, confirm, cancel);
@@ -1473,6 +1470,11 @@ public:
 		menus.push_back(m);
 		menus[menus.size() - 1].create_alert(s);
 		menus[menus.size() - 1].push_menu();
+	}
+	void do_alert(string s) {
+		create_alert(s);
+		menus[menus.size() - 1].main();
+		menus.erase(menus.begin() + menus.size() - 1);
 	}
 	void update_level() {
 		m.lock();
