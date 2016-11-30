@@ -150,6 +150,7 @@ public:
 	string name;
 	std::vector<std::vector<int>> data;
 	std::vector<std::pair<location, location>> teleport;
+	std::vector<int> encounters;
 };
 
 typedef std::map<string, std::map<string, float>>::iterator type_iter;
@@ -821,7 +822,7 @@ public:
 			{
 				std::getline(f, line);
 				std::pair<location, location> temp;
-				while (line != "DATA") {
+				while (line != "DATA" && line != "ENCOUNTERS") {
 					temp.first.level = levelname;
 					temp.first.x = double(stoi(line));
 					line.erase(0, line.find(" ") + 1);
@@ -839,6 +840,16 @@ public:
 					levels[levelname].teleport.push_back(temp);
 					std::getline(f, line);
 				}
+			}
+			if (line == "ENCOUNTERS") {
+				std::getline(f, line);
+				while (true) {
+					levels[levelname].encounters.push_back(stoi(line));
+					if (line.find(' ') == -1)
+						break;
+					line.erase(0, line.find(' ') + 1);
+				}
+				std::getline(f, line);
 			}
 			if (line == "DATA") {
 				while (std::getline(f, line)) {

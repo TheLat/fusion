@@ -3,6 +3,8 @@ Route 1
 TELEPORT
 9 37 pallet-town 11 2
 8 37 pallet-town 10 2
+ENCOUNTERS
+16 19
 DATA
 1  0  1  1  1  1  1  0 56 56  0  1  1  1  1  1  0  1
 1  0  0  0  0  0  0  0 56 56  0  0  0  0  0  0  0  1
