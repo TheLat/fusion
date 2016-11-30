@@ -1490,6 +1490,7 @@ public:
 				if (levels[current_level].encounters.size() > 0) {
 					if (random(0.0, 187.5) < 8.5) {
 						int choice = int(random(0.0, double(levels[current_level].encounters.size())));
+						// TODO:  Switch this over to fusions
 						encounter = std::to_string(levels[current_level].encounters[choice]);
 						int l = int(random(levels[current_level].level_range.first, levels[current_level].level_range.second + 1));
 						encounter_level = l;
