@@ -181,6 +181,8 @@ public: // TODO:  Change back to private
 	std::map<int, bool> blocking;
 	std::vector<menu> menus;
 	string alert;
+	string encounter;
+	int encounter_level;
 	string current_level;
 	player mc;
 public:
@@ -240,7 +242,7 @@ public:
 		for (int x = 0; x < SIZE; x++)
 			out.EV[x] = 0;
 		for (int x = 0; x < SIZE; x++)
-			out.IV[x] = int(random(0.0, 15.999));
+			out.IV[x] = int(random(0.0, 16.0));
 		out.number = ID;
 		out.wild = true;
 		out.defined = true;
@@ -301,7 +303,7 @@ public:
 	double random(double min, double max) {
 		// range is inclusive.
 		double delta = max - min;
-		double t = double(rand()) / double(RAND_MAX);
+		double t = double(rand() % 10000) / double(10000.0);
 		return min + t*delta;
 	}
 	void heal_damage(mon& m, int heal_amount) {
@@ -393,7 +395,7 @@ public:
 			if (s2 == "SLEEP") {
 				int max;
 				if (s3 == "") {
-					max = int(random(1.0, 7.999));
+					max = int(random(1.0, 8.0));
 				}
 				else {
 					max = stoi(s3);
@@ -1409,7 +1411,7 @@ public:
 		}
 	}
 	int weightedrand() {
-		int i = int(random(0.0, 7.999));
+		int i = int(random(0.0, 8.0));
 		switch (i) {
 		case 0:
 		case 1:
@@ -1437,20 +1439,23 @@ public:
 			}
 		}
 	}
+	int get_tile(double y, double x) {
+		return levels[current_level].data[int(y)][int(x)];
+	}
 	void input(bool up, bool down, bool left, bool right, bool select, bool start, bool confirm, bool cancel) {
 		if (menus.size() == 0) {
 			// TODO:  Animations
 			if (left) {
 				if (mc.loc.x == 0.0f)
 					return;
-				if (blocking[levels[current_level].data[int(mc.loc.y)][int(mc.loc.x - 1)]])
+				if (blocking[get_tile(mc.loc.y, mc.loc.x - 1.0)])
 					return;
 				mc.loc.x -= 1.0f;
 			}
 			else if (right) {
 				if (mc.loc.x + 1 >= levels[current_level].data[int(mc.loc.y)].size())
 					return;
-				if (blocking[levels[current_level].data[int(mc.loc.y)][int(mc.loc.x + 1)]])
+				if (blocking[get_tile(mc.loc.y, mc.loc.x + 1.0)])
 					return;
 				mc.loc.x += 1.0f;
 			}
@@ -1459,7 +1464,7 @@ public:
 					return;
 				if (mc.loc.x >= levels[current_level].data[int(mc.loc.y + 1)].size())
 					return;
-				if (blocking[levels[current_level].data[int(mc.loc.y + 1)][int(mc.loc.x)]])
+				if (blocking[get_tile(mc.loc.y + 1.0, mc.loc.x)])
 					return;
 				mc.loc.y += 1.0f;
 			}
@@ -1468,11 +1473,14 @@ public:
 					return;
 				if (mc.loc.x >= levels[current_level].data[int(mc.loc.y - 1)].size())
 					return;
-				if (blocking[levels[current_level].data[int(mc.loc.y - 1)][int(mc.loc.x)]])
+				if (blocking[get_tile(mc.loc.y - 1.0, mc.loc.x)])
 					return;
 				mc.loc.y -= 1.0f;
 			}
 			update_level();
+			if (get_tile(mc.loc.y, mc.loc.x) == 4) {
+				//TODO: ENCOUNTER
+			}
 		}
 		else {
 			menus[menus.size() - 1].input(up, down, left, right, select, start, confirm, cancel);
