@@ -190,7 +190,6 @@ public:
 		glMatrixMode(GL_MODELVIEW); //Switch to the drawing perspective
 		glLoadIdentity(); //Reset the drawing perspective
 		glColor3f(1.0f, 1.0f, 1.0f);
-		alert(string("{FEMALE} {FEMALE}{FEMALE}{FEMALE} {FEMALE}{FEMALE}{FEMALE}{FEMALE}{FEMALE} {FEMALE} {FEMALE}{FEMALE}{FEMALE} {FEMALE}{FEMALE}{FEMALE}{FEMALE}{FEMALE} {FEMALE} {FEMALE}{FEMALE}{FEMALE} {FEMALE}{FEMALE}{FEMALE}{FEMALE}{FEMALE} {FEMALE} {FEMALE}{FEMALE}{FEMALE} {FEMALE}{FEMALE}{FEMALE}{FEMALE}{FEMALE} {FEMALE} {FEMALE}{FEMALE}{FEMALE} {FEMALE}{FEMALE}{FEMALE}{FEMALE}{FEMALE} {FEMALE} {FEMALE}{FEMALE}{FEMALE} {FEMALE}{FEMALE}{FEMALE}{FEMALE}{FEMALE} {FEMALE} {FEMALE}{FEMALE}{FEMALE} {FEMALE}{FEMALE}{FEMALE}{FEMALE}{FEMALE} {FEMALE} {FEMALE}{FEMALE}{FEMALE} {FEMALE}{FEMALE}{FEMALE}{FEMALE}{FEMALE} {FEMALE} {FEMALE}{FEMALE}{FEMALE} {FEMALE}{FEMALE}{FEMALE}{FEMALE}{FEMALE} {FEMALE} {FEMALE}{FEMALE}{FEMALE} {FEMALE}{FEMALE}{FEMALE}{FEMALE}{FEMALE} {FEMALE} {FEMALE}{FEMALE}{FEMALE} {FEMALE}{FEMALE}{FEMALE}{FEMALE}{FEMALE} {FEMALE} {FEMALE}{FEMALE}{FEMALE} {FEMALE}{FEMALE}{FEMALE}{FEMALE}{FEMALE} {FEMALE} {FEMALE}{FEMALE}{FEMALE} {FEMALE}{FEMALE}{FEMALE}{FEMALE}{FEMALE} {FEMALE} {FEMALE}{FEMALE}{FEMALE} {FEMALE}{FEMALE}{FEMALE}{FEMALE}{FEMALE} {FEMALE} {FEMALE}{FEMALE}{FEMALE} {FEMALE}{FEMALE}{FEMALE}{FEMALE}{FEMALE} {FEMALE} {FEMALE}{FEMALE}{FEMALE} {FEMALE}{FEMALE}{FEMALE}{FEMALE}{FEMALE} {FEMALE} {FEMALE}{FEMALE}{FEMALE} {FEMALE}{FEMALE}{FEMALE}{FEMALE}{FEMALE} {FEMALE} {FEMALE}{FEMALE}{FEMALE} {FEMALE}{FEMALE}{FEMALE}{FEMALE}{FEMALE} {FEMALE} {FEMALE}{FEMALE}{FEMALE} {FEMALE}{FEMALE}{FEMALE}{FEMALE}{FEMALE} {FEMALE} {FEMALE}{FEMALE}{FEMALE} {FEMALE}{FEMALE}{FEMALE}{FEMALE}{FEMALE} {FEMALE} {FEMALE}{FEMALE}{FEMALE} {FEMALE}{FEMALE}{FEMALE}{FEMALE}{FEMALE} {FEMALE} {FEMALE}{FEMALE}{FEMALE} {FEMALE}{FEMALE}{FEMALE}{FEMALE}{FEMALE} {FEMALE} {FEMALE}{FEMALE}{FEMALE} {FEMALE}{FEMALE}{FEMALE}{FEMALE}{FEMALE} {FEMALE} {FEMALE}{FEMALE}{FEMALE} {FEMALE}{FEMALE}{FEMALE}{FEMALE}{FEMALE} {FEMALE} {FEMALE}{FEMALE}{FEMALE} {FEMALE}{FEMALE}{FEMALE}{FEMALE}{FEMALE} {FEMALE} {FEMALE}{FEMALE}{FEMALE} {FEMALE}{FEMALE}{FEMALE}{FEMALE}{FEMALE} {FEMALE} {FEMALE}{FEMALE}{FEMALE} {FEMALE}{FEMALE}{FEMALE}{FEMALE}{FEMALE} "));
 		for (unsigned i = 0; i < draw_list.size(); i++) {
 			draw_quad(draw_list[i]);
 		}
@@ -216,7 +215,7 @@ public:
 	unsigned push_text(float x, float y, float width, float height, float size, string s) {
 		string key;
 		float x_curr = x;
-		float y_curr = y;
+		float y_curr = y + height;
 		bool no_chunk_yet = true;
 		for (unsigned i = 0; i < s.size(); ++i) {
 			if (chunk[s[i]])
@@ -238,10 +237,10 @@ public:
 				x_curr = x;
 				y_curr -= size*2.0f;
 			}
-			if (y_curr < y - height)
-				return i;
+			if (y_curr < y)
+				return i + 1;
 		}
-		return 0;
+		return s.size();
 	}
 	void push_box(float xmin, float ymin, float length, float height) {
 		push_quad(xmin, ymin + height - 0.1f, 0.1f, 0.1f, menu_tex[string("corner-ul.bmp")]);
@@ -257,7 +256,7 @@ public:
 	void alert(string s) {
 		push_box(-1.0f, -1.0f, 2.0f, 0.8f);
 		unsigned x = 0;
-		x = push_text(-0.9f, -0.5f, 1.8f, 0.4f, 0.1f, s);
+		x = push_text(-0.9f, -0.9f, 1.8f, 0.4f, 0.1f, s);
 		x = x + 1;
 	}
 };

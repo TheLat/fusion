@@ -31,6 +31,18 @@ void handleKeypress(unsigned char key, int x, int y) {
 	case 'w':
 		e.input(true, false, false, false, false, false, false, false);
 		break;
+	case 'j':
+		e.input(false, false, false, false, false, false, true, false);
+		break;
+	case 'k':
+		e.input(false, false, false, false, false, false, false, true);
+		break;
+	case 'm':
+		e.input(false, false, false, false, false, true, false, false);
+		break;
+	case ',':
+		e.input(false, false, false, false, true, false, false, false);
+		break;
 	}
 }
 

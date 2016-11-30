@@ -179,6 +179,7 @@ public: // TODO:  Change back to private
 	std::map<string, level> levels;
 	std::map<int, bool> blocking;
 	std::vector<menu> menus;
+	string alert;
 	string current_level;
 	player mc;
 public:
@@ -1459,7 +1460,19 @@ public:
 				mc.loc.y -= 1.0f;
 			}
 			update_level();
+			if (random(0.0, 100.0) < 10.0) {
+				alert = string("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz");
+			}
 		}
+		else {
+			menus[menus.size() - 1].input(up, down, left, right, select, start, confirm, cancel);
+		}
+	}
+	void create_alert(string s) {
+		menu m;
+		menus.push_back(m);
+		menus[menus.size() - 1].create_alert(s);
+		menus[menus.size() - 1].push_menu();
 	}
 	void update_level() {
 		m.lock();
@@ -1478,6 +1491,14 @@ public:
 	void main() {
 		update_level();
 		while (true) {
+			if (alert != "") {
+				create_alert(alert);
+				alert = "";
+			}
+			if (menus.size() > 0) {
+				menus[0].main();
+				menus.erase(menus.begin());
+			}
 		}
 	}
 };
