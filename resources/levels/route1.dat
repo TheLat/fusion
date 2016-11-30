@@ -5,6 +5,8 @@ TELEPORT
 8 37 pallet-town 10 2
 ENCOUNTERS
 16 19
+LEVELS
+2-5
 DATA
 1  0  1  1  1  1  1  0 56 56  0  1  1  1  1  1  0  1
 1  0  0  0  0  0  0  0 56 56  0  0  0  0  0  0  0  1
