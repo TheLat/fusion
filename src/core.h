@@ -843,11 +843,13 @@ public:
 			}
 			if (line == "ENCOUNTERS") {
 				std::getline(f, line);
-				while (true) {
+				while (line.size() > 0) {
 					levels[levelname].encounters.push_back(stoi(line));
 					if (line.find(' ') == -1)
 						break;
 					line.erase(0, line.find(' ') + 1);
+					while (line.find(' ') == 0)
+						line.erase(0, 1);
 				}
 				std::getline(f, line);
 			}
