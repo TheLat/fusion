@@ -539,13 +539,11 @@ public:
 		else if (m1.queue[0] != "") {
 			use_move(m1, m2, m1.queue[0]);
 			if (is_KO(m2)) {
-				do_alert(m2.nickname + string(" fainted."));
 				// TODO:  Return value
 				return;
 			}
 			use_status(m1, m2);
 			if (is_KO(m1)) {
-				do_alert(m1.nickname + string(" fainted."));
 				// TODO:  Return value
 				return;
 			}
@@ -575,19 +573,17 @@ public:
 		}
 		else if (in_status(m2, string("PARALYZE")) && (0.25 > random(0.0, 1.0))) {
 			do_alert(m2.nickname + string(" is paralyzed! It can't move!"));
-			// TODO:  Paralyze message
+			// TODO:  Paralyze animation
 		}
 		else if (m2.queue[0] != "") {
 			use_move(m2, m1, m2.queue[0]);
 			if (is_KO(m1)) {
 				// TODO:  Return value
-				do_alert(m1.nickname + string(" fainted."));
 				return;
 			}
 			use_status(m2, m1);
 			if (is_KO(m2)) {
 				// TODO:  Return value
-				do_alert(m2.nickname + string(" fainted."));
 				return;
 			}
 		}
@@ -670,6 +666,7 @@ public:
 			}
 			if (is_KO(p.team[selected])) {
 				// TODO:  Handle selection on KO
+				do_alert(p.team[selected].nickname + string(" fainted!"));
 				for (i = 0; i < 6; ++i) {
 					if (!is_KO(p.team[i])) {
 						selected = i;
