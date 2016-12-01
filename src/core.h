@@ -441,8 +441,15 @@ public:
 		int repeat = 1;
 		bool success = false;
 		bool miss = false;
+		do_alert(attacker.nickname + string(" used ") + move + string("!"));
 		if (moves[move].acc < int(random(0.0, 100.0))) {
 			miss = true;
+			if (pow == 0) {
+				do_alert(string("But, it failed!"));
+			}
+			else {
+				do_alert(attacker.nickname + string("'s attack missed!"));
+			}
 		}
 		if (pow != 0.0) {
 			if (moves[move].pow.find(string("x2-5")) != -1) {
@@ -457,9 +464,12 @@ public:
 				int dam = damage(attacker, defender, move, crit);
 				// TODO: Logic for detecting that a move has an x0 modifier.
 				deal_damage(defender, dam);
+				if (crit)
+					do_alert(string("A critical hit!"));
 				if (!status_immunity(defender, move)) {
 					for (unsigned j = 0; j < moves[move].target.size(); ++j) {
 						success = apply_status(defender, moves[move].target[j]) || success;
+						// TODO:  Status announcement
 					}
 				}
 				for (unsigned j = 0; j < moves[move].self.size(); ++j) {
@@ -481,6 +491,9 @@ public:
 					attacker.queue.push_back(temp);
 			}
 		}
+		if (repeat != 1) {
+			do_alert(string("Hit ") + to_string(repeat) + string(" times!"));
+		}
 		if (attacker.queue.size() > 0) {
 			if (attacker.queue[0] == move) {
 				attacker.queue.erase(attacker.queue.begin());
@@ -501,26 +514,39 @@ public:
 		m2.turn_count++;
 		if (in_status(m1, string("SLEEP"))) {
 			remove_status(m1, string("SLEEP"));
-			// TODO:  Sleep message
+			if (in_status(m1, string("SLEEP"))) {
+				do_alert(m1.nickname + string(" is fast asleep."));
+				// TODO:  Sleep animation.
+			}
+			else {
+				do_alert(m1.nickname + string(" woke up!"));
+			}
 		}
 		else if (in_status(m1, string("FREEZE"))) {
 			if (0.2 > random(0.0, 1.0)) {
 				remove_status(m1, string("FREEZE"));
+				do_alert(m1.nickname + string(" thawed out!"));
 			}
-			// TODO:  Freeze message
+			else {
+				do_alert(m1.nickname + string(" is frozen solid!"));
+				// TODO:  Freeze animation
+			}
 		}
 		else if (in_status(m1, string("PARALYZE")) && (0.25 > random(0.0, 1.0))) {
-			// TODO:  Paralyze message
+			do_alert(m1.nickname + string(" is paralyzed! It can't move!"));
+			// TODO:  Paralyze animation
 		}
 		else if (m1.queue[0] != "") {
 			use_move(m1, m2, m1.queue[0]);
 			if (is_KO(m2)) {
-				// TODO:  KO-announcement and return value
+				do_alert(m2.nickname + string(" fainted."));
+				// TODO:  Return value
 				return;
 			}
 			use_status(m1, m2);
 			if (is_KO(m1)) {
-				// TODO:  KO-announcement and return value
+				do_alert(m1.nickname + string(" fainted."));
+				// TODO:  Return value
 				return;
 			}
 		}
@@ -529,26 +555,39 @@ public:
 		}
 		if (in_status(m2, string("SLEEP"))) {
 			remove_status(m2, string("SLEEP"));
-			// TODO:  Sleep message
+			if (in_status(m2, string("SLEEP"))) {
+				do_alert(m2.nickname + string(" is fast asleep."));
+				// TODO:  Sleep animation
+			}
+			else {
+				do_alert(m2.nickname + string(" woke up!"));
+			}
 		}
 		else if (in_status(m2, string("FREEZE"))) {
 			if (0.2 > random(0.0, 1.0)) {
 				remove_status(m2, string("FREEZE"));
+				do_alert(m2.nickname + string(" thawed out!"));
 			}
-			// TODO:  Freeze message
+			else {
+				do_alert(m2.nickname + string(" is frozen solid!"));
+				// TODO:  Freeze animation
+			}
 		}
 		else if (in_status(m2, string("PARALYZE")) && (0.25 > random(0.0, 1.0))) {
+			do_alert(m2.nickname + string(" is paralyzed! It can't move!"));
 			// TODO:  Paralyze message
 		}
 		else if (m2.queue[0] != "") {
 			use_move(m2, m1, m2.queue[0]);
 			if (is_KO(m1)) {
-				// TODO:  KO-announcement and return value
+				// TODO:  Return value
+				do_alert(m1.nickname + string(" fainted."));
 				return;
 			}
 			use_status(m2, m1);
 			if (is_KO(m2)) {
-				// TODO:  KO-announcement and return value
+				// TODO:  Return value
+				do_alert(m2.nickname + string(" fainted."));
 				return;
 			}
 		}
@@ -560,10 +599,10 @@ public:
 		// TODO:  Implement trainer battle
 	}
 	void battle(player& p, mon& m) { // wild pokemon
-		// TODO:  Implement wild pokemon battle
 		int selected, i;
 		int choice1, choice2, index;
 		double count;
+		// TODO:  Initial menu
 		for (i = 0; i < 6; ++i) {
 			if (p.team[i].defined) {
 				if (!is_KO(p.team[i])) {
@@ -572,8 +611,10 @@ public:
 				}
 			}
 		}
+		do_alert(string("Wild ") + m.nickname + string(" appeared!"));
+		do_alert(string("Go! ") + p.team[selected].nickname + string("!"));
 		choice1 = 0;
-		choice2 = 2;
+		choice2 = 0;
 		while (true) {
 			// TODO: Implement player battle menu
 			if (choice1 == 0) { // Player has selected FIGHT
@@ -618,13 +659,12 @@ public:
 					count = count + 1.0;
 				}
 			}
-			count -= 0.0001;
 			index = int(random(0.0, count));
 			m.queue.push_back(m.moves[index]);
 			m.pp[index]--;
 			do_turn(p.team[selected], m);
 			if (is_KO(m)) {
-				// TODO:  Handle victory message.
+				do_alert(string("Enemy ") + m.nickname + string(" fainted!"));
 				gain_exp(p.team[selected], m, 1);
 				break;
 			}
@@ -1537,7 +1577,7 @@ public:
 			if (encounter != "") {
 				mon m;
 				make_mon(encounter, encounter_level, m);
-				do_alert(string("A wild ") + m.nickname + string(" appeared!"));
+				battle(mc, m);
 				encounter = "";
 			}
 			if (menus.size() > 0) {
