@@ -711,6 +711,7 @@ public:
 	}
 	int damage(mon& attacker, mon& defender, string move, bool& crit) {
 		double pow = stoi(moves[move].pow);
+		crit = false;
 		if (pow == 0.0)
 			return 0;
 		double chance = all_mon[attacker.number].stats[SPEED] / 4.0;
