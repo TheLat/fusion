@@ -24,9 +24,9 @@ public:
 	string type;
 	vector<box> boxes;
 	vector<text> raw, display;
-	int index, step;
+	int index, step, selection, columns;
 	bool done;
-	menu() { step = 0; index = 0; done = false; }
+	menu() { step = 0; index = 0; done = false; selection = 0; columns = 1; }
 	void create_alert(string s) {
 		box b;
 		text t;
@@ -82,6 +82,47 @@ public:
 				}
 			}
 		}
+		if (type == "SELECT") {
+			if (up) {
+				if (selection < columns) {
+					selection = raw.size() - (columns - selection);
+				}
+				else {
+					selection -= columns;
+				}
+			}
+			if (down) {
+				if (selection >= int(raw.size()) - columns) {
+					selection = selection + columns - raw.size();
+				}
+				else {
+					selection += columns;
+				}
+			}
+			if (right) {
+				if (selection % columns < columns - 1) {
+					selection++;
+				}
+				else {
+					selection--;
+				}
+			}
+			if (left) {
+				if (selection % columns == 0) {
+					selection += columns - 1;
+				}
+				else {
+					selection--;
+				}
+			}
+			if (confirm | start) {
+				done = true;
+			}
+			if (cancel) {
+				selection = -1;
+				done = true;
+			}
+		}
 	}
 	vector<int> main() {
 		vector<int> choice;
@@ -89,6 +130,7 @@ public:
 			int a = 0;
 		}
 		pop_menu();
+		choice.push_back(selection);
 		return choice;
 	}
 };
