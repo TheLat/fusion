@@ -597,6 +597,7 @@ public:
 	void battle(player& p, mon& m) { // wild pokemon
 		int selected, i;
 		int choice1, choice2, index;
+		vector<int> choices;
 		double count;
 		// TODO:  Initial menu
 		for (i = 0; i < 6; ++i) {
@@ -613,6 +614,10 @@ public:
 		choice2 = 0;
 		while (true) {
 			// TODO: Implement player battle menu
+			choices = do_combat_select();
+			while (choices.size() == 0 || choices[0] == -1) {
+				choices = do_combat_select();
+			}
 			if (choice1 == 0) { // Player has selected FIGHT
 				p.team[selected].queue.push_back(p.team[selected].moves[choice2]);
 				p.team[selected].pp[choice2]--;
@@ -1546,10 +1551,23 @@ public:
 		menus[menus.size() - 1].create_alert(s);
 		menus[menus.size() - 1].push_menu();
 	}
+	void create_combat_select() {
+		menu m;
+		menus.push_back(m);
+		menus[menus.size() - 1].create_combat_select();
+		menus[menus.size() - 1].push_menu();
+	}
 	void do_alert(string s) {
 		create_alert(s);
 		menus[menus.size() - 1].main();
 		menus.erase(menus.begin() + menus.size() - 1);
+	}
+	vector<int> do_combat_select() {
+		vector<int> out;
+		create_combat_select();
+		out = menus[menus.size() - 1].main();
+		menus.erase(menus.begin() + menus.size() - 1);
+		return out;
 	}
 	void update_level() {
 		m.lock();

@@ -24,9 +24,10 @@ public:
 	string type;
 	vector<box> boxes;
 	vector<text> raw, display;
-	int index, step, selection, columns;
+	vector<string> followup;
+	int index, step, selection, columns, cursor;
 	bool done;
-	menu() { step = 0; index = 0; done = false; selection = 0; columns = 1; }
+	menu() { step = 0; index = 0; done = false; selection = 0; columns = 1; cursor = -1; }
 	void create_alert(string s) {
 		box b;
 		text t;
@@ -43,6 +44,40 @@ public:
 		boxes.clear();
 		raw.clear();
 		boxes.push_back(b);
+		raw.push_back(t);
+		process_strings();
+	}
+	void create_combat_select() {
+		box b;
+		text t;
+		columns = 2;
+		type = "SELECT";
+		b.xmin = -0.2f;
+		b.length = 1.2f;
+		b.ymin = -1.0f;
+		b.height = 0.6f;
+		boxes.clear();
+		raw.clear();
+		boxes.push_back(b);
+		t.xmin = 0.0f;
+		t.length = 0.6f;
+		t.ymin = -0.8f;
+		t.height = 0.1f;
+		t.s = "FIGHT";
+		raw.push_back(t);
+		t.xmin = 0.6f;
+		t.length = 0.3f;
+		t.s = "{PK}{MN}";
+		raw.push_back(t);
+		t.xmin = 0.0f;
+		t.length = 0.6f;
+		t.ymin = -1.0f;
+		t.height = 0.1f;
+		t.s = "ITEM";
+		raw.push_back(t);
+		t.xmin = 0.6f;
+		t.length = 0.3f;
+		t.s = "RUN";
 		raw.push_back(t);
 		process_strings();
 	}
@@ -126,7 +161,15 @@ public:
 	}
 	vector<int> main() {
 		vector<int> choice;
+		if (type == "SELECT" && cursor == -1) {
+			cursor = g.draw_list.size();
+			g.push_quad(display[0].xmin - 0.1f, display[0].ymin - 0.1f, 0.1f, 0.1f, g.menu_tex[string("cursor-2.bmp")]);
+		}
 		while (!done) {
+			if (cursor != -1) {
+				g.draw_list[cursor].x = display[selection].xmin - 0.1f;
+				g.draw_list[cursor].y = display[selection].ymin + 0.1f;
+			}
 			int a = 0;
 		}
 		pop_menu();
