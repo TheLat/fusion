@@ -180,13 +180,32 @@ public: // TODO:  Change back to private
 	std::map<string, power> moves;
 	std::map<string, level> levels;
 	std::map<int, bool> blocking;
-	std::vector<menu> menus;
+	std::vector<menu*> menus;
 	string alert;
 	string encounter;
 	int encounter_level;
+	int selected;
 	string current_level;
 	player mc;
 public:
+	string get_special_string(string in) {
+		string parse;
+		string temp = in;
+		string out;
+		for (int i = 0; (i < temp.size()) && (temp[i] != ':'); ++i) {
+			parse += temp[i];
+		}
+		temp.erase(0, temp.find(':') + 1);
+		if (parse == "ACTIVE_POKEMON_MOVE") {
+			out = mc.team[selected].moves[stoi(temp)];
+			if (out == "") {
+				out = "-";
+			}
+			return out;
+		}
+		// TODO:  Replace with move get logic
+		return string("UNPARSED STRING: ") + in;
+	}
 	bool in_status(mon& m, string s) {
 		for (unsigned i = 0; i < m.status.size(); ++i) {
 			if (m.status[i] == s) {
@@ -595,10 +614,11 @@ public:
 		// TODO:  Implement trainer battle
 	}
 	void battle(player& p, mon& m) { // wild pokemon
-		int selected, i;
+		int i;
 		int choice1, choice2, index;
 		vector<int> choices;
 		double count;
+		selected = -1;
 		// TODO:  Initial menu
 		for (i = 0; i < 6; ++i) {
 			if (p.team[i].defined) {
@@ -1542,31 +1562,47 @@ public:
 			}
 		}
 		else {
-			menus[menus.size() - 1].input(up, down, left, right, select, start, confirm, cancel);
+			menus[menus.size() - 1]->input(up, down, left, right, select, start, confirm, cancel);
 		}
 	}
 	void create_alert(string s) {
-		menu m;
+		menu* m = new menu;
 		menus.push_back(m);
-		menus[menus.size() - 1].create_alert(s);
-		menus[menus.size() - 1].push_menu();
+		menus[menus.size() - 1]->create_alert(s);
+		menus[menus.size() - 1]->push_menu();
 	}
 	void create_combat_select() {
-		menu m;
+		menu* m = new menu;
 		menus.push_back(m);
-		menus[menus.size() - 1].create_combat_select();
-		menus[menus.size() - 1].push_menu();
+		menus[menus.size() - 1]->create_combat_select();
+		menus[menus.size() - 1]->push_menu();
+	}
+	void create_move_select() {
+		menu* m = new menu;
+		menus.push_back(m);
+		menus[menus.size() - 1]->create_move_select();
+		menus[menus.size() - 1]->push_menu();
 	}
 	void do_alert(string s) {
 		create_alert(s);
-		menus[menus.size() - 1].main();
-		menus.erase(menus.begin() + menus.size() - 1);
+		menus[menus.size() - 1]->main();
+		delete menus[menus.size() - 1];
+		menus.erase(menus.end() - 1);
 	}
 	vector<int> do_combat_select() {
 		vector<int> out;
 		create_combat_select();
-		out = menus[menus.size() - 1].main();
-		menus.erase(menus.begin() + menus.size() - 1);
+		out = menus[menus.size() - 1]->main();
+		delete menus[menus.size() - 1];
+		menus.erase(menus.end() - 1);
+		return out;
+	}
+	vector<int> do_move_select() {
+		vector<int> out;
+		create_move_select();
+		out = menus[menus.size() - 1]->main();
+		delete menus[menus.size() - 1];
+		menus.erase(menus.end() - 1);
 		return out;
 	}
 	void update_level() {
@@ -1597,7 +1633,7 @@ public:
 				encounter = "";
 			}
 			if (menus.size() > 0) {
-				menus[0].main();
+				menus[0]->main();
 				menus.erase(menus.begin());
 			}
 		}

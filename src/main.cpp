@@ -11,6 +11,17 @@ mutex m;
 engine e;
 graphics g;
 
+string get_special_string(string in) {
+	return e.get_special_string(in);
+}
+
+vector<int> do_menu(string menu) {
+	vector<int> def;
+	if (menu == "FIGHT")
+		return e.do_move_select();
+	return def;
+}
+
 // Called when a key is pressed
 void handleKeypress(unsigned char key, int x, int y) {
 	printf("%i\n", int(key));

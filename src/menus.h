@@ -6,6 +6,9 @@ class engine;
 extern graphics g;
 extern engine e;
 extern mutex m;
+extern string get_special_string(string in);
+extern vector<int> do_menu(string menu);
+mutex m2;
 
 class box {
 public:
@@ -58,6 +61,7 @@ public:
 		b.height = 0.6f;
 		boxes.clear();
 		raw.clear();
+		followup.clear();
 		boxes.push_back(b);
 		t.xmin = 0.0f;
 		t.length = 0.6f;
@@ -65,20 +69,47 @@ public:
 		t.height = 0.1f;
 		t.s = "FIGHT";
 		raw.push_back(t);
+		followup.push_back(string("FIGHT"));
 		t.xmin = 0.6f;
 		t.length = 0.3f;
 		t.s = "{PK}{MN}";
+		followup.push_back(string("POKEMON"));
 		raw.push_back(t);
 		t.xmin = 0.0f;
 		t.length = 0.6f;
 		t.ymin = -1.0f;
 		t.height = 0.1f;
 		t.s = "ITEM";
+		followup.push_back(string("COMBAT_ITEM"));
 		raw.push_back(t);
 		t.xmin = 0.6f;
 		t.length = 0.3f;
 		t.s = "RUN";
+		followup.push_back(string(""));
 		raw.push_back(t);
+		process_strings();
+	}
+	void create_move_select() {
+		box b;
+		text t;
+		columns = 1;
+		type = "SELECT";
+		b.xmin = -0.6f;
+		b.length = 1.6f;
+		b.ymin = -1.0f;
+		b.height = 0.6f;
+		boxes.clear();
+		raw.clear();
+		followup.clear();
+		boxes.push_back(b);
+		for (int i = 0; i < 4; ++i) {
+			t.xmin = -0.4f;
+			t.length = 1.4f;
+			t.ymin = -0.7f - (0.1f*(float(i)));
+			t.height = 0.1f;
+			t.s = get_special_string(string("ACTIVE_POKEMON_MOVE:") + to_string(i));
+			raw.push_back(t);
+		}
 		process_strings();
 	}
 	void push_menu() {
@@ -104,6 +135,7 @@ public:
 		}
 	}
 	void input(bool up, bool down, bool left, bool right, bool select, bool start, bool confirm, bool cancel) {
+		m2.lock();
 		if (type == "ALERT") {
 			if (start | select | confirm | cancel) {
 				if (step == raw[0].s.size()) {
@@ -135,19 +167,23 @@ public:
 				}
 			}
 			if (right) {
-				if (selection % columns < columns - 1) {
-					selection++;
-				}
-				else {
-					selection--;
+				if (columns > 1) {
+					if (selection % columns < columns - 1) {
+						selection++;
+					}
+					else {
+						selection--;
+					}
 				}
 			}
 			if (left) {
-				if (selection % columns == 0) {
-					selection += columns - 1;
-				}
-				else {
-					selection--;
+				if (columns > 1) {
+					if (selection % columns == 0) {
+						selection += columns - 1;
+					}
+					else {
+						selection--;
+					}
 				}
 			}
 			if (confirm | start) {
@@ -158,17 +194,31 @@ public:
 				done = true;
 			}
 		}
+		m2.unlock();
 	}
 	vector<int> main() {
 		vector<int> choice;
-		if (type == "SELECT" && cursor == -1) {
-			cursor = g.draw_list.size();
-			g.push_quad(display[0].xmin - 0.1f, display[0].ymin - 0.1f, 0.1f, 0.1f, g.menu_tex[string("cursor-2.bmp")]);
-		}
-		while (!done) {
-			if (cursor != -1) {
+		while (!done || (done && (selection < followup.size()) && (followup[selection] != ""))) {
+			m2.lock();
+			if (type == "SELECT" && cursor == -1) {
+				cursor = g.draw_list.size();
+				g.push_quad(display[0].xmin - 0.1f, display[0].ymin - 0.1f, 0.1f, 0.1f, g.menu_tex[string("cursor-2.bmp")]);
+			}
+			if ((cursor > 0) && (selection != -1)) {
 				g.draw_list[cursor].x = display[selection].xmin - 0.1f;
 				g.draw_list[cursor].y = display[selection].ymin + 0.1f;
+			}
+			m2.unlock();
+			if (done && (followup.size() > 0) && (followup[selection] == "FIGHT")) {
+				vector<int> out;
+				out = do_menu(string("FIGHT"));
+				if ((out.size() == 0) || (out[out.size() - 1] == -1)) {
+					done = false;
+				}
+				else {
+					choice = out;
+					break;
+				}
 			}
 			int a = 0;
 		}
