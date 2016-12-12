@@ -193,7 +193,7 @@ public:
 		string out;
 		if (in.find(":") != -1) {
 			string temp = in;
-			for (int i = 0; (i < temp.size()) && (temp[i] != ':'); ++i) {
+			for (unsigned i = 0; (i < temp.size()) && (temp[i] != ':'); ++i) {
 				parse += temp[i];
 			}
 			temp.erase(0, temp.find(':') + 1);
@@ -644,6 +644,8 @@ public:
 				}
 			}
 		}
+		p.team[selected].queue.clear();
+		m.queue.clear();
 		do_alert(string("Wild ") + m.nickname + string(" appeared!"));
 		do_alert(string("Go! ") + p.team[selected].nickname + string("!"));
 		while (true) {

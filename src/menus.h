@@ -235,7 +235,7 @@ public:
 	}
 	vector<int> main() {
 		vector<int> choice;
-		while (!done || (done && (selection < followup.size()) && (followup[selection] != ""))) {
+		while (!done || (done && (selection < (int)followup.size()) && (followup[selection] != ""))) {
 			m2.lock();
 			if (type == "SELECT" && cursor == -1) {
 				cursor = g.draw_list.size();
