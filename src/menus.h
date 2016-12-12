@@ -107,7 +107,7 @@ public:
 			t.length = 1.4f;
 			t.ymin = -0.7f - (0.1f*(float(i)));
 			t.height = 0.1f;
-			t.s = get_special_string(string("ACTIVE_POKEMON_MOVE:") + to_string(i));
+			t.s = string("ACTIVE_POKEMON_MOVE:") + to_string(i);
 			raw.push_back(t);
 		}
 		process_strings();
@@ -131,7 +131,8 @@ public:
 	void process_strings() {
 		display.clear();
 		for (unsigned i = 0; i < raw.size(); ++i) {
-			display.push_back(raw[i]); // TODO:  Process special keys
+			display.push_back(raw[i]);
+			display[i].s = get_special_string(display[i].s);
 		}
 	}
 	void input(bool up, bool down, bool left, bool right, bool select, bool start, bool confirm, bool cancel) {
@@ -193,6 +194,7 @@ public:
 				selection = -1;
 				done = true;
 			}
+			process_strings();
 		}
 		m2.unlock();
 	}

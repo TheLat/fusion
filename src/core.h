@@ -190,21 +190,22 @@ public: // TODO:  Change back to private
 public:
 	string get_special_string(string in) {
 		string parse;
-		string temp = in;
 		string out;
-		for (int i = 0; (i < temp.size()) && (temp[i] != ':'); ++i) {
-			parse += temp[i];
-		}
-		temp.erase(0, temp.find(':') + 1);
-		if (parse == "ACTIVE_POKEMON_MOVE") {
-			out = mc.team[selected].moves[stoi(temp)];
-			if (out == "") {
-				out = "-";
+		if (in.find(":") != -1) {
+			string temp = in;
+			for (int i = 0; (i < temp.size()) && (temp[i] != ':'); ++i) {
+				parse += temp[i];
 			}
-			return out;
+			temp.erase(0, temp.find(':') + 1);
+			if (parse == "ACTIVE_POKEMON_MOVE") {
+				out = mc.team[selected].moves[stoi(temp)];
+				if (out == "") {
+					out = "-";
+				}
+				return out;
+			}
 		}
-		// TODO:  Replace with move get logic
-		return string("UNPARSED STRING: ") + in;
+		return in;
 	}
 	bool in_status(mon& m, string s) {
 		for (unsigned i = 0; i < m.status.size(); ++i) {
