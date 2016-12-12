@@ -257,9 +257,11 @@ public:
 		}
 		return ret;
 	}
-	void make_mon(string ID, int level, mon& out) {
+	void make_mon(string ID, int& e_level, mon& out) {
 		out.level = 0;
-		out.exp = level_to_exp[level];
+		out.exp = level_to_exp[e_level];
+		if (out.exp == -1)
+			int lkjawgjkalsgkj = 0;
 		for (int x = 0; x < SIZE; x++)
 			out.EV[x] = 0;
 		for (int x = 0; x < SIZE; x++)
@@ -271,8 +273,10 @@ public:
 		out.nickname = all_mon[ID].name;
 		level_up(out);
 		out.curr_hp = get_stat(out, HP);
-		if (out.level == 0)
-			int j = 0;
+		if (out.level == 0) {
+			int* j = 0;
+			*j = 2;
+		}
 	}
 	void gain_exp(mon& winner, mon& loser, int num_fighters) {
 		double exp = 1.0;

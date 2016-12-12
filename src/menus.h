@@ -125,6 +125,7 @@ public:
 	}
 	void pop_menu() {
 		m.lock();
+		cursor = -1;
 		g.draw_list.erase(g.draw_list.begin() + index, g.draw_list.end());
 		m.unlock();
 	}
@@ -195,6 +196,8 @@ public:
 				done = true;
 			}
 			process_strings();
+			pop_menu();
+			push_menu();
 		}
 		m2.unlock();
 	}
