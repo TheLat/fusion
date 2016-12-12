@@ -223,7 +223,7 @@ public:
 			int a = 0;
 		}
 		pop_menu();
-		choice.push_back(selection);
+		choice.insert(choice.begin(), selection);
 		return choice;
 	}
 };

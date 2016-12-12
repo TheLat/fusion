@@ -615,7 +615,7 @@ public:
 	}
 	void battle(player& p, mon& m) { // wild pokemon
 		int i;
-		int choice1, choice2, index;
+		int index;
 		vector<int> choices;
 		double count;
 		selected = -1;
@@ -630,29 +630,27 @@ public:
 		}
 		do_alert(string("Wild ") + m.nickname + string(" appeared!"));
 		do_alert(string("Go! ") + p.team[selected].nickname + string("!"));
-		choice1 = 0;
-		choice2 = 0;
 		while (true) {
 			// TODO: Implement player battle menu
 			choices = do_combat_select();
 			while (choices.size() == 0 || choices[0] == -1) {
 				choices = do_combat_select();
 			}
-			if (choice1 == 0) { // Player has selected FIGHT
-				p.team[selected].queue.push_back(p.team[selected].moves[choice2]);
-				p.team[selected].pp[choice2]--;
+			if (choices[0] == 0) { // Player has selected FIGHT
+				p.team[selected].queue.push_back(p.team[selected].moves[choices[1]]);
+				p.team[selected].pp[choices[1]]--;
 			}
-			else if (choice1 == 1) { // Player has selected ITEM
+			else if (choices[0] == 1) { // Player has selected ITEM
 				// TODO:  Implement inventory
 				int out = 0;
 				p.team[selected].queue.insert(p.team[selected].queue.begin(), string(""));
-				if (choice2 == 0) {
+				if (choices[1] == 0) {
 					out = attempt_capture(1.0, m); // Pokeball
 				}
-				else if (choice2 == 1) {
+				else if (choices[1] == 1) {
 					out = attempt_capture(1.5, m); // Great Ball
 				}
-				else if (choice2 == 2) {
+				else if (choices[1] == 2) {
 					out = attempt_capture(2.0, m); // Ultra Ball
 				}
 				if (out == 4) {
@@ -666,13 +664,13 @@ public:
 					// TODO:  Implement storage
 				}
 			}
-			else if (choice1 == 2) { // Player has selected Pokemon
+			else if (choices[0] == 2) { // Player has selected Pokemon
 				p.team[selected].queue.clear();
-				selected = choice2;
+				selected = choices[1];
 				p.team[selected].queue.clear();
 				p.team[selected].queue.push_back(string(""));
 			}
-			else if (choice1 == 3) { // Player has selected RUN
+			else if (choices[0] == 3) { // Player has selected RUN
 			}
 			count = 0.0;
 			for (i = 0; i < 4; i++) {
