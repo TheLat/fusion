@@ -28,9 +28,9 @@ public:
 	vector<box> boxes;
 	vector<text> raw, display;
 	vector<string> followup;
-	int index, step, selection, columns, cursor;
+	int index, step, selection, columns, cursor, selection_cap;
 	bool done;
-	menu() { step = 0; index = 0; done = false; selection = 0; columns = 1; cursor = -1; }
+	menu() { step = 0; index = 0; done = false; selection = 0; selection_cap = 0; columns = 1; cursor = -1; }
 	void create_alert(string s) {
 		box b;
 		text t;
@@ -85,6 +85,7 @@ public:
 		t.xmin = 0.6f;
 		t.length = 0.3f;
 		t.s = "RUN";
+		selection_cap = 4;
 		followup.push_back(string(""));
 		raw.push_back(t);
 		process_strings();
@@ -108,6 +109,9 @@ public:
 			t.ymin = -0.7f - (0.1f*(float(i)));
 			t.height = 0.1f;
 			t.s = string("ACTIVE_POKEMON_MOVE:") + to_string(i);
+			if (get_special_string(t.s) != "-") {
+				selection_cap = i + 1;
+			}
 			raw.push_back(t);
 		}
 		process_strings();
@@ -154,15 +158,15 @@ public:
 		if (type == "SELECT") {
 			if (up) {
 				if (selection < columns) {
-					selection = raw.size() - (columns - selection);
+					selection = selection_cap - (columns - selection);
 				}
 				else {
 					selection -= columns;
 				}
 			}
 			if (down) {
-				if (selection >= int(raw.size()) - columns) {
-					selection = selection + columns - raw.size();
+				if (selection >= selection_cap - columns) {
+					selection = selection + columns - selection_cap;
 				}
 				else {
 					selection += columns;
