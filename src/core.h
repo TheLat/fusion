@@ -270,6 +270,8 @@ public:
 		out.nickname = all_mon[ID].name;
 		level_up(out);
 		out.curr_hp = get_stat(out, HP);
+		if (out.level == 0)
+			int j = 0;
 	}
 	void gain_exp(mon& winner, mon& loser, int num_fighters) {
 		double exp = 1.0;

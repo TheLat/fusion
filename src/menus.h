@@ -209,7 +209,7 @@ public:
 				g.draw_list[cursor].y = display[selection].ymin + 0.1f;
 			}
 			m2.unlock();
-			if (done && (followup.size() > 0) && (followup[selection] == "FIGHT")) {
+			if (done && (selection >= 0) && (followup.size() > 0) && (followup[selection] == "FIGHT")) {
 				vector<int> out;
 				out = do_menu(string("FIGHT"));
 				if ((out.size() == 0) || (out[out.size() - 1] == -1)) {
