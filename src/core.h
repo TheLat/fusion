@@ -204,6 +204,16 @@ public:
 				}
 				return out;
 			}
+			else if (parse == "ACTIVE_POKEMON_MOVE_TYPE") {
+				return moves[mc.team[selected].moves[stoi(temp)]].type;
+			}
+			else if (parse == "ACTIVE_POKEMON_MOVE_PP") {
+				int index = stoi(temp);
+				out = to_string(mc.team[selected].pp[index]) + string("/") + to_string(mc.team[selected].max_pp[index]);
+				while (out.length() < 9)
+					out = string(" ") + out;
+				return out;
+			}
 		}
 		return in;
 	}
@@ -274,8 +284,7 @@ public:
 		level_up(out);
 		out.curr_hp = get_stat(out, HP);
 		if (out.level == 0) {
-			int* j = 0;
-			*j = 2;
+			make_mon(ID, e_level, out);
 		}
 	}
 	void gain_exp(mon& winner, mon& loser, int num_fighters) {

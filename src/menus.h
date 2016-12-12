@@ -114,6 +114,30 @@ public:
 			}
 			raw.push_back(t);
 		}
+		// Move description
+		b.xmin = -1.0f;
+		b.length = 1.1f;
+		b.ymin = -0.4f;
+		b.height = 0.5f;
+		boxes.push_back(b);
+
+		t.xmin = -0.9f;
+		t.length = 0.9f;
+		t.ymin = -0.2;
+		t.height = 0.1f;
+		t.s = string("TYPE/");
+		raw.push_back(t);
+		t.xmin = -0.8f;
+		t.length = 0.8f;
+		t.ymin = -0.3;
+		t.s = string("ACTIVE_POKEMON_MOVE_TYPE:SELECTION");
+		raw.push_back(t);
+		t.xmin = -0.9f;
+		t.length = 0.9f;
+		t.ymin = -0.4;
+		t.height = 0.1f;
+		t.s = string("ACTIVE_POKEMON_MOVE_PP:SELECTION");
+		raw.push_back(t);
 		process_strings();
 	}
 	void push_menu() {
@@ -137,6 +161,10 @@ public:
 		display.clear();
 		for (unsigned i = 0; i < raw.size(); ++i) {
 			display.push_back(raw[i]);
+			if (display[i].s.find("SELECTION") != -1) {
+				display[i].s.erase(display[i].s.find("SELECTION"), string("SELECTION").length());
+				display[i].s = display[i].s + to_string(selection);
+			}
 			display[i].s = get_special_string(display[i].s);
 		}
 	}
