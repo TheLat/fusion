@@ -48,6 +48,7 @@ List of changes:
 - Font size reduced.  Display size increased.
 - Different messages for x4 and x0.25 damage multipliers.
 - Main character draws at center of screen.
+- Speed buffs affect critical hit chance, so that there's a reason to use them.
 
 Concerning Fusions:
 There are 22,801 pokemon that can appear in Pokemon: Fusion.  The developer can't inspect all of them.  Some may be duds with few or no attack moves (Pikachu-Bulbasaur is quite terrible).  Some things may happen that make no sense (things fused with Gengar will learn Hypnosis from Gengar or Dream Eater from Gengar, but not both).  As a way to balance this, fusions are compatible with every TM and HM that either parent could learn.
