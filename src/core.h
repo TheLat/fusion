@@ -217,6 +217,10 @@ public:
 		}
 		return in;
 	}
+	bool run_away(mon& escapee, mon& m, int attempts) {
+		double chance = (double(get_stat(escapee, SPEED))*32.0 / double(get_stat(m, SPEED))) + (30.0 * double(attempts));
+		return chance > random(0.0, 255.0);
+	}
 	bool in_status(mon& m, string s) {
 		for (unsigned i = 0; i < m.status.size(); ++i) {
 			if (m.status[i] == s) {
@@ -632,6 +636,7 @@ public:
 	void battle(player& p, mon& m) { // wild pokemon
 		int i;
 		int index;
+		int escape_attempts = 0;
 		vector<int> choices;
 		double count;
 		selected = -1;
@@ -650,45 +655,58 @@ public:
 		do_alert(string("Go! ") + p.team[selected].nickname + string("!"));
 		while (true) {
 			// TODO: Implement player battle menu
-			choices = do_combat_select();
-			while (choices.size() == 0 || choices[0] == -1) {
+			if (p.team[selected].queue.size() == 0) {
 				choices = do_combat_select();
-			}
-			if (choices[0] == 0) { // Player has selected FIGHT
-				p.team[selected].queue.push_back(p.team[selected].moves[choices[1]]);
-				p.team[selected].pp[choices[1]]--;
-			}
-			else if (choices[0] == 1) { // Player has selected ITEM
-				// TODO:  Implement inventory
-				int out = 0;
-				p.team[selected].queue.insert(p.team[selected].queue.begin(), string(""));
-				if (choices[1] == 0) {
-					out = attempt_capture(1.0, m); // Pokeball
+				while (choices.size() == 0 || choices[0] == -1) {
+					choices = do_combat_select();
 				}
-				else if (choices[1] == 1) {
-					out = attempt_capture(1.5, m); // Great Ball
+				if (choices[0] == 0) { // Player has selected FIGHT
+					escape_attempts = 0;
+					p.team[selected].queue.push_back(p.team[selected].moves[choices[1]]);
+					p.team[selected].pp[choices[1]]--;
 				}
-				else if (choices[1] == 2) {
-					out = attempt_capture(2.0, m); // Ultra Ball
-				}
-				if (out == 4) {
-					gain_exp(p.team[selected], m, 1); // TODO:  Implement exp split
-					for (int i = 0; i < 6; ++i) {
-						if (!p.team[i].defined) {
-							p.team[i] = m;
-							return;
-						}
+				else if (choices[0] == 1) { // Player has selected ITEM
+					// TODO:  Implement inventory
+					int out = 0;
+					p.team[selected].queue.insert(p.team[selected].queue.begin(), string(""));
+					if (choices[1] == 0) {
+						out = attempt_capture(1.0, m); // Pokeball
 					}
-					// TODO:  Implement storage
+					else if (choices[1] == 1) {
+						out = attempt_capture(1.5, m); // Great Ball
+					}
+					else if (choices[1] == 2) {
+						out = attempt_capture(2.0, m); // Ultra Ball
+					}
+					if (out == 4) {
+						gain_exp(p.team[selected], m, 1); // TODO:  Implement exp split
+						for (int i = 0; i < 6; ++i) {
+							if (!p.team[i].defined) {
+								p.team[i] = m;
+								return;
+							}
+						}
+						// TODO:  Implement storage
+					}
 				}
-			}
-			else if (choices[0] == 2) { // Player has selected Pokemon
-				p.team[selected].queue.clear();
-				selected = choices[1];
-				p.team[selected].queue.clear();
-				p.team[selected].queue.push_back(string(""));
-			}
-			else if (choices[0] == 3) { // Player has selected RUN
+				else if (choices[0] == 2) { // Player has selected Pokemon
+					p.team[selected].queue.clear();
+					selected = choices[1];
+					p.team[selected].queue.clear();
+					p.team[selected].queue.push_back(string(""));
+				}
+				else if (choices[0] == 3) { // Player has selected RUN
+					escape_attempts++;
+					p.team[selected].queue.clear();
+					if (run_away(p.team[selected], m, escape_attempts)) {
+						do_alert(string("Got away safely!"));
+						break;
+					}
+					else {
+						do_alert(string("Couldn't get away!"));
+					}
+					p.team[selected].queue.push_back(string(""));
+				}
 			}
 			count = 0.0;
 			for (i = 0; i < 4; i++) {
