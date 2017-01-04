@@ -770,7 +770,17 @@ public:
 		crit = false;
 		if (pow == 0.0)
 			return 0;
-		double chance = all_mon[attacker.number].stats[SPEED] / 4.0;
+
+		int buff = 0;
+		for (unsigned i = 0; i < attacker.status.size(); ++i) {
+			if (attacker.status[i] == this->get_buff_name(SPEED)) {
+				buff++;
+			}
+			if (attacker.status[i] == this->get_debuff_name(SPEED)) {
+				buff--;
+			}
+		}
+		double chance = get_stat_modifier(buff) * all_mon[attacker.number].stats[SPEED] / 4.0;
 		if (in_status(attacker, string("FOCUS")))
 			chance *= 4.0;
 		chance *= moves[move].crit_chance;
