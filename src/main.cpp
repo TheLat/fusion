@@ -19,6 +19,8 @@ vector<int> do_menu(string menu) {
 	vector<int> def;
 	if (menu == "FIGHT")
 		return e.do_move_select();
+	else if (menu == "COMBAT_ITEM")
+		return e.do_combat_item_select();
 	return def;
 }
 

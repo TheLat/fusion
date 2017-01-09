@@ -665,7 +665,7 @@ public:
 					p.team[selected].queue.push_back(p.team[selected].moves[choices[1]]);
 					p.team[selected].pp[choices[1]]--;
 				}
-				else if (choices[0] == 1) { // Player has selected ITEM
+				else if (choices[0] == 2) { // Player has selected ITEM
 					// TODO:  Implement inventory
 					int out = 0;
 					p.team[selected].queue.insert(p.team[selected].queue.begin(), string(""));
@@ -678,10 +678,17 @@ public:
 					else if (choices[1] == 2) {
 						out = attempt_capture(2.0, m); // Ultra Ball
 					}
+					else if (choices[1] == 3) {
+						out = attempt_capture(255.0, m); // Master Ball
+					}
+					// TODO:  Capture messages
 					if (out == 4) {
+						m.wild = false;
+						// TODO:  Nickname menu
 						gain_exp(p.team[selected], m, 1); // TODO:  Implement exp split
 						for (int i = 0; i < 6; ++i) {
 							if (!p.team[i].defined) {
+								do_alert(string("Wild ") + m.nickname + string(" was captured!")); // TODO:  Fact-check string
 								p.team[i] = m;
 								return;
 							}
@@ -1621,10 +1628,16 @@ public:
 		menus[menus.size() - 1]->create_combat_select();
 		menus[menus.size() - 1]->push_menu();
 	}
-	void create_move_select() {
+	void create_combat_item_select() {
 		menu* m = new menu;
 		menus.push_back(m);
-		menus[menus.size() - 1]->create_move_select();
+		menus[menus.size() - 1]->create_combat_item_select();
+		menus[menus.size() - 1]->push_menu();
+	}
+	void create_combat_move_select() {
+		menu* m = new menu;
+		menus.push_back(m);
+		menus[menus.size() - 1]->create_combat_move_select();
 		menus[menus.size() - 1]->push_menu();
 	}
 	void do_alert(string s) {
@@ -1641,9 +1654,17 @@ public:
 		menus.erase(menus.end() - 1);
 		return out;
 	}
+	vector<int> do_combat_item_select() {
+		vector<int> out;
+		create_combat_item_select();
+		out = menus[menus.size() - 1]->main();
+		delete menus[menus.size() - 1];
+		menus.erase(menus.end() - 1);
+		return out;
+	}
 	vector<int> do_move_select() {
 		vector<int> out;
-		create_move_select();
+		create_combat_move_select();
 		out = menus[menus.size() - 1]->main();
 		delete menus[menus.size() - 1];
 		menus.erase(menus.end() - 1);

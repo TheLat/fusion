@@ -28,9 +28,9 @@ public:
 	vector<box> boxes;
 	vector<text> raw, display;
 	vector<string> followup;
-	int index, step, selection, columns, cursor, selection_cap;
+	int index, step, selection, columns, cursor, selection_cap, offset;
 	bool done;
-	menu() { step = 0; index = 0; done = false; selection = 0; selection_cap = 0; columns = 1; cursor = -1; }
+	menu() { step = 0; index = 0; done = false; selection = 0; selection_cap = 0; columns = 1; cursor = -1; offset = 0; }
 	void create_alert(string s) {
 		box b;
 		text t;
@@ -90,18 +90,54 @@ public:
 		raw.push_back(t);
 		process_strings();
 	}
-	void create_move_select() {
+	void create_combat_item_select() {
 		box b;
 		text t;
 		columns = 1;
 		type = "SELECT";
+		boxes.clear();
+		raw.clear();
+		followup.clear();
+		selection_cap = 5;
+		b.xmin = -0.6f;
+		b.length = 1.6f;
+		b.ymin = -0.5f;
+		b.height = 1.3f;
+		boxes.push_back(b);
+		t.xmin = -0.4f;
+		t.length = 1.4f;
+		t.ymin = 0.4f;
+		t.height = 0.1f;
+		t.s = "POK{e-accent} BALL";
+		raw.push_back(t);
+		t.ymin -= 0.2f;
+		t.s = "GREAT BALL";
+		raw.push_back(t);
+		t.ymin -= 0.2f;
+		t.s = "ULTRA BALL";
+		raw.push_back(t);
+		t.ymin -= 0.2f;
+		t.s = "MASTER BALL";
+		raw.push_back(t);
+		t.ymin -= 0.2f;
+		t.s = "CANCEL"; // TODO:  Figure out how to handle this correctly
+		raw.push_back(t);
+
+
+		process_strings();
+	}
+	void create_combat_move_select() {
+		box b;
+		text t;
+		columns = 1;
+		type = "SELECT";
+		boxes.clear();
+		raw.clear();
+		followup.clear();
 		b.xmin = -0.6f;
 		b.length = 1.6f;
 		b.ymin = -1.0f;
 		b.height = 0.6f;
-		boxes.clear();
-		raw.clear();
-		followup.clear();
 		boxes.push_back(b);
 		for (int i = 0; i < 4; ++i) {
 			t.xmin = -0.4f;
