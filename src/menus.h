@@ -28,9 +28,9 @@ public:
 	vector<box> boxes;
 	vector<text> raw, display;
 	vector<string> followup;
-	int index, step, selection, columns, cursor, selection_cap, offset;
+	int index, step, selection, columns, cursor, selection_cap, offset, cancel_option;
 	bool done;
-	menu() { step = 0; index = 0; done = false; selection = 0; selection_cap = 0; columns = 1; cursor = -1; offset = 0; }
+	menu() { step = 0; index = 0; done = false; selection = 0; selection_cap = 0; columns = 1; cursor = -1; offset = 0; cancel_option = -1; }
 	void create_alert(string s) {
 		box b;
 		text t;
@@ -99,6 +99,7 @@ public:
 		raw.clear();
 		followup.clear();
 		selection_cap = 5;
+		cancel_option = 4; // TODO:  Make this be intentory.size()
 		b.xmin = -0.6f;
 		b.length = 1.6f;
 		b.ymin = -0.5f;
@@ -264,8 +265,6 @@ public:
 				done = true;
 			}
 			process_strings();
-			pop_menu();
-			push_menu();
 		}
 		m2.unlock();
 	}
@@ -299,6 +298,8 @@ public:
 		}
 		pop_menu();
 		choice.insert(choice.begin(), selection);
+		if ((choice.size() > 0) && (choice[0] == offset + cancel_option))
+			choice[0] = -1;
 		return choice;
 	}
 };
