@@ -567,19 +567,35 @@ public:
 		for (unsigned i = 0; i < self.status.size(); ++i) {
 			if (self.status[i] == "POISON") {
 				// TODO: Animation goes here
+				if (self.wild)
+					do_alert(string("The wild ") + self.nickname + string(" is hurt by the poison!"));
+				else
+					do_alert(self.nickname + string(" is hurt by the poison!"));
 				deal_damage(self, int(double(get_stat(self, HP)) / 16.0));
 			}
 			else if (self.status[i] == "BURN") {
 				// TODO: Animation goes here
+				if (self.wild)
+					do_alert(string("The wild ") + self.nickname + string(" is hurt by its burn!"));
+				else
+					do_alert(self.nickname + string(" is hurt by its burn!"));
 				deal_damage(self, int(double(get_stat(self, HP)) / 16.0));
 			}
 			else if (self.status[i] == "SEED") {
 				// TODO: Animation goes here
+				if (self.wild)
+					do_alert(string("The wild ") + self.nickname + string("'s health was sapped by Leech Seed!"));
+				else
+					do_alert(self.nickname + string("'s health was sapped by Leech Seed!"));
 				deal_damage(self, int(double(get_stat(self, HP)) / 16.0));
 				heal_damage(other, int(double(get_stat(self, HP)) / 16.0));
 			}
 			else if (self.status[i] == "TOXIC") {
 				// TODO: Animation goes here
+				if (self.wild)
+					do_alert(string("The wild ") + self.nickname + string(" is hurt by the poison!"));
+				else
+					do_alert(self.nickname + string(" is hurt by the poison!"));
 				deal_damage(self, int(self.turn_count * double(get_stat(self, HP)) / 16.0));
 			}
 		}
@@ -675,6 +691,7 @@ public:
 			if (0.2 > random(0.0, 1.0)) {
 				remove_status(m1, string("FREEZE"));
 				do_alert(m1.nickname + string(" thawed out!"));
+				m1.queue.clear();
 			}
 			else {
 				do_alert(m1.nickname + string(" is frozen solid!"));
@@ -683,6 +700,7 @@ public:
 		}
 		else if (in_status(m1, string("PARALYZE")) && (0.25 > random(0.0, 1.0))) {
 			do_alert(m1.nickname + string(" is paralyzed! It can't move!"));
+			m1.queue.clear();
 			// TODO:  Paralyze animation
 		}
 		else if (m1.queue[0] != "") {
@@ -714,6 +732,7 @@ public:
 			if (0.2 > random(0.0, 1.0)) {
 				remove_status(m2, string("FREEZE"));
 				do_alert(m2.nickname + string(" thawed out!"));
+				m2.queue.clear();
 			}
 			else {
 				do_alert(m2.nickname + string(" is frozen solid!"));
@@ -722,6 +741,7 @@ public:
 		}
 		else if (in_status(m2, string("PARALYZE")) && (0.25 > random(0.0, 1.0))) {
 			do_alert(m2.nickname + string(" is paralyzed! It can't move!"));
+			m2.queue.clear();
 			// TODO:  Paralyze animation
 		}
 		else if (m2.queue[0] != "") {
