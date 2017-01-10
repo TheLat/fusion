@@ -7,6 +7,7 @@ extern graphics g;
 extern engine e;
 extern mutex m;
 extern string get_special_string(string in);
+extern int get_team_size();
 extern vector<int> do_menu(string menu);
 mutex m2;
 
@@ -29,8 +30,9 @@ public:
 	vector<text> raw, display;
 	vector<string> followup;
 	int index, step, selection, columns, cursor, selection_cap, offset, cancel_option;
+	float cursor_offset_x, cursor_offset_y;
 	bool done;
-	menu() { step = 0; index = 0; done = false; selection = 0; selection_cap = 0; columns = 1; cursor = -1; offset = 0; cancel_option = -1; }
+	menu() { step = 0; index = 0; done = false; selection = 0; selection_cap = 0; columns = 1; cursor = -1; offset = 0; cancel_option = -1; cursor_offset_x = 0.0f; cursor_offset_y = 0.0; }
 	void create_alert(string s) {
 		box b;
 		text t;
@@ -73,7 +75,7 @@ public:
 		t.xmin = 0.6f;
 		t.length = 0.3f;
 		t.s = "{PK}{MN}";
-		followup.push_back(string("POKEMON"));
+		followup.push_back(string("COMBAT_POKEMON"));
 		raw.push_back(t);
 		t.xmin = 0.0f;
 		t.length = 0.6f;
@@ -88,6 +90,50 @@ public:
 		selection_cap = 4;
 		followup.push_back(string(""));
 		raw.push_back(t);
+		process_strings();
+	}
+	void create_combat_pokemon_select() {
+		box b;
+		text t;
+		columns = 1;
+		type = "SELECT";
+		cursor_offset_x = -0.2f;
+		cursor_offset_y = -0.1f;
+		selection_cap = get_team_size();
+		boxes.clear();
+		raw.clear();
+		followup.clear();
+		b.ymin = -1.1f;
+		b.height = 2.2f;
+		b.xmin = -1.1f;
+		b.length = 2.2f;
+		boxes.push_back(b);
+		t.xmin = -0.7f;
+		t.length = 1.4f;
+		t.ymin = 1.0f;
+		t.height = 0.1f;
+		for (int i = 0; i < 6; ++i) {
+			t.ymin -= 0.2f;
+			t.s = string("TEAM_MON_NAME:") + to_string(i);
+			raw.push_back(t);
+		}
+		t.ymin = 1.0f;
+		t.xmin = 0.7f;
+		t.length = 0.2f;
+		for (int i = 0; i < 6; ++i) {
+			t.ymin -= 0.2f;
+			t.s = string("TEAM_MON_LEVEL:") + to_string(i);
+			raw.push_back(t);
+		}
+		t.ymin = 0.9f;
+		t.length = 1.0f;
+		t.xmin = 0.3;
+		for (int i = 0; i < 6; ++i) {
+			t.ymin -= 0.2f;
+			t.s = string("TEAM_MON_FORMATTED_HP:") + to_string(i);
+			raw.push_back(t);
+		}
+
 		process_strings();
 	}
 	void create_combat_item_select() {
@@ -274,11 +320,11 @@ public:
 			m2.lock();
 			if (type == "SELECT" && cursor == -1) {
 				cursor = g.draw_list.size();
-				g.push_quad(display[0].xmin - 0.1f, display[0].ymin - 0.1f, 0.1f, 0.1f, g.menu_tex[string("cursor-2.bmp")]);
+				g.push_quad(display[0].xmin - 0.1f + cursor_offset_x, display[0].ymin - 0.1f + cursor_offset_y, 0.1f, 0.1f, g.menu_tex[string("cursor-2.bmp")]);
 			}
 			if ((cursor > 0) && (selection != -1)) {
-				g.draw_list[cursor].x = display[selection].xmin - 0.1f;
-				g.draw_list[cursor].y = display[selection].ymin + 0.1f;
+				g.draw_list[cursor].x = display[selection].xmin - 0.1f + cursor_offset_x;
+				g.draw_list[cursor].y = display[selection].ymin + 0.1f + cursor_offset_y;
 			}
 			m2.unlock();
 			if (done && (selection >= 0) && (followup.size() > 0)) {

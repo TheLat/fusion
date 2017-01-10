@@ -214,6 +214,41 @@ public:
 					out = string(" ") + out;
 				return out;
 			}
+			else if (parse == "TEAM_MON_NAME"){
+				int index = stoi(temp);
+				if (!mc.team[index].defined)
+					return string("");
+				return mc.team[index].nickname;
+			}
+			else if (parse == "TEAM_MON_LEVEL"){
+				int index = stoi(temp);
+				if (!mc.team[index].defined)
+					return string("");
+				if (mc.team[index].level == 100)
+					return string("L**");
+				return string("L") + to_string(mc.team[index].level);
+			}
+			else if (parse == "TEAM_MON_MAX_HP"){
+				int index = stoi(temp);
+				if (!mc.team[index].defined)
+					return string("");
+				return to_string(get_stat(mc.team[index], HP));
+			}
+			else if (parse == "TEAM_MON_CURRENT_HP"){
+				int index = stoi(temp);
+				if (!mc.team[index].defined)
+					return string("");
+				return to_string(mc.team[index].curr_hp);
+			}
+			else if (parse == "TEAM_MON_FORMATTED_HP") {
+				int index = stoi(temp);
+				if (!mc.team[index].defined)
+					return string("");
+				string o = to_string(mc.team[index].curr_hp) + string("/") + to_string(get_stat(mc.team[index], HP));
+				while (o.length() < 7)
+					o = string(" ") + o;
+				return o;
+			}
 		}
 		return in;
 	}
@@ -1628,6 +1663,12 @@ public:
 		menus[menus.size() - 1]->create_combat_select();
 		menus[menus.size() - 1]->push_menu();
 	}
+	void create_combat_pokemon_select() {
+		menu* m = new menu;
+		menus.push_back(m);
+		menus[menus.size() - 1]->create_combat_pokemon_select();
+		menus[menus.size() - 1]->push_menu();
+	}
 	void create_combat_item_select() {
 		menu* m = new menu;
 		menus.push_back(m);
@@ -1649,6 +1690,14 @@ public:
 	vector<int> do_combat_select() {
 		vector<int> out;
 		create_combat_select();
+		out = menus[menus.size() - 1]->main();
+		delete menus[menus.size() - 1];
+		menus.erase(menus.end() - 1);
+		return out;
+	}
+	vector<int> do_combat_pokemon_select() {
+		vector<int> out;
+		create_combat_pokemon_select();
 		out = menus[menus.size() - 1]->main();
 		delete menus[menus.size() - 1];
 		menus.erase(menus.end() - 1);

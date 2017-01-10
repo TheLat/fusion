@@ -11,6 +11,17 @@ mutex m;
 engine e;
 graphics g;
 
+int get_team_size() {
+	int ret = 0;
+	for (int i = 0; i < 6; ++i) {
+		if (e.mc.team[i].defined)
+			ret++;
+		else
+			break;
+	}
+	return ret;
+}
+
 string get_special_string(string in) {
 	return e.get_special_string(in);
 }
@@ -21,6 +32,8 @@ vector<int> do_menu(string menu) {
 		return e.do_move_select();
 	else if (menu == "COMBAT_ITEM")
 		return e.do_combat_item_select();
+	else if (menu == "COMBAT_POKEMON")
+		return e.do_combat_pokemon_select();
 	return def;
 }
 

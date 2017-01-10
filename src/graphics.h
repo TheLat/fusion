@@ -232,7 +232,7 @@ public:
 				key = string_lookup[key].value;
 			push_quad(x_curr, y_curr, size, size, menu_tex[key]);
 			x_curr += size;
-			if (x_curr >= x + width || (!no_chunk_yet && ((float(next_chunk(s, i) - i))*size + x_curr > 0.9f))) {
+			if ((height != size) &&(x_curr >= x + width || (!no_chunk_yet && ((float(next_chunk(s, i) - i))*size + x_curr > 0.9f)))) {
 				no_chunk_yet = true;
 				x_curr = x;
 				y_curr -= size*2.0f;
