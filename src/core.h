@@ -695,6 +695,7 @@ public:
 			}
 			else {
 				do_alert(m1.nickname + string(" is frozen solid!"));
+				m2.queue.clear();
 				// TODO:  Freeze animation
 			}
 		}
@@ -736,6 +737,7 @@ public:
 			}
 			else {
 				do_alert(m2.nickname + string(" is frozen solid!"));
+				m2.queue.clear();
 				// TODO:  Freeze animation
 			}
 		}
