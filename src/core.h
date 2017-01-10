@@ -1044,10 +1044,12 @@ public:
 			ret = ret * m.level;
 			ret = ret / 100;
 			ret = ret + 5;
-			if (s == ATTACK && in_status(m, string("BURN")))
-				ret = ret / 2;
-			if (s == SPEED && in_status(m, string("PARALYZE")))
-				ret = ret / 4;
+			if (!ignore_debuffs) {
+				if (s == ATTACK && in_status(m, string("BURN")))
+					ret = ret / 2;
+				if (s == SPEED && in_status(m, string("PARALYZE")))
+					ret = ret / 4;
+			}
 		}
 		int buff = 0;
 		for (unsigned i = 0; i < m.status.size(); ++i) {
