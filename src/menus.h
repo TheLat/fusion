@@ -92,13 +92,43 @@ public:
 		raw.push_back(t);
 		process_strings();
 	}
+	void create_combat_switch_confirm() {
+		box b;
+		text t;
+		columns = 1;
+		type = "SELECT";
+		selection_cap = 3;
+		cancel_option = 2;
+		boxes.clear();
+		raw.clear();
+		followup.clear();
+		// TODO:  Sync formatting with game
+		b.xmin = 0.1f;
+		b.length = 0.9f;
+		b.ymin = -0.4f;
+		b.height = 0.7f;
+		boxes.push_back(b);
+		t.xmin = 0.3f;
+		t.length = 0.6f;
+		t.ymin = 0.0f;
+		t.height = 0.1f;
+		t.s = string("SWITCH");
+		raw.push_back(t);
+		t.ymin -= 0.2f;
+		t.s = string("STATS");
+		raw.push_back(t);
+		t.ymin -= 0.2f;
+		t.s = string("CANCEL");
+		raw.push_back(t);
+		process_strings();
+	}
 	void create_combat_mon_select() {
 		box b;
 		text t;
 		columns = 1;
 		type = "SELECT";
 		cursor_offset_x = -0.2f;
-		cursor_offset_y = -0.1f;
+		cursor_offset_y = -0.05f;
 		selection_cap = get_team_size();
 		boxes.clear();
 		raw.clear();
@@ -121,6 +151,7 @@ public:
 			t.ymin -= 0.2f;
 			t.s = string("TEAM_MON_NAME:") + to_string(i);
 			raw.push_back(t);
+			followup.push_back(string("COMBAT_SWITCH_CONFIRM"));
 		}
 		t.ymin = 1.0f;
 		t.xmin = 0.7f;

@@ -197,6 +197,8 @@ public:
 				parse += temp[i];
 			}
 			temp.erase(0, temp.find(':') + 1);
+			if (stoi(temp) == -1)
+				return string(""); // TODO:  Better error detection.
 			if (parse == "ACTIVE_MON_MOVE") {
 				out = mc.team[selected].moves[stoi(temp)];
 				if (out == "") {
@@ -702,6 +704,14 @@ public:
 					p.team[selected].queue.push_back(p.team[selected].moves[choices[1]]);
 					p.team[selected].pp[choices[1]]--;
 				}
+				else if (choices[0] == 1) { // Player has selected Pokemon
+					p.team[selected].queue.clear();
+					do_alert(p.team[selected].nickname + string("! That's enough!"));
+					selected = choices[1];
+					do_alert(string("Go, ") + p.team[selected].nickname + string("!"));
+					p.team[selected].queue.clear();
+					p.team[selected].queue.push_back(string(""));
+				}
 				else if (choices[0] == 2) { // Player has selected ITEM
 					// TODO:  Implement inventory
 					int out = 0;
@@ -733,12 +743,6 @@ public:
 						}
 						// TODO:  Implement storage
 					}
-				}
-				else if (choices[0] == 2) { // Player has selected Pokemon
-					p.team[selected].queue.clear();
-					selected = choices[1];
-					p.team[selected].queue.clear();
-					p.team[selected].queue.push_back(string(""));
 				}
 				else if (choices[0] == 3) { // Player has selected RUN
 					escape_attempts++;
@@ -1670,6 +1674,12 @@ public:
 		menus[menus.size() - 1]->create_combat_select();
 		menus[menus.size() - 1]->push_menu();
 	}
+	void create_combat_switch_confirm() {
+		menu* m = new menu;
+		menus.push_back(m);
+		menus[menus.size() - 1]->create_combat_switch_confirm();
+		menus[menus.size() - 1]->push_menu();
+	}
 	void create_combat_mon_select() {
 		menu* m = new menu;
 		menus.push_back(m);
@@ -1697,6 +1707,14 @@ public:
 	vector<int> do_combat_select() {
 		vector<int> out;
 		create_combat_select();
+		out = menus[menus.size() - 1]->main();
+		delete menus[menus.size() - 1];
+		menus.erase(menus.end() - 1);
+		return out;
+	}
+	vector<int> do_combat_switch_confirm() {
+		vector<int> out;
+		create_combat_switch_confirm();
 		out = menus[menus.size() - 1]->main();
 		delete menus[menus.size() - 1];
 		menus.erase(menus.end() - 1);

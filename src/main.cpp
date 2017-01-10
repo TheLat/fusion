@@ -34,6 +34,8 @@ vector<int> do_menu(string menu) {
 		return e.do_combat_item_select();
 	else if (menu == "COMBAT_MON")
 		return e.do_combat_mon_select();
+	else if (menu == "COMBAT_SWITCH_CONFIRM")
+		return e.do_combat_switch_confirm();
 	return def;
 }
 
