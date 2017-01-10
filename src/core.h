@@ -197,17 +197,17 @@ public:
 				parse += temp[i];
 			}
 			temp.erase(0, temp.find(':') + 1);
-			if (parse == "ACTIVE_POKEMON_MOVE") {
+			if (parse == "ACTIVE_MON_MOVE") {
 				out = mc.team[selected].moves[stoi(temp)];
 				if (out == "") {
 					out = "-";
 				}
 				return out;
 			}
-			else if (parse == "ACTIVE_POKEMON_MOVE_TYPE") {
+			else if (parse == "ACTIVE_MON_MOVE_TYPE") {
 				return moves[mc.team[selected].moves[stoi(temp)]].type;
 			}
-			else if (parse == "ACTIVE_POKEMON_MOVE_PP") {
+			else if (parse == "ACTIVE_MON_MOVE_PP") {
 				int index = stoi(temp);
 				out = to_string(mc.team[selected].pp[index]) + string("/") + to_string(mc.team[selected].max_pp[index]);
 				while (out.length() < 9)
@@ -1663,10 +1663,10 @@ public:
 		menus[menus.size() - 1]->create_combat_select();
 		menus[menus.size() - 1]->push_menu();
 	}
-	void create_combat_pokemon_select() {
+	void create_combat_mon_select() {
 		menu* m = new menu;
 		menus.push_back(m);
-		menus[menus.size() - 1]->create_combat_pokemon_select();
+		menus[menus.size() - 1]->create_combat_mon_select();
 		menus[menus.size() - 1]->push_menu();
 	}
 	void create_combat_item_select() {
@@ -1695,9 +1695,9 @@ public:
 		menus.erase(menus.end() - 1);
 		return out;
 	}
-	vector<int> do_combat_pokemon_select() {
+	vector<int> do_combat_mon_select() {
 		vector<int> out;
-		create_combat_pokemon_select();
+		create_combat_mon_select();
 		out = menus[menus.size() - 1]->main();
 		delete menus[menus.size() - 1];
 		menus.erase(menus.end() - 1);

@@ -75,7 +75,7 @@ public:
 		t.xmin = 0.6f;
 		t.length = 0.3f;
 		t.s = "{PK}{MN}";
-		followup.push_back(string("COMBAT_POKEMON"));
+		followup.push_back(string("COMBAT_MON"));
 		raw.push_back(t);
 		t.xmin = 0.0f;
 		t.length = 0.6f;
@@ -92,7 +92,7 @@ public:
 		raw.push_back(t);
 		process_strings();
 	}
-	void create_combat_pokemon_select() {
+	void create_combat_mon_select() {
 		box b;
 		text t;
 		columns = 1;
@@ -155,6 +155,7 @@ public:
 		followup.clear();
 		selection_cap = 5;
 		cancel_option = 4; // TODO:  Make this be intentory.size()
+		// TODO: Make go off actual inventory and give numbers
 		b.xmin = -0.6f;
 		b.length = 1.6f;
 		b.ymin = -0.5f;
@@ -200,7 +201,7 @@ public:
 			t.length = 1.4f;
 			t.ymin = -0.7f - (0.1f*(float(i)));
 			t.height = 0.1f;
-			t.s = string("ACTIVE_POKEMON_MOVE:") + to_string(i);
+			t.s = string("ACTIVE_MON_MOVE:") + to_string(i);
 			if (get_special_string(t.s) != "-") {
 				selection_cap = i + 1;
 			}
@@ -222,13 +223,13 @@ public:
 		t.xmin = -0.8f;
 		t.length = 0.8f;
 		t.ymin = -0.3;
-		t.s = string("ACTIVE_POKEMON_MOVE_TYPE:SELECTION");
+		t.s = string("ACTIVE_MON_MOVE_TYPE:SELECTION");
 		raw.push_back(t);
 		t.xmin = -0.9f;
 		t.length = 0.9f;
 		t.ymin = -0.4;
 		t.height = 0.1f;
-		t.s = string("ACTIVE_POKEMON_MOVE_PP:SELECTION");
+		t.s = string("ACTIVE_MON_MOVE_PP:SELECTION");
 		raw.push_back(t);
 		process_strings();
 	}
@@ -320,6 +321,8 @@ public:
 				done = true;
 			}
 			process_strings();
+			pop_menu();
+			push_menu();
 		}
 		m2.unlock();
 	}

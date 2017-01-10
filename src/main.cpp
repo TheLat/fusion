@@ -32,8 +32,8 @@ vector<int> do_menu(string menu) {
 		return e.do_move_select();
 	else if (menu == "COMBAT_ITEM")
 		return e.do_combat_item_select();
-	else if (menu == "COMBAT_POKEMON")
-		return e.do_combat_pokemon_select();
+	else if (menu == "COMBAT_MON")
+		return e.do_combat_mon_select();
 	return def;
 }
 
