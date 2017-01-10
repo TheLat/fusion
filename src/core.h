@@ -674,6 +674,8 @@ public:
 		int escape_attempts = 0;
 		vector<int> choices;
 		double count;
+		int clear_point = g.draw_list.size();
+		g.push_box(-1.1f, -1.1f, 2.2f, 2.2f);
 		selected = -1;
 		// TODO:  Initial menu
 		for (i = 0; i < 6; ++i) {
@@ -725,6 +727,7 @@ public:
 							if (!p.team[i].defined) {
 								do_alert(string("Wild ") + m.nickname + string(" was captured!")); // TODO:  Fact-check string
 								p.team[i] = m;
+								g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
 								return;
 							}
 						}
@@ -742,6 +745,7 @@ public:
 					p.team[selected].queue.clear();
 					if (run_away(p.team[selected], m, escape_attempts)) {
 						do_alert(string("Got away safely!"));
+						g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
 						break;
 					}
 					else {
@@ -763,6 +767,7 @@ public:
 			if (is_KO(m)) {
 				do_alert(string("Enemy ") + m.nickname + string(" fainted!"));
 				gain_exp(p.team[selected], m, 1);
+				g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
 				break;
 			}
 			if (is_KO(p.team[selected])) {
@@ -778,6 +783,8 @@ public:
 				}
 				if (i == 6) {
 					// TODO:  Handle defeat
+					do_alert("You lost!");
+					g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
 					break;
 				}
 			}

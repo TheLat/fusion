@@ -57,13 +57,13 @@ public:
 		text t;
 		columns = 2;
 		type = "SELECT";
+		boxes.clear();
+		raw.clear();
+		followup.clear();
 		b.xmin = -0.2f;
 		b.length = 1.2f;
 		b.ymin = -1.0f;
 		b.height = 0.6f;
-		boxes.clear();
-		raw.clear();
-		followup.clear();
 		boxes.push_back(b);
 		t.xmin = 0.0f;
 		t.length = 0.6f;
