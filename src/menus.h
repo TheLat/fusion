@@ -108,6 +108,11 @@ public:
 		b.xmin = -1.1f;
 		b.length = 2.2f;
 		boxes.push_back(b);
+		b.ymin = -1.0f;
+		b.height = 0.8f;
+		b.xmin = -1.0f;
+		b.length = 2.0f;
+		boxes.push_back(b);
 		t.xmin = -0.7f;
 		t.length = 1.4f;
 		t.ymin = 1.0f;
@@ -133,7 +138,11 @@ public:
 			t.s = string("TEAM_MON_FORMATTED_HP:") + to_string(i);
 			raw.push_back(t);
 		}
-
+		t.xmin = -0.9f;
+		t.length = 1.8f;
+		t.ymin = -0.6f;
+		t.s = string("Choose a POK{e-accent}MON.");
+		raw.push_back(t);
 		process_strings();
 	}
 	void create_combat_item_select() {
