@@ -217,6 +217,11 @@ public:
 		float x_curr = x;
 		float y_curr = y + height;
 		bool no_chunk_yet = true;
+		bool double_spaced = true;
+		if (s.find("{SINGLE}") == 0) {
+			double_spaced = false;
+			s.erase(0, string("{SINGLE}").length());
+		}
 		for (unsigned i = 0; i < s.size(); ++i) {
 			if (chunk[s[i]])
 				no_chunk_yet = false;
@@ -235,7 +240,9 @@ public:
 			if ((height != size) &&(x_curr >= x + width || (!no_chunk_yet && ((float(next_chunk(s, i) - i))*size + x_curr > 0.9f)))) {
 				no_chunk_yet = true;
 				x_curr = x;
-				y_curr -= size*2.0f;
+				y_curr -= size;
+				if (double_spaced)
+					y_curr -= size;
 			}
 			if (y_curr < y)
 				return i + 1;

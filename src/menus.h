@@ -92,7 +92,90 @@ public:
 		raw.push_back(t);
 		process_strings();
 	}
-	void create_combat_switch_confirm() {
+	void create_stats(int choice) {
+		box b;
+		text t;
+		columns = 1;
+		type = "SELECT";
+		selection_cap = 1;
+		boxes.clear();
+		raw.clear();
+		followup.clear();
+		b.ymin = -1.1f;
+		b.height = 2.2f;
+		b.xmin = -1.1f;
+		b.length = 2.2f;
+		boxes.push_back(b);
+		b.ymin = -1.0f;
+		b.xmin = -1.0f;
+		b.length = 1.0f;
+		b.height = 1.0f;
+		boxes.push_back(b);
+		t.height = 0.1f;
+		t.length = 1.0f;
+		t.ymin = -2.0f; //HACK
+		t.xmin = -2.0f;
+		t.s = "Next screen.";
+		raw.push_back(t);
+		t.xmin = -0.9f;
+		t.length = 0.8f;
+		t.ymin = -0.3f;
+		t.s = "ATTACK";
+		raw.push_back(t);
+		t.ymin = -0.5f;
+		t.s = "DEFENSE";
+		raw.push_back(t);
+		t.ymin = -0.7f;
+		t.s = "SPEED";
+		raw.push_back(t);
+		t.ymin = -0.9f;
+		t.s = "SPECIAL";
+		raw.push_back(t);
+		t.xmin = -0.9f;
+		t.length = 0.8f;
+		t.ymin = -0.4f;
+		t.s = string("TEAM_MON_ATTACK:") + to_string(choice);
+		raw.push_back(t);
+		t.ymin = -0.6f;
+		t.s = string("TEAM_MON_DEFENSE:") + to_string(choice);
+		raw.push_back(t);
+		t.ymin = -0.8f;
+		t.s = string("TEAM_MON_SPEED:") + to_string(choice);
+		raw.push_back(t);
+		t.ymin = -1.0f;
+		t.s = string("TEAM_MON_SPECIAL:") + to_string(choice);
+		raw.push_back(t);
+		t.xmin = 0.0f;
+		t.ymin = -0.2f;
+		t.s = string("TYPE1/");
+		raw.push_back(t);
+		t.xmin = 0.1f;
+		t.ymin = -0.3f;
+		t.s = string("TEAM_MON_TYPE1:") + to_string(choice);
+		raw.push_back(t);
+		t.xmin = 0.0f;
+		t.ymin = -0.4f;
+		t.s = string("TYPE2_IF_EXISTS:") + to_string(choice);
+		raw.push_back(t);
+		t.xmin = 0.1f;
+		t.ymin = -0.5f;
+		t.s = string("TEAM_MON_TYPE2:") + to_string(choice);
+		raw.push_back(t);
+		t.xmin = 0.0f;
+		t.ymin = -0.6f;
+		t.s = string("STATUS/");
+		raw.push_back(t);
+		t.xmin = 0.1f;
+		t.ymin = -1.1f;
+		t.height = 0.5f;
+		t.length = 0.9f;
+		t.s = string("TEAM_MON_STATUS:") + to_string(choice);
+		raw.push_back(t);
+
+
+		process_strings();
+	}
+	void create_combat_switch_confirm(int choice) {
 		box b;
 		text t;
 		columns = 1;
@@ -105,20 +188,23 @@ public:
 		// TODO:  Sync formatting with game
 		b.xmin = 0.1f;
 		b.length = 0.9f;
-		b.ymin = -0.4f;
+		b.ymin = -1.0f;
 		b.height = 0.7f;
 		boxes.push_back(b);
 		t.xmin = 0.3f;
 		t.length = 0.6f;
-		t.ymin = 0.0f;
+		t.ymin = -0.6f;
 		t.height = 0.1f;
 		t.s = string("SWITCH");
 		raw.push_back(t);
+		followup.push_back(string(""));
 		t.ymin -= 0.2f;
 		t.s = string("STATS");
+		followup.push_back(string("STATS:") + to_string(choice));
 		raw.push_back(t);
 		t.ymin -= 0.2f;
 		t.s = string("CANCEL");
+		followup.push_back(string(""));
 		raw.push_back(t);
 		process_strings();
 	}
@@ -151,7 +237,7 @@ public:
 			t.ymin -= 0.2f;
 			t.s = string("TEAM_MON_NAME:") + to_string(i);
 			raw.push_back(t);
-			followup.push_back(string("COMBAT_SWITCH_CONFIRM"));
+			followup.push_back(string("COMBAT_SWITCH_CONFIRM:") + to_string(i));
 		}
 		t.ymin = 1.0f;
 		t.xmin = 0.7f;

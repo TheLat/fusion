@@ -28,6 +28,13 @@ string get_special_string(string in) {
 
 vector<int> do_menu(string menu) {
 	vector<int> def;
+	int choice = 0;
+	if (menu.find(string(":")) != -1) {
+		string temp = menu;
+		menu = menu.erase(menu.find(string(":")), menu.length());
+		temp = temp.erase(0, temp.find(":") + 1);
+		choice = stoi(temp);
+	}
 	if (menu == "FIGHT")
 		return e.do_move_select();
 	else if (menu == "COMBAT_ITEM")
@@ -35,7 +42,9 @@ vector<int> do_menu(string menu) {
 	else if (menu == "COMBAT_MON")
 		return e.do_combat_mon_select();
 	else if (menu == "COMBAT_SWITCH_CONFIRM")
-		return e.do_combat_switch_confirm();
+		return e.do_combat_switch_confirm(choice);
+	else if (menu == "STATS")
+		return e.do_stats(choice);
 	return def;
 }
 
@@ -100,8 +109,12 @@ int main(int argc, char** argv) {
 	e.init_mon();
 	e.init_levels();
 	e.init_blocking();
-	int l = 9;
-	e.make_mon(string("4"), l, e.mc.team[0]);
+	int l = 29;
+	e.make_mon(string("6"), l, e.mc.team[0]);
+	e.apply_status(e.mc.team[0], string("BURN"));
+	e.apply_status(e.mc.team[0], string("POISON"));
+	e.apply_status(e.mc.team[0], string("FREEZE"));
+	e.apply_status(e.mc.team[0], string("PARALYZE"));
 
 	e.mc.loc.x = 2.0;
 	e.mc.loc.y = 2.0;

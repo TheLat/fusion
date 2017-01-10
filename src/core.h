@@ -251,6 +251,79 @@ public:
 					o = string(" ") + o;
 				return o;
 			}
+			else if (parse == "TEAM_MON_ATTACK"){
+				int index = stoi(temp);
+				if (!mc.team[index].defined)
+					return string("");
+				string o = to_string(get_stat(mc.team[index], ATTACK, true, true));
+				while (o.length() < 8)
+					o = string(" ") + o;
+				return o;
+			}
+			else if (parse == "TEAM_MON_DEFENSE"){
+				int index = stoi(temp);
+				if (!mc.team[index].defined)
+					return string("");
+				string o = to_string(get_stat(mc.team[index], DEFENSE, true, true));
+				while (o.length() < 8)
+					o = string(" ") + o;
+				return o;
+			}
+			else if (parse == "TEAM_MON_SPEED"){
+				int index = stoi(temp);
+				if (!mc.team[index].defined)
+					return string("");
+				string o = to_string(get_stat(mc.team[index], SPEED, true, true));
+				while (o.length() < 8)
+					o = string(" ") + o;
+				return o;
+			}
+			else if (parse == "TEAM_MON_SPECIAL"){
+				int index = stoi(temp);
+				if (!mc.team[index].defined)
+					return string("");
+				string o = to_string(get_stat(mc.team[index], SPECIAL, true, true));
+				while (o.length() < 8)
+					o = string(" ") + o;
+				return o;
+			}
+			else if (parse == "TEAM_MON_TYPE1") {
+				int index = stoi(temp);
+				if (!mc.team[index].defined)
+					return string("");
+				return all_mon[mc.team[index].number].type1;
+			}
+			else if (parse == "TEAM_MON_TYPE2") {
+				int index = stoi(temp);
+				if (!mc.team[index].defined)
+					return string("");
+				return all_mon[mc.team[index].number].type2;
+			}
+			else if (parse == "TYPE2_IF_EXISTS") {
+				int index = stoi(temp);
+				if (!mc.team[index].defined)
+					return string("");
+				if (all_mon[mc.team[index].number].type2 != "")
+					return string("TYPE2/");
+				return string("");
+			}
+			else if (parse == "TEAM_MON_STATUS") {
+				int index = stoi(temp);
+				if (!mc.team[index].defined)
+					return string("");
+				if (mc.team[index].curr_hp <= 0)
+					return string("KO");
+				string o = "{SINGLE}";
+				for (unsigned i = 0; i < mc.team[index].status.size(); ++i) {
+					if (status[mc.team[index].status[i]].defined)
+						if (status[mc.team[index].status[i]].nonvolatile)
+							if (o.find(mc.team[index].status[i]) == -1)
+								o = o + mc.team[index].status[i] + string(" ");
+				}
+				if (o == "")
+					o = "OK";
+				return o;
+			}
 		}
 		return in;
 	}
@@ -1674,10 +1747,16 @@ public:
 		menus[menus.size() - 1]->create_combat_select();
 		menus[menus.size() - 1]->push_menu();
 	}
-	void create_combat_switch_confirm() {
+	void create_stats(int choice) {
 		menu* m = new menu;
 		menus.push_back(m);
-		menus[menus.size() - 1]->create_combat_switch_confirm();
+		menus[menus.size() - 1]->create_stats(choice);
+		menus[menus.size() - 1]->push_menu();
+	}
+	void create_combat_switch_confirm(int choice) {
+		menu* m = new menu;
+		menus.push_back(m);
+		menus[menus.size() - 1]->create_combat_switch_confirm(choice);
 		menus[menus.size() - 1]->push_menu();
 	}
 	void create_combat_mon_select() {
@@ -1712,9 +1791,17 @@ public:
 		menus.erase(menus.end() - 1);
 		return out;
 	}
-	vector<int> do_combat_switch_confirm() {
+	vector<int> do_stats(int choice){
 		vector<int> out;
-		create_combat_switch_confirm();
+		create_stats(choice);
+		out = menus[menus.size() - 1]->main();
+		delete menus[menus.size() - 1];
+		menus.erase(menus.end() - 1);
+		return out;
+	}
+	vector<int> do_combat_switch_confirm(int choice) {
+		vector<int> out;
+		create_combat_switch_confirm(choice);
 		out = menus[menus.size() - 1]->main();
 		delete menus[menus.size() - 1];
 		menus.erase(menus.end() - 1);
