@@ -112,6 +112,7 @@ int main(int argc, char** argv) {
 	int l = 29;
 	e.make_mon(string("6"), l, e.mc.team[0]);
 	e.mc.team[0].wild = false;
+	e.mc.team[0].nickname = "VICTREELIWHIRL";
 	e.apply_status(e.mc.team[0], string("BURN"));
 	e.apply_status(e.mc.team[0], string("POISON"));
 	e.apply_status(e.mc.team[0], string("FREEZE"));

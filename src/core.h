@@ -324,6 +324,15 @@ public:
 					o = "OK";
 				return o;
 			}
+			else if (parse == "TEAM_MON_NAME_RIGHT_JUSTIFIED") {
+				int index = stoi(temp);
+				if (!mc.team[index].defined)
+					return string("");
+				string o = mc.team[index].nickname;
+				while (o.length() < 14)
+					o = string(" ") + o;
+				return o;
+			}
 		}
 		return in;
 	}

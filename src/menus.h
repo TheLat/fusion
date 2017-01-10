@@ -116,6 +116,7 @@ public:
 		t.ymin = -2.0f; //HACK
 		t.xmin = -2.0f;
 		t.s = "Next screen.";
+		followup.push_back(string("MOVES"));
 		raw.push_back(t);
 		t.xmin = -0.9f;
 		t.length = 0.8f;
@@ -171,8 +172,17 @@ public:
 		t.length = 0.9f;
 		t.s = string("TEAM_MON_STATUS:") + to_string(choice);
 		raw.push_back(t);
-
-
+		t.xmin = -0.5f;
+		t.length = 1.4f;
+		t.ymin = 0.7f;
+		t.height = 0.1f;
+		t.s = string("TEAM_MON_NAME_RIGHT_JUSTIFIED:") + to_string(choice);
+		raw.push_back(t);
+		t.xmin = 0.2f;
+		t.ymin = 0.4f;
+		t.length = 0.7f;
+		t.s = string("TEAM_MON_FORMATTED_HP:") + to_string(choice);
+		raw.push_back(t);
 		process_strings();
 	}
 	void create_combat_switch_confirm(int choice) {
