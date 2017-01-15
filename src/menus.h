@@ -191,6 +191,11 @@ public:
 		t.length = 0.7f;
 		t.s = string("TEAM_MON_FORMATTED_HP:") + to_string(choice);
 		raw.push_back(t);
+		t.xmin = -0.9f;
+		t.length = 0.8f;
+		t.ymin = -0.1f;
+		t.s = string("TEAM_MON_NUMBER:") + to_string(choice);
+		raw.push_back(t);
 		process_strings();
 	}
 	void create_combat_switch_confirm(int choice) {

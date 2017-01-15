@@ -236,6 +236,12 @@ public:
 					return string("");
 				return to_string(get_stat(mc.team[index], HP));
 			}
+			else if (parse == "TEAM_MON_NUMBER"){
+				int index = stoi(temp);
+				if (!mc.team[index].defined)
+					return string("");
+				return string("{NO}.") + mc.team[index].number;
+			}
 			else if (parse == "TEAM_MON_CURRENT_HP"){
 				int index = stoi(temp);
 				if (!mc.team[index].defined)
