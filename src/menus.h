@@ -146,6 +146,14 @@ public:
 		t.ymin = -1.0f;
 		t.s = string("TEAM_MON_SPECIAL:") + to_string(choice);
 		raw.push_back(t);
+		t.xmin = -0.1f;
+		t.ymin = 0.0f;
+		t.s = string("STATUS_BOOL:") + to_string(choice);
+		raw.push_back(t);
+		t.xmin = 0.4f;
+		t.ymin = 0.6f;
+		t.s = string("TEAM_MON_LEVEL:") + to_string(choice);
+		raw.push_back(t);
 		t.xmin = 0.0f;
 		t.ymin = -0.2f;
 		t.s = string("TYPE1/");

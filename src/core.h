@@ -228,7 +228,7 @@ public:
 					return string("");
 				if (mc.team[index].level == 100)
 					return string("L**");
-				return string("L") + to_string(mc.team[index].level);
+				return string("{LEVEL}") + to_string(mc.team[index].level);
 			}
 			else if (parse == "TEAM_MON_MAX_HP"){
 				int index = stoi(temp);
@@ -306,6 +306,16 @@ public:
 				if (all_mon[mc.team[index].number].type2 != "")
 					return string("TYPE2/");
 				return string("");
+			}
+			else if (parse == "STATUS_BOOL") {
+				int index = stoi(temp);
+				if (!mc.team[index].defined)
+					return string("");
+				if (mc.team[index].curr_hp <= 0)
+					return string("STATUS/KO");
+				if (mc.team[index].status.size() != 0)
+					return string("STATUS/BAD");
+				return string("STATUS/OK");
 			}
 			else if (parse == "TEAM_MON_STATUS") {
 				int index = stoi(temp);

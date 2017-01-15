@@ -45,6 +45,8 @@ vector<int> do_menu(string menu) {
 		return e.do_combat_switch_confirm(choice);
 	else if (menu == "STATS")
 		return e.do_stats(choice);
+	else if (menu == "MOVES")
+		return def; //FIX THIS
 	return def;
 }
 
