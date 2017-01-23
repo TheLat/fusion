@@ -17,6 +17,13 @@
 ;.bmp
 A-.bmp
 A.bmp
+arrow-bar-corner-ul.bmp
+arrow-bar-corner-ur.bmp
+arrow-bar-horizontal.bmp
+arrow-bar-vertical-left.bmp
+arrow-bar-vertical-right.bmp
+arrow-left.bmp
+arrow-right.bmp
 B-.bmp
 B.bmp
 bar-bottom.bmp
@@ -54,6 +61,7 @@ K-.bmp
 K.bmp
 L-.bmp
 L.bmp
+level.bmp
 M-.bmp
 M.bmp
 male.bmp
@@ -61,6 +69,7 @@ MN.bmp
 money.bmp
 N-.bmp
 N.bmp
+no.bmp
 O-.bmp
 O.bmp
 P-.bmp
@@ -94,5 +103,3 @@ Z.bmp
 [.bmp
 ].bmp
 _.bmp
-level.bmp
-no.bmp
