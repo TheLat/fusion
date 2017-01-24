@@ -13,7 +13,9 @@ mutex m2;
 
 class box {
 public:
+	bool right;
 	float xmin, ymin, length, height;
+	box() { right = false; }
 };
 
 class text {
@@ -26,7 +28,7 @@ public:
 class menu{
 public:
 	string type;
-	vector<box> boxes;
+	vector<box> boxes, arrowboxes;
 	vector<text> raw, display;
 	vector<string> followup;
 	int index, step, selection, columns, cursor, selection_cap, offset, cancel_option;
@@ -47,6 +49,7 @@ public:
 		t.height = 0.4f;
 		t.s = s;
 		boxes.clear();
+		arrowboxes.clear();
 		raw.clear();
 		boxes.push_back(b);
 		raw.push_back(t);
@@ -58,6 +61,7 @@ public:
 		columns = 2;
 		type = "SELECT";
 		boxes.clear();
+		arrowboxes.clear();
 		raw.clear();
 		followup.clear();
 		b.xmin = -0.2f;
@@ -99,6 +103,7 @@ public:
 		type = "SELECT";
 		selection_cap = 1;
 		boxes.clear();
+		arrowboxes.clear();
 		raw.clear();
 		followup.clear();
 		b.ymin = -1.1f;
@@ -111,6 +116,15 @@ public:
 		b.length = 1.0f;
 		b.height = 1.0f;
 		boxes.push_back(b);
+		b.xmin = 0.2f;
+		b.length = 0.8f;
+		b.height = 0.9f;
+		arrowboxes.push_back(b);
+		b.xmin = -0.2f;
+		b.ymin = 0.0f;
+		b.length = 1.2f;
+		b.height = 0.9f;
+		arrowboxes.push_back(b);
 		t.height = 0.1f;
 		t.length = 1.0f;
 		t.ymin = -2.0f; //HACK
@@ -206,6 +220,7 @@ public:
 		selection_cap = 3;
 		cancel_option = 2;
 		boxes.clear();
+		arrowboxes.clear();
 		raw.clear();
 		followup.clear();
 		// TODO:  Sync formatting with game
@@ -240,6 +255,7 @@ public:
 		cursor_offset_y = -0.05f;
 		selection_cap = get_team_size();
 		boxes.clear();
+		arrowboxes.clear();
 		raw.clear();
 		followup.clear();
 		b.ymin = -1.1f;
@@ -291,6 +307,7 @@ public:
 		columns = 1;
 		type = "SELECT";
 		boxes.clear();
+		arrowboxes.clear();
 		raw.clear();
 		followup.clear();
 		selection_cap = 5;
@@ -329,6 +346,7 @@ public:
 		columns = 1;
 		type = "SELECT";
 		boxes.clear();
+		arrowboxes.clear();
 		raw.clear();
 		followup.clear();
 		b.xmin = -0.6f;
@@ -378,6 +396,12 @@ public:
 		index = g.draw_list.size();
 		for (unsigned i = 0; i < boxes.size(); ++i) {
 			g.push_box(boxes[i].xmin, boxes[i].ymin, boxes[i].length, boxes[i].height);
+		}
+		for (unsigned i = 0; i < arrowboxes.size(); ++i) {
+			if (arrowboxes[i].right)
+				g.push_arrow_box_right(arrowboxes[i].xmin, arrowboxes[i].ymin, arrowboxes[i].length, arrowboxes[i].height);
+			else
+				g.push_arrow_box_left(arrowboxes[i].xmin, arrowboxes[i].ymin, arrowboxes[i].length, arrowboxes[i].height);
 		}
 		for (unsigned i = 0; i < display.size(); ++i) {
 			step = g.push_text(display[i].xmin, display[i].ymin, display[i].length, display[i].height, display[i].size, display[i].s);

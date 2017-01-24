@@ -147,6 +147,7 @@ public:
 		}
 		chunk[' '] = true;
 		chunk['-'] = true;
+		chunk['\n'] = true;
 	}
 
 	//Called when the window is resized
@@ -235,7 +236,8 @@ public:
 			key = key + string(".bmp");
 			if (string_lookup[key].defined)
 				key = string_lookup[key].value;
-			push_quad(x_curr, y_curr, size, size, menu_tex[key]);
+			if (key != string("\n.bmp"))
+				push_quad(x_curr, y_curr, size, size, menu_tex[key]);
 			x_curr += size;
 			if ((height != size) &&(x_curr >= x + width || (!no_chunk_yet && ((float(next_chunk(s, i) - i))*size + x_curr > 0.9f)))) {
 				no_chunk_yet = true;
@@ -250,6 +252,23 @@ public:
 		return s.size();
 	}
 	void push_box(float xmin, float ymin, float length, float height) {
+		push_quad(xmin, ymin + height - 0.1f, 0.1f, 0.1f, menu_tex[string("corner-ul.bmp")]);
+		push_quad(xmin + length - 0.1f, ymin + height - 0.1f, 0.1f, 0.1f, menu_tex[string("corner-ur.bmp")]);
+		push_quad(xmin + 0.1f, ymin + height - 0.1f, length - 0.2f, 0.1f, menu_tex[string("bar-top.bmp")]);
+		push_quad(xmin, ymin + 0.1f, 0.1f, height - 0.2f, menu_tex[string("bar-left.bmp")]);
+		push_quad(xmin + length - 0.1f, ymin + 0.1f, 0.1f, height - 0.2f, menu_tex[string("bar-right.bmp")]);
+		push_quad(xmin + 0.1f, ymin + 0.1f, length - 0.2f, height - 0.2f, menu_tex[string("space.bmp")]);
+		push_quad(xmin, ymin, 0.1f, 0.1f, menu_tex[string("corner-bl.bmp")]);
+		push_quad(xmin + length - 0.1f, ymin, 0.1f, 0.1f, menu_tex[string("corner-br.bmp")]);
+		push_quad(xmin + 0.1f, ymin, length - 0.2f, 0.1f, menu_tex[string("bar-bottom.bmp")]);
+	}
+	void push_arrow_box_left(float xmin, float ymin, float length, float height) {
+		push_quad(xmin + length - 0.1f, ymin + 0.1f, 0.1f, height - 0.1f, menu_tex[string("arrow-bar-vertical-right.bmp")]);
+		push_quad(xmin, ymin, 0.1f, 0.1f, menu_tex[string("arrow-left.bmp")]);
+		push_quad(xmin + length - 0.1f, ymin, 0.1f, 0.1f, menu_tex[string("arrow-bar-corner-ur.bmp")]);
+		push_quad(xmin + 0.1f, ymin, length - 0.2f, 0.1f, menu_tex[string("arrow-bar-horizontal.bmp")]);
+	}
+	void push_arrow_box_right(float xmin, float ymin, float length, float height) {
 		push_quad(xmin, ymin + height - 0.1f, 0.1f, 0.1f, menu_tex[string("corner-ul.bmp")]);
 		push_quad(xmin + length - 0.1f, ymin + height - 0.1f, 0.1f, 0.1f, menu_tex[string("corner-ur.bmp")]);
 		push_quad(xmin + 0.1f, ymin + height - 0.1f, length - 0.2f, 0.1f, menu_tex[string("bar-top.bmp")]);

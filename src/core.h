@@ -334,7 +334,7 @@ public:
 					if (status[mc.team[index].status[i]].defined)
 						if (status[mc.team[index].status[i]].nonvolatile)
 							if (o.find(mc.team[index].status[i]) == -1)
-								o = o + mc.team[index].status[i] + string(" ");
+								o = o + mc.team[index].status[i] + string("\n");
 				}
 				if (o == "")
 					o = "OK";
