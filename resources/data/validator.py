@@ -83,6 +83,8 @@ while s != "":
         moves[t]["CRITICAL"] = s[10:]
     elif s.startswith("SPECIAL"):
         moves[t]["SPECIAL"] = s[9:]
+    elif s.startswith("NOTES"):
+        moves[t]["NOTES"] = s[7:]
     else:
         print "Error:  Unknown symbol %s" % s
     s = f.readline().replace("\n", "")
