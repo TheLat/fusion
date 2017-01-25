@@ -130,7 +130,7 @@ public:
 		t.ymin = -2.0f; //HACK
 		t.xmin = -2.0f;
 		t.s = "Next screen.";
-		followup.push_back(string("MOVES"));
+		followup.push_back(string("MOVES") + to_string(choice));
 		raw.push_back(t);
 		t.xmin = -0.9f;
 		t.length = 0.8f;
