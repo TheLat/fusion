@@ -39,6 +39,7 @@ public:
 	string name;
 	string type;
 	string pow;
+	string notes;
 	STAT attack, defense;
 	int acc;
 	int pp;
@@ -1320,6 +1321,14 @@ public:
 					a = f.get();
 				}
 				moves[key].desc = line;
+			}
+			else if (line == "NOTES") {
+				line = "";
+				while (a != '\r' && a != '\n' && a != EOF) {
+					line = line + a;
+					a = f.get();
+				}
+				moves[key].notes = line;
 			}
 
 			while (a != '\n' && a != EOF)

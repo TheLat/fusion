@@ -186,7 +186,7 @@ public:
 		raw.push_back(t);
 		t.xmin = 0.0f;
 		t.ymin = -0.6f;
-		t.s = string("STATUS/");
+		t.s = string("ST%ATUS/");
 		raw.push_back(t);
 		t.xmin = 0.1f;
 		t.ymin = -1.1f;
