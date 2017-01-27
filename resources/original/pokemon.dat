@@ -434,8 +434,8 @@ NAME: PID
 SURNAME: GEOT
 TYPE1: FLYING
 TYPE2: NORMAL
-DEX1: 
-DEX2: 
+DEX1: Its keen eyesight allows it to see prey from up to 3,300 feet away.
+DEX2: It has glossy feathers and a top speed of mach 2.
 EXP_YIELD: 211
 CATCHRATE: 45
 HP: 83
@@ -458,6 +458,8 @@ NUMBER: 19
 NAME: RATT
 SURNAME: ATA
 TYPE1: NORMAL
+DEX1: Its fangs are long and sharp.
+DEX2: Small and quick, it is a common sight in many places.
 EXP_YIELD: 51
 CATCHRATE: 255
 HP: 30
@@ -481,6 +483,8 @@ NUMBER: 20
 NAME: RATI
 SURNAME: CATE
 TYPE1: NORMAL
+DEX1: It gnaws on anything with its powerful fang.  It can even chew through concrete.
+DEX2: Its hind feet are webbed, allowing it to easily swim.
 EXP_YIELD: 145
 CATCHRATE: 127
 HP: 55
@@ -503,6 +507,8 @@ NAME: SPE
 SURNAME: AROW
 TYPE1: FLYING
 TYPE2: NORMAL
+DEX1: This Pok{e-accent}mon eats bugs in grassy areas.
+DEX2: It has to flap its short wings at high speed to stay airborne.
 EXP_YIELD: 52
 CATCHRATE: 255
 HP: 40
@@ -528,6 +534,8 @@ NAME: FEAR
 SURNAME: OW
 TYPE1: FLYING
 TYPE2: NORMAL
+DEX1: Its elongated beak is ideal for catching prey in soil or water.
+DEX2: With its huge, magnificent wings, it can keep aloft without ever having to land for rest.
 EXP_YIELD: 155
 CATCHRATE: 90
 HP: 65
@@ -550,6 +558,8 @@ NUMBER: 23
 NAME: EK
 SURNAME: ANS
 TYPE1: POISON
+DEX1: 
+DEX2: 
 EXP_YIELD: 58
 CATCHRATE: 255
 HP: 35
