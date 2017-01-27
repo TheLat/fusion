@@ -483,7 +483,7 @@ NUMBER: 20
 NAME: RATI
 SURNAME: CATE
 TYPE1: NORMAL
-DEX1: It gnaws on anything with its powerful fang.  It can even chew through concrete.
+DEX1: It gnaws on anything with its powerful fang. It can even chew through concrete.
 DEX2: Its hind feet are webbed, allowing it to easily swim.
 EXP_YIELD: 145
 CATCHRATE: 127
@@ -558,8 +558,8 @@ NUMBER: 23
 NAME: EK
 SURNAME: ANS
 TYPE1: POISON
-DEX1: 
-DEX2: 
+DEX1: It flutters the tip of its tongue to seek out the scent of prey, then swallows it whole.
+DEX2: The older it gets, the longer it grows. At night, it wraps is long body around tree branches to rest.
 EXP_YIELD: 58
 CATCHRATE: 255
 HP: 35
@@ -584,6 +584,8 @@ NUMBER: 24
 NAME: AR
 SURNAME: BOK
 TYPE1: POISON
+DEX1: With a very vengeful nature, it won't give up the chase, no matter how far, once it targets its prey.
+DEX2: Transfixing prey with the face-like pattern on its belly, it binds and poisons the frightened victim.
 EXP_YIELD: 153
 CATCHRATE: 90
 HP: 60
@@ -606,6 +608,8 @@ NUMBER: 25
 NAME: PIK
 SURNAME: ACHU
 TYPE1: ELECTRIC
+DEX1: When it is angered, it immediately discharges energy stored in the pouches in its cheeks.
+DEX2: When several of these Pok{e-accent}mon gather, their electricity could build and lightning storms.
 EXP_YIELD: 105
 CATCHRATE: 190
 HP: 35
@@ -630,6 +634,8 @@ NUMBER: 26
 NAME: RAI
 SURNAME: CHU
 TYPE1: ELECTRIC
+DEX1: When electricity builds up in its body, it becomes feisty.
+DEX2: Its long tail serves to protect it from its own high voltage.
 EXP_YIELD: 214
 CATCHRATE: 75
 HP: 60
@@ -648,6 +654,8 @@ NUMBER: 27
 NAME: SAND
 SURNAME: SHREW
 TYPE1: GROUND
+DEX1: It burrows and lives underground.
+DEX2: It prefers dry, sandy places because it uses the sand to protect itself.
 EXP_YIELD: 60
 CATCHRATE: 255
 HP: 50
@@ -671,6 +679,8 @@ NUMBER: 28
 NAME: SANDS
 SURNAME: LASH
 TYPE1: GROUND
+DEX1: This Pok{e-accent}mon is a skilled digger.
+DEX2: It can burrow and an amazing pace.
 EXP_YIELD: 158
 CATCHRATE: 90
 HP: 75
@@ -692,6 +702,8 @@ NUMBER: 29
 NAME: NIDA
 SURNAME: RAN(F)
 TYPE1: POISON
+DEX1: A mild-mannered Pok{e-accent}mon that does not like to fight.
+DEX2: Beware, its horns secret venom.
 EXP_YIELD: 55
 CATCHRATE: 235
 HP: 55
@@ -717,6 +729,8 @@ NUMBER: 30
 NAME: NIDAR
 SURNAME: INA
 TYPE1: POISON
+DEX1: When feeding its young, it first chews and tenderizes food, then spits it out for the offspring.
+DEX2: If it is threatened, it raises the barbs that are all over its body.
 EXP_YIELD: 128
 CATCHRATE: 120
 HP: 70
@@ -743,6 +757,8 @@ NAME: NID
 SURNAME: AQUEEN
 TYPE1: POISON
 TYPE2: GROUND
+DEX1: It never shows any signs of shrinking from an attack.
+DEX2: This Pok{e-accent}mon's body is covered in tough, needle-like scales.
 EXP_YIELD: 223
 CATCHRATE: 45
 HP: 90
@@ -763,6 +779,8 @@ NUMBER: 32
 NAME: NIDO
 SURNAME: RAN(M)
 TYPE1: POISON
+DEX1: It constantly moves its ears in many directions, in order to detect danger right away.
+DEX2: The larger its horn, the more powerful its secreted venom.
 EXP_YIELD: 55
 CATCHRATE: 235
 HP: 46
@@ -790,6 +808,8 @@ SURNAME: INO
 EXP_YIELD: 128
 CATCHRATE: 120
 TYPE1: POISON
+DEX1: Quick to anger, it stabs enemies with its horn to inject a powerful poison when it becomes agitated.
+DEX2: It is an aggressive Pok{e-accent}mon that is quick to attack.
 HP: 61
 ATTACK: 72
 DEFENSE: 57
@@ -814,6 +834,8 @@ NAME: NIDOK
 SURNAME: ING
 TYPE1: POISON
 TYPE2: GROUND
+DEX1: Be careful of this Pok{e-accent}mon's powerful venom in its horn.
+DEX2: It is recognized by its rock-like hide.
 EXP_YIELD: 223
 CATCHRATE: 45
 HP: 81
@@ -833,6 +855,8 @@ NUMBER: 35
 NAME: CLE
 SURNAME: FAIRY
 TYPE1: NORMAL
+DEX1: This Pok{e-accent}mon is adored for its cute looks and playfulness.
+DEX2: It uses the wings on its back to collect moonlight.
 EXP_YIELD: 113
 CATCHRATE: 150
 HP: 70
@@ -858,6 +882,8 @@ NUMBER: 36
 NAME: CLEF
 SURNAME: ABLE
 TYPE1: NORMAL
+DEX1: A timid Pok{e-accent}mon that is rarely seen.
+DEX2: With its acute hearing, it can pick up sounds from far away.
 EXP_YIELD: 213
 CATCHRATE: 25
 HP: 95
@@ -877,6 +903,8 @@ NUMBER: 37
 NAME: VUL
 SURNAME: PIX
 TYPE1: FIRE
+DEX1: Inside this Pok{e-accent}mon's body burns a flame that will never go out.
+DEX2: At the time of its birth, it has just one tail. As it grows, the tail splits to form more tails.
 EXP_YIELD: 60
 CATCHRATE: 190
 HP: 38
@@ -901,6 +929,8 @@ NUMBER: 38
 NAME: NINE
 SURNAME: TAILS
 TYPE1: FIRE
+DEX1: It is very smart and very vengeful.
+DEX2: Its nine beautiful tails are filled with a wonderous energy.
 EXP_YIELD: 177
 CATCHRATE: 75
 HP: 73
@@ -920,6 +950,8 @@ NUMBER: 39
 NAME: JIGGLY
 SURNAME: PUFF
 TYPE1: NORMAL
+DEX1: It uses its alluring eyes to enrapture its foe.
+DEX2: It can inflate to sing more effectively.
 EXP_YIELD: 95
 CATCHRATE: 170
 HP: 115
@@ -945,6 +977,8 @@ NUMBER: 40
 NAME: WIGGLY
 SURNAME: TUFF
 TYPE1: NORMAL
+DEX1: This Pok{e-accent}mon has large, saucer-like eyes.
+DEX2: Its body is soft and rubbery. When angered, it will suck in air and inflate itself to an enormous size.
 EXP_YIELD: 191
 CATCHRATE: 50
 HP: 140
@@ -965,6 +999,8 @@ NAME: ZUB
 SURNAME: AT
 TYPE1: POISON
 TYPE2: FLYING
+DEX1: Having no eyes, it forms colonies in perpetually dark places.
+DEX2: It emits ultrasonic cries to navigate when flying.
 EXP_YIELD: 49
 CATCHRATE: 255
 SWITCH: YES
@@ -990,6 +1026,8 @@ NAME: GOL
 SURNAME: BAT
 TYPE1: POISON
 TYPE2: FLYING
+DEX1: It uses its powerful bite and sharp fangs to suck blood from its prey.
+DEX2: This Pok{e-accent}mon flies around at night, hunting for prey.
 EXP_YIELD: 159
 CATCHRATE: 90
 SWITCH: YES
@@ -1014,6 +1052,8 @@ NAME: ODD
 SURNAME: ISH
 TYPE1: GRASS
 TYPE2: POISON
+DEX1: During the daytime, it buries itself in the soil to absorb nutrients.
+DEX2: When exposed to moonlight, it starts to walk. It roams far and wide at night to scatter its seeds.
 EXP_YIELD: 64
 CATCHRATE: 255
 HP: 45
@@ -1039,6 +1079,8 @@ NAME: GLO
 SURNAME: OM
 TYPE1: GRASS
 TYPE2: POISON
+DEX1: The fluid that oozes from its mouth is not drool. It is a nectar that is used to attract prey.
+DEX2: This Pok{e-accent}mon releases a foul fragrance from the pistil of its flower. When faced with danger, the stench worsens.
 EXP_YIELD: 138
 CATCHRATE: 120
 HP: 60
@@ -1064,6 +1106,8 @@ NAME: VILE
 SURNAME: PLUME
 TYPE1: GRASS
 TYPE2: POISON
+DEX1: Once this Pok{e-accent}mon has immobilized its prey, it catches and devours them.
+DEX2: By shaking its bit petals, it	scatters toxic pollen into the air, turning the air yellow.
 EXP_YIELD: 216
 CATCHRATE: 45
 HP: 75
@@ -1084,6 +1128,8 @@ NAME: PAR
 SURNAME: AS
 TYPE1: BUG
 TYPE2: GRASS
+DEX1: It burrows under the ground to gnaw on tree roots.
+DEX2: The mushrooms on its back grow by drawing nutrients from the host.
 EXP_YIELD: 57
 CATCHRATE: 190
 HP: 35
@@ -1108,6 +1154,8 @@ NAME: PARAS
 SURNAME: ECT
 TYPE1: GRASS
 TYPE2: BUG
+DEX1: It mostly prefers damp, dark places.
+DEX2: The host is drained of all energy by the mushroom on its back. The mushroom appears to do all the thinking.
 EXP_YIELD: 142
 CATCHRATE: 75
 HP: 60
@@ -1130,6 +1178,8 @@ NAME: VE
 SURNAME: NONAT
 TYPE1: BUG
 TYPE2: POISON
+DEX1: Its large eyes act like radar. In a bright place, you can see that they are clusters of many tiny eyes.
+DEX2: Poison oozes all over its body. It catches and eats small bugs that hide in darkness.
 EXP_YIELD: 61
 CATCHRATE: 190
 HP: 60
@@ -1156,6 +1206,8 @@ NAME: VENO
 SURNAME: MOTH
 TYPE1: BUG
 TYPE2: POISON
+DEX1: It is nocturnal and prefers to hunt bugs that gather around street lights.
+DEX2: When it attacks, it flaps its wings violently to scatter poisonous powder all around.
 EXP_YIELD: 158
 CATCHRATE: 75
 HP: 70
@@ -1179,6 +1231,8 @@ NUMBER: 50
 NAME: DIG
 SURNAME: LETT
 TYPE1: GROUND
+DEX1: It prefers burrowing to a shallow depth to chew on roots.
+DEX2: When it digs through a field, it leaves the soil perfectly tilled and ideal for planting crops.
 EXP_YIELD: 53
 CATCHRATE: 255
 HP: 10
