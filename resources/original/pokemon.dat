@@ -3,6 +3,8 @@ NAME: BULB
 SURNAME: ASAUR
 TYPE1: GRASS
 TYPE2: POISON
+DEX1: This Pok{e-accent}mon prefers to sleep in the sun.
+DEX2: The seed on its back provides nutrients and stores energy.
 EXP_YIELD: 64
 CATCHRATE: 45
 HP: 45
@@ -30,6 +32,8 @@ NAME: IVY
 SURNAME: SAUR
 TYPE1: GRASS
 TYPE2: POISON
+DEX1: Exposure to sunlight gives this Pok{e-accent}mon strength.
+DEX2: The bulb on its back gives off an aroma when it is ready to bloom.
 EXP_YIELD: 142
 CATCHRATE: 45
 HP: 60
@@ -57,6 +61,8 @@ NAME: VEN
 SURNAME: USAUR
 TYPE1: GRASS
 TYPE2: POISON
+DEX1: It stays on the move, seeking sunlight.
+DEX2: The flower on its back absorbs sunlight, converting it to energy.
 EXP_YIELD: 236
 CATCHRATE: 45
 HP: 80
@@ -81,6 +87,8 @@ NUMBER: 4
 NAME: CHAR
 SURNAME: MANDER
 TYPE1: FIRE
+DEX1: This Pok{e-accent}mon obviously prefers hot places.
+DEX2: The flame on its tail shows the strength of its life force.
 EXP_YIELD: 62
 CATCHRATE: 45
 HP: 39
@@ -106,6 +114,8 @@ NUMBER: 5
 NAME: CHARM
 SURNAME: ELEON
 TYPE1: FIRE
+DEX1: Tough fights excite this Pok{e-accent}mon.
+DEX2: It is very hot-headed by nature, so it constantly seeks out opponents.
 EXP_YIELD: 142
 CATCHRATE: 45
 HP: 58
@@ -132,6 +142,8 @@ NAME: CHARI
 SURNAME: ZARD
 TYPE1: FIRE
 TYPE2: FLYING
+DEX1: This Pok{e-accent}mon can trap enemies with its powerful flames.
+DEX2: It can spit fire hot enough to melt boulders.
 EXP_YIELD: 240
 CATCHRATE: 45
 HP: 78
@@ -155,6 +167,8 @@ NUMBER: 7
 NAME: SQUIR
 SURNAME: TLE
 TYPE1: WATER
+DEX1: It shoots water at its prey.
+DEX2: It withdraws into its shell when in danger.
 EXP_YIELD: 63
 CATCHRATE: 45
 HP: 44
@@ -180,6 +194,8 @@ NUMBER: 8
 NAME: WAR
 SURNAME: TORTLE
 TYPE1: WATER
+DEX1: It often hides in the water to stalk unwary prey.
+DEX2: Scratches on its shell are a sign of this Pok{e-accent}mon's toughness as a battler.
 EXP_YIELD: 142
 CATCHRATE: 45
 HP: 59
@@ -205,6 +221,8 @@ NUMBER: 9
 NAME: BLAS
 SURNAME: TOISE
 TYPE1: WATER
+DEX1: This Pok{e-accent}mon has survived countless battles and is as tough as can be for it.
+DEX2: The jets on its shell can shoot water capable of punching through steel.
 EXP_YIELD: 239
 CATCHRATE: 45
 HP: 79
@@ -228,6 +246,8 @@ NUMBER: 10
 NAME: CATER
 SURNAME: PIE
 TYPE1: BUG
+DEX1: If you touch the top of its head, it will release a terrible stink cloud to protect itself.
+DEX2: Its feet have suction cups designed to stick to any surface.
 EXP_YIELD: 39
 CATCHRATE: 255
 HP: 45
@@ -247,6 +267,8 @@ NUMBER: 11
 NAME: META
 SURNAME: POD
 TYPE1: BUG
+DEX1: This Pok{e-accent}mon hardens its shell in preparation for evolution.
+DEX2: It can barely move in its protective armor.
 EXP_YIELD: 72
 CATCHRATE: 120
 HP: 50
@@ -266,6 +288,8 @@ NAME: BUTTER
 SURNAME: FREE
 TYPE1: BUG
 TYPE2: FLYING
+DEX1: It has a superior ability to search for delicious nectar from flowers.
+DEX2: In battle, it flaps its wings at high speed to release highly toxic dust into the air.
 EXP_YIELD: 173
 CATCHRATE: 45
 HP: 60
@@ -289,6 +313,8 @@ NAME: WEE
 SURNAME: DLE
 TYPE1: BUG
 TYPE2: POISON
+DEX1: Often found in forests, eating leaves.
+DEX2: It has a sharp stinger on its head.
 EXP_YIELD: 39
 CATCHRATE: 255
 HP: 40
@@ -309,6 +335,8 @@ NAME: KAK
 SURNAME: UNA
 TYPE1: BUG
 TYPE2: POISON
+DEX1: While awaiting evolution, it hides from predators under leaves and in nooks of branches.
+DEX2: It is almost incapable of moving.
 EXP_YIELD: 72
 CATCHRATE: 120
 HP: 50
@@ -328,6 +356,8 @@ NAME: BEE
 SURNAME: DRILL
 TYPE1: BUG
 TYPE2: POISON
+DEX1: This Pok{e-accent}mon is extremely territorial and aggressive.
+DEX2: It flies at high speeds, using its large, venomous stingers to attack.
 EXP_YIELD: 173
 CATCHRATE: 45
 HP: 65
@@ -350,6 +380,8 @@ NAME: PIDG
 SURNAME: EY
 TYPE1: FLYING
 TYPE2: NORMAL
+DEX1: This Pok{e-accent}mon is very docile.
+DEX2: It will often kick up sand to protect itself, rather than fight.
 EXP_YIELD: 50
 CATCHRATE: 255
 HP: 40
@@ -375,6 +407,8 @@ NAME: PIDGE
 SURNAME: OTTO
 TYPE1: FLYING
 TYPE2: NORMAL
+DEX1: This Pok{e-accent}mon is protective of its large territory.
+DEX2: The claws on its feet are well-developed and it can easily carry prey up to 60 miles back to its nest.
 EXP_YIELD: 122
 CATCHRATE: 120
 HP: 63
@@ -400,6 +434,8 @@ NAME: PID
 SURNAME: GEOT
 TYPE1: FLYING
 TYPE2: NORMAL
+DEX1: 
+DEX2: 
 EXP_YIELD: 211
 CATCHRATE: 45
 HP: 83
