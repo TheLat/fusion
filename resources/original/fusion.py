@@ -77,6 +77,7 @@ while x <= len(all):
             n = "EEVEE"
         if n == "MEEW":
             n = "MEW"
+        n = n.replace("RAPE", "RILLA")
         print "Fusing " + (all[str(x)]["NAME"] + all[str(x)]["SURNAME"]).replace("EEEE", "EE") + " and " + (all[str(y)]["NAME"] + all[str(y)]["SURNAME"]).replace("EEEE", "EE") + " into " + n
         f.write("NUMBER: %s-%s" % (x, y))
         f.write("\nNAME: %s" % n)
