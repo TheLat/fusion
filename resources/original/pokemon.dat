@@ -1908,6 +1908,8 @@ NUMBER: 77
 NAME: PONY
 SURNAME: TA
 TYPE1: FIRE
+DEX1: A weak runner after birth, it gradually becomes faster by chasing after its parents.
+DEX2: Its hooves are 10 times harder than diamond.  It can trample anything flat in a short time.
 EXP_YIELD: 82
 CATCHRATE: 190
 HP: 50
@@ -1932,6 +1934,8 @@ NUMBER: 78
 NAME: RAPI
 SURNAME: DASH
 TYPE1: FIRE
+DEX1: A very competitive Pok{e-accent}mon, it will chase anything in the hopes of racing it.
+DEX2: It can usually be seen cantering in the fields and plains.  When it becomes serious, its fiery mane and tail blaze.
 EXP_YIELD: 175
 CATCHRATE: 60
 HP: 65
@@ -1955,6 +1959,8 @@ NAME: SLOW
 SURNAME: POKE
 TYPE1: WATER
 TYPE2: PSYCHIC
+DEX1: Incredibly slow and dopey, it takes 5 seconds for it to feel pain when under attack.
+DEX2: It lazes vacantly near water.  If something bites its tail, it won't notice for a whole day.
 EXP_YIELD: 63
 CATCHRATE: 190
 HP: 90
@@ -1980,6 +1986,8 @@ NAME: SLO
 SURNAME: BRO
 TYPE1: WATER
 TYPE2: PSYCHIC
+DEX1: Naturally dull to begin wtih, this Pok{e-accent}mon has lost its ability to feel pain entirely.
+DEX2: Its tail has a SHELLDER firmly attached with a bite.  As a result, the tail can't be used for fishing anymore.  This forces it to reluctantly swim and catch prey.
 EXP_YIELD: 172
 CATCHRATE: 75
 HP: 95
@@ -2003,6 +2011,8 @@ NUMBER: 81
 NAME: MAGNEM
 SURNAME: ITE
 TYPE1: ELECTRIC
+DEX1: 
+DEX2: 
 EXP_YIELD: 65
 CATCHRATE: 190
 HP: 25
