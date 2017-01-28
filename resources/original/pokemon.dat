@@ -1256,6 +1256,8 @@ NUMBER: 51
 NAME: DUG
 SURNAME: TRIO
 TYPE1: GROUND
+DEX1: In battle, it digs through the ground and strikes unsuspecting foes from an unexpected direction.
+DEX2: Extremely powerful when working together, they can burrow through even the hardest ground to a depth of 60 miles.
 EXP_YIELD: 142
 CATCHRATE: 50
 HP: 35
@@ -1277,6 +1279,8 @@ NUMBER: 52
 NAME: MEO
 SURNAME: WTH
 TYPE1: NORMAL
+DEX1: This Pok{e-accent}mon loves round and shiny things.  It can't stop picking them up.
+DEX2: It withdraws its sharp claws into its paws to sneak silently about.
 EXP_YIELD: 58
 CATCHRATE: 255
 HP: 40
@@ -1301,6 +1305,8 @@ NUMBER: 53
 NAME: PER
 SURNAME: SIAN
 TYPE1: NORMAL
+DEX1: The gem on its forehead glows on its own.
+DEX2: Although its fur has many admirers, it is tough to raise because of its fickle meanness.
 EXP_YIELD: 154
 CATCHRATE: 90
 HP: 65
@@ -1323,6 +1329,8 @@ NUMBER: 54
 NAME: PSY
 SURNAME: DUCK
 TYPE1: WATER
+DEX1: Plagued by headaches, this Pok{e-accent}mon uses psychic powers, but it is not known if it means to.
+DEX2: It always looks puzzled. 
 EXP_YIELD: 64
 CATCHRATE: 190
 HP: 50
@@ -1346,6 +1354,8 @@ NUMBER: 55
 NAME: GOLD
 SURNAME: UCK
 TYPE1: WATER
+DEX1: The gem on its forehead shines when it is using its full power.
+DEX2: It swims along gracefully along the slow-moving rivers and lakes that it makes its home in.
 EXP_YIELD: 175
 CATCHRATE: 75
 HP: 80
@@ -1367,6 +1377,8 @@ NUMBER: 56
 NAME: MAN
 SURNAME: KEY
 TYPE1: FIGHTING
+DEX1: Extremely quick to anger, this Pok{e-accent}mon docile one moment and thrashing away the next instant.
+DEX2: Light and agile on its feet, it makes its home in the treetops.
 EXP_YIELD: 61
 CATCHRATE: 190
 HP: 40
@@ -1391,6 +1403,8 @@ NUMBER: 57
 NAME: PRIME
 SURNAME: APE
 TYPE1: FIGHTING
+DEX1: It only stops being angry when no one else is around.
+DEX2: When it becomes furious, its blood circulation is boosted. Its muscles are made stronger, but its intelligence suffers.
 EXP_YIELD: 159
 CATCHRATE: 75
 HP: 65
@@ -1413,6 +1427,8 @@ NUMBER: 58
 NAME: GROW
 SURNAME: LITHE
 TYPE1: FIRE
+DEX1: This Pok{e-accent} has a superb sense of smell.  Once it smells anything, it won't forget the scent, no matter what.
+DEX2: It has a brave and trustworthy nature.  It fearlessly stands up to bigger and stronger foes.
 EXP_YIELD: 70
 CATCHRATE: 190
 HP: 55
@@ -1437,6 +1453,8 @@ NUMBER: 59
 NAME: ARCA
 SURNAME: NINE
 TYPE1: FIRE
+DEX1: Its magnificent bark conveys a sense of majesty.
+DEX2: The fire that blazes in this Pok{e-accent}mon's body is the source of its power.
 EXP_YIELD: 194
 CATCHRATE: 75
 HP: 90
@@ -1457,6 +1475,8 @@ NUMBER: 60
 NAME: POL
 SURNAME: IWAG
 TYPE1: WATER
+DEX1: This Pok{e-accent}mon's skin is very thin.  Despite this, the incredible flexibility of the skin makes even sharp fangs bounce off.
+DEX2: Because it is inept at walking on its newly grown legs, it always swims around in water.
 EXP_YIELD: 60
 CATCHRATE: 255
 HP: 40
@@ -1481,6 +1501,8 @@ NUMBER: 61
 NAME: PO
 SURNAME: LIWHIRL
 TYPE1: WATER
+DEX1: The skin on most of its body is moist.  However, the skin on its belly feels smooth.
+DEX2: Though it is skilled at walking, it prefers to live underwater where there is less danger.
 EXP_YIELD: 135
 CATCHRATE: 120
 HP: 65
@@ -1506,6 +1528,8 @@ NAME: POLI
 SURNAME: WRATH
 TYPE1: WATER
 TYPE2: FIGHTING
+DEX1: It swims powerfully, using all the muscles in its body.
+DEX2: Its highly developed muscles cannot be fatigued.
 EXP_YIELD: 225
 CATCHRATE: 45
 HP: 90
@@ -1524,6 +1548,8 @@ NUMBER: 63
 NAME: A
 SURNAME: BRA
 TYPE1: PSYCHIC
+DEX1: It sleeps 18 hours a day.
+DEX2: Using its ability to read minds, it can sense danger from far away.  It will teleport away at the first sign of danger.
 EXP_YIELD: 62
 CATCHRATE: 200
 HP: 25
@@ -1543,6 +1569,8 @@ NUMBER: 64
 NAME: KAD
 SURNAME: ABRA
 TYPE1: PSYCHIC
+DEX1: The more danger this Pok{e-accent}mon faces, the stronger its psychic powers become.
+DEX2: It stares at its silver spoon to focus its mind.
 EXP_YIELD: 140
 CATCHRATE: 100
 HP: 40
@@ -1567,6 +1595,8 @@ NUMBER: 65
 NAME: ALA
 SURNAME: KAZAM
 TYPE1: PSYCHIC
+DEX1: This Pok{e-accent}mon can memorize anything and it never forgets what it learns.
+DEX2: While it has strong psychic abilities, it has very weak muscles.  It uses is psychic powers to move its body.
 EXP_YIELD: 221
 CATCHRATE: 50
 HP: 55
@@ -1589,6 +1619,8 @@ NUMBER: 66
 NAME: MAC
 SURNAME: HOP
 TYPE1: FIGHTING
+DEX1: This Pok{e-accent}mon loves to build its muscles.
+DEX2: It is very powerful, in spite of its small size.
 EXP_YIELD: 61
 CATCHRATE: 180
 HP: 70
@@ -1614,6 +1646,8 @@ SURNAME: CHOKE
 EXP_YIELD: 142
 CATCHRATE: 90
 TYPE1: FIGHTING
+DEX1: It always goes at full power, but this tough and durable Pok{e-accent}mon never gets tired.
+DEX2: The muscles covering its body bristle with power.  Even when still, it exudes an amazing sense of strength.
 HP: 80
 ATTACK: 100
 DEFENSE: 70
@@ -1635,6 +1669,8 @@ NUMBER: 68
 NAME: MACH
 SURNAME: AMP
 TYPE1: FIGHTING
+DEX1: This Pok{e-accent}mon tends to leap into action before it thinks.
+DEX2: It quickly swings all	four arms to rock its opponents with ceaseless punches and chops from all angles.
 EXP_YIELD: 227
 CATCHRATE: 45
 HP: 90
@@ -1657,6 +1693,8 @@ NAME: BELL
 SURNAME: SPROUT
 TYPE1: GRASS
 TYPE2: POISON
+DEX1: This Pok{e-accent}mon prefers hot and humid places.
+DEX2: Even though its body is extremely skinny, it is blindingly fast when catching its prey.
 EXP_YIELD: 60
 CATCHRATE: 255
 HP: 50
@@ -1684,6 +1722,8 @@ NAME: WEEPIN
 SURNAME: BELL
 TYPE1: GRASS
 TYPE2: POISON
+DEX1: When hungry, it swallows anything that moves.
+DEX2: Its hapless prey is melted inside by strong acids.
 EXP_YIELD: 137
 CATCHRATE: 120
 HP: 65
@@ -1711,6 +1751,8 @@ NAME: VICTREE
 SURNAME: BEL
 TYPE1: GRASS
 TYPE2: POISON
+DEX1: This Pok{e-accent}mon lures prey with the sweet aroma of honey.
+DEX2: When its acid dissolves prey, it smells even sweeter, making it better at attracking prey.
 EXP_YIELD: 216
 CATCHRATE: 45
 HP: 80
@@ -1732,6 +1774,8 @@ NAME: TEN
 SURNAME: TACOOL
 TYPE1: WATER
 TYPE2: POISON
+DEX1: It can sometimes be found, dry and shriveled up on the beach.  Putting it into water will revive it.
+DEX2: As it floats on the waves, it uses toxic tentacles to attack anything it touches.
 EXP_YIELD: 67
 CATCHRATE: 190
 HP: 40
@@ -1759,6 +1803,8 @@ NAME: TENTA
 SURNAME: CRUEL
 TYPE1: WATER
 TYPE2: POISON
+DEX1: The orb glows before lashing the vicinity with a supersonic blast.  The outburst is powerful enough to create rough waves around the Pok{e-accent}mon.
+DEX2: Its tentacles can stretch and contract freely.  They wrap around prey and weaken it with poison.
 EXP_YIELD: 180
 CATCHRATE: 60
 HP: 80
@@ -1784,6 +1830,8 @@ NAME: GEO
 SURNAME: DUDE
 TYPE1: ROCK
 TYPE2: GROUND
+DEX1: Because of its coloring, this Pok{e-accent}mon is sometimes mistaken for a boulder.
+DEX2: Commonly found near mountain trails, it gets angry if you step on it.
 EXP_YIELD: 60
 CATCHRATE: 255
 HP: 40
@@ -1809,6 +1857,8 @@ NAME: GRAVE
 SURNAME: LER
 TYPE1: ROCK
 TYPE2: GROUND
+DEX1: This Pok{e-accent}mon grows by eating rocks.  It prefers to eat rocks covered in moss.
+DEX2: A slow walker, it prefers to roll to move.  It pays no attention to any object that happens to be in its path.
 EXP_YIELD: 137
 CATCHRATE: 120
 HP: 55
@@ -1834,6 +1884,8 @@ NAME: GO
 SURNAME: LEM
 TYPE1: ROCK
 TYPE2: GROUND
+DEX1: Its rock-like hide is so durable, even dynamite blasts fail to scratch it.
+DEX2: It is said to live in volcanic craters and mountain peaks.  It sheds its skin once a year.
 EXP_YIELD: 218
 CATCHRATE: 45
 HP: 80
