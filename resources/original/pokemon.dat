@@ -2339,6 +2339,8 @@ NAME: GEN
 SURNAME: GAR
 TYPE1: GHOST
 TYPE2: POISON
+DEX1: This Pok{e-accent}mon steals heat from its surroundings. A sudden chill is a telltale sign of its approach.
+DEX2: It stalks its victims by hiding in their shadows.
 EXP_YIELD: 225
 CATCHRATE: 45
 HP: 60
@@ -2360,6 +2362,8 @@ NAME: ON
 SURNAME: IX
 TYPE1: ROCK
 TYPE2: GROUND
+DEX1: As it grows, the stone portions of its body harden to become similar to diamond, but colored black.
+DEX2: It twists and squirms to burrow through the ground. The thunderous roar of its tunneling echoes for a long way.
 EXP_YIELD: 77
 CATCHRATE: 45
 HP: 35
@@ -2382,6 +2386,8 @@ NUMBER: 96
 NAME: DROW
 SURNAME: ZEE
 TYPE1: PSYCHIC
+DEX1: This Pok{e-accent}mon puts enemies to sleep.
+DEX2: Occasionally, it gets sick from eating bad dreams.
 EXP_YIELD: 66
 CATCHRATE: 190
 HP: 60
@@ -2407,6 +2413,8 @@ NUMBER: 97
 NAME: HYP
 SURNAME: NO
 TYPE1: PSYCHIC
+DEX1: 
+DEX2: 
 EXP_YIELD: 169
 CATCHRATE: 75
 HP: 85
