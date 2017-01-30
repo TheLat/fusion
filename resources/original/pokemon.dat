@@ -2413,8 +2413,8 @@ NUMBER: 97
 NAME: HYP
 SURNAME: NO
 TYPE1: PSYCHIC
-DEX1: 
-DEX2: 
+DEX1: When it locks eyes with an enemy, it uses a mix of psychic moves to subdue its enemies.
+DEX2: Always holding a pendulum that rocks in a steady rhythm, it causes drowsiness in anyone nearby.
 EXP_YIELD: 169
 CATCHRATE: 75
 HP: 85
@@ -2438,6 +2438,8 @@ NUMBER: 98
 NAME: KRAB
 SURNAME: BY
 TYPE1: WATER
+DEX1: If it sense danger, this Pok{e-accent}mon will cloak itself in a cover of bubbles to look bigger.
+DEX2: Its pincers are superb weapons. They sometimes break off during battle, but they grow back fast.
 EXP_YIELD: 65
 CATCHRATE: 225
 HP: 30
@@ -2448,8 +2450,8 @@ SPEED: 50
 MOVES:
 1 BUBBLE
 1 LEER
-20 VICE GRIP
 25 GUILLOTINE
+20 VICE GRIP
 30 STOMP
 35 CRABHAMMER
 40 HARDEN
@@ -2462,6 +2464,8 @@ NUMBER: 99
 NAME: KIN
 SURNAME: GLER
 TYPE1: WATER
+DEX1: This Pok{e-accent}mon prefers to scavenge for food, but will hunt if it has to.
+DEX2: Its oversized pincer is incredibly powerful, but very difficult to aim because it is so heavy.
 EXP_YIELD: 166
 CATCHRATE: 60
 HP: 55
@@ -2472,8 +2476,8 @@ SPEED: 75
 MOVES:
 1 BUBBLE
 1 LEER
-20 VICE GRIP
 25 GUILLOTINE
+20 VICE GRIP
 34 STOMP
 42 CRABHAMMER
 49 HARDEN
@@ -2484,6 +2488,8 @@ NUMBER: 100
 NAME: VOLT
 SURNAME: ORB
 TYPE1: ELECTRIC
+DEX1: This Pok{e-accent} is known to screech as a threat before actually exploding.
+DEX2: It rolls around to move. It shocks people who get too close.
 EXP_YIELD: 66
 CATCHRATE: 190
 HP: 40
@@ -2508,6 +2514,8 @@ NUMBER: 101
 NAME: ELEC
 SURNAME: TRODE
 TYPE1: ELECTRIC
+DEX1: It stores electric energy at very high pressure.  If often explodes with little or no provocation.
+DEX2: The more energy it stores up, the faster it gets.
 EXP_YIELD: 168
 CATCHRATE: 60
 HP: 60
@@ -2531,6 +2539,8 @@ NAME: EXEGG
 SURNAME: CUTE
 TYPE1: GRASS
 TYPE2: PSYCHIC
+DEX1: This Pok{e-accent}mon is known to communicate telepathically.
+DEX2: It is often mistaken for eggs. When disturbed, they quickly gather and attack in swarms.
 EXP_YIELD: 65
 CATCHRATE: 90
 HP: 60
@@ -2556,6 +2566,8 @@ NAME: EXEG
 SURNAME: GUTOR
 TYPE1: GRASS
 TYPE2: PSYCHIC
+DEX1: It is very noisy.
+DEX2: Living in a good environment will cause it to grow three heads.
 EXP_YIELD: 182
 CATCHRATE: 45
 HP: 95
@@ -2574,6 +2586,8 @@ NUMBER: 104
 NAME: CU
 SURNAME: BONE
 TYPE1: GROUND
+DEX1: This Pok{e-accent}mon wears the skull of its deceased mother. Its cries echo inside the skull and come out as a sad melody.
+DEX2: It cries out whenever it is lonely.
 EXP_YIELD: 64
 CATCHRATE: 190
 HP: 50
@@ -2598,6 +2612,8 @@ NUMBER: 105
 NAME: MARO
 SURNAME: WAK
 TYPE1: GROUND
+DEX1: This Pok{e-accent}mon was originally very small and weak.  Its temperment has turned ferocious.
+DEX2: The bone it holds is its key weapon. It skillfully throws the bone like a boomerang.
 EXP_YIELD: 149
 CATCHRATE: 75
 HP: 60
@@ -2620,6 +2636,8 @@ NUMBER: 106
 NAME: HITMON
 SURNAME: LEE
 TYPE1: FIGHTING
+DEX1: This Pok{e-accent}mon has an amazing sense of balance.
+DEX2: Its legs can stretch to double their length, allowing it to kick enemies from far away.
 EXP_YIELD: 159
 CATCHRATE: 45
 HP: 50
@@ -2642,6 +2660,8 @@ NUMBER: 107
 NAME: HIT
 SURNAME: MONCHAN
 TYPE1: FIGHTING
+DEX1: This Pok{e-accent}mon has a drive to train constantly.
+DEX2: To increase the strength of its punches, it spins its arms just before making contact.
 EXP_YIELD: 159
 CATCHRATE: 45
 HP: 50
@@ -2664,6 +2684,8 @@ NUMBER: 108
 NAME: LICKI
 SURNAME: TUNG
 TYPE1: NORMAL
+DEX1: Its tongue spans almost 7 feet and moves more freely than its forelegs.  Its liks can cause paralysis.
+DEX2: This stout Pok{e-accent}mon stores up as much fat for the winter as it can.
 EXP_YIELD: 77
 CATCHRATE: 45
 HP: 90
@@ -2686,6 +2708,8 @@ NUMBER: 109
 NAME: KOF
 SURNAME: FING
 TYPE1: POISON
+DEX1: If you get up close to this Pok{e-accent}mon, you can see toxic gases swirling around inside it.
+DEX2: Because it stores several kinds of toxic gases in its body, it is prone to exploding without warning.
 EXP_YIELD: 68
 CATCHRATE: 190
 HP: 40
@@ -2710,6 +2734,8 @@ NUMBER: 110
 NAME: WHEE
 SURNAME: ZING
 TYPE1: POISON
+DEX1: It lives and grows by absorbing dust, germs, and poison gases that come from toxic waste and garbage.
+DEX2: Diluting the toxic gases inside its body with a special process, you can make the highest-grade perfume.
 EXP_YIELD: 172
 CATCHRATE: 60
 HP: 65
@@ -2733,6 +2759,8 @@ NAME: RHYH
 SURNAME: ORN
 TYPE1: ROCK
 TYPE2: GROUND
+DEX1: Though covered in thick, rocky hide, this Pok{e-accent}mon is not very smart.
+DEX2: It is inept at turning because of its 4 short legs.  It can only charge and run in one direction.
 EXP_YIELD: 69
 CATCHRATE: 120
 HP: 80
@@ -2758,6 +2786,8 @@ NAME: RHY
 SURNAME: DON
 TYPE1: ROCK
 TYPE2: GROUND
+DEX1: Though its rugged hide protects it from all manner of damage, even the heat of lava, it has a poor sense of touch.
+DEX2: It begins walking on its hind legs shortly after evolution.
 EXP_YIELD: 170
 CATCHRATE: 60
 HP: 105
@@ -2780,6 +2810,8 @@ NUMBER: 113
 NAME: CHAN
 SURNAME: SEY
 TYPE1: NORMAL
+DEX1: A gentle and kind-hearted Pok{e-accent}mon that will care for injured Pok{e-accent}mon it comes across.
+DEX2: It lays several eggs a day.  These eggs are very nutritious and it has no problem sharing them with others.
 EXP_YIELD: 395
 CATCHRATE: 30
 HP: 250
@@ -2803,6 +2835,8 @@ NUMBER: 114
 NAME: TAN
 SURNAME: GELA
 TYPE1: GRASS
+DEX1: Its disconcerting eyes never blink.
+DEX2: Thick vines cover this Pok{e-accent}mon's body. It entangles anything that gets close.
 EXP_YIELD: 87
 CATCHRATE: 45
 HP: 65
@@ -2826,6 +2860,8 @@ NUMBER: 115
 NAME: KANGAS
 SURNAME: KHAN
 TYPE1: NORMAL
+DEX1: This Pok{e-accent}mon is known for its fiercely protective parental instincts.
+DEX2: If it is safe, the young get out of the belly pouch to play.  The adult keeps a close eye on it.
 EXP_YIELD: 172
 CATCHRATE: 45
 HP: 105
@@ -2848,6 +2884,8 @@ NUMBER: 116
 NAME: HOR
 SURNAME: SEA
 TYPE1: WATER
+DEX1: If it senses any type of danger, it will spray water or a special type of ink from its mouth.
+DEX2: When they're in a safe location, these Pok{e-accent}mon can be seen playfully tangling their tales.
 EXP_YIELD: 59
 CATCHRATE: 225
 HP: 30
@@ -2871,6 +2909,8 @@ NUMBER: 117
 NAME: SEAD
 SURNAME: RA
 TYPE1: WATER
+DEX1: The males of this Pok{e-accent}mon raise the young.
+DEX2: It sleeps by wriggling itself between coral.
 EXP_YIELD: 154
 CATCHRATE: 75
 HP: 55
