@@ -3418,8 +3418,8 @@ NAME: OMAN
 SURNAME: YTE
 TYPE1: ROCK
 TYPE2: WATER
-DEX1: 
-DEX2: 
+DEX1: An ancient Pok{e-accent}mon whose DNA was resurrected from a fossil.  It uses its tentacles to gather food.
+DEX2: If it is attacked, it will withdraw into its hard shell.
 EXP_YIELD: 71
 CATCHRATE: 45
 HP: 35
@@ -3444,6 +3444,8 @@ NAME: OMA
 SURNAME: STAR
 TYPE1: ROCK
 TYPE2: WATER
+DEX1: Its sharp beak is powerful enough to crack a shellder's hard shell.  It will do this and suck out the insides.
+DEX2: Despite having powerful tentacles, it has a hard time capturing prey that isn't within reach.
 EXP_YIELD: 173
 CATCHRATE: 45
 HP: 70
@@ -3466,6 +3468,8 @@ NAME: KAB
 SURNAME: UTO
 TYPE1: ROCK
 TYPE2: WATER
+DEX1: This ancient Pok{e-accent}mon's DNA was resurrected from a fossil. It hides its glowing eyes on the sea floor.
+DEX2: Its dome shell makes it easy to hide under the sand.
 EXP_YIELD: 71
 CATCHRATE: 45
 HP: 30
@@ -3490,6 +3494,8 @@ NAME: KABU
 SURNAME: TOPS
 TYPE1: ROCK
 TYPE2: WATER
+DEX1: It aggressively hunts prey.
+DEX2: This Pok{e-accent}mon is a slim and fast swimmer.  It slices its prey with its sharp sickles.
 EXP_YIELD: 173
 CATCHRATE: 45
 HP: 60
@@ -3512,6 +3518,8 @@ NAME: AERO
 SURNAME: DACTYL
 TYPE1: ROCK
 TYPE2: FLYING
+DEX1: A ferocious, prehistoric Pok{e-accent}mon that goes for the enemy's throat with its serrated, saw-like fangs.
+DEX2: It flies at incredible speeds through the sky.
 EXP_YIELD: 180
 CATCHRATE: 45
 SWITCH: YES
@@ -3535,6 +3543,8 @@ NUMBER: 143
 NAME: SNOR
 SURNAME: LAX
 TYPE1: NORMAL
+DEX1: This Pok{e-accent}mon is very lazy and will just eat and sleep, if allowed.
+DEX2: It will eat anything, even if the food is mouldy. It never gets an upset stomach.
 EXP_YIELD: 189
 CATCHRATE: 25
 HP: 160
@@ -3558,6 +3568,8 @@ NAME: ARTIC
 SURNAME: UNO
 TYPE1: ICE
 TYPE2: FLYING
+DEX1: This Pok{e-accent}mon is said to appear to doomed people who are lost in the icy mountains.
+DEX2: Its magnificent, seemingly translucent wings glimmer as it flies through the sky.
 EXP_YIELD: 261
 CATCHRATE: 3
 SWITCH: YES
@@ -3580,6 +3592,8 @@ NAME: ZAP
 SURNAME: DOS
 TYPE1: ELECTRIC
 TYPE2: FLYING
+DEX1: This Pok{e-accent}mon is said to appear from the clouds while dropping enormous lightning bolts.
+DEX2: It is said to cause savage thunderstorms just by flapping its wings.
 EXP_YIELD: 261
 CATCHRATE: 3
 SWITCH: YES
@@ -3602,6 +3616,8 @@ NAME: MOL
 SURNAME: TRES
 TYPE1: FIRE
 TYPE2: FLYING
+DEX1: 
+DEX2: 
 EXP_YIELD: 261
 CATCHRATE: 3
 SWITCH: YES
@@ -3616,6 +3632,7 @@ MOVES:
 51 LEER
 55 AGILITY
 60 SKY ATTACK
+65 FIRE BLAST
 TM: 2 4 6 9 10 15 20 31 32 33 34 38 39 43 44 50
 HM: 2
 
