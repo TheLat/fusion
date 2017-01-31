@@ -1670,7 +1670,7 @@ NAME: MACH
 SURNAME: AMP
 TYPE1: FIGHTING
 DEX1: This Pok{e-accent}mon tends to leap into action before it thinks.
-DEX2: It quickly swings all	four arms to rock its opponents with ceaseless punches and chops from all angles.
+DEX2: It quickly swings all four arms to rock its opponents with ceaseless punches and chops from all angles.
 EXP_YIELD: 227
 CATCHRATE: 45
 HP: 90
@@ -2612,7 +2612,7 @@ NUMBER: 105
 NAME: MARO
 SURNAME: WAK
 TYPE1: GROUND
-DEX1: This Pok{e-accent}mon was originally very small and weak.  Its temperment has turned ferocious.
+DEX1: This Pok{e-accent}mon was originally very small and weak.  Its temperament has turned ferocious.
 DEX2: The bone it holds is its key weapon. It skillfully throws the bone like a boomerang.
 EXP_YIELD: 149
 CATCHRATE: 75
@@ -2684,7 +2684,7 @@ NUMBER: 108
 NAME: LICKI
 SURNAME: TUNG
 TYPE1: NORMAL
-DEX1: Its tongue spans almost 7 feet and moves more freely than its forelegs.  Its liks can cause paralysis.
+DEX1: Its tongue spans almost 7 feet and moves more freely than its forelegs.  Its licks can cause paralysis.
 DEX2: This stout Pok{e-accent}mon stores up as much fat for the winter as it can.
 EXP_YIELD: 77
 CATCHRATE: 45
@@ -2861,7 +2861,7 @@ NAME: KANGAS
 SURNAME: KHAN
 TYPE1: NORMAL
 DEX1: This Pok{e-accent}mon is known for its fiercely protective parental instincts.
-DEX2: If it is safe, the young get out of the belly pouch to play.  The adult keeps a close eye on it.
+DEX2: It keeps its young in a belly pouch to protect them.  If it is safe, the young will come out to play, with the adult keeping a constant watch.
 EXP_YIELD: 172
 CATCHRATE: 45
 HP: 105
@@ -2932,6 +2932,8 @@ NUMBER: 118
 NAME: GOLDEE
 SURNAME: EEN
 TYPE1: WATER
+DEX1: It metes out staggering damage with its single horn.
+DEX2: During spawning season, it swims gracefully in the water, searching for their perfect mate.
 EXP_YIELD: 64
 CATCHRATE: 225
 HP: 45
@@ -2945,8 +2947,8 @@ MOVES:
 19 SUPERSONIC
 24 HORN ATTACK
 30 FURY ATTACK
-37 WATERFALL
 45 HORN DRILL
+37 WATERFALL
 54 AGILITY
 EVOLUTION:
 119:LEVEL 33
@@ -2957,6 +2959,8 @@ NUMBER: 119
 NAME: SEA
 SURNAME: KING
 TYPE1: WATER
+DEX1: The horn on its head is sharp like a drill.  It bores a hole in a boulder to make its nest.
+DEX2: In autumn, its body becomes more fatty in preparation for proposal to a mate.  It takes on beautiful colors when this happens.
 EXP_YIELD: 158
 CATCHRATE: 60
 HP: 80
@@ -2970,8 +2974,8 @@ MOVES:
 19 SUPERSONIC
 24 HORN ATTACK
 30 FURY ATTACK
-39 WATERFALL
 48 HORN DRILL
+39 WATERFALL
 54 AGILITY
 TM: 6 7 8 9 10 11 12 13 14 15 20 31 32 34 39 40 44 50
 HM: 3
@@ -2980,6 +2984,8 @@ NUMBER: 120
 NAME: STA
 SURNAME: RYU
 TYPE1: WATER
+DEX1: Its gem twinkles in the moonlight.
+DEX2: This Pok{e-accent}mon is very energetic and can regenerate any appendage it loses in battle.
 EXP_YIELD: 68
 CATCHRATE: 225
 HP: 30
@@ -3006,6 +3012,8 @@ NAME: STAR
 SURNAME: MIE
 TYPE1: PSYCHIC
 TYPE2: WATER
+DEX1: This Pok{e-accent}mon prefers to communicate by flashing its gem in different color patterns.
+DEX2: It swims through the water by spinning its body, as though it were a propeller.
 EXP_YIELD: 182
 CATCHRATE: 60
 SWITCH: YES
@@ -3025,6 +3033,8 @@ NUMBER: 122
 NAME: MR.
 SURNAME: MIME
 TYPE1: PSYCHIC
+DEX1: A skilled mime from birth, this Pok{e-accent}mon is adept at conning people.
+DEX2: Its fingertips emit a peculiar force field that hardens the air to create an invisible wall.
 EXP_YIELD: 161
 CATCHRATE: 45
 HP: 40
@@ -3047,6 +3057,8 @@ NAME: SCY
 SURNAME: THER
 TYPE1: BUG
 TYPE2: FLYING
+DEX1: When it moves, it leaves only a blur.  If it hides in grass, its protective colors make it invisible.
+DEX2: It prefers to hunt by leaping out of the grass and slashing its prey with its scythes.
 EXP_YIELD: 100
 CATCHRATE: 45
 HP: 70
@@ -3070,6 +3082,8 @@ NAME: JY
 SURNAME: NX
 TYPE1: ICE
 TYPE2: PSYCHIC
+DEX1: It speaks in a way that sounds human, but research has yet to reveal what it is saying.
+DEX2: This Pok{e-accent}mon is usually only found in icy climates.
 EXP_YIELD: 159
 CATCHRATE: 45
 HP: 65
@@ -3093,6 +3107,8 @@ NUMBER: 125
 NAME: ELECTA
 SURNAME: BUZZ
 TYPE1: ELECTRIC
+DEX1: Electricity runs across the surface of its body constantly.  In darkness, its entire body glows whitish-blue.
+DEX2: It loves to feed on strong electricity.  Because of this it can usually be found near power plants.
 EXP_YIELD: 172
 CATCHRATE: 45
 HP: 65
@@ -3115,6 +3131,8 @@ NUMBER: 126
 NAME: MAG
 SURNAME: MAR
 TYPE1: FIRE
+DEX1: Its body always burns with an orange glow.
+DEX2: It was born in a volcano, so it hates cold places.
 EXP_YIELD: 173
 CATCHRATE: 45
 HP: 65
@@ -3137,6 +3155,8 @@ NUMBER: 127
 NAME: PIN
 SURNAME: SIR
 TYPE1: BUG
+DEX1: During cold periods, this Pok{e-accent}mon will hide deep in the woods.
+DEX2: It grips its prey in its pincers and squeezes hard.  If it can't crush them, it will throw them as hard as it can.
 EXP_YIELD: 175
 CATCHRATE: 45
 HP: 65
@@ -3159,6 +3179,8 @@ NUMBER: 128
 NAME: TAU
 SURNAME: ROS
 TYPE1: NORMAL
+DEX1: Once it takes aim at a foe, it makes a headlong charge.  It is famous for its violent nature.
+DEX2: It is very rowdy and has a lot of stamina.
 EXP_YIELD: 172
 CATCHRATE: 45
 HP: 75
@@ -3180,6 +3202,8 @@ NUMBER: 129
 NAME: MAGI
 SURNAME: KARP
 TYPE1: WATER
+DEX1: Famous for being underpowered and pathetic.
+DEX2: It can be found swimming in seas, lakes, and rivers.
 EXP_YIELD: 40
 CATCHRATE: 255
 HP: 20
@@ -3200,6 +3224,8 @@ NAME: GYA
 SURNAME: RADOS
 TYPE1: WATER
 TYPE2: FLYING
+DEX1: This Pok{e-accent}mon's powerful bite is a far cry from its humble beginnings.
+DEX2: It is rarely seen in the wild.  Huge and vicious, legends tell of it destroying entire cities in its rage.
 EXP_YIELD: 189
 CATCHRATE: 45
 HP: 95
@@ -3221,6 +3247,8 @@ NAME: LAP
 SURNAME: RAS
 TYPE1: WATER
 TYPE2: ICE
+DEX1: This Pok{e-accent}mon has been overhunted almost to the point of extinction.
+DEX2: It has a gentle soul and can ferry people across the sea on its back.
 EXP_YIELD: 187
 CATCHRATE: 45
 HP: 130
@@ -3244,6 +3272,8 @@ NUMBER: 132
 NAME: DIT
 SURNAME: TO
 TYPE1: NORMAL
+DEX1: This Pok{e-accent}mon is capable of copying an enemy's genetic code.
+DEX2: When it sees an enemy, its body transfigures itself into an almost perfect copy of its opponent.
 EXP_YIELD: 101
 CATCHRATE: 35
 HP: 48
@@ -3261,6 +3291,8 @@ NUMBER: 133
 NAME: EEV
 SURNAME: VEE
 TYPE1: NORMAL
+DEX1: A rare Pok{e-accent}mon that adapts to harsh environments by taking on different evolutionary forms.
+DEX2: It's irregular DNA is easily affected by its surroundings.  It can evolve if its environment changes.
 EXP_YIELD: 65
 CATCHRATE: 45
 HP: 55
@@ -3286,6 +3318,8 @@ NUMBER: 134
 NAME: VAPO
 SURNAME: REON
 TYPE1: WATER
+DEX1: It lives close to water and prefers beautiful shores.
+DEX2: The long ridge on its tail is sometimes mistaken for a mermaid's.
 EXP_YIELD: 184
 CATCHRATE: 45
 HP: 130
@@ -3309,6 +3343,8 @@ NUMBER: 135
 NAME: JOL
 SURNAME: TEON
 TYPE1: ELECTRIC
+DEX1: It concentrates the weak electric charges emitted by its cells and launches wicked lightning bolts.
+DEX2: Every hair on its body stands sharply on end if it becomes charged with electricity.
 EXP_YIELD: 184
 CATCHRATE: 45
 HP: 65
@@ -3332,6 +3368,8 @@ NUMBER: 136
 NAME: FLAR
 SURNAME: EON
 TYPE1: FIRE
+DEX1: It has a flame chamber inside its body.  It inhales, then blows out powerful flames.
+DEX2: It fluffs out the fur on its collar to cool down its body temperature.
 EXP_YIELD: 184
 CATCHRATE: 45
 HP: 65
@@ -3355,6 +3393,8 @@ NUMBER: 137
 NAME: PORY
 SURNAME: GON
 TYPE1: NORMAL
+DEX1: Since it doesn't breath, people are eager to try it in new environments.
+DEX2: Using the most advanced technologies, scientists created this artificial Pok{e-accent}mon. 
 EXP_YIELD: 79
 CATCHRATE: 45
 HP: 65
@@ -3378,6 +3418,8 @@ NAME: OMAN
 SURNAME: YTE
 TYPE1: ROCK
 TYPE2: WATER
+DEX1: 
+DEX2: 
 EXP_YIELD: 71
 CATCHRATE: 45
 HP: 35
