@@ -609,7 +609,7 @@ NAME: PIK
 SURNAME: ACHU
 TYPE1: ELECTRIC
 DEX1: When it is angered, it immediately discharges energy stored in the pouches in its cheeks.
-DEX2: When several of these Pokémon gather, their electricity could build and lightning storms.
+DEX2: When several of these Pokémon gather, their electricity can build and cause lightning storms.
 EXP_YIELD: 105
 CATCHRATE: 190
 HP: 35
@@ -1986,7 +1986,7 @@ NAME: SLO
 SURNAME: BRO
 TYPE1: WATER
 TYPE2: PSYCHIC
-DEX1: Naturally dull to begin wtih, this Pokémon has lost its ability to feel pain entirely.
+DEX1: Naturally dull to begin with, this Pokémon has lost its ability to feel pain entirely.
 DEX2: Its tail has a SHELLDER firmly attached with a bite. As a result, the tail can't be used for fishing anymore. This forces it to reluctantly swim and catch prey.
 EXP_YIELD: 172
 CATCHRATE: 75
@@ -2488,7 +2488,7 @@ NUMBER: 100
 NAME: VOLT
 SURNAME: ORB
 TYPE1: ELECTRIC
-DEX1: This Poké is known to screech as a threat before actually exploding.
+DEX1: This Pokémon is known to screech as a threat before actually exploding.
 DEX2: It rolls around to move. It shocks people who get too close.
 EXP_YIELD: 66
 CATCHRATE: 190
@@ -2769,12 +2769,12 @@ DEFENSE: 95
 SPECIAL: 30
 SPEED: 20
 MOVES:
-1 HORN ATTACK
 30 STOMP
+1 HORN ATTACK
 35 TAIL WHIP
 40 FURY ATTACK
-45 HORN DRILL
 50 LEER
+45 HORN DRILL
 55 TAKE DOWN
 EVOLUTION:
 112:LEVEL 42
@@ -2796,12 +2796,12 @@ DEFENSE: 120
 SPECIAL: 45
 SPEED: 40
 MOVES:
-1 HORN ATTACK
 30 STOMP
+1 HORN ATTACK
 35 TAIL WHIP
 40 FURY ATTACK
-48 HORN DRILL
 55 LEER
+48 HORN DRILL
 64 TAKE DOWN
 TM: 1 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 24 25 26 27 28 31 32 34 38 40 44 48 50
 HM: 3 4
