@@ -3,7 +3,7 @@ NAME: BULB
 SURNAME: ASAUR
 TYPE1: GRASS
 TYPE2: POISON
-DEX1: This Pokémon prefers to sleep in the sun.
+DEX1: This Pok{e-accent}mon prefers to sleep in the sun.
 DEX2: The seed on its back provides nutrients and stores energy.
 EXP_YIELD: 64
 CATCHRATE: 45
@@ -32,7 +32,7 @@ NAME: IVY
 SURNAME: SAUR
 TYPE1: GRASS
 TYPE2: POISON
-DEX1: Exposure to sunlight gives this Pokémon strength.
+DEX1: Exposure to sunlight gives this Pok{e-accent}mon strength.
 DEX2: The bulb on its back gives off an aroma when it is ready to bloom.
 EXP_YIELD: 142
 CATCHRATE: 45
@@ -87,7 +87,7 @@ NUMBER: 4
 NAME: CHAR
 SURNAME: MANDER
 TYPE1: FIRE
-DEX1: This Pokémon obviously prefers hot places.
+DEX1: This Pok{e-accent}mon obviously prefers hot places.
 DEX2: The flame on its tail shows the strength of its life force.
 EXP_YIELD: 62
 CATCHRATE: 45
@@ -114,7 +114,7 @@ NUMBER: 5
 NAME: CHARM
 SURNAME: ELEON
 TYPE1: FIRE
-DEX1: Tough fights excite this Pokémon.
+DEX1: Tough fights excite this Pok{e-accent}mon.
 DEX2: It is very hot-headed by nature, so it constantly seeks out opponents.
 EXP_YIELD: 142
 CATCHRATE: 45
@@ -142,7 +142,7 @@ NAME: CHARI
 SURNAME: ZARD
 TYPE1: FIRE
 TYPE2: FLYING
-DEX1: This Pokémon can trap enemies with its powerful flames.
+DEX1: This Pok{e-accent}mon can trap enemies with its powerful flames.
 DEX2: It can spit fire hot enough to melt boulders.
 EXP_YIELD: 240
 CATCHRATE: 45
@@ -195,7 +195,7 @@ NAME: WAR
 SURNAME: TORTLE
 TYPE1: WATER
 DEX1: It often hides in the water to stalk unwary prey.
-DEX2: Scratches on its shell are a sign of this Pokémon's toughness as a battler.
+DEX2: Scratches on its shell are a sign of this Pok{e-accent}mon's toughness as a battler.
 EXP_YIELD: 142
 CATCHRATE: 45
 HP: 59
@@ -221,7 +221,7 @@ NUMBER: 9
 NAME: BLAS
 SURNAME: TOISE
 TYPE1: WATER
-DEX1: This Pokémon has survived countless battles and is as tough as can be for it.
+DEX1: This Pok{e-accent}mon has survived countless battles and is as tough as can be for it.
 DEX2: The jets on its shell can shoot water capable of punching through steel.
 EXP_YIELD: 239
 CATCHRATE: 45
@@ -267,7 +267,7 @@ NUMBER: 11
 NAME: META
 SURNAME: POD
 TYPE1: BUG
-DEX1: This Pokémon hardens its shell in preparation for evolution.
+DEX1: This Pok{e-accent}mon hardens its shell in preparation for evolution.
 DEX2: It can barely move in its protective armor.
 EXP_YIELD: 72
 CATCHRATE: 120
@@ -356,7 +356,7 @@ NAME: BEE
 SURNAME: DRILL
 TYPE1: BUG
 TYPE2: POISON
-DEX1: This Pokémon is extremely territorial and aggressive.
+DEX1: This Pok{e-accent}mon is extremely territorial and aggressive.
 DEX2: It flies at high speeds, using its large, venomous stingers to attack.
 EXP_YIELD: 173
 CATCHRATE: 45
@@ -380,7 +380,7 @@ NAME: PIDG
 SURNAME: EY
 TYPE1: FLYING
 TYPE2: NORMAL
-DEX1: This Pokémon is very docile.
+DEX1: This Pok{e-accent}mon is very docile.
 DEX2: It will often kick up sand to protect itself, rather than fight.
 EXP_YIELD: 50
 CATCHRATE: 255
@@ -407,7 +407,7 @@ NAME: PIDGE
 SURNAME: OTTO
 TYPE1: FLYING
 TYPE2: NORMAL
-DEX1: This Pokémon is protective of its large territory.
+DEX1: This Pok{e-accent}mon is protective of its large territory.
 DEX2: The claws on its feet are well-developed and it can easily carry prey up to 60 miles back to its nest.
 EXP_YIELD: 122
 CATCHRATE: 120
@@ -507,7 +507,7 @@ NAME: SPE
 SURNAME: AROW
 TYPE1: FLYING
 TYPE2: NORMAL
-DEX1: This Pokémon eats bugs in grassy areas.
+DEX1: This Pok{e-accent}mon eats bugs in grassy areas.
 DEX2: It has to flap its short wings at high speed to stay airborne.
 EXP_YIELD: 52
 CATCHRATE: 255
@@ -609,7 +609,7 @@ NAME: PIK
 SURNAME: ACHU
 TYPE1: ELECTRIC
 DEX1: When it is angered, it immediately discharges energy stored in the pouches in its cheeks.
-DEX2: When several of these Pokémon gather, their electricity can build and cause lightning storms.
+DEX2: When several of these Pok{e-accent}mon gather, their electricity can build and cause lightning storms.
 EXP_YIELD: 105
 CATCHRATE: 190
 HP: 35
@@ -679,7 +679,7 @@ NUMBER: 28
 NAME: SANDS
 SURNAME: LASH
 TYPE1: GROUND
-DEX1: This Pokémon is a skilled digger.
+DEX1: This Pok{e-accent}mon is a skilled digger.
 DEX2: It can burrow and an amazing pace.
 EXP_YIELD: 158
 CATCHRATE: 90
@@ -702,7 +702,7 @@ NUMBER: 29
 NAME: NIDA
 SURNAME: RAN(F)
 TYPE1: POISON
-DEX1: A mild-mannered Pokémon that does not like to fight.
+DEX1: A mild-mannered Pok{e-accent}mon that does not like to fight.
 DEX2: Beware, its horns secret venom.
 EXP_YIELD: 55
 CATCHRATE: 235
@@ -758,7 +758,7 @@ SURNAME: AQUEEN
 TYPE1: POISON
 TYPE2: GROUND
 DEX1: It never shows any signs of shrinking from an attack.
-DEX2: This Pokémon's body is covered in tough, needle-like scales.
+DEX2: This Pok{e-accent}mon's body is covered in tough, needle-like scales.
 EXP_YIELD: 223
 CATCHRATE: 45
 HP: 90
@@ -809,7 +809,7 @@ EXP_YIELD: 128
 CATCHRATE: 120
 TYPE1: POISON
 DEX1: Quick to anger, it stabs enemies with its horn to inject a powerful poison when it becomes agitated.
-DEX2: It is an aggressive Pokémon that is quick to attack.
+DEX2: It is an aggressive Pok{e-accent}mon that is quick to attack.
 HP: 61
 ATTACK: 72
 DEFENSE: 57
@@ -834,7 +834,7 @@ NAME: NIDOK
 SURNAME: ING
 TYPE1: POISON
 TYPE2: GROUND
-DEX1: Be careful of this Pokémon's powerful venom in its horn.
+DEX1: Be careful of this Pok{e-accent}mon's powerful venom in its horn.
 DEX2: It is recognized by its rock-like hide.
 EXP_YIELD: 223
 CATCHRATE: 45
@@ -855,7 +855,7 @@ NUMBER: 35
 NAME: CLE
 SURNAME: FAIRY
 TYPE1: NORMAL
-DEX1: This Pokémon is adored for its cute looks and playfulness.
+DEX1: This Pok{e-accent}mon is adored for its cute looks and playfulness.
 DEX2: It uses the wings on its back to collect moonlight.
 EXP_YIELD: 113
 CATCHRATE: 150
@@ -882,7 +882,7 @@ NUMBER: 36
 NAME: CLEF
 SURNAME: ABLE
 TYPE1: NORMAL
-DEX1: A timid Pokémon that is rarely seen.
+DEX1: A timid Pok{e-accent}mon that is rarely seen.
 DEX2: With its acute hearing, it can pick up sounds from far away.
 EXP_YIELD: 213
 CATCHRATE: 25
@@ -903,7 +903,7 @@ NUMBER: 37
 NAME: VUL
 SURNAME: PIX
 TYPE1: FIRE
-DEX1: Inside this Pokémon's body burns a flame that will never go out.
+DEX1: Inside this Pok{e-accent}mon's body burns a flame that will never go out.
 DEX2: At the time of its birth, it has just one tail. As it grows, the tail splits to form more tails.
 EXP_YIELD: 60
 CATCHRATE: 190
@@ -977,7 +977,7 @@ NUMBER: 40
 NAME: WIGGLY
 SURNAME: TUFF
 TYPE1: NORMAL
-DEX1: This Pokémon has large, saucer-like eyes.
+DEX1: This Pok{e-accent}mon has large, saucer-like eyes.
 DEX2: Its body is soft and rubbery. When angered, it will suck in air and inflate itself to an enormous size.
 EXP_YIELD: 191
 CATCHRATE: 50
@@ -1027,7 +1027,7 @@ SURNAME: BAT
 TYPE1: POISON
 TYPE2: FLYING
 DEX1: It uses its powerful bite and sharp fangs to suck blood from its prey.
-DEX2: This Pokémon flies around at night, hunting for prey.
+DEX2: This Pok{e-accent}mon flies around at night, hunting for prey.
 EXP_YIELD: 159
 CATCHRATE: 90
 SWITCH: YES
@@ -1080,7 +1080,7 @@ SURNAME: OM
 TYPE1: GRASS
 TYPE2: POISON
 DEX1: The fluid that oozes from its mouth is not drool. It is a nectar that is used to attract prey.
-DEX2: This Pokémon releases a foul fragrance from the pistil of its flower. When faced with danger, the stench worsens.
+DEX2: This Pok{e-accent}mon releases a foul fragrance from the pistil of its flower. When faced with danger, the stench worsens.
 EXP_YIELD: 138
 CATCHRATE: 120
 HP: 60
@@ -1106,8 +1106,8 @@ NAME: VILE
 SURNAME: PLUME
 TYPE1: GRASS
 TYPE2: POISON
-DEX1: Once this Pokémon has immobilized its prey, it catches and devours them.
-DEX2: By shaking its bit petals, it	scatters toxic pollen into the air, turning the air yellow.
+DEX1: Once this Pok{e-accent}mon has immobilized its prey, it catches and devours them.
+DEX2: By shaking its bit petals, it scatters toxic pollen into the air, turning the air yellow.
 EXP_YIELD: 216
 CATCHRATE: 45
 HP: 75
@@ -1279,7 +1279,7 @@ NUMBER: 52
 NAME: MEO
 SURNAME: WTH
 TYPE1: NORMAL
-DEX1: This Pokémon loves round and shiny things. It can't stop picking them up.
+DEX1: This Pok{e-accent}mon loves round and shiny things. It can't stop picking them up.
 DEX2: It withdraws its sharp claws into its paws to sneak silently about.
 EXP_YIELD: 58
 CATCHRATE: 255
@@ -1329,7 +1329,7 @@ NUMBER: 54
 NAME: PSY
 SURNAME: DUCK
 TYPE1: WATER
-DEX1: Plagued by headaches, this Pokémon uses psychic powers, but it is not known if it means to.
+DEX1: Plagued by headaches, this Pok{e-accent}mon uses psychic powers, but it is not known if it means to.
 DEX2: It always looks puzzled. 
 EXP_YIELD: 64
 CATCHRATE: 190
@@ -1377,7 +1377,7 @@ NUMBER: 56
 NAME: MAN
 SURNAME: KEY
 TYPE1: FIGHTING
-DEX1: Extremely quick to anger, this Pokémon docile one moment and thrashing away the next instant.
+DEX1: Extremely quick to anger, this Pok{e-accent}mon docile one moment and thrashing away the next instant.
 DEX2: Light and agile on its feet, it makes its home in the treetops.
 EXP_YIELD: 61
 CATCHRATE: 190
@@ -1427,7 +1427,7 @@ NUMBER: 58
 NAME: GROW
 SURNAME: LITHE
 TYPE1: FIRE
-DEX1: This Poké has a superb sense of smell. Once it smells anything, it won't forget the scent, no matter what.
+DEX1: This Pok{e-accent} has a superb sense of smell. Once it smells anything, it won't forget the scent, no matter what.
 DEX2: It has a brave and trustworthy nature. It fearlessly stands up to bigger and stronger foes.
 EXP_YIELD: 70
 CATCHRATE: 190
@@ -1454,7 +1454,7 @@ NAME: ARCA
 SURNAME: NINE
 TYPE1: FIRE
 DEX1: Its magnificent bark conveys a sense of majesty.
-DEX2: The fire that blazes in this Pokémon's body is the source of its power.
+DEX2: The fire that blazes in this Pok{e-accent}mon's body is the source of its power.
 EXP_YIELD: 194
 CATCHRATE: 75
 HP: 90
@@ -1475,7 +1475,7 @@ NUMBER: 60
 NAME: POL
 SURNAME: IWAG
 TYPE1: WATER
-DEX1: This Pokémon's skin is very thin. Despite this, the incredible flexibility of the skin makes even sharp fangs bounce off.
+DEX1: This Pok{e-accent}mon's skin is very thin. Despite this, the incredible flexibility of the skin makes even sharp fangs bounce off.
 DEX2: Because it is inept at walking on its newly grown legs, it always swims around in water.
 EXP_YIELD: 60
 CATCHRATE: 255
@@ -1569,7 +1569,7 @@ NUMBER: 64
 NAME: KAD
 SURNAME: ABRA
 TYPE1: PSYCHIC
-DEX1: The more danger this Pokémon faces, the stronger its psychic powers become.
+DEX1: The more danger this Pok{e-accent}mon faces, the stronger its psychic powers become.
 DEX2: It stares at its silver spoon to focus its mind.
 EXP_YIELD: 140
 CATCHRATE: 100
@@ -1595,7 +1595,7 @@ NUMBER: 65
 NAME: ALA
 SURNAME: KAZAM
 TYPE1: PSYCHIC
-DEX1: This Pokémon can memorize anything and it never forgets what it learns.
+DEX1: This Pok{e-accent}mon can memorize anything and it never forgets what it learns.
 DEX2: While it has strong psychic abilities, it has very weak muscles. It uses is psychic powers to move its body.
 EXP_YIELD: 221
 CATCHRATE: 50
@@ -1619,7 +1619,7 @@ NUMBER: 66
 NAME: MAC
 SURNAME: HOP
 TYPE1: FIGHTING
-DEX1: This Pokémon loves to build its muscles.
+DEX1: This Pok{e-accent}mon loves to build its muscles.
 DEX2: It is very powerful, in spite of its small size.
 EXP_YIELD: 61
 CATCHRATE: 180
@@ -1646,7 +1646,7 @@ SURNAME: CHOKE
 EXP_YIELD: 142
 CATCHRATE: 90
 TYPE1: FIGHTING
-DEX1: It always goes at full power, but this tough and durable Pokémon never gets tired.
+DEX1: It always goes at full power, but this tough and durable Pok{e-accent}mon never gets tired.
 DEX2: The muscles covering its body bristle with power. Even when still, it exudes an amazing sense of strength.
 HP: 80
 ATTACK: 100
@@ -1669,7 +1669,7 @@ NUMBER: 68
 NAME: MACH
 SURNAME: AMP
 TYPE1: FIGHTING
-DEX1: This Pokémon tends to leap into action before it thinks.
+DEX1: This Pok{e-accent}mon tends to leap into action before it thinks.
 DEX2: It quickly swings all four arms to rock its opponents with ceaseless punches and chops from all angles.
 EXP_YIELD: 227
 CATCHRATE: 45
@@ -1693,7 +1693,7 @@ NAME: BELL
 SURNAME: SPROUT
 TYPE1: GRASS
 TYPE2: POISON
-DEX1: This Pokémon prefers hot and humid places.
+DEX1: This Pok{e-accent}mon prefers hot and humid places.
 DEX2: Even though its body is extremely skinny, it is blindingly fast when catching its prey.
 EXP_YIELD: 60
 CATCHRATE: 255
@@ -1751,7 +1751,7 @@ NAME: VICTREE
 SURNAME: BEL
 TYPE1: GRASS
 TYPE2: POISON
-DEX1: This Pokémon lures prey with the sweet aroma of honey.
+DEX1: This Pok{e-accent}mon lures prey with the sweet aroma of honey.
 DEX2: When its acid dissolves prey, it smells even sweeter, making it better at attracking prey.
 EXP_YIELD: 216
 CATCHRATE: 45
@@ -1803,7 +1803,7 @@ NAME: TENTA
 SURNAME: CRUEL
 TYPE1: WATER
 TYPE2: POISON
-DEX1: The orb glows before lashing the vicinity with a supersonic blast. The outburst is powerful enough to create rough waves around the Pokémon.
+DEX1: The orb glows before lashing the vicinity with a supersonic blast. The outburst is powerful enough to create rough waves around the Pok{e-accent}mon.
 DEX2: Its tentacles can stretch and contract freely. They wrap around prey and weaken it with poison.
 EXP_YIELD: 180
 CATCHRATE: 60
@@ -1830,7 +1830,7 @@ NAME: GEO
 SURNAME: DUDE
 TYPE1: ROCK
 TYPE2: GROUND
-DEX1: Because of its coloring, this Pokémon is sometimes mistaken for a boulder.
+DEX1: Because of its coloring, this Pok{e-accent}mon is sometimes mistaken for a boulder.
 DEX2: Commonly found near mountain trails, it gets angry if you step on it.
 EXP_YIELD: 60
 CATCHRATE: 255
@@ -1857,7 +1857,7 @@ NAME: GRAVE
 SURNAME: LER
 TYPE1: ROCK
 TYPE2: GROUND
-DEX1: This Pokémon grows by eating rocks. It prefers to eat rocks covered in moss.
+DEX1: This Pok{e-accent}mon grows by eating rocks. It prefers to eat rocks covered in moss.
 DEX2: A slow walker, it prefers to roll to move. It pays no attention to any object that happens to be in its path.
 EXP_YIELD: 137
 CATCHRATE: 120
@@ -1934,7 +1934,7 @@ NUMBER: 78
 NAME: RAPI
 SURNAME: DASH
 TYPE1: FIRE
-DEX1: A very competitive Pokémon, it will chase anything in the hopes of racing it.
+DEX1: A very competitive Pok{e-accent}mon, it will chase anything in the hopes of racing it.
 DEX2: It can usually be seen cantering in the fields and plains. When it becomes serious, its fiery mane and tail blaze.
 EXP_YIELD: 175
 CATCHRATE: 60
@@ -1986,7 +1986,7 @@ NAME: SLO
 SURNAME: BRO
 TYPE1: WATER
 TYPE2: PSYCHIC
-DEX1: Naturally dull to begin with, this Pokémon has lost its ability to feel pain entirely.
+DEX1: Naturally dull to begin with, this Pok{e-accent}mon has lost its ability to feel pain entirely.
 DEX2: Its tail has a SHELLDER firmly attached with a bite. As a result, the tail can't be used for fishing anymore. This forces it to reluctantly swim and catch prey.
 EXP_YIELD: 172
 CATCHRATE: 75
@@ -2011,7 +2011,7 @@ NUMBER: 81
 NAME: MAGNEM
 SURNAME: ITE
 TYPE1: ELECTRIC
-DEX1: This Pokémon attaches itself to power lines to feed on electricity.
+DEX1: This Pok{e-accent}mon attaches itself to power lines to feed on electricity.
 DEX2: It uses anti-gravity to stay suspended.
 EXP_YIELD: 65
 CATCHRATE: 190
@@ -2037,7 +2037,7 @@ NUMBER: 82
 NAME: MAGNE
 SURNAME: TON
 TYPE1: ELECTRIC
-DEX1: This Pokémon's powerful magnetic fields are very dangerous to electronics.
+DEX1: This Pok{e-accent}mon's powerful magnetic fields are very dangerous to electronics.
 DEX2: The magnetism between them is so powerful that it can disrupt radio waves.
 EXP_YIELD: 163
 CATCHRATE: 60
@@ -2062,7 +2062,7 @@ NAME: FAR
 SURNAME: FETCH'D
 TYPE1: FLYING
 TYPE2: NORMAL
-DEX1: This Pokémon lives where reedy plants grow.
+DEX1: This Pok{e-accent}mon lives where reedy plants grow.
 DEX2: The sprig of green onions it holds is its weapon. It is used much like a metal sword.
 EXP_YIELD: 123
 CATCHRATE: 45
@@ -2114,7 +2114,7 @@ NAME: DOD
 SURNAME: RIO
 TYPE1: NORMAL
 TYPE2: FLYING
-DEX1: If an enemy takes its eyes off this Pokémon, it will be pecked severely.
+DEX1: If an enemy takes its eyes off this Pok{e-accent}mon, it will be pecked severely.
 DEX2: It uses its three brains to execute complex plans.
 EXP_YIELD: 161
 CATCHRATE: 45
@@ -2165,7 +2165,7 @@ SURNAME: GONG
 TYPE1: WATER
 TYPE2: ICE
 DEX1: Its entire body is snow-white. It is unharmed, even by intense cold.
-DEX2: This Pokémon loves swimming in frigid seas and ice flows. It uses its long tail to propel itself through the water.
+DEX2: This Pok{e-accent}mon loves swimming in frigid seas and ice flows. It uses its long tail to propel itself through the water.
 EXP_YIELD: 166
 CATCHRATE: 75
 HP: 90
@@ -2187,7 +2187,7 @@ NUMBER: 88
 NAME: GRI
 SURNAME: MER
 TYPE1: POISON
-DEX1: This Pokémon appears in filthy areas. It thrives by sucking up polluted sludge.
+DEX1: This Pok{e-accent}mon appears in filthy areas. It thrives by sucking up polluted sludge.
 DEX2: Its sludgy and rubbery body can be forced through any opening, however small it may be.
 EXP_YIELD: 65
 CATCHRATE: 190
@@ -2214,7 +2214,7 @@ NUMBER: 89
 NAME: MU
 SURNAME: UK
 TYPE1: POISON
-DEX1: A toxic fluid constantly seeps from this Pokémon.
+DEX1: A toxic fluid constantly seeps from this Pok{e-accent}mon.
 DEX2: Its body is covered in a thick, filthy, vile sludge. Even its footprints contain poison.
 EXP_YIELD: 175
 CATCHRATE: 75
@@ -2239,7 +2239,7 @@ NUMBER: 90
 NAME: SHELL
 SURNAME: DER
 TYPE1: WATER
-DEX1: At night, this Pokémon burrows into the sea floor with its broad tongue.
+DEX1: At night, this Pok{e-accent}mon burrows into the sea floor with its broad tongue.
 DEX2: Its hard shell repels all attacks. It is only vulnerable when the shell is open.
 EXP_YIELD: 61
 CATCHRATE: 190
@@ -2266,7 +2266,7 @@ NAME: CLOY
 SURNAME: STER
 TYPE1: WATER
 TYPE2: ICE
-DEX1: This Pokémon prefers to live in seas with harsh tidal currents.
+DEX1: This Pok{e-accent}mon prefers to live in seas with harsh tidal currents.
 DEX2: It has a shell that is harder than diamonds. It can swim by slamming its shell shut to jet water out.
 EXP_YIELD: 184
 CATCHRATE: 60
@@ -2289,7 +2289,7 @@ NAME: GAST
 SURNAME: LY
 TYPE1: GHOST
 TYPE2: POISON
-DEX1: This Pokémon is said to appear in decrepit, deserted buildings.
+DEX1: This Pok{e-accent}mon is said to appear in decrepit, deserted buildings.
 DEX2: With its gas-like body, it can sneak into any place it desires.
 EXP_YIELD: 62
 CATCHRATE: 190
@@ -2339,7 +2339,7 @@ NAME: GEN
 SURNAME: GAR
 TYPE1: GHOST
 TYPE2: POISON
-DEX1: This Pokémon steals heat from its surroundings. A sudden chill is a telltale sign of its approach.
+DEX1: This Pok{e-accent}mon steals heat from its surroundings. A sudden chill is a telltale sign of its approach.
 DEX2: It stalks its victims by hiding in their shadows.
 EXP_YIELD: 225
 CATCHRATE: 45
@@ -2386,7 +2386,7 @@ NUMBER: 96
 NAME: DROW
 SURNAME: ZEE
 TYPE1: PSYCHIC
-DEX1: This Pokémon puts enemies to sleep.
+DEX1: This Pok{e-accent}mon puts enemies to sleep.
 DEX2: Occasionally, it gets sick from eating bad dreams.
 EXP_YIELD: 66
 CATCHRATE: 190
@@ -2438,7 +2438,7 @@ NUMBER: 98
 NAME: KRAB
 SURNAME: BY
 TYPE1: WATER
-DEX1: If it sense danger, this Pokémon will cloak itself in a cover of bubbles to look bigger.
+DEX1: If it sense danger, this Pok{e-accent}mon will cloak itself in a cover of bubbles to look bigger.
 DEX2: Its pincers are superb weapons. They sometimes break off during battle, but they grow back fast.
 EXP_YIELD: 65
 CATCHRATE: 225
@@ -2464,7 +2464,7 @@ NUMBER: 99
 NAME: KIN
 SURNAME: GLER
 TYPE1: WATER
-DEX1: This Pokémon prefers to scavenge for food, but will hunt if it has to.
+DEX1: This Pok{e-accent}mon prefers to scavenge for food, but will hunt if it has to.
 DEX2: Its oversized pincer is incredibly powerful, but very difficult to aim because it is so heavy.
 EXP_YIELD: 166
 CATCHRATE: 60
@@ -2488,7 +2488,7 @@ NUMBER: 100
 NAME: VOLT
 SURNAME: ORB
 TYPE1: ELECTRIC
-DEX1: This Pokémon is known to screech as a threat before actually exploding.
+DEX1: This Pok{e-accent}mon is known to screech as a threat before actually exploding.
 DEX2: It rolls around to move. It shocks people who get too close.
 EXP_YIELD: 66
 CATCHRATE: 190
@@ -2539,7 +2539,7 @@ NAME: EXEGG
 SURNAME: CUTE
 TYPE1: GRASS
 TYPE2: PSYCHIC
-DEX1: This Pokémon is known to communicate telepathically.
+DEX1: This Pok{e-accent}mon is known to communicate telepathically.
 DEX2: It is often mistaken for eggs. When disturbed, they quickly gather and attack in swarms.
 EXP_YIELD: 65
 CATCHRATE: 90
@@ -2586,7 +2586,7 @@ NUMBER: 104
 NAME: CU
 SURNAME: BONE
 TYPE1: GROUND
-DEX1: This Pokémon wears the skull of its deceased mother. Its cries echo inside the skull and come out as a sad melody.
+DEX1: This Pok{e-accent}mon wears the skull of its deceased mother. Its cries echo inside the skull and come out as a sad melody.
 DEX2: It cries out whenever it is lonely.
 EXP_YIELD: 64
 CATCHRATE: 190
@@ -2612,7 +2612,7 @@ NUMBER: 105
 NAME: MARO
 SURNAME: WAK
 TYPE1: GROUND
-DEX1: This Pokémon was originally very small and weak. Its temperament has turned ferocious.
+DEX1: This Pok{e-accent}mon was originally very small and weak. Its temperament has turned ferocious.
 DEX2: The bone it holds is its key weapon. It skillfully throws the bone like a boomerang.
 EXP_YIELD: 149
 CATCHRATE: 75
@@ -2636,7 +2636,7 @@ NUMBER: 106
 NAME: HITMON
 SURNAME: LEE
 TYPE1: FIGHTING
-DEX1: This Pokémon has an amazing sense of balance.
+DEX1: This Pok{e-accent}mon has an amazing sense of balance.
 DEX2: Its legs can stretch to double their length, allowing it to kick enemies from far away.
 EXP_YIELD: 159
 CATCHRATE: 45
@@ -2660,7 +2660,7 @@ NUMBER: 107
 NAME: HIT
 SURNAME: MONCHAN
 TYPE1: FIGHTING
-DEX1: This Pokémon has a drive to train constantly.
+DEX1: This Pok{e-accent}mon has a drive to train constantly.
 DEX2: To increase the strength of its punches, it spins its arms just before making contact.
 EXP_YIELD: 159
 CATCHRATE: 45
@@ -2685,7 +2685,7 @@ NAME: LICKI
 SURNAME: TUNG
 TYPE1: NORMAL
 DEX1: Its tongue spans almost 7 feet and moves more freely than its forelegs. Its licks can cause paralysis.
-DEX2: This stout Pokémon stores up as much fat for the winter as it can.
+DEX2: This stout Pok{e-accent}mon stores up as much fat for the winter as it can.
 EXP_YIELD: 77
 CATCHRATE: 45
 HP: 90
@@ -2708,7 +2708,7 @@ NUMBER: 109
 NAME: KOF
 SURNAME: FING
 TYPE1: POISON
-DEX1: If you get up close to this Pokémon, you can see toxic gases swirling around inside it.
+DEX1: If you get up close to this Pok{e-accent}mon, you can see toxic gases swirling around inside it.
 DEX2: Because it stores several kinds of toxic gases in its body, it is prone to exploding without warning.
 EXP_YIELD: 68
 CATCHRATE: 190
@@ -2759,7 +2759,7 @@ NAME: RHYH
 SURNAME: ORN
 TYPE1: ROCK
 TYPE2: GROUND
-DEX1: Though covered in thick, rocky hide, this Pokémon is not very smart.
+DEX1: Though covered in thick, rocky hide, this Pok{e-accent}mon is not very smart.
 DEX2: It is inept at turning because of its 4 short legs. It can only charge and run in one direction.
 EXP_YIELD: 69
 CATCHRATE: 120
@@ -2810,7 +2810,7 @@ NUMBER: 113
 NAME: CHAN
 SURNAME: SEY
 TYPE1: NORMAL
-DEX1: A gentle and kind-hearted Pokémon that will care for injured Pokémon it comes across.
+DEX1: A gentle and kind-hearted Pok{e-accent}mon that will care for injured Pok{e-accent}mon it comes across.
 DEX2: It lays several eggs a day. These eggs are very nutritious and it has no problem sharing them with others.
 EXP_YIELD: 395
 CATCHRATE: 30
@@ -2836,7 +2836,7 @@ NAME: TAN
 SURNAME: GELA
 TYPE1: GRASS
 DEX1: Its disconcerting eyes never blink.
-DEX2: Thick vines cover this Pokémon's body. It entangles anything that gets close.
+DEX2: Thick vines cover this Pok{e-accent}mon's body. It entangles anything that gets close.
 EXP_YIELD: 87
 CATCHRATE: 45
 HP: 65
@@ -2860,7 +2860,7 @@ NUMBER: 115
 NAME: KANGAS
 SURNAME: KHAN
 TYPE1: NORMAL
-DEX1: This Pokémon is known for its fiercely protective parental instincts.
+DEX1: This Pok{e-accent}mon is known for its fiercely protective parental instincts.
 DEX2: It keeps its young in a belly pouch to protect them. If it is safe, the young will come out to play, with the adult keeping a constant watch.
 EXP_YIELD: 172
 CATCHRATE: 45
@@ -2885,7 +2885,7 @@ NAME: HOR
 SURNAME: SEA
 TYPE1: WATER
 DEX1: If it senses any type of danger, it will spray water or a special type of ink from its mouth.
-DEX2: When they're in a safe location, these Pokémon can be seen playfully tangling their tales.
+DEX2: When they're in a safe location, these Pok{e-accent}mon can be seen playfully tangling their tales.
 EXP_YIELD: 59
 CATCHRATE: 225
 HP: 30
@@ -2909,7 +2909,7 @@ NUMBER: 117
 NAME: SEAD
 SURNAME: RA
 TYPE1: WATER
-DEX1: The males of this Pokémon raise the young.
+DEX1: The males of this Pok{e-accent}mon raise the young.
 DEX2: It sleeps by wriggling itself between coral.
 EXP_YIELD: 154
 CATCHRATE: 75
@@ -2985,7 +2985,7 @@ NAME: STA
 SURNAME: RYU
 TYPE1: WATER
 DEX1: Its gem twinkles in the moonlight.
-DEX2: This Pokémon is very energetic and can regenerate any appendage it loses in battle.
+DEX2: This Pok{e-accent}mon is very energetic and can regenerate any appendage it loses in battle.
 EXP_YIELD: 68
 CATCHRATE: 225
 HP: 30
@@ -3012,7 +3012,7 @@ NAME: STAR
 SURNAME: MIE
 TYPE1: PSYCHIC
 TYPE2: WATER
-DEX1: This Pokémon prefers to communicate by flashing its gem in different color patterns.
+DEX1: This Pok{e-accent}mon prefers to communicate by flashing its gem in different color patterns.
 DEX2: It swims through the water by spinning its body, as though it were a propeller.
 EXP_YIELD: 182
 CATCHRATE: 60
@@ -3033,7 +3033,7 @@ NUMBER: 122
 NAME: MR.
 SURNAME: MIME
 TYPE1: PSYCHIC
-DEX1: A skilled mime from birth, this Pokémon is adept at conning people.
+DEX1: A skilled mime from birth, this Pok{e-accent}mon is adept at conning people.
 DEX2: Its fingertips emit a peculiar force field that hardens the air to create an invisible wall.
 EXP_YIELD: 161
 CATCHRATE: 45
@@ -3083,7 +3083,7 @@ SURNAME: NX
 TYPE1: ICE
 TYPE2: PSYCHIC
 DEX1: It speaks in a way that sounds human, but research has yet to reveal what it is saying.
-DEX2: This Pokémon is usually only found in icy climates.
+DEX2: This Pok{e-accent}mon is usually only found in icy climates.
 EXP_YIELD: 159
 CATCHRATE: 45
 HP: 65
@@ -3155,7 +3155,7 @@ NUMBER: 127
 NAME: PIN
 SURNAME: SIR
 TYPE1: BUG
-DEX1: During cold periods, this Pokémon will hide deep in the woods.
+DEX1: During cold periods, this Pok{e-accent}mon will hide deep in the woods.
 DEX2: It grips its prey in its pincers and squeezes hard. If it can't crush them, it will throw them as hard as it can.
 EXP_YIELD: 175
 CATCHRATE: 45
@@ -3224,7 +3224,7 @@ NAME: GYA
 SURNAME: RADOS
 TYPE1: WATER
 TYPE2: FLYING
-DEX1: This Pokémon's powerful bite is a far cry from its humble beginnings.
+DEX1: This Pok{e-accent}mon's powerful bite is a far cry from its humble beginnings.
 DEX2: It is rarely seen in the wild. Huge and vicious, legends tell of it destroying entire cities in its rage.
 EXP_YIELD: 189
 CATCHRATE: 45
@@ -3247,7 +3247,7 @@ NAME: LAP
 SURNAME: RAS
 TYPE1: WATER
 TYPE2: ICE
-DEX1: This Pokémon has been overhunted almost to the point of extinction.
+DEX1: This Pok{e-accent}mon has been overhunted almost to the point of extinction.
 DEX2: It has a gentle soul and can ferry people across the sea on its back.
 EXP_YIELD: 187
 CATCHRATE: 45
@@ -3272,7 +3272,7 @@ NUMBER: 132
 NAME: DIT
 SURNAME: TO
 TYPE1: NORMAL
-DEX1: This Pokémon is capable of copying an enemy's genetic code.
+DEX1: This Pok{e-accent}mon is capable of copying an enemy's genetic code.
 DEX2: When it sees an enemy, its body transfigures itself into an almost perfect copy of its opponent.
 EXP_YIELD: 101
 CATCHRATE: 35
@@ -3291,7 +3291,7 @@ NUMBER: 133
 NAME: EEV
 SURNAME: VEE
 TYPE1: NORMAL
-DEX1: A rare Pokémon that adapts to harsh environments by taking on different evolutionary forms.
+DEX1: A rare Pok{e-accent}mon that adapts to harsh environments by taking on different evolutionary forms.
 DEX2: It's irregular DNA is easily affected by its surroundings. It can evolve if its environment changes.
 EXP_YIELD: 65
 CATCHRATE: 45
@@ -3394,7 +3394,7 @@ NAME: PORY
 SURNAME: GON
 TYPE1: NORMAL
 DEX1: Since it doesn't breath, people are eager to try it in new environments.
-DEX2: Using the most advanced technologies, scientists created this artificial Pokémon. 
+DEX2: Using the most advanced technologies, scientists created this artificial Pok{e-accent}mon. 
 EXP_YIELD: 79
 CATCHRATE: 45
 HP: 65
@@ -3418,7 +3418,7 @@ NAME: OMAN
 SURNAME: YTE
 TYPE1: ROCK
 TYPE2: WATER
-DEX1: An ancient Pokémon whose DNA was resurrected from a fossil. It uses its tentacles to gather food.
+DEX1: An ancient Pok{e-accent}mon whose DNA was resurrected from a fossil. It uses its tentacles to gather food.
 DEX2: If it is attacked, it will withdraw into its hard shell.
 EXP_YIELD: 71
 CATCHRATE: 45
@@ -3468,7 +3468,7 @@ NAME: KAB
 SURNAME: UTO
 TYPE1: ROCK
 TYPE2: WATER
-DEX1: This ancient Pokémon's DNA was resurrected from a fossil. It hides its glowing eyes on the sea floor.
+DEX1: This ancient Pok{e-accent}mon's DNA was resurrected from a fossil. It hides its glowing eyes on the sea floor.
 DEX2: Its dome shell makes it easy to hide under the sand.
 EXP_YIELD: 71
 CATCHRATE: 45
@@ -3495,7 +3495,7 @@ SURNAME: TOPS
 TYPE1: ROCK
 TYPE2: WATER
 DEX1: It aggressively hunts prey.
-DEX2: This Pokémon is a slim and fast swimmer. It slices its prey with its sharp sickles.
+DEX2: This Pok{e-accent}mon is a slim and fast swimmer. It slices its prey with its sharp sickles.
 EXP_YIELD: 173
 CATCHRATE: 45
 HP: 60
@@ -3518,7 +3518,7 @@ NAME: AERO
 SURNAME: DACTYL
 TYPE1: ROCK
 TYPE2: FLYING
-DEX1: A ferocious, prehistoric Pokémon that goes for the enemy's throat with its serrated, saw-like fangs.
+DEX1: A ferocious, prehistoric Pok{e-accent}mon that goes for the enemy's throat with its serrated, saw-like fangs.
 DEX2: It flies at incredible speeds through the sky.
 EXP_YIELD: 180
 CATCHRATE: 45
@@ -3543,7 +3543,7 @@ NUMBER: 143
 NAME: SNOR
 SURNAME: LAX
 TYPE1: NORMAL
-DEX1: This Pokémon is very lazy and will just eat and sleep, if allowed.
+DEX1: This Pok{e-accent}mon is very lazy and will just eat and sleep, if allowed.
 DEX2: It will eat anything, even if the food is mouldy. It never gets an upset stomach.
 EXP_YIELD: 189
 CATCHRATE: 25
@@ -3568,7 +3568,7 @@ NAME: ARTIC
 SURNAME: UNO
 TYPE1: ICE
 TYPE2: FLYING
-DEX1: This Pokémon is said to appear to doomed people who are lost in the icy mountains.
+DEX1: This Pok{e-accent}mon is said to appear to doomed people who are lost in the icy mountains.
 DEX2: Its magnificent, seemingly translucent wings glimmer as it flies through the sky.
 EXP_YIELD: 261
 CATCHRATE: 3
@@ -3592,7 +3592,7 @@ NAME: ZAP
 SURNAME: DOS
 TYPE1: ELECTRIC
 TYPE2: FLYING
-DEX1: This Pokémon is said to appear from the clouds while dropping enormous lightning bolts.
+DEX1: This Pok{e-accent}mon is said to appear from the clouds while dropping enormous lightning bolts.
 DEX2: It is said to cause savage thunderstorms just by flapping its wings.
 EXP_YIELD: 261
 CATCHRATE: 3
@@ -3640,7 +3640,7 @@ NUMBER: 147
 NAME: DRA
 SURNAME: TINI
 TYPE1: DRAGON
-DEX1: It has long been considered a mirage Pokémon, as so few people have seen it.
+DEX1: It has long been considered a mirage Pok{e-accent}mon, as so few people have seen it.
 DEX2: Born large to begin with, it repeately sheds its skin as it steadily grows larger.
 EXP_YIELD: 60
 CATCHRATE: 45
@@ -3666,7 +3666,7 @@ NUMBER: 148
 NAME: DRAGO
 SURNAME: NAIR
 TYPE1: DRAGON
-DEX1: This Pokémon is said to live in seas and lakes.
+DEX1: This Pok{e-accent}mon is said to live in seas and lakes.
 DEX2: Its body exudes a gentle aura. It is said to have the ability to control the weather.
 EXP_YIELD: 147
 CATCHRATE: 27
@@ -3693,7 +3693,7 @@ NAME: DRAG
 SURNAME: ONITE
 TYPE1: DRAGON
 TYPE2: FLYING
-DEX1: This Pokémon is said to have intelligence that rivals humans. It prefers to hide in the ocean.
+DEX1: This Pok{e-accent}mon is said to have intelligence that rivals humans. It prefers to hide in the ocean.
 DEX2: Despite its big and bulky physique, it is able to fly.
 EXP_YIELD: 270
 CATCHRATE: 9
@@ -3717,7 +3717,7 @@ NUMBER: 150
 NAME: MEW
 SURNAME: TWO
 TYPE1: PSYCHIC
-DEX1: This cruel Pokémon is the result of genetic manipulation to create the ultimate weapon.
+DEX1: This cruel Pok{e-accent}mon is the result of genetic manipulation to create the ultimate weapon.
 DEX2: It has a savage heart and only knows peace when destroying its opponents.
 EXP_YIELD: 306
 CATCHRATE: 3
@@ -3740,7 +3740,7 @@ NUMBER: 151
 NAME: ME
 SURNAME: EW
 TYPE1: PSYCHIC
-DEX1: This Pokémon is so rare that it is thought to be entirely fiction. Legends tell of it being the ancestor to all Pokémon.
+DEX1: This Pok{e-accent}mon is so rare that it is thought to be entirely fiction. Legends tell of it being the ancestor to all Pok{e-accent}mon.
 DEX2: If you look closely at it, you can see that it is covered in very fine fur.
 EXP_YIELD: 270
 CATCHRATE: 45

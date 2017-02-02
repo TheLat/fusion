@@ -57,7 +57,7 @@ public:
 
 class mon_template {
 public:
-	string number, name, type1, type2;
+	string number, name, type1, type2, dex;
 	int stats[SIZE];
 	int exp_yield, catchrate;
 	vector<pair<int, string>> learned;
@@ -1408,6 +1408,30 @@ public:
 					a = f.get();
 				}
 				all_mon[key].type2 = line;
+			}
+			else if (line == "DEX") {
+				line = "";
+				while (a != '\r' && a != '\n') {
+					line = line + a;
+					a = f.get();
+				}
+				all_mon[key].dex = all_mon[key].dex + line;
+			}
+			else if (line == "DEX1") {
+				line = "";
+				while (a != '\r' && a != '\n') {
+					line = line + a;
+					a = f.get();
+				}
+				all_mon[key].dex = all_mon[key].dex + line;
+			}
+			else if (line == "DEX2") {
+				line = "";
+				while (a != '\r' && a != '\n') {
+					line = line + a;
+					a = f.get();
+				}
+				all_mon[key].dex = all_mon[key].dex + string(" ") + line;
 			}
 			else if (line == "EXP_YIELD") {
 				line = "";
