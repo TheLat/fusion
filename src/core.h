@@ -228,7 +228,7 @@ public:
 				if (!mc.team[index].defined)
 					return string("");
 				if (mc.team[index].level == 100)
-					return string("L**");
+					return string("{LEVEL}**");
 				return string("{LEVEL}") + to_string(mc.team[index].level);
 			}
 			else if (parse == "TEAM_MON_MAX_HP"){
@@ -347,6 +347,34 @@ public:
 					return string("");
 				string o = mc.team[index].nickname;
 				while (o.length() < 14)
+					o = string(" ") + o;
+				return o;
+			}
+			else if (parse == "EXP_POINTS") {
+				int index = stoi(temp);
+				if (!mc.team[index].defined)
+					return string("");
+				string o = to_string(mc.team[index].exp);
+				while (o.length() < 10)
+					o = string(" ") + o;
+				return o;
+			}
+			else if (parse == "LEVEL_UP") {
+				int index = stoi(temp);
+				if (!mc.team[index].defined)
+					return string("");
+				int tot = -1;
+				for (int i = 0; i <= 100; ++i) {
+					if (e.level_to_exp[i] > mc.team[index].exp) {
+						tot = e.level_to_exp[i] - mc.team[index].exp;
+						break;
+					}
+				}
+				string o = string("");
+				if (tot != -1) {
+					o = to_string(tot);
+				}
+				while (o.length() < 10)
 					o = string(" ") + o;
 				return o;
 			}
@@ -1835,6 +1863,12 @@ public:
 		menus[menus.size() - 1]->create_stats(choice);
 		menus[menus.size() - 1]->push_menu();
 	}
+	void create_moves(int choice) {
+		menu* m = new menu;
+		menus.push_back(m);
+		menus[menus.size() - 1]->create_moves(choice);
+		menus[menus.size() - 1]->push_menu();
+	}
 	void create_combat_switch_confirm(int choice) {
 		menu* m = new menu;
 		menus.push_back(m);
@@ -1876,6 +1910,14 @@ public:
 	vector<int> do_stats(int choice){
 		vector<int> out;
 		create_stats(choice);
+		out = menus[menus.size() - 1]->main();
+		delete menus[menus.size() - 1];
+		menus.erase(menus.end() - 1);
+		return out;
+	}
+	vector<int> do_moves(int choice){
+		vector<int> out;
+		create_moves(choice);
 		out = menus[menus.size() - 1]->main();
 		delete menus[menus.size() - 1];
 		menus.erase(menus.end() - 1);

@@ -46,7 +46,7 @@ vector<int> do_menu(string menu) {
 	else if (menu == "STATS")
 		return e.do_stats(choice);
 	else if (menu == "MOVES")
-		return def; //FIX THIS
+		return e.do_moves(choice);
 	return def;
 }
 
@@ -111,10 +111,9 @@ int main(int argc, char** argv) {
 	e.init_mon();
 	e.init_levels();
 	e.init_blocking();
-	int l = 29;
+	int l = 100;
 	e.make_mon(string("6"), l, e.mc.team[0]);
 	e.mc.team[0].wild = false;
-	e.mc.team[0].nickname = "VICTREELIWHIRL";
 	e.apply_status(e.mc.team[0], string("BURN"));
 	e.apply_status(e.mc.team[0], string("POISON"));
 	e.apply_status(e.mc.team[0], string("FREEZE"));

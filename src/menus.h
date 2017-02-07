@@ -130,7 +130,7 @@ public:
 		t.ymin = -2.0f; //HACK
 		t.xmin = -2.0f;
 		t.s = "Next screen.";
-		followup.push_back(string("MOVES") + to_string(choice));
+		followup.push_back(string("MOVES:") + to_string(choice));
 		raw.push_back(t);
 		t.xmin = -0.9f;
 		t.length = 0.8f;
@@ -186,7 +186,7 @@ public:
 		raw.push_back(t);
 		t.xmin = 0.0f;
 		t.ymin = -0.6f;
-		t.s = string("ST%ATUS/");
+		t.s = string("STATUS/");
 		raw.push_back(t);
 		t.xmin = 0.1f;
 		t.ymin = -1.1f;
@@ -209,6 +209,66 @@ public:
 		t.length = 0.8f;
 		t.ymin = -0.1f;
 		t.s = string("TEAM_MON_NUMBER:") + to_string(choice);
+		raw.push_back(t);
+		process_strings();
+	}
+	void create_moves(int choice) {
+		box b;
+		text t;
+		columns = 1;
+		type = "SELECT";
+		selection_cap = 1;
+		boxes.clear();
+		arrowboxes.clear();
+		raw.clear();
+		followup.clear();
+		b.ymin = -1.1f;
+		b.height = 2.2f;
+		b.xmin = -1.1f;
+		b.length = 2.2f;
+		boxes.push_back(b);
+		b.ymin = -1.0f;
+		b.xmin = -1.0f;
+		b.length = 2.0f;
+		b.height = 1.0f;
+		boxes.push_back(b);
+		b.xmin = -0.2f;
+		b.ymin = 0.0f;
+		b.length = 1.2f;
+		b.height = 0.9f;
+		arrowboxes.push_back(b);
+		t.height = 0.1f;
+		t.length = 1.0f;
+		t.ymin = -2.0f; //HACK
+		t.xmin = -2.0f;
+		t.s = "Next screen.";
+		followup.push_back(string("MOVES") + to_string(choice));
+		raw.push_back(t);
+		t.xmin = -0.5f;
+		t.length = 1.4f;
+		t.ymin = 0.7f;
+		t.height = 0.1f;
+		t.s = string("TEAM_MON_NAME_RIGHT_JUSTIFIED:") + to_string(choice);
+		raw.push_back(t);
+		t.xmin = -0.9f;
+		t.length = 0.8f;
+		t.ymin = -0.1f;
+		t.s = string("TEAM_MON_NUMBER:") + to_string(choice);
+		raw.push_back(t);
+		t.xmin = -0.1f;
+		t.length = 1.4f;
+		t.ymin = 0.5f;
+		t.height = 0.1f;
+		t.s = string("EXP POINTS");
+		raw.push_back(t);
+		t.ymin = 0.4f;
+		t.s = string("EXP_POINTS:") + to_string(choice);
+		raw.push_back(t);
+		t.ymin = 0.3f;
+		t.s = string("LEVEL_UP");
+		raw.push_back(t);
+		t.ymin = 0.2f;
+		t.s = string("LEVEL_UP:") + to_string(choice);
 		raw.push_back(t);
 		process_strings();
 	}
