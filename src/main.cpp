@@ -111,7 +111,7 @@ int main(int argc, char** argv) {
 	e.init_mon();
 	e.init_levels();
 	e.init_blocking();
-	int l = 100;
+	int l = 99;
 	e.make_mon(string("6"), l, e.mc.team[0]);
 	e.mc.team[0].wild = false;
 	e.apply_status(e.mc.team[0], string("BURN"));

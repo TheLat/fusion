@@ -238,12 +238,31 @@ public:
 		b.height = 0.9f;
 		arrowboxes.push_back(b);
 		t.height = 0.1f;
-		t.length = 1.0f;
-		t.ymin = -2.0f; //HACK
-		t.xmin = -2.0f;
-		t.s = "Next screen.";
-		followup.push_back(string("MOVES") + to_string(choice));
-		raw.push_back(t);
+		t.length = 1.8f;
+		t.xmin = -0.8f;
+		t.ymin = -0.1f;
+		for (int i = 0; i < 4; ++i) {
+			t.ymin -= 0.2f;
+			t.s = string("MON_MOVE:") + to_string(choice) + string(":") + to_string(i);
+			followup.push_back(string("MOVE_DEFIITION:") + to_string(choice) + string(":") + to_string(i));
+			raw.push_back(t);
+			if (get_special_string(t.s) != "-")
+				selection_cap = i + 1;
+		}
+		t.xmin = -0.1f;
+		t.ymin = -0.2f;
+		for (int i = 0; i < 4; ++i) {
+			t.ymin -= 0.2f;
+			t.s = string("MON_MOVE_PP:") + to_string(choice) + string(":") + to_string(i);
+			raw.push_back(t);
+		}
+		t.xmin = 0.0f;
+		t.ymin = -0.2f;
+		for (int i = 0; i < 4; ++i) {
+			t.ymin -= 0.2f;
+			t.s = string("PP");
+			raw.push_back(t);
+		}
 		t.xmin = -0.5f;
 		t.length = 1.4f;
 		t.ymin = 0.7f;
@@ -257,18 +276,27 @@ public:
 		raw.push_back(t);
 		t.xmin = -0.1f;
 		t.length = 1.4f;
-		t.ymin = 0.5f;
+		t.ymin = 0.3f;
 		t.height = 0.1f;
 		t.s = string("EXP POINTS");
 		raw.push_back(t);
-		t.ymin = 0.4f;
+		t.ymin = 0.2f;
 		t.s = string("EXP_POINTS:") + to_string(choice);
 		raw.push_back(t);
-		t.ymin = 0.3f;
+		t.ymin = 0.1f;
 		t.s = string("LEVEL_UP");
 		raw.push_back(t);
-		t.ymin = 0.2f;
+		t.ymin = 0.0f;
 		t.s = string("LEVEL_UP:") + to_string(choice);
+		raw.push_back(t);
+		t.xmin = 0.2f;
+		t.ymin = 0.4f;
+		t.length = 0.7f;
+		t.s = string("TEAM_MON_FORMATTED_HP:") + to_string(choice);
+		raw.push_back(t);
+		t.xmin = 0.4f;
+		t.ymin = 0.6f;
+		t.s = string("TEAM_MON_LEVEL:") + to_string(choice);
 		raw.push_back(t);
 		process_strings();
 	}

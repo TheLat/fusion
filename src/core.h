@@ -207,12 +207,35 @@ public:
 				}
 				return out;
 			}
+			else if (parse == "MON_MOVE") {
+				int index1 = 0;
+				int index2 = 0;
+				index1 = stoi(temp);
+				temp.erase(0, temp.find(":") + 1);
+				index2 = stoi(temp);
+				out = mc.team[index1].moves[index2];
+				if (out == "") {
+					out = "-";
+				}
+				return out;
+			}
 			else if (parse == "ACTIVE_MON_MOVE_TYPE") {
 				return moves[mc.team[selected].moves[stoi(temp)]].type;
 			}
 			else if (parse == "ACTIVE_MON_MOVE_PP") {
 				int index = stoi(temp);
 				out = to_string(mc.team[selected].pp[index]) + string("/") + to_string(mc.team[selected].max_pp[index]);
+				while (out.length() < 9)
+					out = string(" ") + out;
+				return out;
+			}
+			else if (parse == "MON_MOVE_PP") {
+				int index1 = 0;
+				int index2 = 0;
+				index1 = stoi(temp);
+				temp.erase(0, temp.find(":") + 1);
+				index2 = stoi(temp);
+				out = to_string(mc.team[index1].pp[index2]) + string("/") + to_string(mc.team[index1].max_pp[index2]);
 				while (out.length() < 9)
 					out = string(" ") + out;
 				return out;
