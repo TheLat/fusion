@@ -29,11 +29,21 @@ string get_special_string(string in) {
 vector<int> do_menu(string menu) {
 	vector<int> def;
 	int choice = 0;
+	string temp;
 	if (menu.find(string(":")) != -1) {
-		string temp = menu;
+		temp = menu;
 		menu = menu.erase(menu.find(string(":")), menu.length());
 		temp = temp.erase(0, temp.find(":") + 1);
-		choice = stoi(temp);
+		bool number = false;
+		for (int i = 0; i <= 9; ++i) {
+			if (temp.find(to_string(i)) == 0) {
+				number = true;
+				break;
+			}
+		}
+		if (number) {
+			choice = stoi(temp);
+		}
 	}
 	if (menu == "FIGHT")
 		return e.do_move_select();
@@ -47,6 +57,8 @@ vector<int> do_menu(string menu) {
 		return e.do_stats(choice);
 	else if (menu == "MOVES")
 		return e.do_moves(choice);
+	else if (menu == "MOVE_DEFINITION")
+		return e.do_move_definition(temp);
 	return def;
 }
 

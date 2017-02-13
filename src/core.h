@@ -198,7 +198,14 @@ public:
 				parse += temp[i];
 			}
 			temp.erase(0, temp.find(':') + 1);
-			if (stoi(temp) == -1)
+			bool number = false;
+			for (int i = 0; i <= 9; ++i) {
+				if (temp.find(to_string(i)) == 0) {
+					number = true;
+					break;
+				}
+			}
+			if (number && stoi(temp) == -1)
 				return string(""); // TODO:  Better error detection.
 			if (parse == "ACTIVE_MON_MOVE") {
 				out = mc.team[selected].moves[stoi(temp)];
@@ -400,6 +407,23 @@ public:
 				while (o.length() < 10)
 					o = string(" ") + o;
 				return o;
+			}
+			else if (parse == "RIGHT_JUSTIFY") {
+				int len = stoi(temp);
+				temp.erase(0, temp.find(':') + 1);
+				while (temp.length() < len)
+					temp = string(" ") + temp;
+				return temp;
+			}
+			else if (parse == "MOVE_POWER") {
+				if (!moves[temp].defined)
+					return string("-");
+				return moves[temp].pow;
+			}
+			else if (parse == "MOVE_ACC") {
+				if (!moves[temp].defined)
+					return string("-");
+				return to_string(moves[temp].acc);
 			}
 		}
 		return in;
@@ -1892,6 +1916,12 @@ public:
 		menus[menus.size() - 1]->create_moves(choice);
 		menus[menus.size() - 1]->push_menu();
 	}
+	void create_move_definition(string in) {
+		menu* m = new menu;
+		menus.push_back(m);
+		menus[menus.size() - 1]->create_move_definition(in);
+		menus[menus.size() - 1]->push_menu();
+	}
 	void create_combat_switch_confirm(int choice) {
 		menu* m = new menu;
 		menus.push_back(m);
@@ -1941,6 +1971,14 @@ public:
 	vector<int> do_moves(int choice){
 		vector<int> out;
 		create_moves(choice);
+		out = menus[menus.size() - 1]->main();
+		delete menus[menus.size() - 1];
+		menus.erase(menus.end() - 1);
+		return out;
+	}
+	vector<int> do_move_definition(string in){
+		vector<int> out;
+		create_move_definition(in);
 		out = menus[menus.size() - 1]->main();
 		delete menus[menus.size() - 1];
 		menus.erase(menus.end() - 1);

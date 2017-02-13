@@ -244,7 +244,7 @@ public:
 		for (int i = 0; i < 4; ++i) {
 			t.ymin -= 0.2f;
 			t.s = string("MON_MOVE:") + to_string(choice) + string(":") + to_string(i);
-			followup.push_back(string("MOVE_DEFIITION:") + to_string(choice) + string(":") + to_string(i));
+			followup.push_back(string("MOVE_DEFINITION:") + get_special_string(string("MON_MOVE:") + to_string(choice) + string(":") + to_string(i)));
 			raw.push_back(t);
 			if (get_special_string(t.s) != "-")
 				selection_cap = i + 1;
@@ -297,6 +297,52 @@ public:
 		t.xmin = 0.4f;
 		t.ymin = 0.6f;
 		t.s = string("TEAM_MON_LEVEL:") + to_string(choice);
+		raw.push_back(t);
+		process_strings();
+	}
+
+	void create_move_definition(string in) {
+		box b;
+		text t;
+		columns = 1;
+		cancel_option = 0;
+		type = "SELECT";
+		selection_cap = 1;
+		boxes.clear();
+		arrowboxes.clear();
+		raw.clear();
+		followup.clear();
+		b.ymin = -1.0f;
+		b.xmin = -1.0f;
+		b.length = 1.5f;
+		b.height = 2.0f;
+		boxes.push_back(b);
+		t.height = 0.1f;
+		t.length = 1.0f;
+		t.ymin = -2.0f;
+		t.xmin = -2.0f;
+		t.s = "Done.";
+		raw.push_back(t);
+		t.height = 0.1f;
+		t.length = 1.3f;
+		t.xmin = -0.9f;
+		t.ymin = 0.7f;
+		t.s = "MOVE";
+		raw.push_back(t);
+		t.ymin = 0.6f;
+		t.s = string("RIGHT_JUSTIFY:13:") + in;
+		raw.push_back(t);
+		t.ymin = 0.5f;
+		t.s = "POWER";
+		raw.push_back(t);
+		t.ymin = 0.4f;
+		t.s = string("RIGHT_JUSTIFY:13:") + get_special_string(string("MOVE_POWER:") + in);
+		raw.push_back(t);
+		t.ymin = 0.3f;
+		t.s = "ACCURACY";
+		raw.push_back(t);
+		t.ymin = 0.2f;
+		t.s = string("RIGHT_JUSTIFY:13:") + get_special_string(string("MOVE_ACC:") + in);
 		raw.push_back(t);
 		process_strings();
 	}
