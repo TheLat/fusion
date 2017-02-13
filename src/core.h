@@ -425,6 +425,32 @@ public:
 					return string("-");
 				return to_string(moves[temp].acc);
 			}
+			else if (parse == "MOVE_TYPE") {
+				if (!moves[temp].defined)
+					return string("-");
+				return moves[temp].type;
+			}
+			else if (parse == "MOVE_DEFENSE") {
+				if (!moves[temp].defined)
+					return string("-");
+				switch (moves[temp].defense) {
+				case ATTACK:
+					return string("ATTACK");
+				case DEFENSE:
+					return string("DEFENSE");
+				case SPECIAL:
+					return string("SPECIAL");
+				case SPEED:
+					return string("SPEED");
+				default:
+					return string("-");
+				}
+			}
+			else if (parse == "MOVE_NOTES") {
+				if (!moves[temp].defined)
+					return string("-");
+				return moves[temp].notes;
+			}
 		}
 		return in;
 	}

@@ -236,9 +236,14 @@ public:
 			key = key + string(".bmp");
 			if (string_lookup[key].defined)
 				key = string_lookup[key].value;
-			if (key != string("\n.bmp"))
-				push_quad(x_curr, y_curr, size, size, menu_tex[key]);
-			x_curr += size;
+			if (key != string("\n.bmp")) {
+				if (key == string("space.bmp") && x_curr == x && y_curr != y + height) {
+				}
+				else {
+					push_quad(x_curr, y_curr, size, size, menu_tex[key]);
+					x_curr += size;
+				}
+			}
 			if ((height != size) &&(x_curr >= x + width || (!no_chunk_yet && ((float(next_chunk(s, i) - i))*size + x_curr > 0.9f)))) {
 				no_chunk_yet = true;
 				x_curr = x;

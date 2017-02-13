@@ -5,7 +5,7 @@ DEFENSE: DEFENSE
 ACC: 100
 SELF: RECOIL:50
 QUEUE_ONLY: YES
-NOTES: Struggles against opponent.  Takes half damaged back.
+NOTES: Struggles against opponent. Takes half damaged back.
 
 MOVE: TACKLE
 TYPE: NORMAL
@@ -180,7 +180,7 @@ POWER: 20
 SELF: RAGE
 DEFENSE: DEFENSE
 QUEUE: RAGE2
-NOTES: Attacks continuous.  Attack increase when damage is taken.
+NOTES: Attacks continuously. Attack increase when damage is taken.
 
 MOVE: RAGE2
 TYPE: NORMAL
@@ -343,7 +343,7 @@ PP: 20
 TARGET: POISON:20
 DEFENSE: DEFENSE
 SPECIAL: STATUS_IMMUNITY:POISON
-NOTES: Attacks twice.  1 in 5 chance to poison opponent per attack.
+NOTES: Attacks twice. 1 in 5 chance to poison opponent per attack.
 
 MOVE: PIN MISSILE
 TYPE: BUG
@@ -817,7 +817,7 @@ MOVE: TELEPORT
 TYPE: PSYCHIC
 PP: 20
 SELF: FLEE
-NOTES: Flees from combat.  Can be used outside of combat.
+NOTES: Flees from combat. Can be used outside of combat.
 
 MOVE: RECOVER
 TYPE: NORMAL
@@ -1418,7 +1418,7 @@ TYPE: NORMAL
 ACC: 70
 TARGET: ACCURACY_DOWN
 PP: 20
-NOTES: Decreases opponent's accuracy.  Can be used outside of combat.
+NOTES: Decreases opponent's accuracy. Can be used outside of combat.
 
 MOVE: RAZOR WIND
 TYPE: NORMAL
@@ -1508,7 +1508,7 @@ MOVE: SOFTBOILED
 TYPE: NORMAL
 SELF: HEAL:70
 PP: 10
-NOTES: Heals self.  Can be used outside of combat.
+NOTES: Heals self. Can be used outside of combat.
 
 MOVE: PSYWAVE
 TYPE: PSYCHIC
