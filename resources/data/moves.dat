@@ -180,7 +180,7 @@ POWER: 20
 SELF: RAGE
 DEFENSE: DEFENSE
 QUEUE: RAGE2
-NOTES: Attacks continuously. Attack increase when damage is taken.
+NOTES: Attacks continuously. Attack increases when damage is taken.
 
 MOVE: RAGE2
 TYPE: NORMAL
@@ -358,7 +358,7 @@ TYPE: PSYCHIC
 ACC: 100
 PP: 30
 SELF: SPEED_UP SPEED_UP CLEAR_STATUS:PARALYZE
-NOTES: Greatly increases speed.
+NOTES: Greatly increases speed.  Cures paralysis.
 
 MOVE: GUST
 TYPE: FLYING
