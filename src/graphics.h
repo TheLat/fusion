@@ -209,8 +209,7 @@ public:
 			}
 			ret++;
 		}
-		if (ret == s.size())
-			ret--;
+		ret--;
 		return ret;
 	}
 	unsigned push_text(float x, float y, float width, float height, float size, string s) {
@@ -244,7 +243,7 @@ public:
 					x_curr += size;
 				}
 			}
-			if ((height != size) &&(x_curr >= x + width || (!no_chunk_yet && ((float(next_chunk(s, i) - i))*size + x_curr > 0.9f)))) {
+			if ((height != size) &&(x_curr >= x + width || (!no_chunk_yet && ((float(next_chunk(s, i) - i))*size + x_curr > (x + width + 0.00001))))) {
 				no_chunk_yet = true;
 				x_curr = x;
 				y_curr -= size;

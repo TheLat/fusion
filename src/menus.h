@@ -359,7 +359,7 @@ public:
 		t.ymin = -0.3f;
 		t.s = "NOTES";
 		raw.push_back(t);
-		t.ymin = -1.0f;
+		t.ymin = -0.9f;
 		t.height = 0.6f;
 		t.s = string("{SINGLE}") + get_special_string(string("MOVE_NOTES:") + in);
 		raw.push_back(t);
