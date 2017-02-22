@@ -8,6 +8,7 @@ extern engine e;
 extern mutex m;
 extern string get_special_string(string in);
 extern int get_team_size();
+extern int get_active_mon_move_size();
 extern vector<int> do_menu(string menu);
 mutex m2;
 
@@ -55,45 +56,91 @@ public:
 		raw.push_back(t);
 		process_strings();
 	}
-	void create_combat_select() {
+	void create_menu(string file) {
 		box b;
 		text t;
-		columns = 2;
-		type = "SELECT";
 		boxes.clear();
 		arrowboxes.clear();
 		raw.clear();
 		followup.clear();
-		b.xmin = -0.2f;
-		b.length = 1.2f;
-		b.ymin = -1.0f;
-		b.height = 0.6f;
-		boxes.push_back(b);
-		t.xmin = 0.0f;
-		t.length = 0.6f;
-		t.ymin = -0.8f;
-		t.height = 0.1f;
-		t.s = "FIGHT";
-		raw.push_back(t);
-		followup.push_back(string("FIGHT"));
-		t.xmin = 0.6f;
-		t.length = 0.3f;
-		t.s = "{PK}{MN}";
-		followup.push_back(string("COMBAT_MON"));
-		raw.push_back(t);
-		t.xmin = 0.0f;
-		t.length = 0.6f;
-		t.ymin = -1.0f;
-		t.height = 0.1f;
-		t.s = "ITEM";
-		followup.push_back(string("COMBAT_ITEM"));
-		raw.push_back(t);
-		t.xmin = 0.6f;
-		t.length = 0.3f;
-		t.s = "RUN";
-		selection_cap = 4;
-		followup.push_back(string(""));
-		raw.push_back(t);
+		ifstream f(string("../resources/menus/") + file + string(".dat"));
+		string line, temp1, temp2;
+		while (f.is_open()) {
+			while (std::getline(f, line)){
+				temp1 = line;
+				temp2 = line;
+				if (temp1.find(":") != -1) {
+					temp1.erase(temp1.find(":"), temp1.length());
+					temp2.erase(0, temp2.find(":") + 1);
+					if (temp1 == "TYPE") {
+						type = temp2;
+					}
+					else if (temp1 == "COLUMNS") {
+						columns = stoi(temp2);
+					}
+					else if (temp1 == "SELECTION_CAP") {
+						if (temp2 == "{ACTIVE_MON_MOVE_SIZE}")
+							selection_cap = get_active_mon_move_size();
+						else
+							selection_cap = stoi(temp2);
+					}
+					else if (temp1 == "BOXES") {
+						std::getline(f, line);
+						while (line != "END") {
+							temp1 = line;
+							temp1.erase(temp1.find(" "), temp1.length());
+							line.erase(0, line.find(" ") + 1);
+							b.xmin = stof(temp1);
+							temp1 = line;
+							temp1.erase(temp1.find(" "), temp1.length());
+							line.erase(0, line.find(" ") + 1);
+							b.ymin = stof(temp1);
+							temp1 = line;
+							temp1.erase(temp1.find(" "), temp1.length());
+							line.erase(0, line.find(" ") + 1);
+							b.length = stof(temp1);
+							temp1 = line;
+							b.height = stof(temp1);
+							boxes.push_back(b);
+							std::getline(f, line);
+						}
+					}
+					else if (temp1 == "TEXT") {
+						std::getline(f, line);
+						while (line != "END") {
+							temp1 = line;
+							temp1.erase(temp1.find(" "), temp1.length());
+							line.erase(0, line.find(" ") + 1);
+							t.xmin = stof(temp1);
+							temp1 = line;
+							temp1.erase(temp1.find(" "), temp1.length());
+							line.erase(0, line.find(" ") + 1);
+							t.ymin = stof(temp1);
+							temp1 = line;
+							temp1.erase(temp1.find(" "), temp1.length());
+							line.erase(0, line.find(" ") + 1);
+							t.length = stof(temp1);
+							temp1 = line;
+							temp1.erase(temp1.find(" "), temp1.length());
+							line.erase(0, line.find(" ") + 1);
+							t.height = stof(temp1);
+							t.s = line;
+							raw.push_back(t);
+							std::getline(f, line);
+						}
+					}
+					else if (temp1 == "FOLLOW_UP") {
+						std::getline(f, line);
+						while (line != "END") {
+							followup.push_back(line);
+							std::getline(f, line);
+						}
+						break;
+					}
+				}
+			}
+			f.close();
+		}
 		process_strings();
 	}
 	void create_stats(int choice) {
@@ -491,57 +538,6 @@ public:
 		raw.push_back(t);
 
 
-		process_strings();
-	}
-	void create_combat_move_select() {
-		box b;
-		text t;
-		columns = 1;
-		type = "SELECT";
-		boxes.clear();
-		arrowboxes.clear();
-		raw.clear();
-		followup.clear();
-		b.xmin = -0.6f;
-		b.length = 1.6f;
-		b.ymin = -1.0f;
-		b.height = 0.6f;
-		boxes.push_back(b);
-		for (int i = 0; i < 4; ++i) {
-			t.xmin = -0.4f;
-			t.length = 1.4f;
-			t.ymin = -0.7f - (0.1f*(float(i)));
-			t.height = 0.1f;
-			t.s = string("ACTIVE_MON_MOVE:") + to_string(i);
-			if (get_special_string(t.s) != "-") {
-				selection_cap = i + 1;
-			}
-			raw.push_back(t);
-		}
-		// Move description
-		b.xmin = -1.0f;
-		b.length = 1.1f;
-		b.ymin = -0.4f;
-		b.height = 0.5f;
-		boxes.push_back(b);
-
-		t.xmin = -0.9f;
-		t.length = 0.9f;
-		t.ymin = -0.2;
-		t.height = 0.1f;
-		t.s = string("TYPE/");
-		raw.push_back(t);
-		t.xmin = -0.8f;
-		t.length = 0.8f;
-		t.ymin = -0.3;
-		t.s = string("ACTIVE_MON_MOVE_TYPE:SELECTION");
-		raw.push_back(t);
-		t.xmin = -0.9f;
-		t.length = 0.9f;
-		t.ymin = -0.4;
-		t.height = 0.1f;
-		t.s = string("ACTIVE_MON_MOVE_PP:SELECTION");
-		raw.push_back(t);
 		process_strings();
 	}
 	void push_menu() {

@@ -917,9 +917,9 @@ public:
 		while (true) {
 			// TODO: Implement player battle menu
 			if (p.team[selected].queue.size() == 0) {
-				choices = do_combat_select();
+				choices = do_menu(string("COMBAT_SELECT"));
 				while (choices.size() == 0 || choices[0] == -1) {
-					choices = do_combat_select();
+					choices = do_menu(string("COMBAT_SELECT"));
 				}
 				if (choices[0] == 0) { // Player has selected FIGHT
 					escape_attempts = 0;
@@ -1924,12 +1924,6 @@ public:
 		menus[menus.size() - 1]->create_alert(s);
 		menus[menus.size() - 1]->push_menu();
 	}
-	void create_combat_select() {
-		menu* m = new menu;
-		menus.push_back(m);
-		menus[menus.size() - 1]->create_combat_select();
-		menus[menus.size() - 1]->push_menu();
-	}
 	void create_stats(int choice) {
 		menu* m = new menu;
 		menus.push_back(m);
@@ -1966,10 +1960,10 @@ public:
 		menus[menus.size() - 1]->create_combat_item_select();
 		menus[menus.size() - 1]->push_menu();
 	}
-	void create_combat_move_select() {
+	void create_menu(string s) {
 		menu* m = new menu;
 		menus.push_back(m);
-		menus[menus.size() - 1]->create_combat_move_select();
+		menus[menus.size() - 1]->create_menu(s);
 		menus[menus.size() - 1]->push_menu();
 	}
 	void do_alert(string s) {
@@ -1977,14 +1971,6 @@ public:
 		menus[menus.size() - 1]->main();
 		delete menus[menus.size() - 1];
 		menus.erase(menus.end() - 1);
-	}
-	vector<int> do_combat_select() {
-		vector<int> out;
-		create_combat_select();
-		out = menus[menus.size() - 1]->main();
-		delete menus[menus.size() - 1];
-		menus.erase(menus.end() - 1);
-		return out;
 	}
 	vector<int> do_stats(int choice){
 		vector<int> out;
@@ -2034,9 +2020,9 @@ public:
 		menus.erase(menus.end() - 1);
 		return out;
 	}
-	vector<int> do_move_select() {
+	vector<int> do_menu(string menu) {
 		vector<int> out;
-		create_combat_move_select();
+		create_menu(menu);
 		out = menus[menus.size() - 1]->main();
 		delete menus[menus.size() - 1];
 		menus.erase(menus.end() - 1);

@@ -22,6 +22,15 @@ int get_team_size() {
 	return ret;
 }
 
+int get_active_mon_move_size() {
+	int ret = 0;
+	for (int i = 0; i < 4; ++i) {
+		if (e.get_special_string(string("ACTIVE_MON_MOVE:") + to_string(i)) != "-")
+			ret++;
+	}
+	return ret;
+}
+
 string get_special_string(string in) {
 	return e.get_special_string(in);
 }
@@ -46,7 +55,7 @@ vector<int> do_menu(string menu) {
 		}
 	}
 	if (menu == "FIGHT")
-		return e.do_move_select();
+		return e.do_menu(menu);
 	else if (menu == "COMBAT_ITEM")
 		return e.do_combat_item_select();
 	else if (menu == "COMBAT_MON")
@@ -123,7 +132,7 @@ int main(int argc, char** argv) {
 	e.init_mon();
 	e.init_levels();
 	e.init_blocking();
-	int l = 99;
+	int l = 5;
 	e.make_mon(string("6"), l, e.mc.team[0]);
 	e.mc.team[0].wild = false;
 	e.apply_status(e.mc.team[0], string("BURN"));
