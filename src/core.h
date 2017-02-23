@@ -1954,16 +1954,10 @@ public:
 		menus[menus.size() - 1]->create_move_definition(in);
 		menus[menus.size() - 1]->push_menu();
 	}
-	void create_combat_switch_confirm(int choice) {
+	void create_menu(string s, int choice = 0, string temp = "") {
 		menu* m = new menu;
 		menus.push_back(m);
-		menus[menus.size() - 1]->create_combat_switch_confirm(choice);
-		menus[menus.size() - 1]->push_menu();
-	}
-	void create_menu(string s) {
-		menu* m = new menu;
-		menus.push_back(m);
-		menus[menus.size() - 1]->create_menu(s);
+		menus[menus.size() - 1]->create_menu(s, choice, temp);
 		menus[menus.size() - 1]->push_menu();
 	}
 	void do_alert(string s) {
@@ -1996,17 +1990,9 @@ public:
 		menus.erase(menus.end() - 1);
 		return out;
 	}
-	vector<int> do_combat_switch_confirm(int choice) {
+	vector<int> do_menu(string menu, int choice = 0, string temp="") {
 		vector<int> out;
-		create_combat_switch_confirm(choice);
-		out = menus[menus.size() - 1]->main();
-		delete menus[menus.size() - 1];
-		menus.erase(menus.end() - 1);
-		return out;
-	}
-	vector<int> do_menu(string menu) {
-		vector<int> out;
-		create_menu(menu);
+		create_menu(menu, choice, temp);
 		out = menus[menus.size() - 1]->main();
 		delete menus[menus.size() - 1];
 		menus.erase(menus.end() - 1);

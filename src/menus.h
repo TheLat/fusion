@@ -56,7 +56,7 @@ public:
 		raw.push_back(t);
 		process_strings();
 	}
-	void create_menu(string file) {
+	void create_menu(string file, int choice = 0, string str_choice = "") {
 		box b;
 		text t;
 		boxes.clear();
@@ -136,6 +136,10 @@ public:
 							line.erase(0, line.find(" ") + 1);
 							t.height = stof(temp1);
 							t.s = line;
+							if (t.s.find("{CHOICE}") != -1) {
+								t.s.insert(t.s.find("{CHOICE}"), to_string(choice));
+								t.s.erase(t.s.find("{CHOICE}"), string("{CHOICE}").length());
+							}
 							raw.push_back(t);
 							std::getline(f, line);
 						}
@@ -143,6 +147,10 @@ public:
 					else if (temp1 == "FOLLOW_UP") {
 						std::getline(f, line);
 						while (line != "END") {
+							if (line.find("{CHOICE}") != -1) {
+								line.insert(line.find("{CHOICE}"), to_string(choice));
+								line.erase(line.find("{CHOICE}"), string("{CHOICE}").length());
+							}
 							followup.push_back(line);
 							std::getline(f, line);
 						}
@@ -420,40 +428,6 @@ public:
 		t.ymin = -0.9f;
 		t.height = 0.6f;
 		t.s = string("{SINGLE}") + get_special_string(string("MOVE_NOTES:") + in);
-		raw.push_back(t);
-		process_strings();
-	}
-	void create_combat_switch_confirm(int choice) {
-		box b;
-		text t;
-		columns = 1;
-		type = "SELECT";
-		selection_cap = 3;
-		cancel_option = 2;
-		boxes.clear();
-		arrowboxes.clear();
-		raw.clear();
-		followup.clear();
-		// TODO:  Sync formatting with game
-		b.xmin = 0.1f;
-		b.length = 0.9f;
-		b.ymin = -1.0f;
-		b.height = 0.7f;
-		boxes.push_back(b);
-		t.xmin = 0.3f;
-		t.length = 0.6f;
-		t.ymin = -0.6f;
-		t.height = 0.1f;
-		t.s = string("SWITCH");
-		raw.push_back(t);
-		followup.push_back(string(""));
-		t.ymin -= 0.2f;
-		t.s = string("STATS");
-		followup.push_back(string("STATS:") + to_string(choice));
-		raw.push_back(t);
-		t.ymin -= 0.2f;
-		t.s = string("CANCEL");
-		followup.push_back(string(""));
 		raw.push_back(t);
 		process_strings();
 	}
