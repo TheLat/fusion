@@ -78,6 +78,9 @@ public:
 					else if (temp1 == "COLUMNS") {
 						columns = stoi(temp2);
 					}
+					else if (temp1 == "CANCEL_OPTION") {
+						cancel_option = stoi(temp2);
+					}
 					else if (temp1 == "SELECTION_CAP") {
 						if (temp2 == "{ACTIVE_MON_MOVE_SIZE}")
 							selection_cap = get_active_mon_move_size();
@@ -307,7 +310,7 @@ public:
 		t.ymin = -0.2f;
 		for (int i = 0; i < 4; ++i) {
 			t.ymin -= 0.2f;
-			t.s = string("PP");
+			t.s = string("MON_MOVE_PP_IF_EXISTS:") + to_string(choice) + string(":") + to_string(i);
 			raw.push_back(t);
 		}
 		t.xmin = -0.5f;
@@ -499,45 +502,6 @@ public:
 		t.ymin = -0.6f;
 		t.s = string("Choose a POK{e-accent}MON.");
 		raw.push_back(t);
-		process_strings();
-	}
-	void create_combat_item_select() {
-		box b;
-		text t;
-		columns = 1;
-		type = "SELECT";
-		boxes.clear();
-		arrowboxes.clear();
-		raw.clear();
-		followup.clear();
-		selection_cap = 5;
-		cancel_option = 4; // TODO:  Make this be intentory.size()
-		// TODO: Make go off actual inventory and give numbers
-		b.xmin = -0.6f;
-		b.length = 1.6f;
-		b.ymin = -0.5f;
-		b.height = 1.3f;
-		boxes.push_back(b);
-		t.xmin = -0.4f;
-		t.length = 1.4f;
-		t.ymin = 0.4f;
-		t.height = 0.1f;
-		t.s = "POK{e-accent} BALL";
-		raw.push_back(t);
-		t.ymin -= 0.2f;
-		t.s = "GREAT BALL";
-		raw.push_back(t);
-		t.ymin -= 0.2f;
-		t.s = "ULTRA BALL";
-		raw.push_back(t);
-		t.ymin -= 0.2f;
-		t.s = "MASTER BALL";
-		raw.push_back(t);
-		t.ymin -= 0.2f;
-		t.s = "CANCEL"; // TODO:  Figure out how to handle this correctly
-		raw.push_back(t);
-
-
 		process_strings();
 	}
 	void push_menu() {

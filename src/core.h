@@ -236,12 +236,24 @@ public:
 					out = string(" ") + out;
 				return out;
 			}
+			else if (parse == "MON_MOVE_PP_IF_EXISTS") {
+				int index1 = 0;
+				int index2 = 0;
+				index1 = stoi(temp);
+				temp.erase(0, temp.find(":") + 1);
+				index2 = stoi(temp);
+				if (!moves[mc.team[index1].moves[index2]].defined)
+					return string(" ");
+				return string("PP");
+			}
 			else if (parse == "MON_MOVE_PP") {
 				int index1 = 0;
 				int index2 = 0;
 				index1 = stoi(temp);
 				temp.erase(0, temp.find(":") + 1);
 				index2 = stoi(temp);
+				if (!moves[mc.team[index1].moves[index2]].defined)
+					return string(" ");
 				out = to_string(mc.team[index1].pp[index2]) + string("/") + to_string(mc.team[index1].max_pp[index2]);
 				while (out.length() < 9)
 					out = string(" ") + out;
@@ -1954,12 +1966,6 @@ public:
 		menus[menus.size() - 1]->create_combat_mon_select();
 		menus[menus.size() - 1]->push_menu();
 	}
-	void create_combat_item_select() {
-		menu* m = new menu;
-		menus.push_back(m);
-		menus[menus.size() - 1]->create_combat_item_select();
-		menus[menus.size() - 1]->push_menu();
-	}
 	void create_menu(string s) {
 		menu* m = new menu;
 		menus.push_back(m);
@@ -2007,14 +2013,6 @@ public:
 	vector<int> do_combat_mon_select() {
 		vector<int> out;
 		create_combat_mon_select();
-		out = menus[menus.size() - 1]->main();
-		delete menus[menus.size() - 1];
-		menus.erase(menus.end() - 1);
-		return out;
-	}
-	vector<int> do_combat_item_select() {
-		vector<int> out;
-		create_combat_item_select();
 		out = menus[menus.size() - 1]->main();
 		delete menus[menus.size() - 1];
 		menus.erase(menus.end() - 1);
