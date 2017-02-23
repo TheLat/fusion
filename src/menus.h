@@ -116,6 +116,27 @@ public:
 							std::getline(f, line);
 						}
 					}
+					else if (temp1 == "ARROWBOXES") {
+						std::getline(f, line);
+						while (line != "END") {
+							temp1 = line;
+							temp1.erase(temp1.find(" "), temp1.length());
+							line.erase(0, line.find(" ") + 1);
+							b.xmin = stof(temp1);
+							temp1 = line;
+							temp1.erase(temp1.find(" "), temp1.length());
+							line.erase(0, line.find(" ") + 1);
+							b.ymin = stof(temp1);
+							temp1 = line;
+							temp1.erase(temp1.find(" "), temp1.length());
+							line.erase(0, line.find(" ") + 1);
+							b.length = stof(temp1);
+							temp1 = line;
+							b.height = stof(temp1);
+							arrowboxes.push_back(b);
+							std::getline(f, line);
+						}
+					}
 					else if (temp1 == "TEXT") {
 						std::getline(f, line);
 						while (line != "END") {
@@ -160,122 +181,6 @@ public:
 			}
 			f.close();
 		}
-		process_strings();
-	}
-	void create_stats(int choice) {
-		box b;
-		text t;
-		columns = 1;
-		type = "SELECT";
-		selection_cap = 1;
-		boxes.clear();
-		arrowboxes.clear();
-		raw.clear();
-		followup.clear();
-		b.ymin = -1.1f;
-		b.height = 2.2f;
-		b.xmin = -1.1f;
-		b.length = 2.2f;
-		boxes.push_back(b);
-		b.ymin = -1.0f;
-		b.xmin = -1.0f;
-		b.length = 1.0f;
-		b.height = 1.0f;
-		boxes.push_back(b);
-		b.xmin = 0.2f;
-		b.length = 0.8f;
-		b.height = 0.9f;
-		arrowboxes.push_back(b);
-		b.xmin = -0.2f;
-		b.ymin = 0.0f;
-		b.length = 1.2f;
-		b.height = 0.9f;
-		arrowboxes.push_back(b);
-		t.height = 0.1f;
-		t.length = 1.0f;
-		t.ymin = -2.0f; //HACK
-		t.xmin = -2.0f;
-		t.s = "Next screen.";
-		followup.push_back(string("MOVES:") + to_string(choice));
-		raw.push_back(t);
-		t.xmin = -0.9f;
-		t.length = 0.8f;
-		t.ymin = -0.3f;
-		t.s = "ATTACK";
-		raw.push_back(t);
-		t.ymin = -0.5f;
-		t.s = "DEFENSE";
-		raw.push_back(t);
-		t.ymin = -0.7f;
-		t.s = "SPEED";
-		raw.push_back(t);
-		t.ymin = -0.9f;
-		t.s = "SPECIAL";
-		raw.push_back(t);
-		t.xmin = -0.9f;
-		t.length = 0.8f;
-		t.ymin = -0.4f;
-		t.s = string("TEAM_MON_ATTACK:") + to_string(choice);
-		raw.push_back(t);
-		t.ymin = -0.6f;
-		t.s = string("TEAM_MON_DEFENSE:") + to_string(choice);
-		raw.push_back(t);
-		t.ymin = -0.8f;
-		t.s = string("TEAM_MON_SPEED:") + to_string(choice);
-		raw.push_back(t);
-		t.ymin = -1.0f;
-		t.s = string("TEAM_MON_SPECIAL:") + to_string(choice);
-		raw.push_back(t);
-		t.xmin = -0.1f;
-		t.ymin = 0.0f;
-		t.s = string("STATUS_BOOL:") + to_string(choice);
-		raw.push_back(t);
-		t.xmin = 0.4f;
-		t.ymin = 0.6f;
-		t.s = string("TEAM_MON_LEVEL:") + to_string(choice);
-		raw.push_back(t);
-		t.xmin = 0.0f;
-		t.ymin = -0.2f;
-		t.s = string("TYPE1/");
-		raw.push_back(t);
-		t.xmin = 0.1f;
-		t.ymin = -0.3f;
-		t.s = string("TEAM_MON_TYPE1:") + to_string(choice);
-		raw.push_back(t);
-		t.xmin = 0.0f;
-		t.ymin = -0.4f;
-		t.s = string("TYPE2_IF_EXISTS:") + to_string(choice);
-		raw.push_back(t);
-		t.xmin = 0.1f;
-		t.ymin = -0.5f;
-		t.s = string("TEAM_MON_TYPE2:") + to_string(choice);
-		raw.push_back(t);
-		t.xmin = 0.0f;
-		t.ymin = -0.6f;
-		t.s = string("STATUS/");
-		raw.push_back(t);
-		t.xmin = 0.1f;
-		t.ymin = -1.1f;
-		t.height = 0.5f;
-		t.length = 0.9f;
-		t.s = string("TEAM_MON_STATUS:") + to_string(choice);
-		raw.push_back(t);
-		t.xmin = -0.5f;
-		t.length = 1.4f;
-		t.ymin = 0.7f;
-		t.height = 0.1f;
-		t.s = string("TEAM_MON_NAME_RIGHT_JUSTIFIED:") + to_string(choice);
-		raw.push_back(t);
-		t.xmin = 0.2f;
-		t.ymin = 0.4f;
-		t.length = 0.7f;
-		t.s = string("TEAM_MON_FORMATTED_HP:") + to_string(choice);
-		raw.push_back(t);
-		t.xmin = -0.9f;
-		t.length = 0.8f;
-		t.ymin = -0.1f;
-		t.s = string("TEAM_MON_NUMBER:") + to_string(choice);
-		raw.push_back(t);
 		process_strings();
 	}
 	void create_moves(int choice) {

@@ -379,8 +379,8 @@ public:
 							if (o.find(mc.team[index].status[i]) == -1)
 								o = o + mc.team[index].status[i] + string("\n");
 				}
-				if (o == "")
-					o = "OK";
+				if (o == "{SINGLE}")
+					o = "{SINGLE}OK";
 				return o;
 			}
 			else if (parse == "TEAM_MON_NAME_RIGHT_JUSTIFIED") {
@@ -1936,12 +1936,6 @@ public:
 		menus[menus.size() - 1]->create_alert(s);
 		menus[menus.size() - 1]->push_menu();
 	}
-	void create_stats(int choice) {
-		menu* m = new menu;
-		menus.push_back(m);
-		menus[menus.size() - 1]->create_stats(choice);
-		menus[menus.size() - 1]->push_menu();
-	}
 	void create_moves(int choice) {
 		menu* m = new menu;
 		menus.push_back(m);
@@ -1965,14 +1959,6 @@ public:
 		menus[menus.size() - 1]->main();
 		delete menus[menus.size() - 1];
 		menus.erase(menus.end() - 1);
-	}
-	vector<int> do_stats(int choice){
-		vector<int> out;
-		create_stats(choice);
-		out = menus[menus.size() - 1]->main();
-		delete menus[menus.size() - 1];
-		menus.erase(menus.end() - 1);
-		return out;
 	}
 	vector<int> do_moves(int choice){
 		vector<int> out;
