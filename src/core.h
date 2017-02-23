@@ -1960,12 +1960,6 @@ public:
 		menus[menus.size() - 1]->create_combat_switch_confirm(choice);
 		menus[menus.size() - 1]->push_menu();
 	}
-	void create_combat_mon_select() {
-		menu* m = new menu;
-		menus.push_back(m);
-		menus[menus.size() - 1]->create_combat_mon_select();
-		menus[menus.size() - 1]->push_menu();
-	}
 	void create_menu(string s) {
 		menu* m = new menu;
 		menus.push_back(m);
@@ -2005,14 +1999,6 @@ public:
 	vector<int> do_combat_switch_confirm(int choice) {
 		vector<int> out;
 		create_combat_switch_confirm(choice);
-		out = menus[menus.size() - 1]->main();
-		delete menus[menus.size() - 1];
-		menus.erase(menus.end() - 1);
-		return out;
-	}
-	vector<int> do_combat_mon_select() {
-		vector<int> out;
-		create_combat_mon_select();
 		out = menus[menus.size() - 1]->main();
 		delete menus[menus.size() - 1];
 		menus.erase(menus.end() - 1);

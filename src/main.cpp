@@ -59,7 +59,7 @@ vector<int> do_menu(string menu) {
 	else if (menu == "COMBAT_ITEM")
 		return e.do_menu(menu);
 	else if (menu == "COMBAT_MON")
-		return e.do_combat_mon_select();
+		return e.do_menu(menu);
 	else if (menu == "COMBAT_SWITCH_CONFIRM")
 		return e.do_combat_switch_confirm(choice);
 	else if (menu == "STATS")

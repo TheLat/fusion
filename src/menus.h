@@ -81,9 +81,17 @@ public:
 					else if (temp1 == "CANCEL_OPTION") {
 						cancel_option = stoi(temp2);
 					}
+					else if (temp1 == "CURSOR_OFFSET_X") {
+						cursor_offset_x = stof(temp2);
+					}
+					else if (temp1 == "CURSOR_OFFSET_Y") {
+						cursor_offset_y = stof(temp2);
+					}
 					else if (temp1 == "SELECTION_CAP") {
 						if (temp2 == "{ACTIVE_MON_MOVE_SIZE}")
 							selection_cap = get_active_mon_move_size();
+						else if (temp2 == "{TEAM_SIZE}")
+							selection_cap = get_team_size();
 						else
 							selection_cap = stoi(temp2);
 					}
@@ -446,61 +454,6 @@ public:
 		t.ymin -= 0.2f;
 		t.s = string("CANCEL");
 		followup.push_back(string(""));
-		raw.push_back(t);
-		process_strings();
-	}
-	void create_combat_mon_select() {
-		box b;
-		text t;
-		columns = 1;
-		type = "SELECT";
-		cursor_offset_x = -0.2f;
-		cursor_offset_y = -0.05f;
-		selection_cap = get_team_size();
-		boxes.clear();
-		arrowboxes.clear();
-		raw.clear();
-		followup.clear();
-		b.ymin = -1.1f;
-		b.height = 2.2f;
-		b.xmin = -1.1f;
-		b.length = 2.2f;
-		boxes.push_back(b);
-		b.ymin = -1.0f;
-		b.height = 0.8f;
-		b.xmin = -1.0f;
-		b.length = 2.0f;
-		boxes.push_back(b);
-		t.xmin = -0.7f;
-		t.length = 1.4f;
-		t.ymin = 1.0f;
-		t.height = 0.1f;
-		for (int i = 0; i < 6; ++i) {
-			t.ymin -= 0.2f;
-			t.s = string("TEAM_MON_NAME:") + to_string(i);
-			raw.push_back(t);
-			followup.push_back(string("COMBAT_SWITCH_CONFIRM:") + to_string(i));
-		}
-		t.ymin = 1.0f;
-		t.xmin = 0.7f;
-		t.length = 0.2f;
-		for (int i = 0; i < 6; ++i) {
-			t.ymin -= 0.2f;
-			t.s = string("TEAM_MON_LEVEL:") + to_string(i);
-			raw.push_back(t);
-		}
-		t.ymin = 0.9f;
-		t.length = 1.0f;
-		t.xmin = 0.3;
-		for (int i = 0; i < 6; ++i) {
-			t.ymin -= 0.2f;
-			t.s = string("TEAM_MON_FORMATTED_HP:") + to_string(i);
-			raw.push_back(t);
-		}
-		t.xmin = -0.9f;
-		t.length = 1.8f;
-		t.ymin = -0.6f;
-		t.s = string("Choose a POK{e-accent}MON.");
 		raw.push_back(t);
 		process_strings();
 	}
