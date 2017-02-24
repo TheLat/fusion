@@ -45,22 +45,11 @@ string get_special_string(string in) {
 
 vector<int> do_menu(string menu) {
 	vector<int> def;
-	int choice = 0;
 	string temp;
 	if (menu.find(string(":")) != -1) {
 		temp = menu;
 		menu = menu.erase(menu.find(string(":")), menu.length());
 		temp = temp.erase(0, temp.find(":") + 1);
-		bool number = false;
-		for (int i = 0; i <= 9; ++i) {
-			if (temp.find(to_string(i)) == 0) {
-				number = true;
-				break;
-			}
-		}
-		if (number) {
-			choice = stoi(temp);
-		}
 	}
 	if (menu == "FIGHT")
 		return e.do_menu(menu);
@@ -69,13 +58,13 @@ vector<int> do_menu(string menu) {
 	else if (menu == "COMBAT_MON")
 		return e.do_menu(menu);
 	else if (menu == "COMBAT_SWITCH_CONFIRM")
-		return e.do_menu(menu, choice);
+		return e.do_menu(menu, temp);
 	else if (menu == "STATS")
-		return e.do_menu(menu, choice);
+		return e.do_menu(menu, temp);
 	else if (menu == "MOVES")
-		return e.do_menu(menu, choice);
+		return e.do_menu(menu, temp);
 	else if (menu == "MOVE_DEFINITION")
-		return e.do_move_definition(temp);
+		return e.do_menu(menu, temp);
 	return def;
 }
 
@@ -140,13 +129,9 @@ int main(int argc, char** argv) {
 	e.init_mon();
 	e.init_levels();
 	e.init_blocking();
-	int l = 5;
+	int l = 9;
 	e.make_mon(string("6"), l, e.mc.team[0]);
 	e.mc.team[0].wild = false;
-	e.apply_status(e.mc.team[0], string("BURN"));
-	e.apply_status(e.mc.team[0], string("POISON"));
-	e.apply_status(e.mc.team[0], string("FREEZE"));
-	e.apply_status(e.mc.team[0], string("PARALYZE"));
 
 	e.mc.loc.x = 2.0;
 	e.mc.loc.y = 2.0;

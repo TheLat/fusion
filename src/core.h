@@ -192,13 +192,15 @@ public:
 	string get_special_string(string in) {
 		string parse;
 		string out;
+		bool number = false;
+		if (in.length() == 0)
+			return in;
 		if (in.find(":") != -1) {
 			string temp = in;
 			for (unsigned i = 0; (i < temp.size()) && (temp[i] != ':'); ++i) {
 				parse += temp[i];
 			}
 			temp.erase(0, temp.find(':') + 1);
-			bool number = false;
 			for (int i = 0; i <= 9; ++i) {
 				if (temp.find(to_string(i)) == 0) {
 					number = true;
@@ -227,9 +229,13 @@ public:
 				return out;
 			}
 			else if (parse == "ACTIVE_MON_MOVE_TYPE") {
+				if (!number)
+					return in;
 				return moves[mc.team[selected].moves[stoi(temp)]].type;
 			}
 			else if (parse == "ACTIVE_MON_MOVE_PP") {
+				if (!number)
+					return in;
 				int index = stoi(temp);
 				out = to_string(mc.team[selected].pp[index]) + string("/") + to_string(mc.team[selected].max_pp[index]);
 				while (out.length() < 9)
@@ -423,6 +429,7 @@ public:
 			else if (parse == "RIGHT_JUSTIFY") {
 				int len = stoi(temp);
 				temp.erase(0, temp.find(':') + 1);
+				temp = get_special_string(temp);
 				while (temp.length() < len)
 					temp = string(" ") + temp;
 				return temp;
@@ -454,6 +461,18 @@ public:
 					return string("SPECIAL");
 				case SPEED:
 					return string("SPEED");
+				default:
+					return string("-");
+				}
+			}
+			else if (parse == "MOVE_CATEGORY") {
+				if (!moves[temp].defined)
+					return string("-");
+				switch (moves[temp].defense) {
+				case DEFENSE:
+					return string("PHYSICAL");
+				case SPECIAL:
+					return string("SPECIAL");
 				default:
 					return string("-");
 				}
@@ -1936,16 +1955,10 @@ public:
 		menus[menus.size() - 1]->create_alert(s);
 		menus[menus.size() - 1]->push_menu();
 	}
-	void create_move_definition(string in) {
+	void create_menu(string s, string choice = "") {
 		menu* m = new menu;
 		menus.push_back(m);
-		menus[menus.size() - 1]->create_move_definition(in);
-		menus[menus.size() - 1]->push_menu();
-	}
-	void create_menu(string s, int choice = 0, string temp = "") {
-		menu* m = new menu;
-		menus.push_back(m);
-		menus[menus.size() - 1]->create_menu(s, choice, temp);
+		menus[menus.size() - 1]->create_menu(s, choice);
 		menus[menus.size() - 1]->push_menu();
 	}
 	void do_alert(string s) {
@@ -1954,17 +1967,9 @@ public:
 		delete menus[menus.size() - 1];
 		menus.erase(menus.end() - 1);
 	}
-	vector<int> do_move_definition(string in){
+	vector<int> do_menu(string menu, string choice="") {
 		vector<int> out;
-		create_move_definition(in);
-		out = menus[menus.size() - 1]->main();
-		delete menus[menus.size() - 1];
-		menus.erase(menus.end() - 1);
-		return out;
-	}
-	vector<int> do_menu(string menu, int choice = 0, string temp="") {
-		vector<int> out;
-		create_menu(menu, choice, temp);
+		create_menu(menu, choice);
 		out = menus[menus.size() - 1]->main();
 		delete menus[menus.size() - 1];
 		menus.erase(menus.end() - 1);

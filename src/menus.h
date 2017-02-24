@@ -57,7 +57,7 @@ public:
 		raw.push_back(t);
 		process_strings();
 	}
-	void create_menu(string file, int choice = 0, string str_choice = "") {
+	void create_menu(string file, string choice = "") {
 		box b;
 		text t;
 		boxes.clear();
@@ -90,7 +90,7 @@ public:
 					}
 					else if (temp1 == "SELECTION_CAP") {
 						if (temp2.find("{CHOICE}") != -1) {
-							temp2.insert(temp2.find("{CHOICE}"), to_string(choice));
+							temp2.insert(temp2.find("{CHOICE}"), choice);
 							temp2.erase(temp2.find("{CHOICE}"), string("{CHOICE}").length());
 						}
 						if (temp2 == "{ACTIVE_MON_MOVE_SIZE}") {
@@ -169,8 +169,14 @@ public:
 							t.height = stof(temp1);
 							t.s = line;
 							if (t.s.find("{CHOICE}") != -1) {
-								t.s.insert(t.s.find("{CHOICE}"), to_string(choice));
+								t.s.insert(t.s.find("{CHOICE}"), choice);
 								t.s.erase(t.s.find("{CHOICE}"), string("{CHOICE}").length());
+							}
+							t.s = get_special_string(t.s);
+							if (t.s.find("{SINGLE}") == 0) {
+								t.s.erase(0, string("{SINGLE}").length());
+								t.s = get_special_string(t.s);
+								t.s = string("{SINGLE}") + t.s;
 							}
 							raw.push_back(t);
 							std::getline(f, line);
@@ -180,7 +186,7 @@ public:
 						std::getline(f, line);
 						while (line != "END") {
 							if (line.find("{CHOICE}") != -1) {
-								line.insert(line.find("{CHOICE}"), to_string(choice));
+								line.insert(line.find("{CHOICE}"), choice);
 								line.erase(line.find("{CHOICE}"), string("{CHOICE}").length());
 							}
 							if (line.find(":") != -1) {
@@ -200,70 +206,6 @@ public:
 			}
 			f.close();
 		}
-		process_strings();
-	}
-	void create_move_definition(string in) {
-		box b;
-		text t;
-		columns = 1;
-		cancel_option = 0;
-		type = "SELECT";
-		selection_cap = 1;
-		boxes.clear();
-		arrowboxes.clear();
-		raw.clear();
-		followup.clear();
-		b.ymin = -1.0f;
-		b.xmin = -1.0f;
-		b.length = 1.5f;
-		b.height = 2.0f;
-		boxes.push_back(b);
-		t.height = 0.1f;
-		t.length = 1.0f;
-		t.ymin = -2.0f;
-		t.xmin = -2.0f;
-		t.s = "Done.";
-		raw.push_back(t);
-		t.height = 0.1f;
-		t.length = 1.3f;
-		t.xmin = -0.9f;
-		t.ymin = 0.7f;
-		t.s = "MOVE";
-		raw.push_back(t);
-		t.ymin = 0.6f;
-		t.s = string("RIGHT_JUSTIFY:13:") + in;
-		raw.push_back(t);
-		t.ymin = 0.5f;
-		t.s = "TYPE";
-		raw.push_back(t);
-		t.ymin = 0.4f;
-		t.s = string("RIGHT_JUSTIFY:13:") + get_special_string(string("MOVE_TYPE:") + in);
-		raw.push_back(t);
-		t.ymin = 0.3f;
-		t.s = "POWER";
-		raw.push_back(t);
-		t.ymin = 0.2f;
-		t.s = string("RIGHT_JUSTIFY:13:") + get_special_string(string("MOVE_POWER:") + in);
-		raw.push_back(t);
-		t.ymin = 0.1f;
-		t.s = "ACCURACY";
-		raw.push_back(t);
-		t.ymin = 0.0f;
-		t.s = string("RIGHT_JUSTIFY:13:") + get_special_string(string("MOVE_ACC:") + in);
-		raw.push_back(t);
-		t.ymin = -0.1f;
-		t.s = "DEFENSE";
-		raw.push_back(t);
-		t.ymin = -0.2f;
-		t.s = string("RIGHT_JUSTIFY:13:") + get_special_string(string("MOVE_DEFENSE:") + in);
-		raw.push_back(t);
-		t.ymin = -0.3f;
-		t.s = "NOTES";
-		raw.push_back(t);
-		t.ymin = -0.9f;
-		t.height = 0.6f;
-		t.s = string("{SINGLE}") + get_special_string(string("MOVE_NOTES:") + in);
-		raw.push_back(t);
 		process_strings();
 	}
 	void push_menu() {
