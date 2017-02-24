@@ -74,7 +74,6 @@ vector<int> do_menu(string menu) {
 		return e.do_menu(menu, choice);
 	else if (menu == "MOVES")
 		return e.do_menu(menu, choice);
-//		return e.do_moves(choice);
 	else if (menu == "MOVE_DEFINITION")
 		return e.do_move_definition(temp);
 	return def;

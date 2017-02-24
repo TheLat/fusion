@@ -1936,12 +1936,6 @@ public:
 		menus[menus.size() - 1]->create_alert(s);
 		menus[menus.size() - 1]->push_menu();
 	}
-	void create_moves(int choice) {
-		menu* m = new menu;
-		menus.push_back(m);
-		menus[menus.size() - 1]->create_moves(choice);
-		menus[menus.size() - 1]->push_menu();
-	}
 	void create_move_definition(string in) {
 		menu* m = new menu;
 		menus.push_back(m);
@@ -1959,14 +1953,6 @@ public:
 		menus[menus.size() - 1]->main();
 		delete menus[menus.size() - 1];
 		menus.erase(menus.end() - 1);
-	}
-	vector<int> do_moves(int choice){
-		vector<int> out;
-		create_moves(choice);
-		out = menus[menus.size() - 1]->main();
-		delete menus[menus.size() - 1];
-		menus.erase(menus.end() - 1);
-		return out;
 	}
 	vector<int> do_move_definition(string in){
 		vector<int> out;
