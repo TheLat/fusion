@@ -21,6 +21,14 @@ int get_team_size() {
 	}
 	return ret;
 }
+int get_mon_move_size(int index){
+	int ret = 0;
+	for (int i = 0; i < 4; ++i) {
+		if (e.get_special_string(string("MON_MOVE:") + to_string(index) + string(":") + to_string(i)) != "-")
+			ret++;
+	}
+	return ret;
+}
 
 int get_active_mon_move_size() {
 	int ret = 0;
@@ -65,7 +73,8 @@ vector<int> do_menu(string menu) {
 	else if (menu == "STATS")
 		return e.do_menu(menu, choice);
 	else if (menu == "MOVES")
-		return e.do_moves(choice);
+		return e.do_menu(menu, choice);
+//		return e.do_moves(choice);
 	else if (menu == "MOVE_DEFINITION")
 		return e.do_move_definition(temp);
 	return def;

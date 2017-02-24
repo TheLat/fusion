@@ -9,6 +9,7 @@ extern mutex m;
 extern string get_special_string(string in);
 extern int get_team_size();
 extern int get_active_mon_move_size();
+extern int get_mon_move_size(int index);
 extern vector<int> do_menu(string menu);
 mutex m2;
 
@@ -88,10 +89,20 @@ public:
 						cursor_offset_y = stof(temp2);
 					}
 					else if (temp1 == "SELECTION_CAP") {
-						if (temp2 == "{ACTIVE_MON_MOVE_SIZE}")
+						if (temp2.find("{CHOICE}") != -1) {
+							temp2.insert(temp2.find("{CHOICE}"), to_string(choice));
+							temp2.erase(temp2.find("{CHOICE}"), string("{CHOICE}").length());
+						}
+						if (temp2 == "{ACTIVE_MON_MOVE_SIZE}") {
 							selection_cap = get_active_mon_move_size();
-						else if (temp2 == "{TEAM_SIZE}")
+						}
+						else if (temp2 == "{TEAM_SIZE}") {
 							selection_cap = get_team_size();
+						}
+						else if (temp2.find("{MON_MOVE_COUNT:") == 0) {
+							temp2.erase(temp2.find("{MON_MOVE_COUNT:"), string("{MON_MOVE_COUNT:").length());
+							selection_cap = get_mon_move_size(stoi(temp2));
+						}
 						else
 							selection_cap = stoi(temp2);
 					}
@@ -171,6 +182,14 @@ public:
 							if (line.find("{CHOICE}") != -1) {
 								line.insert(line.find("{CHOICE}"), to_string(choice));
 								line.erase(line.find("{CHOICE}"), string("{CHOICE}").length());
+							}
+							if (line.find(":") != -1) {
+								string s1 = line;
+								string s2 = line;
+								s1.erase(line.find(":"), s1.length());
+								s2.erase(0, line.find(":") + 1);
+								s2 = get_special_string(s2);
+								line = s1 + string(":") + s2;
 							}
 							followup.push_back(line);
 							std::getline(f, line);
