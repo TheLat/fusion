@@ -37,26 +37,6 @@ public:
 	float cursor_offset_x, cursor_offset_y;
 	bool done;
 	menu() { step = 0; index = 0; done = false; selection = 0; selection_cap = 0; columns = 1; cursor = -1; offset = 0; cancel_option = -1; cursor_offset_x = 0.0f; cursor_offset_y = 0.0; }
-	void create_alert(string s) {
-		box b;
-		text t;
-		type = "ALERT";
-		b.xmin = -1.0f;
-		b.length = 2.0f;
-		b.ymin = -1.0f;
-		b.height = 0.8f;
-		t.xmin = -0.9f;
-		t.length = 1.8f;
-		t.ymin = -0.9f;
-		t.height = 0.4f;
-		t.s = s;
-		boxes.clear();
-		arrowboxes.clear();
-		raw.clear();
-		boxes.push_back(b);
-		raw.push_back(t);
-		process_strings();
-	}
 	void create_menu(string file, string choice = "") {
 		box b;
 		text t;
@@ -224,7 +204,7 @@ public:
 			step = g.push_text(display[i].xmin, display[i].ymin, display[i].length, display[i].height, display[i].size, display[i].s);
 		}
 		m.unlock();
-	}
+	} 
 	void pop_menu() {
 		m.lock();
 		cursor = -1;

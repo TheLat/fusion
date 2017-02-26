@@ -1949,23 +1949,14 @@ public:
 			menus[menus.size() - 1]->input(up, down, left, right, select, start, confirm, cancel);
 		}
 	}
-	void create_alert(string s) {
-		menu* m = new menu;
-		menus.push_back(m);
-		menus[menus.size() - 1]->create_alert(s);
-		menus[menus.size() - 1]->push_menu();
-	}
 	void create_menu(string s, string choice = "") {
 		menu* m = new menu;
 		menus.push_back(m);
 		menus[menus.size() - 1]->create_menu(s, choice);
 		menus[menus.size() - 1]->push_menu();
 	}
-	void do_alert(string s) {
-		create_alert(s);
-		menus[menus.size() - 1]->main();
-		delete menus[menus.size() - 1];
-		menus.erase(menus.end() - 1);
+	vector<int> do_alert(string s) {
+		return do_menu(string("ALERT"), s);
 	}
 	vector<int> do_menu(string menu, string choice="") {
 		vector<int> out;
@@ -1993,7 +1984,7 @@ public:
 		update_level();
 		while (true) {
 			if (alert != "") {
-				create_alert(alert);
+				do_menu(string("ALERT"), alert);
 				alert = "";
 			}
 			if (encounter != "") {

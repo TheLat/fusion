@@ -51,21 +51,11 @@ vector<int> do_menu(string menu) {
 		menu = menu.erase(menu.find(string(":")), menu.length());
 		temp = temp.erase(0, temp.find(":") + 1);
 	}
-	if (menu == "FIGHT")
-		return e.do_menu(menu);
-	else if (menu == "COMBAT_ITEM")
-		return e.do_menu(menu);
-	else if (menu == "COMBAT_MON")
-		return e.do_menu(menu);
-	else if (menu == "COMBAT_SWITCH_CONFIRM")
-		return e.do_menu(menu, temp);
-	else if (menu == "STATS")
-		return e.do_menu(menu, temp);
-	else if (menu == "MOVES")
-		return e.do_menu(menu, temp);
-	else if (menu == "MOVE_DEFINITION")
-		return e.do_menu(menu, temp);
-	return def;
+	ifstream f(string("../resources/menus/") + menu + string(".dat"));
+	if (!f.good())
+		return def;
+	f.close();
+	return e.do_menu(menu, temp);
 }
 
 // Called when a key is pressed
