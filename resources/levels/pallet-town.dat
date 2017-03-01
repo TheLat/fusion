@@ -1,5 +1,15 @@
 NAME
 Pallet Town
+NPCS
+testchar player 1 2 WANDER
+INTERACTIONS
+MENU:ALERT:First message
+MENU:ALERT:Second message
+END
+testchar2 player 4 2 WANDER
+INTERACTIONS
+MENU:ALERT:I only have one thing to say.
+END
 TELEPORT
 11 1 route1 9 36
 10 1 route1 8 36

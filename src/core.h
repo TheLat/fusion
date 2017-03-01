@@ -152,7 +152,7 @@ public:
 	string name; // MUST BE UNIQUE
 	vector<string> interactions;
 	int step;
-	location loc;
+	location loc, origin;
 	bool wander;
 	character() { wander = false; step = 0; }
 };
@@ -1247,6 +1247,50 @@ public:
 				std::getline(f, line);
 				levels[levelname].name = line;
 				continue;
+			}
+			if (line == "NPCS") {
+				std::getline(f, line);
+				while (line != "TELEPORT" && line != "DATA" && line != "ENCOUNTERS" && line != "LEVELS") {
+					character c;
+					string s;
+					levels[levelname].characters.push_back(c);
+					s = line;
+					s.erase(s.find(" "), s.length());
+					line.erase(0, line.find(" ") + 1);
+					levels[levelname].characters[levels[levelname].characters.size() - 1].name = s;
+					s = line;
+					s.erase(s.find(" "), s.length());
+					line.erase(0, line.find(" ") + 1);
+					levels[levelname].characters[levels[levelname].characters.size() - 1].image = s;
+					s = line;
+					s.erase(s.find(" "), s.length());
+					line.erase(0, line.find(" ") + 1);
+					levels[levelname].characters[levels[levelname].characters.size() - 1].origin.x = stoi(s);
+					s = line;
+					s.erase(s.find(" "), s.length());
+					line.erase(0, line.find(" ") + 1);
+					levels[levelname].characters[levels[levelname].characters.size() - 1].origin.y = stoi(s);
+					levels[levelname].characters[levels[levelname].characters.size() - 1].origin.level = levelname;
+					levels[levelname].characters[levels[levelname].characters.size() - 1].loc = levels[levelname].characters[levels[levelname].characters.size() - 1].origin;
+					s = line;
+					if (s == "WANDER") {
+						levels[levelname].characters[levels[levelname].characters.size() - 1].wander = true;
+					}
+					else {
+						levels[levelname].characters[levels[levelname].characters.size() - 1].wander = false;
+					}
+					// TODO:  LOAD FROM CHARACTER SAVE
+					levels[levelname].characters[levels[levelname].characters.size() - 1].step = 0;
+					std::getline(f, line);
+					if (line == "INTERACTIONS") {
+						std::getline(f, line);
+						while (line != "END") {
+							levels[levelname].characters[levels[levelname].characters.size() - 1].interactions.push_back(line);
+							std::getline(f, line);
+						}
+						std::getline(f, line);
+					}
+				}
 			}
 			if (line == "TELEPORT")
 			{
