@@ -146,11 +146,23 @@ public:
 	status_effect() { defined = false; chance = false; nonvolatile = false; name = string(""); singleton = false; specialcase = false; }
 };
 
+class character {
+public:
+	string image;
+	string name; // MUST BE UNIQUE
+	vector<string> interactions;
+	int step;
+	location loc;
+	bool wander;
+	character() { wander = false; step = 0; }
+};
+
 class level {
 public:
 	string name;
 	std::vector<std::vector<int>> data;
 	std::vector<std::pair<location, location>> teleport;
+	std::vector<character> characters;
 	std::vector<int> encounters;
 	std::pair<int, int> level_range;
 };
