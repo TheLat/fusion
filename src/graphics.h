@@ -120,6 +120,15 @@ public:
 			f2.close();
 		}
 
+
+		ifstream f4("../resources/data/character_sprites.dat");
+		while (f4.is_open()) {
+			while (std::getline(f4, tmp)) {
+				menu_tex[tmp] = load_image("../resources/characters/" + tmp);
+			}
+			f4.close();
+		}
+
 		ifstream f3("../resources/data/string_lookup.dat");
 		string l1, l2;
 		while (f3.is_open()) {

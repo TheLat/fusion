@@ -3,6 +3,8 @@ import os
 sprites = []
 levels = []
 menu_sprites = []
+character_sprites = []
+
 
 for filename in os.listdir("resources/levels"):
     if filename != ".DS_Store":
@@ -15,6 +17,10 @@ for filename in os.listdir("resources/level_sprites"):
 for filename in os.listdir("resources/menu_sprites"):
     if filename != ".DS_Store":
         menu_sprites.append(filename)
+
+for filename in os.listdir("resources/characters"):
+    if filename != ".DS_Store":
+        character_sprites.append(filename)
 
 f = open("resources/data/levels.dat", 'w')
 for l in levels:
@@ -33,3 +39,12 @@ for m in menu_sprites:
     f.write("\n")
 
 f.close()
+
+
+f = open("resources/data/character_sprites.dat", 'w')
+for c in character_sprites:
+    f.write(c)
+    f.write("\n")
+
+f.close()
+
