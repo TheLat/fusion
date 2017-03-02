@@ -32,7 +32,7 @@ public:
 class graphics {
 public:
 	std::map<int, GLuint> tiles;
-	std::map<string, GLuint> menu_tex;
+	std::map<string, GLuint> tex;
 	std::map<string, string_lookup_data> string_lookup;
 	std::map<char, bool> chunk;
 	std::vector<quad> draw_list;
@@ -115,7 +115,7 @@ public:
 		ifstream f2("../resources/data/menu_sprites.dat");
 		while (f2.is_open()) {
 			while (std::getline(f2, tmp)) {
-				menu_tex[tmp] = load_image("../resources/menu_sprites/" + tmp);
+				tex[tmp] = load_image("../resources/menu_sprites/" + tmp);
 			}
 			f2.close();
 		}
@@ -124,7 +124,7 @@ public:
 		ifstream f4("../resources/data/character_sprites.dat");
 		while (f4.is_open()) {
 			while (std::getline(f4, tmp)) {
-				menu_tex[tmp] = load_image("../resources/characters/" + tmp);
+				tex[tmp] = load_image("../resources/characters/" + tmp);
 			}
 			f4.close();
 		}
@@ -248,7 +248,7 @@ public:
 				if (key == string("space.bmp") && x_curr == x && y_curr != y + height) {
 				}
 				else {
-					push_quad(x_curr, y_curr, size, size, menu_tex[key]);
+					push_quad(x_curr, y_curr, size, size, tex[key]);
 					x_curr += size;
 				}
 			}
@@ -265,32 +265,32 @@ public:
 		return s.size();
 	}
 	void push_box(float xmin, float ymin, float length, float height) {
-		push_quad(xmin, ymin + height - 0.1f, 0.1f, 0.1f, menu_tex[string("corner-ul.bmp")]);
-		push_quad(xmin + length - 0.1f, ymin + height - 0.1f, 0.1f, 0.1f, menu_tex[string("corner-ur.bmp")]);
-		push_quad(xmin + 0.1f, ymin + height - 0.1f, length - 0.2f, 0.1f, menu_tex[string("bar-top.bmp")]);
-		push_quad(xmin, ymin + 0.1f, 0.1f, height - 0.2f, menu_tex[string("bar-left.bmp")]);
-		push_quad(xmin + length - 0.1f, ymin + 0.1f, 0.1f, height - 0.2f, menu_tex[string("bar-right.bmp")]);
-		push_quad(xmin + 0.1f, ymin + 0.1f, length - 0.2f, height - 0.2f, menu_tex[string("space.bmp")]);
-		push_quad(xmin, ymin, 0.1f, 0.1f, menu_tex[string("corner-bl.bmp")]);
-		push_quad(xmin + length - 0.1f, ymin, 0.1f, 0.1f, menu_tex[string("corner-br.bmp")]);
-		push_quad(xmin + 0.1f, ymin, length - 0.2f, 0.1f, menu_tex[string("bar-bottom.bmp")]);
+		push_quad(xmin, ymin + height - 0.1f, 0.1f, 0.1f, tex[string("corner-ul.bmp")]);
+		push_quad(xmin + length - 0.1f, ymin + height - 0.1f, 0.1f, 0.1f, tex[string("corner-ur.bmp")]);
+		push_quad(xmin + 0.1f, ymin + height - 0.1f, length - 0.2f, 0.1f, tex[string("bar-top.bmp")]);
+		push_quad(xmin, ymin + 0.1f, 0.1f, height - 0.2f, tex[string("bar-left.bmp")]);
+		push_quad(xmin + length - 0.1f, ymin + 0.1f, 0.1f, height - 0.2f, tex[string("bar-right.bmp")]);
+		push_quad(xmin + 0.1f, ymin + 0.1f, length - 0.2f, height - 0.2f, tex[string("space.bmp")]);
+		push_quad(xmin, ymin, 0.1f, 0.1f, tex[string("corner-bl.bmp")]);
+		push_quad(xmin + length - 0.1f, ymin, 0.1f, 0.1f, tex[string("corner-br.bmp")]);
+		push_quad(xmin + 0.1f, ymin, length - 0.2f, 0.1f, tex[string("bar-bottom.bmp")]);
 	}
 	void push_arrow_box_left(float xmin, float ymin, float length, float height) {
-		push_quad(xmin + length - 0.1f, ymin + 0.1f, 0.1f, height - 0.1f, menu_tex[string("arrow-bar-vertical-right.bmp")]);
-		push_quad(xmin, ymin, 0.1f, 0.1f, menu_tex[string("arrow-left.bmp")]);
-		push_quad(xmin + length - 0.1f, ymin, 0.1f, 0.1f, menu_tex[string("arrow-bar-corner-ur.bmp")]);
-		push_quad(xmin + 0.1f, ymin, length - 0.2f, 0.1f, menu_tex[string("arrow-bar-horizontal.bmp")]);
+		push_quad(xmin + length - 0.1f, ymin + 0.1f, 0.1f, height - 0.1f, tex[string("arrow-bar-vertical-right.bmp")]);
+		push_quad(xmin, ymin, 0.1f, 0.1f, tex[string("arrow-left.bmp")]);
+		push_quad(xmin + length - 0.1f, ymin, 0.1f, 0.1f, tex[string("arrow-bar-corner-ur.bmp")]);
+		push_quad(xmin + 0.1f, ymin, length - 0.2f, 0.1f, tex[string("arrow-bar-horizontal.bmp")]);
 	}
 	void push_arrow_box_right(float xmin, float ymin, float length, float height) {
-		push_quad(xmin, ymin + height - 0.1f, 0.1f, 0.1f, menu_tex[string("corner-ul.bmp")]);
-		push_quad(xmin + length - 0.1f, ymin + height - 0.1f, 0.1f, 0.1f, menu_tex[string("corner-ur.bmp")]);
-		push_quad(xmin + 0.1f, ymin + height - 0.1f, length - 0.2f, 0.1f, menu_tex[string("bar-top.bmp")]);
-		push_quad(xmin, ymin + 0.1f, 0.1f, height - 0.2f, menu_tex[string("bar-left.bmp")]);
-		push_quad(xmin + length - 0.1f, ymin + 0.1f, 0.1f, height - 0.2f, menu_tex[string("bar-right.bmp")]);
-		push_quad(xmin + 0.1f, ymin + 0.1f, length - 0.2f, height - 0.2f, menu_tex[string("space.bmp")]);
-		push_quad(xmin, ymin, 0.1f, 0.1f, menu_tex[string("corner-bl.bmp")]);
-		push_quad(xmin + length - 0.1f, ymin, 0.1f, 0.1f, menu_tex[string("corner-br.bmp")]);
-		push_quad(xmin + 0.1f, ymin, length - 0.2f, 0.1f, menu_tex[string("bar-bottom.bmp")]);
+		push_quad(xmin, ymin + height - 0.1f, 0.1f, 0.1f, tex[string("corner-ul.bmp")]);
+		push_quad(xmin + length - 0.1f, ymin + height - 0.1f, 0.1f, 0.1f, tex[string("corner-ur.bmp")]);
+		push_quad(xmin + 0.1f, ymin + height - 0.1f, length - 0.2f, 0.1f, tex[string("bar-top.bmp")]);
+		push_quad(xmin, ymin + 0.1f, 0.1f, height - 0.2f, tex[string("bar-left.bmp")]);
+		push_quad(xmin + length - 0.1f, ymin + 0.1f, 0.1f, height - 0.2f, tex[string("bar-right.bmp")]);
+		push_quad(xmin + 0.1f, ymin + 0.1f, length - 0.2f, height - 0.2f, tex[string("space.bmp")]);
+		push_quad(xmin, ymin, 0.1f, 0.1f, tex[string("corner-bl.bmp")]);
+		push_quad(xmin + length - 0.1f, ymin, 0.1f, 0.1f, tex[string("corner-br.bmp")]);
+		push_quad(xmin + 0.1f, ymin, length - 0.2f, 0.1f, tex[string("bar-bottom.bmp")]);
 	}
 	void alert(string s) {
 		push_box(-1.0f, -1.0f, 2.0f, 0.8f);

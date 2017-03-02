@@ -2027,13 +2027,23 @@ public:
 		g.draw_list.clear();
 		handle_teleport();
 		draw_level();
+		draw_characters();
 		m.unlock();
 	}
 	void draw_level() {
 		for (unsigned y = 0; y < levels[current_level].data.size(); ++y) {
 			for (unsigned x = 0; x < levels[current_level].data[y].size(); ++x) {
-				g.push_quad(-1.0f + (float(x) / 5.0f) - ((mc.loc.x - 4.5f) / 5.0f), (-float(y) / 4.5f) - (0.5f / 4.5f) + (mc.loc.y / 4.5f), 1.0f / 5.0f, 1.0f / 4.5f, g.tiles[levels[current_level].data[y][x]]);
+				g.push_quad(-1.0f + (float(x) / 5.0f) - ((mc.loc.x - 4.5f) / 5.0f), 
+					(-float(y) / 4.5f) - (0.5f / 4.5f) + (mc.loc.y / 4.5f), 
+					1.0f / 5.0f, 1.0f / 4.5f, g.tiles[levels[current_level].data[y][x]]);
 			}
+		}
+	}
+	void draw_characters() {
+		for (unsigned i = 0; i < levels[current_level].characters.size(); ++i) {
+			g.push_quad((levels[current_level].characters[i].loc.x / 5.0) - ((mc.loc.x - 4.5f) / 5.0f),
+				(levels[current_level].characters[i].loc.y / -4.5) + (mc.loc.y / 4.5f),
+				1.0 / 5.0f, 1.0 / 4.5f, g.tex[levels[current_level].characters[i].image + string("-down-0.bmp")]);
 		}
 	}
 	void main() {

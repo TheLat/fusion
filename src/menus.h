@@ -293,7 +293,7 @@ public:
 			m2.lock();
 			if (type == "SELECT" && cursor == -1) {
 				cursor = g.draw_list.size();
-				g.push_quad(display[0].xmin - 0.1f + cursor_offset_x, display[0].ymin - 0.1f + cursor_offset_y, 0.1f, 0.1f, g.menu_tex[string("cursor-2.bmp")]);
+				g.push_quad(display[0].xmin - 0.1f + cursor_offset_x, display[0].ymin - 0.1f + cursor_offset_y, 0.1f, 0.1f, g.tex[string("cursor-2.bmp")]);
 			}
 			if ((cursor > 0) && (selection != -1)) {
 				g.draw_list[cursor].x = display[selection].xmin - 0.1f + cursor_offset_x;
