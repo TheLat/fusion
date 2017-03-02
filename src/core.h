@@ -123,6 +123,8 @@ public:
 	mon team[6];
 	mon storage[20][20];
 	location loc;
+	std::map<string, int> interaction;
+	std::map<string, bool> inactive;
 	player() { wins = 0; losses = 0; money = 0; }
 	// TODO:  INVENTORY
 };
@@ -146,15 +148,22 @@ public:
 	status_effect() { defined = false; chance = false; nonvolatile = false; name = string(""); singleton = false; specialcase = false; }
 };
 
+enum direction {
+	DOWN,
+	UP,
+	LEFT,
+	RIGHT
+};
 class character {
 public:
+	direction dir;
 	string image;
 	string name; // MUST BE UNIQUE
 	vector<string> interactions;
 	int step;
 	location loc, origin;
 	bool wander;
-	character() { wander = false; step = 0; }
+	character() { wander = false; step = 0; dir = DOWN; }
 };
 
 class level {
