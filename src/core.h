@@ -1965,38 +1965,30 @@ public:
 	void input(bool up, bool down, bool left, bool right, bool select, bool start, bool confirm, bool cancel) {
 		if (menus.size() == 0) {
 			// TODO:  Animations
-			if (left) {
-				if (mc.loc.x == 0.0f)
+			location l = mc.loc;
+			if (left)
+				l.x -= 1.0;
+			if (right)
+				l.x += 1.0;
+			if (up)
+				l.y -= 1.0;
+			if (down)
+				l.y += 1.0;
+			if (l.y == -1.0)
+				return;
+			if (l.y >= levels[current_level].data.size())
+				return;
+			if (l.x == -1.0)
+				return;
+			if (l.x >= levels[current_level].data[int(l.y)].size())
+				return;
+			if (blocking[get_tile(l.y, l.x)])
+				return;
+			for (unsigned i = 0; i < levels[current_level].characters.size(); ++i) {
+				if (l.x == levels[current_level].characters[i].loc.x && l.y == levels[current_level].characters[i].loc.y)
 					return;
-				if (blocking[get_tile(mc.loc.y, mc.loc.x - 1.0)])
-					return;
-				mc.loc.x -= 1.0f;
 			}
-			else if (right) {
-				if (mc.loc.x + 1 >= levels[current_level].data[int(mc.loc.y)].size())
-					return;
-				if (blocking[get_tile(mc.loc.y, mc.loc.x + 1.0)])
-					return;
-				mc.loc.x += 1.0f;
-			}
-			else if (down) {
-				if (mc.loc.y + 1 >= levels[current_level].data.size())
-					return;
-				if (mc.loc.x >= levels[current_level].data[int(mc.loc.y + 1)].size())
-					return;
-				if (blocking[get_tile(mc.loc.y + 1.0, mc.loc.x)])
-					return;
-				mc.loc.y += 1.0f;
-			}
-			else if (up) {
-				if (mc.loc.y == 0)
-					return;
-				if (mc.loc.x >= levels[current_level].data[int(mc.loc.y - 1)].size())
-					return;
-				if (blocking[get_tile(mc.loc.y - 1.0, mc.loc.x)])
-					return;
-				mc.loc.y -= 1.0f;
-			}
+			mc.loc = l;
 			update_level();
 			if (get_tile(mc.loc.y, mc.loc.x) == 4) {
 				if (levels[current_level].encounters.size() > 0) {
