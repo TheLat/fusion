@@ -1982,6 +1982,21 @@ public:
 		if (menus.size() == 0) {
 			// TODO:  Animations
 			location l = mc.loc;
+			location ahead = mc.loc;
+			switch (mc.dir) {
+			case UP:
+				ahead.y -= 1.0;
+				break;
+			case DOWN:
+				ahead.y += 1.0;
+				break;
+			case LEFT:
+				ahead.x -= 1.0;
+				break;
+			case RIGHT:
+				ahead.x += 1.0;
+				break;
+			}
 			if (left) {
 				if (mc.dir == LEFT)
 					l.x -= 1.0;
@@ -2015,6 +2030,20 @@ public:
 			for (unsigned i = 0; i < levels[current_level].characters.size(); ++i) {
 				if (l.x == levels[current_level].characters[i].loc.x && l.y == levels[current_level].characters[i].loc.y)
 					return;
+			}
+			if (confirm) {
+				for (unsigned i = 0; i < levels[current_level].characters.size(); ++i) {
+					if (ahead.x == levels[current_level].characters[i].loc.x && ahead.y == levels[current_level].characters[i].loc.y) {
+						if (levels[current_level].characters[i].loc.x < mc.loc.x)
+							levels[current_level].characters[i].dir = RIGHT;
+						else if (levels[current_level].characters[i].loc.x > mc.loc.x)
+							levels[current_level].characters[i].dir = LEFT;
+						else if (levels[current_level].characters[i].loc.y > mc.loc.y)
+							levels[current_level].characters[i].dir = UP;
+						else if (levels[current_level].characters[i].loc.y < mc.loc.y)
+							levels[current_level].characters[i].dir = DOWN;
+					}
+				}
 			}
 			mc.loc = l;
 			update_level();
