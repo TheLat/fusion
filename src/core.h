@@ -27,6 +27,13 @@ enum STAT{
 	SIZE
 };
 
+enum direction {
+	DOWN,
+	UP,
+	LEFT,
+	RIGHT
+};
+
 class location {
 public:
 	double x;
@@ -118,6 +125,7 @@ public:
 class player {
 public:
 	string name;
+	direction dir;
 	int wins, losses;
 	int money;
 	mon team[6];
@@ -148,12 +156,6 @@ public:
 	status_effect() { defined = false; chance = false; nonvolatile = false; name = string(""); singleton = false; specialcase = false; }
 };
 
-enum direction {
-	DOWN,
-	UP,
-	LEFT,
-	RIGHT
-};
 class character {
 public:
 	direction dir;
@@ -188,6 +190,20 @@ int max(int a, int b) {
 		return a;
 	}
 	return b;
+}
+
+string get_direction_string(direction dir) {
+	switch (dir) {
+	case UP:
+		return string("up");
+	case DOWN:
+		return string("down");
+	case LEFT:
+		return string("left");
+	case RIGHT:
+		return string("right");
+	}
+	return string("ERROR");
 }
 
 
@@ -1966,14 +1982,26 @@ public:
 		if (menus.size() == 0) {
 			// TODO:  Animations
 			location l = mc.loc;
-			if (left)
-				l.x -= 1.0;
-			if (right)
-				l.x += 1.0;
-			if (up)
-				l.y -= 1.0;
-			if (down)
-				l.y += 1.0;
+			if (left) {
+				if (mc.dir == LEFT)
+					l.x -= 1.0;
+				mc.dir = LEFT;
+			}
+			if (right) {
+				if (mc.dir == RIGHT)
+					l.x += 1.0;
+				mc.dir = RIGHT;
+			}
+			if (up) {
+				if (mc.dir == UP)
+					l.y -= 1.0;
+				mc.dir = UP;
+			}
+			if (down) {
+				if (mc.dir == DOWN)
+					l.y += 1.0;
+				mc.dir = DOWN;
+			}
 			if (l.y == -1.0)
 				return;
 			if (l.y >= levels[current_level].data.size())
@@ -2044,9 +2072,9 @@ public:
 		for (unsigned i = 0; i < levels[current_level].characters.size(); ++i) {
 			g.push_quad((levels[current_level].characters[i].loc.x - (mc.loc.x + 0.5))/5.0,
 				(-0.5 - levels[current_level].characters[i].loc.y + mc.loc.y)/ 4.5f,
-				1.0 / 5.0f, 1.0 / 4.5f, g.tex[levels[current_level].characters[i].image + string("-down-0.bmp")]);
+				1.0 / 5.0f, 1.0 / 4.5f, g.tex[levels[current_level].characters[i].image + string("-") + get_direction_string(levels[current_level].characters[i].dir) + string("-0.bmp")]);
 		}
-		g.push_quad(-0.1, -0.5 / 4.5, 1.0/5.0, 1.0/4.5, g.tex[string("player-down-0.bmp")]);
+		g.push_quad(-0.1, -0.5 / 4.5, 1.0/5.0, 1.0/4.5, g.tex[string("player-") + get_direction_string(mc.dir) + string("-0.bmp")]);
 	}
 	void main() {
 		update_level();
