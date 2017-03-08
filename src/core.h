@@ -162,10 +162,9 @@ public:
 	string image;
 	string name; // MUST BE UNIQUE
 	vector<string> interactions;
-	int step;
 	location loc, origin;
 	bool wander;
-	character() { wander = false; step = 0; dir = DOWN; }
+	character() { wander = false; dir = DOWN; }
 };
 
 class level {
@@ -225,6 +224,8 @@ public: // TODO:  Change back to private
 	int selected;
 	string current_level;
 	player mc;
+	location ahead;
+	bool interact;
 public:
 	string get_special_string(string in) {
 		string parse;
@@ -1305,7 +1306,7 @@ public:
 						levels[levelname].characters[levels[levelname].characters.size() - 1].wander = false;
 					}
 					// TODO:  LOAD FROM CHARACTER SAVE
-					levels[levelname].characters[levels[levelname].characters.size() - 1].step = 0;
+					mc.interaction[levels[levelname].characters[levels[levelname].characters.size() - 1].name] = 0;
 					std::getline(f, line);
 					if (line == "INTERACTIONS") {
 						std::getline(f, line);
@@ -1982,7 +1983,7 @@ public:
 		if (menus.size() == 0) {
 			// TODO:  Animations
 			location l = mc.loc;
-			location ahead = mc.loc;
+			ahead = l;
 			switch (mc.dir) {
 			case UP:
 				ahead.y -= 1.0;
@@ -2032,18 +2033,7 @@ public:
 					return;
 			}
 			if (confirm) {
-				for (unsigned i = 0; i < levels[current_level].characters.size(); ++i) {
-					if (ahead.x == levels[current_level].characters[i].loc.x && ahead.y == levels[current_level].characters[i].loc.y) {
-						if (levels[current_level].characters[i].loc.x < mc.loc.x)
-							levels[current_level].characters[i].dir = RIGHT;
-						else if (levels[current_level].characters[i].loc.x > mc.loc.x)
-							levels[current_level].characters[i].dir = LEFT;
-						else if (levels[current_level].characters[i].loc.y > mc.loc.y)
-							levels[current_level].characters[i].dir = UP;
-						else if (levels[current_level].characters[i].loc.y < mc.loc.y)
-							levels[current_level].characters[i].dir = DOWN;
-					}
-				}
+				interact = true;
 			}
 			mc.loc = l;
 			update_level();
@@ -2108,6 +2098,40 @@ public:
 	void main() {
 		update_level();
 		while (true) {
+			if (interact) {
+				interact = false;
+				for (unsigned i = 0; i < levels[current_level].characters.size(); ++i) {
+					if (ahead.x == levels[current_level].characters[i].loc.x && ahead.y == levels[current_level].characters[i].loc.y) {
+						if (levels[current_level].characters[i].loc.x < mc.loc.x)
+							levels[current_level].characters[i].dir = RIGHT;
+						else if (levels[current_level].characters[i].loc.x > mc.loc.x)
+							levels[current_level].characters[i].dir = LEFT;
+						else if (levels[current_level].characters[i].loc.y > mc.loc.y)
+							levels[current_level].characters[i].dir = UP;
+						else if (levels[current_level].characters[i].loc.y < mc.loc.y)
+							levels[current_level].characters[i].dir = DOWN;
+						string s = levels[current_level].characters[i].interactions[mc.interaction[levels[current_level].characters[i].name]];
+						string s2, s3;
+						if (mc.interaction[levels[current_level].characters[i].name] < levels[current_level].characters[i].interactions.size() - 1)
+							mc.interaction[levels[current_level].characters[i].name]++;
+						while (s != "") {
+							if (s.find("MENU") == 0) {
+								s.erase(0, s.find(":") + 1);
+								s2 = s;
+								s3 = s;
+								s2.erase(s2.find(":"), s2.length());
+								s3.erase(0, s3.find(":") + 1);
+								if (s3.find("|") != -1)
+									s3.erase(s3.find("|"), s3.length());
+								do_menu(s2, s3);
+								s.erase(0, s2.length() + s3.length() + 1);
+							}
+							if (s.find("|") != -1)
+								s.erase(0, s.find("|") + 1);
+						}
+					}
+				}
+			}
 			if (alert != "") {
 				do_menu(string("ALERT"), alert);
 				alert = "";

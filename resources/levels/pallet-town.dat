@@ -8,7 +8,7 @@ MENU:ALERT:Second message
 END
 testchar2 player 4 2 WANDER
 INTERACTIONS
-MENU:ALERT:I only have one thing to say.
+MENU:ALERT:I only have one very, very, very, very, very, very long thing to say.|MENU:ALERT:No, wait! I have two things to say!
 END
 TELEPORT
 11 1 route1 9 36
