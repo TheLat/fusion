@@ -6,7 +6,7 @@ INTERACTIONS
 MENU:ALERT:First message
 MENU:ALERT:Second message
 END
-testchar2 manswim 4 2 WANDER
+testchar2 boy 4 2 WANDER
 INTERACTIONS
 MENU:ALERT:I only have one thing to say.|MENU:ALERT:No, wait! I have two things to say!
 END
