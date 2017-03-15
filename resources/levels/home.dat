@@ -5,11 +5,35 @@ mom woman6 5 23 NO_WANDER LEFT
 INTERACTIONS
 MENU:ALERT:MOM: Right.{NEWLINE}All boys leave home some day. It said so on TV.|MENU:ALERT:PROF. OAK, next door, is looking for you.|FACE:LEFT
 END
+snes blank 3 5
+INTERACTIONS
+MENU:ALERT:{PLAYER_NAME} is playing the SNES!|MENU:ALERT:...Okay!|MENU:ALERT:It's time to go!
+END
+bed1 blank 0 7
+INTERACTIONS
+MENU:ALERT:{PLAYER_NAME} rested in bed!|MENU:ALERT:Okay! It's time to go!
+END
+bed2 blank 0 6
+INTERACTIONS
+MENU:ALERT:{PLAYER_NAME} rested in bed!|MENU:ALERT:Okay! It's time to go!
+END
+bookshelf1 blank 0 20
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+bookshelf2 blank 1 20
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+tv1 blank 3 20
+INTERACTIONS
+MENU:ALERT:There's a movie on TV. Four boys are walking on railroad tracks.|MENU:ALERT:I better go, too.
+END
 TELEPORT
 7 1 home 6 20
 7 20 home 6 1
-2 27 pallet-town 5 6
-3 27 pallet-town 5 6
+2 27 pallet-town 10 6
+3 27 pallet-town 10 6
 DATA
 19 21 22 17 17 16 17 16
 20 23 24 18 18 18 18 39

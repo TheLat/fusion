@@ -1293,8 +1293,10 @@ public:
 					line.erase(0, line.find(" ") + 1);
 					levels[levelname].characters[levels[levelname].characters.size() - 1].origin.x = stoi(s);
 					s = line;
-					s.erase(s.find(" "), s.length());
-					line.erase(0, line.find(" ") + 1);
+					if (s.find(" ") != -1)
+						s.erase(s.find(" "), s.length());
+					if (line.find(" ") != -1)
+						line.erase(0, line.find(" ") + 1);
 					levels[levelname].characters[levels[levelname].characters.size() - 1].origin.y = stoi(s);
 					levels[levelname].characters[levels[levelname].characters.size() - 1].origin.level = levelname;
 					levels[levelname].characters[levels[levelname].characters.size() - 1].loc = levels[levelname].characters[levels[levelname].characters.size() - 1].origin;
