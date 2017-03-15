@@ -1,5 +1,10 @@
 NAME
 Home
+NPCS
+mom woman6 5 23 NO_WANDER
+INTERACTIONS
+MENU:ALERT:MOM: Right.{NEWLINE}All boys leave home some day. It said so on TV.|MENU:ALERT:PROF. OAK, next door, is looking for you.|FACE:LEFT
+END
 TELEPORT
 7 1 home 6 20
 7 20 home 6 1

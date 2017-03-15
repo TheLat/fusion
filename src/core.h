@@ -1311,6 +1311,12 @@ public:
 					if (line == "INTERACTIONS") {
 						std::getline(f, line);
 						while (line != "END") {
+							while (line.find(string("{NEWLINE}")) != -1) {
+								int i;
+								i = line.find(string("{NEWLINE}"));
+								line.erase(i, string("{NEWLINE}").length());
+								line.insert(i, string("\n"));
+							}
 							levels[levelname].characters[levels[levelname].characters.size() - 1].interactions.push_back(line);
 							std::getline(f, line);
 						}
@@ -2125,6 +2131,25 @@ public:
 									s3.erase(s3.find("|"), s3.length());
 								do_menu(s2, s3);
 								s.erase(0, s2.length() + s3.length() + 1);
+							}
+							else if (s.find("FACE") == 0) {
+								s.erase(0, s.find(":") + 1);
+								if (s == "LEFT") {
+									levels[current_level].characters[i].dir = LEFT;
+									s.erase(0, string("LEFT").length());
+								}
+								else if (s == "RIGHT") {
+									levels[current_level].characters[i].dir = RIGHT;
+									s.erase(0, string("RIGHT").length());
+								}
+								else if (s == "UP") {
+									levels[current_level].characters[i].dir = UP;
+									s.erase(0, string("UP").length());
+								}
+								else if (s == "DOWN") {
+									levels[current_level].characters[i].dir = DOWN;
+									s.erase(0, string("DOWN").length());
+								}
 							}
 							if (s.find("|") != -1)
 								s.erase(0, s.find("|") + 1);

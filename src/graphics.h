@@ -252,7 +252,7 @@ public:
 					x_curr += size;
 				}
 			}
-			if ((height != size) &&(x_curr >= x + width || (!no_chunk_yet && ((float(next_chunk(s, i) - i))*size + x_curr > (x + width + 0.00001))))) {
+			if ((key == string("\n.bmp")) || ((height != size) && (x_curr >= x + width || (!no_chunk_yet && ((float(next_chunk(s, i) - i))*size + x_curr > (x + width + 0.00001)))))) {
 				no_chunk_yet = true;
 				x_curr = x;
 				y_curr -= size;

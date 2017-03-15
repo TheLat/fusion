@@ -13,9 +13,9 @@ END
 TELEPORT
 16 0 route1 14 35
 15 0 route1 13 35
-5 5 home 2 26
-13 5 rival-home 2 7 
-12 11 oak-lab 4 11 
+10 5 home 2 26
+18 5 rival-home 2 7 
+17 11 oak-lab 4 11 
 DATA
 4 4 4 4 4 1  1  1  0  1  1  1  1  1  0  4  4  0  1  1  1  1  1  0 1 4 4 4 4 4
 4 4 4 4 4 0  0  0  0  0  0  0  0  0  0  4  4  0  0  0  0  0  0  0 0 4 4 4 4 4
