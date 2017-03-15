@@ -1301,9 +1301,26 @@ public:
 					s = line;
 					if (s == "WANDER") {
 						levels[levelname].characters[levels[levelname].characters.size() - 1].wander = true;
+						s.erase(0, string("WANDER").length() + 1);
 					}
-					else {
+ 					else {
 						levels[levelname].characters[levels[levelname].characters.size() - 1].wander = false;
+						if (s.find(" ") != -1) {
+							s.erase(0, s.find(" ") + 1);
+						}
+						else {
+							s = "";
+						}
+					}
+					if (s != "") {
+						if (s == "LEFT")
+							levels[levelname].characters[levels[levelname].characters.size() - 1].dir = LEFT;
+						else if (s == "RIGHT")
+							levels[levelname].characters[levels[levelname].characters.size() - 1].dir = RIGHT;
+						else if (s == "UP")
+							levels[levelname].characters[levels[levelname].characters.size() - 1].dir = UP;
+						else if (s == "DOWN")
+							levels[levelname].characters[levels[levelname].characters.size() - 1].dir = DOWN;
 					}
 					// TODO:  LOAD FROM CHARACTER SAVE
 					mc.interaction[levels[levelname].characters[levels[levelname].characters.size() - 1].name] = 0;
