@@ -17,11 +17,11 @@ bed2 blank 0 6
 INTERACTIONS
 MENU:ALERT:{PLAYER_NAME} rested in bed!|MENU:ALERT:Okay! It's time to go!
 END
-bookshelf1 blank 0 20
+home-bookshelf1 blank 0 20
 INTERACTIONS
 MENU:ALERT:Crammed full of POK{e-accent}MON books!
 END
-bookshelf2 blank 1 20
+home-bookshelf2 blank 1 20
 INTERACTIONS
 MENU:ALERT:Crammed full of POK{e-accent}MON books!
 END
