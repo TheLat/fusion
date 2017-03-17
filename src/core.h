@@ -124,7 +124,7 @@ public:
 
 class player {
 public:
-	string name;
+	string name, rivalname;
 	direction dir;
 	int wins, losses;
 	int money;
@@ -133,7 +133,7 @@ public:
 	location loc;
 	std::map<string, int> interaction;
 	std::map<string, bool> inactive;
-	player() { wins = 0; losses = 0; money = 0; }
+	player() { wins = 0; losses = 0; money = 0; name = "RED"; rivalname = "BLUE"; }
 	// TODO:  INVENTORY
 };
 
@@ -520,6 +520,12 @@ public:
 					return string("-");
 				return moves[temp].notes;
 			}
+		}
+		if (in == "{RIVAL_NAME}") {
+			return mc.rivalname;
+		}
+		else if (in == "{PLAYER_NAME}") {
+			return mc.name;
 		}
 		return in;
 	}
@@ -2024,23 +2030,19 @@ public:
 				break;
 			}
 			if (left) {
-				if (mc.dir == LEFT)
-					l.x -= 1.0;
+				l.x -= 1.0;
 				mc.dir = LEFT;
 			}
 			if (right) {
-				if (mc.dir == RIGHT)
-					l.x += 1.0;
+				l.x += 1.0;
 				mc.dir = RIGHT;
 			}
 			if (up) {
-				if (mc.dir == UP)
-					l.y -= 1.0;
+				l.y -= 1.0;
 				mc.dir = UP;
 			}
 			if (down) {
-				if (mc.dir == DOWN)
-					l.y += 1.0;
+				l.y += 1.0;
 				mc.dir = DOWN;
 			}
 			if (l.y == -1.0)

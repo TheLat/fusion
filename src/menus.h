@@ -158,6 +158,18 @@ public:
 								t.s = get_special_string(t.s);
 								t.s = string("{SINGLE}") + t.s;
 							}
+							while (t.s.find(string("{PLAYER_NAME}")) != -1) {
+								int i;
+								i = t.s.find(string("{PLAYER_NAME}"));
+								t.s.erase(i, string("{PLAYER_NAME}").length());
+								t.s.insert(i, get_special_string(string("{PLAYER_NAME}")));
+							}
+							while (t.s.find(string("{RIVAL_NAME}")) != -1) {
+								int i;
+								i = t.s.find(string("{RIVAL_NAME}"));
+								t.s.erase(i, string("{RIVAL_NAME}").length());
+								t.s.insert(i, get_special_string(string("{RIVAL_NAME}")));
+							}
 							raw.push_back(t);
 							std::getline(f, line);
 						}
