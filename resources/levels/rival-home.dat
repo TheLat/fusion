@@ -1,5 +1,30 @@
 NAME
 Rival's Home
+NPCS
+bookshelf3 blank 0 1
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+bookshelf4 blank 1 1
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+bookshelf5 blank 7 1
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+map blank 3 0
+INTERACTIONS
+MENU:ALERT:A TOWN MAP.
+END
+map book 3 3
+INTERACTIONS
+MENU:ALERT:It's a big map!  This is useful!
+END
+rival-sister girl3 2 3 NO_WANDER RIGHT
+INTERACTIONS
+MENU:ALERT:Hi {PLAYER_NAME}!{NEWLINE}{RIVAL_NAME} is out at Grandpa's lab.|FACE:RIGHT
+END
 TELEPORT
 2 8 pallet-town 13 6
 3 8 pallet-town 13 6
