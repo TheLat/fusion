@@ -2115,10 +2115,10 @@ public:
 	void draw_characters() {
 		for (unsigned i = 0; i < levels[current_level].characters.size(); ++i) {
 			g.push_quad((levels[current_level].characters[i].loc.x - (mc.loc.x + 0.5))/5.0,
-				(-0.5 - levels[current_level].characters[i].loc.y + mc.loc.y)/ 4.5f,
+				(-0.5 - levels[current_level].characters[i].loc.y + mc.loc.y)/ 4.5f + 0.055,
 				1.0 / 5.0f, 1.0 / 4.5f, g.tex[levels[current_level].characters[i].image + string("-") + get_direction_string(levels[current_level].characters[i].dir) + string("-0.bmp")]);
 		}
-		g.push_quad(-0.1, -0.5 / 4.5, 1.0/5.0, 1.0/4.5, g.tex[string("player-") + get_direction_string(mc.dir) + string("-0.bmp")]);
+		g.push_quad(-0.1, -0.5 / 4.5 + 0.055, 1.0 / 5.0, 1.0 / 4.5, g.tex[string("player-") + get_direction_string(mc.dir) + string("-0.bmp")]);
 	}
 	void main() {
 		update_level();
