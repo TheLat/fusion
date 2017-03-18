@@ -1,5 +1,19 @@
 NAME
 Route 1
+NPCS
+route1-boy1 boy 8 24 WANDER
+INTERACTIONS
+MENU:ALERT:Hi! I work at the POK{e-accent}MON MART.|MENU:ALERT:It's a convenient shop, so please visit us in VIRIDIAN CITY.|MENU:ALERT:I know, I'll give you a sample! Here you go!|MENU:ALERT:TODO: GIVE POTION
+MENU:ALERT:We also carry POK{e-accent} BALLs for catching POK{e-accent}MON!
+END
+route1-boy2 boy 17 12 WANDER
+INTERACTIONS
+MENU:ALERT:See those ledges along the road?|MENU:ALERT:It's a bit scary, but you can jump from them.|MENU:ALERT:You can get back to PALLET TOWN quicker that way.
+END
+route1-sign1 blank 12 26 NO_WANDER
+INTERACTIONS
+MENU:ALERT:ROUTE 1{NEWLINE}PALLET TOWN - VIRIDIAN CITY
+END
 TELEPORT
 14 37 pallet-town 16 2
 13 37 pallet-town 15 2
