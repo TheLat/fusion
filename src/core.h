@@ -217,6 +217,8 @@ public: // TODO:  Change back to private
 	std::map<string, power> moves;
 	std::map<string, level> levels;
 	std::map<int, bool> blocking;
+	std::map<int, bool> jumpdown;
+	std::map<int, bool> water;
 	std::vector<menu*> menus;
 	string alert;
 	string encounter;
@@ -1882,6 +1884,26 @@ public:
 			f.close();
 		}
 	}
+	void init_jumpdown() {
+		string line;
+		ifstream f("../resources/data/jumpdown-tiles.dat");
+		while (f.is_open()) {
+			while (std::getline(f, line)) {
+				jumpdown[stoi(line)] = true;
+			}
+			f.close();
+		}
+	}
+	void init_swimming() {
+		string line;
+		ifstream f("../resources/data/water-tiles.dat");
+		while (f.is_open()) {
+			while (std::getline(f, line)) {
+				water[stoi(line)] = true;
+			}
+			f.close();
+		}
+	}
 	void init_exp() {
 		string line;
 		ifstream f("../resources/data/exp.dat");
@@ -2139,8 +2161,8 @@ public:
 							levels[current_level].characters[i].dir = DOWN;
 						string s = levels[current_level].characters[i].interactions[mc.interaction[levels[current_level].characters[i].name]];
 						string s2, s3;
-						if (mc.interaction[levels[current_level].characters[i].name] < levels[current_level].characters[i].interactions.size() - 1)
-							mc.interaction[levels[current_level].characters[i].name]++;
+						bool advance;
+						advance = true;
 						while (s != "") {
 							if (s.find("MENU") == 0) {
 								s.erase(0, s.find(":") + 1);
@@ -2153,27 +2175,42 @@ public:
 								do_menu(s2, s3);
 								s.erase(0, s2.length() + s3.length() + 1);
 							}
+							else if (s.find("NO_ADVANCE") == 0) {
+								advance = false;
+								s.erase(0, string("NO_ADVANCE").length());
+								if (s.find(":") == 0) {
+									s.erase(0, 1);
+									continue;
+								}
+							}
 							else if (s.find("FACE") == 0) {
 								s.erase(0, s.find(":") + 1);
-								if (s == "LEFT") {
+								if (s.find("LEFT") == 0) {
 									levels[current_level].characters[i].dir = LEFT;
 									s.erase(0, string("LEFT").length());
 								}
-								else if (s == "RIGHT") {
+								else if (s.find("RIGHT") == 0) {
 									levels[current_level].characters[i].dir = RIGHT;
 									s.erase(0, string("RIGHT").length());
 								}
-								else if (s == "UP") {
+								else if (s.find("UP") == 0) {
 									levels[current_level].characters[i].dir = UP;
 									s.erase(0, string("UP").length());
 								}
-								else if (s == "DOWN") {
+								else if (s.find("DOWN") == 0) {
 									levels[current_level].characters[i].dir = DOWN;
 									s.erase(0, string("DOWN").length());
 								}
 							}
 							if (s.find("|") != -1)
 								s.erase(0, s.find("|") + 1);
+							if (!advance)
+								break;
+						}
+						if (advance) {
+							if (mc.interaction[levels[current_level].characters[i].name] < levels[current_level].characters[i].interactions.size() - 1) {
+								mc.interaction[levels[current_level].characters[i].name]++;
+							}
 						}
 					}
 				}
