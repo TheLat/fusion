@@ -543,22 +543,23 @@ public:
 		}
 		return in;
 	}
-	bool gain_item(string& s) {
+	bool gain_item(string& s, int count=1, bool silent=false) {
 		bool found = false;
 		for (unsigned i = 0; i < mc.inventory.size(); ++i) {
 			if (mc.inventory[i].first == s) {
 				found = true;
-				mc.inventory[i].second++;
+				mc.inventory[i].second += count;
 				break;
 			}
 		}
 		if (!found) {
 			pair<string, int> item;
 			item.first = s;
-			item.second = 1;
+			item.second = count;
 			mc.inventory.push_back(item);
 		}
-		do_menu(string("ALERT"), string("{PLAYER_NAME} found ") + s + string("!"));
+		if (!silent)
+			do_menu(string("ALERT"), string("{PLAYER_NAME} found ") + s + string("!"));
 		return true;
 	}
 	bool run_away(mon& escapee, mon& m, int attempts) {
