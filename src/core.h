@@ -558,7 +558,7 @@ public:
 			item.second = 1;
 			mc.inventory.push_back(item);
 		}
-		do_menu(string("ALERT"), string("{PLAYER_NAME} found ") + s);
+		do_menu(string("ALERT"), string("{PLAYER_NAME} found ") + s + string("!"));
 		return true;
 	}
 	bool run_away(mon& escapee, mon& m, int attempts) {

@@ -242,6 +242,8 @@ public:
 					done = true;
 				}
 				else {
+					while (raw[0].s[step] == ' ')
+						step++;
 					raw[0].s.erase(0, step);
 					process_strings();
 					pop_menu();
