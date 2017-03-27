@@ -143,6 +143,7 @@ public:
 	location loc;
 	std::map<string, int> interaction;
 	std::map<string, bool> inactive;
+	std::vector<pair<string, int>> inventory;
 	player() { wins = 0; losses = 0; money = 0; name = "RED"; rivalname = "BLUE"; }
 	// TODO:  INVENTORY
 };
