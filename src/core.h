@@ -543,6 +543,24 @@ public:
 		}
 		return in;
 	}
+	bool gain_item(string& s) {
+		bool found = false;
+		for (unsigned i = 0; i < mc.inventory.size(); ++i) {
+			if (mc.inventory[i].first == s) {
+				found = true;
+				mc.inventory[i].second++;
+				break;
+			}
+		}
+		if (!found) {
+			pair<string, int> item;
+			item.first = s;
+			item.second = 1;
+			mc.inventory.push_back(item);
+		}
+		do_menu(string("ALERT"), string("{PLAYER_NAME} found ") + s);
+		return true;
+	}
 	bool run_away(mon& escapee, mon& m, int attempts) {
 		double chance = (double(get_stat(escapee, SPEED))*32.0 / double(get_stat(m, SPEED))) + (30.0 * double(attempts));
 		return chance > random(0.0, 255.0);
@@ -2255,6 +2273,15 @@ public:
 									levels[current_level].characters[i].dir = DOWN;
 									s.erase(0, string("DOWN").length());
 								}
+							}
+							else if (s.find("GIVE_ITEM:") == 0) {
+								s.erase(0, string("GIVE_ITEM:").length());
+								s2 = s;
+								if (s2.find("|") != -1) {
+									s2.erase(s2.find("|"), s2.length());
+								}
+								gain_item(s2);
+								s.erase(0, s2.length());
 							}
 							if (s.find("|") != -1)
 								s.erase(0, s.find("|") + 1);
