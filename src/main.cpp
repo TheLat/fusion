@@ -121,6 +121,7 @@ int main(int argc, char** argv) {
 	e.init_blocking();
 	e.init_jumpdown();
 	e.init_swimming();
+	e.init_items();
 	int l = 9;
 	e.make_mon(string("6"), l, e.mc.team[0]);
 	e.mc.team[0].wild = false;

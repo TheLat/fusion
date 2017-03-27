@@ -41,6 +41,16 @@ public:
 	string level;
 };
 
+class item {
+public:
+	string name;
+	vector<string> use;
+	vector<string> effect;
+	int price;
+	bool defined;
+	item() { price = 0; defined = false; }
+};
+
 class power {
 public:
 	string name;
@@ -216,6 +226,7 @@ public: // TODO:  Change back to private
 	std::map<string, mon_template> all_mon;
 	std::map<string, power> moves;
 	std::map<string, level> levels;
+	std::map<string, item> items;
 	std::map<int, bool> blocking;
 	std::map<int, bool> jumpdown;
 	std::map<int, bool> water;
@@ -1260,6 +1271,48 @@ public:
 			}
 		}
 		return int(ret * get_stat_modifier(buff));
+	}
+	void init_items() {
+		ifstream f("../resources/data/items.dat");
+		string line;
+		string key;
+		string temp;
+		while (f.is_open()) {
+			while (std::getline(f, line)) {
+				if (line.find("ITEM:") == 0) {
+					line.erase(0, string("ITEM:").length());
+					key = line;
+					items[key].defined = true;
+				}
+				else if (line.find("USE:") == 0) {
+					line.erase(0, string("USE:").length());
+					temp = line;
+					while (line.find("|") != -1) {
+						line.erase(0, line.find("|") + 1);
+						temp.erase(temp.find("|"), temp.length());
+						items[key].use.insert(items[key].use.begin(), temp);
+						temp = line;
+					}
+					items[key].use.insert(items[key].use.begin(), temp);
+				}
+				else if (line.find("EFFECT:") == 0) {
+					line.erase(0, string("EFFECT:").length());
+					temp = line;
+					while (line.find("|") != -1) {
+						line.erase(0, line.find("|") + 1);
+						temp.erase(temp.find("|"), temp.length());
+						items[key].effect.insert(items[key].effect.begin(), temp);
+						temp = line;
+					}
+					items[key].effect.insert(items[key].effect.begin(), temp);
+				}
+				else if (line.find("PRICE:") == 0) {
+					line.erase(0, string("PRICE:").length());
+					items[key].price = stoi(line);
+				}
+			}
+			f.close();
+		}
 	}
 	void init_levels() {
 		ifstream f("../resources/data/levels.dat");
