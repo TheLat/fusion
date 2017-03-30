@@ -21,6 +21,23 @@ int get_team_size() {
 	}
 	return ret;
 }
+int get_inventory_count(string type) {
+	int ret = 0;
+	bool found;
+	for (int i = 0; i < e.mc.inventory.size(); ++i) {
+		found = false;
+		for (int j = 0; j < e.items[e.mc.inventory[i].first].use.size(); ++j) {
+			if (type == "ANY")
+				found = true;
+			if (e.items[e.mc.inventory[i].first].use[j] == type) {
+				found = true;
+			}
+		}
+		if (found)
+			ret++;
+	}
+	return ret;
+}
 int get_mon_move_size(int index){
 	int ret = 0;
 	for (int i = 0; i < 4; ++i) {

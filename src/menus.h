@@ -10,6 +10,7 @@ extern string get_special_string(string in);
 extern int get_team_size();
 extern int get_active_mon_move_size();
 extern int get_mon_move_size(int index);
+extern int get_inventory_count(string type);
 extern vector<int> do_menu(string menu);
 mutex m2;
 
@@ -127,6 +128,47 @@ public:
 							arrowboxes.push_back(b);
 							std::getline(f, line);
 						}
+					}
+					else if (temp1.find("INVENTORY_") == 0) {
+						int count = 0;
+						std::getline(f, line);
+						temp1.erase(0, temp1.find("_") + 1);
+						temp2 = line;
+						temp2.erase(temp2.find(" "), temp2.length());
+						line.erase(0, line.find(" ") + 1);
+						b.xmin = stof(temp2);
+						temp2 = line;
+						temp2.erase(temp2.find(" "), temp2.length());
+						line.erase(0, line.find(" ") + 1);
+						b.ymin = stof(temp2);
+						temp2 = line;
+						temp2.erase(temp2.find(" "), temp2.length());
+						line.erase(0, line.find(" ") + 1);
+						b.length = stof(temp2);
+						temp2 = line;
+						b.height = stof(temp2);
+						boxes.push_back(b);
+						std::getline(f, line);
+						float x = b.xmin + 0.2;
+						float y = b.ymin + b.height - 0.4f;
+						int max = get_inventory_count(temp1);
+						for (count = 0; count < max; count++) {
+							t.xmin = x;
+							t.ymin = y;
+							t.height = 0.1;
+							t.length = b.length - 0.2f;
+							t.s = string("ITEM:") + temp1 + string(":") + to_string(count);
+							y -= 0.2f;
+							raw.push_back(t);
+						}
+						t.xmin = x;
+						t.ymin = y;
+						t.height = 0.1;
+						t.length = b.length - 0.2f;
+						t.s = "CANCEL";
+						raw.push_back(t);
+						cancel_option = count;
+						selection_cap = count + 1;
 					}
 					else if (temp1 == "TEXT") {
 						std::getline(f, line);
