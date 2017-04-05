@@ -534,6 +534,54 @@ public:
 					return string("-");
 				return moves[temp].notes;
 			}
+			else if (parse == "ITEM") {
+				string type = temp;
+				type.erase(type.find(":"), type.length());
+				temp.erase(0, temp.find(":") + 1);
+				int index = stoi(temp);
+				int i = 0, count = 0;
+				while (count < e.mc.inventory.size()) {
+					bool found = false;
+					for (int j = 0; j < e.items[e.mc.inventory[count].first].use.size(); ++j) {
+						if (type == "ALL" || type == e.items[e.mc.inventory[count].first].use[j])
+							found = true;
+					}
+					if (!found) {
+						count++;
+						continue;
+					}
+					if (i == index) {
+						return e.mc.inventory[count].first;
+					}
+					i++;
+					count++;
+				}
+				return in;
+			}
+			else if (parse == "ITEM_COUNT") {
+				string type = temp;
+				type.erase(type.find(":"), type.length());
+				temp.erase(0, temp.find(":") + 1);
+				int index = stoi(temp);
+				int i = 0, count = 0;
+				while (count < e.mc.inventory.size()) {
+					bool found = false;
+					for (int j = 0; j < e.items[e.mc.inventory[count].first].use.size(); ++j) {
+						if (type == "ALL" || type == e.items[e.mc.inventory[count].first].use[j])
+							found = true;
+					}
+					if (!found) {
+						count++;
+						continue;
+					}
+					if (i == index) {
+						return string("{TIMES}") + to_string(e.mc.inventory[count].second);
+					}
+					i++;
+					count++;
+				}
+				return in;
+			}
 		}
 		if (in == "{RIVAL_NAME}") {
 			return mc.rivalname;
