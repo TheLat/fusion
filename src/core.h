@@ -141,7 +141,7 @@ public:
 	mon team[6];
 	mon storage[20][20];
 	location loc;
-	std::map<string, int> interaction;
+	std::map<string, unsigned> interaction;
 	std::map<string, bool> inactive;
 	std::vector<pair<string, int>> inventory;
 	player() { wins = 0; losses = 0; money = 0; name = "RED"; rivalname = "BLUE"; }
@@ -479,7 +479,7 @@ public:
 				return o;
 			}
 			else if (parse == "RIGHT_JUSTIFY") {
-				int len = stoi(temp);
+				unsigned len = stoi(temp);
 				temp.erase(0, temp.find(':') + 1);
 				temp = get_special_string(temp);
 				while (temp.length() < len)
@@ -539,48 +539,14 @@ public:
 				type.erase(type.find(":"), type.length());
 				temp.erase(0, temp.find(":") + 1);
 				int index = stoi(temp);
-				int i = 0, count = 0;
-				while (count < e.mc.inventory.size()) {
-					bool found = false;
-					for (int j = 0; j < e.items[e.mc.inventory[count].first].use.size(); ++j) {
-						if (type == "ALL" || type == e.items[e.mc.inventory[count].first].use[j])
-							found = true;
-					}
-					if (!found) {
-						count++;
-						continue;
-					}
-					if (i == index) {
-						return e.mc.inventory[count].first;
-					}
-					i++;
-					count++;
-				}
-				return in;
+				return get_item_name(type, index);
 			}
 			else if (parse == "ITEM_COUNT") {
 				string type = temp;
 				type.erase(type.find(":"), type.length());
 				temp.erase(0, temp.find(":") + 1);
 				int index = stoi(temp);
-				int i = 0, count = 0;
-				while (count < e.mc.inventory.size()) {
-					bool found = false;
-					for (int j = 0; j < e.items[e.mc.inventory[count].first].use.size(); ++j) {
-						if (type == "ALL" || type == e.items[e.mc.inventory[count].first].use[j])
-							found = true;
-					}
-					if (!found) {
-						count++;
-						continue;
-					}
-					if (i == index) {
-						return string("{TIMES}") + to_string(e.mc.inventory[count].second);
-					}
-					i++;
-					count++;
-				}
-				return in;
+				return get_item_count(type, index);
 			}
 		}
 		if (in == "{RIVAL_NAME}") {
@@ -590,6 +556,46 @@ public:
 			return mc.name;
 		}
 		return in;
+	}
+	string get_item_name(string type, int index) {
+		unsigned i = 0, count = 0;
+		while (count < e.mc.inventory.size()) {
+			bool found = false;
+			for (unsigned j = 0; j < e.items[e.mc.inventory[count].first].use.size(); ++j) {
+				if (type == "ALL" || type == e.items[e.mc.inventory[count].first].use[j])
+					found = true;
+			}
+			if (!found) {
+				count++;
+				continue;
+			}
+			if (i == index) {
+				return e.mc.inventory[count].first;
+			}
+			i++;
+			count++;
+		}
+		return string("NOT FOUND");
+	}
+	string get_item_count(string type, int index) {
+		unsigned i = 0, count = 0;
+		while (count < e.mc.inventory.size()) {
+			bool found = false;
+			for (unsigned j = 0; j < e.items[e.mc.inventory[count].first].use.size(); ++j) {
+				if (type == "ALL" || type == e.items[e.mc.inventory[count].first].use[j])
+					found = true;
+			}
+			if (!found) {
+				count++;
+				continue;
+			}
+			if (i == index) {
+				return string("{TIMES}") + to_string(e.mc.inventory[count].second);
+			}
+			i++;
+			count++;
+		}
+		return string("NOT FOUND");
 	}
 	bool gain_item(string& s, int count=1, bool silent=false) {
 		bool found = false;

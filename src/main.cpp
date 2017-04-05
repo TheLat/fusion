@@ -24,9 +24,9 @@ int get_team_size() {
 int get_inventory_count(string type) {
 	int ret = 0;
 	bool found;
-	for (int i = 0; i < e.mc.inventory.size(); ++i) {
+	for (unsigned i = 0; i < e.mc.inventory.size(); ++i) {
 		found = false;
-		for (int j = 0; j < e.items[e.mc.inventory[i].first].use.size(); ++j) {
+		for (unsigned j = 0; j < e.items[e.mc.inventory[i].first].use.size(); ++j) {
 			if (type == "ANY")
 				found = true;
 			if (e.items[e.mc.inventory[i].first].use[j] == type) {
