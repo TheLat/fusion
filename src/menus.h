@@ -173,7 +173,7 @@ public:
 						raw.push_back(t);
 						cancel_option = max;
 						selection_cap = count + 1;
-						for (unsigned i = 0; i < selection_cap; ++i) {
+						for (int i = 0; i < selection_cap; ++i) {
 							raw[i].s = reserves[i + scroll];
 						}
 					}
@@ -358,7 +358,7 @@ public:
 				}
 			}
 			if (down) {
-				if (selection + 1 >= selection_cap && selection + scroll + 1 < reserves.size()) {
+				if (selection + 1 >= selection_cap && selection + scroll + 1 < int(reserves.size())) {
 					scroll++;
 				}
 				else if (selection + 1 < selection_cap){
@@ -372,7 +372,7 @@ public:
 				selection = -1;
 				done = true;
 			}
-			for (unsigned i = 0; i < selection_cap; ++i) {
+			for (int i = 0; i < selection_cap; ++i) {
 				raw[i].s = reserves[i + scroll];
 			}
 			process_strings();

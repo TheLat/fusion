@@ -27,7 +27,7 @@ int get_inventory_count(string type) {
 	for (unsigned i = 0; i < e.mc.inventory.size(); ++i) {
 		found = false;
 		for (unsigned j = 0; j < e.items[e.mc.inventory[i].first].use.size(); ++j) {
-			if (type == "ANY")
+			if (type == "ALL")
 				found = true;
 			if (e.items[e.mc.inventory[i].first].use[j] == type) {
 				found = true;
