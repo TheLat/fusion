@@ -33,11 +33,11 @@ public:
 	string type;
 	vector<box> boxes, arrowboxes;
 	vector<text> raw, display;
-	vector<string> followup;
-	int index, step, selection, columns, cursor, selection_cap, offset, cancel_option;
+	vector<string> followup, reserves;
+	int index, step, selection, columns, cursor, selection_cap, offset, cancel_option, scroll, max;
 	float cursor_offset_x, cursor_offset_y;
 	bool done;
-	menu() { step = 0; index = 0; done = false; selection = 0; selection_cap = 0; columns = 1; cursor = -1; offset = 0; cancel_option = -1; cursor_offset_x = 0.0f; cursor_offset_y = 0.0; }
+	menu() { step = 0; index = 0; done = false; selection = 0; selection_cap = 0; columns = 1; cursor = -1; offset = 0; cancel_option = -1; cursor_offset_x = 0.0f; cursor_offset_y = 0.0; scroll = 0; max = 0; }
 	void create_menu(string file, string choice = "") {
 		box b;
 		text t;
@@ -151,24 +151,31 @@ public:
 						std::getline(f, line);
 						float x = b.xmin + 0.2;
 						float y = b.ymin + b.height - 0.4f;
-						int max = get_inventory_count(temp1);
-						for (count = 0; count < max; count++) {
+						max = get_inventory_count(temp1);
+						for (count = 0; (count < max) && (count + 1 < selection_cap); count++) {
 							t.xmin = x;
 							t.ymin = y;
 							t.height = 0.1;
 							t.length = b.length - 0.2f;
-							t.s = string("ITEM:") + temp1 + string(":") + to_string(count);
+							t.s = string("R") + to_string(count);
 							y -= 0.2f;
 							raw.push_back(t);
+						}
+						for (int i = 0; i < max; ++i) {
+							reserves.push_back(string("ITEM:") + temp1 + string(":") + to_string(i));
 						}
 						t.xmin = x;
 						t.ymin = y;
 						t.height = 0.1;
 						t.length = b.length - 0.2f;
-						t.s = "CANCEL";
+						t.s = string("R") + to_string(count);
+						reserves.push_back(string("CANCEL"));
 						raw.push_back(t);
-						cancel_option = count;
+						cancel_option = max;
 						selection_cap = count + 1;
+						for (unsigned i = 0; i < selection_cap; ++i) {
+							raw[i].s = reserves[i + scroll];
+						}
 					}
 					else if (temp1 == "TEXT") {
 						std::getline(f, line);
@@ -293,7 +300,7 @@ public:
 				}
 			}
 		}
-		if (type == "SELECT") {
+		else if (type == "SELECT") {
 			if (up) {
 				if (selection < columns) {
 					selection = selection_cap - (columns - selection);
@@ -341,13 +348,44 @@ public:
 			pop_menu();
 			push_menu();
 		}
+		else if (type == "SCROLL") {
+			if (up) {
+				if (selection - 1 < 0 && selection + scroll - 1 >= 0) {
+					scroll--;
+				}
+				else if (selection - 1 >= 0) {
+					selection--;
+				}
+			}
+			if (down) {
+				if (selection + 1 >= selection_cap && selection + scroll + 1 < reserves.size()) {
+					scroll++;
+				}
+				else if (selection + 1 < selection_cap){
+					selection++;
+				}
+			}
+			if (confirm | start) {
+				done = true;
+			}
+			if (cancel) {
+				selection = -1;
+				done = true;
+			}
+			for (unsigned i = 0; i < selection_cap; ++i) {
+				raw[i].s = reserves[i + scroll];
+			}
+			process_strings();
+			pop_menu();
+			push_menu();
+		}
 		m2.unlock();
 	}
 	vector<int> main() {
 		vector<int> choice;
 		while (!done || (done && (selection >= 0) && (selection < (int)followup.size()) && (followup[selection] != ""))) {
 			m2.lock();
-			if (type == "SELECT" && cursor == -1) {
+			if ((type == "SELECT" || type == "SCROLL") && cursor == -1) {
 				cursor = g.draw_list.size();
 				g.push_quad(display[0].xmin - 0.1f + cursor_offset_x, display[0].ymin - 0.1f + cursor_offset_y, 0.1f, 0.1f, g.tex[string("cursor-2.bmp")]);
 			}
@@ -372,7 +410,7 @@ public:
 			int a = 0;
 		}
 		pop_menu();
-		choice.insert(choice.begin(), selection);
+		choice.insert(choice.begin(), selection + scroll);
 		if ((choice.size() > 0) && (choice[0] == offset + cancel_option))
 			choice[0] = -1;
 		return choice;
