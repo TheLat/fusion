@@ -177,8 +177,23 @@ public:
 						reserves.push_back(string(""));
 						cancel_option = max;
 						selection_cap = count + 1;
-						for (int i = 0; i < selection_cap; ++i) {
-							raw[i].s = reserves[i + scroll];
+						
+						x = b.xmin + 0.2;
+						y = b.ymin + b.height - 0.5f;
+						for (count = 0; count + 1 <= selection_cap; count++) {
+							t.xmin = x;
+							t.ymin = y;
+							t.height = 0.1;
+							t.length = b.length - 0.2f;
+							t.s = string("R") + to_string(count);
+							y -= 0.2f;
+							raw.push_back(t);
+						}
+						int shift = 0;
+						for (int i = 0; i < raw.size(); ++i) {
+							if (i >= selection_cap && i % selection_cap == 0)
+								shift++;
+							raw[i].s = reserves[i + scroll + shift];
 						}
 					}
 					else if (temp1 == "TEXT") {
@@ -376,8 +391,11 @@ public:
 				selection = -1;
 				done = true;
 			}
-			for (int i = 0; i < selection_cap; ++i) {
-				raw[i].s = reserves[i + scroll];
+			int shift = 0;
+			for (int i = 0; i < raw.size(); ++i) {
+				if (i >= selection_cap && i % selection_cap == 0)
+					shift++;
+				raw[i].s = reserves[i + scroll + shift];
 			}
 			process_strings();
 			pop_menu();
