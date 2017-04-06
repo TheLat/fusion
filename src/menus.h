@@ -167,10 +167,14 @@ public:
 						t.xmin = x;
 						t.ymin = y;
 						t.height = 0.1;
-						t.length = b.length - 0.2f;
+						t.length = b.length - 0.2;
 						t.s = string("R") + to_string(count);
 						reserves.push_back(string("CANCEL"));
 						raw.push_back(t);
+						for (int i = 0; i < max; ++i) {
+							reserves.push_back(string("RIGHT_JUSTIFY:") + to_string(int((b.length + 0.3) * 10.0)) + string(":ITEM_COUNT:") + temp1 + string(":") + to_string(i));
+						}
+						reserves.push_back(string(""));
 						cancel_option = max;
 						selection_cap = count + 1;
 						for (int i = 0; i < selection_cap; ++i) {
@@ -358,7 +362,7 @@ public:
 				}
 			}
 			if (down) {
-				if (selection + 1 >= selection_cap && selection + scroll + 1 < int(reserves.size())) {
+				if (selection + 1 >= selection_cap && selection + scroll + 1 <= max) {
 					scroll++;
 				}
 				else if (selection + 1 < selection_cap){
@@ -410,7 +414,7 @@ public:
 			int a = 0;
 		}
 		pop_menu();
-		choice.insert(choice.begin(), selection + scroll);
+		choice.insert(choice.begin(), selection != -1 ? selection + scroll : selection);
 		if ((choice.size() > 0) && (choice[0] == offset + cancel_option))
 			choice[0] = -1;
 		return choice;
