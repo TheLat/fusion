@@ -33,7 +33,7 @@ public:
 	string type;
 	vector<box> boxes, arrowboxes;
 	vector<text> raw, display;
-	vector<string> followup, reserves;
+	vector<string> followup, reserve, reserve_followup;
 	int index, step, selection, columns, cursor, selection_cap, offset, cancel_option, scroll, max;
 	float cursor_offset_x, cursor_offset_y;
 	bool done;
@@ -151,6 +151,7 @@ public:
 						std::getline(f, line);
 						float x = b.xmin + 0.2;
 						float y = b.ymin + b.height - 0.4f;
+						selection_cap = ((b.height + 0.0001) - 0.3) / 0.2;
 						max = get_inventory_count(temp1);
 						for (count = 0; (count < max) && (count + 1 < selection_cap); count++) {
 							t.xmin = x;
@@ -162,19 +163,19 @@ public:
 							raw.push_back(t);
 						}
 						for (int i = 0; i < max; ++i) {
-							reserves.push_back(string("ITEM:") + temp1 + string(":") + to_string(i));
+							reserve.push_back(string("ITEM:") + temp1 + string(":") + to_string(i));
 						}
 						t.xmin = x;
 						t.ymin = y;
 						t.height = 0.1;
 						t.length = b.length - 0.2;
 						t.s = string("R") + to_string(count);
-						reserves.push_back(string("CANCEL"));
+						reserve.push_back(string("CANCEL"));
 						raw.push_back(t);
 						for (int i = 0; i < max; ++i) {
-							reserves.push_back(string("RIGHT_JUSTIFY:") + to_string(int((b.length + 0.3) * 10.0)) + string(":ITEM_COUNT:") + temp1 + string(":") + to_string(i));
+							reserve.push_back(string("RIGHT_JUSTIFY:") + to_string(int((b.length + 0.3) * 10.0)) + string(":ITEM_COUNT:") + temp1 + string(":") + to_string(i));
 						}
-						reserves.push_back(string(""));
+						reserve.push_back(string(""));
 						cancel_option = max;
 						selection_cap = count + 1;
 						
@@ -192,8 +193,8 @@ public:
 						int shift = 0;
 						for (int i = 0; i < raw.size(); ++i) {
 							if (i >= selection_cap && i % selection_cap == 0)
-								shift++;
-							raw[i].s = reserves[i + scroll + shift];
+								shift += (1 + max - selection_cap);
+							raw[i].s = reserve[i + scroll + shift];
 						}
 					}
 					else if (temp1 == "TEXT") {
@@ -394,8 +395,8 @@ public:
 			int shift = 0;
 			for (int i = 0; i < raw.size(); ++i) {
 				if (i >= selection_cap && i % selection_cap == 0)
-					shift++;
-				raw[i].s = reserves[i + scroll + shift];
+					shift += (1 + max - selection_cap);
+				raw[i].s = reserve[i + scroll + shift];
 			}
 			process_strings();
 			pop_menu();
