@@ -60,6 +60,10 @@ string get_special_string(string in) {
 	return e.get_special_string(in);
 }
 
+string get_item_effect(string in) {
+	return e.get_item_effect(in);
+}
+
 vector<int> do_menu(string menu) {
 	vector<int> def;
 	string temp;

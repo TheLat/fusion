@@ -241,6 +241,11 @@ public: // TODO:  Change back to private
 	location ahead;
 	bool interact;
 public:
+	string get_item_effect(string in) {
+		if (!items[in].defined)
+			return string("");
+		return items[in].effect[0];
+	}
 	string get_special_string(string in) {
 		string parse;
 		string out;

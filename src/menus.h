@@ -7,6 +7,7 @@ extern graphics g;
 extern engine e;
 extern mutex m;
 extern string get_special_string(string in);
+extern string get_item_effect(string in);
 extern int get_team_size();
 extern int get_active_mon_move_size();
 extern int get_mon_move_size(int index);
@@ -161,9 +162,16 @@ public:
 							t.s = string("R") + to_string(count);
 							y -= 0.2f;
 							raw.push_back(t);
+							followup.push_back("");
 						}
 						for (int i = 0; i < max; ++i) {
 							reserve.push_back(string("ITEM:") + temp1 + string(":") + to_string(i));
+							if (get_item_effect(get_special_string(string("ITEM:") + temp1 + string(":") + to_string(i))).find("TEAM_SELECT") == 0)
+								reserve_followup.push_back("MON_SELECT");
+							else if (get_item_effect(get_special_string(string("ITEM:") + temp1 + string(":") + to_string(i))).find("TEAM_MOVE_SELECT") == 0)
+								reserve_followup.push_back("ALERT:Implement this!");
+							else
+								reserve_followup.push_back("");
 						}
 						t.xmin = x;
 						t.ymin = y;
@@ -171,6 +179,8 @@ public:
 						t.length = b.length - 0.2;
 						t.s = string("R") + to_string(count);
 						reserve.push_back(string("CANCEL"));
+						reserve_followup.push_back(string(""));
+						followup.push_back("");
 						raw.push_back(t);
 						for (int i = 0; i < max; ++i) {
 							reserve.push_back(string("RIGHT_JUSTIFY:") + to_string(int((b.length + 0.3) * 10.0)) + string(":ITEM_COUNT:") + temp1 + string(":") + to_string(i));
@@ -190,12 +200,7 @@ public:
 							y -= 0.2f;
 							raw.push_back(t);
 						}
-						int shift = 0;
-						for (int i = 0; i < raw.size(); ++i) {
-							if (i >= selection_cap && i % selection_cap == 0)
-								shift += (1 + max - selection_cap);
-							raw[i].s = reserve[i + scroll + shift];
-						}
+						update_reserves();
 					}
 					else if (temp1 == "TEXT") {
 						std::getline(f, line);
@@ -268,6 +273,16 @@ public:
 			f.close();
 		}
 		process_strings();
+	}
+	void update_reserves() {
+		int shift = 0;
+		for (int i = 0; i < raw.size(); ++i) {
+			if (i >= selection_cap && i % selection_cap == 0)
+				shift += (1 + max - selection_cap);
+			raw[i].s = reserve[i + scroll + shift];
+			if (i < selection_cap)
+				followup[i] = reserve_followup[i + scroll + shift];
+		}
 	}
 	void push_menu() {
 		m.lock();
@@ -392,12 +407,7 @@ public:
 				selection = -1;
 				done = true;
 			}
-			int shift = 0;
-			for (int i = 0; i < raw.size(); ++i) {
-				if (i >= selection_cap && i % selection_cap == 0)
-					shift += (1 + max - selection_cap);
-				raw[i].s = reserve[i + scroll + shift];
-			}
+			update_reserves();
 			process_strings();
 			pop_menu();
 			push_menu();
