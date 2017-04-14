@@ -169,7 +169,7 @@ public:
 							if (get_item_effect(get_special_string(string("ITEM:") + temp1 + string(":") + to_string(i))).find("TEAM_SELECT") == 0)
 								reserve_followup.push_back("MON_SELECT");
 							else if (get_item_effect(get_special_string(string("ITEM:") + temp1 + string(":") + to_string(i))).find("TEAM_MOVE_SELECT") == 0)
-								reserve_followup.push_back("ALERT:Implement this!");
+								reserve_followup.push_back("MON_MOVE_SELECT");
 							else
 								reserve_followup.push_back("");
 						}
