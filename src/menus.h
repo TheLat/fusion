@@ -276,7 +276,7 @@ public:
 	}
 	void update_reserves() {
 		int shift = 0;
-		for (int i = 0; i < raw.size(); ++i) {
+		for (int i = 0; i < int(raw.size()); ++i) {
 			if (i >= selection_cap && i % selection_cap == 0)
 				shift += (1 + max - selection_cap);
 			raw[i].s = reserve[i + scroll + shift];
