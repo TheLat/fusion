@@ -12,6 +12,7 @@ extern int get_team_size();
 extern int get_active_mon_move_size();
 extern int get_mon_move_size(int index);
 extern int get_inventory_count(string type);
+extern bool is_menu(string s);
 extern vector<int> do_menu(string menu);
 mutex m2;
 
@@ -166,12 +167,19 @@ public:
 						}
 						for (int i = 0; i < max; ++i) {
 							reserve.push_back(string("ITEM:") + temp1 + string(":") + to_string(i));
-							if (get_item_effect(get_special_string(string("ITEM:") + temp1 + string(":") + to_string(i))).find("TEAM_SELECT") == 0)
-								reserve_followup.push_back("MON_SELECT");
-							else if (get_item_effect(get_special_string(string("ITEM:") + temp1 + string(":") + to_string(i))).find("TEAM_MOVE_SELECT") == 0)
-								reserve_followup.push_back("MON_MOVE_SELECT");
-							else
+							string effect = get_item_effect(get_special_string(string("ITEM:") + temp1 + string(":") + to_string(i)));
+							if (effect.find(":") != -1) {
+								effect.erase(effect.find(":"), effect.size());
+								if (is_menu(effect)) {
+									reserve_followup.push_back(effect);
+								}
+								else {
+									reserve_followup.push_back("");
+								}
+							}
+							else {
 								reserve_followup.push_back("");
+							}
 						}
 						t.xmin = x;
 						t.ymin = y;

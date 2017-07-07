@@ -38,6 +38,14 @@ int get_inventory_count(string type) {
 	}
 	return ret;
 }
+bool is_menu(string s) {
+	ifstream f(string("../resources/menus/") + s + string(".dat"));
+	if (f.is_open()) {
+		f.close();
+		return true;
+	}
+	return false;
+}
 int get_mon_move_size(int index){
 	int ret = 0;
 	for (int i = 0; i < 4; ++i) {
