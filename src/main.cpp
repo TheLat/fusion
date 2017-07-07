@@ -39,6 +39,8 @@ int get_inventory_count(string type) {
 	return ret;
 }
 bool is_menu(string s) {
+	if (s.find(":"))
+		s.erase(s.find(":"), s.size());
 	ifstream f(string("../resources/menus/") + s + string(".dat"));
 	if (f.is_open()) {
 		f.close();
@@ -151,8 +153,8 @@ int main(int argc, char** argv) {
 	e.init_jumpdown();
 	e.init_swimming();
 	e.init_items();
-	int l = 9;
-	e.make_mon(string("6"), l, e.mc.team[0]);
+	int l = 26;
+	e.make_mon(string("25"), l, e.mc.team[0]);
 	e.mc.team[0].wild = false;
 
 	e.mc.loc.x = 6.0;

@@ -168,14 +168,9 @@ public:
 						for (int i = 0; i < max; ++i) {
 							reserve.push_back(string("ITEM:") + temp1 + string(":") + to_string(i));
 							string effect = get_item_effect(get_special_string(string("ITEM:") + temp1 + string(":") + to_string(i)));
-							if (effect.find(":") != -1) {
+							if (is_menu(effect)) {
 								effect.erase(effect.find(":"), effect.size());
-								if (is_menu(effect)) {
-									reserve_followup.push_back(effect);
-								}
-								else {
-									reserve_followup.push_back("");
-								}
+								reserve_followup.push_back(effect);
 							}
 							else {
 								reserve_followup.push_back("");

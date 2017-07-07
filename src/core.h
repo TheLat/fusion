@@ -18,6 +18,8 @@ class graphics;
 extern graphics g;
 extern mutex m;
 
+extern bool is_menu(string s);
+
 enum STAT{
 	HP=0,
 	ATTACK,
@@ -326,7 +328,7 @@ public:
 				int index = stoi(temp);
 				if (!mc.team[index].defined)
 					return string("");
-				return mc.team[index].nickname;
+				return get_nickname(mc.team[index]);
 			}
 			else if (parse == "TEAM_MON_LEVEL"){
 				int index = stoi(temp);
@@ -450,7 +452,7 @@ public:
 				int index = stoi(temp);
 				if (!mc.team[index].defined)
 					return string("");
-				string o = mc.team[index].nickname;
+				string o = get_nickname(mc.team[index]);
 				while (o.length() < 14)
 					o = string(" ") + o;
 				return o;
@@ -561,6 +563,28 @@ public:
 			return mc.name;
 		}
 		return in;
+	}
+	bool use_item(string filter, std::vector<int> &choices, string &ret) {
+		ret = string("");
+		string name = get_item_name(filter, choices[1]);
+		string effect = get_item_effect(name);
+		if (is_menu(effect)) {
+			effect.erase(0, effect.find(":") + 1);
+		}
+		if (effect.find("CAPTURE") == 0) {
+			ret = effect;
+		}
+		else if (effect.find("EVOLVE") == 0) {
+			effect.erase(0, effect.find(":") + 1);
+			for (unsigned i = 0; i < all_mon[mc.team[choices[2]].number].evolution.size(); ++i) {
+				if (all_mon[mc.team[choices[2]].number].evolution[i].second == effect) {
+					// TODO:  EVOLUTION SCREEN
+					mc.team[choices[2]].number = all_mon[mc.team[choices[2]].number].evolution[i].first;
+					break;
+				}
+			}
+		}
+		return true;
 	}
 	string get_item_name(string type, int index) {
 		unsigned i = 0, count = 0;
@@ -675,6 +699,11 @@ public:
 		}
 		return ret;
 	}
+	string get_nickname(mon& m) {
+		if (m.nickname == "")
+			return all_mon[m.number].name;
+		return m.nickname;
+	}
 	void make_mon(string ID, int& e_level, mon& out) {
 		out.level = 0;
 		out.exp = level_to_exp[e_level];
@@ -688,7 +717,7 @@ public:
 		out.wild = true;
 		out.defined = true;
 		out.turn_count = 0;
-		out.nickname = all_mon[ID].name;
+		out.nickname = "";
 		level_up(out);
 		out.curr_hp = get_stat(out, HP);
 		if (out.level == 0) {
@@ -862,34 +891,34 @@ public:
 			if (self.status[i] == "POISON") {
 				// TODO: Animation goes here
 				if (self.wild)
-					do_alert(string("The wild ") + self.nickname + string(" is hurt by the poison!"));
+					do_alert(string("The wild ") + get_nickname(self) + string(" is hurt by the poison!"));
 				else
-					do_alert(self.nickname + string(" is hurt by the poison!"));
+					do_alert(get_nickname(self) + string(" is hurt by the poison!"));
 				deal_damage(self, int(double(get_stat(self, HP)) / 16.0));
 			}
 			else if (self.status[i] == "BURN") {
 				// TODO: Animation goes here
 				if (self.wild)
-					do_alert(string("The wild ") + self.nickname + string(" is hurt by its burn!"));
+					do_alert(string("The wild ") + get_nickname(self) + string(" is hurt by its burn!"));
 				else
-					do_alert(self.nickname + string(" is hurt by its burn!"));
+					do_alert(get_nickname(self) + string(" is hurt by its burn!"));
 				deal_damage(self, int(double(get_stat(self, HP)) / 16.0));
 			}
 			else if (self.status[i] == "SEED") {
 				// TODO: Animation goes here
 				if (self.wild)
-					do_alert(string("The wild ") + self.nickname + string("'s health was sapped by Leech Seed!"));
+					do_alert(string("The wild ") + get_nickname(self) + string("'s health was sapped by Leech Seed!"));
 				else
-					do_alert(self.nickname + string("'s health was sapped by Leech Seed!"));
+					do_alert(get_nickname(self) + string("'s health was sapped by Leech Seed!"));
 				deal_damage(self, int(double(get_stat(self, HP)) / 16.0));
 				heal_damage(other, int(double(get_stat(self, HP)) / 16.0));
 			}
 			else if (self.status[i] == "TOXIC") {
 				// TODO: Animation goes here
 				if (self.wild)
-					do_alert(string("The wild ") + self.nickname + string(" is hurt by the poison!"));
+					do_alert(string("The wild ") + get_nickname(self) + string(" is hurt by the poison!"));
 				else
-					do_alert(self.nickname + string(" is hurt by the poison!"));
+					do_alert(get_nickname(self) + string(" is hurt by the poison!"));
 				deal_damage(self, int(self.turn_count * double(get_stat(self, HP)) / 16.0));
 			}
 		}
@@ -900,14 +929,14 @@ public:
 		int repeat = 1;
 		bool success = false;
 		bool miss = false;
-		do_alert(attacker.nickname + string(" used ") + move + string("!"));
+		do_alert(get_nickname(attacker) + string(" used ") + move + string("!"));
 		if (moves[move].acc < int(random(0.0, 100.0))) {
 			miss = true;
 			if (pow == 0) {
 				do_alert(string("But, it failed!"));
 			}
 			else {
-				do_alert(attacker.nickname + string("'s attack missed!"));
+				do_alert(get_nickname(attacker) + string("'s attack missed!"));
 			}
 		}
 		if (pow != 0.0) {
@@ -974,27 +1003,27 @@ public:
 		if (in_status(m1, string("SLEEP"))) {
 			remove_status(m1, string("SLEEP"));
 			if (in_status(m1, string("SLEEP"))) {
-				do_alert(m1.nickname + string(" is fast asleep."));
+				do_alert(get_nickname(m1) + string(" is fast asleep."));
 				// TODO:  Sleep animation.
 			}
 			else {
-				do_alert(m1.nickname + string(" woke up!"));
+				do_alert(get_nickname(m1) + string(" woke up!"));
 			}
 		}
 		else if (in_status(m1, string("FREEZE"))) {
 			if (0.2 > random(0.0, 1.0)) {
 				remove_status(m1, string("FREEZE"));
-				do_alert(m1.nickname + string(" thawed out!"));
+				do_alert(get_nickname(m1) + string(" thawed out!"));
 				m1.queue.clear();
 			}
 			else {
-				do_alert(m1.nickname + string(" is frozen solid!"));
+				do_alert(get_nickname(m1) + string(" is frozen solid!"));
 				m2.queue.clear();
 				// TODO:  Freeze animation
 			}
 		}
 		else if (in_status(m1, string("PARALYZE")) && (0.25 > random(0.0, 1.0))) {
-			do_alert(m1.nickname + string(" is paralyzed! It can't move!"));
+			do_alert(get_nickname(m1) + string(" is paralyzed! It can't move!"));
 			m1.queue.clear();
 			// TODO:  Paralyze animation
 		}
@@ -1016,27 +1045,27 @@ public:
 		if (in_status(m2, string("SLEEP"))) {
 			remove_status(m2, string("SLEEP"));
 			if (in_status(m2, string("SLEEP"))) {
-				do_alert(m2.nickname + string(" is fast asleep."));
+				do_alert(get_nickname(m2) + string(" is fast asleep."));
 				// TODO:  Sleep animation
 			}
 			else {
-				do_alert(m2.nickname + string(" woke up!"));
+				do_alert(get_nickname(m2) + string(" woke up!"));
 			}
 		}
 		else if (in_status(m2, string("FREEZE"))) {
 			if (0.2 > random(0.0, 1.0)) {
 				remove_status(m2, string("FREEZE"));
-				do_alert(m2.nickname + string(" thawed out!"));
+				do_alert(get_nickname(m2) + string(" thawed out!"));
 				m2.queue.clear();
 			}
 			else {
-				do_alert(m2.nickname + string(" is frozen solid!"));
+				do_alert(get_nickname(m2) + string(" is frozen solid!"));
 				m2.queue.clear();
 				// TODO:  Freeze animation
 			}
 		}
 		else if (in_status(m2, string("PARALYZE")) && (0.25 > random(0.0, 1.0))) {
-			do_alert(m2.nickname + string(" is paralyzed! It can't move!"));
+			do_alert(get_nickname(m2) + string(" is paralyzed! It can't move!"));
 			m2.queue.clear();
 			// TODO:  Paralyze animation
 		}
@@ -1079,8 +1108,8 @@ public:
 		}
 		p.team[selected].queue.clear();
 		m.queue.clear();
-		do_alert(string("Wild ") + m.nickname + string(" appeared!"));
-		do_alert(string("Go! ") + p.team[selected].nickname + string("!"));
+		do_alert(string("Wild ") + get_nickname(m) + string(" appeared!"));
+		do_alert(string("Go! ") + get_nickname(p.team[selected]) + string("!"));
 		while (true) {
 			// TODO: Implement player battle menu
 			if (p.team[selected].queue.size() == 0) {
@@ -1095,16 +1124,18 @@ public:
 				}
 				else if (choices[0] == 1) { // Player has selected Pokemon
 					p.team[selected].queue.clear();
-					do_alert(p.team[selected].nickname + string("! That's enough!"));
+					do_alert(get_nickname(p.team[selected]) + string("! That's enough!"));
 					selected = choices[1];
-					do_alert(string("Go, ") + p.team[selected].nickname + string("!"));
+					do_alert(string("Go, ") + get_nickname(p.team[selected]) + string("!"));
 					p.team[selected].queue.clear();
 					p.team[selected].queue.push_back(string(""));
 				}
 				else if (choices[0] == 2) { // Player has selected ITEM
 					// TODO:  Implement inventory
 					int out = 0;
+					string o;
 					p.team[selected].queue.insert(p.team[selected].queue.begin(), string(""));
+					out = use_item(string("COMBAT"), choices, o);
 					if (choices[1] == 0) {
 						out = attempt_capture(1.0, m); // Pokeball
 					}
@@ -1124,7 +1155,7 @@ public:
 						gain_exp(p.team[selected], m, 1); // TODO:  Implement exp split
 						for (int i = 0; i < 6; ++i) {
 							if (!p.team[i].defined) {
-								do_alert(string("Wild ") + m.nickname + string(" was captured!")); // TODO:  Fact-check string
+								do_alert(string("Wild ") + get_nickname(m) + string(" was captured!")); // TODO:  Fact-check string
 								p.team[i] = m;
 								g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
 								return;
@@ -1158,14 +1189,14 @@ public:
 			m.pp[index]--;
 			do_turn(p.team[selected], m);
 			if (is_KO(m)) {
-				do_alert(string("Enemy ") + m.nickname + string(" fainted!"));
+				do_alert(string("Enemy ") + get_nickname(m) + string(" fainted!"));
 				gain_exp(p.team[selected], m, 1);
 				g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
 				break;
 			}
 			if (is_KO(p.team[selected])) {
 				// TODO:  Handle selection on KO
-				do_alert(p.team[selected].nickname + string(" fainted!"));
+				do_alert(get_nickname(p.team[selected]) + string(" fainted!"));
 				for (i = 0; i < 6; ++i) {
 					if (!is_KO(p.team[i])) {
 						selected = i;
