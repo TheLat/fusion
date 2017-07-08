@@ -244,9 +244,16 @@ public: // TODO:  Change back to private
 	bool interact;
 public:
 	string get_item_effect(string in) {
+		string out = "";
 		if (!items[in].defined)
 			return string("");
-		return items[in].effect[0];
+		for (unsigned i = 0; i < items[in].effect.size(); ++i) {
+			if (out.size() > 0) {
+				out = out + "|";
+			}
+			out = out + items[in].effect[i];
+		}
+		return out;
 	}
 	string get_special_string(string in) {
 		string parse;
@@ -611,6 +618,9 @@ public:
 	void do_effect(mon& m, string effect, int extra=-1) {
 		if (effect.find("|") != -1)
 			effect.erase(effect.find("|"), effect.size());
+		if (effect.find("SELF") == 0) {
+			effect.erase(0, effect.find(":") + 1);
+		}
 		if (effect.find("CLEAR_STATUS") == 0) {
 			if (effect.find(":") != -1) {
 				effect.erase(0, effect.find(":") + 1);
@@ -683,6 +693,15 @@ public:
 			m.max_pp[extra] = i;
 			m.pp[extra] = i;
 			// TODO:  Don't use up items from maxed out PP.
+		}
+		else if (effect.find("LEVEL_UP") == 0) {
+			// TODO: Fail when level 100
+			m.exp = level_to_exp[min(100, m.level + 1)];
+			level_up(m, true);
+		}
+		else if (effect.find("APPLY_STATUS") == 0) {
+			effect.erase(0, effect.find(":") + 1);
+			apply_status(m, effect);
 		}
 	}
 	string get_item_name(string type, int index) {
