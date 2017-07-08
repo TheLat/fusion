@@ -235,6 +235,8 @@ public: // TODO:  Change back to private
 	std::map<int, bool> jumpdown;
 	std::map<int, bool> water;
 	std::vector<menu*> menus;
+	std::map<int, string> TM;
+	std::map<int, string> HM;
 	string alert;
 	string encounter;
 	int encounter_level;
@@ -576,6 +578,17 @@ public:
 		ret = string("");
 		string name = get_item_name(filter, choices[1]);
 		string effect = get_item_effect(name);
+		if (effect.find("INFINITE") == -1) {
+			for (unsigned i = 0; i < mc.inventory.size(); ++i) {
+				if (mc.inventory[i].first == name) {
+					mc.inventory[i].second--;
+					if (mc.inventory[i].second <= 0) {
+						mc.inventory.erase(mc.inventory.begin() + i);
+					}
+					break;
+				}
+			}
+		}
 		while (effect.size() > 0) {
 			if (is_menu(effect)) {
 				string menu = effect;
@@ -619,6 +632,14 @@ public:
 				effect.erase(0, effect.find(":") + 1);
 				mc.repel += stoi(effect);
 				ret = "TELEPORT";
+			}
+			else if (effect.find("TM") == 0) {
+				effect.erase(0, effect.find(":") + 1);
+				// TODO: learn_move(m, TM[stoi(effect)]);
+			}
+			else if (effect.find("HM") == 0) {
+				effect.erase(0, effect.find(":") + 1);
+				// TODO: learn_move(m, HM[stoi(effect)]);
 			}
 			if (effect.find("|") != -1)
 				effect.erase(0, effect.find("|") + 1);
@@ -1882,6 +1903,28 @@ public:
 				break;
 			}
 		}
+	}
+	void init_tm() {
+		string line, index;
+		ifstream f("../resources/data/TM.dat");
+		while (std::getline(f, line)) {
+			index = line;
+			index.erase(index.find(":"), index.size());
+			line.erase(0, line.find(":") + 1);
+			TM[stoi(index)] = line;
+		}
+		f.close();
+	}
+	void init_hm() {
+		string line, index;
+		ifstream f("../resources/data/HM.dat");
+		while (std::getline(f, line)) {
+			index = line;
+			index.erase(index.find(":"), index.size());
+			line.erase(0, line.find(":") + 1);
+			HM[stoi(index)] = line;
+		}
+		f.close();
 	}
 	void init_mon() {
 		string line, key;

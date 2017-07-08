@@ -153,6 +153,8 @@ int main(int argc, char** argv) {
 	e.init_jumpdown();
 	e.init_swimming();
 	e.init_items();
+	e.init_hm();
+	e.init_tm();
 	int l = 26;
 	e.make_mon(string("25"), l, e.mc.team[0]);
 	e.mc.team[0].wild = false;
