@@ -568,23 +568,68 @@ public:
 		ret = string("");
 		string name = get_item_name(filter, choices[1]);
 		string effect = get_item_effect(name);
-		if (is_menu(effect)) {
-			effect.erase(0, effect.find(":") + 1);
+		while (effect.size() > 0) {
+			if (is_menu(effect)) {
+				effect.erase(0, effect.find(":") + 1);
+			}
+			if (effect.find("CAPTURE") == 0) {
+				ret = effect;
+			}
+			else if (effect.find("EVOLVE") == 0) {
+				effect.erase(0, effect.find(":") + 1);
+				for (unsigned i = 0; i < all_mon[mc.team[choices[2]].number].evolution.size(); ++i) {
+					if (all_mon[mc.team[choices[2]].number].evolution[i].second == effect) {
+						// TODO:  EVOLUTION SCREEN
+						mc.team[choices[2]].number = all_mon[mc.team[choices[2]].number].evolution[i].first;
+						break;
+					}
+				}
+			}
+			else if (effect.find("FISH") == 0) {
+				// TODO: FISHING
+			}
+			else if (effect.find("MAP") == 0) {
+				// TODO: MAP
+			}
+			else if (effect.find("TARGET") == 0) {
+				// TODO: TARGET
+			}
+			else if (effect.find("TEAM") == 0) {
+				for (int i = 0; i < 6; ++i) {
+					if (mc.team[i].defined)
+						do_effect(mc.team[i], effect);
+				}
+			}
+			else if (effect.find("SELF") == 0) {
+				do_effect(mc.team[selected], effect);
+			}
+			else if (effect.find("MON_SELECT") == 0) {
+				do_effect(mc.team[choices[2]], effect);
+			}
+			else if (effect.find("MON_MOVE_SELECT") == 0) {
+				do_effect(mc.team[choices[2]], effect, choices[3]);
+			}
+			if (effect.find("|") != -1)
+				effect.erase(0, effect.find("|") + 1);
+			else
+				effect = "";
 		}
-		if (effect.find("CAPTURE") == 0) {
-			ret = effect;
-		}
-		else if (effect.find("EVOLVE") == 0) {
-			effect.erase(0, effect.find(":") + 1);
-			for (unsigned i = 0; i < all_mon[mc.team[choices[2]].number].evolution.size(); ++i) {
-				if (all_mon[mc.team[choices[2]].number].evolution[i].second == effect) {
-					// TODO:  EVOLUTION SCREEN
-					mc.team[choices[2]].number = all_mon[mc.team[choices[2]].number].evolution[i].first;
-					break;
+		return true;
+	}
+	void do_effect(mon& m, string effect, int extra=-1) {
+		if (effect.find("|") != -1)
+			effect.erase(effect.find("|"), effect.size());
+		if (effect.find("CLEAR_STATUS") == 0) {
+			if (effect.find(":") != -1) {
+				effect.erase(0, effect.find(":") + 1);
+				remove_status(m, effect, true);
+			}
+			else {
+				while (m.status.size() > 0) {
+					remove_status(m, m.status[0], true);
 				}
 			}
 		}
-		return true;
 	}
 	string get_item_name(string type, int index) {
 		unsigned i = 0, count = 0;
