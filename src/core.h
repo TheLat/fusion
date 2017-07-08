@@ -676,6 +676,14 @@ public:
 				}
 			}
 		}
+		else if (effect.find("PP_UP") == 0) {
+			int i = int(double(moves[m.moves[extra]].pp) * 0.2) + m.max_pp[extra];
+			int j = int(double(moves[m.moves[extra]].pp) * 1.6);
+			i = min(i, j);
+			m.max_pp[extra] = i;
+			m.pp[extra] = i;
+			// TODO:  Don't use up items from maxed out PP.
+		}
 	}
 	string get_item_name(string type, int index) {
 		unsigned i = 0, count = 0;
