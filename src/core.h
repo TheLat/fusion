@@ -1006,6 +1006,12 @@ public:
 				remove_status(m, string("POISON"), true);
 			}
 		}
+		else {
+			int max = stoi(s3);
+			for (int i = 0; i < max; ++i) {
+				m.status.push_back(s2);
+			}
+		}
 		return true;
 	}
 	void use_status(mon& self, mon& other) {
