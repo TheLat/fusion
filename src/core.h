@@ -140,13 +140,14 @@ public:
 	direction dir;
 	int wins, losses;
 	int money;
+	int repel;
 	mon team[6];
 	mon storage[20][20];
 	location loc;
 	std::map<string, unsigned> interaction;
 	std::map<string, bool> inactive;
 	std::vector<pair<string, int>> inventory;
-	player() { wins = 0; losses = 0; money = 0; name = "RED"; rivalname = "BLUE"; }
+	player() { wins = 0; losses = 0; money = 0; name = "RED"; rivalname = "BLUE"; repel = 0; }
 	// TODO:  INVENTORY
 };
 
@@ -607,6 +608,17 @@ public:
 			}
 			else if (effect.find("SELF") == 0) {
 				do_effect(mc.team[selected], effect);
+			}
+			else if (effect.find("TELEPORT") == 0) {
+				ret = "TELEPORT";
+			}
+			else if (effect.find("FLEE") == 0) {
+				ret = "FLEE";
+			}
+			else if (effect.find("REPEL") == 0) {
+				effect.erase(0, effect.find(":") + 1);
+				mc.repel += stoi(effect);
+				ret = "TELEPORT";
 			}
 			if (effect.find("|") != -1)
 				effect.erase(0, effect.find("|") + 1);
