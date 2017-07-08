@@ -636,6 +636,18 @@ public:
 			effect.erase(0, effect.find(":") + 1);
 			heal_damage(m, stoi(effect));
 		}
+		else if (effect.find("FILL_PP") == 0) {
+			effect.erase(0, effect.find(":") + 1);
+			m.pp[extra] = min(m.pp[extra] + stoi(effect), m.max_pp[extra]);
+		}
+		else if (effect.find("FILL_ALL_PP") == 0) {
+			effect.erase(0, effect.find(":") + 1);
+			for (unsigned i = 0; i < 4; i++) {
+				if (moves[m.moves[i]].defined) {
+					m.pp[i] = min(m.pp[i] + stoi(effect), m.max_pp[i]);
+				}
+			}
+		}
 	}
 	string get_item_name(string type, int index) {
 		unsigned i = 0, count = 0;
@@ -679,6 +691,10 @@ public:
 	}
 	bool gain_item(string& s, int count=1, bool silent=false) {
 		bool found = false;
+		if (!items[s].defined) {
+			do_menu(string("ALERT"), string("Game attempted to give bad item: ") + s + string(" to player."));
+			return false;
+		}
 		for (unsigned i = 0; i < mc.inventory.size(); ++i) {
 			if (mc.inventory[i].first == s) {
 				found = true;
