@@ -583,16 +583,6 @@ public:
 			else if (effect.find("CAPTURE") == 0) {
 				ret = effect;
 			}
-			else if (effect.find("EVOLVE") == 0) {
-				effect.erase(0, effect.find(":") + 1);
-				for (unsigned i = 0; i < all_mon[mc.team[choices[2]].number].evolution.size(); ++i) {
-					if (all_mon[mc.team[choices[2]].number].evolution[i].second == effect) {
-						// TODO:  EVOLUTION SCREEN
-						mc.team[choices[2]].number = all_mon[mc.team[choices[2]].number].evolution[i].first;
-						break;
-					}
-				}
-			}
 			else if (effect.find("FISH") == 0) {
 				// TODO: FISHING
 			}
@@ -645,6 +635,44 @@ public:
 			for (unsigned i = 0; i < 4; i++) {
 				if (moves[m.moves[i]].defined) {
 					m.pp[i] = min(m.pp[i] + stoi(effect), m.max_pp[i]);
+				}
+			}
+		}
+		else if (effect.find("REVIVE") == 0) {
+			m.curr_hp = get_stat(m, HP) / 2;
+		}
+		else if (effect.find("EV_UP") == 0) {
+			STAT s;
+			effect.erase(0, effect.find(":") + 1);
+			if (effect.find("HP") == 0) {
+				s = HP;
+			}
+			else if (effect.find("ATTACK") == 0) {
+				s = ATTACK;
+			}
+			else if (effect.find("DEFENSE") == 0) {
+				s = DEFENSE;
+			}
+			else if (effect.find("SPEED") == 0) {
+				s = SPEED;
+			}
+			else if (effect.find("SPECIAL") == 0) {
+				s = SPECIAL;
+			}
+			else {
+				return;
+			}
+			effect.erase(0, effect.find(":") + 1);
+			// TODO: Add in-game EV boost limit
+			m.EV[s] += stoi(effect);
+		}
+		else if (effect.find("EVOLVE") == 0) {
+			effect.erase(0, effect.find(":") + 1);
+			for (unsigned i = 0; i < all_mon[m.number].evolution.size(); ++i) {
+				if (all_mon[m.number].evolution[i].second == effect) {
+					// TODO:  EVOLUTION SCREEN
+					m.number = all_mon[m.number].evolution[i].first;
+					break;
 				}
 			}
 		}
@@ -1203,17 +1231,9 @@ public:
 					string o;
 					p.team[selected].queue.insert(p.team[selected].queue.begin(), string(""));
 					out = use_item(string("COMBAT"), choices, o);
-					if (choices[1] == 0) {
-						out = attempt_capture(1.0, m); // Pokeball
-					}
-					else if (choices[1] == 1) {
-						out = attempt_capture(1.5, m); // Great Ball
-					}
-					else if (choices[1] == 2) {
-						out = attempt_capture(2.0, m); // Ultra Ball
-					}
-					else if (choices[1] == 3) {
-						out = attempt_capture(255.0, m); // Master Ball
+					if (o.find("CAPTURE") == 0) {
+						o.erase(0, o.find(":") + 1);
+						out = attempt_capture(stof(o), m);
 					}
 					// TODO:  Capture messages
 					if (out == 4) {
