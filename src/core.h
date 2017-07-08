@@ -570,9 +570,17 @@ public:
 		string effect = get_item_effect(name);
 		while (effect.size() > 0) {
 			if (is_menu(effect)) {
+				string menu = effect;
+				menu.erase(menu.find(":"), menu.size());
 				effect.erase(0, effect.find(":") + 1);
+				if (menu.find("MON_SELECT") == 0) {
+					do_effect(mc.team[choices[2]], effect);
+				}
+				else if (menu.find("MON_MOVE_SELECT") == 0) {
+					do_effect(mc.team[choices[2]], effect, choices[3]);
+				}
 			}
-			if (effect.find("CAPTURE") == 0) {
+			else if (effect.find("CAPTURE") == 0) {
 				ret = effect;
 			}
 			else if (effect.find("EVOLVE") == 0) {
@@ -603,12 +611,6 @@ public:
 			else if (effect.find("SELF") == 0) {
 				do_effect(mc.team[selected], effect);
 			}
-			else if (effect.find("MON_SELECT") == 0) {
-				do_effect(mc.team[choices[2]], effect);
-			}
-			else if (effect.find("MON_MOVE_SELECT") == 0) {
-				do_effect(mc.team[choices[2]], effect, choices[3]);
-			}
 			if (effect.find("|") != -1)
 				effect.erase(0, effect.find("|") + 1);
 			else
@@ -629,6 +631,10 @@ public:
 					remove_status(m, m.status[0], true);
 				}
 			}
+		}
+		else if (effect.find("FILL_HP") == 0) {
+			effect.erase(0, effect.find(":") + 1);
+			heal_damage(m, stoi(effect));
 		}
 	}
 	string get_item_name(string type, int index) {
