@@ -141,13 +141,16 @@ public:
 	int wins, losses;
 	int money;
 	int repel;
+	int selected;
+	int enemy_selected;
 	mon team[6];
+	mon enemy_team[6];
 	mon storage[20][20];
 	location loc;
 	std::map<string, unsigned> interaction;
 	std::map<string, bool> inactive;
 	std::vector<pair<string, int>> inventory;
-	player() { wins = 0; losses = 0; money = 0; name = "RED"; rivalname = "BLUE"; repel = 0; }
+	player() { wins = 0; losses = 0; money = 0; name = "RED"; rivalname = "BLUE"; repel = 0; selected = 0; enemy_selected = 0; }
 	// TODO:  INVENTORY
 };
 
@@ -240,7 +243,6 @@ public: // TODO:  Change back to private
 	string alert;
 	string encounter;
 	int encounter_level;
-	int selected;
 	string current_level;
 	player mc;
 	location ahead;
@@ -279,7 +281,7 @@ public:
 			if (number && stoi(temp) == -1)
 				return string(""); // TODO:  Better error detection.
 			if (parse == "ACTIVE_MON_MOVE") {
-				out = mc.team[selected].moves[stoi(temp)];
+				out = mc.team[mc.selected].moves[stoi(temp)];
 				if (out == "") {
 					out = "-";
 				}
@@ -300,13 +302,13 @@ public:
 			else if (parse == "ACTIVE_MON_MOVE_TYPE") {
 				if (!number)
 					return in;
-				return moves[mc.team[selected].moves[stoi(temp)]].type;
+				return moves[mc.team[mc.selected].moves[stoi(temp)]].type;
 			}
 			else if (parse == "ACTIVE_MON_MOVE_PP") {
 				if (!number)
 					return in;
 				int index = stoi(temp);
-				out = to_string(mc.team[selected].pp[index]) + string("/") + to_string(mc.team[selected].max_pp[index]);
+				out = to_string(mc.team[mc.selected].pp[index]) + string("/") + to_string(mc.team[mc.selected].max_pp[index]);
 				while (out.length() < 9)
 					out = string(" ") + out;
 				return out;
@@ -611,7 +613,7 @@ public:
 				// TODO: MAP
 			}
 			else if (effect.find("TARGET") == 0) {
-				// TODO: TARGET
+				do_effect(mc.enemy_team[mc.enemy_selected], effect);
 			}
 			else if (effect.find("TEAM") == 0) {
 				for (int i = 0; i < 6; ++i) {
@@ -620,7 +622,7 @@ public:
 				}
 			}
 			else if (effect.find("SELF") == 0) {
-				do_effect(mc.team[selected], effect);
+				do_effect(mc.team[mc.selected], effect);
 			}
 			else if (effect.find("TELEPORT") == 0) {
 				ret = "TELEPORT";
@@ -652,6 +654,9 @@ public:
 		if (effect.find("|") != -1)
 			effect.erase(effect.find("|"), effect.size());
 		if (effect.find("SELF") == 0) {
+			effect.erase(0, effect.find(":") + 1);
+		}
+		if (effect.find("TARGET") == 0) {
 			effect.erase(0, effect.find(":") + 1);
 		}
 		if (effect.find("CLEAR_STATUS") == 0) {
@@ -1257,45 +1262,45 @@ public:
 		double count;
 		int clear_point = g.draw_list.size();
 		g.push_box(-1.1f, -1.1f, 2.2f, 2.2f);
-		selected = -1;
+		mc.selected = -1;
 		// TODO:  Initial menu
 		for (i = 0; i < 6; ++i) {
 			if (p.team[i].defined) {
 				if (!is_KO(p.team[i])) {
-					selected = i;
+					mc.selected = i;
 					break;
 				}
 			}
 		}
-		p.team[selected].queue.clear();
+		p.team[mc.selected].queue.clear();
 		m.queue.clear();
 		do_alert(string("Wild ") + get_nickname(m) + string(" appeared!"));
-		do_alert(string("Go! ") + get_nickname(p.team[selected]) + string("!"));
+		do_alert(string("Go! ") + get_nickname(p.team[mc.selected]) + string("!"));
 		while (true) {
 			// TODO: Implement player battle menu
-			if (p.team[selected].queue.size() == 0) {
+			if (p.team[mc.selected].queue.size() == 0) {
 				choices = do_menu(string("COMBAT_SELECT"));
 				while (choices.size() == 0 || choices[0] == -1) {
 					choices = do_menu(string("COMBAT_SELECT"));
 				}
 				if (choices[0] == 0) { // Player has selected FIGHT
 					escape_attempts = 0;
-					p.team[selected].queue.push_back(p.team[selected].moves[choices[1]]);
-					p.team[selected].pp[choices[1]]--;
+					p.team[mc.selected].queue.push_back(p.team[mc.selected].moves[choices[1]]);
+					p.team[mc.selected].pp[choices[1]]--;
 				}
 				else if (choices[0] == 1) { // Player has selected Pokemon
-					p.team[selected].queue.clear();
-					do_alert(get_nickname(p.team[selected]) + string("! That's enough!"));
-					selected = choices[1];
-					do_alert(string("Go, ") + get_nickname(p.team[selected]) + string("!"));
-					p.team[selected].queue.clear();
-					p.team[selected].queue.push_back(string(""));
+					p.team[mc.selected].queue.clear();
+					do_alert(get_nickname(p.team[mc.selected]) + string("! That's enough!"));
+					mc.selected = choices[1];
+					do_alert(string("Go, ") + get_nickname(p.team[mc.selected]) + string("!"));
+					p.team[mc.selected].queue.clear();
+					p.team[mc.selected].queue.push_back(string(""));
 				}
 				else if (choices[0] == 2) { // Player has selected ITEM
 					// TODO:  Implement inventory
 					int out = 0;
 					string o;
-					p.team[selected].queue.insert(p.team[selected].queue.begin(), string(""));
+					p.team[mc.selected].queue.insert(p.team[mc.selected].queue.begin(), string(""));
 					out = use_item(string("COMBAT"), choices, o);
 					if (o.find("CAPTURE") == 0) {
 						o.erase(0, o.find(":") + 1);
@@ -1305,7 +1310,7 @@ public:
 					if (out == 4) {
 						m.wild = false;
 						// TODO:  Nickname menu
-						gain_exp(p.team[selected], m, 1); // TODO:  Implement exp split
+						gain_exp(p.team[mc.selected], m, 1); // TODO:  Implement exp split
 						for (int i = 0; i < 6; ++i) {
 							if (!p.team[i].defined) {
 								do_alert(string("Wild ") + get_nickname(m) + string(" was captured!")); // TODO:  Fact-check string
@@ -1319,8 +1324,8 @@ public:
 				}
 				else if (choices[0] == 3) { // Player has selected RUN
 					escape_attempts++;
-					p.team[selected].queue.clear();
-					if (run_away(p.team[selected], m, escape_attempts)) {
+					p.team[mc.selected].queue.clear();
+					if (run_away(p.team[mc.selected], m, escape_attempts)) {
 						do_alert(string("Got away safely!"));
 						g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
 						break;
@@ -1328,7 +1333,7 @@ public:
 					else {
 						do_alert(string("Couldn't get away!"));
 					}
-					p.team[selected].queue.push_back(string(""));
+					p.team[mc.selected].queue.push_back(string(""));
 				}
 			}
 			count = 0.0;
@@ -1340,19 +1345,19 @@ public:
 			index = int(random(0.0, count));
 			m.queue.push_back(m.moves[index]);
 			m.pp[index]--;
-			do_turn(p.team[selected], m);
+			do_turn(p.team[mc.selected], m);
 			if (is_KO(m)) {
 				do_alert(string("Enemy ") + get_nickname(m) + string(" fainted!"));
-				gain_exp(p.team[selected], m, 1);
+				gain_exp(p.team[mc.selected], m, 1);
 				g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
 				break;
 			}
-			if (is_KO(p.team[selected])) {
+			if (is_KO(p.team[mc.selected])) {
 				// TODO:  Handle selection on KO
-				do_alert(get_nickname(p.team[selected]) + string(" fainted!"));
+				do_alert(get_nickname(p.team[mc.selected]) + string(" fainted!"));
 				for (i = 0; i < 6; ++i) {
 					if (!is_KO(p.team[i])) {
-						selected = i;
+						mc.selected = i;
 						if (i == 5)
 							i--;
 						break;
@@ -2567,9 +2572,9 @@ public:
 				alert = "";
 			}
 			if (encounter != "") {
-				mon m;
-				make_mon(encounter, encounter_level, m);
-				battle(mc, m);
+				mc.enemy_selected = 0;
+				make_mon(encounter, encounter_level, mc.enemy_team[0]);
+				battle(mc, mc.enemy_team[0]);
 				encounter = "";
 			}
 			if (menus.size() > 0) {
