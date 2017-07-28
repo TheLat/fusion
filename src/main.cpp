@@ -38,15 +38,31 @@ int get_inventory_count(string type) {
 	}
 	return ret;
 }
-bool is_menu(string s) {
-	if (s.find(":"))
-		s.erase(s.find(":"), s.size());
-	ifstream f(string("../resources/menus/") + s + string(".dat"));
-	if (f.is_open()) {
-		f.close();
-		return true;
+
+string get_menu(string r) {
+	while (r != "") {
+		string s = r;
+		if (s.find("|") != -1) {
+			s.erase(s.find("|"), s.size());
+			r.erase(0, r.find("|") + 1);
+		}
+		else {
+			r = "";
+		}
+		if (s.find(":") != -1)
+			s.erase(s.find(":"), s.size());
+		ifstream f(string("../resources/menus/") + s + string(".dat"));
+		if (f.is_open()) {
+			f.close();
+			return s;
+		}
 	}
-	return false;
+	return r;
+}
+bool is_menu(string s) {
+	if (get_menu(s) == "")
+		return false;
+	return true;
 }
 int get_mon_move_size(int index){
 	int ret = 0;
@@ -155,8 +171,8 @@ int main(int argc, char** argv) {
 	e.init_items();
 	e.init_hm();
 	e.init_tm();
-	int l = 26;
-	e.make_mon(string("25"), l, e.mc.team[0]);
+	int l = 10;
+	e.make_mon(string("131"), l, e.mc.team[0]);
 	e.mc.team[0].wild = false;
 
 	e.mc.loc.x = 6.0;

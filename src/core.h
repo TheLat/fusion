@@ -580,6 +580,7 @@ public:
 		ret = string("");
 		string name = get_item_name(filter, choices[1]);
 		string effect = get_item_effect(name);
+		string base = effect;
 		if (effect.find("INFINITE") == -1) {
 			for (unsigned i = 0; i < mc.inventory.size(); ++i) {
 				if (mc.inventory[i].first == name) {
@@ -591,17 +592,20 @@ public:
 				}
 			}
 		}
-		while (effect.size() > 0) {
+		while (base.size() > 0) {
+			effect = base;
+			if (base.find("|") != -1) {
+				base.erase(0, base.find("|") + 1);
+				effect.erase(effect.find("|"), effect.size());
+			}
+			else {
+				base = "";
+			}
 			if (is_menu(effect)) {
 				string menu = effect;
 				menu.erase(menu.find(":"), menu.size());
 				effect.erase(0, effect.find(":") + 1);
-				if (menu.find("MON_SELECT") == 0) {
-					do_effect(mc.team[choices[2]], effect);
-				}
-				else if (menu.find("MON_MOVE_SELECT") == 0) {
-					do_effect(mc.team[choices[2]], effect, choices[3]);
-				}
+				do_effect(mc.team[choices[2]], effect, choices[choices.size() - 1]);
 			}
 			else if (effect.find("CAPTURE") == 0) {
 				ret = effect;
@@ -635,18 +639,6 @@ public:
 				mc.repel += stoi(effect);
 				ret = "TELEPORT";
 			}
-			else if (effect.find("TM") == 0) {
-				effect.erase(0, effect.find(":") + 1);
-				// TODO: learn_move(m, TM[stoi(effect)]);
-			}
-			else if (effect.find("HM") == 0) {
-				effect.erase(0, effect.find(":") + 1);
-				// TODO: learn_move(m, HM[stoi(effect)]);
-			}
-			if (effect.find("|") != -1)
-				effect.erase(0, effect.find("|") + 1);
-			else
-				effect = "";
 		}
 		return true;
 	}
@@ -740,6 +732,14 @@ public:
 		else if (effect.find("APPLY_STATUS") == 0) {
 			effect.erase(0, effect.find(":") + 1);
 			apply_status(m, effect);
+		}
+		else if (effect.find("TM") == 0) {
+			effect.erase(0, effect.find(":") + 1);
+			learn_move(m, TM[stoi(effect)]);
+		}
+		else if (effect.find("HM") == 0) {
+			effect.erase(0, effect.find(":") + 1);
+			learn_move(m, HM[stoi(effect)]);
 		}
 	}
 	string get_item_name(string type, int index) {
@@ -900,25 +900,46 @@ public:
 		winner.exp += int(exp);
 		level_up(winner, false); // TODO:  Switch to true when confirmation boxes are in.
 	}
+	int get_move_count(mon& m) {
+		int counter = 0;
+		while ((counter < 4) && (m.moves[counter] != ""))
+			counter++;
+		return counter;
+	}
 	bool level_up(mon& out, bool confirm_learn=false) {
 		if (level_to_exp[out.level + 1] > out.exp)
 			return false;
-		int counter = 0;
-		while ((counter < 4) && (out.moves[counter] != ""))
-			counter++;
+		int counter = get_move_count(out);
 		while (out.level < 100 && level_to_exp[out.level + 1] <= out.exp) {
 			out.level++;
 			for (unsigned x = 0; x < all_mon[out.number].learned.size(); ++x) {
 				if (all_mon[out.number].learned[x].first == out.level) {
 					if (!confirm_learn) { // TODO:  OR Surface confirmation window
-						out.moves[counter % 4] = all_mon[out.number].learned[x].second;
-						out.pp[counter % 4] = moves[out.moves[counter % 4]].pp;
-						out.max_pp[counter % 4] = out.pp[counter % 4];
+						create_move(out, all_mon[out.number].learned[x].second, counter % 4);
 						counter++;
+					}
+					else {
+						learn_move(out, all_mon[out.number].learned[x].second);
 					}
 				}
 			}
 		}
+		return true;
+	}
+	bool learn_move(mon& m, string move) {
+		if (m.wild) {
+			return false;
+		}
+		int counter = get_move_count(m);
+		if (counter < 4) {
+			create_move(m, move, counter);
+			do_menu("ALERT", get_nickname(m) + string(" learned ") + move + string("!"));
+		}
+	}
+	bool create_move(mon& m, string move, int index) {
+		m.moves[index] = move;
+		m.pp[index] = moves[m.moves[index]].pp;
+		m.max_pp[index] = m.pp[index];
 		return true;
 	}
 	void clear_queue(mon& m) {

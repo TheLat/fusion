@@ -13,6 +13,7 @@ extern int get_active_mon_move_size();
 extern int get_mon_move_size(int index);
 extern int get_inventory_count(string type);
 extern bool is_menu(string s);
+extern string get_menu(string r);
 extern vector<int> do_menu(string menu);
 mutex m2;
 
@@ -169,8 +170,7 @@ public:
 							reserve.push_back(string("ITEM:") + temp1 + string(":") + to_string(i));
 							string effect = get_item_effect(get_special_string(string("ITEM:") + temp1 + string(":") + to_string(i)));
 							if (is_menu(effect)) {
-								effect.erase(effect.find(":"), effect.size());
-								reserve_followup.push_back(effect);
+								reserve_followup.push_back(get_menu(effect));
 							}
 							else {
 								reserve_followup.push_back("");
