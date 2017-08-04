@@ -944,7 +944,11 @@ public:
 			choices = do_menu("ALERT", get_nickname(m) + string(" is trying to learn ") + move + string("!"));
 			choices = do_menu("ALERT", string("But ") + get_nickname(m) + string(" can't learn more than 4 moves!"));
 			choices = do_menu("ALERT_YES_NO", string("Delete an older move to make room for ") + move + string("?"));
-			if (choices[choices.size() - 1] == 1) {
+			if (choices[choices.size() - 1] == 1 || choices[choices.size() - 1] == -1) {
+				choices = do_menu("ALERT_YES_NO", string("Abandon learning ") + move + string("?"));
+				if (choices[choices.size() - 1] == 1 || choices[choices.size() - 1] == -1) {
+					return learn_move(m, move);
+				}
 				return false;
 			}
 			string movelist = "";
@@ -956,6 +960,13 @@ public:
 			movelist = movelist + move;
 			followuplist = followuplist + "ABANDON_INFO_CANCEL:" + move;
 			choices = do_menu("MOVE_FORGET", "", movelist, followuplist);
+			if (choices[choices.size() - 1] == -1) {
+				choices = do_menu("ALERT_YES_NO", string("Abandon learning ") + move + string("?"));
+				if (choices[choices.size() - 1] == 1 || choices[choices.size() - 1] == -1) {
+					return learn_move(m, move);
+				}
+				return false;
+			}
 		}
 	}
 	bool create_move(mon& m, string move, int index) {

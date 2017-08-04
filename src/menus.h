@@ -37,10 +37,10 @@ public:
 	vector<box> boxes, arrowboxes;
 	vector<text> raw, display;
 	vector<string> followup, reserve, reserve_followup;
-	int index, step, selection, columns, cursor, selection_cap, offset, cancel_option, scroll, max;
+	int index, step, selection, columns, cursor, selection_cap, offset, cancel_option, scroll, max, replace_cancel;
 	float cursor_offset_x, cursor_offset_y;
 	bool done;
-	menu() { step = 0; index = 0; done = false; selection = 0; selection_cap = 0; columns = 1; cursor = -1; offset = 0; cancel_option = -1; cursor_offset_x = 0.0f; cursor_offset_y = 0.0; scroll = 0; max = 0; }
+	menu() { step = 0; index = 0; done = false; selection = 0; selection_cap = 0; columns = 1; cursor = -1; offset = 0; cancel_option = -1; cursor_offset_x = 0.0f; cursor_offset_y = 0.0; scroll = 0; max = 0; replace_cancel = -1; }
 	void create_menu(string file, string choice = "", string text_override = "", string followup_override = "") {
 		box b;
 		text t;
@@ -71,6 +71,9 @@ public:
 					}
 					else if (temp1 == "CURSOR_OFFSET_Y") {
 						cursor_offset_y = stof(temp2);
+					}
+					else if (temp1 == "REPLACE_CANCEL") {
+						replace_cancel = stof(temp2);
 					}
 					else if (temp1 == "SELECTION_CAP") {
 						if (temp2.find("{CHOICE}") != -1) {
@@ -408,7 +411,7 @@ public:
 				done = true;
 			}
 			if (cancel) {
-				selection = -1;
+				selection = replace_cancel;
 				done = true;
 			}
 			process_strings();
