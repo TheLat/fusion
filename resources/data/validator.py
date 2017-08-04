@@ -25,6 +25,26 @@ for s in types.keys():
         if not t in types.keys():
             print "Error in %s: %s" % (s, t)
 
+# for debugging
+def get_modifiers(mytype1, mytype2):
+    out = {}
+    for s in types.keys():
+        for t in types[s].keys():
+            if t == mytype1:
+                if s not in out.keys():
+                    out[s] = 1.0
+                out[s] = out[s] * types[s][t]
+            if t == mytype2:
+                if s not in out.keys():
+                    out[s] = 1.0
+                out[s] = out[s] * types[s][t]
+    o = out
+    out = {}
+    for k in o.keys():
+        if o[k] != 1.0:
+            out[k] = o[k]
+    return out
+
 f.close()
 print "Loading special cases."
 f = open("special.dat")
