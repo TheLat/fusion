@@ -670,7 +670,7 @@ POWER: 100
 PP: 15
 DEFENSE: DEFENSE
 SELF: RECOIL:25
-NOTES: A powerful attack that, but take a quarter of damage dealt as backlash.
+NOTES: A powerful attack, but take a quarter of damage dealt as backlash.
 
 MOVE: LEECH LIFE
 TYPE: BUG
