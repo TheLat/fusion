@@ -581,17 +581,6 @@ public:
 		string name = get_item_name(filter, choices[1]);
 		string effect = get_item_effect(name);
 		string base = effect;
-		if (effect.find("INFINITE") == -1) {
-			for (unsigned i = 0; i < mc.inventory.size(); ++i) {
-				if (mc.inventory[i].first == name) {
-					mc.inventory[i].second--;
-					if (mc.inventory[i].second <= 0) {
-						mc.inventory.erase(mc.inventory.begin() + i);
-					}
-					break;
-				}
-			}
-		}
 		while (base.size() > 0) {
 			effect = base;
 			if (base.find("|") != -1) {
@@ -605,7 +594,8 @@ public:
 				string menu = effect;
 				menu.erase(menu.find(":"), menu.size());
 				effect.erase(0, effect.find(":") + 1);
-				do_effect(mc.team[choices[2]], effect, choices[choices.size() - 1]);
+				if (!do_effect(mc.team[choices[2]], effect, choices[choices.size() - 1]))
+					return false;
 			}
 			else if (effect.find("CAPTURE") == 0) {
 				ret = effect;
@@ -640,9 +630,20 @@ public:
 				ret = "TELEPORT";
 			}
 		}
+		if (get_item_effect(name).find("INFINITE") == -1) {
+			for (unsigned i = 0; i < mc.inventory.size(); ++i) {
+				if (mc.inventory[i].first == name) {
+					mc.inventory[i].second--;
+					if (mc.inventory[i].second <= 0) {
+						mc.inventory.erase(mc.inventory.begin() + i);
+					}
+					break;
+				}
+			}
+		}
 		return true;
 	}
-	void do_effect(mon& m, string effect, int extra=-1) {
+	bool do_effect(mon& m, string effect, int extra=-1) {
 		if (effect.find("|") != -1)
 			effect.erase(effect.find("|"), effect.size());
 		if (effect.find("SELF") == 0) {
@@ -700,7 +701,7 @@ public:
 				s = SPECIAL;
 			}
 			else {
-				return;
+				return false;
 			}
 			effect.erase(0, effect.find(":") + 1);
 			// TODO: Add in-game EV boost limit
@@ -735,12 +736,15 @@ public:
 		}
 		else if (effect.find("TM") == 0) {
 			effect.erase(0, effect.find(":") + 1);
-			learn_move(m, TM[stoi(effect)]);
+			if (!learn_move(m, TM[stoi(effect)]))
+				return false;
 		}
 		else if (effect.find("HM") == 0) {
 			effect.erase(0, effect.find(":") + 1);
-			learn_move(m, HM[stoi(effect)]);
+			if (!learn_move(m, HM[stoi(effect)]))
+				return false;
 		}
+		return true;
 	}
 	string get_item_name(string type, int index) {
 		unsigned i = 0, count = 0;
@@ -927,6 +931,7 @@ public:
 		return true;
 	}
 	bool learn_move(mon& m, string move) {
+		vector<int> choices;
 		if (m.wild) {
 			return false;
 		}
@@ -935,6 +940,53 @@ public:
 			create_move(m, move, counter);
 			do_menu("ALERT", get_nickname(m) + string(" learned ") + move + string("!"));
 		}
+		else {
+			choices = do_menu("ALERT", get_nickname(m) + string(" is trying to learn ") + move + string("!"));
+			choices = do_menu("ALERT", string("But ") + get_nickname(m) + string(" can't learn more than 4 moves!"));
+			choices = do_menu("ALERT_YES_NO", string("Delete an older move to make room for ") + move + string("?"));
+			if (choices[choices.size() - 1] == 1 || choices[choices.size() - 1] == -1) {
+				choices = do_menu("ALERT_YES_NO", string("Abandon learning ") + move + string("?"));
+				if (choices[choices.size() - 1] == 1 || choices[choices.size() - 1] == -1) {
+					return learn_move(m, move);
+				}
+				return false;
+			}
+			string movelist = "";
+			string followuplist = "";
+			for (unsigned i = 0; i < 4; i++) {
+				movelist = movelist + m.moves[i] + "|";
+				followuplist = followuplist + "FORGET_INFO_CANCEL:" + m.moves[i] + "|";
+			}
+			movelist = movelist + move;
+			followuplist = followuplist + "ABANDON_INFO_CANCEL:" + move;
+			choices = do_menu("MOVE_FORGET", "", movelist, followuplist);
+			if (choices[choices.size() - 1] == -1) {
+				choices = do_menu("ALERT_YES_NO", string("Abandon learning ") + move + string("?"));
+				if (choices[choices.size() - 1] == 1 || choices[choices.size() - 1] == -1) {
+					return learn_move(m, move);
+				}
+				return false;
+			}
+			else if (choices[choices.size() - 1] == 0) {
+				if (choices[choices.size() - 2] != 4) {
+					string oldmove = m.moves[choices[choices.size() - 2]];
+					create_move(m, move, choices[choices.size() - 2]);
+					do_menu("ALERT", string("1, 2 and... Poof!"));
+					do_menu("ALERT", get_nickname(m) + string(" forgot ") + move + string("!"));
+					do_menu("ALERT", string("And..."));
+					do_menu("ALERT", get_nickname(m) + string(" learned ") + move + string("!"));
+					return true;
+				}
+				else {
+					choices = do_menu("ALERT_YES_NO", string("Abandon learning ") + move + string("?"));
+					if (choices[choices.size() - 1] == 1 || choices[choices.size() - 1] == -1) {
+						return learn_move(m, move);
+					}
+					return false;
+				}
+			}
+		}
+		return false;
 	}
 	bool create_move(mon& m, string move, int index) {
 		m.moves[index] = move;
@@ -1321,8 +1373,9 @@ public:
 					// TODO:  Implement inventory
 					int out = 0;
 					string o;
+					if (!use_item(string("COMBAT"), choices, o))
+						continue;
 					p.team[mc.selected].queue.insert(p.team[mc.selected].queue.begin(), string(""));
-					out = use_item(string("COMBAT"), choices, o);
 					if (o.find("CAPTURE") == 0) {
 						o.erase(0, o.find(":") + 1);
 						out = attempt_capture(stof(o), m);
@@ -2466,18 +2519,18 @@ public:
 			menus[menus.size() - 1]->input(up, down, left, right, select, start, confirm, cancel);
 		}
 	}
-	void create_menu(string s, string choice = "") {
+	void create_menu(string s, string choice = "", string text_override = "", string followup_override = "") {
 		menu* m = new menu;
 		menus.push_back(m);
-		menus[menus.size() - 1]->create_menu(s, choice);
+		menus[menus.size() - 1]->create_menu(s, choice, text_override, followup_override);
 		menus[menus.size() - 1]->push_menu();
 	}
 	vector<int> do_alert(string s) {
 		return do_menu(string("ALERT"), s);
 	}
-	vector<int> do_menu(string menu, string choice="") {
+	vector<int> do_menu(string menu, string choice = "", string text_override = "", string followup_override = "") {
 		vector<int> out;
-		create_menu(menu, choice);
+		create_menu(menu, choice, text_override, followup_override);
 		out = menus[menus.size() - 1]->main();
 		delete menus[menus.size() - 1];
 		menus.erase(menus.end() - 1);
