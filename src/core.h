@@ -967,7 +967,26 @@ public:
 				}
 				return false;
 			}
+			else if (choices[choices.size() - 1] == 0) {
+				if (choices[choices.size() - 2] != 4) {
+					string oldmove = m.moves[choices[choices.size() - 2]];
+					create_move(m, move, choices[choices.size() - 2]);
+					do_menu("ALERT", string("1, 2 and... Poof!"));
+					do_menu("ALERT", get_nickname(m) + string(" forgot ") + move + string("!"));
+					do_menu("ALERT", string("And..."));
+					do_menu("ALERT", get_nickname(m) + string(" learned ") + move + string("!"));
+					return true;
+				}
+				else {
+					choices = do_menu("ALERT_YES_NO", string("Abandon learning ") + move + string("?"));
+					if (choices[choices.size() - 1] == 1 || choices[choices.size() - 1] == -1) {
+						return learn_move(m, move);
+					}
+					return false;
+				}
+			}
 		}
+		return false;
 	}
 	bool create_move(mon& m, string move, int index) {
 		m.moves[index] = move;
