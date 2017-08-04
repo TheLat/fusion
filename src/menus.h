@@ -41,7 +41,7 @@ public:
 	float cursor_offset_x, cursor_offset_y;
 	bool done;
 	menu() { step = 0; index = 0; done = false; selection = 0; selection_cap = 0; columns = 1; cursor = -1; offset = 0; cancel_option = -1; cursor_offset_x = 0.0f; cursor_offset_y = 0.0; scroll = 0; max = 0; }
-	void create_menu(string file, string choice = "") {
+	void create_menu(string file, string choice = "", string text_override = "", string followup_override = "") {
 		box b;
 		text t;
 		boxes.clear();
@@ -274,6 +274,35 @@ public:
 				}
 			}
 			f.close();
+		}
+		unsigned i = 0;
+		if (text_override != "") {
+			i = 0;
+			while (text_override.size() > 0) {
+				raw[i].s = text_override;
+				if (text_override.find("|") != -1) {
+					raw[i].s.erase(raw[i].s.find("|"), raw[i].s.size());
+					text_override.erase(0, text_override.find("|") + 1);
+				}
+				else {
+					text_override = "";
+				}
+				i = i + 1;
+			}
+		}
+		if (followup_override != "") {
+			i = 0;
+			while (followup_override.size() > 0) {
+				followup[i] = followup_override;
+				if (followup_override.find("|") != -1) {
+					followup[i].erase(followup[i].find("|"), followup[i].size());
+					followup_override.erase(0, followup_override.find("|") + 1);
+				}
+				else {
+					followup_override = "";
+				}
+				i = i + 1;
+			}
 		}
 		process_strings();
 	}

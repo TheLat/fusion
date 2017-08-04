@@ -1,0 +1,24 @@
+TYPE:SELECT
+COLUMNS:1
+SELECTION_CAP:5
+BOXES:
+-0.6 -0.2 1.6 0.7
+-1.0 -1.0 2.0 0.8
+END
+ARROWBOXES:
+END
+TEXT:
+-0.4 0.2 1.3 0.1 MOVE1
+-0.4 0.1 1.3 0.1 MOVE2
+-0.4 0.0 1.3 0.1 MOVE3
+-0.4 -0.1 1.3 0.1 MOVE4
+-0.4 -0.2 1.3 0.1 MOVE5
+-0.9 -0.9 1.8 0.4 Which move should be forgotten?
+END
+FOLLOW_UP:
+
+
+
+
+
+END
