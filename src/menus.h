@@ -269,6 +269,7 @@ public:
 								s2 = get_special_string(s2);
 								line = s1 + string(":") + s2;
 							}
+							line = get_special_string(line);
 							followup.push_back(line);
 							std::getline(f, line);
 						}

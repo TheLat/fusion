@@ -356,7 +356,7 @@ public:
 				temp.erase(0, temp.find(":") + 1);
 				int index = stoi(temp2);
 				if (!mc.team[index].defined)
-					return string("ERROR");
+					return string("");
 				if (temp.find("TM") != -1) {
 					temp.erase(0, temp.find(":") + 1);
 					if (all_mon[mc.team[index].number].TM[stoi(temp)])
@@ -656,7 +656,7 @@ public:
 				move = TM[stoi(move)];
 				do_menu(string("ALERT"), string("Booted up a TM!"));
 				do_menu(string("ALERT"), string("It contained ") + move + string("!"));
-				choices = do_menu(string("ALERT_YES_NO"), string("Teach ") + move + string("to a POK{e-accent}MON?"));
+				choices = do_menu(string("ALERT_YES_NO"), string("Teach ") + move + string(" to a POK{e-accent}MON?"));
 				if (choices[0] == 1)
 					return false;
 				choices = do_menu(string("LEARN_MON_SELECT"), effect);
@@ -672,8 +672,8 @@ public:
 				move = HM[stoi(move)];
 				do_menu(string("ALERT"), string("Booted up an HM!"));
 				do_menu(string("ALERT"), string("It contained ") + move + string("!"));
-				choices = do_menu(string("ALERT_YES_NO"), string("Teach ") + move + string("to a POK{e-accent}MON?"));
-				if (choices[0] == 1)
+				choices = do_menu(string("ALERT_YES_NO"), string("Teach ") + move + string(" to a POK{e-accent}MON?"));
+				if (choices[1] == 1)
 					return false;
 				choices = do_menu(string("LEARN_MON_SELECT"), effect);
 				if (choices.size() > 1)
