@@ -350,6 +350,50 @@ public:
 					return string("{LEVEL}**");
 				return string("{LEVEL}") + to_string(mc.team[index].level);
 			}
+			else if (parse == "TEAM_MON_CAN_LEARN"){
+				string temp2 = temp;
+				temp2.erase(temp2.find(":"), temp2.size());
+				temp.erase(0, temp.find(":") + 1);
+				int index = stoi(temp2);
+				if (!mc.team[index].defined)
+					return string("ERROR");
+				if (temp.find("TM") != -1) {
+					temp.erase(0, temp.find(":") + 1);
+					if (all_mon[mc.team[index].number].TM[stoi(temp)])
+						return string("ABLE");
+					return string("NOT ABLE");
+				}
+				else if (temp.find("HM") != -1) {
+					temp.erase(0, temp.find(":") + 1);
+					if (all_mon[mc.team[index].number].HM[stoi(temp)])
+						return string("ABLE");
+					return string("NOT ABLE");
+				}
+				else
+					return string("ERROR");
+			}
+			else if (parse == "TEAM_MON_CAN_LEARN_FOLLOW_UP"){
+				string temp2 = temp;
+				temp2.erase(temp2.find(":"), temp2.size());
+				temp.erase(0, temp.find(":") + 1);
+				int index = stoi(temp2);
+				if (!mc.team[index].defined)
+					return string("");
+				if (temp.find("TM") != -1) {
+					temp.erase(0, temp.find(":") + 1);
+					if (all_mon[mc.team[index].number].TM[stoi(temp)])
+						return string("");
+					return string("ALERT:") + get_nickname(mc.team[index]) + string(" is not compatible with ") + TM[stoi(temp)] + string(".  It can't learn ") + TM[stoi(temp)] + string(".");
+				}
+				else if (temp.find("HM") != -1) {
+					temp.erase(0, temp.find(":") + 1);
+					if (all_mon[mc.team[index].number].HM[stoi(temp)])
+						return string("");
+					return string("ALERT:") + get_nickname(mc.team[index]) + string(" is not compatible with ") + HM[stoi(temp)] + string(".  It can't learn ") + HM[stoi(temp)] + string(".");
+				}
+				else
+					return string("");
+			}
 			else if (parse == "TEAM_MON_MAX_HP"){
 				int index = stoi(temp);
 				if (!mc.team[index].defined)
@@ -605,6 +649,38 @@ public:
 			}
 			else if (effect.find("MAP") == 0) {
 				// TODO: MAP
+			}
+			else if (effect.find("TM") == 0) {
+				string move = effect;
+				move.erase(0, move.find(":") + 1);
+				move = TM[stoi(move)];
+				do_menu(string("ALERT"), string("Booted up a TM!"));
+				do_menu(string("ALERT"), string("It contained ") + move + string("!"));
+				choices = do_menu(string("ALERT_YES_NO"), string("Teach ") + move + string("to a POK{e-accent}MON?"));
+				if (choices[0] == 1)
+					return false;
+				choices = do_menu(string("LEARN_MON_SELECT"), effect);
+				if (choices.size() > 1)
+					return false;
+				if (choices[0] == -1)
+					return false;
+				return learn_move(mc.team[choices[0]], move);
+			}
+			else if (effect.find("HM") == 0) {
+				string move = effect;
+				move.erase(0, move.find(":") + 1);
+				move = HM[stoi(move)];
+				do_menu(string("ALERT"), string("Booted up an HM!"));
+				do_menu(string("ALERT"), string("It contained ") + move + string("!"));
+				choices = do_menu(string("ALERT_YES_NO"), string("Teach ") + move + string("to a POK{e-accent}MON?"));
+				if (choices[0] == 1)
+					return false;
+				choices = do_menu(string("LEARN_MON_SELECT"), effect);
+				if (choices.size() > 1)
+					return false;
+				if (choices[0] == -1)
+					return false;
+				return learn_move(mc.team[choices[0]], move);
 			}
 			else if (effect.find("TARGET") == 0) {
 				do_effect(mc.enemy_team[mc.enemy_selected], effect);
@@ -941,8 +1017,8 @@ public:
 			do_menu("ALERT", get_nickname(m) + string(" learned ") + move + string("!"));
 		}
 		else {
-			choices = do_menu("ALERT", get_nickname(m) + string(" is trying to learn ") + move + string("!"));
-			choices = do_menu("ALERT", string("But ") + get_nickname(m) + string(" can't learn more than 4 moves!"));
+			do_menu("ALERT", get_nickname(m) + string(" is trying to learn ") + move + string("!"));
+			do_menu("ALERT", string("But ") + get_nickname(m) + string(" can't learn more than 4 moves!"));
 			choices = do_menu("ALERT_YES_NO", string("Delete an older move to make room for ") + move + string("?"));
 			if (choices[choices.size() - 1] == 1 || choices[choices.size() - 1] == -1) {
 				choices = do_menu("ALERT_YES_NO", string("Abandon learning ") + move + string("?"));
