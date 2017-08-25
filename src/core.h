@@ -889,6 +889,14 @@ public:
 		double chance = (double(get_stat(escapee, SPEED))*32.0 / double(get_stat(m, SPEED))) + (30.0 * double(attempts));
 		return chance > random(0.0, 255.0);
 	}
+	int in_inventory(string s) {
+		for (unsigned i = 0; i < mc.inventory.size(); ++i) {
+			if (mc.inventory[i].first == s) {
+				return mc.inventory[i].second;
+			}
+		}
+		return 0;
+	}
 	bool in_status(mon& m, string s) {
 		for (unsigned i = 0; i < m.status.size(); ++i) {
 			if (m.status[i] == s) {
