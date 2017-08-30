@@ -248,6 +248,19 @@ public: // TODO:  Change back to private
 	location ahead;
 	bool interact;
 public:
+	void full_heal() {
+		for (unsigned i = 0; i < 6; ++i) {
+			if (mc.team[i].defined) {
+				mc.team[i].curr_hp = get_stat(mc.team[i], HP);
+				mc.team[i].status.clear();
+				for (unsigned j = 0; j < 4; ++j) {
+					if (moves[mc.team[i].moves[j]].defined) {
+						mc.team[i].pp[j] = mc.team[i].max_pp[j];
+					}
+				}
+			}
+		}
+	}
 	string get_item_effect(string in) {
 		string out = "";
 		if (!items[in].defined)
@@ -2678,10 +2691,15 @@ public:
 							}
 							else if (s.find("NO_ADVANCE") == 0) {
 								advance = false;
-								s.erase(0, string("NO_ADVANCE").length());
-								if (s.find(":") == 0) {
-									s.erase(0, 1);
-									continue;
+								s.erase(0, string("NO_ADVANCE").length() + 1);
+								continue;
+							}
+							else if (s.find("ADVANCE") == 0) {
+								s.erase(0, string("ADVANCE:").length());
+								s2 = s;
+								if (s2.find("|") != -1) {
+									s2.erase(s2.find("|"));
+									mc.interaction[s2]++;
 								}
 							}
 							else if (s.find("FACE") == 0) {
@@ -2711,6 +2729,9 @@ public:
 								}
 								gain_item(s2);
 								s.erase(0, s2.length());
+							}
+							else if (s.find("FULL_HEAL") == 0) {
+								full_heal();
 							}
 							if (s.find("|") != -1)
 								s.erase(0, s.find("|") + 1);
