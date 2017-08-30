@@ -17,6 +17,8 @@ END
 TELEPORT
 14 37 pallet-town 16 2
 13 37 pallet-town 15 2
+13 0 viridian-city 20 36
+14 0 viridian-city 21 36
 ENCOUNTERS
 16 19
 LEVELS
