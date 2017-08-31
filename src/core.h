@@ -2675,6 +2675,8 @@ public:
 							levels[current_level].characters[i].dir = DOWN;
 						string s = levels[current_level].characters[i].interactions[mc.interaction[levels[current_level].characters[i].name]];
 						string s2, s3;
+						vector<int> choices;
+						choices.clear();
 						bool advance;
 						advance = true;
 						while (s != "") {
@@ -2686,13 +2688,13 @@ public:
 								s3.erase(0, s3.find(":") + 1);
 								if (s3.find("|") != -1)
 									s3.erase(s3.find("|"), s3.length());
-								do_menu(s2, s3);
+								choices = do_menu(s2, s3);
 								s.erase(0, s2.length() + s3.length() + 1);
 							}
 							else if (s.find("NO_ADVANCE") == 0) {
 								advance = false;
 								s.erase(0, string("NO_ADVANCE").length() + 1);
-								continue;
+								break;
 							}
 							else if (s.find("ADVANCE") == 0) {
 								s.erase(0, string("ADVANCE:").length());
@@ -2729,6 +2731,35 @@ public:
 								}
 								gain_item(s2);
 								s.erase(0, s2.length());
+							}
+							else if (s.find("{") == 0) {
+								int counter;
+								vector<string> options;
+								unsigned x = 0;
+								counter = 1;
+								s2 = "";
+								for (x = 1; x < s.size(); ++x) {
+									if (s[x] == '{') {
+										counter++;
+										if (counter == 1) {
+											continue;
+										}
+									}
+									if (s[x] == '}') {
+										counter--;
+										if (counter == 0) {
+											options.push_back(s2);
+											s2 = "";
+											continue;
+										}
+									}
+									if (counter == 0 && s[x] == '|')
+										break;
+									s2 += s[x];
+								}
+								s.erase(0, x);
+								s = options[choices[choices.size() - 1]] + s;
+								continue;
 							}
 							else if (s.find("FULL_HEAL") == 0) {
 								full_heal();

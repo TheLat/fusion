@@ -1,9 +1,13 @@
 NAME
 Viridian City
 NPCS
-pallet-town-woman woman3 8 8 WANDER
+viridian-city-boy boy 10 20 WANDER
 INTERACTIONS
-MENU:ALERT:I'm raising POK{e-accent}MON too!|MENU:ALERT:When they get strong, they can protect me!
+MENU:ALERT:Those POK{e-accent} BALLs at your waist!{NEWLINE}You have POK{e-accent}MON!|MENU:ALERT:It's great that you can carry and use POK{e-accent}MON any time, anywhere!
+END
+viridian-city-boy2 boy 31 24 WANDER
+INTERACTIONS
+MENU:ALERT_YES_NO:You want to know about the 2 kinds of caterpillar POK{e-accent}MON?|{MENU:ALERT:CATERPIE has no poison, but WEEDLE does.|MENU:ALERT:Watch out for its POISON STING!}{MENU:ALERT:Oh, OK then!}
 END
 TELEPORT
 20 37 route1 13 1
