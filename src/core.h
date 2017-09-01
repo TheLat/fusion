@@ -2659,8 +2659,8 @@ public:
 		g.push_quad(-0.1, -0.5 / 4.5 + 0.055, 1.0 / 5.0, 1.0 / 4.5, g.tex[string("player-") + get_direction_string(mc.dir) + string("-0.bmp")]);
 	}
 	void main() {
-		update_level();
 		while (true) {
+			update_level();
 			if (interact) {
 				interact = false;
 				for (unsigned i = 0; i < levels[current_level].characters.size(); ++i) {
@@ -2731,6 +2731,49 @@ public:
 								}
 								gain_item(s2);
 								s.erase(0, s2.length());
+							}
+							else if (s.find("MOVE:") == 0) {
+								direction dir;
+								s.erase(0, string("MOVE:").length());
+								s2 = s;
+								s.erase(0, s.find(":") + 1);
+								s2.erase(s2.find(":"), s2.length());
+								s3 = s;
+								s.erase(0, s.find(",") + 1);
+								s3.erase(s3.find(","), s3.length());
+								int deltax = stoi(s3);
+								int deltay = 0;
+								s3 = s;
+								if (s.find("|") != -1) {
+									s.erase(0, s.find("|") + 1);
+									s3.erase(s3.find("|"), s3.length());
+								}
+								else {
+									s = "";
+								}
+								deltay = stoi(s3);
+								if (deltax > 0)
+									dir = LEFT;
+								else if (deltax < 0)
+									dir = RIGHT;
+								else if (deltay > 0)
+									dir = DOWN;
+								else
+									dir = UP;
+								if (s2.find("PLAYER") == 0) {
+									mc.loc.x += double(deltax);
+									mc.loc.y += double(deltay);
+									mc.dir = dir;
+								}
+								else {
+									for (unsigned k = 0; k < levels[current_level].characters.size(); ++k) {
+										if (levels[current_level].characters[k].name == s2) {
+											levels[current_level].characters[k].loc.x += double(deltax);
+											levels[current_level].characters[k].loc.y += double(deltay);
+											levels[current_level].characters[k].dir = dir;
+										}
+									}
+								}
 							}
 							else if (s.find("{") == 0) {
 								int counter;

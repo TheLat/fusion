@@ -176,8 +176,8 @@ int main(int argc, char** argv) {
 	e.mc.team[0].wild = false;
 
 	e.mc.loc.x = 6.0;
-	e.mc.loc.y = 2.0;
-	e.current_level = "pallet-town";
+	e.mc.loc.y = 4.0;
+	e.current_level = "viridian-city";
 
 	//Initialize GLUT
 	glutInit(&argc, argv);

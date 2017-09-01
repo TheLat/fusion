@@ -9,6 +9,14 @@ viridian-city-boy2 boy 31 24 WANDER
 INTERACTIONS
 MENU:ALERT_YES_NO:You want to know about the 2 kinds of caterpillar POK{e-accent}MON?|{MENU:ALERT:CATERPIE has no poison, but WEEDLE does.|MENU:ALERT:Watch out for its POISON STING!}{MENU:ALERT:Oh, OK then!}
 END
+viridian-city-girl woman3 17 9 NO_WANDER RIGHT
+INTERACTIONS
+MENU:ALERT:Oh Grandpa! Don't be so mean!{NEWLINE}He hasn't had his coffee yet.|FACE:RIGHT
+END
+viridian-city-grandpa sleep 18 9 NO_WANDER
+INTERACTIONS
+MENU:ALERT:You can't go through here!|MENU:ALERT:This is private property!|MOVE:PLAYER:0,1
+END
 TELEPORT
 20 37 route1 13 1
 21 37 route1 14 1
