@@ -179,6 +179,7 @@ public:
 	string image;
 	string name; // MUST BE UNIQUE
 	vector<string> interactions;
+	vector<location> force_interactions;
 	location loc, origin;
 	bool wander;
 	character() { wander = false; dir = DOWN; }
@@ -1827,6 +1828,20 @@ public:
 					// TODO:  LOAD FROM CHARACTER SAVE
 					mc.interaction[levels[levelname].characters[levels[levelname].characters.size() - 1].name] = 0;
 					std::getline(f, line);
+					if (line == "FORCE_INTERACTION") {
+						std::getline(f, line);
+						while (line != "END") {
+							location l;
+							s = line;
+							s.erase(s.find(" "), s.size());
+							line.erase(0, line.find(" ") + 1);
+							l.x = double(stoi(s));
+							l.y = double(stoi(line));
+							levels[levelname].characters[levels[levelname].characters.size() - 1].force_interactions.push_back(l);
+							std::getline(f, line);
+						}
+						std::getline(f, line);
+					}
 					if (line == "INTERACTIONS") {
 						std::getline(f, line);
 						while (line != "END") {
@@ -2660,6 +2675,24 @@ public:
 	}
 	void main() {
 		while (true) {
+			for (unsigned i = 0; i < levels[current_level].characters.size(); ++i) {
+				for (unsigned j = 0; j < levels[current_level].characters[i].force_interactions.size(); ++j) {
+					if (mc.loc.x == levels[current_level].characters[i].force_interactions[j].x + levels[current_level].characters[i].loc.x &&
+						mc.loc.y == levels[current_level].characters[i].force_interactions[j].y + levels[current_level].characters[i].loc.y) {
+						if (levels[current_level].characters[i].loc.x > mc.loc.x)
+							mc.dir = RIGHT;
+						else if (levels[current_level].characters[i].loc.x < mc.loc.x)
+							mc.dir = LEFT;
+						else if (levels[current_level].characters[i].loc.y > mc.loc.y)
+							mc.dir = DOWN;
+						else if (levels[current_level].characters[i].loc.y < mc.loc.y)
+							mc.dir = UP;
+						ahead.x = levels[current_level].characters[i].loc.x;
+						ahead.y = levels[current_level].characters[i].loc.y;
+						interact = true;
+					}
+				}
+			}
 			update_level();
 			if (interact) {
 				interact = false;

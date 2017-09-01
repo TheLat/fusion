@@ -14,6 +14,11 @@ INTERACTIONS
 MENU:ALERT:Oh Grandpa! Don't be so mean!{NEWLINE}He hasn't had his coffee yet.|FACE:RIGHT
 END
 viridian-city-grandpa sleep 18 9 NO_WANDER
+FORCE_INTERACTION
+1 0
+0 -1
+0 1
+END
 INTERACTIONS
 MENU:ALERT:You can't go through here!|MENU:ALERT:This is private property!|MOVE:PLAYER:0,1
 END
