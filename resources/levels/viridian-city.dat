@@ -22,6 +22,18 @@ END
 INTERACTIONS
 MENU:ALERT:You can't go through here!|MENU:ALERT:This is private property!|MOVE:PLAYER:0,1
 END
+viridian-city-sign1 blank 21 29 NO_WANDER
+INTERACTIONS
+MENU:ALERT:TRAINER TIPS|MENU:ALERT:The battle moves of POK{e-accent}MON are limited by their POWER POINTs, or PP. To replenish PP, rest your tired POK{e-accent}MON at a POK{e-accent}MON CENTER!
+END
+viridian-city-sign2 blank 17 17 NO_WANDER
+INTERACTIONS
+MENU:ALERT:VIRIDIAN CITY{NEWLINE}The Eternally Green Paradise
+END
+viridian-city-potion blank 14 4 NO_WANDER
+INTERACTIONS
+GIVE_ITEM:POTION|DEACTIVATE:viridian-city-potion
+END
 TELEPORT
 20 37 route1 13 1
 21 37 route1 14 1

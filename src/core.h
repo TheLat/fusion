@@ -182,7 +182,8 @@ public:
 	vector<location> force_interactions;
 	location loc, origin;
 	bool wander;
-	character() { wander = false; dir = DOWN; }
+	bool active;
+	character() { wander = false; dir = DOWN; active = true; }
 };
 
 class level {
@@ -2607,6 +2608,8 @@ public:
 			if (blocking[get_tile(l.y, l.x)])
 				return;
 			for (unsigned i = 0; i < levels[current_level].characters.size(); ++i) {
+				if (!levels[current_level].characters[i].active)
+					continue;
 				if (l.x == levels[current_level].characters[i].loc.x && l.y == levels[current_level].characters[i].loc.y)
 					return;
 			}
@@ -2667,6 +2670,8 @@ public:
 	}
 	void draw_characters() {
 		for (unsigned i = 0; i < levels[current_level].characters.size(); ++i) {
+			if (!levels[current_level].characters[i].active)
+				continue;
 			g.push_quad((levels[current_level].characters[i].loc.x - (mc.loc.x + 0.5))/5.0,
 				(-0.5 - levels[current_level].characters[i].loc.y + mc.loc.y)/ 4.5f + 0.055,
 				1.0 / 5.0f, 1.0 / 4.5f, g.tex[levels[current_level].characters[i].image + string("-") + get_direction_string(levels[current_level].characters[i].dir) + string("-0.bmp")]);
@@ -2676,6 +2681,8 @@ public:
 	void main() {
 		while (true) {
 			for (unsigned i = 0; i < levels[current_level].characters.size(); ++i) {
+				if (!levels[current_level].characters[i].active)
+					continue;
 				for (unsigned j = 0; j < levels[current_level].characters[i].force_interactions.size(); ++j) {
 					if (mc.loc.x == levels[current_level].characters[i].force_interactions[j].x + levels[current_level].characters[i].loc.x &&
 						mc.loc.y == levels[current_level].characters[i].force_interactions[j].y + levels[current_level].characters[i].loc.y) {
@@ -2697,6 +2704,8 @@ public:
 			if (interact) {
 				interact = false;
 				for (unsigned i = 0; i < levels[current_level].characters.size(); ++i) {
+					if (!levels[current_level].characters[i].active)
+						continue;
 					if (ahead.x == levels[current_level].characters[i].loc.x && ahead.y == levels[current_level].characters[i].loc.y) {
 						if (levels[current_level].characters[i].loc.x < mc.loc.x)
 							levels[current_level].characters[i].dir = RIGHT;
@@ -2839,6 +2848,33 @@ public:
 							}
 							else if (s.find("FULL_HEAL") == 0) {
 								full_heal();
+							}
+							else if (s.find("DEACTIVATE:") == 0) {
+								s2 = s;
+								s2.erase(0, string("DEACTIVATE:").length());
+
+								if (s2.find("|") != -1) {
+									s2.erase(s2.find("|"), s2.length());
+								}
+								else
+									s = "";
+								for (unsigned k = 0; k < levels[current_level].characters.size(); ++k) {
+									if (levels[current_level].characters[k].name == s2) {
+										levels[current_level].characters[k].active = false;
+									}
+								}
+							}
+							else if (s.find("ACTIVATE:") == 0) {
+								s2 = s;
+								s2.erase(0, string("ACTIVATE:").length());
+								if (s2.find("|") != -1) {
+									s2.erase(s2.find("|"), s2.length());
+								}
+								for (unsigned k = 0; k < levels[current_level].characters.size(); ++k) {
+									if (levels[current_level].characters[k].name == s2) {
+										levels[current_level].characters[k].active = true;
+									}
+								}
 							}
 							if (s.find("|") != -1)
 								s.erase(0, s.find("|") + 1);
