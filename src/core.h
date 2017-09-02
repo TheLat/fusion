@@ -2876,6 +2876,24 @@ public:
 									}
 								}
 							}
+							else if (s.find("SOUND:") == 0) {
+								// TODO: Implement sound playing
+								if (s.find("|") != -1) {
+									s.erase(0, s.find("|") + 1);
+								}
+								else {
+									s = "";
+								}
+							}
+							else if (s.find("MAP") == 0) {
+								// TODO: Implement MAP
+								if (s.find("|") != -1) {
+									s.erase(0, s.find("|") + 1);
+								}
+								else {
+									s = "";
+								}
+							}
 							if (s.find("|") != -1)
 								s.erase(0, s.find("|") + 1);
 							if (!advance)

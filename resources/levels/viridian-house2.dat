@@ -1,0 +1,48 @@
+NAME
+Viridian City House 1
+NPCS
+viridian-house1-girl girl2 1 2 WANDER
+INTERACTIONS
+MENU:ALERT:My Daddy loves POK{e-accent}MON too.
+END
+viridian-house1-bird bird 3 5 WANDER
+INTERACTIONS
+MENU:ALERT:SPEARY: Tetweet!
+END
+viridian-house1-man man 5 3 NO_WANDER
+INTERACTIONS
+MENU:ALERT:Coming up with nicknames is fun, but hard.|MENU:ALERT:Simple names are the easiest to remember.
+END
+viridian-house1-clipboard clipboard 4 0 NO_WANDER
+INTERACTIONS
+SOUND:21-21|MENU:ALERT:SPEAROW{NEWLINE}Name: SPEARY
+END
+viridian-house1-bookshelf1 blank 0 1 NO_WANDER
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+viridian-house1-bookshelf2 blank 1 1 NO_WANDER
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+viridian-house1-bookshelf1 blank 7 1 NO_WANDER
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+viridian-house1-bookshelf1 blank 3 0 NO_WANDER
+INTERACTIONS
+MENU:ALERT:A TOWN MAP.|MAP
+END
+TELEPORT
+2 8 viridian-city 21 10
+3 8 viridian-city 21 10
+DATA
+31 31 17 33 17 34 17 31
+32 32 18 18 18 18 18 36
+18 18 18 18 18 18 18 18
+18 18 37 48 52 37 18 18
+18 18 37 23 24 37 18 18
+18 18 18 18 18 18 18 18
+30 18 18 18 18 18 18 30
+29 18 38 38 18 18 18 29
+82 82 81 81
