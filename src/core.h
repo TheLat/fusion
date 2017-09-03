@@ -151,7 +151,6 @@ public:
 	std::map<string, bool> inactive;
 	std::vector<pair<string, int>> inventory;
 	player() { wins = 0; losses = 0; money = 0; name = "RED"; rivalname = "BLUE"; repel = 0; selected = 0; enemy_selected = 0; }
-	// TODO:  INVENTORY
 };
 
 class trainer {
