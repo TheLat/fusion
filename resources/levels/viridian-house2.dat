@@ -17,6 +17,10 @@ viridian-house2-book blank 3 4 NO_WANDER
 INTERACTIONS
 MENU:ALERT:Looked at the notebook!|MENU:ALERT:First page...|MENU:ALERT:POK{e-accent} BALLs are used to catch POK{e-accent}MON.|MENU:ALERT:Up to 6 POK{e-accent}MON can be carried.|MENU:ALERT:People who raise and make POK{e-accent}MON fight are called POK{e-accent}MON trainers.|MENU:ALERT_YES_NO:Turn the page?|{}{NO_ADVANCE}|MENU:ALERT:Second page...|MENU:ALERT:A healthy POK{e-accent}MON may be hard to catch, so weaken it first!|MENU:ALERT:Poison, burn, and other damage are effective.|MENU:ALERT_YES_NO:Turn the page?|{}{NO_ADVANCE}|MENU:ALERT:Third page...|MENU:ALERT:POK{e-accent}MON trainers seek others to engage in POK{e-accent}MON fights.|MENU:ALERT:Battles are constantly fought at POK{e-accent}MON GYMs.|MENU:ALERT_YES_NO:Turn the page?|{}{NO_ADVANCE}|MENU:ALERT:Fourth page...|MENU:ALERT:The goal for POK{e-accent}MON trainers is to beat the top 8 POK{e-accent}MON GYM LEADERs.|MENU:ALERT:Do so to earn the right to face...|MENU:ALERT:The ELITE FOUR of POK{e-accent}MON LEAGUE.|MENU:ALERT:GIRL: Hey! Don't look at my notes!
 END
+viridian-house2-blackboard blank 3 0 NO_WANDER
+INTERACTIONS
+MENU:STATUS_TUTORIAL:Status
+END
 TELEPORT
 2 8 viridian-city 21 16
 3 8 viridian-city 21 16

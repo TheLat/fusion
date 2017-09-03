@@ -39,8 +39,8 @@ public:
 	vector<string> followup, reserve, reserve_followup;
 	int index, step, selection, columns, cursor, selection_cap, offset, cancel_option, scroll, max, replace_cancel;
 	float cursor_offset_x, cursor_offset_y;
-	bool done;
-	menu() { step = 0; index = 0; done = false; selection = 0; selection_cap = 0; columns = 1; cursor = -1; offset = 0; cancel_option = -1; cursor_offset_x = 0.0f; cursor_offset_y = 0.0; scroll = 0; max = 0; replace_cancel = -1; }
+	bool done, always_cancel;
+	menu() { step = 0; index = 0; done = false; selection = 0; selection_cap = 0; columns = 1; cursor = -1; offset = 0; cancel_option = -1; cursor_offset_x = 0.0f; cursor_offset_y = 0.0; scroll = 0; max = 0; replace_cancel = -1; always_cancel = false; }
 	void create_menu(string file, string choice = "", string text_override = "", string followup_override = "") {
 		box b;
 		text t;
@@ -52,6 +52,12 @@ public:
 		string line, temp1, temp2;
 		while (f.is_open()) {
 			while (std::getline(f, line)){
+				while (line.find("{NEWLINE}") != -1) {
+					int i;
+					i = line.find("{NEWLINE}");
+					line.erase(i, string("{NEWLINE}").length());
+					line.insert(i, string("\n"));
+				}
 				temp1 = line;
 				temp2 = line;
 				if (temp1.find(":") != -1) {
@@ -62,6 +68,9 @@ public:
 					}
 					if (temp1 == "AUTO_FOLLOW_UP") {
 						done = !(stoi(temp2) == 0);
+					}
+					if (temp1 == "ALWAYS_CANCEL") {
+						always_cancel = !(stoi(temp2) == 0);
 					}
 					else if (temp1 == "COLUMNS") {
 						columns = stoi(temp2);
@@ -214,6 +223,12 @@ public:
 					else if (temp1 == "TEXT") {
 						std::getline(f, line);
 						while (line != "END") {
+							while (line.find("{NEWLINE}") != -1) {
+								int i;
+								i = line.find("{NEWLINE}");
+								line.erase(i, string("{NEWLINE}").length());
+								line.insert(i, string("\n"));
+							}
 							temp1 = line;
 							temp1.erase(temp1.find(" "), temp1.length());
 							line.erase(0, line.find(" ") + 1);
@@ -260,6 +275,12 @@ public:
 					else if (temp1 == "FOLLOW_UP") {
 						std::getline(f, line);
 						while (line != "END") {
+							while (line.find("{NEWLINE}") != -1) {
+								int i;
+								i = line.find("{NEWLINE}");
+								line.erase(i, string("{NEWLINE}").length());
+								line.insert(i, string("\n"));
+							}
 							if (line.find("{CHOICE}") != -1) {
 								line.insert(line.find("{CHOICE}"), choice);
 								line.erase(line.find("{CHOICE}"), string("{CHOICE}").length());
@@ -484,6 +505,8 @@ public:
 		pop_menu();
 		choice.insert(choice.begin(), selection != -1 ? selection + scroll : selection);
 		if ((choice.size() > 0) && (choice[0] == offset + cancel_option))
+			choice[0] = -1;
+		if (always_cancel)
 			choice[0] = -1;
 		return choice;
 	}
