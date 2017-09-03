@@ -1,7 +1,7 @@
 NAME
 Viridian City Mart
 NPCS
-viridian-house2-bookshelf1 blank 7 1 NO_WANDER
+viridian-center-bookshelf1 blank 7 1 NO_WANDER
 INTERACTIONS
 MENU:ALERT:Crammed full of POK{e-accent}MON books!
 END

@@ -1,9 +1,43 @@
 NAME
 Viridian City Mart
 NPCS
-viridian-house2-bookshelf1 blank 7 1 NO_WANDER
+viridian-mart-shelf1 blank 4 4 NO_WANDER
 INTERACTIONS
-MENU:ALERT:Crammed full of POK{e-accent}MON books!
+MENU:ALERT:Wow! Tons of POK{e-accent}MON stuff!
+END
+viridian-mart-shelf2 blank 5 4 NO_WANDER
+INTERACTIONS
+MENU:ALERT:Wow! Tons of POK{e-accent}MON stuff!
+END
+viridian-mart-shelf3 blank 6 4 NO_WANDER
+INTERACTIONS
+MENU:ALERT:Wow! Tons of POK{e-accent}MON stuff!
+END
+viridian-mart-shelf4 blank 7 4 NO_WANDER
+INTERACTIONS
+MENU:ALERT:Wow! Tons of POK{e-accent}MON stuff!
+END
+viridian-mart-boy boy 7 6 NO_WANDER
+INTERACTIONS
+MENU:ALERT:This shop sells many ANTIDOTEs.
+END
+viridian-mart-man guy2 3 3 NO_WANDER
+INTERACTIONS
+MENU:ALERT:No! POTIONs are sold out.
+END
+viridian-mart-clerk clerk2 0 5 NO_WANDER RIGHT
+INTERACTIONS
+MENU:ALERT:NULL
+END
+viridian-mart-clerkdesk1 blank 1 5 NO_WANDER
+INTERACTIONS
+SET_FACE:viridian-mart-clerk:RIGHT|MENU:ALERT:Okay! Say hi to PROF.OAK for me!|NO_ADVANCE
+SHOP
+END
+viridian-mart-clerkdesk2 blank 0 6 NO_WANDER
+INTERACTIONS
+SET_FACE:viridian-mart-clerk:DOWN|MENU:ALERT:Okay! Say hi to PROF.OAK for me!|NO_ADVANCE
+SHOP
 END
 TELEPORT
 3 8 viridian-city 29 20

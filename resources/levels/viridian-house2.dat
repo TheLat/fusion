@@ -5,7 +5,7 @@ viridian-house2-bookshelf1 blank 7 1 NO_WANDER
 INTERACTIONS
 MENU:ALERT:Crammed full of POK{e-accent}MON books!
 END
-viridian-house2-girl1 girl5 3 5 NO_WANDER
+viridian-house2-girl1 girl5 3 5 NO_WANDER UP
 INTERACTIONS
 MENU:ALERT:Whew! I'm trying to memorize all my notes.|FACE:UP
 END

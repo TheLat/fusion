@@ -2745,6 +2745,30 @@ public:
 									mc.interaction[s2]++;
 								}
 							}
+							else if (s.find("SET_FACE:") == 0) {
+								s.erase(0, s.find(":") + 1);
+								s2 = s;
+								s.erase(0, s.find(":") + 1);
+								s2.erase(s2.find(":"), s2.length());
+								direction dir = DOWN;
+								if (s.find("LEFT") == 0) {
+									dir = LEFT;
+								}
+								else if (s.find("RIGHT") == 0) {
+									dir = RIGHT;
+								}
+								else if (s.find("UP") == 0) {
+									dir = UP;
+								}
+								else if (s.find("DOWN") == 0) {
+									dir = DOWN;
+								}
+								for (unsigned k = 0; k < levels[current_level].characters.size(); ++k) {
+									if (levels[current_level].characters[k].name == s2) {
+										levels[current_level].characters[k].dir = dir;
+									}
+								}
+							}
 							else if (s.find("FACE") == 0) {
 								s.erase(0, s.find(":") + 1);
 								if (s.find("LEFT") == 0) {
