@@ -60,6 +60,9 @@ public:
 					if (temp1 == "TYPE") {
 						type = temp2;
 					}
+					if (temp1 == "AUTO_FOLLOW_UP") {
+						done = !(stoi(temp2) == 0);
+					}
 					else if (temp1 == "COLUMNS") {
 						columns = stoi(temp2);
 					}
