@@ -25,11 +25,11 @@ viridian-house1-bookshelf2 blank 1 1 NO_WANDER
 INTERACTIONS
 MENU:ALERT:Crammed full of POK{e-accent}MON books!
 END
-viridian-house1-bookshelf1 blank 7 1 NO_WANDER
+viridian-house1-bookshelf3 blank 7 1 NO_WANDER
 INTERACTIONS
 MENU:ALERT:Crammed full of POK{e-accent}MON books!
 END
-viridian-house1-bookshelf1 blank 3 0 NO_WANDER
+viridian-house1-map blank 3 0 NO_WANDER
 INTERACTIONS
 MENU:ALERT:A TOWN MAP.|MAP
 END

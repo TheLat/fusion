@@ -1,48 +1,32 @@
 NAME
 Viridian City House 1
 NPCS
-viridian-house1-girl girl2 1 2 WANDER
-INTERACTIONS
-MENU:ALERT:My Daddy loves POK{e-accent}MON too.
-END
-viridian-house1-bird bird 3 5 WANDER
-INTERACTIONS
-MENU:ALERT:SPEARY: Tetweet!
-END
-viridian-house1-man man 5 3 NO_WANDER
-INTERACTIONS
-MENU:ALERT:Coming up with nicknames is fun, but hard.|MENU:ALERT:Simple names are the easiest to remember.
-END
-viridian-house1-clipboard clipboard 4 0 NO_WANDER
-INTERACTIONS
-SOUND:21-21|MENU:ALERT:SPEAROW{NEWLINE}Name: SPEARY
-END
-viridian-house1-bookshelf1 blank 0 1 NO_WANDER
+viridian-house2-bookshelf1 blank 7 1 NO_WANDER
 INTERACTIONS
 MENU:ALERT:Crammed full of POK{e-accent}MON books!
 END
-viridian-house1-bookshelf2 blank 1 1 NO_WANDER
+viridian-house2-girl1 girl5 3 5 NO_WANDER
 INTERACTIONS
-MENU:ALERT:Crammed full of POK{e-accent}MON books!
+MENU:ALERT:Whew! I'm trying to memorize all my notes.|FACE:UP
 END
-viridian-house1-bookshelf1 blank 7 1 NO_WANDER
+viridian-house2-girl2 girl 4 1 NO_WANDER
 INTERACTIONS
-MENU:ALERT:Crammed full of POK{e-accent}MON books!
+MENU:ALERT:Okay!|MENU:ALERT:Be sure to read the blackboard carefully!
 END
-viridian-house1-bookshelf1 blank 3 0 NO_WANDER
+viridian-house2-book blank 3 4 NO_WANDER
 INTERACTIONS
-MENU:ALERT:A TOWN MAP.|MAP
+MENU:ALERT:Looked at the notebook!|MENU:ALERT:First page...|MENU:ALERT:POK{e-accent} BALLs are used to catch POK{e-accent}MON.|MENU:ALERT:Up to 6 POK{e-accent}MON can be carried.|MENU:ALERT:People who raise and make POK{e-accent}MON fight are called POK{e-accent}MON trainers.|MENU:ALERT_YES_NO:Turn the page?|{}{NO_ADVANCE}|MENU:ALERT:Second page...|MENU:ALERT:A healthy POK{e-accent}MON may be hard to catch, so weaken it first!|MENU:ALERT:Poison, burn, and other damage are effective.|MENU:ALERT_YES_NO:Turn the page?|{}{NO_ADVANCE}|MENU:ALERT:Third page...|MENU:ALERT:POK{e-accent}MON trainers seek others to engage in POK{e-accent}MON fights.|MENU:ALERT:Battles are constantly fought at POK{e-accent}MON GYMs.|MENU:ALERT_YES_NO:Turn the page?|{}{NO_ADVANCE}|MENU:ALERT:Fourth page...|MENU:ALERT:The goal for POK{e-accent}MON trainers is to beat the top 8 POK{e-accent}MON GYM LEADERs.|MENU:ALERT:Do so to earn the right to face...|MENU:ALERT:The ELITE FOUR of POK{e-accent}MON LEAGUE.|MENU:ALERT:GIRL: Hey! Don't look at my notes!
 END
 TELEPORT
-2 8 viridian-city 21 10
-3 8 viridian-city 21 10
+2 8 viridian-city 21 16
+3 8 viridian-city 21 16
 DATA
-31 31 17 33 17 34 17 31
-32 32 18 18 18 18 18 36
-18 18 18 18 18 18 18 18
-18 18 37 48 52 37 18 18
-18 18 37 23 24 37 18 18
-18 18 18 18 18 18 18 18
-30 18 18 18 18 18 18 30
-29 18 38 38 18 18 18 29
-82 82 81 81
+17 34 17 115 116 17 17 31
+18 18 18  18  18 18 18 36
+18 18 18  18  18 18 18 18
+18 18 18 114  52 18 18 18
+18 18 18 117  24 18 18 18
+18 18 18  37  18 18 18 18
+30 18 18  18  18 18 18 30
+29 18 38  38  18 18 18 29
+82 82 81  81
