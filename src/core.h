@@ -2751,6 +2751,10 @@ public:
 									s2.erase(s2.find("|"));
 									mc.interaction[s2]++;
 								}
+								else {
+									mc.interaction[s2]++;
+									s = "";
+								}
 							}
 							else if (s.find("SET_FACE:") == 0) {
 								s.erase(0, s.find(":") + 1);
@@ -2774,9 +2778,12 @@ public:
 									mc.dir = dir;
 								}
 								else {
-									for (unsigned k = 0; k < levels[current_level].characters.size(); ++k) {
-										if (levels[current_level].characters[k].name == s2) {
-											levels[current_level].characters[k].dir = dir;
+									map<string, level>::iterator it;
+									for (it = levels.begin(); it != levels.end(); it++) {
+										for (unsigned k = 0; k < it->second.characters.size(); ++k) {
+											if (it->second.characters[k].name == s2) {
+												it->second.characters[k].dir = dir;
+											}
 										}
 									}
 								}
@@ -2845,11 +2852,14 @@ public:
 									mc.dir = dir;
 								}
 								else {
-									for (unsigned k = 0; k < levels[current_level].characters.size(); ++k) {
-										if (levels[current_level].characters[k].name == s2) {
-											levels[current_level].characters[k].loc.x += double(deltax);
-											levels[current_level].characters[k].loc.y += double(deltay);
-											levels[current_level].characters[k].dir = dir;
+									map<string, level>::iterator it;
+									for (it = levels.begin(); it != levels.end(); it++) {
+										for (unsigned k = 0; k < it->second.characters.size(); ++k) {
+											if (it->second.characters[k].name == s2) {
+												it->second.characters[k].loc.x += double(deltax);
+												it->second.characters[k].loc.y += double(deltay);
+												it->second.characters[k].dir = dir;
+											}
 										}
 									}
 								}
@@ -2890,15 +2900,17 @@ public:
 							else if (s.find("DEACTIVATE:") == 0) {
 								s2 = s;
 								s2.erase(0, string("DEACTIVATE:").length());
-
 								if (s2.find("|") != -1) {
 									s2.erase(s2.find("|"), s2.length());
 								}
 								else
 									s = "";
-								for (unsigned k = 0; k < levels[current_level].characters.size(); ++k) {
-									if (levels[current_level].characters[k].name == s2) {
-										levels[current_level].characters[k].active = false;
+								map<string, level>::iterator it;
+								for (it = levels.begin(); it != levels.end(); it++) {
+									for (unsigned k = 0; k < it->second.characters.size(); ++k) {
+										if (it->second.characters[k].name == s2) {
+											it->second.characters[k].active = false;
+										}
 									}
 								}
 							}
@@ -2908,9 +2920,14 @@ public:
 								if (s2.find("|") != -1) {
 									s2.erase(s2.find("|"), s2.length());
 								}
-								for (unsigned k = 0; k < levels[current_level].characters.size(); ++k) {
-									if (levels[current_level].characters[k].name == s2) {
-										levels[current_level].characters[k].active = true;
+								else
+									s = "";
+								map<string, level>::iterator it;
+								for (it = levels.begin(); it != levels.end(); it++) {
+									for (unsigned k = 0; k < it->second.characters.size(); ++k) {
+										if (it->second.characters[k].name == s2) {
+											it->second.characters[k].active = true;
+										}
 									}
 								}
 							}
