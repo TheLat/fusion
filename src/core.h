@@ -17,6 +17,7 @@ using namespace std;
 class graphics;
 extern graphics g;
 extern mutex m;
+mutex transition;
 
 extern bool is_menu(string s);
 
@@ -2551,9 +2552,11 @@ public:
 	void handle_teleport() {
 		for (unsigned i = 0; i < levels[current_level].teleport.size(); ++i) {
 			if (mc.loc.x == levels[current_level].teleport[i].first.x && mc.loc.y == levels[current_level].teleport[i].first.y) {
+				transition.lock();
 				mc.loc.x = levels[current_level].teleport[i].second.x;
 				mc.loc.y = levels[current_level].teleport[i].second.y;
 				current_level = levels[current_level].teleport[i].second.level;
+				transition.unlock();
 				break;
 			}
 		}
@@ -2653,7 +2656,6 @@ public:
 	void update_level() {
 		m.lock();
 		g.draw_list.clear();
-		handle_teleport();
 		draw_level();
 		draw_characters();
 		m.unlock();
@@ -2679,6 +2681,8 @@ public:
 	}
 	void main() {
 		while (true) {
+			handle_teleport();
+			transition.lock();
 			for (unsigned i = 0; i < levels[current_level].characters.size(); ++i) {
 				if (!levels[current_level].characters[i].active)
 					continue;
@@ -2938,6 +2942,7 @@ public:
 					}
 				}
 			}
+			transition.unlock();
 			if (alert != "") {
 				do_menu(string("ALERT"), alert);
 				alert = "";
