@@ -25,6 +25,17 @@ pallet-town-sign4 blank 18 13 NO_WANDER
 INTERACTIONS
 MENU:ALERT:OAK POK{e-accent}MON RESEARCH LAB
 END
+pallet-town-oak oak 12 6 NO_WANDER INACTIVE
+INTERACTIONS
+MENU:ALERT:NULL
+END
+pallet-town-script1 blank 15 0 NO_WANDER
+FORCE_INTERACTION
+0 1
+END
+INTERACTIONS
+SET_FACE:PLAYER:DOWN|ACTIVATE:pallet-town-oak|MENU:ALERT:OAK: Hey! Wait! Don't go out!|MOVE:pallet-town-oak:1,0|MOVE:pallet-town-oak:0,-1|MOVE:pallet-town-oak:1,0|MOVE:pallet-town-oak:0,-1|MOVE:pallet-town-oak:1,0|MOVE:pallet-town-oak:0,-1|MOVE:pallet-town-oak:0,-1|MENU:ALERT:OAK: It's unsafe! Wild POK{e-accent}MON live in tall grass! You need your own POK{e-accent}MON for your protection.{NEWLINE}I know!|MENU:ALERT:Here, come with me!|DEACTIVATE:pallet-town-script1|DEACTIVATE:pallet-town-script2|MOVE:pallet-town-oak:0,1|MOVE:PLAYER:0,1|MOVE:pallet-town-oak:0,1|MOVE:PLAYER:0,1|MOVE:pallet-town-oak:0,1|MOVE:PLAYER:0,1|MOVE:pallet-town-oak:-1,0|MOVE:PLAYER:0,1|MOVE:pallet-town-oak:0,1|MOVE:PLAYER:-1,0|MOVE:pallet-town-oak:0,1|MOVE:PLAYER:0,1|MOVE:pallet-town-oak:0,1|MOVE:PLAYER:0,1|MOVE:pallet-town-oak:0,1|MOVE:PLAYER:0,1|MOVE:pallet-town-oak:0,1|MOVE:PLAYER:0,1|MOVE:pallet-town-oak:0,1|MOVE:PLAYER:0,1|MOVE:pallet-town-oak:0,1|MOVE:PLAYER:0,1|MOVE:pallet-town-oak:1,0|MOVE:PLAYER:0,1|MOVE:pallet-town-oak:1,0|MOVE:PLAYER:1,0|MOVE:pallet-town-oak:1,0|MOVE:PLAYER:1,0|MOVE:pallet-town-oak:0,-1|DEACTIVATE:pallet-town-oak|MOVE:PLAYER:1,0|MOVE:PLAYER:0,-1
+END
 TELEPORT
 16 0 route1 14 35
 15 0 route1 13 35

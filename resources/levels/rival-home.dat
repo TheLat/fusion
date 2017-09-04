@@ -15,7 +15,7 @@ MENU:ALERT:Crammed full of POK{e-accent}MON books!
 END
 map blank 3 0
 INTERACTIONS
-MENU:ALERT:A TOWN MAP.
+MENU:ALERT:A TOWN MAP.|MAP
 END
 map book 3 3
 INTERACTIONS

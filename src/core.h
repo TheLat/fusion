@@ -1803,6 +1803,9 @@ public:
 					levels[levelname].characters[levels[levelname].characters.size() - 1].origin.level = levelname;
 					levels[levelname].characters[levels[levelname].characters.size() - 1].loc = levels[levelname].characters[levels[levelname].characters.size() - 1].origin;
 					s = line;
+					if (s.find("INACTIVE") != -1) {
+						levels[levelname].characters[levels[levelname].characters.size() - 1].active = false;
+					}
 					if (s == "WANDER") {
 						levels[levelname].characters[levels[levelname].characters.size() - 1].wander = true;
 						s.erase(0, string("WANDER").length() + 1);
