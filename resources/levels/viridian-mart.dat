@@ -39,6 +39,13 @@ INTERACTIONS
 SET_FACE:viridian-mart-clerk:DOWN|MENU:ALERT:Okay! Say hi to PROF.OAK for me!|NO_ADVANCE
 SHOP
 END
+viridian-mart-script blank 2 7 NO_WANDER
+FORCE_INTERACTION
+1 0
+END
+INTERACTIONS
+SET_FACE:PLAYER:UP|MENU:ALERT:Hey! You came from PALLET TOWN?|MOVE:PLAYER:0,-1|MOVE:PLAYER:0,-1|MOVE:PLAYER:-1,0|MENU:ALERT:You know PROF.OAK, right?|MENU:ALERT:His order came in. Will you take it to him?|GIVE_ITEM:OAK's PARCEL|DEACTIVATE:viridian-mart-script
+END
 TELEPORT
 3 8 viridian-city 29 20
 4 8 viridian-city 29 20

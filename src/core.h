@@ -896,7 +896,7 @@ public:
 			mc.inventory.push_back(item);
 		}
 		if (!silent)
-			do_menu(string("ALERT"), string("{PLAYER_NAME} found ") + s + string("!"));
+			do_menu(string("ALERT"), string("{PLAYER_NAME} got ") + s + string("!"));
 		return true;
 	}
 	bool run_away(mon& escapee, mon& m, int attempts) {
@@ -2763,11 +2763,17 @@ public:
 								else if (s.find("DOWN") == 0) {
 									dir = DOWN;
 								}
-								for (unsigned k = 0; k < levels[current_level].characters.size(); ++k) {
-									if (levels[current_level].characters[k].name == s2) {
-										levels[current_level].characters[k].dir = dir;
+								if (s2 == "PLAYER") {
+									mc.dir = dir;
+								}
+								else {
+									for (unsigned k = 0; k < levels[current_level].characters.size(); ++k) {
+										if (levels[current_level].characters[k].name == s2) {
+											levels[current_level].characters[k].dir = dir;
+										}
 									}
 								}
+								update_level();
 							}
 							else if (s.find("FACE") == 0) {
 								s.erase(0, s.find(":") + 1);
@@ -2787,6 +2793,7 @@ public:
 									levels[current_level].characters[i].dir = DOWN;
 									s.erase(0, string("DOWN").length());
 								}
+								update_level();
 							}
 							else if (s.find("GIVE_ITEM:") == 0) {
 								s.erase(0, string("GIVE_ITEM:").length());
@@ -2810,16 +2817,16 @@ public:
 								int deltay = 0;
 								s3 = s;
 								if (s.find("|") != -1) {
-									s.erase(0, s.find("|") + 1);
+									s.erase(0, s.find("|"));
 									s3.erase(s3.find("|"), s3.length());
 								}
 								else {
 									s = "";
 								}
 								deltay = stoi(s3);
-								if (deltax > 0)
+								if (deltax < 0)
 									dir = LEFT;
-								else if (deltax < 0)
+								else if (deltax > 0)
 									dir = RIGHT;
 								else if (deltay > 0)
 									dir = DOWN;
@@ -2839,6 +2846,7 @@ public:
 										}
 									}
 								}
+								update_level();
 							}
 							else if (s.find("{") == 0) {
 								int counter;
