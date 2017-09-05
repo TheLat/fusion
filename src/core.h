@@ -79,7 +79,8 @@ class mon_template {
 public:
 	string number, name, type1, type2, dex;
 	int stats[SIZE];
-	int exp_yield, catchrate;
+	int exp_yield, catchrate, height;
+	double weight;
 	vector<pair<int, string>> learned;
 	vector<pair<string, string>> evolution;
 	std::map<int, bool> TM, HM;
@@ -2228,6 +2229,22 @@ public:
 					a = f.get();
 				}
 				all_mon[key].catchrate = stoi(line);
+			}
+			else if (line == "HEIGHT") {
+				line = "";
+				while (a != '\r' && a != '\n') {
+					line = line + a;
+					a = f.get();
+				}
+				all_mon[key].height = stoi(line);
+			}
+			else if (line == "WEIGHT") {
+				line = "";
+				while (a != '\r' && a != '\n') {
+					line = line + a;
+					a = f.get();
+				}
+				all_mon[key].weight = stof(line);
 			}
 			else if (line == "HP") {
 				line = "";
