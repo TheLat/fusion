@@ -28,6 +28,10 @@ while s != "":
         all[i]["EXP_YIELD"] = int(s.split(" ")[1])
     if s.startswith("CATCHRATE: "):
         all[i]["CATCHRATE"] = int(s.split(" ")[1])
+    if s.startswith("HEIGHT: "):
+        all[i]["HEIGHT"] = int(s.split(" ")[1])
+    if s.startswith("WEIGHT: "):
+        all[i]["WEIGHT"] = float(s.split(" ")[1])
     if s.startswith("HP: "):
         all[i]["HP"] = s.split(" ")[1]
     if s.startswith("ATTACK: "):
@@ -98,6 +102,8 @@ while x <= len(all):
             f.write("\nTYPE2: %s" % all[str(y)]["TYPE2"])
         f.write("\nEXP_YIELD: %s" % ((all[str(x)]["EXP_YIELD"] + all[str(y)]["EXP_YIELD"])/2))
         f.write("\nCATCHRATE: %s" % ((all[str(x)]["CATCHRATE"] + all[str(y)]["CATCHRATE"])/2))
+        f.write("\nHEIGHT: %s" % ((all[str(x)]["HEIGHT"] + all[str(y)]["HEIGHT"])/2))
+        f.write("\nWEIGHT: %s" % ((all[str(x)]["WEIGHT"] + all[str(y)]["WEIGHT"])/2.0))
         f.write("\nDEX: %s" % (all[str(x)]["DEX1"] + " " + all[str(y)]["DEX2"]))
         HP = str((int(all[str(x)]["HP"]) + int(all[str(y)]["HP"]))/2)
         f.write("\nHP: %s" % HP)
