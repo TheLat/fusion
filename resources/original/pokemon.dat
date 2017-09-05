@@ -3669,6 +3669,8 @@ DEX1: Since it doesn't breath, people are eager to try it in new environments.
 DEX2: Using the most advanced technologies, scientists created this artificial Pok{e-accent}mon. 
 EXP_YIELD: 79
 CATCHRATE: 45
+HEIGHT: 31
+WEIGHT: 80.5
 HP: 65
 ATTACK: 60
 DEFENSE: 70
@@ -3694,6 +3696,8 @@ DEX1: An ancient Pok{e-accent}mon whose DNA was resurrected from a fossil. It us
 DEX2: If it is attacked, it will withdraw into its hard shell.
 EXP_YIELD: 71
 CATCHRATE: 45
+HEIGHT: 16
+WEIGHT: 16.5
 HP: 35
 ATTACK: 40
 DEFENSE: 100
@@ -3720,6 +3724,8 @@ DEX1: Its sharp beak is powerful enough to crack a shellder's hard shell. It wil
 DEX2: Despite having powerful tentacles, it has a hard time capturing prey that isn't within reach.
 EXP_YIELD: 173
 CATCHRATE: 45
+HEIGHT: 39
+WEIGHT: 77.2
 HP: 70
 ATTACK: 60
 DEFENSE: 125
@@ -3744,6 +3750,8 @@ DEX1: This ancient Pok{e-accent}mon's DNA was resurrected from a fossil. It hide
 DEX2: Its dome shell makes it easy to hide under the sand.
 EXP_YIELD: 71
 CATCHRATE: 45
+HEIGHT: 20
+WEIGHT: 25.4
 HP: 30
 ATTACK: 80
 DEFENSE: 90
@@ -3770,6 +3778,8 @@ DEX1: It aggressively hunts prey.
 DEX2: This Pok{e-accent}mon is a slim and fast swimmer. It slices its prey with its sharp sickles.
 EXP_YIELD: 173
 CATCHRATE: 45
+HEIGHT: 51
+WEIGHT: 89.3
 HP: 60
 ATTACK: 115
 DEFENSE: 105
@@ -3794,6 +3804,8 @@ DEX1: A ferocious, prehistoric Pok{e-accent}mon that goes for the enemy's throat
 DEX2: It flies at incredible speeds through the sky.
 EXP_YIELD: 180
 CATCHRATE: 45
+HEIGHT: 71
+WEIGHT: 130.1
 SWITCH: YES
 HP: 80
 ATTACK: 105
@@ -3819,6 +3831,8 @@ DEX1: This Pok{e-accent}mon is very lazy and will just eat and sleep, if allowed
 DEX2: It will eat anything, even if the food is mouldy. It never gets an upset stomach.
 EXP_YIELD: 189
 CATCHRATE: 25
+HEIGHT: 83
+WEIGHT: 1014.1
 HP: 160
 ATTACK: 110
 DEFENSE: 65
@@ -3844,6 +3858,8 @@ DEX1: This Pok{e-accent}mon is said to appear to doomed people who are lost in t
 DEX2: Its magnificent, seemingly translucent wings glimmer as it flies through the sky.
 EXP_YIELD: 261
 CATCHRATE: 3
+HEIGHT: 67
+WEIGHT: 122.1
 SWITCH: YES
 HP: 90
 ATTACK: 85
@@ -3868,6 +3884,8 @@ DEX1: This Pok{e-accent}mon is said to appear from the clouds while dropping eno
 DEX2: It is said to cause savage thunderstorms just by flapping its wings.
 EXP_YIELD: 261
 CATCHRATE: 3
+HEIGHT: 63
+WEIGHT: 116.0
 SWITCH: YES
 HP: 90
 ATTACK: 90
@@ -3892,6 +3910,8 @@ DEX1: With the ability to control fire, it is said to dip itself in molten magma
 DEX2: Every flap of its wings creates a dazzling flare. Its presence is said to indicate the coming of an early spring.
 EXP_YIELD: 261
 CATCHRATE: 3
+HEIGHT: 79
+WEIGHT: 132.3
 SWITCH: YES
 HP: 90
 ATTACK: 100
@@ -3916,6 +3936,8 @@ DEX1: It has long been considered a mirage Pok{e-accent}mon, as so few people ha
 DEX2: Born large to begin with, it repeately sheds its skin as it steadily grows larger.
 EXP_YIELD: 60
 CATCHRATE: 45
+HEIGHT: 71
+WEIGHT: 7.3
 HP: 41
 ATTACK: 64
 DEFENSE: 45
@@ -3942,6 +3964,8 @@ DEX1: This Pok{e-accent}mon is said to live in seas and lakes.
 DEX2: Its body exudes a gentle aura. It is said to have the ability to control the weather.
 EXP_YIELD: 147
 CATCHRATE: 27
+HEIGHT: 157
+WEIGHT: 36.4
 HP: 61
 ATTACK: 84
 DEFENSE: 65
@@ -3969,6 +3993,8 @@ DEX1: This Pok{e-accent}mon is said to have intelligence that rivals humans. It 
 DEX2: Despite its big and bulky physique, it is able to fly.
 EXP_YIELD: 270
 CATCHRATE: 9
+HEIGHT: 87
+WEIGHT: 463.0
 HP: 91
 ATTACK: 134
 DEFENSE: 95
@@ -3993,6 +4019,8 @@ DEX1: This cruel Pok{e-accent}mon is the result of genetic manipulation to creat
 DEX2: It has a savage heart and only knows peace when destroying its opponents.
 EXP_YIELD: 306
 CATCHRATE: 3
+HEIGHT: 79
+WEIGHT: 269.0
 HP: 106
 ATTACK: 110
 DEFENSE: 90
@@ -4016,6 +4044,8 @@ DEX1: This Pok{e-accent}mon is so rare that it is thought to be entirely fiction
 DEX2: If you look closely at it, you can see that it is covered in very fine fur.
 EXP_YIELD: 270
 CATCHRATE: 45
+HEIGHT: 16
+WEIGHT: 8.8
 HP: 100
 ATTACK: 100
 DEFENSE: 100
