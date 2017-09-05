@@ -52,6 +52,8 @@ List of changes:
 - Inventory screen now displays 5 items, because the original game is doing something weird with the spacing and the developer doesn't care enough to figure it out.
 - Moltres learns Fire Blast.
 - Gust is a flying move.  This makes early life hard for Bulbasaur.
+- Butterfree weighs 12.5 pounds, used to be 70 pounds.  What the hell?
+- Beedrill weights 15 pounds.
 
 Concerning Fusions:
   There are 22,801 pokemon that can appear in Pokemon: Fusion.  The developer can't inspect all of them.  Some may be duds with few or no attack moves (Pikachu-Bulbasaur is quite terrible).  Some things may happen that make no sense (things fused with Gengar will learn Hypnosis from Gengar or Dream Eater from Gengar, but not both).  As a way to balance this, fusions are compatible with every TM and HM that either parent could learn.
