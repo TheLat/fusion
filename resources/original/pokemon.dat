@@ -315,7 +315,7 @@ DEX2: In battle, it flaps its wings at high speed to release highly toxic dust i
 EXP_YIELD: 173
 CATCHRATE: 45
 HEIGHT: 43
-WEIGHT: 70.5
+WEIGHT: 12.5
 HP: 60
 ATTACK: 45
 DEFENSE: 50
@@ -389,7 +389,7 @@ DEX2: It flies at high speeds, using its large, venomous stingers to attack.
 EXP_YIELD: 173
 CATCHRATE: 45
 HEIGHT: 39
-WEIGHT: 65.0
+WEIGHT: 15.0
 HP: 65
 ATTACK: 80
 DEFENSE: 40
