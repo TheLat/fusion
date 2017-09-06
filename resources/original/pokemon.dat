@@ -1915,8 +1915,8 @@ HM: 1
 NUMBER: 72
 NAME: TEN
 SURNAME: TACOOL
-TYPE1: WATER
-TYPE2: POISON
+TYPE1: POISON
+TYPE2: WATER
 DEX1: It can sometimes be found, dry and shriveled up on the beach. Putting it into water will revive it.
 DEX2: As it floats on the waves, it uses toxic tentacles to attack anything it touches.
 EXP_YIELD: 67
@@ -1946,8 +1946,8 @@ HM: 1 3
 NUMBER: 73
 NAME: TENTA
 SURNAME: CRUEL
-TYPE1: WATER
-TYPE2: POISON
+TYPE1: POISON
+TYPE2: WATER
 DEX1: The orb glows before lashing the vicinity with a supersonic blast. The outburst is powerful enough to create rough waves around the Pok{e-accent}mon.
 DEX2: Its tentacles can stretch and contract freely. They wrap around prey and weaken it with poison.
 EXP_YIELD: 180
@@ -2114,8 +2114,8 @@ HM: 0
 NUMBER: 79
 NAME: SLOW
 SURNAME: POKE
-TYPE1: WATER
-TYPE2: PSYCHIC
+TYPE1: PSYCHIC
+TYPE2: WATER
 DEX1: Incredibly slow and dopey, it takes 5 seconds for it to feel pain when under attack.
 DEX2: It lazes vacantly near water. If something bites its tail, it won't notice for a whole day.
 EXP_YIELD: 63
@@ -2143,8 +2143,8 @@ HM: 3 4 5
 NUMBER: 80
 NAME: SLO
 SURNAME: BRO
-TYPE1: WATER
-TYPE2: PSYCHIC
+TYPE1: PSYCHIC
+TYPE2: WATER
 DEX1: Naturally dull to begin with, this Pok{e-accent}mon has lost its ability to feel pain entirely.
 DEX2: Its tail has a SHELLDER firmly attached with a bite. As a result, the tail can't be used for fishing anymore. This forces it to reluctantly swim and catch prey.
 EXP_YIELD: 172
