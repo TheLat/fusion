@@ -40,3 +40,7 @@ $.bmp money.bmp
 {LEVEL}.bmp level.bmp
 {NO}.bmp no.bmp
 *.bmp asterix.bmp
+{HLINE}.bmp hline.bmp
+{VLINE}.bmp vline.bmp
+{HBOX}.bmp hbox.bmp
+{VBOX}.bmp vbox.bmp

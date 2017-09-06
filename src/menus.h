@@ -382,11 +382,11 @@ public:
 		m2.lock();
 		if (type == "ALERT") {
 			if (start | select | confirm | cancel) {
-				if (step == raw[0].s.size()) {
+				if (step >= raw[0].s.size()) {
 					done = true;
 				}
 				else {
-					while (raw[0].s[step] == ' ')
+					while (step < raw[0].s.size() && raw[0].s[step] == ' ')
 						step++;
 					raw[0].s.erase(0, step);
 					process_strings();

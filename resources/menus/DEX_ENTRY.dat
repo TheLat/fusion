@@ -1,0 +1,13 @@
+TYPE:ALERT
+ALWAYS_CANCEL:1
+BOXES:
+-2.0 -2.0 4.0 4.0
+END
+ARROWBOXES:
+END
+TEXT:
+-0.9 -0.9 1.8 0.4 Description goes here Description goes here Description goes here Description goes here Description goes here Description goes here Description goes here
+-1.0 -0.05 2.0 0.1 {HLINE}{HBOX}{HLINE}{HBOX}{HLINE}{HBOX}{HLINE}{HBOX}{HLINE}{HLINE}{HLINE}{HLINE}{HBOX}{HLINE}{HBOX}{HLINE}{HBOX}{HLINE}{HBOX}{HLINE}
+END
+FOLLOW_UP:
+END
