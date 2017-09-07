@@ -357,7 +357,10 @@ public:
 				g.push_arrow_box_left(arrowboxes[i].xmin, arrowboxes[i].ymin, arrowboxes[i].length, arrowboxes[i].height);
 		}
 		for (unsigned i = 0; i < display.size(); ++i) {
-			step = g.push_text(display[i].xmin, display[i].ymin, display[i].length, display[i].height, display[i].size, display[i].s);
+			int temp;
+			temp = g.push_text(display[i].xmin, display[i].ymin, display[i].length, display[i].height, display[i].size, display[i].s);
+			if (i == 0)
+				step = temp;
 		}
 		m.unlock();
 	} 

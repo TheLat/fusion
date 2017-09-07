@@ -446,6 +446,26 @@ public:
 					o = string(" ") + o;
 				return o;
 			}
+			else if (parse == "MON_ENTRY"){
+				if (!all_mon[temp].defined)
+					return string("");
+				return all_mon[temp].dex;
+			}
+			else if (parse == "MON_WEIGHT"){
+				if (!all_mon[temp].defined)
+					return string("");
+				return to_string(all_mon[temp].weight) + string("lb");
+			}
+			else if (parse == "MON_HEIGHT"){
+				if (!all_mon[temp].defined)
+					return string("");
+				int index = all_mon[temp].height;
+				string o = "";
+				if (index > 12)
+					o = o + to_string(index / 12) + string("{FEET}");
+				o = o + to_string(index % 12) + string("{INCHES}");
+				return o;
+			}
 			else if (parse == "TEAM_MON_DEFENSE"){
 				int index = stoi(temp);
 				if (!mc.team[index].defined)
