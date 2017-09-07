@@ -3,7 +3,7 @@ Pallet Town
 NPCS
 pallet-town-woman woman3 8 8 WANDER
 INTERACTIONS
-MENU:ALERT:I'm raising POK{e-accent}MON too!|MENU:ALERT:When they get strong, they can protect me!|MENU:DEX_ENTRY:1
+MENU:ALERT:I'm raising POK{e-accent}MON too!|MENU:ALERT:When they get strong, they can protect me!|MENU:DEX_ENTRY:76-15
 END
 pallet-town-fat fat 16 14 WANDER
 INTERACTIONS

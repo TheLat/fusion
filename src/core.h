@@ -446,6 +446,11 @@ public:
 					o = string(" ") + o;
 				return o;
 			}
+			else if (parse == "MON_TEMPLATE_NAME"){
+				if (!all_mon[temp].defined)
+					return string("");
+				return all_mon[temp].name;
+			}
 			else if (parse == "MON_ENTRY"){
 				if (!all_mon[temp].defined)
 					return string("");
@@ -454,7 +459,16 @@ public:
 			else if (parse == "MON_WEIGHT"){
 				if (!all_mon[temp].defined)
 					return string("");
-				return to_string(all_mon[temp].weight) + string("lb");
+				string o = to_string(all_mon[temp].weight);
+				string out = "";
+				for (unsigned i = 0; i < o.size(); ++i) {
+					out = out + o[i];
+					if (o[i] == '.') {
+						out = out + o[i + 1];
+						break;
+					}
+				}
+				return out + string("lb");
 			}
 			else if (parse == "MON_HEIGHT"){
 				if (!all_mon[temp].defined)
@@ -2144,7 +2158,7 @@ public:
 	}
 	void init_mon() {
 		string line, key;
-		ifstream f("../resources/original/pokemon.dat");//f("../resources/data/mon.dat");
+		ifstream f("../resources/data/mon.dat");
 		char a = 1;
 		int level = 0;
 		a = f.get();
@@ -2664,8 +2678,9 @@ public:
 				if (levels[current_level].encounters.size() > 0) {
 					if (random(0.0, 187.5) < 8.5) {
 						int choice = int(random(0.0, double(levels[current_level].encounters.size())));
+						int choice2 = int(random(0.0, double(levels[current_level].encounters.size())));
 						// TODO:  Switch this over to fusions
-						encounter = std::to_string(levels[current_level].encounters[choice]);
+						encounter = std::to_string(levels[current_level].encounters[choice]) + string("-") + std::to_string(levels[current_level].encounters[choice2]);
 						int l = int(random(levels[current_level].level_range.first, levels[current_level].level_range.second + 1));
 						encounter_level = l;
 					}

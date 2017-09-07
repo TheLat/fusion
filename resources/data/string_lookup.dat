@@ -44,3 +44,5 @@ $.bmp money.bmp
 {VLINE}.bmp vline.bmp
 {HBOX}.bmp hbox.bmp
 {VBOX}.bmp vbox.bmp
+{FEET}.bmp feet.bmp
+{INCHES}.bmp inches.bmp
