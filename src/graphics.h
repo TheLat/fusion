@@ -2,6 +2,7 @@
 #define GRAPHICS_HEADER
 
 #include "GL/glut.h"
+#include "PNG/png.h"
 #include <map>
 #include <vector>
 #include <string>
@@ -42,37 +43,77 @@ public:
 		int i;
 		unsigned char* image;
 		FILE* f = fopen((filename).c_str(), "rb");
-		unsigned char info[54];
-		fread(info, sizeof(unsigned char), 54, f);
-		i = 0;
-		int width = *(int*)&info[18];
-		int height = *(int*)&info[22];
-		int step = info[28] / 8;
-		int size = step * width * height;
-		image = new unsigned char[size]; // allocate 3 bytes per pixel
-		if (step == 4)
-			fread(image, sizeof(unsigned char), 84, f); // skip ahead to image
-		fread(image, sizeof(unsigned char), size, f); // read the rest of the data at once
-		fclose(f);
+		int height = 0;
+		int width = 0;
+		int step = 0;
+		int size = 0;
+		if (filename.find(".bmp") != -1) {
+			unsigned char info[54];
+			fread(info, sizeof(unsigned char), 54, f);
+			i = 0;
+			width = *(int*)&info[18];
+			height = *(int*)&info[22];
+			step = info[28] / 8;
+			size = step * width * height;
+			image = new unsigned char[size]; // allocate 3 bytes per pixel
+			if (step == 4)
+				fread(image, sizeof(unsigned char), 84, f); // skip ahead to image
+			fread(image, sizeof(unsigned char), size, f); // read the rest of the data at once
+			fclose(f);
 
+			for (i = 0; i < size; i += step)
+			{
+				if (step == 3) {
+					unsigned char tmp = image[i];
+					image[i] = image[i + 2];
+					image[i + 2] = tmp;
+				}
+				else if (step == 4) {
+					unsigned char tmp = image[i];
+					image[i] = image[i + 3];
+					image[i + 3] = tmp;
+					tmp = image[i + 1];
+					image[i + 1] = image[i + 2];
+					image[i + 2] = tmp;
 
-		for (i = 0; i < size; i += step)
-		{
-			if (step == 3) {
-				unsigned char tmp = image[i];
-				image[i] = image[i + 2];
-				image[i + 2] = tmp;
-			}
-			else if (step == 4) {
-				unsigned char tmp = image[i];
-				image[i] = image[i + 3];
-				image[i + 3] = tmp;
-				tmp = image[i + 1];
-				image[i + 1] = image[i + 2];
-				image[i + 2] = tmp;
-
+				}
 			}
 		}
+		else if (filename.find(".png") != -1) {
+			char header[8];
+			fread(header, 1, 8, f);
+			png_structp png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
+			png_infop info_ptr = png_create_info_struct(png_ptr);
+			setjmp(png_jmpbuf(png_ptr));
+			png_init_io(png_ptr, f);
+			png_set_sig_bytes(png_ptr, 8);
+			png_read_info(png_ptr, info_ptr);
+			width = png_get_image_width(png_ptr, info_ptr);
+			height = png_get_image_height(png_ptr, info_ptr);
+			png_byte color_type = png_get_color_type(png_ptr, info_ptr);
+			png_byte bit_depth = png_get_bit_depth(png_ptr, info_ptr);
+			int number_of_passes = png_set_interlace_handling(png_ptr);
+			png_read_update_info(png_ptr, info_ptr);
+			setjmp(png_jmpbuf(png_ptr));
+			png_bytep* row_pointers = (png_bytep*)malloc(sizeof(png_bytep) * height);
+			for (int y = 0; y < height; y++) {
+				row_pointers[y] = (png_byte*)malloc(png_get_rowbytes(png_ptr, info_ptr));
+			}
+			png_read_image(png_ptr, row_pointers);
+			step = 4;
+			size = height * width* step;
+			image = new unsigned char[size]; // allocate 3 bytes per pixel
+			int i = 0;
+			for (int y = height-1; y >= 0; --y) {
+				for (int x = 0; x < width*step; ++x) {
+					image[i] = row_pointers[y][x];
+					i = i + 1;
+				}
+				free(row_pointers[y]);
+			}
+			free(row_pointers);
+		}
+		fclose(f);
 		glGenTextures(1, &ret);
 		glBindTexture(GL_TEXTURE_2D, ret);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
