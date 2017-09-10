@@ -21,6 +21,7 @@ public:
 	float width;
 	float height;
 	GLuint tex;
+	string filename;
 };
 
 class string_lookup_data {
@@ -37,6 +38,8 @@ public:
 	std::map<string, string_lookup_data> string_lookup;
 	std::map<char, bool> chunk;
 	std::vector<quad> draw_list;
+	bool new_load;
+	graphics() { new_load = false; }
 
 	GLuint load_image(string filename) {
 		GLuint ret = 0;
@@ -214,13 +217,15 @@ public:
 		glLoadIdentity(); //Reset the camera
 		gluOrtho2D(-1, 1, -1, 1);
 	}
-	void push_quad(float x, float y, float width, float height, GLuint tex) {
+	void push_quad(float x, float y, float width, float height, GLuint texture, string filename = string("")) {
 		quad q;
 		q.x = x;
 		q.y = y;
 		q.width = width;
 		q.height = height;
-		q.tex = tex;
+		q.tex = texture;
+		if (texture == 0)
+			q.filename = filename;
 		draw_list.push_back(q);
 	}
 	void draw_quad(quad &q) {
@@ -240,6 +245,18 @@ public:
 	//Draws the 3D scene
 	void drawScene() {
 		m.lock();
+		if (new_load) {
+			new_load = false;
+			std::map<string, GLuint>::iterator it;
+			for (it = tex.begin(); it != tex.end(); it++) {
+				if (it->second == 0)
+					it->second = load_image(it->first);
+			}
+			for (unsigned i = 0; i < draw_list.size(); i++) {
+				if (draw_list[i].tex == 0)
+					draw_list[i].tex = tex[draw_list[i].filename];
+			}
+		}
 		//Clear information from last draw
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glMatrixMode(GL_MODELVIEW); //Switch to the drawing perspective
@@ -338,9 +355,11 @@ public:
 		push_quad(xmin + 0.1f, ymin, length - 0.2f, 0.1f, tex[string("bar-bottom.bmp")]);
 	}
 	void push_quad_load(float x, float y, float width, float height, string filename) {
-		if (!tex[filename])
+		if (!tex[filename]) {
 			tex[filename] = load_image(filename);
-		push_quad(x, y, width, height, tex[filename]);
+			new_load = true;
+		}
+		push_quad(x, y, width, height, tex[filename], filename);
 	}
 	void alert(string s) {
 		push_box(-1.0f, -1.0f, 2.0f, 0.8f);
