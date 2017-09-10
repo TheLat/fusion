@@ -17,6 +17,12 @@ extern string get_menu(string r);
 extern vector<int> do_menu(string menu);
 mutex m2;
 
+class image {
+public:
+	string filename;
+	float xmin, ymin, length, height;
+};
+
 class box {
 public:
 	bool right;
@@ -34,6 +40,7 @@ public:
 class menu{
 public:
 	string type;
+	vector<image> images;
 	vector<box> boxes, arrowboxes;
 	vector<text> raw, display;
 	vector<string> followup, reserve, reserve_followup;
@@ -42,10 +49,12 @@ public:
 	bool done, always_cancel;
 	menu() { step = 0; index = 0; done = false; selection = 0; selection_cap = 0; columns = 1; cursor = -1; offset = 0; cancel_option = -1; cursor_offset_x = 0.0f; cursor_offset_y = 0.0; scroll = 0; max = 0; replace_cancel = -1; always_cancel = false; }
 	void create_menu(string file, string choice = "", string text_override = "", string followup_override = "") {
+		image im;
 		box b;
 		text t;
 		boxes.clear();
 		arrowboxes.clear();
+		images.clear();
 		raw.clear();
 		followup.clear();
 		ifstream f(string("../resources/menus/") + file + string(".dat"));
@@ -123,6 +132,34 @@ public:
 							temp1 = line;
 							b.height = stof(temp1);
 							boxes.push_back(b);
+							std::getline(f, line);
+						}
+					}
+					else if (temp1 == "IMAGES") {
+						std::getline(f, line);
+						while (line != "END") {
+							while (line.find("{CHOICE}") != -1) {
+								line.insert(line.find("{CHOICE}"), choice);
+								line.erase(line.find("{CHOICE}"), string("{CHOICE}").length());
+							}
+							temp1 = line;
+							temp1.erase(temp1.find(" "), temp1.length());
+							line.erase(0, line.find(" ") + 1);
+							im.xmin = stof(temp1);
+							temp1 = line;
+							temp1.erase(temp1.find(" "), temp1.length());
+							line.erase(0, line.find(" ") + 1);
+							im.ymin = stof(temp1);
+							temp1 = line;
+							temp1.erase(temp1.find(" "), temp1.length());
+							line.erase(0, line.find(" ") + 1);
+							im.length = stof(temp1);
+							temp1 = line;
+							temp1.erase(temp1.find(" "), temp1.length());
+							line.erase(0, line.find(" ") + 1);
+							im.height = stof(temp1);
+							im.filename = line;
+							images.push_back(im);
 							std::getline(f, line);
 						}
 					}
@@ -355,6 +392,9 @@ public:
 				g.push_arrow_box_right(arrowboxes[i].xmin, arrowboxes[i].ymin, arrowboxes[i].length, arrowboxes[i].height);
 			else
 				g.push_arrow_box_left(arrowboxes[i].xmin, arrowboxes[i].ymin, arrowboxes[i].length, arrowboxes[i].height);
+		}
+		for (unsigned i = 0; i < images.size(); ++i) {
+			g.push_quad_load(images[i].xmin, images[i].ymin, images[i].length, images[i].height, string("../resources/images/") + images[i].filename);
 		}
 		for (unsigned i = 0; i < display.size(); ++i) {
 			int temp;

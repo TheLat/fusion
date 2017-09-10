@@ -93,6 +93,10 @@ public:
 			png_byte color_type = png_get_color_type(png_ptr, info_ptr);
 			png_byte bit_depth = png_get_bit_depth(png_ptr, info_ptr);
 			int number_of_passes = png_set_interlace_handling(png_ptr);
+			if (color_type == PNG_COLOR_TYPE_PALETTE)
+				png_set_palette_to_rgb(png_ptr);
+			if (png_get_valid(png_ptr, info_ptr, PNG_INFO_tRNS))
+				png_set_tRNS_to_alpha(png_ptr);
 			png_read_update_info(png_ptr, info_ptr);
 			setjmp(png_jmpbuf(png_ptr));
 			png_bytep* row_pointers = (png_bytep*)malloc(sizeof(png_bytep) * height);
@@ -332,6 +336,11 @@ public:
 		push_quad(xmin, ymin, 0.1f, 0.1f, tex[string("corner-bl.bmp")]);
 		push_quad(xmin + length - 0.1f, ymin, 0.1f, 0.1f, tex[string("corner-br.bmp")]);
 		push_quad(xmin + 0.1f, ymin, length - 0.2f, 0.1f, tex[string("bar-bottom.bmp")]);
+	}
+	void push_quad_load(float x, float y, float width, float height, string filename) {
+		if (!tex[filename])
+			tex[filename] = load_image(filename);
+		push_quad(x, y, width, height, tex[filename]);
 	}
 	void alert(string s) {
 		push_box(-1.0f, -1.0f, 2.0f, 0.8f);
