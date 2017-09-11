@@ -1,4 +1,5 @@
 import time
+import math
 start = time.time()
 i = 0
 all = {}
@@ -102,8 +103,8 @@ while x <= len(all):
             f.write("\nTYPE2: %s" % all[str(y)]["TYPE2"])
         f.write("\nEXP_YIELD: %s" % ((all[str(x)]["EXP_YIELD"] + all[str(y)]["EXP_YIELD"])/2))
         f.write("\nCATCHRATE: %s" % ((all[str(x)]["CATCHRATE"] + all[str(y)]["CATCHRATE"])/2))
-        f.write("\nHEIGHT: %s" % ((all[str(x)]["HEIGHT"] + all[str(y)]["HEIGHT"])/2))
-        f.write("\nWEIGHT: %s" % ((all[str(x)]["WEIGHT"] + all[str(y)]["WEIGHT"])/2.0))
+        f.write("\nHEIGHT: %s" % int(math.sqrt(all[str(x)]["HEIGHT"] * all[str(y)]["HEIGHT"])))
+        f.write("\nWEIGHT: %s" % (math.sqrt(all[str(x)]["WEIGHT"] * all[str(y)]["WEIGHT"])))
         f.write("\nDEX: %s" % (all[str(x)]["DEX1"] + " " + all[str(y)]["DEX2"]))
         HP = str((int(all[str(x)]["HP"]) + int(all[str(y)]["HP"]))/2)
         f.write("\nHP: %s" % HP)
