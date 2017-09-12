@@ -2808,6 +2808,26 @@ public:
 									s = "";
 								}
 							}
+							else if (s.find("GIVE_MON") == 0) {
+								s.erase(0, string("GIVE_MON:").length());
+								s2 = s;
+								s.erase(0, s.find(":") + 1);
+								s2.erase(s2.find(":"), s2.length());
+								int l = stoi(s2);
+								s2 = s;
+								if (s2.find("|") != -1) {
+									s2.erase(s2.find("|"), s2.length());
+								}
+								for (unsigned i = 0; i < 6; ++i) {
+									if (!mc.team[i].defined) {
+										make_mon(s2, l, mc.team[i]);
+										mc.team[i].wild = false;
+										// TODO: Nickname menu
+										do_menu(string("ALERT"), mc.name + string(" got ") + all_mon[mc.team[i].number].name + string("!"));
+										break;
+									}
+								}
+							}
 							else if (s.find("SET_FACE:") == 0) {
 								s.erase(0, s.find(":") + 1);
 								s2 = s;

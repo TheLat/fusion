@@ -171,9 +171,6 @@ int main(int argc, char** argv) {
 	e.init_items();
 	e.init_hm();
 	e.init_tm();
-	int l = 20;
-	e.make_mon(string("1-1"), l, e.mc.team[0]);
-	e.mc.team[0].wild = false;
 
 	e.mc.loc.x = 6.0;
 	e.mc.loc.y = 4.0;
