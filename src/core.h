@@ -152,15 +152,8 @@ public:
 	std::map<string, unsigned> interaction;
 	std::map<string, bool> inactive;
 	std::vector<pair<string, int>> inventory;
+	std::map<string, int> values;
 	player() { wins = 0; losses = 0; money = 0; name = "RED"; rivalname = "BLUE"; repel = 0; selected = 0; enemy_selected = 0; }
-};
-
-class trainer {
-public:
-	string name;
-	int money_yield;
-	mon team[6];
-	trainer() { name = "DEFAULT_TRAINER_NAME"; money_yield = 0; }
 };
 
 class status_effect {
@@ -187,6 +180,17 @@ public:
 	character() { wander = false; dir = DOWN; active = true; }
 };
 
+class trainer {
+public:
+	string display_name;
+	string name;
+	string image;
+	int payout;
+	string lose_message;
+	string win_message;
+	mon team[6];
+};
+
 class level {
 public:
 	string name;
@@ -195,6 +199,7 @@ public:
 	std::vector<character> characters;
 	std::vector<int> encounters;
 	std::pair<int, int> level_range;
+	std::map<string, trainer> trainers;
 };
 
 typedef std::map<string, std::map<string, float>>::iterator type_iter;
@@ -1002,7 +1007,7 @@ public:
 			return all_mon[m.number].name;
 		return m.nickname;
 	}
-	void make_mon(string ID, int& e_level, mon& out) {
+	void make_mon(string ID, int e_level, mon& out) {
 		out.level = 0;
 		out.exp = level_to_exp[e_level];
 		if (out.exp == -1)
@@ -1123,6 +1128,8 @@ public:
 		return false;
 	}
 	bool create_move(mon& m, string move, int index) {
+		if (!moves[move].defined)
+			return false;
 		m.moves[index] = move;
 		m.pp[index] = moves[m.moves[index]].pp;
 		m.max_pp[index] = m.pp[index];
@@ -1813,7 +1820,7 @@ public:
 			}
 			if (line == "NPCS") {
 				std::getline(f, line);
-				while (line != "TELEPORT" && line != "DATA" && line != "ENCOUNTERS" && line != "LEVELS") {
+				while (line != "TELEPORT" && line != "DATA" && line != "ENCOUNTERS" && line != "LEVELS" && line != "TRAINERS") {
 					character c;
 					string s;
 					levels[levelname].characters.push_back(c);
@@ -1895,6 +1902,98 @@ public:
 						}
 						std::getline(f, line);
 					}
+				}
+			}
+			if (line == "TRAINERS") {
+				std::getline(f, line);
+				trainer d;
+				while (line != "DATA" && line != "ENCOUNTERS" && line != "LEVELS" && line != "TELEPORT" && line != "END") {
+					string s, s2, s3;
+					unsigned i = 1;
+					unsigned count = 1;
+					s = line;
+					s2 = s;
+					s.erase(0, s.find(" ") + 1);
+					s2.erase(s2.find(" "), s2.length());
+					d.name = s2;
+					s2 = s;
+					s.erase(0, s.find(" ") + 1);
+					s2.erase(s2.find(" "), s2.length());
+					d.payout = stoi(s2);
+					s2 = s;
+					s.erase(0, s.find(" ") + 1);
+					s2.erase(s2.find(" "), s2.length());
+					d.display_name = s2;
+					s2 = s;
+					s.erase(0, s.find(" ") + 1);
+					s2.erase(s2.find(" "), s2.length());
+					d.image = s2;
+					s2 = s;
+					while (count > 0) {
+						if (s2[i] == '{')
+							count++;
+						if (s2[i] == '}')
+							count--;
+						++i;
+					}
+					s2.erase(i-1, s2.length());
+					s2.erase(0, 1);
+					d.win_message = s2;
+					s.erase(0, i);
+					s2 = s;
+					i = 1;
+					count = 1;
+					while (count > 0) {
+						if (s2[i] == '{')
+							count++;
+						if (s2[i] == '}')
+							count--;
+						++i;
+					}
+					s2.erase(i - 1, s2.length());
+					s2.erase(0, 1);
+					d.lose_message = s2;
+					s.erase(0, i + 1);
+					i = 0;
+					while (s.find(":") != -1) {
+						if (s.find("|") == 0)
+							s.erase(0, 1);
+						s2 = s;
+						s2.erase(s2.find(":"), s2.length());
+						s.erase(0, s.find(":") + 1);
+						s3 = s;
+						if (s3.find(":") != -1) {
+							s3.erase(s3.find(":"), s3.length());
+						}
+						if (s3.find(" ") != -1) {
+							s3.erase(s3.find(" "), s3.length());
+						}
+						count = stoi(s3);
+						s.erase(0, s3.length());
+						make_mon(s2, count, d.team[i]);
+						d.team[i].wild = false;
+						if (s.find(":") == 0) {
+							s.erase(0, 1);
+							count = 0;
+							while (s != "" && s.find("|") != 0) {
+								s2 = s;
+								if (s2.find("|") != -1) {
+									s2.erase(s2.find("|"), s2.length());
+								}
+								if (s2.find(",") != -1) {
+									s2.erase(s2.find(","), s2.length());
+								}
+								create_move(d.team[i], s2, count);
+								s.erase(0, s2.length());
+								if (s.find(",") == 0) {
+									s.erase(0, 1);
+								}
+								count++;
+							}
+						}
+						i = i + 1;
+					}
+					levels[levelname].trainers[d.name] = d;
 				}
 			}
 			if (line == "TELEPORT")
@@ -2795,6 +2894,18 @@ public:
 								advance = false;
 								s.erase(0, string("NO_ADVANCE").length() + 1);
 								break;
+							}
+							else if (s.find("SET:") == 0) {
+								s.erase(0, string("SET:").length());
+								s2 = s;
+								s.erase(0, s.find(":") + 1);
+								s2.erase(s2.find(":"), s2.length());
+								s3 = s;
+								if (s.find("|") != -1) {
+									s.erase(0, s.find("|"));
+									s3.erase(s3.find("|"), s3.length());
+								}
+								mc.values[s2] = stoi(s3);
 							}
 							else if (s.find("ADVANCE") == 0) {
 								s.erase(0, string("ADVANCE:").length());
