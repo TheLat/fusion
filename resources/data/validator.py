@@ -272,7 +272,7 @@ for s in mon.keys():
     for t in mon.keys():
         if t != s:
             if mon[s]["NAME"] == mon[t]["NAME"]:
-                print "Error:  %s and %s have the same name (%s)" % (s, t, mon[t]["NAME"])
+                print "Warning:  %s and %s have the same name (%s)" % (s, t, mon[t]["NAME"])
                 duplicate_names = duplicate_names + 1
     x = 0
     while x < len(mon[s]["MOVES"]):

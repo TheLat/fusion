@@ -84,6 +84,8 @@ while x <= len(all):
             n = "MUK"
         if n == "EEVVEE":
             n = "EEVEE"
+        if n == "MACCHAMP":
+            n = "MACHAMP"
         if n == "MEEW":
             n = "MEW"
         n = n.replace("RAPE", "RILLA")

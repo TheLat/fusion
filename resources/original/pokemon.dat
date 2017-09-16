@@ -1766,16 +1766,16 @@ MOVES:
 20 LOW KICK
 25 LEER
 32 FOCUS ENERGY
-39 SEISMIC TOSS
 46 SUBMISSION
+39 SEISMIC TOSS
 EVOLUTION:
 67:LEVEL 28
 TM: 1 5 6 8 9 10 17 18 19 20 26 27 28 31 32 34 35 38 40 44 48 50
 HM: 4
 
 NUMBER: 67
-NAME: MAC
-SURNAME: HOKE
+NAME: MA
+SURNAME: CHOKE
 EXP_YIELD: 142
 CATCHRATE: 90
 HEIGHT: 59
@@ -1793,15 +1793,15 @@ MOVES:
 20 LOW KICK
 25 LEER
 36 FOCUS ENERGY
-44 SEISMIC TOSS
 52 SUBMISSION
+44 SEISMIC TOSS
 EVOLUTION:
 68:TRADE STONE
 TM: 1 5 6 8 9 10 17 18 19 20 26 27 28 31 32 34 35 38 40 44 48 50
 HM: 4
 
 NUMBER: 68
-NAME: MA
+NAME: MAC
 SURNAME: CHAMP
 TYPE1: FIGHTING
 DEX1: This Pok{e-accent}mon tends to leap into action before it thinks.
@@ -1820,8 +1820,8 @@ MOVES:
 20 LOW KICK
 25 LEER
 36 FOCUS ENERGY
-44 SEISMIC TOSS
 52 SUBMISSION
+44 SEISMIC TOSS
 TM: 1 5 6 8 9 10 15 17 18 19 20 26 27 28 31 32 34 35 38 40 44 48 50
 HM: 4
 
@@ -3609,8 +3609,8 @@ TM: 6 8 9 10 11 12 13 14 15 20 31 32 33 34 39 40 44 50
 HM: 3
 
 NUMBER: 135
-NAME: JOL
-SURNAME: TEON
+NAME: JOLT
+SURNAME: EON
 TYPE1: ELECTRIC
 DEX1: It concentrates the weak electric charges emitted by its cells and launches wicked lightning bolts.
 DEX2: Every hair on its body stands sharply on end if it becomes charged with electricity.
@@ -3636,8 +3636,8 @@ TM: 6 8 9 10 15 20 24 25 31 32 33 34 39 40 44 45 50
 HM: 5
 
 NUMBER: 136
-NAME: FLAR
-SURNAME: EON
+NAME: FLARE
+SURNAME: ON
 TYPE1: FIRE
 DEX1: It has a flame chamber inside its body. It inhales, then blows out powerful flames.
 DEX2: It fluffs out the fur on its collar to cool down its body temperature.
