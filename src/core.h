@@ -1465,10 +1465,23 @@ public:
 			m2.queue.erase(m2.queue.begin());
 		}
 	}
-	void battle(player& p, trainer& t) { // trainer battle
-		// TODO:  Implement trainer battle
+	void clear_nonvolatile() {
+		map<string, status_effect>::iterator it;
+		for (unsigned i = 0; i < 6; ++i) {
+			if (mc.team[i].defined) {
+				for (it = status.begin(); it != status.end(); it++) {
+					if (!it->second.nonvolatile) {
+						remove_status(mc.team[i], it->second.name, true);
+					}
+				}
+			}
+		}
 	}
-	void battle(player& p, mon& m) { // wild pokemon
+	bool battle(player& p, trainer& t) { // trainer battle
+		// TODO:  Implement trainer battle
+		return true;
+	}
+	bool battle(player& p, mon& m) { // wild pokemon
 		int i;
 		int index;
 		int escape_attempts = 0;
@@ -1531,7 +1544,7 @@ public:
 								do_alert(string("Wild ") + get_nickname(m) + string(" was captured!")); // TODO:  Fact-check string
 								p.team[i] = m;
 								g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
-								return;
+								return true;
 							}
 						}
 						// TODO:  Implement storage
@@ -1543,7 +1556,8 @@ public:
 					if (run_away(p.team[mc.selected], m, escape_attempts)) {
 						do_alert(string("Got away safely!"));
 						g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
-						break;
+						clear_nonvolatile();
+						return false;
 					}
 					else {
 						do_alert(string("Couldn't get away!"));
@@ -1582,10 +1596,13 @@ public:
 					// TODO:  Handle defeat
 					do_alert("You lost!");
 					g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
-					break;
+					clear_nonvolatile();
+					return false;
 				}
 			}
 		}
+		clear_nonvolatile();
+		return true;
 	}
 	void do_turn(mon& m1, mon& m2) {
 		// TODO:  Expand this to support items, fleeing, and switching.
