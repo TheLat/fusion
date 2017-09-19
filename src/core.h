@@ -1994,7 +1994,9 @@ public:
 						i = i + 1;
 					}
 					levels[levelname].trainers[d.name] = d;
+					std::getline(f, line);
 				}
+				std::getline(f, line);
 			}
 			if (line == "TELEPORT")
 			{
@@ -2859,6 +2861,7 @@ public:
 			}
 			update_level();
 			if (interact) {
+				vector<int> choices;
 				interact = false;
 				for (unsigned i = 0; i < levels[current_level].characters.size(); ++i) {
 					if (!levels[current_level].characters[i].active)
@@ -2874,7 +2877,6 @@ public:
 							levels[current_level].characters[i].dir = DOWN;
 						string s = levels[current_level].characters[i].interactions[mc.interaction[levels[current_level].characters[i].name]];
 						string s2, s3;
-						vector<int> choices;
 						choices.clear();
 						bool advance;
 						advance = true;
@@ -2905,7 +2907,24 @@ public:
 									s.erase(0, s.find("|"));
 									s3.erase(s3.find("|"), s3.length());
 								}
+								else {
+									s = "";
+								}
 								mc.values[s2] = stoi(s3);
+							}
+							else if (s.find("GET:") == 0) {
+								s.erase(0, string("GET:").length());
+								s2 = s;
+								s.erase(0, s.find(":") + 1);
+								s2.erase(s2.find(":"), s2.length());
+								if (s.find("|") != -1) {
+									s.erase(0, s.find("|"));
+								}
+								else {
+									s = "";
+								}
+								choices.clear();
+								choices.push_back(e.mc.values[s2]);
 							}
 							else if (s.find("ADVANCE") == 0) {
 								s.erase(0, string("ADVANCE:").length());
@@ -3096,6 +3115,7 @@ public:
 										}
 									}
 								}
+								update_level();
 							}
 							else if (s.find("ACTIVATE:") == 0) {
 								s2 = s;
@@ -3113,6 +3133,32 @@ public:
 										}
 									}
 								}
+								update_level();
+							}
+							else if (s.find("!:") == 0) {
+								int clear_point = g.draw_list.size();
+								s2 = s;
+								s2.erase(0, string("!:").length());
+								if (s2.find("|") != -1) {
+									s2.erase(s2.find("|"), s2.length());
+								}
+								else
+									s = "";
+								if (s2 == "PLAYER") {
+									g.push_quad_load(-0.1f, (0.5f / 4.5f) + 0.0416f, 0.2f, 1.0f / 4.5f, string("../resources/images/speechbubble.png"));
+								}
+								else {
+									map<string, level>::iterator it;
+									for (it = levels.begin(); it != levels.end(); it++) {
+										for (unsigned k = 0; k < it->second.characters.size(); ++k) {
+											if (it->second.characters[k].name == s2) {
+												g.push_quad_load((it->second.characters[k].loc.x - (mc.loc.x + 0.5)) / 5.0f, (0.5 - it->second.characters[k].loc.y + mc.loc.y) / 4.5f + 0.0416f, 0.2f, 1.0f / 4.5f, string("../resources/images/speechbubble.png"));
+											}
+										}
+									}
+								}
+								do_menu("BLANK", "BLANK");
+								g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
 							}
 							else if (s.find("SOUND:") == 0) {
 								// TODO: Implement sound playing
