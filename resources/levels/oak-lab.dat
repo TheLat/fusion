@@ -101,25 +101,26 @@ END
 oak-lab-ball1 orb 6 3 NO_WANDER
 INTERACTIONS
 MENU:ALERT:Those are POK{e-accent} BALLs. They contain POK{e-accent}MON!|NO_ADVANCE
-MENU:DEX_ENTRY:4-4|MENU:ALERT_YES_NO:So! You want the fire POK{e-accent}MON, CHARMANDER?|{ADVANCE:oak|DEACTIVATE:oak-lab-ball1|GIVE_MON:5:4-4|ADVANCE:oak-lab-ball1|ADVANCE:oak-lab-ball2|ADVANCE:oak-lab-ball3|ADVANCE:oak-lab-rival1|MOVE:oak-lab-rival1:0,1|MOVE:oak-lab-rival1:0,1|MOVE:oak-lab-rival1:1,0|MOVE:oak-lab-rival1:1,0|MOVE:oak-lab-rival1:1,0|MOVE:oak-lab-rival1:0,-1|MENU:ALERT:{RIVAL_NAME}: I'll take this one, then!|DEACTIVATE:oak-lab-ball2|MENU:ALERT:{RIVAL_NAME} received a SQUIRTLE!|SET:RIVALVALUE:0}{NO_ADVANCE}
+MENU:DEX_ENTRY:4-4|MENU:ALERT_YES_NO:So! You want the fire POK{e-accent}MON, CHARMANDER?|{ADVANCE:oak|DEACTIVATE:oak-lab-ball1|GIVE_MON:5:4-4|ADVANCE:oak-lab-ball1|ADVANCE:oak-lab-ball2|ADVANCE:oak-lab-ball3|ADVANCE:oak-lab-rival1|MOVE:oak-lab-rival1:0,1|MOVE:oak-lab-rival1:0,1|MOVE:oak-lab-rival1:1,0|MOVE:oak-lab-rival1:1,0|MOVE:oak-lab-rival1:1,0|MOVE:oak-lab-rival1:0,-1|MENU:ALERT:{RIVAL_NAME}: I'll take this one, then!|DEACTIVATE:oak-lab-ball2|MENU:ALERT:{RIVAL_NAME} received a SQUIRTLE!|SET:RIVALVALUE:0|ADVANCE:oak-lab-script2|ADVANCE:oak-lab-script3}{NO_ADVANCE}
 MENU:ALERT:That's PROF.OAK's last POK{e-accent}MON!
 END
 oak-lab-ball2 orb 7 3 NO_WANDER
 INTERACTIONS
 MENU:ALERT:Those are POK{e-accent} BALLs. They contain POK{e-accent}MON!|NO_ADVANCE
-MENU:DEX_ENTRY:7-7|MENU:ALERT_YES_NO:So! You want the water POK{e-accent}MON, SQUIRTLE?|{ADVANCE:oak|DEACTIVATE:oak-lab-ball2|GIVE_MON:5:7-7|ADVANCE:oak-lab-ball1|ADVANCE:oak-lab-ball2|ADVANCE:oak-lab-ball3|ADVANCE:oak-lab-rival1|MOVE:oak-lab-rival1:0,1|MOVE:oak-lab-rival1:0,1|MOVE:oak-lab-rival1:1,0|MOVE:oak-lab-rival1:1,0|MOVE:oak-lab-rival1:1,0|MOVE:oak-lab-rival1:1,0|MOVE:oak-lab-rival1:0,-1|MENU:ALERT:{RIVAL_NAME}: I'll take this one, then!|DEACTIVATE:oak-lab-ball3|MENU:ALERT:{RIVAL_NAME} received a BULBASAUR!|SET:RIVALVALUE:1}{NO_ADVANCE}
+MENU:DEX_ENTRY:7-7|MENU:ALERT_YES_NO:So! You want the water POK{e-accent}MON, SQUIRTLE?|{ADVANCE:oak|DEACTIVATE:oak-lab-ball2|GIVE_MON:5:7-7|ADVANCE:oak-lab-ball1|ADVANCE:oak-lab-ball2|ADVANCE:oak-lab-ball3|ADVANCE:oak-lab-rival1|MOVE:oak-lab-rival1:0,1|MOVE:oak-lab-rival1:0,1|MOVE:oak-lab-rival1:1,0|MOVE:oak-lab-rival1:1,0|MOVE:oak-lab-rival1:1,0|MOVE:oak-lab-rival1:1,0|MOVE:oak-lab-rival1:0,-1|MENU:ALERT:{RIVAL_NAME}: I'll take this one, then!|DEACTIVATE:oak-lab-ball3|MENU:ALERT:{RIVAL_NAME} received a BULBASAUR!|SET:RIVALVALUE:1|ADVANCE:oak-lab-script2|ADVANCE:oak-lab-script3}{NO_ADVANCE}
 MENU:ALERT:That's PROF.OAK's last POK{e-accent}MON!
 END
 oak-lab-ball3 orb 8 3 NO_WANDER
 INTERACTIONS
 MENU:ALERT:Those are POK{e-accent} BALLs. They contain POK{e-accent}MON!|NO_ADVANCE
-MENU:DEX_ENTRY:1-1|MENU:ALERT_YES_NO:So! You want the plant POK{e-accent}MON, BULBASAUR?|{ADVANCE:oak|DEACTIVATE:oak-lab-ball3|GIVE_MON:5:1-1|ADVANCE:oak-lab-ball1|ADVANCE:oak-lab-ball2|ADVANCE:oak-lab-ball3|ADVANCE:oak-lab-rival1|MOVE:oak-lab-rival1:0,1|MOVE:oak-lab-rival1:0,1|MOVE:oak-lab-rival1:1,0|MOVE:oak-lab-rival1:1,0||MOVE:oak-lab-rival1:0,-1|MENU:ALERT:{RIVAL_NAME}: I'll take this one, then!|DEACTIVATE:oak-lab-ball1|MENU:ALERT:{RIVAL_NAME} received a CHARMANDER!|SET:RIVALVALUE:2}{NO_ADVANCE}
+MENU:DEX_ENTRY:1-1|MENU:ALERT_YES_NO:So! You want the plant POK{e-accent}MON, BULBASAUR?|{ADVANCE:oak|DEACTIVATE:oak-lab-ball3|GIVE_MON:5:1-1|ADVANCE:oak-lab-ball1|ADVANCE:oak-lab-ball2|ADVANCE:oak-lab-ball3|ADVANCE:oak-lab-rival1|MOVE:oak-lab-rival1:0,1|MOVE:oak-lab-rival1:0,1|MOVE:oak-lab-rival1:1,0|MOVE:oak-lab-rival1:1,0||MOVE:oak-lab-rival1:0,-1|MENU:ALERT:{RIVAL_NAME}: I'll take this one, then!|DEACTIVATE:oak-lab-ball1|MENU:ALERT:{RIVAL_NAME} received a CHARMANDER!|SET:RIVALVALUE:2|ADVANCE:oak-lab-script2|ADVANCE:oak-lab-script3}{NO_ADVANCE}
 MENU:ALERT:That's PROF.OAK's last POK{e-accent}MON!
 END
 oak oak 5 2 DOWN INACTIVE
 INTERACTIONS
 SET_FACE:PLAYER:UP|MENU:ALERT:OAK: Now, {PLAYER_NAME}, which POK{e-accent}MON do you want?|NO_ADVANCE
 MENU:ALERT:OAK: If a wild POK{e-accent}MON appears, your POK{e-accent}MON can fight against it!|NO_ADVANCE
+MENU:ALERT:OAK: {PLAYER_NAME}, raise your young POK{e-accent}MON by making it fight!|NO_ADVANCE
 END
 oak-lab-script2 blank 5 7 INACTIVE
 FORCE_INTERACTION
@@ -127,13 +128,15 @@ FORCE_INTERACTION
 END
 INTERACTIONS
 SET_FACE:PLAYER:UP|MENU:ALERT:OAK: Hey! Don't go away yet!|MOVE:PLAYER:0,-1|NO_ADVANCE
+SET_FACE:oak-lab-rival1:DOWN|SET_FACE:PLAYER:UP|MENU:ALERT:{RIVAL_NAME}: Wait {PLAYER_NAME}!|MENU:ALERT:Let's check out our POK{e-accent}MON!|MENU:ALERT:Come one, I'll take you on!|GET:RIVALVALUE|{MOVE:oak-lab-rival1:-1,0}{MOVE:oak-lab-rival1:-1,0|MOVE:oak-lab-rival1:-1,0}{}|MOVE:oak-lab-rival1:-1,0|MOVE:oak-lab-rival1:0,1|GET:RIVALVALUE|{BATTLE:rival-oak-lab0}{BATTLE:rival-oak-lab1}{BATTLE:rival-oak-lab2}|{FULL_HEAL}{}|MENU:ALERT:{RIVAL_NAME}: Okay! I'll make my POK{e-accent}MON fight to toughen it up!|MENU:ALERT:{PLAYER_NAME}! Gramps! Smell you later!|MOVE:oak-lab-rival1:-1,0|MOVE:oak-lab-rival1:0,1|MOVE:oak-lab-rival1:0,1|MOVE:oak-lab-rival1:0,1|MOVE:oak-lab-rival1:0,1|MOVE:oak-lab-rival1:0,1|DEACTIVATE:oak-lab-rival1|DEACTIVATE:oak-lab-script2|DEACTIVATE:oak-lab-script3|ADVANCE:oak|ADVANCE:mom
 END
-oak-lab-script2 blank 4 7 INACTIVE
+oak-lab-script3 blank 4 7 INACTIVE
 FORCE_INTERACTION
 0 -1
 END
 INTERACTIONS
 SET_FACE:PLAYER:UP|MENU:ALERT:OAK: Hey! Don't go away yet!|MOVE:PLAYER:0,-1|NO_ADVANCE
+SET_FACE:oak-lab-rival1:DOWN|SET_FACE:PLAYER:UP|MENU:ALERT:{RIVAL_NAME}: Wait {PLAYER_NAME}!|MENU:ALERT:Let's check out our POK{e-accent}MON!|MENU:ALERT:Come one, I'll take you on!|GET:RIVALVALUE|{MOVE:oak-lab-rival1:-1,0}{MOVE:oak-lab-rival1:-1,0|MOVE:oak-lab-rival1:-1,0}{}|MOVE:oak-lab-rival1:-1,0|MOVE:oak-lab-rival1:-1,0|MOVE:oak-lab-rival1:0,1|GET:RIVALVALUE|{BATTLE:rival-oak-lab0}{BATTLE:rival-oak-lab1}{BATTLE:rival-oak-lab2}|{FULL_HEAL}{}|MENU:ALERT:{RIVAL_NAME}: Okay! I'll make my POK{e-accent}MON fight to toughen it up!|MENU:ALERT:{PLAYER_NAME}! Gramps! Smell you later!|MOVE:oak-lab-rival1:1,0|MOVE:oak-lab-rival1:0,1|MOVE:oak-lab-rival1:0,1|MOVE:oak-lab-rival1:0,1|MOVE:oak-lab-rival1:0,1|MOVE:oak-lab-rival1:0,1|DEACTIVATE:oak-lab-rival1|DEACTIVATE:oak-lab-script2|DEACTIVATE:oak-lab-script3|ADVANCE:oak|ADVANCE:mom
 END
 TRAINERS
 rival-oak-lab0 35 {RIVAL_NAME} rival1.png {{RIVAL_NAME}: WHAT? Unbelievable!{NEWLINE}I picked the wrong POK{e-accent}MON!}{{RIVAL_NAME}: Yeah! Am I great or what?} 7-7:5
