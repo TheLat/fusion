@@ -1465,16 +1465,19 @@ public:
 			m2.queue.erase(m2.queue.begin());
 		}
 	}
-	void clear_nonvolatile() {
+	void clear_volatile(mon& m) {
 		map<string, status_effect>::iterator it;
-		for (unsigned i = 0; i < 6; ++i) {
-			if (mc.team[i].defined) {
-				for (it = status.begin(); it != status.end(); it++) {
-					if (!it->second.nonvolatile) {
-						remove_status(mc.team[i], it->second.name, true);
-					}
+		if (m.defined) {
+			for (it = status.begin(); it != status.end(); it++) {
+				if (!it->second.nonvolatile) {
+					remove_status(m, it->second.name, true);
 				}
 			}
+		}
+	}
+	void team_clear_volatile() {
+		for (unsigned i = 0; i < 6; ++i) {
+			clear_volatile(mc.team[i]);
 		}
 	}
 	bool battle(player& p, trainer& t) { // trainer battle
@@ -1518,6 +1521,7 @@ public:
 				else if (choices[0] == 1) { // Player has selected Pokemon
 					p.team[mc.selected].queue.clear();
 					do_alert(get_nickname(p.team[mc.selected]) + string("! That's enough!"));
+					clear_volatile(p.team[mc.selected]);
 					mc.selected = choices[1];
 					do_alert(string("Go, ") + get_nickname(p.team[mc.selected]) + string("!"));
 					p.team[mc.selected].queue.clear();
@@ -1556,7 +1560,7 @@ public:
 					if (run_away(p.team[mc.selected], m, escape_attempts)) {
 						do_alert(string("Got away safely!"));
 						g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
-						clear_nonvolatile();
+						team_clear_volatile();
 						return false;
 					}
 					else {
@@ -1596,12 +1600,12 @@ public:
 					// TODO:  Handle defeat
 					do_alert("You lost!");
 					g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
-					clear_nonvolatile();
+					team_clear_volatile();
 					return false;
 				}
 			}
 		}
-		clear_nonvolatile();
+		team_clear_volatile();
 		return true;
 	}
 	void do_turn(mon& m1, mon& m2) {
