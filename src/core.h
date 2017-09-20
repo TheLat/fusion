@@ -2949,10 +2949,9 @@ public:
 							else if (s.find("GET:") == 0) {
 								s.erase(0, string("GET:").length());
 								s2 = s;
-								s.erase(0, s.find(":") + 1);
-								s2.erase(s2.find(":"), s2.length());
 								if (s.find("|") != -1) {
 									s.erase(0, s.find("|"));
+									s2.erase(s2.find("|"), s2.length());
 								}
 								else {
 									s = "";
