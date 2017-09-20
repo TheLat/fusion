@@ -427,6 +427,12 @@ public:
 					return string("");
 				return string("{NO}.") + mc.team[index].number;
 			}
+			else if (parse == "TEAM_MON_IMAGE"){
+				int index = stoi(temp);
+				if (!mc.team[index].defined)
+					return string("");
+				return mc.team[index].number + string(".png");
+			}
 			else if (parse == "TEAM_MON_CURRENT_HP"){
 				int index = stoi(temp);
 				if (!mc.team[index].defined)

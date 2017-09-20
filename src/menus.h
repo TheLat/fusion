@@ -158,7 +158,7 @@ public:
 							temp1.erase(temp1.find(" "), temp1.length());
 							line.erase(0, line.find(" ") + 1);
 							im.height = stof(temp1);
-							im.filename = line;
+							im.filename = get_special_string(line);
 							images.push_back(im);
 							std::getline(f, line);
 						}
