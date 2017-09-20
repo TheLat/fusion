@@ -1027,6 +1027,8 @@ public:
 		out.defined = true;
 		out.turn_count = 0;
 		out.nickname = "";
+		for (int x = 0; x < 4; ++x)
+			out.moves[x] = "";
 		level_up(out);
 		out.curr_hp = get_stat(out, HP);
 		if (out.level == 0) {
@@ -1498,6 +1500,7 @@ public:
 		double count;
 		int clear_point = g.draw_list.size();
 		g.push_box(-1.1f, -1.1f, 2.2f, 2.2f);
+		g.push_box(-1.0f, -1.0f, 2.0f, 0.6f);
 		mc.selected = -1;
 		// TODO:  Initial menu
 		for (i = 0; i < 6; ++i) {
@@ -1510,8 +1513,12 @@ public:
 		}
 		p.team[mc.selected].queue.clear();
 		m.queue.clear();
+		g.push_quad_load(0.1f, 0.1f, 0.9f, 0.9f, string("../resources/images/") + m.number + string(".png"));
 		do_alert(string("Wild ") + get_nickname(m) + string(" appeared!"));
 		do_alert(string("Go! ") + get_nickname(p.team[mc.selected]) + string("!"));
+		string temp = mc.team[mc.selected].number;
+		temp.erase(0, temp.find("-") + 1); // TODO:  Back views
+		g.push_quad_load(-1.0f, -0.5f, 0.9f, 0.9f, string("../resources/images/back/") + temp + string(".png"));
 		while (true) {
 			// TODO: Implement player battle menu
 			if (p.team[mc.selected].queue.size() == 0) {
