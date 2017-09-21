@@ -2250,8 +2250,8 @@ TM: 2 3 4 6 8 9 10 20 31 32 33 34 39 40 44 50
 HM: 1 2
 
 NUMBER: 84
-NAME: DO
-SURNAME: DUO
+NAME: DOD
+SURNAME: UO
 TYPE1: NORMAL
 TYPE2: FLYING
 DEX1: It lives on a grassy plain, where it can see a long way.
@@ -2279,8 +2279,8 @@ TM: 4 6 8 9 10 20 31 32 33 34 40 43 44 49 50
 HM: 0
 
 NUMBER: 85
-NAME: DOD
-SURNAME: RIO
+NAME: DO
+SURNAME: DRIO
 TYPE1: NORMAL
 TYPE2: FLYING
 DEX1: If an enemy takes its eyes off this Pok{e-accent}mon, it will be pecked severely.
