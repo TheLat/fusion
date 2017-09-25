@@ -217,7 +217,7 @@ public:
 		glLoadIdentity(); //Reset the camera
 		gluOrtho2D(-1, 1, -1, 1);
 	}
-	void push_quad(float x, float y, float width, float height, GLuint texture, string filename = string("")) {
+	unsigned push_quad(float x, float y, float width, float height, GLuint texture, string filename = string("")) {
 		quad q;
 		q.x = x;
 		q.y = y;
@@ -227,6 +227,7 @@ public:
 		if (texture == 0)
 			q.filename = filename;
 		draw_list.push_back(q);
+		return draw_list.size() - 1;
 	}
 	void draw_quad(quad &q) {
 		glBindTexture(GL_TEXTURE_2D, q.tex);
@@ -344,22 +345,25 @@ public:
 		push_quad(xmin + 0.1f, ymin, length - 0.2f, 0.1f, tex[string("arrow-bar-horizontal.bmp")]);
 	}
 	void push_arrow_box_right(float xmin, float ymin, float length, float height) {
-		push_quad(xmin, ymin + height - 0.1f, 0.1f, 0.1f, tex[string("corner-ul.bmp")]);
-		push_quad(xmin + length - 0.1f, ymin + height - 0.1f, 0.1f, 0.1f, tex[string("corner-ur.bmp")]);
-		push_quad(xmin + 0.1f, ymin + height - 0.1f, length - 0.2f, 0.1f, tex[string("bar-top.bmp")]);
-		push_quad(xmin, ymin + 0.1f, 0.1f, height - 0.2f, tex[string("bar-left.bmp")]);
-		push_quad(xmin + length - 0.1f, ymin + 0.1f, 0.1f, height - 0.2f, tex[string("bar-right.bmp")]);
-		push_quad(xmin + 0.1f, ymin + 0.1f, length - 0.2f, height - 0.2f, tex[string("space.bmp")]);
-		push_quad(xmin, ymin, 0.1f, 0.1f, tex[string("corner-bl.bmp")]);
-		push_quad(xmin + length - 0.1f, ymin, 0.1f, 0.1f, tex[string("corner-br.bmp")]);
-		push_quad(xmin + 0.1f, ymin, length - 0.2f, 0.1f, tex[string("bar-bottom.bmp")]);
+		push_quad(xmin, ymin + 0.1f, 0.1f, height - 0.1f, tex[string("arrow-bar-vertical-left.bmp")]);
+		push_quad(xmin, ymin, 0.1f, 0.1f, tex[string("arrow-bar-corner-ul.bmp")]);
+		push_quad(xmin + length - 0.1f, ymin, 0.1f, 0.1f, tex[string("arrow-right.bmp")]);
+		push_quad(xmin + 0.1f, ymin, length - 0.2f, 0.1f, tex[string("arrow-bar-horizontal.bmp")]);
 	}
-	void push_quad_load(float x, float y, float width, float height, string filename) {
+	unsigned push_hp_bar(float xmin, float ymin) {
+		unsigned ret = push_quad_load(xmin + 0.1f, ymin + 0.025f, 0.6f, 0.05f, string("../resources/images/hp-good.bmp"));
+		push_quad_load(xmin - 0.1f, ymin, 0.2f, 0.1f, string("../resources/images/hp.png"));
+		push_quad_load(xmin + 0.1f, ymin, 0.6f, 0.1f, string("../resources/images/hpbar-middle.png"));
+		push_quad_load(xmin, ymin, 0.1f, 0.1f, string("../resources/images/hpbar-left.png"));
+		push_quad_load(xmin + 0.7f, ymin, 0.1f, 0.1f, string("../resources/images/hpbar-right.png"));
+		return ret;
+	}
+	unsigned push_quad_load(float x, float y, float width, float height, string filename) {
 		if (!tex[filename]) {
 			tex[filename] = load_image(filename);
 			new_load = true;
 		}
-		push_quad(x, y, width, height, tex[filename], filename);
+		return push_quad(x, y, width, height, tex[filename], filename);
 	}
 	void alert(string s) {
 		push_box(-1.0f, -1.0f, 2.0f, 0.8f);

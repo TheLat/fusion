@@ -1488,6 +1488,21 @@ public:
 			clear_volatile(mc.team[i]);
 		}
 	}
+	float get_hp_percent(mon& m) {
+		return float(m.curr_hp) / float(get_stat(m, HP));
+	}
+	void rebuild_battle_hud(mon& p, mon& e, unsigned clear_point) {
+		m.lock();
+		g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
+		g.push_text(-0.9f, 0.8f, 1.5f, 0.1f, 0.1f, get_nickname(e));
+		g.push_text(-0.6f, 0.7f, 0.5f, 0.1f, 0.1f, string("{LEVEL}") + to_string(e.level));
+		g.push_text(1.0f - (float(get_nickname(p).length() * 0.1f)), -0.1f, 0.0f, 0.1f, 0.1f, get_nickname(p));
+		g.push_text(0.4f, -0.2f, 0.5f, 0.1f, 0.1f, string("{LEVEL}") + to_string(p.level));
+		string formatted_hp = "";
+		formatted_hp += to_string(p.curr_hp) + string("/") + to_string(get_stat(p, HP));
+		g.push_text(0.8f - (float(formatted_hp.length())*0.1f), -0.4f, 0.8f, 0.1f, 0.1f, formatted_hp);
+		m.unlock();
+	}
 	bool battle(player& p, trainer& t) { // trainer battle
 		// TODO:  Implement trainer battle
 		return true;
@@ -1513,12 +1528,18 @@ public:
 		}
 		p.team[mc.selected].queue.clear();
 		m.queue.clear();
-		g.push_quad_load(0.1f, 0.1f, 0.9f, 0.9f, string("../resources/images/") + m.number + string(".png"));
+		unsigned enemy_sprite = g.push_quad_load(0.1f, 0.1f, 0.9f, 0.9f, string("../resources/images/") + m.number + string(".png"));
+		unsigned enemy_hp_sprite = g.push_hp_bar(-0.7f, 0.7f);
 		do_alert(string("Wild ") + get_nickname(m) + string(" appeared!"));
 		do_alert(string("Go! ") + get_nickname(p.team[mc.selected]) + string("!"));
 		string temp = mc.team[mc.selected].number;
 		temp.erase(0, temp.find("-") + 1); // TODO:  Back views
-		g.push_quad_load(-1.0f, -0.422f, 0.9f, 0.9f, string("../resources/images/back/") + temp + string(".png"));
+		unsigned team_sprite = g.push_quad_load(-1.0f, -0.422f, 0.9f, 0.9f, string("../resources/images/back/") + temp + string(".png"));
+		g.push_arrow_box_left(-0.1f, -0.4f, 1.0f, 0.3f);
+		g.push_arrow_box_right(-0.9f, 0.6f, 1.0f, 0.2f);
+		unsigned team_hp_sprite = g.push_hp_bar(0.1f, -0.2f);
+		unsigned hud_index = g.draw_list.size();
+		rebuild_battle_hud(mc.team[mc.selected], m, hud_index);
 		while (true) {
 			// TODO: Implement player battle menu
 			if (p.team[mc.selected].queue.size() == 0) {
