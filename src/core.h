@@ -1613,6 +1613,31 @@ public:
 			m.queue.push_back(m.moves[index]);
 			m.pp[index]--;
 			do_turn(p.team[mc.selected], m);
+			float f;
+			f = get_hp_percent(p.team[mc.selected]);
+			g.draw_list[team_hp_sprite].width = 0.6f * f;
+			if (f < 0.66f) {
+				g.draw_list[team_hp_sprite].filename = string("../resources/images/hp-medium.bmp");
+				g.draw_list[team_hp_sprite].tex = g.tex[string("../resources/images/hp-medium.bmp")];
+				g.new_load = true;
+			}
+			if (f < 0.33f) {
+				g.draw_list[team_hp_sprite].filename = string("../resources/images/hp-bad.bmp");
+				g.draw_list[team_hp_sprite].tex = g.tex[string("../resources/images/hp-bad.bmp")];
+				g.new_load = true;
+			}
+			f = get_hp_percent(m);
+			g.draw_list[enemy_hp_sprite].width = 0.6f * f;
+			if (f < 0.66f) {
+				g.draw_list[enemy_hp_sprite].filename = string("../resources/images/hp-medium.bmp");
+				g.draw_list[enemy_hp_sprite].tex = g.tex[string("../resources/images/hp-medium.bmp")];
+				g.new_load = true;
+			}
+			if (f < 0.33f) {
+				g.draw_list[enemy_hp_sprite].filename = string("../resources/images/hp-bad.bmp");
+				g.draw_list[enemy_hp_sprite].tex = g.tex[string("../resources/images/hp-bad.bmp")];
+				g.new_load = true;
+			}
 			if (is_KO(m)) {
 				do_alert(string("Enemy ") + get_nickname(m) + string(" fainted!"));
 				gain_exp(p.team[mc.selected], m, 1);
