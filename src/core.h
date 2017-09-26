@@ -1638,6 +1638,7 @@ public:
 				g.draw_list[enemy_hp_sprite].tex = g.tex[string("../resources/images/hp-bad.bmp")];
 				g.new_load = true;
 			}
+			rebuild_battle_hud(mc.team[mc.selected], m, hud_index);
 			if (is_KO(m)) {
 				do_alert(string("Enemy ") + get_nickname(m) + string(" fainted!"));
 				gain_exp(p.team[mc.selected], m, 1);
