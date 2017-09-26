@@ -350,8 +350,14 @@ public:
 		push_quad(xmin + length - 0.1f, ymin, 0.1f, 0.1f, tex[string("arrow-right.bmp")]);
 		push_quad(xmin + 0.1f, ymin, length - 0.2f, 0.1f, tex[string("arrow-bar-horizontal.bmp")]);
 	}
-	unsigned push_hp_bar(float xmin, float ymin) {
-		unsigned ret = push_quad_load(xmin + 0.1f, ymin + 0.025f, 0.6f, 0.05f, string("../resources/images/hp-good.bmp"));
+	unsigned push_hp_bar(float xmin, float ymin, float hp) {
+		unsigned ret;
+		if (hp > 0.66f)
+			ret = push_quad_load(xmin + 0.1f, ymin + 0.025f, 0.6f * hp, 0.05f, string("../resources/images/hp-good.bmp"));
+		else if (hp > 0.33f)
+			ret = push_quad_load(xmin + 0.1f, ymin + 0.025f, 0.6f * hp, 0.05f, string("../resources/images/hp-medium.bmp"));
+		else
+			ret = push_quad_load(xmin + 0.1f, ymin + 0.025f, 0.6f * hp, 0.05f, string("../resources/images/hp-bad.bmp"));
 		push_quad_load(xmin - 0.1f, ymin, 0.2f, 0.1f, string("../resources/images/hp.png"));
 		push_quad_load(xmin + 0.1f, ymin, 0.6f, 0.1f, string("../resources/images/hpbar-middle.png"));
 		push_quad_load(xmin, ymin, 0.1f, 0.1f, string("../resources/images/hpbar-left.png"));

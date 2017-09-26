@@ -105,6 +105,8 @@ public:
 	vector<string> status;
 	vector<string> queue;
 	string nickname;
+	unsigned hp_bar_index;
+	unsigned hud_index;
 	mon() { defined = false; }
 	mon& operator=(mon& m) {
 		for (int i = 0; i < SIZE; ++i) {
@@ -1178,6 +1180,9 @@ public:
 		m.curr_hp = m.curr_hp - damage_amount;
 		if (m.curr_hp < 0)
 			m.curr_hp = 0;
+		resize_hp_bars(m);
+		if (m.hud_index)
+			rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected], m.hud_index);
 	}
 	bool status_immunity(mon& m, string move) {
 		for (unsigned i = 0; i < moves[move].special.size(); ++i) {
@@ -1491,6 +1496,25 @@ public:
 	float get_hp_percent(mon& m) {
 		return float(m.curr_hp) / float(get_stat(m, HP));
 	}
+	void resize_hp_bars(mon& m) {
+		float f = get_hp_percent(m);
+		g.draw_list[m.hp_bar_index].width = 0.6f * f;
+		if (f > 0.66f) {
+			g.draw_list[m.hp_bar_index].filename = string("../resources/images/hp-good.bmp");
+			g.draw_list[m.hp_bar_index].tex = g.tex[string("../resources/images/hp-good.bmp")];
+			g.new_load = true;
+		}
+		else if (f > 0.33f) {
+			g.draw_list[m.hp_bar_index].filename = string("../resources/images/hp-medium.bmp");
+			g.draw_list[m.hp_bar_index].tex = g.tex[string("../resources/images/hp-medium.bmp")];
+			g.new_load = true;
+		}
+		else {
+			g.draw_list[m.hp_bar_index].filename = string("../resources/images/hp-bad.bmp");
+			g.draw_list[m.hp_bar_index].tex = g.tex[string("../resources/images/hp-bad.bmp")];
+			g.new_load = true;
+		}
+	}
 	void rebuild_battle_hud(mon& p, mon& e, unsigned clear_point) {
 		m.lock();
 		g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
@@ -1529,7 +1553,8 @@ public:
 		p.team[mc.selected].queue.clear();
 		m.queue.clear();
 		unsigned enemy_sprite = g.push_quad_load(0.1f, 0.1f, 0.9f, 0.9f, string("../resources/images/") + m.number + string(".png"));
-		unsigned enemy_hp_sprite = g.push_hp_bar(-0.7f, 0.7f);
+		m.hp_bar_index = g.push_hp_bar(-0.7f, 0.7f, get_hp_percent(m));
+		m.hud_index = 0;
 		do_alert(string("Wild ") + get_nickname(m) + string(" appeared!"));
 		do_alert(string("Go! ") + get_nickname(p.team[mc.selected]) + string("!"));
 		string temp = mc.team[mc.selected].number;
@@ -1537,8 +1562,13 @@ public:
 		unsigned team_sprite = g.push_quad_load(-1.0f, -0.422f, 0.9f, 0.9f, string("../resources/images/back/") + temp + string(".png"));
 		g.push_arrow_box_left(-0.1f, -0.4f, 1.0f, 0.3f);
 		g.push_arrow_box_right(-0.9f, 0.6f, 1.0f, 0.2f);
-		unsigned team_hp_sprite = g.push_hp_bar(0.1f, -0.2f);
+		unsigned team_hp_sprite = g.push_hp_bar(0.1f, -0.2f, get_hp_percent(mc.team[mc.selected]));
 		unsigned hud_index = g.draw_list.size();
+		m.hud_index = hud_index;
+		for (i = 0; i < 6; ++i) {
+			mc.team[i].hp_bar_index = team_hp_sprite;
+			mc.team[i].hud_index = hud_index;
+		}
 		rebuild_battle_hud(mc.team[mc.selected], m, hud_index);
 		while (true) {
 			// TODO: Implement player battle menu
@@ -1613,32 +1643,6 @@ public:
 			m.queue.push_back(m.moves[index]);
 			m.pp[index]--;
 			do_turn(p.team[mc.selected], m);
-			float f;
-			f = get_hp_percent(p.team[mc.selected]);
-			g.draw_list[team_hp_sprite].width = 0.6f * f;
-			if (f < 0.66f) {
-				g.draw_list[team_hp_sprite].filename = string("../resources/images/hp-medium.bmp");
-				g.draw_list[team_hp_sprite].tex = g.tex[string("../resources/images/hp-medium.bmp")];
-				g.new_load = true;
-			}
-			if (f < 0.33f) {
-				g.draw_list[team_hp_sprite].filename = string("../resources/images/hp-bad.bmp");
-				g.draw_list[team_hp_sprite].tex = g.tex[string("../resources/images/hp-bad.bmp")];
-				g.new_load = true;
-			}
-			f = get_hp_percent(m);
-			g.draw_list[enemy_hp_sprite].width = 0.6f * f;
-			if (f < 0.66f) {
-				g.draw_list[enemy_hp_sprite].filename = string("../resources/images/hp-medium.bmp");
-				g.draw_list[enemy_hp_sprite].tex = g.tex[string("../resources/images/hp-medium.bmp")];
-				g.new_load = true;
-			}
-			if (f < 0.33f) {
-				g.draw_list[enemy_hp_sprite].filename = string("../resources/images/hp-bad.bmp");
-				g.draw_list[enemy_hp_sprite].tex = g.tex[string("../resources/images/hp-bad.bmp")];
-				g.new_load = true;
-			}
-			rebuild_battle_hud(mc.team[mc.selected], m, hud_index);
 			if (is_KO(m)) {
 				do_alert(string("Enemy ") + get_nickname(m) + string(" fainted!"));
 				gain_exp(p.team[mc.selected], m, 1);
