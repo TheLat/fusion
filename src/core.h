@@ -1587,6 +1587,13 @@ public:
 					do_alert(get_nickname(p.team[mc.selected]) + string("! That's enough!"));
 					clear_volatile(p.team[mc.selected]);
 					mc.selected = choices[1];
+					temp = mc.team[mc.selected].number;
+					temp.erase(0, temp.find("-") + 1); // TODO:  Back views
+					g.draw_list[team_sprite].filename = string("../resources/images/back/") + temp + string(".png");
+					g.draw_list[team_sprite].tex = g.tex[string("../resources/images/back/") + temp + string(".png")];
+					g.new_load = true;
+					resize_hp_bars(mc.team[mc.selected]);
+					rebuild_battle_hud(mc.team[mc.selected], m, hud_index);
 					do_alert(string("Go, ") + get_nickname(p.team[mc.selected]) + string("!"));
 					p.team[mc.selected].queue.clear();
 					p.team[mc.selected].queue.push_back(string(""));
@@ -1667,6 +1674,13 @@ public:
 					team_clear_volatile();
 					return false;
 				}
+				temp = mc.team[mc.selected].number;
+				temp.erase(0, temp.find("-") + 1); // TODO:  Back views
+				g.draw_list[team_sprite].filename = string("../resources/images/back/") + temp + string(".png");
+				g.draw_list[team_sprite].tex = g.tex[string("../resources/images/back/") + temp + string(".png")];
+				g.new_load = true;
+				resize_hp_bars(mc.team[mc.selected]);
+				rebuild_battle_hud(mc.team[mc.selected], m, hud_index);
 			}
 		}
 		team_clear_volatile();
