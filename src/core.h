@@ -283,6 +283,10 @@ public:
 		}
 		return out;
 	}
+	void push_hp_bar_if_exists(float x, float y, int index) {
+		if (mc.team[index].defined)
+			g.push_hp_bar(x, y, get_hp_percent(mc.team[index]));
+	}
 	string get_special_string(string in) {
 		string parse;
 		string out;

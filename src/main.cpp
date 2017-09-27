@@ -64,6 +64,9 @@ bool is_menu(string s) {
 		return false;
 	return true;
 }
+void push_hp_bar_if_exists(float x, float y, int index) {
+	e.push_hp_bar_if_exists(x, y, index);
+}
 int get_mon_move_size(int index){
 	int ret = 0;
 	for (int i = 0; i < 4; ++i) {

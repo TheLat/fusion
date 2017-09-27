@@ -7,6 +7,7 @@ extern graphics g;
 extern engine e;
 extern mutex m;
 extern string get_special_string(string in);
+extern void push_hp_bar_if_exists(float x, float y, int index);
 extern string get_item_effect(string in);
 extern int get_team_size();
 extern int get_active_mon_move_size();
@@ -42,7 +43,7 @@ public:
 	string type;
 	vector<image> images;
 	vector<box> boxes, arrowboxes;
-	vector<text> raw, display;
+	vector<text> raw, display, hp_bars;
 	vector<string> followup, reserve, reserve_followup;
 	int index, step, selection, columns, cursor, selection_cap, offset, cancel_option, scroll, max, replace_cancel;
 	float cursor_offset_x, cursor_offset_y;
@@ -113,6 +114,27 @@ public:
 						}
 						else
 							selection_cap = stoi(temp2);
+					}
+					else if (temp1 == "HP_BARS") {
+						std::getline(f, line);
+						while (line != "END") {
+							while (line.find("{CHOICE}") != -1) {
+								line.insert(line.find("{CHOICE}"), choice);
+								line.erase(line.find("{CHOICE}"), string("{CHOICE}").length());
+							}
+							temp1 = line;
+							temp1.erase(temp1.find(" "), temp1.length());
+							line.erase(0, line.find(" ") + 1);
+							t.xmin = stof(temp1);
+							temp1 = line;
+							temp1.erase(temp1.find(" "), temp1.length());
+							line.erase(0, line.find(" ") + 1);
+							t.ymin = stof(temp1);
+							temp1 = line;
+							t.s = to_string(stoi(line));
+							hp_bars.push_back(t);
+							std::getline(f, line);
+						}
 					}
 					else if (temp1 == "BOXES") {
 						std::getline(f, line);
@@ -392,6 +414,9 @@ public:
 				g.push_arrow_box_right(arrowboxes[i].xmin, arrowboxes[i].ymin, arrowboxes[i].length, arrowboxes[i].height);
 			else
 				g.push_arrow_box_left(arrowboxes[i].xmin, arrowboxes[i].ymin, arrowboxes[i].length, arrowboxes[i].height);
+		}
+		for (unsigned i = 0; i < hp_bars.size(); ++i) {
+			push_hp_bar_if_exists(hp_bars[i].xmin, hp_bars[i].ymin, stoi(hp_bars[i].s));
 		}
 		for (unsigned i = 0; i < images.size(); ++i) {
 			g.push_quad_load(images[i].xmin, images[i].ymin, images[i].length, images[i].height, string("../resources/images/") + images[i].filename);
