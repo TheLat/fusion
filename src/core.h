@@ -1056,7 +1056,11 @@ public:
 		double diff = double(max(min(winner.level - loser.level, 5), -10)) / 10.0;
 		exp *= (1.0 - diff);
 		winner.exp += int(exp);
-		level_up(winner, false); // TODO:  Switch to true when confirmation boxes are in.
+		for (unsigned i = 0; i < SIZE; ++i) {
+			winner.EV[i] += all_mon[loser.number].stats[i];
+		}
+		do_alert(get_nickname(winner) + string(" gained ") + to_string(int(exp)) + string(" EXP. Points!"));
+		level_up(winner, true); // TODO:  Switch to true when confirmation boxes are in.
 	}
 	int get_move_count(mon& m) {
 		int counter = 0;
@@ -1070,6 +1074,9 @@ public:
 		int counter = get_move_count(out);
 		while (out.level < 100 && level_to_exp[out.level + 1] <= out.exp) {
 			out.level++;
+			if (confirm_learn) {
+				do_alert(get_nickname(out) + string(" grew to level ") + to_string(out.level) + "!");
+			}
 			for (unsigned x = 0; x < all_mon[out.number].learned.size(); ++x) {
 				if (all_mon[out.number].learned[x].first == out.level) {
 					if (!confirm_learn) { // TODO:  OR Surface confirmation window
