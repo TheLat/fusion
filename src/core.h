@@ -188,6 +188,7 @@ public:
 	string name;
 	string image;
 	int payout;
+	float skill, knowledge;
 	string lose_message;
 	string win_message;
 	mon team[6];
@@ -2026,6 +2027,14 @@ public:
 					s2 = s;
 					s.erase(0, s.find(" ") + 1);
 					s2.erase(s2.find(" "), s2.length());
+					d.skill = stof(s2);
+					s2 = s;
+					s.erase(0, s.find(" ") + 1);
+					s2.erase(s2.find(" "), s2.length());
+					d.knowledge = stof(s2);
+					s2 = s;
+					s.erase(0, s.find(" ") + 1);
+					s2.erase(s2.find(" "), s2.length());
 					d.display_name = s2;
 					s2 = s;
 					s.erase(0, s.find(" ") + 1);
@@ -2058,6 +2067,9 @@ public:
 					d.lose_message = s2;
 					s.erase(0, i + 1);
 					i = 0;
+					for (unsigned j = 0; j < 6; ++j) {
+						d.team[j].defined = false;
+					}
 					while (s.find(":") != -1) {
 						if (s.find("|") == 0)
 							s.erase(0, 1);
@@ -2361,258 +2373,134 @@ public:
 		f.close();
 	}
 	void init_mon() {
-		string line, key;
+		string line, key, temp;
 		ifstream f("../resources/data/mon.dat");
 		char a = 1;
 		int level = 0;
-		a = f.get();
-		while (f.is_open()) {
+		while (f.is_open() && !f.eof()) {
 			line = "";
-			while (a == '\r' || a == '\n')
-				a = f.get();
-			while (a != ':') {
-				line = line + a;
-				a = f.get();
-				if (a == EOF) {
-					f.close();
-					return;
-				}
+			std::getline(f, temp);
+			if (temp.find(":") != -1) {
+				line = temp;
+				line.erase(line.find(":"), line.length());
+				temp.erase(0, temp.find(":") + 1);
+				while (temp.find(" ") == 0)
+					temp.erase(0, 1);
 			}
-			while (a == ' ' || a == ':')
-				a = f.get();
 			if (line == "NUMBER") {
-				key = "";
-				while (a != '\r' && a != '\n') {
-					key = key + a;
-					a = f.get();
-				}
-				all_mon[key].number = key;
+				key = temp;
+				all_mon[key].number = temp;
 				all_mon[key].defined = true;
 			}
 			else if (line == "NAME") {
-				line = "";
-				while (a != '\r' && a != '\n') {
-					line = line + a;
-					a = f.get();
-				}
-				all_mon[key].name = line;
+				all_mon[key].name = temp;
 			}
 			else if (line == "SURNAME") {
-				line = "";
-				while (a != '\r' && a != '\n') {
-					line = line + a;
-					a = f.get();
-				}
-				all_mon[key].name = all_mon[key].name + line;
+				all_mon[key].name = all_mon[key].name + temp;
 			}
 			else if (line == "SWITCH") {
-				line = "";
-				while (a != '\r' && a != '\n') {
-					line = line + a;
-					a = f.get();
-				}
 			}
 			else if (line == "TYPE1") {
-				line = "";
-				while (a != '\r' && a != '\n') {
-					line = line + a;
-					a = f.get();
-				}
-				all_mon[key].type1 = line;
+				all_mon[key].type1 = temp;
 			}
 			else if (line == "TYPE2") {
-				line = "";
-				while (a != '\r' && a != '\n') {
-					line = line + a;
-					a = f.get();
-				}
-				all_mon[key].type2 = line;
+				all_mon[key].type2 = temp;
 			}
 			else if (line == "DEX") {
-				line = "";
-				while (a != '\r' && a != '\n') {
-					line = line + a;
-					a = f.get();
-				}
-				all_mon[key].dex = all_mon[key].dex + line;
+				all_mon[key].dex = temp;
 			}
 			else if (line == "DEX1") {
-				line = "";
-				while (a != '\r' && a != '\n') {
-					line = line + a;
-					a = f.get();
-				}
-				all_mon[key].dex = all_mon[key].dex + line;
+				all_mon[key].dex = temp;
 			}
 			else if (line == "DEX2") {
-				line = "";
-				while (a != '\r' && a != '\n') {
-					line = line + a;
-					a = f.get();
-				}
-				all_mon[key].dex = all_mon[key].dex + string(" ") + line;
+				all_mon[key].dex = all_mon[key].dex + string(" ") + temp;
 			}
 			else if (line == "EXP_YIELD") {
-				line = "";
-				while (a != '\r' && a != '\n') {
-					line = line + a;
-					a = f.get();
-				}
-				all_mon[key].exp_yield = stoi(line);
+				all_mon[key].exp_yield = stoi(temp);
 			}
 			else if (line == "CATCHRATE") {
-				line = "";
-				while (a != '\r' && a != '\n') {
-					line = line + a;
-					a = f.get();
-				}
-				all_mon[key].catchrate = stoi(line);
+				all_mon[key].catchrate = stoi(temp);
 			}
 			else if (line == "HEIGHT") {
-				line = "";
-				while (a != '\r' && a != '\n') {
-					line = line + a;
-					a = f.get();
-				}
-				all_mon[key].height = stoi(line);
+				all_mon[key].height = stoi(temp);
 			}
 			else if (line == "WEIGHT") {
-				line = "";
-				while (a != '\r' && a != '\n') {
-					line = line + a;
-					a = f.get();
-				}
-				all_mon[key].weight = stof(line);
+				all_mon[key].weight = stof(temp);
 			}
 			else if (line == "HP") {
-				line = "";
-				while (a != '\r' && a != '\n') {
-					line = line + a;
-					a = f.get();
-				}
-				all_mon[key].stats[HP] = stoi(line);
+				all_mon[key].stats[HP] = stoi(temp);
 			}
 			else if (line == "ATTACK") {
-				line = "";
-				while (a != '\r' && a != '\n') {
-					line = line + a;
-					a = f.get();
-				}
-				all_mon[key].stats[ATTACK] = stoi(line);
+				all_mon[key].stats[ATTACK] = stoi(temp);
 			}
 			else if (line == "DEFENSE") {
-				line = "";
-				while (a != '\r' && a != '\n') {
-					line = line + a;
-					a = f.get();
-				}
-				all_mon[key].stats[DEFENSE] = stoi(line);
+				all_mon[key].stats[DEFENSE] = stoi(temp);
 			}
 			else if (line == "SPECIAL") {
-				line = "";
-				while (a != '\r' && a != '\n') {
-					line = line + a;
-					a = f.get();
-				}
-				all_mon[key].stats[SPECIAL] = stoi(line);
+				all_mon[key].stats[SPECIAL] = stoi(temp);
 			}
 			else if (line == "SPEED") {
-				line = "";
-				while (a != '\r' && a != '\n') {
-					line = line + a;
-					a = f.get();
-				}
-				all_mon[key].stats[SPEED] = stoi(line);
+				all_mon[key].stats[SPEED] = stoi(temp);
 			}
 			else if (line == "MOVES") {
 				pair<int, string> tempmove;
-				while (true) {
-					while (a == '\r' || a == '\n')
-						a = f.get();
-					if (a == 'E' || a == 'T') {
-						line = "";
-						while (a != ':') {
-							line = line + a;
-							a = f.get();
-						}
-						while (a == ':' || a == ' ')
-							a = f.get();
-						break;
-					}
-					line = "";
-					while (a != ' ') {
-						line = line + a;
-						a = f.get();
-					}
-					level = stoi(line);
-					line = "";
-					a = f.get();
-					while (a != '\r' && a != '\n') {
-						line = line + a;
-						a = f.get();
-					}
-					tempmove.first = level;
-					tempmove.second = line;
+				std::getline(f, temp);
+				while (temp.find(":") == -1) {
+					line = temp;
+					line.erase(line.find(" "), line.length());
+					temp.erase(0, temp.find(" ") + 1);
+					tempmove.first = stoi(line);
+					tempmove.second = temp;
 					all_mon[key].learned.push_back(tempmove);
+					std::getline(f, temp);
 				}
+				line = temp;
+				line.erase(line.find(":"), line.length());
+				temp.erase(0, temp.find(":") + 1);
 			}
 			if (line == "EVOLUTION") {
-				while (a == '\r' || a == '\n')
-					a = f.get();
-				while (true) {
+				pair<string, string> tempev;
+				std::getline(f, temp);
+				while (temp.find("TM") != 0) {
 					pair<string, string> tempev;
-					line = "";
-					while (a != ':') {
-						line = line + a;
-						a = f.get();
-					}
-					a = f.get();
+					line = temp;
+					line.erase(line.find(":"), line.length());
+					temp.erase(0, temp.find(":") + 1);
 					tempev.first = line;
-					line = "";
-					while (a != '\r' && a != '\n') {
-						line = line + a;
-						a = f.get();
-					}
-					tempev.second = line;
+					tempev.second = temp;
 					all_mon[key].evolution.push_back(tempev);
-					while (a == '\r' || a == '\n') {
-						a = f.get();
-					}
-					if (a == 'T') {
-						line = "";
-						while (a != ':') {
-							line = line + a;
-							a = f.get();
-						}
-						while (a != ' ' && a != '\r' && a != '\n')
-							a = f.get();
-						break;
-					}
+					std::getline(f, temp);
 				}
+				line = temp;
+				line.erase(line.find(":"), line.length());
+				temp.erase(0, temp.find(":") + 1);
 			}
 			if (line == "TM") {
-				while (a != '\r' && a != '\n') {
-					line = "";
-					while (a == ' ')
-						a = f.get();
-					while (a != ' ' && a != '\n') {
-						line = line + a;
-						a = f.get();
+				while (temp.find(" ") == 0)
+					temp.erase(0, 1);
+				while (temp != "") {
+					line = temp;
+					if (temp.find(" ") != -1) {
+						line.erase(line.find(" "), line.length());
+						temp.erase(0, temp.find(" ") + 1);
 					}
+					else
+						temp = "";
 					all_mon[key].TM[stoi(line)] = true;
 				}
 			}
 			if (line == "HM") {
-				while (a != '\r' && a != '\n' && a != EOF) {
-					line = "";
-					while (a == ' ')
-						a = f.get();
-					while (a != ' ' && a != '\n') {
-						line = line + a;
-						a = f.get();
+				while (temp.find(" ") == 0)
+					temp.erase(0, 1);
+				while (temp != "") {
+					line = temp;
+					if (temp.find(" ") != -1) {
+						line.erase(line.find(" "), line.length());
+						temp.erase(0, temp.find(" ") + 1);
 					}
+					else
+						temp = "";
 					all_mon[key].HM[stoi(line)] = true;
-					a = f.get();
 				}
 			}
 		}
