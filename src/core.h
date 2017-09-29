@@ -105,7 +105,7 @@ public:
 	vector<string> status;
 	vector<string> queue;
 	string nickname;
-	unsigned hp_bar_index;
+	unsigned hp_bar_index, exp_bar_index;
 	unsigned hud_index;
 	mon() { defined = false; }
 	mon& operator=(mon& m) {
@@ -1059,8 +1059,10 @@ public:
 		for (unsigned i = 0; i < SIZE; ++i) {
 			winner.EV[i] += all_mon[loser.number].stats[i];
 		}
+		resize_exp_bar(winner);
 		do_alert(get_nickname(winner) + string(" gained ") + to_string(int(exp)) + string(" EXP. Points!"));
 		level_up(winner, true); // TODO:  Switch to true when confirmation boxes are in.
+		resize_exp_bar(winner);
 	}
 	int get_move_count(mon& m) {
 		int counter = 0;
@@ -1508,6 +1510,14 @@ public:
 	float get_hp_percent(mon& m) {
 		return float(m.curr_hp) / float(get_stat(m, HP));
 	}
+	void resize_exp_bar(mon& m) {
+		if (m.exp_bar_index) {
+			float f = float(m.exp - level_to_exp[m.level]) / float(level_to_exp[m.level + 1] - level_to_exp[m.level]);
+			f = fmin(f, 1.0f);
+			g.draw_list[m.exp_bar_index].width = 0.85f * f;
+			g.draw_list[m.exp_bar_index].x = 0.85f * (1.0 - f);
+		}
+	}
 	void resize_hp_bars(mon& m) {
 		float f = get_hp_percent(m);
 		g.draw_list[m.hp_bar_index].width = 0.6f * f;
@@ -1575,12 +1585,16 @@ public:
 		g.push_arrow_box_left(-0.1f, -0.4f, 1.0f, 0.3f);
 		g.push_arrow_box_right(-0.9f, 0.6f, 1.0f, 0.2f);
 		unsigned team_hp_sprite = g.push_hp_bar(0.1f, -0.2f, get_hp_percent(mc.team[mc.selected]));
+		unsigned exp_bar_index = g.push_quad_load(0.0f, -0.35f, 0.0f, 0.025f, string("../resources/images/exp.bmp"));
 		unsigned hud_index = g.draw_list.size();
 		m.hud_index = hud_index;
 		for (i = 0; i < 6; ++i) {
 			mc.team[i].hp_bar_index = team_hp_sprite;
 			mc.team[i].hud_index = hud_index;
+			mc.team[i].exp_bar_index = 0;
 		}
+		mc.team[mc.selected].exp_bar_index = exp_bar_index;
+		resize_exp_bar(mc.team[mc.selected]);
 		rebuild_battle_hud(mc.team[mc.selected], m, hud_index);
 		while (true) {
 			// TODO: Implement player battle menu
@@ -1598,7 +1612,10 @@ public:
 					p.team[mc.selected].queue.clear();
 					do_alert(get_nickname(p.team[mc.selected]) + string("! That's enough!"));
 					clear_volatile(p.team[mc.selected]);
+					mc.team[mc.selected].exp_bar_index = 0;
 					mc.selected = choices[1];
+					mc.team[mc.selected].exp_bar_index = exp_bar_index;
+					resize_exp_bar(mc.team[mc.selected]);
 					temp = mc.team[mc.selected].number;
 					temp.erase(0, temp.find("-") + 1); // TODO:  Back views
 					g.draw_list[team_sprite].filename = string("../resources/images/back/") + temp + string(".png");
@@ -1673,9 +1690,10 @@ public:
 				do_alert(get_nickname(p.team[mc.selected]) + string(" fainted!"));
 				for (i = 0; i < 6; ++i) {
 					if (!is_KO(p.team[i])) {
+						mc.team[mc.selected].exp_bar_index = 0;
 						mc.selected = i;
-						if (i == 5)
-							i--;
+						mc.team[mc.selected].exp_bar_index = exp_bar_index;
+						resize_exp_bar(mc.team[mc.selected]);
 						break;
 					}
 				}
