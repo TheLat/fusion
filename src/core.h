@@ -212,7 +212,31 @@ int min(int a, int b) {
 	}
 	return b;
 }
+float min(float a, float b) {
+	if (a < b) {
+		return a;
+	}
+	return b;
+}
+double min(double a, double b) {
+	if (a < b) {
+		return a;
+	}
+	return b;
+}
 int max(int a, int b) {
+	if (a > b) {
+		return a;
+	}
+	return b;
+}
+float max(float a, float b) {
+	if (a > b) {
+		return a;
+	}
+	return b;
+}
+double max(double a, double b) {
 	if (a > b) {
 		return a;
 	}
@@ -1185,9 +1209,12 @@ public:
 		m.curr_hp = m.curr_hp + heal_amount;
 		if (m.curr_hp > get_stat(m, HP))
 			m.curr_hp = get_stat(m, HP);
+		resize_hp_bars(m);
+		if (m.hud_index)
+			rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected], m.hud_index);
 	}
 	void deal_damage(mon& m, int damage_amount) {
-		if (damage_amount < 0) {
+		if (damage_amount <= 0) {
 			// TODO:  Error logic here
 			return;
 		}
@@ -1230,20 +1257,13 @@ public:
 	}
 	bool apply_status(mon& m, string s) {
 		string s2, s3;
-		bool first = true;
 		s2 = "";
 		s3 = "";
 		if (s.find(':') != -1) {
-			for (unsigned i = 0; i < s.size(); ++i) {
-				if (s[i] == ':') {
-					first = false;
-					continue;
-				}
-				if (first)
-					s2 += s[i];
-				else
-					s3 += s[i];
-			}
+			s2 = s;
+			s3 = s;
+			s2.erase(s2.find(":"), s2.length());
+			s3.erase(0, s3.find(":") + 1);
 		}
 		else {
 			s2 = s;
@@ -1286,9 +1306,16 @@ public:
 			}
 		}
 		else {
-			int max = stoi(s3);
-			for (int i = 0; i < max; ++i) {
-				m.status.push_back(s2);
+			int value = 1;
+			if (s3[0] - '0' >= 0 && s3[0] - '0' <= 9)
+				value = stoi(s3);
+			if (s2 == "CLEAR_STATUS") {
+				remove_status(m, s3, true);
+			}
+			else {
+				for (int i = 0; i < value; ++i) {
+					m.status.push_back(s2);
+				}
 			}
 		}
 		return true;
@@ -1301,7 +1328,7 @@ public:
 					do_alert(string("The wild ") + get_nickname(self) + string(" is hurt by the poison!"));
 				else
 					do_alert(get_nickname(self) + string(" is hurt by the poison!"));
-				deal_damage(self, int(double(get_stat(self, HP)) / 16.0));
+				deal_damage(self, int(max(double(get_stat(self, HP)) / 16.0, 1.0)));
 			}
 			else if (self.status[i] == "BURN") {
 				// TODO: Animation goes here
@@ -1309,7 +1336,7 @@ public:
 					do_alert(string("The wild ") + get_nickname(self) + string(" is hurt by its burn!"));
 				else
 					do_alert(get_nickname(self) + string(" is hurt by its burn!"));
-				deal_damage(self, int(double(get_stat(self, HP)) / 16.0));
+				deal_damage(self, int(max(double(get_stat(self, HP)) / 16.0, 1.0)));
 			}
 			else if (self.status[i] == "SEED") {
 				// TODO: Animation goes here
@@ -1317,8 +1344,8 @@ public:
 					do_alert(string("The wild ") + get_nickname(self) + string("'s health was sapped by Leech Seed!"));
 				else
 					do_alert(get_nickname(self) + string("'s health was sapped by Leech Seed!"));
-				deal_damage(self, int(double(get_stat(self, HP)) / 16.0));
-				heal_damage(other, int(double(get_stat(self, HP)) / 16.0));
+				deal_damage(self, int(max(double(get_stat(self, HP)) / 16.0, 1.0)));
+				heal_damage(other, int(max(double(get_stat(self, HP)) / 16.0, 1.0)));
 			}
 			else if (self.status[i] == "TOXIC") {
 				// TODO: Animation goes here
@@ -1326,7 +1353,7 @@ public:
 					do_alert(string("The wild ") + get_nickname(self) + string(" is hurt by the poison!"));
 				else
 					do_alert(get_nickname(self) + string(" is hurt by the poison!"));
-				deal_damage(self, int(self.turn_count * double(get_stat(self, HP)) / 16.0));
+				deal_damage(self, int(self.turn_count * max(double(get_stat(self, HP)) / 16.0, 1.0)));
 			}
 		}
 	}
