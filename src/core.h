@@ -1364,6 +1364,7 @@ public:
 		int repeat = 1;
 		bool success = false;
 		bool miss = false;
+		string s2, s3;
 		do_alert(get_nickname(attacker) + string(" used ") + move + string("!"));
 		if (! skip_accuracy_check && moves[move].acc < int(random(0.0, 100.0))) {
 			miss = true;
@@ -1396,7 +1397,16 @@ public:
 					}
 				}
 				for (unsigned j = 0; j < moves[move].self.size(); ++j) {
-					success = apply_status(attacker, moves[move].self[j]) || success;
+					if (moves[move].self[j].find("RECOIL") != -1) {
+						s2 = moves[move].self[j];
+						s3 = moves[move].self[j];
+						s2.erase(s2.find(":"), s2.length());
+						s3.erase(0, s3.find(":") + 1);
+						deal_damage(attacker, int(max(double(dam)*(double(stoi(s3)) / 100.0), 1.0)));
+					}
+					else {
+						success = apply_status(attacker, moves[move].self[j]) || success;
+					}
 				}
 			}
 			for (unsigned i = 0; i < moves[move].additional.size(); ++i) {
