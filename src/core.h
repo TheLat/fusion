@@ -1365,6 +1365,12 @@ public:
 		bool success = false;
 		bool miss = false;
 		string s2, s3;
+		if (in_status(attacker, string("FLINCH"))) {
+			do_alert(get_nickname(attacker) + string(" flinched!"));
+			remove_status(attacker, string("FLINCH"), true);
+			attacker.queue.clear();
+			return false;
+		}
 		do_alert(get_nickname(attacker) + string(" used ") + move + string("!"));
 		if (! skip_accuracy_check && moves[move].acc < int(random(0.0, 100.0))) {
 			miss = true;
@@ -1728,6 +1734,8 @@ public:
 			m.queue.push_back(m.moves[index]);
 			m.pp[index]--;
 			do_turn(p.team[mc.selected], m);
+			remove_status(p.team[mc.selected], string("FLINCH"), true);
+			remove_status(m, string("FLINCH"), true);
 			if (is_KO(m)) {
 				do_alert(string("Enemy ") + get_nickname(m) + string(" fainted!"));
 				gain_exp(p.team[mc.selected], m, 1);
