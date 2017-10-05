@@ -1046,6 +1046,7 @@ public:
 	}
 	void make_mon(string ID, int e_level, mon& out) {
 		out.level = 0;
+		out.status.clear();
 		out.exp = level_to_exp[e_level];
 		if (out.exp == -1)
 			int lkjawgjkalsgkj = 0;
@@ -1357,14 +1358,14 @@ public:
 			}
 		}
 	}
-	bool use_move(mon& attacker, mon& defender, string move) {
+	bool use_move(mon& attacker, mon& defender, string move, bool skip_accuracy_check = false) {
 		double pow = stoi(moves[move].pow);
 		bool crit;
 		int repeat = 1;
 		bool success = false;
 		bool miss = false;
 		do_alert(get_nickname(attacker) + string(" used ") + move + string("!"));
-		if (moves[move].acc < int(random(0.0, 100.0))) {
+		if (! skip_accuracy_check && moves[move].acc < int(random(0.0, 100.0))) {
 			miss = true;
 			if (pow == 0) {
 				do_alert(string("But, it failed!"));
@@ -1399,7 +1400,7 @@ public:
 				}
 			}
 			for (unsigned i = 0; i < moves[move].additional.size(); ++i) {
-				success = use_move(attacker, defender, moves[move].additional[i]) || success;
+				success = use_move(attacker, defender, moves[move].additional[i], true) || success;
 			}
 		}
 		for (unsigned i = 0; i < moves[move].queue.size(); ++i) {
