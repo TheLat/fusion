@@ -1385,9 +1385,20 @@ public:
 		}
 		if (!miss) {
 			for (int i = 0; i < repeat; ++i) {
-				int dam = damage(attacker, defender, move, crit);
+				double mul;
+				int dam = damage(attacker, defender, move, crit, mul);
 				// TODO: Logic for detecting that a move has an x0 modifier.
 				deal_damage(defender, dam);
+				if (mul == 4.0)
+					do_alert("It's extremely effective!");
+				else if (mul == 2.0)
+					do_alert("It's super effective!");
+				else if (mul == 0.0)
+					do_alert("It had no effect!");
+				else if (mul == 0.5)
+					do_alert("It's not very effective...");
+				else if (mul == 0.25)
+					do_alert("It barely had an effect...");
 				if (crit)
 					do_alert(string("A critical hit!"));
 				if (!status_immunity(defender, move)) {
@@ -1778,8 +1789,9 @@ public:
 			do_turn_inner(m2, m1);
 		}
 	}
-	int damage(mon& attacker, mon& defender, string move, bool& crit) {
+	int damage(mon& attacker, mon& defender, string move, bool& crit, double &mul) {
 		double pow = stoi(moves[move].pow);
+		mul = 1.0;
 		crit = false;
 		if (pow == 0.0)
 			return 0;
@@ -1807,10 +1819,14 @@ public:
 		damage /= 250.0;
 		damage /= get_stat(defender, moves[move].defense, crit, false);
 		damage += 2.0;
-		if (all_mon[defender.number].type1 != "")
+		if (all_mon[defender.number].type1 != "") {
+			mul *= types[moves[move].type][all_mon[defender.number].type1];
 			damage *= types[moves[move].type][all_mon[defender.number].type1];
-		if (all_mon[defender.number].type2 != "")
+		}
+		if (all_mon[defender.number].type2 != "") {
+			mul *= types[moves[move].type][all_mon[defender.number].type2];
 			damage *= types[moves[move].type][all_mon[defender.number].type2];
+		}
 		if ((all_mon[attacker.number].type1 == moves[move].type) || (all_mon[attacker.number].type2 == moves[move].type))
 			damage *= 1.5;
 		if (crit) {
