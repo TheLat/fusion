@@ -1331,7 +1331,7 @@ public:
 					s4 = s4 + "rose!";
 				if (s.find("DOWN") != -1)
 					s4 = s4 + "fell!";
-				if (s4.find(" ") != -1)
+				if (s4.find("rose") != -1 || s4.find("fell") != -1)
 					do_alert(s4);
 				for (int i = 0; i < repeat; ++i)
 					m.status.push_back(s2);
@@ -1475,8 +1475,8 @@ public:
 			else {
 				string temp = moves[move].queue[i];
 				temp.erase(temp.find("x0-3"), 4);
-				repeat = weightedrand();
-				for (int j = 0; j < repeat; ++j)
+				int r = weightedrand();
+				for (int j = 0; j < r; ++j)
 					attacker.queue.push_back(temp);
 			}
 		}
