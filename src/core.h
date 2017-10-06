@@ -1405,6 +1405,8 @@ public:
 		bool success = false;
 		bool miss = false;
 		string s2, s3;
+		if (in_status(attacker, string("FLEE")) || in_status(defender, string("FLEE")))
+			return false;
 		if (in_status(attacker, string("FLINCH"))) {
 			do_alert(get_nickname(attacker) + string(" flinched!"));
 			remove_status(attacker, string("FLINCH"), true);
@@ -1798,6 +1800,14 @@ public:
 			m.queue.push_back(m.moves[index]);
 			m.pp[index]--;
 			do_turn(p.team[mc.selected], m);
+			if (in_status(m, string("FLEE"))) {
+				do_alert(get_nickname(m) + string(" got away!"));
+				break;
+			}
+			if (in_status(p.team[mc.selected], string("FLEE"))) {
+				do_alert("Got away safely!");
+				break;
+			}
 			remove_status(p.team[mc.selected], string("FLINCH"), true);
 			remove_status(m, string("FLINCH"), true);
 			if (is_KO(m)) {
