@@ -1717,7 +1717,8 @@ public:
 		resize_exp_bar(mc.team[mc.selected]);
 		rebuild_battle_hud(mc.team[mc.selected], m, hud_index);
 		while (true) {
-			// TODO: Implement player battle menu
+			if (in_status(p.team[mc.selected], string("RAGE")) && p.team[mc.selected].queue.size() == 0)
+				p.team[mc.selected].queue.push_back(string("RAGE2"));
 			if (p.team[mc.selected].queue.size() == 0) {
 				choices = do_menu(string("COMBAT_SELECT"));
 				while (choices.size() == 0 || choices[0] == -1) {
