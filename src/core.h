@@ -92,6 +92,7 @@ class mon {
 public:
 	string number;
 	bool defined;
+	bool enemy;
 	bool wild;
 	int IV[SIZE];
 	int EV[SIZE];
@@ -134,6 +135,7 @@ public:
 			this->queue.push_back(m.queue[i]);
 		}
 		this->defined = m.defined;
+		this->enemy = true;
 		return *this;
 	}
 };
@@ -1258,6 +1260,11 @@ public:
 	}
 	bool apply_status(mon& m, string s) {
 		string s2, s3;
+		int repeat = 1;
+		if (s.find("x2") != -1) {
+			s.erase(s.find("x2"), string("x2").length());
+			repeat = 2;
+		}
 		s2 = "";
 		s3 = "";
 		if (s.find(':') != -1) {
@@ -1300,7 +1307,33 @@ public:
 				}
 			}
 			else {
-				m.status.push_back(s2);
+				string s4 = "";
+				if (m.wild)
+					s4 = string("Wild ");
+				else if (m.enemy)
+					s4 = string("Enemy ");
+				s4 = s4 + get_nickname(m) + string("'s");
+				if (s.find("ATTACK") != -1)
+					s4 = s4 + " ATTACK ";
+				else if (s.find("DEFENSE") != -1)
+					s4 = s4 + " DEFENSE ";
+				else if (s.find("SPEED") != -1)
+					s4 = s4 + " SPEED ";
+				else if (s.find("SPECIAL") != -1)
+					s4 = s4 + " SPECIAL ";
+				else if (s.find("ACCURACY") != -1)
+					s4 = s4 + " ACCURACY ";
+				else if (s.find("EVASION") != -1)
+					s4 = s4 + " EVASION ";
+				if (repeat > 1)
+					s4 = s4 + "greatly ";
+				if (s.find("UP") != -1)
+					s4 = s4 + "rose!";
+				if (s.find("DOWN") != -1)
+					s4 = s4 + "fell!";
+				do_alert(s4);
+				for (int i = 0; i < repeat; ++i)
+					m.status.push_back(s2);
 			}
 			if (s2 == "TOXIC") {
 				remove_status(m, string("POISON"), true);
@@ -1696,6 +1729,7 @@ public:
 					// TODO:  Capture messages
 					if (out == 4) {
 						m.wild = false;
+						m.enemy = false;
 						// TODO:  Nickname menu
 						gain_exp(p.team[mc.selected], m, 1); // TODO:  Implement exp split
 						for (int i = 0; i < 6; ++i) {
@@ -3029,6 +3063,7 @@ public:
 									if (!mc.team[i].defined) {
 										make_mon(s2, l, mc.team[i]);
 										mc.team[i].wild = false;
+										mc.team[i].enemy = false;
 										// TODO: Nickname menu
 										do_menu(string("ALERT"), mc.name + string(" got ") + all_mon[mc.team[i].number].name + string("!"));
 										break;
