@@ -1306,6 +1306,12 @@ public:
 					m.status.push_back(s2);
 				}
 			}
+			else if (s2 == "CONFUSE") {
+				int max = int(random(2.0, 5.0));
+				for (int i = 0; i < max; ++i) {
+					m.status.push_back(s2);
+				}
+			}
 			else {
 				string s4 = "";
 				if (m.wild)
@@ -1405,7 +1411,25 @@ public:
 			attacker.queue.clear();
 			return false;
 		}
+		if (!skip_accuracy_check && in_status(attacker, string("CONFUSE"))) {
+			remove_status(attacker, string("CONFUSE"));
+			if (!in_status(attacker, string("CONFUSE"))) {
+				do_alert(get_nickname(attacker) + string(" is no longer confused!"));
+			}
+			else {
+				do_alert(get_nickname(attacker) + string(" is confused!"));
+				if (int(random(0.0, 100.0)) > 50) {
+					attacker.queue.clear();
+					return use_move(attacker, attacker, string("CONFUSED"), true);
+				}
+			}
+		}
+		// TODO: Special move messages
 		do_alert(get_nickname(attacker) + string(" used ") + move + string("!"));
+		for (unsigned i = 0; i < moves[move].special.size(); ++i) {
+			if (moves[move].special[i] == "UNAVOIDABLE")
+				skip_accuracy_check = true;
+		}
 		if (! skip_accuracy_check && moves[move].acc < int(random(0.0, 100.0))) {
 			miss = true;
 			if (pow == 0) {
