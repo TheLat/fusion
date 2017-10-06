@@ -180,7 +180,7 @@ POWER: 20
 SELF: RAGE
 DEFENSE: DEFENSE
 QUEUE: RAGE2
-NOTES: Attacks continuously. Attack increases when damage is taken.
+NOTES: Attacks continuously. Attack, defense, and special increase when damaged.
 
 MOVE: RAGE2
 TYPE: NORMAL

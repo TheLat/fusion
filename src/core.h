@@ -1331,7 +1331,8 @@ public:
 					s4 = s4 + "rose!";
 				if (s.find("DOWN") != -1)
 					s4 = s4 + "fell!";
-				do_alert(s4);
+				if (s4.find(" ") != -1)
+					do_alert(s4);
 				for (int i = 0; i < repeat; ++i)
 					m.status.push_back(s2);
 			}
@@ -1428,6 +1429,11 @@ public:
 				int dam = damage(attacker, defender, move, crit, mul);
 				// TODO: Logic for detecting that a move has an x0 modifier.
 				deal_damage(defender, dam);
+				if (dam > 0 && in_status(defender, string("RAGE"))) {
+					apply_status(defender, string("ATTACK_UPx2"));
+					apply_status(defender, string("DEFENSE_UPx2"));
+					apply_status(defender, string("SPECIAL_UPx2"));
+				}
 				if (mul == 4.0)
 					do_alert("It's extremely effective!");
 				else if (mul == 2.0)
