@@ -1445,7 +1445,7 @@ public:
 				}
 			}
 		}
-		if (! skip_accuracy_check && moves[move].acc < int(random(0.0, 100.0))) {
+		if (!skip_accuracy_check && (moves[move].acc < int(random(0.0, 100.0) * get_evasion_modifier(defender) / get_accuracy_modifier(attacker)))) {
 			miss = true;
 			if (pow == 0) {
 				do_alert(string("But, it failed!"));
@@ -1962,6 +1962,92 @@ public:
 			return string("SPECIAL_DOWN");
 		default:
 			return string("");
+		}
+	}
+	double get_accuracy_modifier(mon& m) {
+		int buff = 0;
+		for (unsigned i = 0; i < m.status.size(); ++i) {
+			if (m.status[i] == "ACCURACY_UP")
+				buff++;
+			if (m.status[i] == "ACCURACY_DOWN")
+				buff--;
+		}
+		if (buff < -6)
+			buff = -6;
+		if (buff > 6)
+			buff = 6;
+		switch (buff) {
+		case -6:
+			return 3.0 / 9.0;
+		case -5:
+			return 3.0 / 8.0;
+		case -4:
+			return 3.0 / 7.0;
+		case -3:
+			return 3.0 / 6.0;
+		case -2:
+			return 3.0 / 5.0;
+		case -1:
+			return 3.0 / 4.0;
+		case 0:
+			return 3.0 / 3.0;
+		case 1:
+			return 4.0 / 3.0;
+		case 2:
+			return 5.0 / 3.0;
+		case 3:
+			return 6.0 / 3.0;
+		case 4:
+			return 7.0 / 3.0;
+		case 5:
+			return 8.0 / 3.0;
+		case 6:
+			return 9.0 / 3.0;
+		default:
+			return 1.0;
+		}
+	}
+	double get_evasion_modifier(mon& m) {
+		int buff = 0;
+		for (unsigned i = 0; i < m.status.size(); ++i) {
+			if (m.status[i] == "EVASION_UP")
+				buff++;
+			if (m.status[i] == "EVASION_DOWN")
+				buff--;
+		}
+		if (buff < -6)
+			buff = -6;
+		if (buff > 6)
+			buff = 6;
+		switch (buff) {
+		case -6:
+			return 3.0 / 9.0;
+		case -5:
+			return 3.0 / 8.0;
+		case -4:
+			return 3.0 / 7.0;
+		case -3:
+			return 3.0 / 6.0;
+		case -2:
+			return 3.0 / 5.0;
+		case -1:
+			return 3.0 / 4.0;
+		case 0:
+			return 3.0 / 3.0;
+		case 1:
+			return 4.0 / 3.0;
+		case 2:
+			return 5.0 / 3.0;
+		case 3:
+			return 6.0 / 3.0;
+		case 4:
+			return 7.0 / 3.0;
+		case 5:
+			return 8.0 / 3.0;
+		case 6:
+			return 9.0 / 3.0;
+		default:
+			return 1.0;
 		}
 	}
 	double get_stat_modifier(int buff) {
