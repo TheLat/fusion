@@ -105,7 +105,7 @@ public:
 	string moves[4];
 	vector<string> status;
 	vector<string> queue;
-	string nickname;
+	string nickname, last_move;
 	unsigned hp_bar_index, exp_bar_index;
 	unsigned hud_index;
 	mon() { defined = false; }
@@ -1049,6 +1049,7 @@ public:
 	void make_mon(string ID, int e_level, mon& out) {
 		out.level = 0;
 		out.status.clear();
+		out.last_move = "";
 		out.exp = level_to_exp[e_level];
 		if (out.exp == -1)
 			int lkjawgjkalsgkj = 0;
@@ -1428,9 +1429,21 @@ public:
 		}
 		// TODO: Special move messages
 		do_alert(get_nickname(attacker) + string(" used ") + move + string("!"));
+		attacker.last_move = move;
 		for (unsigned i = 0; i < moves[move].special.size(); ++i) {
 			if (moves[move].special[i] == "UNAVOIDABLE")
 				skip_accuracy_check = true;
+			if (moves[move].special[i] == "ENEMY_LAST") {
+				if (defender.last_move != "") {
+					attacker.queue.erase(attacker.queue.begin());
+					return use_move(attacker, defender, defender.last_move, skip_accuracy_check);
+				}
+				else {
+					do_alert("But, it failed!");
+					attacker.queue.erase(attacker.queue.begin());
+					return false;
+				}
+			}
 		}
 		if (! skip_accuracy_check && moves[move].acc < int(random(0.0, 100.0))) {
 			miss = true;
@@ -1693,7 +1706,9 @@ public:
 			}
 		}
 		p.team[mc.selected].queue.clear();
+		p.team[mc.selected].last_move = "";
 		m.queue.clear();
+		m.last_move = "";
 		unsigned enemy_sprite = g.push_quad_load(0.1f, 0.1f, 0.9f, 0.9f, string("../resources/images/") + m.number + string(".png"));
 		m.hp_bar_index = g.push_hp_bar(-0.7f, 0.7f, get_hp_percent(m));
 		m.hud_index = 0;
@@ -1731,6 +1746,7 @@ public:
 				}
 				else if (choices[0] == 1) { // Player has selected Pokemon
 					p.team[mc.selected].queue.clear();
+					p.team[mc.selected].last_move = "";
 					do_alert(get_nickname(p.team[mc.selected]) + string("! That's enough!"));
 					clear_volatile(p.team[mc.selected]);
 					mc.team[mc.selected].exp_bar_index = 0;
@@ -1746,6 +1762,7 @@ public:
 					rebuild_battle_hud(mc.team[mc.selected], m, hud_index);
 					do_alert(string("Go, ") + get_nickname(p.team[mc.selected]) + string("!"));
 					p.team[mc.selected].queue.clear();
+					p.team[mc.selected].last_move = "";
 					p.team[mc.selected].queue.push_back(string(""));
 				}
 				else if (choices[0] == 2) { // Player has selected ITEM
@@ -1779,6 +1796,7 @@ public:
 				else if (choices[0] == 3) { // Player has selected RUN
 					escape_attempts++;
 					p.team[mc.selected].queue.clear();
+					p.team[mc.selected].last_move = "";
 					if (run_away(p.team[mc.selected], m, escape_attempts)) {
 						do_alert(string("Got away safely!"));
 						g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
