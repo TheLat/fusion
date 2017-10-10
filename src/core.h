@@ -1200,7 +1200,7 @@ public:
 		}
 	}
 	double random(double min, double max) {
-		// range is inclusive.
+		// min range is inclusive, max is exclusive.
 		double delta = max - min;
 		double t = double(rand() % 10000) / double(10000.0);
 		return min + t*delta;
@@ -1439,7 +1439,7 @@ public:
 		for (unsigned i = 0; i < moves[move].special.size(); ++i) {
 			if (moves[move].special[i] == "UNAVOIDABLE")
 				skip_accuracy_check = true;
-			if (moves[move].special[i] == "ENEMY_LAST") {
+			else if (moves[move].special[i] == "ENEMY_LAST") {
 				if (defender.last_move != "") {
 					attacker.queue.erase(attacker.queue.begin());
 					return use_move(attacker, defender, defender.last_move, skip_accuracy_check);
@@ -1449,6 +1449,23 @@ public:
 					attacker.queue.erase(attacker.queue.begin());
 					return false;
 				}
+			}
+			else if (moves[move].special[i] == "RANDOM") {
+				std::map<string, power>::iterator it = moves.begin();
+				int i = int(random(1, moves.size() - 1));
+				while (i > 0) {
+					i--;
+					it++;
+				}
+				while (it->second.queue_only) {
+					it++;
+				}
+				if (it == moves.end())
+					it--;
+				while (it->second.queue_only) {
+					it--;
+				}
+				use_move(attacker, defender, it->second.name);
 			}
 		}
 		if (!skip_accuracy_check && (moves[move].acc < int(random(0.0, 100.0) * get_evasion_modifier(defender) / get_accuracy_modifier(attacker)))) {
