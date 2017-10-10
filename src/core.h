@@ -1357,6 +1357,9 @@ public:
 			else if (s2 == "HALF_HP") {
 				deal_damage(m, m.curr_hp / 2);
 			}
+			else if (s2 == "KO") {
+				deal_damage(m, m.curr_hp);
+			}
 			else {
 				for (int i = 0; i < value; ++i) {
 					m.status.push_back(s2);
