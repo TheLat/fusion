@@ -1354,6 +1354,9 @@ public:
 			if (s2 == "CLEAR_STATUS") {
 				remove_status(m, s3, true);
 			}
+			else if (s2 == "HALF_HP") {
+				deal_damage(m, m.curr_hp / 2);
+			}
 			else {
 				for (int i = 0; i < value; ++i) {
 					m.status.push_back(s2);
