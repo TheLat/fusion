@@ -1943,6 +1943,10 @@ public:
 		damage /= 250.0;
 		damage /= get_stat(defender, moves[move].defense, crit, false);
 		damage += 2.0;
+		if (moves[move].defense == SPECIAL && in_status(defender, string("LIGHTSCREEN")))
+			damage /= 2.0;
+		if (moves[move].defense == DEFENSE && in_status(defender, string("REFLECT")))
+			damage /= 2.0;
 		if (all_mon[defender.number].type1 != "") {
 			mul *= types[moves[move].type][all_mon[defender.number].type1];
 			damage *= types[moves[move].type][all_mon[defender.number].type1];
