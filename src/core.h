@@ -102,13 +102,14 @@ public:
 	int turn_count;
 	int pp[4];
 	int max_pp[4];
+	int disabled_move;
 	string moves[4];
 	vector<string> status;
 	vector<string> queue;
 	string nickname, last_move;
 	unsigned hp_bar_index, exp_bar_index;
 	unsigned hud_index;
-	mon() { defined = false; }
+	mon() { defined = false; disabled_move = -1; }
 	mon& operator=(mon& m) {
 		for (int i = 0; i < SIZE; ++i) {
 			this->IV[i] = m.IV[i];
@@ -1360,6 +1361,16 @@ public:
 			else if (s2 == "KO") {
 				deal_damage(m, m.curr_hp);
 			}
+			else if (s2 == "DISABLE") {
+				m.disabled_move = int(random(0.0, 4.0));
+				while (!moves[m.moves[m.disabled_move]].defined)
+					m.disabled_move = int(random(0.0, 4.0));
+				int max = int(random(1.0, 7.0));
+				for (int i = 0; i < max; ++i) {
+					m.status.push_back(s2);
+				}
+				do_alert(string("Disabled ") + m.moves[m.disabled_move] + string("!"));
+			}
 			else {
 				for (int i = 0; i < value; ++i) {
 					m.status.push_back(s2);
@@ -1435,6 +1446,10 @@ public:
 		}
 		// TODO: Special move messages
 		do_alert(get_nickname(attacker) + string(" used ") + move + string("!"));
+		if (in_status(attacker, string("DISABLE")) && attacker.moves[attacker.disabled_move] == move) {
+			do_alert("But, it failed!");
+			return false;
+		}
 		attacker.last_move = move;
 		for (unsigned i = 0; i < moves[move].special.size(); ++i) {
 			if (moves[move].special[i] == "UNAVOIDABLE")
@@ -1591,6 +1606,8 @@ public:
 			// TODO:  Paralyze animation
 		}
 		else if (m1.queue[0] != "") {
+			if (in_status(m1, string("DISABLE")))
+				remove_status(m1, string("DISABLE"));
 			use_move(m1, m2, m1.queue[0]);
 			if (is_KO(m2)) {
 				// TODO:  Return value
@@ -1633,6 +1650,8 @@ public:
 			// TODO:  Paralyze animation
 		}
 		else if (m2.queue[0] != "") {
+			if (in_status(m2, string("DISABLE")))
+				remove_status(m2, string("DISABLE"));
 			use_move(m2, m1, m2.queue[0]);
 			if (is_KO(m1)) {
 				// TODO:  Return value
