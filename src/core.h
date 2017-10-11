@@ -1931,7 +1931,9 @@ public:
 			remove_status(m, string("FLINCH"), true);
 			if (is_KO(m)) {
 				do_alert(string("Enemy ") + get_nickname(m) + string(" fainted!"));
-				gain_exp(p.team[mc.selected], m, 1);
+				// TODO:  Exp split
+				if (!is_KO(mc.team[mc.selected]))
+					gain_exp(p.team[mc.selected], m, 1);
 				g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
 				break;
 			}
