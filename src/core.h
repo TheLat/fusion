@@ -1381,6 +1381,8 @@ public:
 			else if (s2 == "VAMPIRE") {
 				heal_damage(m, min(int(double(m.last_damage) * (double(value) / 100.0)), 1));
 			}
+			else if (s2 == "SELF_LEVEL") {
+			}
 			else {
 				for (int i = 0; i < value; ++i) {
 					m.status.push_back(s2);
@@ -1518,7 +1520,14 @@ public:
 			for (int i = 0; i < repeat; ++i) {
 				double mul;
 				int dam = min(damage(attacker, defender, move, crit, mul), defender.curr_hp);
-				// TODO: Logic for detecting that a move has an x0 modifier.
+				for (int j = 0; j < moves[move].target.size(); ++j) {
+					// Possible TODO: Remove multiplier from self-level damage moves.
+					if (moves[move].target[j] == "SELF_LEVEL") {
+						dam = int(double(attacker.level) * mul);
+						if (crit)
+							dam = int(double(dam)*1.5);
+					}
+				}
 				deal_damage(defender, dam);
 				attacker.last_damage = dam;
 				if (dam > 0 && in_status(defender, string("RAGE"))) {
@@ -1989,8 +1998,6 @@ public:
 		double pow = stoi(moves[move].pow);
 		mul = 1.0;
 		crit = false;
-		if (pow == 0.0)
-			return 0;
 
 		int buff = 0;
 		for (unsigned i = 0; i < attacker.status.size(); ++i) {
@@ -2033,6 +2040,8 @@ public:
 			damage *= 1.5;
 		}
 		damage *= random(0.85, 1.0);
+		if (pow == 0.0)
+			return 0;
 		return int(damage);
 	}
 	string get_buff_name(STAT s) {
