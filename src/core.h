@@ -364,6 +364,8 @@ public:
 					return in;
 				int index = stoi(temp);
 				out = to_string(mc.team[mc.selected].pp[index]) + string("/") + to_string(mc.team[mc.selected].max_pp[index]);
+				if (in_status(mc.team[mc.selected], string("DISABLE")) && index == mc.team[mc.selected].disabled_move)
+					out = "DISABLED";
 				while (out.length() < 9)
 					out = string(" ") + out;
 				return out;
@@ -1791,6 +1793,10 @@ public:
 					choices = do_menu(string("COMBAT_SELECT"));
 				}
 				if (choices[0] == 0) { // Player has selected FIGHT
+					if (in_status(mc.team[mc.selected], string("DISABLE")) && choices[1] == mc.team[mc.selected].disabled_move) {
+						do_alert(string("That move is disabled!"));
+						continue;
+					}
 					escape_attempts = 0;
 					p.team[mc.selected].queue.push_back(p.team[mc.selected].moves[choices[1]]);
 					p.team[mc.selected].pp[choices[1]]--;
