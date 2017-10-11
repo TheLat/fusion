@@ -1527,6 +1527,13 @@ public:
 						if (crit)
 							dam = int(double(dam)*1.5);
 					}
+					else if (moves[move].target[j].find("EXACT_DAMAGE") == 0) {
+						string temp = moves[move].target[j];
+						temp.erase(0, temp.find(":") + 1);
+						dam = int(double(stoi(temp)) * mul);
+						if (crit)
+							dam = int(double(dam)*1.5);
+					}
 				}
 				deal_damage(defender, dam);
 				attacker.last_damage = dam;
