@@ -55,6 +55,9 @@ List of changes:
 - Butterfree weighs 12.5 pounds, used to be 70 pounds.  What the hell?
 - Beedrill weights 15 pounds.
 - Changed Rage to greatly increase attack, defense, and special when attacked.
+- Increased damage to self on miss of Jump Kick and Hi Jump Kick.
+- Lowered Jump Kick's power.
+- Increased Hi Jump Kick's power.
 
 Concerning Fusions:
   There are 22,801 pokemon that can appear in Pokemon: Fusion.  The developer can't inspect all of them.  Some may be duds with few or no attack moves (Pikachu-Bulbasaur is quite terrible).  Some things may happen that make no sense (things fused with Gengar will learn Hypnosis from Gengar or Dream Eater from Gengar, but not both).  As a way to balance this, fusions are compatible with every TM and HM that either parent could learn.

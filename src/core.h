@@ -1383,6 +1383,9 @@ public:
 			}
 			else if (s2 == "SELF_LEVEL") {
 			}
+			else if (s2 == "EXACT_DAMAGE") {
+				deal_damage(m, value);
+			}
 			else {
 				for (int i = 0; i < value; ++i) {
 					m.status.push_back(s2);
@@ -1434,6 +1437,7 @@ public:
 		int repeat = 1;
 		bool success = false;
 		bool miss = false;
+		bool self_on_miss_only = false;
 		string s2, s3;
 		if (in_status(attacker, string("FLEE")) || in_status(defender, string("FLEE")))
 			return false;
@@ -1467,6 +1471,9 @@ public:
 		for (unsigned i = 0; i < moves[move].special.size(); ++i) {
 			if (moves[move].special[i] == "UNAVOIDABLE")
 				skip_accuracy_check = true;
+			else if (moves[move].special[i] == "SELF_ON_MISS_ONLY") {
+				self_on_miss_only = true;
+			}
 			else if (moves[move].special[i] == "ENEMY_LAST") {
 				if (defender.last_move != "" && !moves[defender.last_move].queue_only) {
 					attacker.queue.erase(attacker.queue.begin());
@@ -1506,6 +1513,11 @@ public:
 			}
 			else {
 				do_alert(get_nickname(attacker) + string("'s attack missed!"));
+			}
+			if (self_on_miss_only) {
+				for (unsigned j = 0; j < moves[move].self.size(); ++j) {
+					success = apply_status(attacker, moves[move].self[j]) || success;
+				}
 			}
 		}
 		if (pow != 0.0) {
@@ -1556,20 +1568,24 @@ public:
 					do_alert(string("A critical hit!"));
 				if (!status_immunity(defender, move)) {
 					for (unsigned j = 0; j < moves[move].target.size(); ++j) {
+						if (moves[move].target[j].find("EXACT_DAMAGE") == 0)
+							continue;
 						success = apply_status(defender, moves[move].target[j]) || success;
 						// TODO:  Status announcement
 					}
 				}
-				for (unsigned j = 0; j < moves[move].self.size(); ++j) {
-					if (moves[move].self[j].find("RECOIL") != -1) {
-						s2 = moves[move].self[j];
-						s3 = moves[move].self[j];
-						s2.erase(s2.find(":"), s2.length());
-						s3.erase(0, s3.find(":") + 1);
-						deal_damage(attacker, int(max(double(dam)*(double(stoi(s3)) / 100.0), 1.0)));
-					}
-					else {
-						success = apply_status(attacker, moves[move].self[j]) || success;
+				if (!self_on_miss_only) {
+					for (unsigned j = 0; j < moves[move].self.size(); ++j) {
+						if (moves[move].self[j].find("RECOIL") != -1) {
+							s2 = moves[move].self[j];
+							s3 = moves[move].self[j];
+							s2.erase(s2.find(":"), s2.length());
+							s3.erase(0, s3.find(":") + 1);
+							deal_damage(attacker, int(max(double(dam)*(double(stoi(s3)) / 100.0), 1.0)));
+						}
+						else {
+							success = apply_status(attacker, moves[move].self[j]) || success;
+						}
 					}
 				}
 			}
