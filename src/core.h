@@ -1373,6 +1373,9 @@ public:
 				}
 				do_alert(string("Disabled ") + m.moves[m.disabled_move] + string("!"));
 			}
+			else if (s2 == "HEAL") {
+				heal_damage(m, int(double(get_stat(m, HP)) * (double(value) / 100.0)));
+			}
 			else {
 				for (int i = 0; i < value; ++i) {
 					m.status.push_back(s2);
