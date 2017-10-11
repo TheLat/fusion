@@ -151,6 +151,7 @@ public:
 	int repel;
 	int selected;
 	int enemy_selected;
+	int extra_winnings;
 	mon team[6];
 	mon enemy_team[6];
 	mon storage[20][20];
@@ -1492,6 +1493,9 @@ public:
 				}
 				use_move(attacker, defender, it->second.name);
 			}
+			else if (moves[move].special[i] == "PAYDAY") {
+				mc.extra_winnings += 5 * attacker.level;
+			}
 		}
 		if (!skip_accuracy_check && ((moves[move].acc < int(random(0.0, 100.0) * get_evasion_modifier(defender) / get_accuracy_modifier(attacker)))) || in_status(defender, string("UNTARGETABLE"))) {
 			miss = true;
@@ -1761,6 +1765,7 @@ public:
 		g.push_box(-1.1f, -1.1f, 2.2f, 2.2f);
 		g.push_box(-1.0f, -1.0f, 2.0f, 0.6f);
 		mc.selected = -1;
+		mc.extra_winnings = 0;
 		// TODO:  Initial menu
 		for (i = 0; i < 6; ++i) {
 			if (p.team[i].defined) {
@@ -1950,6 +1955,10 @@ public:
 			}
 		}
 		team_clear_volatile();
+		if (mc.extra_winnings > 0) {
+			mc.money += mc.extra_winnings;
+			do_alert(string("{PLAYER_NAME} got $") + to_string(mc.extra_winnings) + string(" for winning!"));
+		}
 		return true;
 	}
 	void do_turn(mon& m1, mon& m2) {
