@@ -686,7 +686,7 @@ TYPE: BUG
 ACC: 100
 POWER: 20
 PP: 15
-TARGET: VAMPIRE:50
+SELF: VAMPIRE:50
 DEFENSE: DEFENSE
 NOTES: Heals half the amount of the damage dealt.
 
@@ -730,7 +730,7 @@ ACC: 100
 POWER: 20
 PP: 20
 DEFENSE: SPECIAL
-TARGET: VAMPIRE:50
+SELF: VAMPIRE:50
 NOTES: Heals half the amount of the damage dealt.
 
 MOVE: SPORE
@@ -1073,7 +1073,7 @@ ACC: 100
 POWER: 100
 PP: 15
 DEFENSE: SPECIAL
-TARGET: VAMPIRE:50
+SELF: VAMPIRE:50
 SPECIAL: SLEEPING_TARGET_ONLY
 NOTES: Heals half of the damage dealt. Only works on sleeping targets.
 
@@ -1467,7 +1467,7 @@ TYPE: GRASS
 ACC: 100
 POWER: 40
 PP: 15
-TARGET: VAMPIRE:50
+SELF: VAMPIRE:50
 DEFENSE: SPECIAL
 NOTES: Heals half the amount of the damage dealt.
 
