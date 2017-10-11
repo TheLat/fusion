@@ -1365,7 +1365,7 @@ public:
 				m.disabled_move = int(random(0.0, 4.0));
 				while (!moves[m.moves[m.disabled_move]].defined)
 					m.disabled_move = int(random(0.0, 4.0));
-				int max = int(random(1.0, 7.0));
+				int max = int(random(2.0, 7.0));
 				for (int i = 0; i < max; ++i) {
 					m.status.push_back(s2);
 				}
@@ -1448,6 +1448,7 @@ public:
 		do_alert(get_nickname(attacker) + string(" used ") + move + string("!"));
 		if (in_status(attacker, string("DISABLE")) && attacker.moves[attacker.disabled_move] == move) {
 			do_alert("But, it failed!");
+			attacker.queue.clear();
 			return false;
 		}
 		attacker.last_move = move;
@@ -1606,8 +1607,6 @@ public:
 			// TODO:  Paralyze animation
 		}
 		else if (m1.queue[0] != "") {
-			if (in_status(m1, string("DISABLE")))
-				remove_status(m1, string("DISABLE"));
 			use_move(m1, m2, m1.queue[0]);
 			if (is_KO(m2)) {
 				// TODO:  Return value
@@ -1617,6 +1616,12 @@ public:
 			if (is_KO(m1)) {
 				// TODO:  Return value
 				return;
+			}
+			if (in_status(m1, string("DISABLE"))) {
+				remove_status(m1, string("DISABLE"));
+				if (!in_status(m1, string("DISABLE"))) {
+					do_alert(moves[m1.moves[m1.disabled_move]].name + string(" is no longer disabled!"));
+				}
 			}
 		}
 		else {
@@ -1650,8 +1655,6 @@ public:
 			// TODO:  Paralyze animation
 		}
 		else if (m2.queue[0] != "") {
-			if (in_status(m2, string("DISABLE")))
-				remove_status(m2, string("DISABLE"));
 			use_move(m2, m1, m2.queue[0]);
 			if (is_KO(m1)) {
 				// TODO:  Return value
@@ -1661,6 +1664,12 @@ public:
 			if (is_KO(m2)) {
 				// TODO:  Return value
 				return;
+			}
+			if (in_status(m2, string("DISABLE"))) {
+				remove_status(m2, string("DISABLE"));
+				if (!in_status(m2, string("DISABLE"))) {
+					do_alert(moves[m2.moves[m2.disabled_move]].name + string(" is no longer disabled!"));
+				}
 			}
 		}
 		else {
@@ -1854,12 +1863,29 @@ public:
 			count = 0.0;
 			for (i = 0; i < 4; i++) {
 				if (moves[m.moves[i]].defined) { // TODO: Make this factor in power points
-					count = count + 1.0;
+					if (!in_status(m, string("DISABLE")) || (in_status(m, string("DISABLE")) && m.disabled_move != i))
+						count = count + 1.0;
 				}
 			}
-			index = int(random(0.0, count));
-			m.queue.push_back(m.moves[index]);
-			m.pp[index]--;
+			if (count == 0.0) {
+				m.queue.push_back(string("STRUGGLE"));
+			}
+			else {
+				index = int(random(0.0, count));
+				int choice = -1;
+				for (i = 0; i <= index; ++i) {
+					if (in_status(m, string("DISABLE")) && m.disabled_move == i)
+						choice++;
+					choice++;
+				}
+				if (choice == -1) {
+					m.queue.push_back(string("STRUGGLE"));
+				}
+				else {
+					m.queue.push_back(m.moves[choice]);
+					m.pp[index]--;
+				}
+			}
 			do_turn(p.team[mc.selected], m);
 			if (in_status(m, string("FLEE"))) {
 				do_alert(get_nickname(m) + string(" got away!"));
