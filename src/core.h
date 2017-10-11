@@ -1493,7 +1493,7 @@ public:
 				use_move(attacker, defender, it->second.name);
 			}
 		}
-		if (!skip_accuracy_check && (moves[move].acc < int(random(0.0, 100.0) * get_evasion_modifier(defender) / get_accuracy_modifier(attacker)))) {
+		if (!skip_accuracy_check && ((moves[move].acc < int(random(0.0, 100.0) * get_evasion_modifier(defender) / get_accuracy_modifier(attacker)))) || in_status(defender, string("UNTARGETABLE"))) {
 			miss = true;
 			if (pow == 0) {
 				do_alert(string("But, it failed!"));
@@ -1532,7 +1532,7 @@ public:
 					do_alert("It's not very effective...");
 				else if (mul == 0.25)
 					do_alert("It barely had an effect...");
-				if (crit)
+				if (crit && dam > 0)
 					do_alert(string("A critical hit!"));
 				if (!status_immunity(defender, move)) {
 					for (unsigned j = 0; j < moves[move].target.size(); ++j) {
@@ -1617,6 +1617,8 @@ public:
 			// TODO:  Paralyze animation
 		}
 		else if (m1.queue[0] != "") {
+			if (in_status(m1, string("UNTARGETABLE")))
+				remove_status(m1, string("UNTARGETABLE"));
 			use_move(m1, m2, m1.queue[0]);
 			if (is_KO(m2)) {
 				// TODO:  Return value
@@ -1665,6 +1667,8 @@ public:
 			// TODO:  Paralyze animation
 		}
 		else if (m2.queue[0] != "") {
+			if (in_status(m2, string("UNTARGETABLE")))
+				remove_status(m2, string("UNTARGETABLE"));
 			use_move(m2, m1, m2.queue[0]);
 			if (is_KO(m1)) {
 				// TODO:  Return value
