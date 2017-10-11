@@ -103,13 +103,14 @@ public:
 	int pp[4];
 	int max_pp[4];
 	int disabled_move;
+	int last_damage;
 	string moves[4];
 	vector<string> status;
 	vector<string> queue;
 	string nickname, last_move;
 	unsigned hp_bar_index, exp_bar_index;
 	unsigned hud_index;
-	mon() { defined = false; disabled_move = -1; }
+	mon() { defined = false; disabled_move = -1; last_damage = 0; }
 	mon& operator=(mon& m) {
 		for (int i = 0; i < SIZE; ++i) {
 			this->IV[i] = m.IV[i];
@@ -1376,6 +1377,9 @@ public:
 			else if (s2 == "HEAL") {
 				heal_damage(m, int(double(get_stat(m, HP)) * (double(value) / 100.0)));
 			}
+			else if (s2 == "VAMPIRE") {
+				heal_damage(m, min(int(double(m.last_damage) * (double(value) / 100.0)), 1));
+			}
 			else {
 				for (int i = 0; i < value; ++i) {
 					m.status.push_back(s2);
@@ -1509,9 +1513,10 @@ public:
 		if (!miss) {
 			for (int i = 0; i < repeat; ++i) {
 				double mul;
-				int dam = damage(attacker, defender, move, crit, mul);
+				int dam = min(damage(attacker, defender, move, crit, mul), defender.curr_hp);
 				// TODO: Logic for detecting that a move has an x0 modifier.
 				deal_damage(defender, dam);
+				attacker.last_damage = dam;
 				if (dam > 0 && in_status(defender, string("RAGE"))) {
 					apply_status(defender, string("ATTACK_UPx2"));
 					apply_status(defender, string("DEFENSE_UPx2"));
