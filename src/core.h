@@ -1346,8 +1346,15 @@ public:
 					s4 = s4 + "rose!";
 				if (s.find("DOWN") != -1)
 					s4 = s4 + "fell!";
-				if (s4.find("rose") != -1 || s4.find("fell") != -1)
-					do_alert(s4);
+				if (s4.find("rose") != -1 || s4.find("fell") != -1) {
+					if (in_status(m, string("LOCK_STATS"))) {
+						do_alert(string("But, it failed!"));
+						return false;
+					}
+					else {
+						do_alert(s4);
+					}
+				}
 				for (int i = 0; i < repeat; ++i)
 					m.status.push_back(s2);
 			}
@@ -1588,18 +1595,20 @@ public:
 					apply_status(defender, string("DEFENSE_UPx2"));
 					apply_status(defender, string("SPECIAL_UPx2"));
 				}
-				if (mul == 4.0)
-					do_alert("It's extremely effective!");
-				else if (mul == 2.0)
-					do_alert("It's super effective!");
-				else if (mul == 0.0)
-					do_alert("It had no effect!");
-				else if (mul == 0.5)
-					do_alert("It's not very effective...");
-				else if (mul == 0.25)
-					do_alert("It barely had an effect...");
-				if (crit && dam > 0)
-					do_alert(string("A critical hit!"));
+				if (dam > 0) {
+					if (mul == 4.0)
+						do_alert("It's extremely effective!");
+					else if (mul == 2.0)
+						do_alert("It's super effective!");
+					else if (mul == 0.0)
+						do_alert("It had no effect!");
+					else if (mul == 0.5)
+						do_alert("It's not very effective...");
+					else if (mul == 0.25)
+						do_alert("It barely had an effect...");
+					if (crit)
+						do_alert(string("A critical hit!"));
+				}
 				if (!status_immunity(defender, move)) {
 					for (unsigned j = 0; j < moves[move].target.size(); ++j) {
 						if (moves[move].target[j].find("EXACT_DAMAGE") == 0)
@@ -1713,6 +1722,12 @@ public:
 					do_alert(moves[m1.moves[m1.disabled_move]].name + string(" is no longer disabled!"));
 				}
 			}
+			if (in_status(m1, string("LOCK_STATS"))) {
+				remove_status(m1, string("LOCK_STATS"));
+				if (!in_status(m1, string("LOCK_STATS"))) {
+					do_alert(string("Stats are no longer locked!"));
+				}
+			}
 		}
 		else {
 			m1.queue.erase(m1.queue.begin());
@@ -1761,6 +1776,12 @@ public:
 				remove_status(m2, string("DISABLE"));
 				if (!in_status(m2, string("DISABLE"))) {
 					do_alert(moves[m2.moves[m2.disabled_move]].name + string(" is no longer disabled!"));
+				}
+			}
+			if (in_status(m2, string("LOCK_STATS"))) {
+				remove_status(m2, string("LOCK_STATS"));
+				if (!in_status(m2, string("LOCK_STATS"))) {
+					do_alert(string("Stats are no longer locked!"));
 				}
 			}
 		}
