@@ -1492,7 +1492,7 @@ MOVE: MIMIC
 TYPE: NORMAL
 ACC: 100
 PP: 10
-TARGET: COPY_MOVE
+TARGET: ENEMY_LAST
 NOTES: Copies opponent's last move.
 
 MOVE: FIRE BLAST
@@ -1540,7 +1540,7 @@ TYPE: NORMAL
 QUEUE: BIDE1 BIDE2
 PP: 10
 DESC: NAME bides its time...
-NOTES: Sits idly for 3 turns, then deals back all damage that was dealt to it.
+NOTES: Sits idly for 3 turns, then deals back twice all damage that was dealt to it.
 
 MOVE: BIDE1
 TYPE: NORMAL
