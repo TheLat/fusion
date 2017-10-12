@@ -77,7 +77,7 @@ public:
 
 class mon_template {
 public:
-	string number, name, type1, type2, dex;
+	string number, name, type_1, type_2, dex;
 	int stats[SIZE];
 	int exp_yield, catchrate, height;
 	double weight;
@@ -563,19 +563,19 @@ public:
 				int index = stoi(temp);
 				if (!mc.team[index].defined)
 					return string("");
-				return all_mon[mc.team[index].number].type1;
+				return get_type_1(mc.team[index]);
 			}
 			else if (parse == "TEAM_MON_TYPE2") {
 				int index = stoi(temp);
 				if (!mc.team[index].defined)
 					return string("");
-				return all_mon[mc.team[index].number].type2;
+				return get_type_2(mc.team[index]);
 			}
 			else if (parse == "TYPE2_IF_EXISTS") {
 				int index = stoi(temp);
 				if (!mc.team[index].defined)
 					return string("");
-				if (all_mon[mc.team[index].number].type2 != "")
+				if (get_type_2(mc.team[index]) != "")
 					return string("TYPE2/");
 				return string("");
 			}
@@ -1240,9 +1240,9 @@ public:
 	bool status_immunity(mon& m, string move) {
 		for (unsigned i = 0; i < moves[move].special.size(); ++i) {
 			if (moves[move].special[i].find(string("STATUS_IMMUNITY")) != -1) {
-				if (moves[move].special[i].find(all_mon[m.number].type1) != -1)
+				if (moves[move].special[i].find(get_type_1(m)) != -1)
 					return true;
-				if (moves[move].special[i].find(all_mon[m.number].type2) != -1)
+				if (moves[move].special[i].find(get_type_2(m)) != -1)
 					return true;
 			}
 		}
@@ -1410,6 +1410,9 @@ public:
 					m.status.push_back(s2);
 				}
 			}
+			else if (s2.find("TYPE") == 0) {
+				m.status.push_back(s2 + string(":") + s3);
+			}
 			else {
 				for (int i = 0; i < value; ++i) {
 					m.status.push_back(s2);
@@ -1537,6 +1540,10 @@ public:
 			}
 			else if (moves[move].special[i] == "PAYDAY") {
 				mc.extra_winnings += 5 * attacker.level;
+			}
+			else if (moves[move].special[i] == "CONVERSION") {
+				apply_status(attacker, string("TYPE1:") + get_type_1(defender));
+				apply_status(attacker, string("TYPE2:") + get_type_2(defender));
 			}
 		}
 		if (miss || (!skip_accuracy_check && ((moves[move].acc < int(random(0.0, 100.0) * get_evasion_modifier(defender) / get_accuracy_modifier(attacker)))) || in_status(defender, string("UNTARGETABLE")))) {
@@ -1792,9 +1799,15 @@ public:
 	void clear_volatile(mon& m) {
 		map<string, status_effect>::iterator it;
 		if (m.defined) {
-			for (it = status.begin(); it != status.end(); it++) {
-				if (!it->second.nonvolatile) {
-					remove_status(m, it->second.name, true);
+			for (unsigned i = 0; i < m.status.size(); ++i) {
+				string s;
+				s = m.status[i];
+				if (s.find(":") != -1) {
+					s.erase(s.find(":"), s.length());
+				}
+				if (status[s].defined && !status[s].nonvolatile) {
+					remove_status(m, m.status[i], true);
+					i--;
 				}
 			}
 		}
@@ -2031,6 +2044,7 @@ public:
 			if (is_KO(p.team[mc.selected])) {
 				// TODO:  Handle selection on KO
 				do_alert(get_nickname(p.team[mc.selected]) + string(" fainted!"));
+				team_clear_volatile();
 				for (i = 0; i < 6; ++i) {
 					if (!is_KO(p.team[i])) {
 						mc.team[mc.selected].exp_bar_index = 0;
@@ -2119,15 +2133,15 @@ public:
 			damage /= 2.0;
 		if (moves[move].defense == DEFENSE && in_status(defender, string("REFLECT")))
 			damage /= 2.0;
-		if (all_mon[defender.number].type1 != "") {
-			mul *= types[moves[move].type][all_mon[defender.number].type1];
-			damage *= types[moves[move].type][all_mon[defender.number].type1];
+		if (get_type_1(defender) != "") {
+			mul *= types[moves[move].type][get_type_1(defender)];
+			damage *= types[moves[move].type][get_type_1(defender)];
 		}
-		if (all_mon[defender.number].type2 != "") {
-			mul *= types[moves[move].type][all_mon[defender.number].type2];
-			damage *= types[moves[move].type][all_mon[defender.number].type2];
+		if (get_type_2(defender) != "") {
+			mul *= types[moves[move].type][get_type_2(defender)];
+			damage *= types[moves[move].type][get_type_2(defender)];
 		}
-		if ((all_mon[attacker.number].type1 == moves[move].type) || (all_mon[attacker.number].type2 == moves[move].type))
+		if ((get_type_1(attacker) == moves[move].type) || (get_type_2(attacker) == moves[move].type))
 			damage *= 1.5;
 		if (crit) {
 			damage *= 1.5;
@@ -2286,6 +2300,26 @@ public:
 		default:
 			return 1.0;
 		}
+	}
+	string get_type_1(mon& m) {
+		for (unsigned i = 0; i < m.status.size(); ++i) {
+			if (m.status[i].find("TYPE1:") == 0) {
+				string s = m.status[i];
+				s.erase(0, s.find(":") + 1);
+				return s;
+			}
+		}
+		return all_mon[m.number].type_1;
+	}
+	string get_type_2(mon& m) {
+		for (unsigned i = 0; i < m.status.size(); ++i) {
+			if (m.status[i].find("TYPE2:") == 0) {
+				string s = m.status[i];
+				s.erase(0, s.find(":") + 1);
+				return s;
+			}
+		}
+		return all_mon[m.number].type_2;
 	}
 	int get_stat(mon& m, STAT s, bool ignore_buffs=false, bool ignore_debuffs=false) {
 		int ret;
@@ -2868,10 +2902,10 @@ public:
 			else if (line == "SWITCH") {
 			}
 			else if (line == "TYPE1") {
-				all_mon[key].type1 = temp;
+				all_mon[key].type_1 = temp;
 			}
 			else if (line == "TYPE2") {
-				all_mon[key].type2 = temp;
+				all_mon[key].type_2 = temp;
 			}
 			else if (line == "DEX") {
 				all_mon[key].dex = temp;
