@@ -104,6 +104,8 @@ public:
 	int max_pp[4];
 	int disabled_move;
 	int last_damage;
+	int last_hit_special;
+	int last_hit_physical;
 	string moves[4];
 	vector<string> status;
 	vector<string> queue;
@@ -1471,6 +1473,15 @@ public:
 		for (unsigned i = 0; i < moves[move].special.size(); ++i) {
 			if (moves[move].special[i] == "UNAVOIDABLE")
 				skip_accuracy_check = true;
+			else if (moves[move].special[i] == "COUNTER") {
+				if (attacker.last_hit_physical == 0) {
+					miss = true;
+				}
+				else {
+					attacker.last_damage = min(attacker.last_hit_physical*2, defender.curr_hp);
+					deal_damage(defender, attacker.last_damage);
+				}
+			}
 			else if (moves[move].special[i] == "SELF_ON_MISS_ONLY") {
 				self_on_miss_only = true;
 			}
@@ -1506,7 +1517,7 @@ public:
 				mc.extra_winnings += 5 * attacker.level;
 			}
 		}
-		if (!skip_accuracy_check && ((moves[move].acc < int(random(0.0, 100.0) * get_evasion_modifier(defender) / get_accuracy_modifier(attacker)))) || in_status(defender, string("UNTARGETABLE"))) {
+		if (miss || (!skip_accuracy_check && ((moves[move].acc < int(random(0.0, 100.0) * get_evasion_modifier(defender) / get_accuracy_modifier(attacker)))) || in_status(defender, string("UNTARGETABLE")))) {
 			miss = true;
 			if (pow == 0) {
 				do_alert(string("But, it failed!"));
@@ -1548,6 +1559,14 @@ public:
 					}
 				}
 				deal_damage(defender, dam);
+				if (moves[move].defense == SPECIAL) {
+					defender.last_hit_special = dam;
+					defender.last_hit_physical = 0;
+				}
+				else if (moves[move].defense == DEFENSE) {
+					defender.last_hit_special = 0;
+					defender.last_hit_physical = dam;
+				}
 				attacker.last_damage = dam;
 				if (dam > 0 && in_status(defender, string("RAGE"))) {
 					apply_status(defender, string("ATTACK_UPx2"));
@@ -1825,10 +1844,15 @@ public:
 		unsigned exp_bar_index = g.push_quad_load(0.0f, -0.35f, 0.0f, 0.025f, string("../resources/images/exp.bmp"));
 		unsigned hud_index = g.draw_list.size();
 		m.hud_index = hud_index;
+		m.last_hit_physical = 0;
+		m.last_hit_special = 0;
+		m.last_damage = 0;
 		for (i = 0; i < 6; ++i) {
 			mc.team[i].hp_bar_index = team_hp_sprite;
 			mc.team[i].hud_index = hud_index;
 			mc.team[i].exp_bar_index = 0;
+			mc.team[i].last_hit_special = 0;
+			mc.team[i].last_hit_physical = 0;
 		}
 		mc.team[mc.selected].exp_bar_index = exp_bar_index;
 		resize_exp_bar(mc.team[mc.selected]);
