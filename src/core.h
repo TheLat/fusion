@@ -106,6 +106,7 @@ public:
 	int last_damage;
 	int last_hit_special;
 	int last_hit_physical;
+	int stored_hp;
 	string moves[4];
 	vector<string> status;
 	vector<string> queue;
@@ -1388,6 +1389,20 @@ public:
 			else if (s2 == "EXACT_DAMAGE") {
 				deal_damage(m, value);
 			}
+			else if (s2 == "SUBSTITUTE") {
+				if (get_stat(m, HP) / 4 >= m.curr_hp) {
+					do_alert("But, it failed!");
+				}
+				else {
+					int dam = get_stat(m, HP) / 4;
+					deal_damage(m, dam);
+					do_alert(get_nickname(m) + string(" created a SUBSTITUTE!"));
+					m.stored_hp = m.curr_hp;
+					m.curr_hp = 0;
+					heal_damage(m, dam + 1);
+					m.status.push_back(s2);
+				}
+			}
 			else {
 				for (int i = 0; i < value; ++i) {
 					m.status.push_back(s2);
@@ -1637,8 +1652,16 @@ public:
 		return success;
 	}
 	bool is_KO(mon& m) {
-		if (m.curr_hp <= 0)
+		if (m.curr_hp <= 0) {
+			if (in_status(m, "SUBSTITUTE")) {
+				m.curr_hp = 0;
+				do_alert("The SUBSTITUTE broke!");
+				heal_damage(m, m.stored_hp);
+				remove_status(m, string("SUBSTITUTE"));
+				return false;
+			}
 			return true;
+		}
 		return false;
 	}
 	void do_turn_inner(mon& m1, mon& m2) {
