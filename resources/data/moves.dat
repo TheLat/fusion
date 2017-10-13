@@ -1353,7 +1353,7 @@ NOTES: Deals exactly 40 damage.
 MOVE: SPLASH
 TYPE: WATER
 PP: 40
-DESC: NAME used SPLASH![BREAK]But nothing happened.
+DESC: {NAME} used SPLASH!{BREAK}But nothing happened.
 NOTES: It does nothing.
 
 MOVE: MIST
