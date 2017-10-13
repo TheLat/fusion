@@ -1511,7 +1511,16 @@ public:
 			}
 		}
 		// TODO: Special move messages
-		do_alert(get_nickname(attacker) + string(" used ") + move + string("!"));
+		if (moves[move].desc == "")
+			do_alert(get_nickname(attacker) + string(" used ") + move + string("!"));
+		else if (moves[move].desc != "{NONE}") {
+			string temp = moves[move].desc;
+			while (temp.find("{NAME}") != -1) {
+				temp.insert(temp.find("{NAME}"), get_nickname(attacker));
+				temp.erase(temp.find("{NAME}"), string("{NAME}").length());
+			}
+			do_alert(temp);
+		}
 		if (in_status(attacker, string("DISABLE")) && attacker.moves[attacker.disabled_move] == move) {
 			do_alert("But, it failed!");
 			attacker.queue.clear();
