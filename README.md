@@ -28,6 +28,7 @@ List of changes:
 - To deal with the fact that this game is not multiplayer, the Trade Stone item is added to allow you to evolve anything that contains at least part Kadabra, Machoke, Haunter, or Graveler.  You will need two trade stones to fully evolve fusions of those 4.
 - If a pokemon has two seperate evolution triggers from an elemental stone, such as a Growlithe-Vulpix, it will always use the first parent's evolution first.  The exception to this is anything that is part Eevee.  If something is part Eevee, the Eevee will always take priority for stone evolutions.
 - Ghost attacks will deal double-damage against psychics, like they're supposed to.
+- Ghost attacks deal damage to normal types.  That never made sense.
 - Item duplication and MISSINGNO will not exist.  Use that master ball carefully.
 - TMs and HMs will be forgettable.
 - Bind, Wrap, Fire Spin, and Clamp will not prevent a pokemon's actions on the final hit.
@@ -58,6 +59,8 @@ List of changes:
 - Increased damage to self on miss of Jump Kick and Hi Jump Kick.
 - Lowered Jump Kick's power.
 - Increased Hi Jump Kick's power.
+- Moves that deal set damage (Sonicboom, Seismic Toss) are now subject to type multipliers and can score critical hits.  This may be removed in the final version.
+- Critical hits will instead deal x1.5 damage, but ignore all buffs on the target and all debuffs on the user.
 
 Concerning Fusions:
   There are 22,801 pokemon that can appear in Pokemon: Fusion.  The developer can't inspect all of them.  Some may be duds with few or no attack moves (Pikachu-Bulbasaur is quite terrible).  Some things may happen that make no sense (things fused with Gengar will learn Hypnosis from Gengar or Dream Eater from Gengar, but not both).  As a way to balance this, fusions are compatible with every TM and HM that either parent could learn.
