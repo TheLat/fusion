@@ -113,6 +113,7 @@ public:
 	string nickname, last_move;
 	unsigned hp_bar_index, exp_bar_index;
 	unsigned hud_index;
+	vector<int> damage_dealt;
 	mon() { defined = false; disabled_move = -1; last_damage = 0; }
 	mon& operator=(mon& m) {
 		for (int i = 0; i < SIZE; ++i) {
@@ -1609,6 +1610,18 @@ public:
 						if (crit)
 							dam = int(double(dam)*1.5);
 					}
+					else if (moves[move].target[j].find("TWICE_SELF_DAMAGE_OVER_TURNS") == 0) {
+						string temp = moves[move].target[j];
+						temp.erase(0, temp.find(":") + 1);
+						int turns = stoi(temp);
+						dam = 0;
+						for (int i = int(attacker.damage_dealt.size()) - 1; (i >= (int(attacker.damage_dealt.size()) - 3)) && (i >= 0); --i) {
+							dam = dam + attacker.damage_dealt[i];
+						}
+						dam = dam * 2;
+						crit = false;
+						mul = 1.0;
+					}
 				}
 				deal_damage(defender, dam);
 				if (moves[move].defense == SPECIAL) {
@@ -1704,6 +1717,7 @@ public:
 		return false;
 	}
 	void do_turn_inner(mon& m1, mon& m2) {
+		int temp;
 		m1.turn_count++;
 		m2.turn_count++;
 		if (in_status(m1, string("SLEEP"))) {
@@ -1736,7 +1750,9 @@ public:
 		else if (m1.queue[0] != "") {
 			if (in_status(m1, string("UNTARGETABLE")))
 				remove_status(m1, string("UNTARGETABLE"));
+			temp = m2.curr_hp;
 			use_move(m1, m2, m1.queue[0]);
+			m2.damage_dealt.push_back(temp - m2.curr_hp);
 			if (is_KO(m2)) {
 				// TODO:  Return value
 				return;
@@ -1792,7 +1808,9 @@ public:
 		else if (m2.queue[0] != "") {
 			if (in_status(m2, string("UNTARGETABLE")))
 				remove_status(m2, string("UNTARGETABLE"));
+			temp = m1.curr_hp;
 			use_move(m2, m1, m2.queue[0]);
+			m1.damage_dealt.push_back(temp - m1.curr_hp);
 			if (is_KO(m1)) {
 				// TODO:  Return value
 				return;
@@ -1927,12 +1945,14 @@ public:
 		m.last_hit_physical = 0;
 		m.last_hit_special = 0;
 		m.last_damage = 0;
+		m.damage_dealt.clear();
 		for (i = 0; i < 6; ++i) {
 			mc.team[i].hp_bar_index = team_hp_sprite;
 			mc.team[i].hud_index = hud_index;
 			mc.team[i].exp_bar_index = 0;
 			mc.team[i].last_hit_special = 0;
 			mc.team[i].last_hit_physical = 0;
+			mc.team[i].damage_dealt.clear();
 		}
 		mc.team[mc.selected].exp_bar_index = exp_bar_index;
 		resize_exp_bar(mc.team[mc.selected]);
@@ -1960,6 +1980,7 @@ public:
 					do_alert(get_nickname(p.team[mc.selected]) + string("! That's enough!"));
 					clear_volatile(p.team[mc.selected]);
 					mc.team[mc.selected].exp_bar_index = 0;
+					mc.team[mc.selected].damage_dealt.clear();
 					mc.selected = choices[1];
 					mc.team[mc.selected].exp_bar_index = exp_bar_index;
 					resize_exp_bar(mc.team[mc.selected]);
@@ -2071,6 +2092,7 @@ public:
 				for (i = 0; i < 6; ++i) {
 					if (!is_KO(p.team[i])) {
 						mc.team[mc.selected].exp_bar_index = 0;
+						mc.team[mc.selected].damage_dealt.clear();
 						mc.selected = i;
 						mc.team[mc.selected].exp_bar_index = exp_bar_index;
 						resize_exp_bar(mc.team[mc.selected]);
