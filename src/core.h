@@ -1248,8 +1248,30 @@ public:
 		}
 		return false;
 	}
+	bool remove_status_wildcard(mon& m, string s, bool all = false) {
+		bool success = false;
+		s.erase(s.find("*"), s.length());
+		while (m.status.size() > 0 && m.status[0].find(s) == 0) {
+			m.status.erase(m.status.begin());
+			if (!all)
+				return true;
+			success = true;
+		}
+		for (unsigned i = 1; i < m.status.size(); ++i) {
+			if (m.status[i].find(s) == 0) {
+				m.status.erase(m.status.begin() + i);
+				if (!all)
+					return true;
+				success = true;
+				i--;
+			}
+		}
+		return success;
+	}
 	bool remove_status(mon& m, string s, bool all = false) {
 		bool success = false;
+		if (s.find("*") != -1)
+			return remove_status_wildcard(m, s, all);
 		while (m.status.size() > 0 && m.status[0] == s) {
 			m.status.erase(m.status.begin());
 			if (!all)
@@ -1542,6 +1564,7 @@ public:
 				mc.extra_winnings += 5 * attacker.level;
 			}
 			else if (moves[move].special[i] == "CONVERSION") {
+				remove_status(attacker, string("TYPE*"), true);
 				apply_status(attacker, string("TYPE1:") + get_type_1(defender));
 				apply_status(attacker, string("TYPE2:") + get_type_2(defender));
 			}
