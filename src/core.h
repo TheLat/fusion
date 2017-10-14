@@ -1078,6 +1078,7 @@ public:
 		if (out.level == 0) {
 			make_mon(ID, e_level, out);
 		}
+		out.status.clear();
 	}
 	void gain_exp(mon& winner, mon& loser, int num_fighters) {
 		double exp = 1.0;
@@ -1412,7 +1413,7 @@ public:
 				heal_damage(m, int(double(get_stat(m, HP)) * (double(value) / 100.0)));
 			}
 			else if (s2 == "VAMPIRE") {
-				heal_damage(m, min(int(double(m.last_damage) * (double(value) / 100.0)), 1));
+				heal_damage(m, max(int(double(m.last_damage) * (double(value) / 100.0)), 1));
 			}
 			else if (s2 == "SELF_LEVEL") {
 			}
@@ -1584,6 +1585,10 @@ public:
 				remove_status(attacker, string("TYPE*"), true);
 				apply_status(attacker, string("TYPE1:") + get_type_1(defender));
 				apply_status(attacker, string("TYPE2:") + get_type_2(defender));
+			}
+			else if (moves[move].special[i] == "SLEEPING_TARGET_ONLY" && !in_status(defender, string("SLEEP"))) {
+				miss = true;
+				pow = 0;
 			}
 		}
 		if (miss || (!skip_accuracy_check && ((moves[move].acc < int(random(0.0, 100.0) * get_evasion_modifier(defender) / get_accuracy_modifier(attacker)))) || in_status(defender, string("UNTARGETABLE")))) {
