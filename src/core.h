@@ -1519,6 +1519,13 @@ public:
 				temp.insert(temp.find("{NAME}"), get_nickname(attacker));
 				temp.erase(temp.find("{NAME}"), string("{NAME}").length());
 			}
+			while (temp.find("{BREAK}") != -1) {
+				string temp2;
+				temp2 = temp;
+				temp2.erase(temp2.find("{BREAK}"), temp2.length());
+				temp.erase(0, temp.find("{BREAK}") + string("{BREAK}").length());
+				do_alert(temp2);
+			}
 			do_alert(temp);
 		}
 		if (in_status(attacker, string("DISABLE")) && attacker.moves[attacker.disabled_move] == move) {
