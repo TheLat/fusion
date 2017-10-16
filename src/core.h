@@ -1603,31 +1603,49 @@ public:
 			}
 			else if (moves[move].special[i] == "TRANSFORM") {
 				// TODO: Make sure enemy has moves other than TRANSFORM
-				mon* temp = new mon;
-				temp->original = attacker.original;
-				attacker.original = temp;
-				*(attacker.original) = attacker;
-				attacker.original->enemy = attacker.enemy;
-				attacker = defender;
-				attacker.level = attacker.original->level;
-				attacker.nickname = get_nickname(*attacker.original);
-				attacker.exp = attacker.original->exp;
-				for (unsigned im = 0; i < SIZE; ++i) {
-					attacker.IV[i] = attacker.original->IV[i];
-					attacker.EV[i] = attacker.original->EV[i];
+				bool has_nontransform_move = false;
+				for (unsigned j = 0; j < 4; ++j) {
+					if (moves[defender.moves[j]].defined) {
+						bool is_transform = false;
+						for (unsigned k = 0; k < moves[defender.moves[j]].special.size(); ++k) {
+							if (moves[defender.moves[j]].special[k] == "TRANSFORM")
+								is_transform = true;
+						}
+						if (!is_transform)
+							has_nontransform_move = true;
+					}
 				}
-				for (unsigned i = 0; i < 4; ++i) {
-					attacker.pp[i] = 5;
-				}
-				attacker.curr_hp = min(get_stat(attacker, HP), attacker.original->curr_hp);
-				attacker.queue.clear();
-				attacker.enemy = attacker.original->enemy;
-				attacker.wild = attacker.original->wild;
-				if (attacker.enemy) {
-					rebuild_battle_hud(defender, attacker);
+				if (has_nontransform_move) {
+					mon* temp = new mon;
+					temp->original = attacker.original;
+					attacker.original = temp;
+					*(attacker.original) = attacker;
+					attacker.original->enemy = attacker.enemy;
+					attacker = defender;
+					attacker.level = attacker.original->level;
+					attacker.nickname = get_nickname(*attacker.original);
+					attacker.exp = attacker.original->exp;
+					attacker.original->exp_bar_index = attacker.exp_bar_index;
+					for (unsigned im = 0; i < SIZE; ++i) {
+						attacker.IV[i] = attacker.original->IV[i];
+						attacker.EV[i] = attacker.original->EV[i];
+					}
+					for (unsigned i = 0; i < 4; ++i) {
+						attacker.pp[i] = 5;
+					}
+					attacker.curr_hp = min(get_stat(attacker, HP), attacker.original->curr_hp);
+					attacker.queue.clear();
+					attacker.enemy = attacker.original->enemy;
+					attacker.wild = attacker.original->wild;
+					if (attacker.enemy) {
+						rebuild_battle_hud(defender, attacker);
+					}
+					else {
+						rebuild_battle_hud(attacker, defender);
+					}
 				}
 				else {
-					rebuild_battle_hud(attacker, defender);
+					do_alert("But, it failed!");
 				}
 			}
 		}
