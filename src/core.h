@@ -1245,9 +1245,9 @@ public:
 	bool status_immunity(mon& m, string move) {
 		for (unsigned i = 0; i < moves[move].special.size(); ++i) {
 			if (moves[move].special[i].find(string("STATUS_IMMUNITY")) != -1) {
-				if (moves[move].special[i].find(get_type_1(m)) != -1)
+				if (get_type_1(m) != "" && moves[move].special[i].find(get_type_1(m)) != -1)
 					return true;
-				if (moves[move].special[i].find(get_type_2(m)) != -1)
+				if (get_type_2(m) != "" && moves[move].special[i].find(get_type_2(m)) != -1)
 					return true;
 			}
 		}
