@@ -1084,6 +1084,14 @@ public:
 		out.status.clear();
 	}
 	void gain_exp(mon& winner, mon& loser, int num_fighters) {
+		if (winner.original) {
+			gain_exp(*winner.original, loser, num_fighters);
+			return;
+		}
+		if (loser.original) {
+			gain_exp(winner, *loser.original, num_fighters);
+			return;
+		}
 		double exp = 1.0;
 		if (!loser.wild)
 			exp *= 1.5;
@@ -2081,6 +2089,7 @@ public:
 					}
 					// TODO:  Capture messages
 					if (out == 4) {
+						clear_volatile(m);
 						m.wild = false;
 						m.enemy = false;
 						// TODO:  Nickname menu
