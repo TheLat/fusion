@@ -2007,7 +2007,7 @@ public:
 		// TODO:  Implement trainer battle
 		return true;
 	}
-	bool battle(player& p, mon& m) { // wild pokemon
+	bool battle() { // wild pokemon
 		int i;
 		int index;
 		int escape_attempts = 0;
@@ -2020,22 +2020,22 @@ public:
 		mc.extra_winnings = 0;
 		// TODO:  Initial menu
 		for (i = 0; i < 6; ++i) {
-			if (p.team[i].defined) {
-				if (!is_KO(p.team[i])) {
+			if (mc.team[i].defined) {
+				if (!is_KO(mc.team[i])) {
 					mc.selected = i;
 					break;
 				}
 			}
 		}
-		p.team[mc.selected].queue.clear();
-		p.team[mc.selected].last_move = "";
-		m.queue.clear();
-		m.last_move = "";
-		unsigned enemy_sprite = g.push_quad_load(0.1f, 0.1f, 0.9f, 0.9f, string("../resources/images/") + m.number + string(".png"));
-		m.hp_bar_index = g.push_hp_bar(-0.7f, 0.7f, get_hp_percent(m));
-		m.hud_index = 0;
-		do_alert(string("Wild ") + get_nickname(m) + string(" appeared!"));
-		do_alert(string("Go! ") + get_nickname(p.team[mc.selected]) + string("!"));
+		mc.team[mc.selected].queue.clear();
+		mc.team[mc.selected].last_move = "";
+		mc.enemy_team[mc.enemy_selected].queue.clear();
+		mc.enemy_team[mc.enemy_selected].last_move = "";
+		unsigned enemy_sprite = g.push_quad_load(0.1f, 0.1f, 0.9f, 0.9f, string("../resources/images/") + mc.enemy_team[mc.enemy_selected].number + string(".png"));
+		mc.enemy_team[mc.enemy_selected].hp_bar_index = g.push_hp_bar(-0.7f, 0.7f, get_hp_percent(mc.enemy_team[mc.enemy_selected]));
+		mc.enemy_team[mc.enemy_selected].hud_index = 0;
+		do_alert(string("Wild ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string(" appeared!"));
+		do_alert(string("Go! ") + get_nickname(mc.team[mc.selected]) + string("!"));
 		string temp = mc.team[mc.selected].number;
 		temp.erase(0, temp.find("-") + 1); // TODO:  Back views
 		unsigned team_sprite = g.push_quad_load(-1.0f, -0.422f, 0.9f, 0.9f, string("../resources/images/back/") + temp + string(".png"));
@@ -2044,12 +2044,12 @@ public:
 		unsigned team_hp_sprite = g.push_hp_bar(0.1f, -0.2f, get_hp_percent(mc.team[mc.selected]));
 		unsigned exp_bar_index = g.push_quad_load(0.0f, -0.35f, 0.0f, 0.025f, string("../resources/images/exp.bmp"));
 		unsigned hud_index = g.draw_list.size();
-		m.hud_index = hud_index;
-		m.last_hit_physical = 0;
-		m.last_hit_special = 0;
-		m.last_damage = 0;
-		m.sprite_index = enemy_sprite;
-		m.damage_dealt.clear();
+		mc.enemy_team[mc.enemy_selected].hud_index = hud_index;
+		mc.enemy_team[mc.enemy_selected].last_hit_physical = 0;
+		mc.enemy_team[mc.enemy_selected].last_hit_special = 0;
+		mc.enemy_team[mc.enemy_selected].last_damage = 0;
+		mc.enemy_team[mc.enemy_selected].sprite_index = enemy_sprite;
+		mc.enemy_team[mc.enemy_selected].damage_dealt.clear();
 		for (i = 0; i < 6; ++i) {
 			mc.team[i].hp_bar_index = team_hp_sprite;
 			mc.team[i].hud_index = hud_index;
@@ -2061,11 +2061,11 @@ public:
 		}
 		mc.team[mc.selected].exp_bar_index = exp_bar_index;
 		resize_exp_bar(mc.team[mc.selected]);
-		rebuild_battle_hud(mc.team[mc.selected], m);
+		rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
 		while (true) {
-			if (in_status(p.team[mc.selected], string("RAGE")) && p.team[mc.selected].queue.size() == 0)
-				p.team[mc.selected].queue.push_back(string("RAGE2"));
-			if (p.team[mc.selected].queue.size() == 0) {
+			if (in_status(mc.team[mc.selected], string("RAGE")) && mc.team[mc.selected].queue.size() == 0)
+				mc.team[mc.selected].queue.push_back(string("RAGE2"));
+			if (mc.team[mc.selected].queue.size() == 0) {
 				choices = do_menu(string("COMBAT_SELECT"));
 				while (choices.size() == 0 || choices[0] == -1) {
 					choices = do_menu(string("COMBAT_SELECT"));
@@ -2076,23 +2076,23 @@ public:
 						continue;
 					}
 					escape_attempts = 0;
-					p.team[mc.selected].queue.push_back(p.team[mc.selected].moves[choices[1]]);
-					p.team[mc.selected].pp[choices[1]]--;
+					mc.team[mc.selected].queue.push_back(mc.team[mc.selected].moves[choices[1]]);
+					mc.team[mc.selected].pp[choices[1]]--;
 				}
 				else if (choices[0] == 1) { // Player has selected Pokemon
-					p.team[mc.selected].queue.clear();
-					p.team[mc.selected].last_move = "";
-					do_alert(get_nickname(p.team[mc.selected]) + string("! That's enough!"));
-					clear_volatile(p.team[mc.selected]);
+					mc.team[mc.selected].queue.clear();
+					mc.team[mc.selected].last_move = "";
+					do_alert(get_nickname(mc.team[mc.selected]) + string("! That's enough!"));
+					clear_volatile(mc.team[mc.selected]);
 					mc.team[mc.selected].exp_bar_index = 0;
 					mc.team[mc.selected].damage_dealt.clear();
 					mc.selected = choices[1];
 					mc.team[mc.selected].exp_bar_index = exp_bar_index;
-					rebuild_battle_hud(mc.team[mc.selected], m);
-					do_alert(string("Go, ") + get_nickname(p.team[mc.selected]) + string("!"));
-					p.team[mc.selected].queue.clear();
-					p.team[mc.selected].last_move = "";
-					p.team[mc.selected].queue.push_back(string(""));
+					rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
+					do_alert(string("Go, ") + get_nickname(mc.team[mc.selected]) + string("!"));
+					mc.team[mc.selected].queue.clear();
+					mc.team[mc.selected].last_move = "";
+					mc.team[mc.selected].queue.push_back(string(""));
 				}
 				else if (choices[0] == 2) { // Player has selected ITEM
 					// TODO:  Implement inventory
@@ -2100,22 +2100,24 @@ public:
 					string o;
 					if (!use_item(string("COMBAT"), choices, o))
 						continue;
-					p.team[mc.selected].queue.insert(p.team[mc.selected].queue.begin(), string(""));
+					mc.team[mc.selected].queue.insert(mc.team[mc.selected].queue.begin(), string(""));
 					if (o.find("CAPTURE") == 0) {
 						o.erase(0, o.find(":") + 1);
-						out = attempt_capture(stof(o), m);
+						out = attempt_capture(stof(o), mc.enemy_team[mc.enemy_selected]);
 					}
 					// TODO:  Capture messages
 					if (out == 4) {
-						clear_volatile(m);
-						m.wild = false;
-						m.enemy = false;
+						clear_volatile(mc.enemy_team[mc.enemy_selected]);
+						mc.enemy_team[mc.enemy_selected].wild = false;
+						mc.enemy_team[mc.enemy_selected].enemy = false;
 						// TODO:  Nickname menu
-						gain_exp(p.team[mc.selected], m, 1); // TODO:  Implement exp split
+						gain_exp(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected], 1); // TODO:  Implement exp split
 						for (int i = 0; i < 6; ++i) {
-							if (!p.team[i].defined) {
-								do_alert(string("Wild ") + get_nickname(m) + string(" was captured!")); // TODO:  Fact-check string
-								p.team[i] = m;
+							if (!mc.team[i].defined) {
+								do_alert(string("Wild ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string(" was captured!")); // TODO:  Fact-check string
+								mc.team[i] = mc.enemy_team[mc.enemy_selected];
+								mc.team[i].wild = false;
+								mc.team[i].enemy = false;
 								g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
 								return true;
 							}
@@ -2125,9 +2127,9 @@ public:
 				}
 				else if (choices[0] == 3) { // Player has selected RUN
 					escape_attempts++;
-					p.team[mc.selected].queue.clear();
-					p.team[mc.selected].last_move = "";
-					if (run_away(p.team[mc.selected], m, escape_attempts)) {
+					mc.team[mc.selected].queue.clear();
+					mc.team[mc.selected].last_move = "";
+					if (run_away(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected], escape_attempts)) {
 						do_alert(string("Got away safely!"));
 						g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
 						team_clear_volatile();
@@ -2136,60 +2138,60 @@ public:
 					else {
 						do_alert(string("Couldn't get away!"));
 					}
-					p.team[mc.selected].queue.push_back(string(""));
+					mc.team[mc.selected].queue.push_back(string(""));
 				}
 			}
 			count = 0.0;
 			for (i = 0; i < 4; i++) {
-				if (moves[m.moves[i]].defined) { // TODO: Make this factor in power points
-					if (!in_status(m, string("DISABLE")) || (in_status(m, string("DISABLE")) && m.disabled_move != i))
+				if (moves[mc.enemy_team[mc.enemy_selected].moves[i]].defined) { // TODO: Make this factor in power points
+					if (!in_status(mc.enemy_team[mc.enemy_selected], string("DISABLE")) || (in_status(mc.enemy_team[mc.enemy_selected], string("DISABLE")) && mc.enemy_team[mc.enemy_selected].disabled_move != i))
 						count = count + 1.0;
 				}
 			}
 			if (count == 0.0) {
-				m.queue.push_back(string("STRUGGLE"));
+				mc.enemy_team[mc.enemy_selected].queue.push_back(string("STRUGGLE"));
 			}
 			else {
 				index = int(random(0.0, count));
 				int choice = -1;
 				for (i = 0; i <= index; ++i) {
-					if (in_status(m, string("DISABLE")) && m.disabled_move == i)
+					if (in_status(mc.enemy_team[mc.enemy_selected], string("DISABLE")) && mc.enemy_team[mc.enemy_selected].disabled_move == i)
 						choice++;
 					choice++;
 				}
 				if (choice == -1) {
-					m.queue.push_back(string("STRUGGLE"));
+					mc.enemy_team[mc.enemy_selected].queue.push_back(string("STRUGGLE"));
 				}
 				else {
-					m.queue.push_back(m.moves[choice]);
-					m.pp[index]--;
+					mc.enemy_team[mc.enemy_selected].queue.push_back(mc.enemy_team[mc.enemy_selected].moves[choice]);
+					mc.enemy_team[mc.enemy_selected].pp[index]--;
 				}
 			}
-			do_turn(p.team[mc.selected], m);
-			if (in_status(m, string("FLEE"))) {
-				do_alert(get_nickname(m) + string(" got away!"));
+			do_turn(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
+			if (in_status(mc.enemy_team[mc.enemy_selected], string("FLEE"))) {
+				do_alert(get_nickname(mc.enemy_team[mc.enemy_selected]) + string(" got away!"));
 				break;
 			}
-			if (in_status(p.team[mc.selected], string("FLEE"))) {
+			if (in_status(mc.team[mc.selected], string("FLEE"))) {
 				do_alert("Got away safely!");
 				break;
 			}
-			remove_status(p.team[mc.selected], string("FLINCH"), true);
-			remove_status(m, string("FLINCH"), true);
-			if (is_KO(m)) {
-				do_alert(string("Enemy ") + get_nickname(m) + string(" fainted!"));
+			remove_status(mc.team[mc.selected], string("FLINCH"), true);
+			remove_status(mc.enemy_team[mc.enemy_selected], string("FLINCH"), true);
+			if (is_KO(mc.enemy_team[mc.enemy_selected])) {
+				do_alert(string("Enemy ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string(" fainted!"));
 				// TODO:  Exp split
 				if (!is_KO(mc.team[mc.selected]))
-					gain_exp(p.team[mc.selected], m, 1);
+					gain_exp(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected], 1);
 				g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
 				break;
 			}
-			if (is_KO(p.team[mc.selected])) {
+			if (is_KO(mc.team[mc.selected])) {
 				// TODO:  Handle selection on KO
-				do_alert(get_nickname(p.team[mc.selected]) + string(" fainted!"));
+				do_alert(get_nickname(mc.team[mc.selected]) + string(" fainted!"));
 				team_clear_volatile();
 				for (i = 0; i < 6; ++i) {
-					if (!is_KO(p.team[i])) {
+					if (!is_KO(mc.team[i])) {
 						mc.team[mc.selected].exp_bar_index = 0;
 						mc.team[mc.selected].damage_dealt.clear();
 						mc.selected = i;
@@ -2204,7 +2206,7 @@ public:
 					team_clear_volatile();
 					return false;
 				}
-				rebuild_battle_hud(mc.team[mc.selected], m);
+				rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
 			}
 		}
 		team_clear_volatile();
@@ -3827,8 +3829,8 @@ public:
 			}
 			if (encounter != "") {
 				mc.enemy_selected = 0;
-				make_mon(encounter, encounter_level, mc.enemy_team[0]);
-				battle(mc, mc.enemy_team[0]);
+				make_mon(encounter, encounter_level, mc.enemy_team[mc.enemy_selected]);
+				battle();
 				encounter = "";
 			}
 			if (menus.size() > 0) {
