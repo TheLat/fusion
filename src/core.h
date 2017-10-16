@@ -113,8 +113,10 @@ public:
 	string nickname, last_move;
 	unsigned hp_bar_index, exp_bar_index;
 	unsigned hud_index;
+	unsigned sprite_index;
 	vector<int> damage_dealt;
-	mon() { defined = false; disabled_move = -1; last_damage = 0; }
+	mon* original;
+	mon() { defined = false; disabled_move = -1; last_damage = 0; original = 0; }
 	mon& operator=(mon& m) {
 		for (int i = 0; i < SIZE; ++i) {
 			this->IV[i] = m.IV[i];
@@ -1068,6 +1070,7 @@ public:
 			out.IV[x] = int(random(0.0, 16.0));
 		out.number = ID;
 		out.wild = true;
+		out.enemy = true;
 		out.defined = true;
 		out.turn_count = 0;
 		out.nickname = "";
@@ -1225,7 +1228,7 @@ public:
 			m.curr_hp = get_stat(m, HP);
 		resize_hp_bars(m);
 		if (m.hud_index)
-			rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected], m.hud_index);
+			rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
 	}
 	void deal_damage(mon& m, int damage_amount) {
 		if (damage_amount <= 0) {
@@ -1237,7 +1240,7 @@ public:
 			m.curr_hp = 0;
 		resize_hp_bars(m);
 		if (m.hud_index)
-			rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected], m.hud_index);
+			rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
 	}
 	bool status_immunity(mon& m, string move) {
 		for (unsigned i = 0; i < moves[move].special.size(); ++i) {
@@ -1590,6 +1593,39 @@ public:
 				miss = true;
 				pow = 0;
 			}
+			else if (moves[move].special[i] == "TRANSFORM") {
+				// TODO: Make sure enemy has moves other than TRANSFORM
+				if (attacker.original == 0) {
+					attacker.original = new mon;
+					*(attacker.original) = attacker;
+					attacker.original->enemy = attacker.enemy;
+					attacker = defender;
+					attacker.level = attacker.original->level;
+					attacker.nickname = get_nickname(*attacker.original);
+					attacker.exp = attacker.original->exp;
+					for (unsigned im = 0; i < SIZE; ++i) {
+						attacker.IV[i] = attacker.original->IV[i];
+						attacker.EV[i] = attacker.original->EV[i];
+					}
+					for (unsigned i = 0; i < 4; ++i) {
+						attacker.pp[i] = 5;
+					}
+					attacker.curr_hp = min(get_stat(attacker, HP), attacker.original->curr_hp);
+					attacker.queue.clear();
+					attacker.enemy = attacker.original->enemy;
+					attacker.wild = attacker.original->wild;
+					if (attacker.enemy) {
+						rebuild_battle_hud(defender, attacker);
+					}
+					else {
+						rebuild_battle_hud(attacker, defender);
+					}
+				}
+				else {
+					// TODO: Recursive transform
+					do_alert(string("But, it failed!"));
+				}
+			}
 		}
 		if (miss || (!skip_accuracy_check && ((moves[move].acc < int(random(0.0, 100.0) * get_evasion_modifier(defender) / get_accuracy_modifier(attacker)))) || in_status(defender, string("UNTARGETABLE")))) {
 			miss = true;
@@ -1909,8 +1945,9 @@ public:
 			g.new_load = true;
 		}
 	}
-	void rebuild_battle_hud(mon& p, mon& e, unsigned clear_point) {
+	void rebuild_battle_hud(mon& p, mon& e) {
 		m.lock();
+		unsigned clear_point = p.hud_index;
 		g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
 		g.push_text(-0.9f, 0.8f, 1.5f, 0.1f, 0.1f, get_nickname(e));
 		g.push_text(-0.6f, 0.7f, 0.5f, 0.1f, 0.1f, string("{LEVEL}") + to_string(e.level));
@@ -1919,6 +1956,16 @@ public:
 		string formatted_hp = "";
 		formatted_hp += to_string(p.curr_hp) + string("/") + to_string(get_stat(p, HP));
 		g.push_text(0.8f - (float(formatted_hp.length())*0.1f), -0.4f, 0.8f, 0.1f, 0.1f, formatted_hp);
+		string temp;
+		temp = p.number;
+		temp.erase(0, temp.find("-") + 1); // TODO:  Back views
+		g.draw_list[p.sprite_index].filename = string("../resources/images/back/") + temp + string(".png");
+		g.draw_list[p.sprite_index].tex = g.tex[g.draw_list[p.sprite_index].filename];
+		g.draw_list[e.sprite_index].filename = string("../resources/images/") + e.number + string(".png");
+		g.draw_list[e.sprite_index].tex = g.tex[g.draw_list[e.sprite_index].filename];
+		resize_exp_bar(p);
+		resize_hp_bars(p);
+		g.new_load = true;
 		m.unlock();
 	}
 	bool battle(player& p, trainer& t) { // trainer battle
@@ -1966,6 +2013,7 @@ public:
 		m.last_hit_physical = 0;
 		m.last_hit_special = 0;
 		m.last_damage = 0;
+		m.sprite_index = enemy_sprite;
 		m.damage_dealt.clear();
 		for (i = 0; i < 6; ++i) {
 			mc.team[i].hp_bar_index = team_hp_sprite;
@@ -1974,10 +2022,11 @@ public:
 			mc.team[i].last_hit_special = 0;
 			mc.team[i].last_hit_physical = 0;
 			mc.team[i].damage_dealt.clear();
+			mc.team[i].sprite_index = team_sprite;
 		}
 		mc.team[mc.selected].exp_bar_index = exp_bar_index;
 		resize_exp_bar(mc.team[mc.selected]);
-		rebuild_battle_hud(mc.team[mc.selected], m, hud_index);
+		rebuild_battle_hud(mc.team[mc.selected], m);
 		while (true) {
 			if (in_status(p.team[mc.selected], string("RAGE")) && p.team[mc.selected].queue.size() == 0)
 				p.team[mc.selected].queue.push_back(string("RAGE2"));
@@ -2004,14 +2053,7 @@ public:
 					mc.team[mc.selected].damage_dealt.clear();
 					mc.selected = choices[1];
 					mc.team[mc.selected].exp_bar_index = exp_bar_index;
-					resize_exp_bar(mc.team[mc.selected]);
-					temp = mc.team[mc.selected].number;
-					temp.erase(0, temp.find("-") + 1); // TODO:  Back views
-					g.draw_list[team_sprite].filename = string("../resources/images/back/") + temp + string(".png");
-					g.draw_list[team_sprite].tex = g.tex[string("../resources/images/back/") + temp + string(".png")];
-					g.new_load = true;
-					resize_hp_bars(mc.team[mc.selected]);
-					rebuild_battle_hud(mc.team[mc.selected], m, hud_index);
+					rebuild_battle_hud(mc.team[mc.selected], m);
 					do_alert(string("Go, ") + get_nickname(p.team[mc.selected]) + string("!"));
 					p.team[mc.selected].queue.clear();
 					p.team[mc.selected].last_move = "";
@@ -2116,7 +2158,6 @@ public:
 						mc.team[mc.selected].damage_dealt.clear();
 						mc.selected = i;
 						mc.team[mc.selected].exp_bar_index = exp_bar_index;
-						resize_exp_bar(mc.team[mc.selected]);
 						break;
 					}
 				}
@@ -2127,13 +2168,7 @@ public:
 					team_clear_volatile();
 					return false;
 				}
-				temp = mc.team[mc.selected].number;
-				temp.erase(0, temp.find("-") + 1); // TODO:  Back views
-				g.draw_list[team_sprite].filename = string("../resources/images/back/") + temp + string(".png");
-				g.draw_list[team_sprite].tex = g.tex[string("../resources/images/back/") + temp + string(".png")];
-				g.new_load = true;
-				resize_hp_bars(mc.team[mc.selected]);
-				rebuild_battle_hud(mc.team[mc.selected], m, hud_index);
+				rebuild_battle_hud(mc.team[mc.selected], m);
 			}
 		}
 		team_clear_volatile();
