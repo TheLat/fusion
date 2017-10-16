@@ -1595,35 +1595,31 @@ public:
 			}
 			else if (moves[move].special[i] == "TRANSFORM") {
 				// TODO: Make sure enemy has moves other than TRANSFORM
-				if (attacker.original == 0) {
-					attacker.original = new mon;
-					*(attacker.original) = attacker;
-					attacker.original->enemy = attacker.enemy;
-					attacker = defender;
-					attacker.level = attacker.original->level;
-					attacker.nickname = get_nickname(*attacker.original);
-					attacker.exp = attacker.original->exp;
-					for (unsigned im = 0; i < SIZE; ++i) {
-						attacker.IV[i] = attacker.original->IV[i];
-						attacker.EV[i] = attacker.original->EV[i];
-					}
-					for (unsigned i = 0; i < 4; ++i) {
-						attacker.pp[i] = 5;
-					}
-					attacker.curr_hp = min(get_stat(attacker, HP), attacker.original->curr_hp);
-					attacker.queue.clear();
-					attacker.enemy = attacker.original->enemy;
-					attacker.wild = attacker.original->wild;
-					if (attacker.enemy) {
-						rebuild_battle_hud(defender, attacker);
-					}
-					else {
-						rebuild_battle_hud(attacker, defender);
-					}
+				mon* temp = new mon;
+				temp->original = attacker.original;
+				attacker.original = temp;
+				*(attacker.original) = attacker;
+				attacker.original->enemy = attacker.enemy;
+				attacker = defender;
+				attacker.level = attacker.original->level;
+				attacker.nickname = get_nickname(*attacker.original);
+				attacker.exp = attacker.original->exp;
+				for (unsigned im = 0; i < SIZE; ++i) {
+					attacker.IV[i] = attacker.original->IV[i];
+					attacker.EV[i] = attacker.original->EV[i];
+				}
+				for (unsigned i = 0; i < 4; ++i) {
+					attacker.pp[i] = 5;
+				}
+				attacker.curr_hp = min(get_stat(attacker, HP), attacker.original->curr_hp);
+				attacker.queue.clear();
+				attacker.enemy = attacker.original->enemy;
+				attacker.wild = attacker.original->wild;
+				if (attacker.enemy) {
+					rebuild_battle_hud(defender, attacker);
 				}
 				else {
-					// TODO: Recursive transform
-					do_alert(string("But, it failed!"));
+					rebuild_battle_hud(attacker, defender);
 				}
 			}
 		}
@@ -1895,6 +1891,19 @@ public:
 		}
 	}
 	void clear_volatile(mon& m) {
+		mon* temp;
+		while (m.original) {
+			m.original->curr_hp = m.curr_hp;
+			m.original->status = m.status;
+			m.original->enemy = m.enemy;
+			m.original->wild = m.wild;
+			m = *(m.original);
+			m.enemy = m.original->enemy;
+			m.wild = m.original->wild;
+			temp = m.original;
+			m.original = m.original->original;
+			delete temp;
+		}
 		map<string, status_effect>::iterator it;
 		if (m.defined) {
 			for (unsigned i = 0; i < m.status.size(); ++i) {
