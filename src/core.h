@@ -1989,6 +1989,16 @@ public:
 			g.new_load = true;
 		}
 	}
+	vector<int> remove_cancels(vector<int> v) {
+		for (unsigned i = 0; i < v.size(); ++i) {
+			if (v[i] == -1) {
+				v.erase(v.begin() + i - 1);
+				v.erase(v.begin() + i - 1);
+				i = 0;
+			}
+		}
+		return v;
+	}
 	void rebuild_battle_hud(mon& p, mon& e) {
 		m.lock();
 		unsigned clear_point = p.hud_index;
@@ -2080,9 +2090,14 @@ public:
 				while (choices.size() == 0 || choices[0] == -1) {
 					choices = do_menu(string("COMBAT_SELECT"));
 				}
+				choices = remove_cancels(choices);
 				if (choices[0] == 0) { // Player has selected FIGHT
 					if (in_status(mc.team[mc.selected], string("DISABLE")) && choices[1] == mc.team[mc.selected].disabled_move) {
 						do_alert(string("That move is disabled!"));
+						continue;
+					}
+					if (mc.team[mc.selected].pp[choices[1]] <= 0) {
+						do_alert(string("There's no PP left!"));
 						continue;
 					}
 					escape_attempts = 0;
