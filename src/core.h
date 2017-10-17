@@ -2224,6 +2224,18 @@ public:
 			if (is_KO(mc.team[mc.selected])) {
 				do_alert(get_nickname(mc.team[mc.selected]) + string(" fainted!"));
 				team_clear_volatile();
+				choices = do_menu(string("ALERT_YES_NO"), string("Use next POK{e-accent}MON?"));
+				if (choices[1] == 1) {
+					if (run_away(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected], escape_attempts)) {
+						do_alert(string("Got away safely!"));
+						g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
+						team_clear_volatile();
+						return false;
+					}
+					else {
+						do_alert(string("Couldn't get away!"));
+					}
+				}
 				choices = do_menu(string("COMBAT_MON"));
 				choices = remove_cancels(choices);
 				while (choices.size() == 0 || mc.team[choices[0]].curr_hp <= 0) {
