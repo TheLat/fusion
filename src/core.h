@@ -2082,27 +2082,38 @@ public:
 		resize_exp_bar(mc.team[mc.selected]);
 		rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
 		while (true) {
-
 			if (in_status(mc.team[mc.selected], string("RAGE")) && mc.team[mc.selected].queue.size() == 0)
 				mc.team[mc.selected].queue.push_back(string("RAGE2"));
 			if (mc.team[mc.selected].queue.size() == 0) { 
-				choices = do_menu(string("COMBAT_SELECT"));
+				bool any_valid_moves;
+				any_valid_moves = false;
+				for (unsigned i = 0; i < 4; ++i) {
+					if (is_valid_move(mc.team[mc.selected], i)) {
+						any_valid_moves = true;
+					}
+				}
+				choices = any_valid_moves ? do_menu(string("COMBAT_SELECT")) : do_menu(string("COMBAT_SELECT_STRUGGLE"));
 				while (choices.size() == 0 || choices[0] == -1) {
 					choices = do_menu(string("COMBAT_SELECT"));
 				}
 				choices = remove_cancels(choices);
 				if (choices[0] == 0) { // Player has selected FIGHT
-					if (in_status(mc.team[mc.selected], string("DISABLE")) && choices[1] == mc.team[mc.selected].disabled_move) {
-						do_alert(string("That move is disabled!"));
-						continue;
-					}
-					if (mc.team[mc.selected].pp[choices[1]] <= 0) {
-						do_alert(string("There's no PP left!"));
-						continue;
-					}
 					escape_attempts = 0;
-					mc.team[mc.selected].queue.push_back(mc.team[mc.selected].moves[choices[1]]);
-					mc.team[mc.selected].pp[choices[1]]--;
+					if (any_valid_moves) {
+						if (in_status(mc.team[mc.selected], string("DISABLE")) && choices[1] == mc.team[mc.selected].disabled_move) {
+							do_alert(string("That move is disabled!"));
+							continue;
+						}
+						if (mc.team[mc.selected].pp[choices[1]] <= 0) {
+							do_alert(string("There's no PP left!"));
+							continue;
+						}
+						mc.team[mc.selected].queue.push_back(mc.team[mc.selected].moves[choices[1]]);
+						mc.team[mc.selected].pp[choices[1]]--;
+					}
+					else {
+						mc.team[mc.selected].queue.push_back(string("STRUGGLE"));
+					}
 				}
 				else if (choices[0] == 1) { // Player has selected Pokemon
 					mc.team[mc.selected].queue.clear();
