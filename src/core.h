@@ -1992,8 +1992,9 @@ public:
 	vector<int> remove_cancels(vector<int> v) {
 		for (unsigned i = 0; i < v.size(); ++i) {
 			if (v[i] == -1) {
-				v.erase(v.begin() + i - 1);
-				v.erase(v.begin() + i - 1);
+				v.erase(v.begin() + i);
+				if (v.size() > 0)
+					v.erase(v.begin() + i - 1);
 				i = 0;
 			}
 		}
@@ -2221,9 +2222,16 @@ public:
 				break;
 			}
 			if (is_KO(mc.team[mc.selected])) {
-				// TODO:  Handle selection on KO
 				do_alert(get_nickname(mc.team[mc.selected]) + string(" fainted!"));
 				team_clear_volatile();
+				choices = do_menu(string("COMBAT_MON"));
+				choices = remove_cancels(choices);
+				while (choices.size() == 0 || mc.team[choices[0]].curr_hp <= 0) {
+					if (choices.size() > 0)
+						do_alert(string("There's no will to fight!"));
+					choices = do_menu(string("COMBAT_MON"));
+					choices = remove_cancels(choices);
+				}
 				for (i = 0; i < 6; ++i) {
 					if (!is_KO(mc.team[i])) {
 						mc.team[mc.selected].exp_bar_index = 0;
