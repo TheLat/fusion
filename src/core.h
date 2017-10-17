@@ -1953,6 +1953,15 @@ public:
 	float get_hp_percent(mon& m) {
 		return float(m.curr_hp) / float(get_stat(m, HP));
 	}
+	bool is_valid_move(mon& m, unsigned i) {
+		if (!moves[m.moves[i]].defined)
+			return false;
+		if (m.pp[i] <= 0)
+			return false;
+		if (in_status(m, string("DISABLE")) && i == m.disabled_move)
+			return false;
+		return true;
+	}
 	void resize_exp_bar(mon& m) {
 		if (m.exp_bar_index) {
 			float f = float(m.exp - level_to_exp[m.level]) / float(level_to_exp[m.level + 1] - level_to_exp[m.level]);
@@ -2063,9 +2072,10 @@ public:
 		resize_exp_bar(mc.team[mc.selected]);
 		rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
 		while (true) {
+
 			if (in_status(mc.team[mc.selected], string("RAGE")) && mc.team[mc.selected].queue.size() == 0)
 				mc.team[mc.selected].queue.push_back(string("RAGE2"));
-			if (mc.team[mc.selected].queue.size() == 0) {
+			if (mc.team[mc.selected].queue.size() == 0) { 
 				choices = do_menu(string("COMBAT_SELECT"));
 				while (choices.size() == 0 || choices[0] == -1) {
 					choices = do_menu(string("COMBAT_SELECT"));
@@ -2143,10 +2153,8 @@ public:
 			}
 			count = 0.0;
 			for (i = 0; i < 4; i++) {
-				if (moves[mc.enemy_team[mc.enemy_selected].moves[i]].defined) { // TODO: Make this factor in power points
-					if (!in_status(mc.enemy_team[mc.enemy_selected], string("DISABLE")) || (in_status(mc.enemy_team[mc.enemy_selected], string("DISABLE")) && mc.enemy_team[mc.enemy_selected].disabled_move != i))
-						count = count + 1.0;
-				}
+				if (is_valid_move(mc.enemy_team[mc.enemy_selected], i))
+					count = count + 1.0;
 			}
 			if (count == 0.0) {
 				mc.enemy_team[mc.enemy_selected].queue.push_back(string("STRUGGLE"));
@@ -2155,7 +2163,7 @@ public:
 				index = int(random(0.0, count));
 				int choice = -1;
 				for (i = 0; i <= index; ++i) {
-					if (in_status(mc.enemy_team[mc.enemy_selected], string("DISABLE")) && mc.enemy_team[mc.enemy_selected].disabled_move == i)
+					if (!is_valid_move(mc.enemy_team[mc.enemy_selected], i))
 						choice++;
 					choice++;
 				}
