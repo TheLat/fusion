@@ -1115,7 +1115,7 @@ public:
 		}
 		resize_exp_bar(winner);
 		do_alert(get_nickname(winner) + string(" gained ") + to_string(int(exp)) + string(" EXP. Points!"));
-		level_up(winner, true); // TODO:  Switch to true when confirmation boxes are in.
+		level_up(winner, true);
 		resize_exp_bar(winner);
 	}
 	int get_move_count(mon& m) {
@@ -1527,7 +1527,6 @@ public:
 				}
 			}
 		}
-		// TODO: Special move messages
 		if (moves[move].desc == "")
 			do_alert(get_nickname(attacker) + string(" used ") + move + string("!"));
 		else if (moves[move].desc != "{NONE}") {
@@ -1607,7 +1606,6 @@ public:
 				pow = 0;
 			}
 			else if (moves[move].special[i] == "TRANSFORM") {
-				// TODO: Make sure enemy has moves other than TRANSFORM
 				bool has_nontransform_move = false;
 				for (unsigned j = 0; j < 4; ++j) {
 					if (moves[defender.moves[j]].defined) {
@@ -2043,7 +2041,6 @@ public:
 		g.push_box(-1.0f, -1.0f, 2.0f, 0.6f);
 		mc.selected = -1;
 		mc.extra_winnings = 0;
-		// TODO:  Initial menu
 		for (i = 0; i < 6; ++i) {
 			if (mc.team[i].defined) {
 				if (!is_KO(mc.team[i])) {
@@ -2171,7 +2168,7 @@ public:
 						}						
 						for (int i = 0; i < 6; ++i) {
 							if (!mc.team[i].defined) {
-								do_alert(string("Wild ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string(" was captured!")); // TODO:  Fact-check string
+								do_alert(string("Wild ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string(" was captured!"));
 								mc.team[i] = mc.enemy_team[mc.enemy_selected];
 								mc.team[i].wild = false;
 								mc.team[i].enemy = false;
@@ -2309,8 +2306,6 @@ public:
 		return true;
 	}
 	void do_turn(mon& m1, mon& m2) {
-		// TODO:  Expand this to support items, fleeing, and switching.
-		// TODO:  Make handle nothing in queue.
 		bool m1first = in_special(m1.queue[0], string("FIRST"));
 		bool m2first = in_special(m2.queue[0], string("FIRST"));
 		if (m1first && !m2first) {
@@ -3503,7 +3498,6 @@ public:
 					if (random(0.0, 187.5) < 8.5) {
 						int choice = int(random(0.0, double(levels[current_level].encounters.size())));
 						int choice2 = int(random(0.0, double(levels[current_level].encounters.size())));
-						// TODO:  Switch this over to fusions
 						encounter = std::to_string(levels[current_level].encounters[choice]) + string("-") + std::to_string(levels[current_level].encounters[choice2]);
 						int l = int(random(levels[current_level].level_range.first, levels[current_level].level_range.second + 1));
 						encounter_level = l;
