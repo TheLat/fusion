@@ -2136,7 +2136,6 @@ public:
 					mc.team[mc.selected].queue.push_back(string(""));
 				}
 				else if (choices[0] == 2) { // Player has selected ITEM
-					// TODO:  Implement inventory
 					int out = 0;
 					string o;
 					if (!use_item(string("COMBAT"), choices, o))
