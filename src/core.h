@@ -115,6 +115,7 @@ public:
 	unsigned hud_index;
 	unsigned sprite_index;
 	vector<int> damage_dealt;
+	map<int, bool> fought;
 	mon* original;
 	mon() { defined = false; disabled_move = -1; last_damage = 0; original = 0; }
 	mon& operator=(mon& m) {
@@ -1078,6 +1079,9 @@ public:
 			out.moves[x] = "";
 		level_up(out);
 		out.curr_hp = get_stat(out, HP);
+		for (int x = 0; x < 6; ++x) {
+			out.fought[x] = false;
+		}
 		if (out.level == 0) {
 			make_mon(ID, e_level, out);
 		}
@@ -1104,6 +1108,7 @@ public:
 		exp += 1.0;
 		double diff = double(max(min(winner.level - loser.level, 5), -10)) / 10.0;
 		exp *= (1.0 - diff);
+		exp = max(int(exp), 1);
 		winner.exp += int(exp);
 		for (unsigned i = 0; i < SIZE; ++i) {
 			winner.EV[i] += all_mon[loser.number].stats[i];
@@ -2082,6 +2087,7 @@ public:
 		mc.team[mc.selected].exp_bar_index = exp_bar_index;
 		resize_exp_bar(mc.team[mc.selected]);
 		rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
+		mc.enemy_team[mc.enemy_selected].fought[mc.selected] = true;
 		while (true) {
 			if (in_status(mc.team[mc.selected], string("RAGE")) && mc.team[mc.selected].queue.size() == 0)
 				mc.team[mc.selected].queue.push_back(string("RAGE2"));
@@ -2130,6 +2136,7 @@ public:
 					mc.selected = choices[1];
 					mc.team[mc.selected].exp_bar_index = exp_bar_index;
 					rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
+					mc.enemy_team[mc.enemy_selected].fought[mc.selected] = true;
 					do_alert(string("Go, ") + get_nickname(mc.team[mc.selected]) + string("!"));
 					mc.team[mc.selected].queue.clear();
 					mc.team[mc.selected].last_move = "";
@@ -2151,7 +2158,17 @@ public:
 						mc.enemy_team[mc.enemy_selected].wild = false;
 						mc.enemy_team[mc.enemy_selected].enemy = false;
 						// TODO:  Nickname menu
-						gain_exp(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected], 1); // TODO:  Implement exp split
+						int count = 0;
+						for (unsigned i = 0; i < 6; ++i) {
+							if (mc.enemy_team[mc.enemy_selected].fought[i] && mc.team[i].defined && !is_KO(mc.team[i])) {
+								count++;
+							}
+						}
+						for (unsigned i = 0; i < 6; ++i) {
+							if (mc.enemy_team[mc.enemy_selected].fought[i] && mc.team[i].defined && !is_KO(mc.team[i])) {
+								gain_exp(mc.team[i], mc.enemy_team[mc.enemy_selected], count);
+							}
+						}						
 						for (int i = 0; i < 6; ++i) {
 							if (!mc.team[i].defined) {
 								do_alert(string("Wild ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string(" was captured!")); // TODO:  Fact-check string
@@ -2228,9 +2245,17 @@ public:
 			remove_status(mc.enemy_team[mc.enemy_selected], string("FLINCH"), true);
 			if (is_KO(mc.enemy_team[mc.enemy_selected])) {
 				do_alert(string("Enemy ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string(" fainted!"));
-				// TODO:  Exp split
-				if (!is_KO(mc.team[mc.selected]))
-					gain_exp(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected], 1);
+				int count = 0;
+				for (unsigned i = 0; i < 6; ++i) {
+					if (mc.enemy_team[mc.enemy_selected].fought[i] && mc.team[i].defined && !is_KO(mc.team[i])) {
+						count++;
+					}
+				}
+				for (unsigned i = 0; i < 6; ++i) {
+					if (mc.enemy_team[mc.enemy_selected].fought[i] && mc.team[i].defined && !is_KO(mc.team[i])) {
+						gain_exp(mc.team[i], mc.enemy_team[mc.enemy_selected], count);
+					}
+				}
 				g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
 				break;
 			}
