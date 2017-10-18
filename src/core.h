@@ -2117,6 +2117,10 @@ public:
 					}
 				}
 				else if (choices[0] == 1) { // Player has selected Pokemon
+					if (in_status(mc.team[mc.selected], string("TRAP"))) {
+						do_alert("Couldn't get away!");
+						continue;
+					}
 					mc.team[mc.selected].queue.clear();
 					mc.team[mc.selected].last_move = "";
 					do_alert(get_nickname(mc.team[mc.selected]) + string("! That's enough!"));
@@ -2166,7 +2170,7 @@ public:
 					escape_attempts++;
 					mc.team[mc.selected].queue.clear();
 					mc.team[mc.selected].last_move = "";
-					if (run_away(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected], escape_attempts)) {
+					if (!in_status(mc.team[mc.selected], string("TRAP")) && run_away(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected], escape_attempts)) {
 						do_alert(string("Got away safely!"));
 						g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
 						team_clear_volatile();
@@ -2204,12 +2208,22 @@ public:
 			}
 			do_turn(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
 			if (in_status(mc.enemy_team[mc.enemy_selected], string("FLEE"))) {
-				do_alert(get_nickname(mc.enemy_team[mc.enemy_selected]) + string(" got away!"));
-				break;
+				if (!in_status(mc.enemy_team[mc.enemy_selected], string("TRAP"))) {
+					do_alert(get_nickname(mc.enemy_team[mc.enemy_selected]) + string(" got away!"));
+					break;
+				}
+				else {
+					do_alert(get_nickname(mc.enemy_team[mc.enemy_selected]) + string(" couldn't get away!"));
+				}
 			}
 			if (in_status(mc.team[mc.selected], string("FLEE"))) {
-				do_alert("Got away safely!");
-				break;
+				if (!in_status(mc.team[mc.selected], string("TRAP"))) {
+					do_alert("Got away safely!");
+					break;
+				}
+				else {
+					do_alert("Couldn't get away!");
+				}
 			}
 			remove_status(mc.team[mc.selected], string("FLINCH"), true);
 			remove_status(mc.enemy_team[mc.enemy_selected], string("FLINCH"), true);
