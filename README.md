@@ -43,7 +43,7 @@ List of changes:
 - Electric types can't be paralyzed by electric attacks.
 - Grass types can't be put to sleep or paralyzed by grass attacks.
 - Poison types can't be poisoned or suffer Toxic.
-- Leveling rates are gone.  Everything is on th Slow path now.
+- Leveling rates are gone.  Everything is on the fast path now.
 - Pokemon use the current-gen EXP yields.
 - In addition to the normal EXP scaling, there is now a bonus and penalty for fighting things above and below your level.  Pokemon will receive a bonus 10% EXP for every level above their own a defeated enemy is, to a maximum bonus of 100%.  Pokemon will receive a 10% EXP penalty for every level they are above a defeated enemy pokemon, to a maximum of 50%.
 - Different messages for x4 and x0.25 damage multipliers.
