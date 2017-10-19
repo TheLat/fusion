@@ -2026,8 +2026,9 @@ public:
 		g.new_load = true;
 		m.unlock();
 	}
-	bool battle(player& p, trainer& t) { // trainer battle
+	bool battle(trainer& t) { // trainer battle
 		// TODO:  Implement trainer battle
+		printf("Testing.");
 		return true;
 	}
 	bool battle() { // wild pokemon
@@ -2056,8 +2057,10 @@ public:
 		unsigned enemy_sprite = g.push_quad_load(0.1f, 0.1f, 0.9f, 0.9f, string("../resources/images/") + mc.enemy_team[mc.enemy_selected].number + string(".png"));
 		mc.enemy_team[mc.enemy_selected].hp_bar_index = g.push_hp_bar(-0.7f, 0.7f, get_hp_percent(mc.enemy_team[mc.enemy_selected]));
 		mc.enemy_team[mc.enemy_selected].hud_index = 0;
+		unsigned player_sprite = g.push_quad_load(-1.0f, -0.422f, 0.9f, 0.9f, string("../resources/images/player-back.png"));
 		do_alert(string("Wild ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string(" appeared!"));
 		do_alert(string("Go! ") + get_nickname(mc.team[mc.selected]) + string("!"));
+		g.draw_list[player_sprite].x = -2.0f; // TODO:  Animation
 		string temp = mc.team[mc.selected].number;
 		temp.erase(0, temp.find("-") + 1); // TODO:  Back views
 		unsigned team_sprite = g.push_quad_load(-1.0f, -0.422f, 0.9f, 0.9f, string("../resources/images/back/") + temp + string(".png"));
@@ -3894,6 +3897,14 @@ public:
 								else {
 									s = "";
 								}
+							}
+							else if (s.find("BATTLE") == 0) {
+								s2 = s;
+								s2.erase(0, s2.find(":") + 1);
+								if (s2.find("|") != -1) {
+									s2.erase(s2.find("|"), s2.length());
+								}
+								battle(levels[current_level].trainers[s2]);
 							}
 							if (s.find("|") != -1)
 								s.erase(0, s.find("|") + 1);
