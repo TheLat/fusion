@@ -46,6 +46,8 @@ public:
 		int i;
 		unsigned char* image;
 		FILE* f = fopen((filename).c_str(), "rb");
+		if (f == 0)
+			return 0;
 		int height = 0;
 		int width = 0;
 		int step = 0;

@@ -2028,7 +2028,261 @@ public:
 	}
 	bool battle(trainer& t) { // trainer battle
 		// TODO:  Implement trainer battle
-		printf("Testing.");
+		int i;
+		int index;
+		int escape_attempts = 0;
+		vector<int> choices;
+		double count;
+		int clear_point = g.draw_list.size();
+		g.push_box(-1.1f, -1.1f, 2.2f, 2.2f);
+		g.push_box(-1.0f, -1.0f, 2.0f, 0.6f);
+		mc.selected = -1;
+		mc.extra_winnings = 0;
+		mc.enemy_selected = 0;
+		for (i = 0; i < 6; ++i) {
+			if (mc.team[i].defined) {
+				if (!is_KO(mc.team[i])) {
+					mc.selected = i;
+					break;
+				}
+			}
+		}
+		for (i = 0; i < 6; ++i) {
+			mc.enemy_team[i] = t.team[i];
+			mc.enemy_team[i].wild = false;
+			mc.enemy_team[i].enemy = true;
+		}
+		mc.team[mc.selected].queue.clear();
+		mc.team[mc.selected].last_move = "";
+		mc.enemy_team[mc.enemy_selected].queue.clear();
+		mc.enemy_team[mc.enemy_selected].last_move = "";
+		unsigned enemy_trainer_sprite = g.push_quad_load(0.1f, 0.1f, 0.9f, 0.9f, string("../resources/images/") + t.image);
+		mc.enemy_team[mc.enemy_selected].hp_bar_index = g.push_hp_bar(-0.7f, 0.7f, get_hp_percent(mc.enemy_team[mc.enemy_selected]));
+		mc.enemy_team[mc.enemy_selected].hud_index = 0;
+		unsigned player_sprite = g.push_quad_load(-1.0f, -0.422f, 0.9f, 0.9f, string("../resources/images/player-back.png"));
+		do_alert(t.display_name + string(" wants to fight!"));
+		g.draw_list[enemy_trainer_sprite].x = 2.0f; // TODO:  Animation
+		unsigned enemy_sprite = g.push_quad_load(0.1f, 0.1f, 0.9f, 0.9f, string("../resources/images/") + mc.enemy_team[mc.enemy_selected].number + string(".png"));
+		do_alert(t.display_name + string(" sent out ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string("!"));
+		do_alert(string("Go! ") + get_nickname(mc.team[mc.selected]) + string("!"));
+		g.draw_list[player_sprite].x = -2.0f; // TODO:  Animation
+		string temp = mc.team[mc.selected].number;
+		temp.erase(0, temp.find("-") + 1); // TODO:  Back views
+		unsigned team_sprite = g.push_quad_load(-1.0f, -0.422f, 0.9f, 0.9f, string("../resources/images/back/") + temp + string(".png"));
+		g.push_arrow_box_left(-0.1f, -0.4f, 1.0f, 0.3f);
+		g.push_arrow_box_right(-0.9f, 0.6f, 1.0f, 0.2f);
+		unsigned team_hp_sprite = g.push_hp_bar(0.1f, -0.2f, get_hp_percent(mc.team[mc.selected]));
+		unsigned exp_bar_index = g.push_quad_load(0.0f, -0.35f, 0.0f, 0.025f, string("../resources/images/exp.bmp"));
+		unsigned hud_index = g.draw_list.size();
+		mc.enemy_team[mc.enemy_selected].hud_index = hud_index;
+		mc.enemy_team[mc.enemy_selected].last_hit_physical = 0;
+		mc.enemy_team[mc.enemy_selected].last_hit_special = 0;
+		mc.enemy_team[mc.enemy_selected].last_damage = 0;
+		mc.enemy_team[mc.enemy_selected].sprite_index = enemy_sprite;
+		mc.enemy_team[mc.enemy_selected].damage_dealt.clear();
+		for (i = 0; i < 6; ++i) {
+			mc.team[i].hp_bar_index = team_hp_sprite;
+			mc.team[i].hud_index = hud_index;
+			mc.team[i].exp_bar_index = 0;
+			mc.team[i].last_hit_special = 0;
+			mc.team[i].last_hit_physical = 0;
+			mc.team[i].damage_dealt.clear();
+			mc.team[i].sprite_index = team_sprite;
+		}
+		mc.team[mc.selected].exp_bar_index = exp_bar_index;
+		resize_exp_bar(mc.team[mc.selected]);
+		rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
+		mc.enemy_team[mc.enemy_selected].fought[mc.selected] = true;
+		while (true) {
+			if (in_status(mc.team[mc.selected], string("RAGE")) && mc.team[mc.selected].queue.size() == 0)
+				mc.team[mc.selected].queue.push_back(string("RAGE2"));
+			if (mc.team[mc.selected].queue.size() == 0) {
+				bool any_valid_moves;
+				any_valid_moves = false;
+				for (unsigned i = 0; i < 4; ++i) {
+					if (is_valid_move(mc.team[mc.selected], i)) {
+						any_valid_moves = true;
+					}
+				}
+				choices = any_valid_moves ? do_menu(string("COMBAT_SELECT")) : do_menu(string("COMBAT_SELECT_STRUGGLE"));
+				while (choices.size() == 0 || choices[0] == -1) {
+					choices = do_menu(string("COMBAT_SELECT"));
+				}
+				choices = remove_cancels(choices);
+				if (choices[0] == 0) { // Player has selected FIGHT
+					escape_attempts = 0;
+					if (any_valid_moves) {
+						if (in_status(mc.team[mc.selected], string("DISABLE")) && choices[1] == mc.team[mc.selected].disabled_move) {
+							do_alert(string("That move is disabled!"));
+							continue;
+						}
+						if (mc.team[mc.selected].pp[choices[1]] <= 0) {
+							do_alert(string("There's no PP left!"));
+							continue;
+						}
+						mc.team[mc.selected].queue.push_back(mc.team[mc.selected].moves[choices[1]]);
+						mc.team[mc.selected].pp[choices[1]]--;
+					}
+					else {
+						mc.team[mc.selected].queue.push_back(string("STRUGGLE"));
+					}
+				}
+				else if (choices[0] == 1) { // Player has selected Pokemon
+					if (in_status(mc.team[mc.selected], string("TRAP"))) {
+						do_alert("Couldn't get away!");
+						continue;
+					}
+					mc.team[mc.selected].queue.clear();
+					mc.team[mc.selected].last_move = "";
+					do_alert(get_nickname(mc.team[mc.selected]) + string("! That's enough!"));
+					clear_volatile(mc.team[mc.selected]);
+					mc.team[mc.selected].exp_bar_index = 0;
+					mc.team[mc.selected].damage_dealt.clear();
+					mc.selected = choices[1];
+					mc.team[mc.selected].exp_bar_index = exp_bar_index;
+					rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
+					mc.enemy_team[mc.enemy_selected].fought[mc.selected] = true;
+					do_alert(string("Go, ") + get_nickname(mc.team[mc.selected]) + string("!"));
+					mc.team[mc.selected].queue.clear();
+					mc.team[mc.selected].last_move = "";
+					mc.team[mc.selected].queue.push_back(string(""));
+				}
+				else if (choices[0] == 2) { // Player has selected ITEM
+					int out = 0;
+					string o;
+					if (!use_item(string("COMBAT"), choices, o))
+						continue;
+					mc.team[mc.selected].queue.insert(mc.team[mc.selected].queue.begin(), string(""));
+					if (o.find("CAPTURE") == 0) {
+						do_alert(string("You can't do that!")); // TODO:  Animation and correct fail message
+					}
+				}
+				else if (choices[0] == 3) { // Player has selected RUN
+					do_alert("No! There's no running from a trainer battle!");
+					continue;
+				}
+			}
+			count = 0.0;
+			for (i = 0; i < 4; i++) {
+				if (is_valid_move(mc.enemy_team[mc.enemy_selected], i))
+					count = count + 1.0;
+			}
+			if (count == 0.0) {
+				mc.enemy_team[mc.enemy_selected].queue.push_back(string("STRUGGLE"));
+			}
+			else {
+				index = int(random(0.0, count));
+				int choice = -1;
+				for (i = 0; i <= index; ++i) {
+					if (!is_valid_move(mc.enemy_team[mc.enemy_selected], i))
+						choice++;
+					choice++;
+				}
+				if (choice == -1) {
+					mc.enemy_team[mc.enemy_selected].queue.push_back(string("STRUGGLE"));
+				}
+				else {
+					mc.enemy_team[mc.enemy_selected].queue.push_back(mc.enemy_team[mc.enemy_selected].moves[choice]);
+					mc.enemy_team[mc.enemy_selected].pp[index]--;
+				}
+			}
+			do_turn(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
+			if (in_status(mc.enemy_team[mc.enemy_selected], string("FLEE"))) {
+				if (!in_status(mc.enemy_team[mc.enemy_selected], string("TRAP"))) {
+					do_alert(string("ENEMY FLEE STATUS")); // TODO:  Swap logic
+					remove_status(mc.enemy_team[mc.enemy_selected], string("FLEE"));
+				}
+				else {
+				}
+			}
+			if (in_status(mc.team[mc.selected], string("FLEE"))) {
+				if (!in_status(mc.team[mc.selected], string("TRAP"))) {
+					do_alert(string("PLAYER FLEE STATUS")); // TODO:  Swap logic
+					remove_status(mc.team[mc.selected], string("FLEE"));
+				}
+				else {
+					do_alert("Couldn't get away!");
+				}
+			}
+			remove_status(mc.team[mc.selected], string("FLINCH"), true);
+			remove_status(mc.enemy_team[mc.enemy_selected], string("FLINCH"), true);
+
+			if (is_KO(mc.team[mc.selected])) {
+				do_alert(get_nickname(mc.team[mc.selected]) + string(" fainted!"));
+				team_clear_volatile();
+				for (i = 0; i < 6; ++i) {
+					if (!is_KO(mc.team[i])) {
+						break;
+					}
+				}
+				if (i == 6) {
+					// TODO:  Handle defeat
+					if (t.lose_message != "") {
+						g.draw_list[enemy_trainer_sprite].x = 0.1f;
+						g.draw_list[enemy_sprite].x = 2.0f;
+						do_alert(t.lose_message);
+					}
+					g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
+					team_clear_volatile();
+					return false;
+				}
+				choices = do_menu(string("COMBAT_MON"));
+				choices = remove_cancels(choices);
+				while (choices.size() == 0 || mc.team[choices[0]].curr_hp <= 0) {
+					if (choices.size() > 0)
+						do_alert(string("There's no will to fight!"));
+					choices = do_menu(string("COMBAT_MON"));
+					choices = remove_cancels(choices);
+				}
+				mc.team[mc.selected].exp_bar_index = 0;
+				mc.team[mc.selected].damage_dealt.clear();
+				mc.selected = choices[0];
+				mc.team[mc.selected].exp_bar_index = exp_bar_index;
+				rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
+			}
+			if (is_KO(mc.enemy_team[mc.enemy_selected])) {
+				do_alert(string("Enemy ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string(" fainted!"));
+				int count = 0;
+				for (unsigned i = 0; i < 6; ++i) {
+					if (mc.enemy_team[mc.enemy_selected].fought[i] && mc.team[i].defined && !is_KO(mc.team[i])) {
+						count++;
+					}
+				}
+				for (unsigned i = 0; i < 6; ++i) {
+					if (mc.enemy_team[mc.enemy_selected].fought[i] && mc.team[i].defined && !is_KO(mc.team[i])) {
+						gain_exp(mc.team[i], mc.enemy_team[mc.enemy_selected], count);
+					}
+				}
+				bool found = false;
+				for (unsigned i = 0; i < 6; ++i) {
+					if (mc.enemy_team[i].defined && mc.enemy_team[i].curr_hp > 0) {
+						found = true;
+						mc.enemy_selected = i; // TODO: Smart team selection
+						do_alert(t.display_name + string(" sent out ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string("!"));
+						break;
+					}
+				}
+				if (!found)
+					break;
+			}
+		}
+		team_clear_volatile();
+		g.draw_list[enemy_trainer_sprite].x = 0.1f;
+		g.draw_list[enemy_sprite].x = 2.0f;
+		do_alert(string("{PLAYER_NAME} defeated ") + t.display_name + string("!"));
+		do_alert(t.win_message);
+		int level = 0;
+		for (int i = 0; i < 6; ++i) {
+			if (mc.enemy_team[i].defined) {
+				level = max(level, mc.enemy_team[i].level);
+			}
+		}
+		mc.extra_winnings += level * t.payout;
+		if (mc.extra_winnings > 0) {
+			mc.money += mc.extra_winnings;
+			do_alert(string("{PLAYER_NAME} got $") + to_string(mc.extra_winnings) + string(" for winning!"));
+		}
+		g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
 		return true;
 	}
 	bool battle() { // wild pokemon
@@ -2243,25 +2497,21 @@ public:
 			}
 			remove_status(mc.team[mc.selected], string("FLINCH"), true);
 			remove_status(mc.enemy_team[mc.enemy_selected], string("FLINCH"), true);
-			if (is_KO(mc.enemy_team[mc.enemy_selected])) {
-				do_alert(string("Enemy ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string(" fainted!"));
-				int count = 0;
-				for (unsigned i = 0; i < 6; ++i) {
-					if (mc.enemy_team[mc.enemy_selected].fought[i] && mc.team[i].defined && !is_KO(mc.team[i])) {
-						count++;
-					}
-				}
-				for (unsigned i = 0; i < 6; ++i) {
-					if (mc.enemy_team[mc.enemy_selected].fought[i] && mc.team[i].defined && !is_KO(mc.team[i])) {
-						gain_exp(mc.team[i], mc.enemy_team[mc.enemy_selected], count);
-					}
-				}
-				g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
-				break;
-			}
 			if (is_KO(mc.team[mc.selected])) {
 				do_alert(get_nickname(mc.team[mc.selected]) + string(" fainted!"));
 				team_clear_volatile();
+				for (i = 0; i < 6; ++i) {
+					if (!is_KO(mc.team[i])) {
+						break;
+					}
+				}
+				if (i == 6) {
+					// TODO:  Handle defeat
+					do_alert("You lost!");
+					g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
+					team_clear_volatile();
+					return false;
+				}
 				choices = do_menu(string("ALERT_YES_NO"), string("Use next POK{e-accent}MON?"));
 				if (choices[1] == 1) {
 					if (run_away(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected], escape_attempts)) {
@@ -2282,23 +2532,26 @@ public:
 					choices = do_menu(string("COMBAT_MON"));
 					choices = remove_cancels(choices);
 				}
-				for (i = 0; i < 6; ++i) {
-					if (!is_KO(mc.team[i])) {
-						mc.team[mc.selected].exp_bar_index = 0;
-						mc.team[mc.selected].damage_dealt.clear();
-						mc.selected = i;
-						mc.team[mc.selected].exp_bar_index = exp_bar_index;
-						break;
+				mc.team[mc.selected].exp_bar_index = 0;
+				mc.team[mc.selected].damage_dealt.clear();
+				mc.selected = choices[0];
+				mc.team[mc.selected].exp_bar_index = exp_bar_index;
+				rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
+			}
+			if (is_KO(mc.enemy_team[mc.enemy_selected])) {
+				do_alert(string("Enemy ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string(" fainted!"));
+				int count = 0;
+				for (unsigned i = 0; i < 6; ++i) {
+					if (mc.enemy_team[mc.enemy_selected].fought[i] && mc.team[i].defined && !is_KO(mc.team[i])) {
+						count++;
 					}
 				}
-				if (i == 6) {
-					// TODO:  Handle defeat
-					do_alert("You lost!");
-					g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
-					team_clear_volatile();
-					return false;
+				for (unsigned i = 0; i < 6; ++i) {
+					if (mc.enemy_team[mc.enemy_selected].fought[i] && mc.team[i].defined && !is_KO(mc.team[i])) {
+						gain_exp(mc.team[i], mc.enemy_team[mc.enemy_selected], count);
+					}
 				}
-				rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
+				break;
 			}
 		}
 		team_clear_volatile();
@@ -2306,6 +2559,7 @@ public:
 			mc.money += mc.extra_winnings;
 			do_alert(string("{PLAYER_NAME} got $") + to_string(mc.extra_winnings) + string(" for winning!"));
 		}
+		g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
 		return true;
 	}
 	void do_turn(mon& m1, mon& m2) {
@@ -3904,7 +4158,13 @@ public:
 								if (s2.find("|") != -1) {
 									s2.erase(s2.find("|"), s2.length());
 								}
-								battle(levels[current_level].trainers[s2]);
+								choices.clear();
+								if (battle(levels[current_level].trainers[s2])) {
+									choices.push_back(1);
+								}
+								else {
+									choices.push_back(0);
+								}
 							}
 							if (s.find("|") != -1)
 								s.erase(0, s.find("|") + 1);
