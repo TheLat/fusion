@@ -98,8 +98,16 @@ public:
 			int number_of_passes = png_set_interlace_handling(png_ptr);
 			if (color_type == PNG_COLOR_TYPE_PALETTE)
 				png_set_palette_to_rgb(png_ptr);
+			if (color_type == PNG_COLOR_TYPE_GRAY && bit_depth < 8)
+				png_set_expand(png_ptr);
+			if (png_get_valid(png_ptr, info_ptr, PNG_INFO_tRNS))
+				png_set_expand(png_ptr);
 			if (png_get_valid(png_ptr, info_ptr, PNG_INFO_tRNS))
 				png_set_tRNS_to_alpha(png_ptr);
+			if (bit_depth == 16)
+				png_set_strip_16(png_ptr);
+			if (color_type == PNG_COLOR_TYPE_GRAY || color_type == PNG_COLOR_TYPE_GRAY_ALPHA)
+				png_set_gray_to_rgb(png_ptr);
 			png_read_update_info(png_ptr, info_ptr);
 			setjmp(png_jmpbuf(png_ptr));
 			png_bytep* row_pointers = (png_bytep*)malloc(sizeof(png_bytep) * height);
@@ -107,9 +115,9 @@ public:
 				row_pointers[y] = (png_byte*)malloc(png_get_rowbytes(png_ptr, info_ptr));
 			}
 			png_read_image(png_ptr, row_pointers);
-			step = 4;
+			step = (int)png_get_channels(png_ptr, info_ptr);
 			size = height * width* step;
-			image = new unsigned char[size]; // allocate 3 bytes per pixel
+			image = new unsigned char[size]; // allocate 4 bytes per pixel
 			int i = 0;
 			for (int y = height-1; y >= 0; --y) {
 				for (int x = 0; x < width*step; ++x) {
