@@ -448,6 +448,10 @@ public:
 	}
 	void input(bool up, bool down, bool left, bool right, bool select, bool start, bool confirm, bool cancel) {
 		m2.lock();
+		if (start) {
+			start = false;
+			confirm = true;
+		}
 		if (type == "ALERT") {
 			if (start | select | confirm | cancel) {
 				if (step >= raw[0].s.size()) {

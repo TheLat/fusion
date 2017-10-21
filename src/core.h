@@ -293,7 +293,7 @@ public: // TODO:  Change back to private
 	string current_level;
 	player mc;
 	location ahead;
-	bool interact;
+	bool interact, open_menu;
 public:
 	void full_heal() {
 		for (unsigned i = 0; i < 6; ++i) {
@@ -3748,6 +3748,9 @@ public:
 			if (confirm) {
 				interact = true;
 			}
+			if (start) {
+				open_menu = true;
+			}
 			mc.loc = l;
 			update_level();
 			if (get_tile(mc.loc.y, mc.loc.x) == 4) {
@@ -3834,7 +3837,27 @@ public:
 				}
 			}
 			update_level();
-			if (interact) {
+			if (open_menu) {
+				vector<int> choices;
+				int offset = 0;
+				bool found = false;
+				open_menu = false;
+				if (!e.mc.values[string("POKEDEX")]) {
+					offset++;
+				}
+				for (unsigned i = 0; i < 6; ++i) {
+					if (mc.team[i].defined) {
+						found = true;
+						break;
+					}
+				}
+				if (!found)
+					offset++;
+				choices = do_menu(string("MAINMENU") + to_string(offset));
+				choices = remove_cancels(choices);
+				choices[0] += offset;
+			}
+			else if (interact) {
 				vector<int> choices;
 				interact = false;
 				for (unsigned i = 0; i < levels[current_level].characters.size(); ++i) {
