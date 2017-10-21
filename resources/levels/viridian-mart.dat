@@ -32,12 +32,12 @@ END
 viridian-mart-clerkdesk1 blank 1 5 NO_WANDER
 INTERACTIONS
 SET_FACE:viridian-mart-clerk:RIGHT|MENU:ALERT:Okay! Say hi to PROF.OAK for me!|NO_ADVANCE
-SHOP
+SET_FACE:viridian-mart-clerk:RIGHT|SHOP
 END
 viridian-mart-clerkdesk2 blank 0 6 NO_WANDER
 INTERACTIONS
 SET_FACE:viridian-mart-clerk:DOWN|MENU:ALERT:Okay! Say hi to PROF.OAK for me!|NO_ADVANCE
-SHOP
+SET_FACE:viridian-mart-clerk:DOWN|SHOP
 END
 viridian-mart-script blank 2 7 NO_WANDER
 FORCE_INTERACTION
