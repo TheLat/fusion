@@ -120,7 +120,7 @@ oak oak 5 2 DOWN INACTIVE
 INTERACTIONS
 SET_FACE:PLAYER:UP|MENU:ALERT:OAK: Now, {PLAYER_NAME}, which POK{e-accent}MON do you want?|NO_ADVANCE
 MENU:ALERT:OAK: If a wild POK{e-accent}MON appears, your POK{e-accent}MON can fight against it!|NO_ADVANCE
-MENU:ALERT:OAK: {PLAYER_NAME}, raise your young POK{e-accent}MON by making it fight!|NO_ADVANCE
+IN_INVENTORY:OAK's PARCEL|{MENU:ALERT:OAK: {PLAYER_NAME}, raise your young POK{e-accent}MON by making it fight!|NO_ADVANCE}{MENU:ALERT:OAK: Oh, {PLAYER_NAME}!|MENU:ALERT:How is my old POK{e-accent}MON?|MENU:ALERT:Well, it seems to like you a lot.|MENU:ALERT:You must be talented as a POK{e-accent}MON trainer!|MENU:ALERT:What? You have something for me?|REMOVE_ITEM:OAK's PARCEL|MENU:ALERT:Ah! This is the custom POK{e-accent} BALL I ordered!{NEWLINE}Thank you!}
 END
 oak-lab-script2 blank 5 7 INACTIVE
 FORCE_INTERACTION

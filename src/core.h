@@ -932,8 +932,10 @@ public:
 		unsigned i = 0, count = 0;
 		while (count < e.mc.inventory.size()) {
 			bool found = false;
+			if (type == "ALL")
+				found = true;
 			for (unsigned j = 0; j < e.items[e.mc.inventory[count].first].use.size(); ++j) {
-				if (type == "ALL" || type == e.items[e.mc.inventory[count].first].use[j])
+				if (type == e.items[e.mc.inventory[count].first].use[j])
 					found = true;
 			}
 			if (!found) {
@@ -952,8 +954,10 @@ public:
 		unsigned i = 0, count = 0;
 		while (count < e.mc.inventory.size()) {
 			bool found = false;
+			if (type == "ALL")
+				found = true;
 			for (unsigned j = 0; j < e.items[e.mc.inventory[count].first].use.size(); ++j) {
-				if (type == "ALL" || type == e.items[e.mc.inventory[count].first].use[j])
+				if (type == e.items[e.mc.inventory[count].first].use[j])
 					found = true;
 			}
 			if (!found) {
@@ -968,7 +972,19 @@ public:
 		}
 		return string("NOT FOUND");
 	}
-	bool gain_item(string& s, int count=1, bool silent=false) {
+	bool remove_item(string s) {
+		for (unsigned i = 0; i < mc.inventory.size(); ++i) {
+			if (mc.inventory[i].first == s) {
+				mc.inventory[i].second--;
+				if (mc.inventory[i].second <= 0) {
+					mc.inventory.erase(mc.inventory.begin() + i);
+				}
+				return true;
+			}
+		}
+		return false;
+	}
+	bool gain_item(string s, int count=1, bool silent=false) {
 		bool found = false;
 		if (!items[s].defined) {
 			do_menu(string("ALERT"), string("Game attempted to give bad item: ") + s + string(" to player."));
@@ -3922,6 +3938,22 @@ public:
 								choices.clear();
 								choices.push_back(e.mc.values[s2]);
 							}
+							else if (s.find("IN_INVENTORY:") == 0) {
+								s.erase(0, string("IN_INVENTORY:").length());
+								s2 = s;
+								if (s.find("|") != -1) {
+									s.erase(0, s.find("|"));
+									s2.erase(s2.find("|"), s2.length());
+								}
+								else {
+									s = "";
+								}
+								choices.clear();
+								if (in_inventory(s2))
+									choices.push_back(1);
+								else
+									choices.push_back(0);
+							}
 							else if (s.find("ADVANCE") == 0) {
 								s.erase(0, string("ADVANCE:").length());
 								s2 = s;
@@ -4015,6 +4047,17 @@ public:
 									s2.erase(s2.find("|"), s2.length());
 								}
 								gain_item(s2);
+								s.erase(0, s2.length());
+							}
+							else if (s.find("REMOVE_ITEM:") == 0) {
+								s.erase(0, string("REMOVE_ITEM:").length());
+								s2 = s;
+								if (s2.find("|") != -1) {
+									s2.erase(s2.find("|"), s2.length());
+								}
+								if (remove_item(s2)) {
+									do_alert(string("{PLAYER_NAME} delivered ") + s2 + string("!"));
+								}
 								s.erase(0, s2.length());
 							}
 							else if (s.find("MOVE:") == 0) {
