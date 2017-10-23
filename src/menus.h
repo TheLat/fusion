@@ -327,6 +327,18 @@ public:
 								t.s.erase(i, string("{RIVAL_NAME}").length());
 								t.s.insert(i, get_special_string(string("{RIVAL_NAME}")));
 							}
+							while (t.s.find(string("{SEEN}")) != -1) {
+								int i;
+								i = t.s.find(string("{SEEN}"));
+								t.s.erase(i, string("{SEEN}").length());
+								t.s.insert(i, get_special_string(string("{SEEN}")));
+							}
+							while (t.s.find(string("{CAUGHT}")) != -1) {
+								int i;
+								i = t.s.find(string("{CAUGHT}"));
+								t.s.erase(i, string("{CAUGHT}").length());
+								t.s.insert(i, get_special_string(string("{CAUGHT}")));
+							}
 							raw.push_back(t);
 							std::getline(f, line);
 						}

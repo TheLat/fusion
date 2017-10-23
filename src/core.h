@@ -167,6 +167,8 @@ public:
 	std::map<string, bool> inactive;
 	std::vector<pair<string, int>> inventory;
 	std::map<string, int> values;
+	std::map<string, bool> seen;
+	std::map<string, bool> caught;
 	player() { wins = 0; losses = 0; money = 0; name = "RED"; rivalname = "BLUE"; repel = 0; selected = 0; enemy_selected = 0; }
 };
 
@@ -724,6 +726,26 @@ public:
 		else if (in == "{PLAYER_NAME}") {
 			return mc.name;
 		}
+		else if (in == "{SEEN}") {
+			std::map<string, bool>::iterator it = mc.seen.begin();
+			unsigned count = 0;
+			while (it != mc.seen.end()) {
+				if (it->second)
+					count++;
+				it++;
+			}
+			return to_string(count);
+		}
+		else if (in == "{CAUGHT}") {
+			std::map<string, bool>::iterator it = mc.caught.begin();
+			unsigned count = 0;
+			while (it != mc.caught.end()) {
+				if (it->second)
+					count++;
+				it++;
+			}
+			return to_string(count);
+		}
 		return in;
 	}
 	bool use_item(string filter, std::vector<int> &choices, string &ret) {
@@ -895,6 +917,8 @@ public:
 				if (all_mon[m.number].evolution[i].second == effect) {
 					// TODO:  EVOLUTION SCREEN
 					m.number = all_mon[m.number].evolution[i].first;
+					mc.seen[m.number] = true;
+					mc.caught[m.number] = true;
 					break;
 				}
 			}
@@ -2080,6 +2104,7 @@ public:
 		g.draw_list[enemy_trainer_sprite].x = 2.0f; // TODO:  Animation
 		unsigned enemy_sprite = g.push_quad_load(0.1f, 0.1f, 0.9f, 0.9f, string("../resources/images/") + mc.enemy_team[mc.enemy_selected].number + string(".png"));
 		do_alert(t.display_name + string(" sent out ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string("!"));
+		mc.seen[mc.enemy_team[mc.enemy_selected].number] = true;
 		do_alert(string("Go! ") + get_nickname(mc.team[mc.selected]) + string("!"));
 		g.draw_list[player_sprite].x = -2.0f; // TODO:  Animation
 		string temp = mc.team[mc.selected].number;
@@ -2275,6 +2300,7 @@ public:
 						found = true;
 						mc.enemy_selected = i; // TODO: Smart team selection
 						do_alert(t.display_name + string(" sent out ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string("!"));
+						mc.seen[mc.enemy_team[mc.enemy_selected].number] = true;
 						break;
 					}
 				}
@@ -2329,6 +2355,7 @@ public:
 		mc.enemy_team[mc.enemy_selected].hud_index = 0;
 		unsigned player_sprite = g.push_quad_load(-1.0f, -0.422f, 0.9f, 0.9f, string("../resources/images/player-back.png"));
 		do_alert(string("Wild ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string(" appeared!"));
+		mc.seen[mc.enemy_team[mc.enemy_selected].number] = true;
 		do_alert(string("Go! ") + get_nickname(mc.team[mc.selected]) + string("!"));
 		g.draw_list[player_sprite].x = -2.0f; // TODO:  Animation
 		string temp = mc.team[mc.selected].number;
@@ -2442,6 +2469,7 @@ public:
 						for (int i = 0; i < 6; ++i) {
 							if (!mc.team[i].defined) {
 								do_alert(string("Wild ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string(" was captured!"));
+								mc.caught[mc.enemy_team[mc.enemy_selected].number] = true;
 								mc.team[i] = mc.enemy_team[mc.enemy_selected];
 								mc.team[i].wild = false;
 								mc.team[i].enemy = false;
@@ -3858,7 +3886,7 @@ public:
 				int offset = 0;
 				bool found = false;
 				open_menu = false;
-				if (!e.mc.values[string("POKEDEX")]) {
+				if (!e.mc.values[string("DEX")]) {
 					offset++;
 				}
 				for (unsigned i = 0; i < 6; ++i) {
@@ -3983,6 +4011,8 @@ public:
 										mc.team[i].enemy = false;
 										// TODO: Nickname menu
 										do_menu(string("ALERT"), mc.name + string(" got ") + all_mon[mc.team[i].number].name + string("!"));
+										mc.seen[mc.team[i].number] = true;
+										mc.caught[mc.team[i].number] = true;
 										break;
 									}
 								}
