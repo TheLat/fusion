@@ -1172,6 +1172,21 @@ public:
 			out.level++;
 			if (confirm_learn) {
 				do_alert(get_nickname(out) + string(" grew to level ") + to_string(out.level) + "!");
+				for (unsigned x = 0; x < all_mon[out.number].evolution.size(); ++x) {
+					if (all_mon[out.number].evolution[x].second.find("LEVEL") == 0) {
+						string temp;
+						int min_level;
+						temp = all_mon[out.number].evolution[x].second;
+						temp.erase(0, temp.find(" ") + 1);
+						min_level = stoi(temp);
+						if (min_level <= out.level) {
+							do_alert(string("What? ") + get_nickname(out) + string(" is evolving!"));
+							// TODO: Evolution screen and cancel option
+							out.number = all_mon[out.number].evolution[x].first;
+							do_alert(get_nickname(out) + string(" evolved into ") + all_mon[out.number].name + string("!"));
+						}
+					}
+				}
 			}
 			for (unsigned x = 0; x < all_mon[out.number].learned.size(); ++x) {
 				if (all_mon[out.number].learned[x].first == out.level) {
