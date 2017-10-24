@@ -916,7 +916,9 @@ public:
 			for (unsigned i = 0; i < all_mon[m.number].evolution.size(); ++i) {
 				if (all_mon[m.number].evolution[i].second == effect) {
 					// TODO:  EVOLUTION SCREEN
+					do_alert(string("What? ") + get_nickname(m) + string(" is evolving!"));
 					m.number = all_mon[m.number].evolution[i].first;
+					do_alert(get_nickname(m) + string(" evolved into ") + all_mon[m.number].name + string("!"));
 					mc.seen[m.number] = true;
 					mc.caught[m.number] = true;
 					break;
@@ -2307,6 +2309,7 @@ public:
 				for (unsigned i = 0; i < 6; ++i) {
 					if (mc.enemy_team[mc.enemy_selected].fought[i] && mc.team[i].defined && !is_KO(mc.team[i])) {
 						gain_exp(mc.team[i], mc.enemy_team[mc.enemy_selected], count);
+						rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
 					}
 				}
 				bool found = false;
@@ -2479,6 +2482,7 @@ public:
 						for (unsigned i = 0; i < 6; ++i) {
 							if (mc.enemy_team[mc.enemy_selected].fought[i] && mc.team[i].defined && !is_KO(mc.team[i])) {
 								gain_exp(mc.team[i], mc.enemy_team[mc.enemy_selected], count);
+								rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
 							}
 						}						
 						for (int i = 0; i < 6; ++i) {
@@ -3911,7 +3915,7 @@ public:
 					}
 				}
 				if (!found)
-					offset++;
+					offset+=2;
 				choices = do_menu(string("MAINMENU") + to_string(offset));
 				choices = remove_cancels(choices);
 				choices[0] += offset;
