@@ -533,7 +533,7 @@ public:
 					return string("");
 				int index = all_mon[temp].height;
 				string o = "";
-				if (index > 12)
+				if (index >= 12)
 					o = o + to_string(index / 12) + string("{FEET}");
 				o = o + to_string(index % 12) + string("{INCHES}");
 				return o;
