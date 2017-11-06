@@ -661,11 +661,13 @@ public:
 			int a = 0;
 		}
 		pop_menu();
-		choice.insert(choice.begin(), selection != -1 ? selection + scroll : selection);
-		if ((choice.size() > 0) && (choice[0] == offset + cancel_option))
-			choice[0] = -1;
-		if (always_cancel)
-			choice[0] = -1;
+		if (type != "AUTO_FOLLOWUP") {
+			choice.insert(choice.begin(), selection != -1 ? selection + scroll : selection);
+			if ((choice.size() > 0) && (choice[0] == offset + cancel_option))
+				choice[0] = -1;
+			if (always_cancel)
+				choice[0] = -1;
+		}
 		return choice;
 	}
 };
