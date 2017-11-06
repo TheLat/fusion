@@ -657,6 +657,22 @@ public:
 					temp = string(" ") + temp;
 				return temp;
 			}
+			else if (parse == "CENTER_JUSTIFY") {
+				unsigned len = stoi(temp);
+				temp.erase(0, temp.find(':') + 1);
+				temp = get_special_string(temp);
+				bool front = true;
+				while (temp.length() < len) {
+					if (front) {
+						temp = string(" ") + temp;
+					}
+					else {
+						temp = temp + string(" ");
+					}
+					front = !front;
+				}
+				return temp;
+			}
 			else if (parse == "MOVE_POWER") {
 				if (!moves[temp].defined)
 					return string("-");

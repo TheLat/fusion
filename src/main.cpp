@@ -21,6 +21,12 @@ int get_team_size() {
 	}
 	return ret;
 }
+std::map<string, bool> get_seen_table() {
+	return e.mc.seen;
+}
+std::map<string, bool> get_caught_table() {
+	return e.mc.caught;
+}
 int get_inventory_count(string type) {
 	int ret = 0;
 	bool found;

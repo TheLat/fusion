@@ -13,6 +13,8 @@ extern int get_team_size();
 extern int get_active_mon_move_size();
 extern int get_mon_move_size(int index);
 extern int get_inventory_count(string type);
+extern std::map<string, bool> get_seen_table();
+extern std::map<string, bool> get_caught_table();
 extern bool is_menu(string s);
 extern string get_menu(string r);
 extern vector<int> do_menu(string menu);
@@ -205,6 +207,74 @@ public:
 							arrowboxes.push_back(b);
 							std::getline(f, line);
 						}
+					}
+					else if (temp1.find("DEX") == 0) {
+						int count = 0;
+						std::getline(f, line);
+						temp2 = line;
+						temp2.erase(temp2.find(" "), temp2.length());
+						line.erase(0, line.find(" ") + 1);
+						b.xmin = stof(temp2);
+						temp2 = line;
+						temp2.erase(temp2.find(" "), temp2.length());
+						line.erase(0, line.find(" ") + 1);
+						b.ymin = stof(temp2);
+						temp2 = line;
+						temp2.erase(temp2.find(" "), temp2.length());
+						line.erase(0, line.find(" ") + 1);
+						b.length = stof(temp2);
+						temp2 = line;
+						b.height = stof(temp2);
+						std::getline(f, line);
+						float x = b.xmin + 0.2;
+						float y = b.ymin + b.height - 0.5f;
+						std::map<string, bool> seen = get_seen_table();
+						std::map<string, bool> caught = get_caught_table();
+						std::map<string, bool>::iterator it;
+						selection_cap = ((b.height + 0.0001) - 0.3) / 0.2;
+						max = seen.size();
+						for (count = 0; (count < max) && (count + 1 < selection_cap); count++) {
+							t.xmin = x;
+							t.ymin = y;
+							t.height = 0.1;
+							t.length = b.length - 0.2f;
+							t.s = string("R") + to_string(count);
+							y -= 0.2f;
+							raw.push_back(t);
+							followup.push_back("");
+						}
+						for (it = seen.begin(); it != seen.end(); ++it) {
+							reserve.push_back(string("RIGHT_JUSTIFY:13:MON_TEMPLATE_NAME:") + it->first);
+							reserve_followup.push_back(string("DEX_ENTRY:") + it->first); // TODO: DATA, CRY, AREA, QUIT
+						}
+						t.xmin = x;
+						t.ymin = y;
+						t.height = 0.1;
+						t.length = b.length - 0.2;
+						t.s = string("R") + to_string(count);
+						reserve.push_back(string("CANCEL"));
+						reserve_followup.push_back(string(""));
+						followup.push_back("");
+						raw.push_back(t);
+						for (it = seen.begin(); it != seen.end(); ++it) {
+							reserve.push_back(it->first);
+						}
+						reserve.push_back(string(""));
+						cancel_option = max;
+						selection_cap = count + 1;
+
+						x = b.xmin + 0.2;
+						y = b.ymin + b.height - 0.4f;
+						for (count = 0; count + 1 <= selection_cap; count++) {
+							t.xmin = x;
+							t.ymin = y;
+							t.height = 0.1;
+							t.length = b.length - 0.2f;
+							t.s = string("R") + to_string(count);
+							y -= 0.2f;
+							raw.push_back(t);
+						}
+						update_reserves();
 					}
 					else if (temp1.find("INVENTORY_") == 0) {
 						int count = 0;
@@ -571,12 +641,16 @@ public:
 				g.draw_list[cursor].y = display[selection].ymin + 0.1f + cursor_offset_y;
 			}
 			m2.unlock();
+			if (type == "AUTO_FOLLOWUP") {
+				done = true;
+				selection = 0;
+			}
 			if (done && (selection >= 0) && (followup.size() > 0)) {
 				vector<int> out;
 				if (followup[selection] == "")
 					break;
 				out = do_menu(followup[selection]);
-				if ((out.size() == 0) || (out[out.size() - 1] == -1)) {
+				if ((type != "AUTO_FOLLOWUP") && ((out.size() == 0) || (out[out.size() - 1] == -1))) {
 					done = false;
 				}
 				else {
