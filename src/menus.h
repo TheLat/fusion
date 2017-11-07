@@ -245,7 +245,10 @@ public:
 						}
 						for (it = seen.begin(); it != seen.end(); ++it) {
 							reserve.push_back(string("RIGHT_JUSTIFY:13:MON_TEMPLATE_NAME:") + it->first);
-							reserve_followup.push_back(string("DEX_ENTRY:") + it->first); // TODO: DATA, CRY, AREA, QUIT
+							if (caught[it->first])
+								reserve_followup.push_back(string("DEX_MENU_CAUGHT:") + it->first); // TODO: DATA, CRY, AREA, QUIT
+							else
+								reserve_followup.push_back(string("DEX_MENU_SEEN:") + it->first); // TODO: DATA, CRY, AREA, QUIT
 						}
 						t.xmin = x;
 						t.ymin = y;
@@ -257,7 +260,10 @@ public:
 						followup.push_back("");
 						raw.push_back(t);
 						for (it = seen.begin(); it != seen.end(); ++it) {
-							reserve.push_back(it->first);
+							if (caught[it->first])
+								reserve.push_back(it->first + string("{BALL}"));
+							else
+								reserve.push_back(it->first);
 						}
 						reserve.push_back(string(""));
 						cancel_option = max;

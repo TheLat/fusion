@@ -46,3 +46,5 @@ $.bmp money.bmp
 {VBOX}.bmp vbox.bmp
 {FEET}.bmp feet.bmp
 {INCHES}.bmp inches.bmp
+{BALL}.bmp ball.bmp
+{BALL-EMPTY}.bmp ball-empty.bmp
