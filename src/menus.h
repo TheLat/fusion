@@ -228,9 +228,18 @@ public:
 						std::getline(f, line);
 						float x = b.xmin + 0.2;
 						float y = b.ymin + b.height - 0.5f;
-						std::map<string, bool> seen = get_seen_table();
+						std::map<string, bool> seen_map = get_seen_table();
 						std::map<string, bool> caught = get_caught_table();
 						std::map<string, bool>::iterator it;
+						std::vector<string> seen;
+						for (unsigned i = 1; i <= 151; ++i) {
+							for (unsigned j = 1; j <= 151; ++j) {
+								string check;
+								check = to_string(i) + string("-") + to_string(j);
+								if (seen_map[check])
+									seen.push_back(check);
+							}
+						}
 						selection_cap = ((b.height + 0.0001) - 0.3) / 0.2;
 						max = seen.size();
 						for (count = 0; (count < max) && (count + 1 < selection_cap); count++) {
@@ -243,12 +252,12 @@ public:
 							raw.push_back(t);
 							followup.push_back("");
 						}
-						for (it = seen.begin(); it != seen.end(); ++it) {
-							reserve.push_back(string("RIGHT_JUSTIFY:13:MON_TEMPLATE_NAME:") + it->first);
-							if (caught[it->first])
-								reserve_followup.push_back(string("DEX_MENU_CAUGHT:") + it->first); // TODO: DATA, CRY, AREA, QUIT
+						for (unsigned i = 0; i < seen.size(); ++i) {
+							reserve.push_back(string("RIGHT_JUSTIFY:13:MON_TEMPLATE_NAME:") + seen[i]);
+							if (caught[seen[i]])
+								reserve_followup.push_back(string("DEX_MENU_CAUGHT:") + seen[i]); // TODO: DATA, CRY, AREA, QUIT
 							else
-								reserve_followup.push_back(string("DEX_MENU_SEEN:") + it->first); // TODO: DATA, CRY, AREA, QUIT
+								reserve_followup.push_back(string("DEX_MENU_SEEN:") + seen[i]); // TODO: DATA, CRY, AREA, QUIT
 						}
 						t.xmin = x;
 						t.ymin = y;
@@ -259,11 +268,11 @@ public:
 						reserve_followup.push_back(string(""));
 						followup.push_back("");
 						raw.push_back(t);
-						for (it = seen.begin(); it != seen.end(); ++it) {
-							if (caught[it->first])
-								reserve.push_back(it->first + string("{BALL}"));
+						for (unsigned i = 0; i < seen.size(); ++i) {
+							if (caught[seen[i]])
+								reserve.push_back(seen[i] + string("{BALL}"));
 							else
-								reserve.push_back(it->first);
+								reserve.push_back(seen[i]);
 						}
 						reserve.push_back(string(""));
 						cancel_option = max;
