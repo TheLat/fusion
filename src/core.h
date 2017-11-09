@@ -764,6 +764,17 @@ public:
 		}
 		return in;
 	}
+	bool can_use_item(string filter, string name) {
+		if (!items[name].defined)
+			return false;
+		if (items[name].effect.size() == 0)
+			return false;
+		for (unsigned i = 0; i < items[name].use.size(); ++i) {
+			if (items[name].use[i] == filter)
+				return true;
+		}
+		return false;
+	}
 	bool use_item(string filter, std::vector<int> &choices, string &ret) {
 		ret = string("");
 		string name = get_item_name(filter, choices[1]);
@@ -3941,7 +3952,7 @@ public:
 				choices[0] += offset;
 				if (choices[0] == 2) { // INVENTORY
 					string o;
-					if (!use_item(string("ALL"), choices, o)) {
+					if (!can_use_item(string("NONCOMBAT"), get_item_name(string("ALL"), choices[1])) || !use_item(string("ALL"), choices, o)) { // TODO: Correct message for Oak's parcel
 						do_alert("OAK: This isn't the time to use that!");
 					}
 				}
