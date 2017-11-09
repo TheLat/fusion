@@ -2039,7 +2039,7 @@ public:
 		return true;
 	}
 	void resize_exp_bar(mon& m) {
-		if (m.exp_bar_index) {
+		if (m.exp_bar_index > 0) {
 			float f = float(m.exp - level_to_exp[m.level]) / float(level_to_exp[m.level + 1] - level_to_exp[m.level]);
 			f = fmin(f, 1.0f);
 			g.draw_list[m.exp_bar_index].width = 0.85f * f;
@@ -2047,22 +2047,24 @@ public:
 		}
 	}
 	void resize_hp_bars(mon& m) {
-		float f = get_hp_percent(m);
-		g.draw_list[m.hp_bar_index].width = 0.6f * f;
-		if (f > 0.66f) {
-			g.draw_list[m.hp_bar_index].filename = string("../resources/images/hp-good.bmp");
-			g.draw_list[m.hp_bar_index].tex = g.tex[string("../resources/images/hp-good.bmp")];
-			g.new_load = true;
-		}
-		else if (f > 0.33f) {
-			g.draw_list[m.hp_bar_index].filename = string("../resources/images/hp-medium.bmp");
-			g.draw_list[m.hp_bar_index].tex = g.tex[string("../resources/images/hp-medium.bmp")];
-			g.new_load = true;
-		}
-		else {
-			g.draw_list[m.hp_bar_index].filename = string("../resources/images/hp-bad.bmp");
-			g.draw_list[m.hp_bar_index].tex = g.tex[string("../resources/images/hp-bad.bmp")];
-			g.new_load = true;
+		if (m.hp_bar_index > 0) {
+			float f = get_hp_percent(m);
+			g.draw_list[m.hp_bar_index].width = 0.6f * f;
+			if (f > 0.66f) {
+				g.draw_list[m.hp_bar_index].filename = string("../resources/images/hp-good.bmp");
+				g.draw_list[m.hp_bar_index].tex = g.tex[string("../resources/images/hp-good.bmp")];
+				g.new_load = true;
+			}
+			else if (f > 0.33f) {
+				g.draw_list[m.hp_bar_index].filename = string("../resources/images/hp-medium.bmp");
+				g.draw_list[m.hp_bar_index].tex = g.tex[string("../resources/images/hp-medium.bmp")];
+				g.new_load = true;
+			}
+			else {
+				g.draw_list[m.hp_bar_index].filename = string("../resources/images/hp-bad.bmp");
+				g.draw_list[m.hp_bar_index].tex = g.tex[string("../resources/images/hp-bad.bmp")];
+				g.new_load = true;
+			}
 		}
 	}
 	vector<int> remove_cancels(vector<int> v) {
@@ -2078,25 +2080,27 @@ public:
 	}
 	void rebuild_battle_hud(mon& p, mon& e) {
 		m.lock();
-		unsigned clear_point = p.hud_index;
-		g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
-		g.push_text(-0.9f, 0.8f, 1.5f, 0.1f, 0.1f, get_nickname(e));
-		g.push_text(-0.6f, 0.7f, 0.5f, 0.1f, 0.1f, string("{LEVEL}") + to_string(e.level));
-		g.push_text(1.0f - (float(get_nickname(p).length() * 0.1f)), -0.1f, 0.0f, 0.1f, 0.1f, get_nickname(p));
-		g.push_text(0.4f, -0.2f, 0.5f, 0.1f, 0.1f, string("{LEVEL}") + to_string(p.level));
-		string formatted_hp = "";
-		formatted_hp += to_string(p.curr_hp) + string("/") + to_string(get_stat(p, HP));
-		g.push_text(0.8f - (float(formatted_hp.length())*0.1f), -0.4f, 0.8f, 0.1f, 0.1f, formatted_hp);
-		string temp;
-		temp = p.number;
-		temp.erase(0, temp.find("-") + 1); // TODO:  Back views
-		g.draw_list[p.sprite_index].filename = string("../resources/images/back/") + temp + string(".png");
-		g.draw_list[p.sprite_index].tex = g.tex[g.draw_list[p.sprite_index].filename];
-		g.draw_list[e.sprite_index].filename = string("../resources/images/") + e.number + string(".png");
-		g.draw_list[e.sprite_index].tex = g.tex[g.draw_list[e.sprite_index].filename];
-		resize_exp_bar(p);
-		resize_hp_bars(p);
-		g.new_load = true;
+		if (p.hp_bar_index != 0 && e.hp_bar_index != 0) {
+			unsigned clear_point = p.hud_index;
+			g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
+			g.push_text(-0.9f, 0.8f, 1.5f, 0.1f, 0.1f, get_nickname(e));
+			g.push_text(-0.6f, 0.7f, 0.5f, 0.1f, 0.1f, string("{LEVEL}") + to_string(e.level));
+			g.push_text(1.0f - (float(get_nickname(p).length() * 0.1f)), -0.1f, 0.0f, 0.1f, 0.1f, get_nickname(p));
+			g.push_text(0.4f, -0.2f, 0.5f, 0.1f, 0.1f, string("{LEVEL}") + to_string(p.level));
+			string formatted_hp = "";
+			formatted_hp += to_string(p.curr_hp) + string("/") + to_string(get_stat(p, HP));
+			g.push_text(0.8f - (float(formatted_hp.length())*0.1f), -0.4f, 0.8f, 0.1f, 0.1f, formatted_hp);
+			string temp;
+			temp = p.number;
+			temp.erase(0, temp.find("-") + 1); // TODO:  Back views
+			g.draw_list[p.sprite_index].filename = string("../resources/images/back/") + temp + string(".png");
+			g.draw_list[p.sprite_index].tex = g.tex[g.draw_list[p.sprite_index].filename];
+			g.draw_list[e.sprite_index].filename = string("../resources/images/") + e.number + string(".png");
+			g.draw_list[e.sprite_index].tex = g.tex[g.draw_list[e.sprite_index].filename];
+			resize_exp_bar(p);
+			resize_hp_bars(p);
+			g.new_load = true;
+		}
 		m.unlock();
 	}
 	bool battle(trainer& t) { // trainer battle
@@ -3935,6 +3939,12 @@ public:
 				choices = do_menu(string("MAINMENU") + to_string(offset));
 				choices = remove_cancels(choices);
 				choices[0] += offset;
+				if (choices[0] == 2) { // INVENTORY
+					string o;
+					if (!use_item(string("ALL"), choices, o)) {
+						do_alert("OAK: This isn't the time to use that!");
+					}
+				}
 			}
 			else if (interact) {
 				vector<int> choices;
@@ -4290,11 +4300,19 @@ public:
 									s2.erase(s2.find("|"), s2.length());
 								}
 								choices.clear();
+								for (int i = 0; i < 6; ++i) {
+									mc.team[i].hp_bar_index = 0;
+									mc.team[i].exp_bar_index = 0;
+								}
 								if (battle(levels[current_level].trainers[s2])) {
 									choices.push_back(1);
 								}
 								else {
 									choices.push_back(0);
+								}
+								for (int i = 0; i < 6; ++i) {
+									mc.team[i].hp_bar_index = 0;
+									mc.team[i].exp_bar_index = 0;
 								}
 							}
 							if (s.find("|") != -1)
@@ -4318,7 +4336,15 @@ public:
 			if (encounter != "") {
 				mc.enemy_selected = 0;
 				make_mon(encounter, encounter_level, mc.enemy_team[mc.enemy_selected]);
+				for (int i = 0; i < 6; ++i) {
+					mc.team[i].hp_bar_index = 0;
+					mc.team[i].exp_bar_index = 0;
+				}
 				battle();
+				for (int i = 0; i < 6; ++i) {
+					mc.team[i].hp_bar_index = 0;
+					mc.team[i].exp_bar_index = 0;
+				}
 				encounter = "";
 			}
 			if (menus.size() > 0) {
