@@ -183,7 +183,8 @@ int main(int argc, char** argv) {
 
 	e.mc.loc.x = 6.0;
 	e.mc.loc.y = 4.0;
-	e.current_level = "pallet-town";
+	e.mc.loc.level = "pallet-town";
+	e.mc.money = 3000;
 
 	//Initialize GLUT
 	glutInit(&argc, argv);

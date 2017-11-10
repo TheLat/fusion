@@ -291,7 +291,6 @@ public: // TODO:  Change back to private
 	string alert;
 	string encounter;
 	int encounter_level;
-	string current_level;
 	player mc;
 	location ahead;
 	bool interact, open_menu;
@@ -3767,19 +3766,19 @@ public:
 		}
 	}
 	void handle_teleport() {
-		for (unsigned i = 0; i < levels[current_level].teleport.size(); ++i) {
-			if (mc.loc.x == levels[current_level].teleport[i].first.x && mc.loc.y == levels[current_level].teleport[i].first.y) {
+		for (unsigned i = 0; i < levels[mc.loc.level].teleport.size(); ++i) {
+			if (mc.loc.x == levels[mc.loc.level].teleport[i].first.x && mc.loc.y == levels[mc.loc.level].teleport[i].first.y) {
 				transition.lock();
-				mc.loc.x = levels[current_level].teleport[i].second.x;
-				mc.loc.y = levels[current_level].teleport[i].second.y;
-				current_level = levels[current_level].teleport[i].second.level;
+				mc.loc.x = levels[mc.loc.level].teleport[i].second.x;
+				mc.loc.y = levels[mc.loc.level].teleport[i].second.y;
+				mc.loc.level = levels[mc.loc.level].teleport[i].second.level;
 				transition.unlock();
 				break;
 			}
 		}
 	}
 	int get_tile(double y, double x) {
-		return levels[current_level].data[int(y)][int(x)];
+		return levels[mc.loc.level].data[int(y)][int(x)];
 	}
 	void input(bool up, bool down, bool left, bool right, bool select, bool start, bool confirm, bool cancel) {
 		if (menus.size() == 0) {
@@ -3818,18 +3817,18 @@ public:
 			}
 			if (l.y == -1.0)
 				return;
-			if (l.y >= levels[current_level].data.size())
+			if (l.y >= levels[mc.loc.level].data.size())
 				return;
 			if (l.x == -1.0)
 				return;
-			if (l.x >= levels[current_level].data[int(l.y)].size())
+			if (l.x >= levels[mc.loc.level].data[int(l.y)].size())
 				return;
 			if (blocking[get_tile(l.y, l.x)])
 				return;
-			for (unsigned i = 0; i < levels[current_level].characters.size(); ++i) {
-				if (!mc.active[levels[current_level].characters[i].name])
+			for (unsigned i = 0; i < levels[mc.loc.level].characters.size(); ++i) {
+				if (!mc.active[levels[mc.loc.level].characters[i].name])
 					continue;
-				if (l.x == levels[current_level].characters[i].loc.x && l.y == levels[current_level].characters[i].loc.y)
+				if (l.x == levels[mc.loc.level].characters[i].loc.x && l.y == levels[mc.loc.level].characters[i].loc.y)
 					return;
 			}
 			if (confirm) {
@@ -3841,12 +3840,12 @@ public:
 			mc.loc = l;
 			update_level();
 			if (get_tile(mc.loc.y, mc.loc.x) == 4) {
-				if (levels[current_level].encounters.size() > 0) {
+				if (levels[mc.loc.level].encounters.size() > 0) {
 					if (random(0.0, 187.5) < 8.5) {
-						int choice = int(random(0.0, double(levels[current_level].encounters.size())));
-						int choice2 = int(random(0.0, double(levels[current_level].encounters.size())));
-						encounter = std::to_string(levels[current_level].encounters[choice]) + string("-") + std::to_string(levels[current_level].encounters[choice2]);
-						int l = int(random(levels[current_level].level_range.first, levels[current_level].level_range.second + 1));
+						int choice = int(random(0.0, double(levels[mc.loc.level].encounters.size())));
+						int choice2 = int(random(0.0, double(levels[mc.loc.level].encounters.size())));
+						encounter = std::to_string(levels[mc.loc.level].encounters[choice]) + string("-") + std::to_string(levels[mc.loc.level].encounters[choice2]);
+						int l = int(random(levels[mc.loc.level].level_range.first, levels[mc.loc.level].level_range.second + 1));
 						encounter_level = l;
 					}
 				}
@@ -3881,21 +3880,21 @@ public:
 		m.unlock();
 	}
 	void draw_level() {
-		for (unsigned y = 0; y < levels[current_level].data.size(); ++y) {
-			for (unsigned x = 0; x < levels[current_level].data[y].size(); ++x) {
+		for (unsigned y = 0; y < levels[mc.loc.level].data.size(); ++y) {
+			for (unsigned x = 0; x < levels[mc.loc.level].data[y].size(); ++x) {
 				g.push_quad(-1.0f + (float(x) / 5.0f) - ((mc.loc.x - 4.5f) / 5.0f), 
 					(-float(y) / 4.5f) - (0.5f / 4.5f) + (mc.loc.y / 4.5f), 
-					1.0f / 5.0f, 1.0f / 4.5f, g.tiles[levels[current_level].data[y][x]]);
+					1.0f / 5.0f, 1.0f / 4.5f, g.tiles[levels[mc.loc.level].data[y][x]]);
 			}
 		}
 	}
 	void draw_characters() {
-		for (unsigned i = 0; i < levels[current_level].characters.size(); ++i) {
-			if (!mc.active[levels[current_level].characters[i].name])
+		for (unsigned i = 0; i < levels[mc.loc.level].characters.size(); ++i) {
+			if (!mc.active[levels[mc.loc.level].characters[i].name])
 				continue;
-			g.push_quad((levels[current_level].characters[i].loc.x - (mc.loc.x + 0.5))/5.0,
-				(-0.5 - levels[current_level].characters[i].loc.y + mc.loc.y)/ 4.5f + 0.055,
-				1.0 / 5.0f, 1.0 / 4.5f, g.tex[levels[current_level].characters[i].image + string("-") + get_direction_string(levels[current_level].characters[i].dir) + string("-0.bmp")]);
+			g.push_quad((levels[mc.loc.level].characters[i].loc.x - (mc.loc.x + 0.5)) / 5.0,
+				(-0.5 - levels[mc.loc.level].characters[i].loc.y + mc.loc.y) / 4.5f + 0.055,
+				1.0 / 5.0f, 1.0 / 4.5f, g.tex[levels[mc.loc.level].characters[i].image + string("-") + get_direction_string(levels[mc.loc.level].characters[i].dir) + string("-0.bmp")]);
 		}
 		g.push_quad(-0.1, -0.5 / 4.5 + 0.055, 1.0 / 5.0, 1.0 / 4.5, g.tex[string("player-") + get_direction_string(mc.dir) + string("-0.bmp")]);
 	}
@@ -3903,22 +3902,22 @@ public:
 		while (true) {
 			handle_teleport();
 			transition.lock();
-			for (unsigned i = 0; i < levels[current_level].characters.size(); ++i) {
-				if (!mc.active[levels[current_level].characters[i].name])
+			for (unsigned i = 0; i < levels[mc.loc.level].characters.size(); ++i) {
+				if (!mc.active[levels[mc.loc.level].characters[i].name])
 					continue;
-				for (unsigned j = 0; j < levels[current_level].characters[i].force_interactions.size(); ++j) {
-					if (mc.loc.x == levels[current_level].characters[i].force_interactions[j].x + levels[current_level].characters[i].loc.x &&
-						mc.loc.y == levels[current_level].characters[i].force_interactions[j].y + levels[current_level].characters[i].loc.y) {
-						if (levels[current_level].characters[i].loc.x > mc.loc.x)
+				for (unsigned j = 0; j < levels[mc.loc.level].characters[i].force_interactions.size(); ++j) {
+					if (mc.loc.x == levels[mc.loc.level].characters[i].force_interactions[j].x + levels[mc.loc.level].characters[i].loc.x &&
+						mc.loc.y == levels[mc.loc.level].characters[i].force_interactions[j].y + levels[mc.loc.level].characters[i].loc.y) {
+						if (levels[mc.loc.level].characters[i].loc.x > mc.loc.x)
 							mc.dir = RIGHT;
-						else if (levels[current_level].characters[i].loc.x < mc.loc.x)
+						else if (levels[mc.loc.level].characters[i].loc.x < mc.loc.x)
 							mc.dir = LEFT;
-						else if (levels[current_level].characters[i].loc.y > mc.loc.y)
+						else if (levels[mc.loc.level].characters[i].loc.y > mc.loc.y)
 							mc.dir = DOWN;
-						else if (levels[current_level].characters[i].loc.y < mc.loc.y)
+						else if (levels[mc.loc.level].characters[i].loc.y < mc.loc.y)
 							mc.dir = UP;
-						ahead.x = levels[current_level].characters[i].loc.x;
-						ahead.y = levels[current_level].characters[i].loc.y;
+						ahead.x = levels[mc.loc.level].characters[i].loc.x;
+						ahead.y = levels[mc.loc.level].characters[i].loc.y;
 						interact = true;
 					}
 				}
@@ -3959,19 +3958,19 @@ public:
 			else if (interact) {
 				vector<int> choices;
 				interact = false;
-				for (unsigned i = 0; i < levels[current_level].characters.size(); ++i) {
-					if (!mc.active[levels[current_level].characters[i].name])
+				for (unsigned i = 0; i < levels[mc.loc.level].characters.size(); ++i) {
+					if (!mc.active[levels[mc.loc.level].characters[i].name])
 						continue;
-					if (ahead.x == levels[current_level].characters[i].loc.x && ahead.y == levels[current_level].characters[i].loc.y) {
-						if (levels[current_level].characters[i].loc.x < mc.loc.x)
-							levels[current_level].characters[i].dir = RIGHT;
-						else if (levels[current_level].characters[i].loc.x > mc.loc.x)
-							levels[current_level].characters[i].dir = LEFT;
-						else if (levels[current_level].characters[i].loc.y > mc.loc.y)
-							levels[current_level].characters[i].dir = UP;
-						else if (levels[current_level].characters[i].loc.y < mc.loc.y)
-							levels[current_level].characters[i].dir = DOWN;
-						string s = levels[current_level].characters[i].interactions[mc.interaction[levels[current_level].characters[i].name]];
+					if (ahead.x == levels[mc.loc.level].characters[i].loc.x && ahead.y == levels[mc.loc.level].characters[i].loc.y) {
+						if (levels[mc.loc.level].characters[i].loc.x < mc.loc.x)
+							levels[mc.loc.level].characters[i].dir = RIGHT;
+						else if (levels[mc.loc.level].characters[i].loc.x > mc.loc.x)
+							levels[mc.loc.level].characters[i].dir = LEFT;
+						else if (levels[mc.loc.level].characters[i].loc.y > mc.loc.y)
+							levels[mc.loc.level].characters[i].dir = UP;
+						else if (levels[mc.loc.level].characters[i].loc.y < mc.loc.y)
+							levels[mc.loc.level].characters[i].dir = DOWN;
+						string s = levels[mc.loc.level].characters[i].interactions[mc.interaction[levels[mc.loc.level].characters[i].name]];
 						string s2, s3;
 						choices.clear();
 						bool advance;
@@ -4108,19 +4107,19 @@ public:
 							else if (s.find("FACE") == 0) {
 								s.erase(0, s.find(":") + 1);
 								if (s.find("LEFT") == 0) {
-									levels[current_level].characters[i].dir = LEFT;
+									levels[mc.loc.level].characters[i].dir = LEFT;
 									s.erase(0, string("LEFT").length());
 								}
 								else if (s.find("RIGHT") == 0) {
-									levels[current_level].characters[i].dir = RIGHT;
+									levels[mc.loc.level].characters[i].dir = RIGHT;
 									s.erase(0, string("RIGHT").length());
 								}
 								else if (s.find("UP") == 0) {
-									levels[current_level].characters[i].dir = UP;
+									levels[mc.loc.level].characters[i].dir = UP;
 									s.erase(0, string("UP").length());
 								}
 								else if (s.find("DOWN") == 0) {
-									levels[current_level].characters[i].dir = DOWN;
+									levels[mc.loc.level].characters[i].dir = DOWN;
 									s.erase(0, string("DOWN").length());
 								}
 								update_level();
@@ -4314,7 +4313,7 @@ public:
 									mc.team[i].hp_bar_index = 0;
 									mc.team[i].exp_bar_index = 0;
 								}
-								if (battle(levels[current_level].trainers[s2])) {
+								if (battle(levels[mc.loc.level].trainers[s2])) {
 									choices.push_back(1);
 								}
 								else {
@@ -4331,8 +4330,8 @@ public:
 								break;
 						}
 						if (advance) {
-							if (mc.interaction[levels[current_level].characters[i].name] < levels[current_level].characters[i].interactions.size() - 1) {
-								mc.interaction[levels[current_level].characters[i].name]++;
+							if (mc.interaction[levels[mc.loc.level].characters[i].name] < levels[mc.loc.level].characters[i].interactions.size() - 1) {
+								mc.interaction[levels[mc.loc.level].characters[i].name]++;
 							}
 						}
 					}
@@ -4366,16 +4365,25 @@ public:
 	void save_game() {
 		ofstream f("../SAVE.dat");
 		f << string("NAME:") + mc.name;
-		f << string("\nDIRECTION");
+		f << string("\nRIVAL_NAME:") + mc.rivalname;
+		f << string("\nDIRECTION:");
 		f << int(mc.dir);
-		mc.wins;
-		mc.losses;
+		f << string("\nWINS:");
+		f << mc.wins;
+		f << string("\nLOSSES:");
+		f << mc.losses;
+		f << string("\nLOCATION:");
+		f << mc.loc.level;
+		f << string(",");
+		f << mc.loc.x;
+		f << string(",");
+		f << mc.loc.y;
+		f << string("\nMONEY:");
+		f << mc.money;
+		f << string("\nREPEL:");
+		f << mc.repel;
 		mc.interaction;
 		mc.inventory;
-		mc.loc;
-		mc.money;
-		mc.repel;
-		mc.rivalname;
 		mc.seen;
 		mc.caught;
 		mc.storage;
