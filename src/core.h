@@ -166,7 +166,7 @@ public:
 	std::map<string, bool> active;
 	std::map<string, unsigned> interaction;
 	std::vector<pair<string, int>> inventory;
-	std::map<string, int> values;
+	std::map<string, unsigned> values;
 	std::map<string, bool> seen;
 	std::map<string, bool> caught;
 	player() { wins = 0; losses = 0; money = 0; name = "RED"; rivalname = "BLUE"; repel = 0; selected = 0; enemy_selected = 0; }
@@ -4374,22 +4374,131 @@ public:
 		f << mc.losses;
 		f << string("\nLOCATION:");
 		f << mc.loc.level;
-		f << string(",");
+		f << string("|");
 		f << mc.loc.x;
-		f << string(",");
+		f << string("|");
 		f << mc.loc.y;
 		f << string("\nMONEY:");
 		f << mc.money;
 		f << string("\nREPEL:");
 		f << mc.repel;
-		mc.interaction;
-		mc.inventory;
-		mc.seen;
-		mc.caught;
-		mc.storage;
-		mc.team;
-		mc.values;
+		std::map<string, unsigned>::iterator it = mc.interaction.begin();
+		f << string("\nINTERACTIONS:");
+		while (it != mc.interaction.end()) {
+			f << string("\n");
+			f << it->first;
+			f << string("|");
+			f << it->second;
+			it++;
+		}
+		f << string("\nEND\nACTIVE:");
+		std::map<string, bool>::iterator it2 = mc.active.begin();
+		while (it2 != mc.active.end()) {
+			f << string("\n");
+			f << it2->first;
+			f << string("|");
+			if (it2->second)
+				f << string("1");
+			else
+				f << string("0");
+			it2++;
+		}
+		f << string("\nEND\nINVENTORY:");
+		for (unsigned i = 0; i < mc.inventory.size(); ++i) {
+			f << string("\n");
+			f << mc.inventory[i].first;
+			f << string("|");
+			f << mc.inventory[i].second;
+		}
+		f << string("\nEND\nSEEN:");
+		it2 = mc.seen.begin();
+		while (it2 != mc.seen.end()) {
+			if (it2->second) {
+				f << string("\n");
+				f << it2->first;
+			}
+			it2++;
+		}
+		f << string("\nEND\nCAUGHT:");
+		it2 = mc.caught.begin();
+		while (it2 != mc.caught.end()) {
+			if (it2->second) {
+				f << string("\n");
+				f << it2->first;
+			}
+			it2++;
+		}
+		f << string("\nEND\nVALUES:");
+		it = mc.values.begin();
+		while (it != mc.values.end()) {
+			f << string("\n");
+			f << it->first;
+			f << string("|");
+			f << it->second;
+			it++;
+		}
+		f << string("\nEND\nTEAM:");
+		for (unsigned i = 0; i < 6; ++i) {
+			if (mc.team[i].defined) {
+				f << string("\n");
+				f << i;
+				f << string("|");
+				save_mon(f, mc.team[i]);
+			}
+		}
+		f << string("\nEND\nSTORAGE:");
+		for (unsigned i = 0; i < 20; ++i) {
+			for (unsigned j = 0; j < 20; ++j) {
+				if (mc.storage[i][j].defined) {
+					f << string("\n");
+					f << i;
+					f << string("|");
+					f << j;
+					f << string("|");
+					save_mon(f, mc.storage[i][j]);
+				}
+			}
+		}
+		f << string("\nEND");
 		f.close();
+	}
+	void save_mon(ofstream& f, mon& m) {
+		f << string("NUMBER:") << m.number << string("|NICKNAME:") << m.nickname << string("|HP:") << m.curr_hp << string("|EXP:") << m.exp << string("|LEVEL:") << m.level << string("|EV:");
+		for (unsigned i = 0; i < SIZE; ++i) {
+			f << m.EV[i] << string("|");
+		}
+		f << string("IV:");
+		for (unsigned i = 0; i < SIZE; ++i) {
+			f << m.IV[i] << string("|");
+		}
+		f << string("MOVES:");
+		for (unsigned i = 0; i < 4; ++i) {
+			if (moves[m.moves[i]].defined) {
+				f << m.moves[i];
+			}
+			f << string("|");
+		}
+		f << string("PP:");
+		for (unsigned i = 0; i < 4; ++i) {
+			if (moves[m.moves[i]].defined) {
+				f << m.pp[i];
+			}
+			f << string("|");
+		}
+		f << string("MAX_PP:");
+		for (unsigned i = 0; i < 4; ++i) {
+			if (moves[m.moves[i]].defined) {
+				f << m.max_pp[i];
+			}
+			f << string("|");
+		}
+		f << string("STATUS:");
+		for (unsigned i = 0; i < m.status.size(); ++i) {
+			f << m.status[i];
+			if (i < m.status.size() - 1) {
+				f << string("|");
+			}
+		}
 	}
 };
 
