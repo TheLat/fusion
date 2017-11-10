@@ -163,8 +163,8 @@ public:
 	mon enemy_team[6];
 	mon storage[20][20];
 	location loc;
+	std::map<string, bool> active;
 	std::map<string, unsigned> interaction;
-	std::map<string, bool> inactive;
 	std::vector<pair<string, int>> inventory;
 	std::map<string, int> values;
 	std::map<string, bool> seen;
@@ -192,8 +192,7 @@ public:
 	vector<location> force_interactions;
 	location loc, origin;
 	bool wander;
-	bool active;
-	character() { wander = false; dir = DOWN; active = true; }
+	character() { wander = false; dir = DOWN;  }
 };
 
 class trainer {
@@ -3028,31 +3027,25 @@ public:
 					levels[levelname].characters[levels[levelname].characters.size() - 1].loc = levels[levelname].characters[levels[levelname].characters.size() - 1].origin;
 					s = line;
 					if (s.find("INACTIVE") != -1) {
-						levels[levelname].characters[levels[levelname].characters.size() - 1].active = false;
+						mc.active[levels[levelname].characters[levels[levelname].characters.size() - 1].name] = false;
 					}
-					if (s == "WANDER") {
+					else {
+						mc.active[levels[levelname].characters[levels[levelname].characters.size() - 1].name] = true;
+					}
+					if (s.find("WANDER") != -1) {
 						levels[levelname].characters[levels[levelname].characters.size() - 1].wander = true;
-						s.erase(0, string("WANDER").length() + 1);
 					}
  					else {
 						levels[levelname].characters[levels[levelname].characters.size() - 1].wander = false;
-						if (s.find(" ") != -1) {
-							s.erase(0, s.find(" ") + 1);
-						}
-						else {
-							s = "";
-						}
 					}
-					if (s != "") {
-						if (s == "LEFT")
-							levels[levelname].characters[levels[levelname].characters.size() - 1].dir = LEFT;
-						else if (s == "RIGHT")
-							levels[levelname].characters[levels[levelname].characters.size() - 1].dir = RIGHT;
-						else if (s == "UP")
-							levels[levelname].characters[levels[levelname].characters.size() - 1].dir = UP;
-						else if (s == "DOWN")
-							levels[levelname].characters[levels[levelname].characters.size() - 1].dir = DOWN;
-					}
+					if (s.find("LEFT") != -1)
+						levels[levelname].characters[levels[levelname].characters.size() - 1].dir = LEFT;
+					if (s.find("RIGHT") != -1)
+						levels[levelname].characters[levels[levelname].characters.size() - 1].dir = RIGHT;
+					if (s.find("UP") != -1)
+						levels[levelname].characters[levels[levelname].characters.size() - 1].dir = UP;
+					if (s.find("DOWN") != -1)
+						levels[levelname].characters[levels[levelname].characters.size() - 1].dir = DOWN;
 					// TODO:  LOAD FROM CHARACTER SAVE
 					mc.interaction[levels[levelname].characters[levels[levelname].characters.size() - 1].name] = 0;
 					std::getline(f, line);
@@ -3834,7 +3827,7 @@ public:
 			if (blocking[get_tile(l.y, l.x)])
 				return;
 			for (unsigned i = 0; i < levels[current_level].characters.size(); ++i) {
-				if (!levels[current_level].characters[i].active)
+				if (!mc.active[levels[current_level].characters[i].name])
 					continue;
 				if (l.x == levels[current_level].characters[i].loc.x && l.y == levels[current_level].characters[i].loc.y)
 					return;
@@ -3898,7 +3891,7 @@ public:
 	}
 	void draw_characters() {
 		for (unsigned i = 0; i < levels[current_level].characters.size(); ++i) {
-			if (!levels[current_level].characters[i].active)
+			if (!mc.active[levels[current_level].characters[i].name])
 				continue;
 			g.push_quad((levels[current_level].characters[i].loc.x - (mc.loc.x + 0.5))/5.0,
 				(-0.5 - levels[current_level].characters[i].loc.y + mc.loc.y)/ 4.5f + 0.055,
@@ -3911,7 +3904,7 @@ public:
 			handle_teleport();
 			transition.lock();
 			for (unsigned i = 0; i < levels[current_level].characters.size(); ++i) {
-				if (!levels[current_level].characters[i].active)
+				if (!mc.active[levels[current_level].characters[i].name])
 					continue;
 				for (unsigned j = 0; j < levels[current_level].characters[i].force_interactions.size(); ++j) {
 					if (mc.loc.x == levels[current_level].characters[i].force_interactions[j].x + levels[current_level].characters[i].loc.x &&
@@ -3956,12 +3949,18 @@ public:
 						do_alert("OAK: This isn't the time to use that!");
 					}
 				}
+				if (choices[0] == 4) { // SAVING
+					if (choices[choices.size() - 1] == 0) {
+						save_game();
+						do_alert("{PLAYER_NAME} saved the game!");
+					}
+				}
 			}
 			else if (interact) {
 				vector<int> choices;
 				interact = false;
 				for (unsigned i = 0; i < levels[current_level].characters.size(); ++i) {
-					if (!levels[current_level].characters[i].active)
+					if (!mc.active[levels[current_level].characters[i].name])
 						continue;
 					if (ahead.x == levels[current_level].characters[i].loc.x && ahead.y == levels[current_level].characters[i].loc.y) {
 						if (levels[current_level].characters[i].loc.x < mc.loc.x)
@@ -4237,7 +4236,7 @@ public:
 								for (it = levels.begin(); it != levels.end(); it++) {
 									for (unsigned k = 0; k < it->second.characters.size(); ++k) {
 										if (it->second.characters[k].name == s2) {
-											it->second.characters[k].active = false;
+											mc.active[it->second.characters[k].name] = false;
 										}
 									}
 								}
@@ -4255,7 +4254,7 @@ public:
 								for (it = levels.begin(); it != levels.end(); it++) {
 									for (unsigned k = 0; k < it->second.characters.size(); ++k) {
 										if (it->second.characters[k].name == s2) {
-											it->second.characters[k].active = true;
+											mc.active[it->second.characters[k].name] = true;
 										}
 									}
 								}
@@ -4363,6 +4362,26 @@ public:
 				menus.erase(menus.begin());
 			}
 		}
+	}
+	void save_game() {
+		ofstream f("../SAVE.dat");
+		f << string("NAME:") + mc.name;
+		f << string("\nDIRECTION");
+		f << int(mc.dir);
+		mc.wins;
+		mc.losses;
+		mc.interaction;
+		mc.inventory;
+		mc.loc;
+		mc.money;
+		mc.repel;
+		mc.rivalname;
+		mc.seen;
+		mc.caught;
+		mc.storage;
+		mc.team;
+		mc.values;
+		f.close();
 	}
 };
 
