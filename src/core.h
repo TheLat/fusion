@@ -31,10 +31,10 @@ enum STAT{
 };
 
 enum direction {
-	DOWN,
-	UP,
-	LEFT,
-	RIGHT
+	DOWN = 0,
+	UP = 1,
+	LEFT = 2,
+	RIGHT = 3
 };
 
 class location {
@@ -1211,6 +1211,8 @@ public:
 							// TODO: Evolution screen and cancel option
 							out.number = all_mon[out.number].evolution[x].first;
 							do_alert(get_nickname(out) + string(" evolved into ") + all_mon[out.number].name + string("!"));
+							mc.seen[out.number] = true;
+							mc.caught[out.number] = true;
 						}
 					}
 				}
@@ -4499,6 +4501,276 @@ public:
 				f << string("|");
 			}
 		}
+	}
+	void load_game() {
+		ifstream f("../SAVE.dat");
+		string line;
+		string temp;
+		if (!f.is_open()) {
+			return;
+		}
+		while (std::getline(f, line)) {
+			if (line.find("NAME:") == 0) {
+				line.erase(0, line.find(":") + 1);
+				mc.name = line;
+			}
+			else if (line.find("RIVAL_NAME:") == 0) {
+				line.erase(0, line.find(":") + 1);
+				mc.rivalname = line;
+			}
+			else if (line.find("DIRECTION:") == 0) {
+				line.erase(0, line.find(":") + 1);
+				mc.dir = direction(stoi(line));
+			}
+			else if (line.find("WINS:") == 0) {
+				line.erase(0, line.find(":") + 1);
+				mc.wins = stoi(line);
+			}
+			else if (line.find("LOSSES:") == 0) {
+				line.erase(0, line.find(":") + 1);
+				mc.losses = stoi(line);
+			}
+			else if (line.find("LOCATION:") == 0) {
+				line.erase(0, line.find(":") + 1);
+				temp = line;
+				temp.erase(temp.find("|"), temp.length());
+				line.erase(0, line.find("|") + 1);
+				mc.loc.level = temp;
+				temp = line;
+				temp.erase(temp.find("|"), temp.length());
+				line.erase(0, line.find("|") + 1);
+				mc.loc.x = stoi(temp);
+				temp = line;
+				mc.loc.y = stoi(temp);
+			}
+			else if (line.find("MONEY:") == 0) {
+				line.erase(0, line.find(":") + 1);
+				mc.money = stoi(line);
+			}
+			else if (line.find("REPEL:") == 0) {
+				line.erase(0, line.find(":") + 1);
+				mc.repel = stoi(line);
+			}
+			else if (line.find("INTERACTIONS:") == 0) {
+				std::getline(f, line);
+				while (line != "END") {
+					temp = line;
+					temp.erase(temp.find("|"), temp.length());
+					line.erase(0, line.find("|") + 1);
+					mc.interaction[temp] = stoi(line);
+					std::getline(f, line);
+				}
+			}
+			else if (line.find("ACTIVE:") == 0) {
+				std::getline(f, line);
+				while (line != "END") {
+					temp = line;
+					temp.erase(temp.find("|"), temp.length());
+					line.erase(0, line.find("|") + 1);
+					mc.active[temp] = stoi(line) == 0 ? false : true;
+					std::getline(f, line);
+				}
+			}
+			else if (line.find("INVENTORY:") == 0) {
+				std::getline(f, line);
+				while (line != "END") {
+					pair<string, int> p;
+					temp = line;
+					temp.erase(temp.find("|"), temp.length());
+					line.erase(0, line.find("|") + 1);
+					p.first = temp;
+					p.second = stoi(line);
+					mc.inventory.push_back(p);
+					std::getline(f, line);
+				}
+			}
+			else if (line.find("SEEN:") == 0) {
+				std::getline(f, line);
+				while (line != "END") {
+					mc.seen[line] = true;
+					std::getline(f, line);
+				}
+			}
+			else if (line.find("CAUGHT:") == 0) {
+				std::getline(f, line);
+				while (line != "END") {
+					mc.caught[line] = true;
+					std::getline(f, line);
+				}
+			}
+			else if (line.find("VALUES:") == 0) {
+				std::getline(f, line);
+				while (line != "END") {
+					temp = line;
+					temp.erase(temp.find("|"), temp.length());
+					line.erase(0, line.find("|") + 1);
+					mc.values[temp] = stoi(line);
+					std::getline(f, line);
+				}
+			}
+			else if (line.find("TEAM:") == 0) {
+				std::getline(f, line);
+				while (line != "END") {
+					temp = line;
+					temp.erase(temp.find("|"), temp.length());
+					line.erase(0, line.find("|"));
+					load_mon(line, mc.team[stoi(temp)]);
+					std::getline(f, line);
+				}
+			}
+			else if (line.find("STORAGE:") == 0) {
+				std::getline(f, line);
+				while (line != "END") {
+					int i, j;
+					temp = line;
+					temp.erase(temp.find("|"), temp.length());
+					line.erase(0, line.find("|"));
+					i = stoi(temp);
+					temp = line;
+					temp.erase(temp.find("|"), temp.length());
+					line.erase(0, line.find("|"));
+					j = stoi(temp);
+					load_mon(line, mc.storage[i][j]);
+					std::getline(f, line);
+				}
+			}
+		}
+		f.close();
+	}
+	void load_mon(string s, mon& m) {
+		string temp = s;
+		s.erase(0, s.find("|") + 1);
+		temp.erase(0, temp.find(":") + 1);
+		temp.erase(temp.find("|"), temp.length());
+		m.number = temp;
+		s.erase(0, s.find("|") + 1);
+		temp = s;
+		temp.erase(0, temp.find(":") + 1);
+		temp.erase(temp.find("|"), temp.length());
+		m.nickname = temp;
+		s.erase(0, s.find("|") + 1);
+		temp = s;
+		temp.erase(0, temp.find(":") + 1);
+		temp.erase(temp.find("|"), temp.length());
+		m.curr_hp = stoi(temp);
+		s.erase(0, s.find("|") + 1);
+		temp = s;
+		temp.erase(0, temp.find(":") + 1);
+		temp.erase(temp.find("|"), temp.length());
+		m.exp = stoi(temp);
+		s.erase(0, s.find("|") + 1);
+		temp = s;
+		temp.erase(0, temp.find(":") + 1);
+		temp.erase(temp.find("|"), temp.length());
+		m.level = stoi(temp);
+		s.erase(0, s.find("|") + 1);
+		temp = s;
+		temp.erase(0, temp.find(":") + 1);
+		temp.erase(temp.find("|"), temp.length());
+		m.EV[0] = stoi(temp);
+		s.erase(0, s.find("|") + 1);
+		temp = s;
+		temp.erase(temp.find("|"), temp.length());
+		m.EV[1] = stoi(temp);
+		s.erase(0, s.find("|") + 1);
+		temp = s;
+		temp.erase(temp.find("|"), temp.length());
+		m.EV[2] = stoi(temp);
+		s.erase(0, s.find("|") + 1);
+		temp = s;
+		temp.erase(temp.find("|"), temp.length());
+		m.EV[3] = stoi(temp);
+		s.erase(0, s.find("|") + 1);
+		temp = s;
+		temp.erase(temp.find("|"), temp.length());
+		m.EV[4] = stoi(temp);
+		s.erase(0, s.find("|") + 1);
+		temp = s;
+		temp.erase(0, temp.find(":") + 1);
+		temp.erase(temp.find("|"), temp.length());
+		m.IV[0] = stoi(temp);
+		s.erase(0, s.find("|") + 1);
+		temp = s;
+		temp.erase(temp.find("|"), temp.length());
+		m.IV[1] = stoi(temp);
+		s.erase(0, s.find("|") + 1);
+		temp = s;
+		temp.erase(temp.find("|"), temp.length());
+		m.IV[2] = stoi(temp);
+		s.erase(0, s.find("|") + 1);
+		temp = s;
+		temp.erase(temp.find("|"), temp.length());
+		m.IV[3] = stoi(temp);
+		s.erase(0, s.find("|") + 1);
+		temp = s;
+		temp.erase(temp.find("|"), temp.length());
+		m.IV[4] = stoi(temp);
+		s.erase(0, s.find("|") + 1);
+		temp = s;
+		temp.erase(0, temp.find(":") + 1);
+		temp.erase(temp.find("|"), temp.length());
+		m.moves[0] = temp;
+		s.erase(0, s.find("|") + 1);
+		temp = s;
+		temp.erase(temp.find("|"), temp.length());
+		m.moves[1] = temp;
+		s.erase(0, s.find("|") + 1);
+		temp = s;
+		temp.erase(temp.find("|"), temp.length());
+		m.moves[2] = temp;
+		s.erase(0, s.find("|") + 1);
+		temp = s;
+		temp.erase(temp.find("|"), temp.length());
+		m.moves[3] = temp;
+		s.erase(0, s.find("|") + 1);
+		temp = s;
+		temp.erase(0, temp.find(":") + 1);
+		temp.erase(temp.find("|"), temp.length());
+		m.pp[0] = temp == "" ? 0 : stoi(temp);
+		s.erase(0, s.find("|") + 1);
+		temp = s;
+		temp.erase(temp.find("|"), temp.length());
+		m.pp[1] = temp == "" ? 0 : stoi(temp);
+		s.erase(0, s.find("|") + 1);
+		temp = s;
+		temp.erase(temp.find("|"), temp.length());
+		m.pp[2] = temp == "" ? 0 : stoi(temp);
+		s.erase(0, s.find("|") + 1);
+		temp = s;
+		temp.erase(temp.find("|"), temp.length());
+		m.pp[3] = temp == "" ? 0 : stoi(temp);
+		s.erase(0, s.find("|") + 1);
+		temp = s;
+		temp.erase(0, temp.find(":") + 1);
+		temp.erase(temp.find("|"), temp.length());
+		m.max_pp[0] = temp == "" ? 0 : stoi(temp);
+		s.erase(0, s.find("|") + 1);
+		temp = s;
+		temp.erase(temp.find("|"), temp.length());
+		m.max_pp[1] = temp == "" ? 0 : stoi(temp);
+		s.erase(0, s.find("|") + 1);
+		temp = s;
+		temp.erase(temp.find("|"), temp.length());
+		m.max_pp[2] = temp == "" ? 0 : stoi(temp);
+		s.erase(0, s.find("|") + 1);
+		temp = s;
+		temp.erase(temp.find("|"), temp.length());
+		m.max_pp[3] = temp == "" ? 0 : stoi(temp);
+		s.erase(0, s.find("|") + 1);
+		s.erase(0, s.find(":") + 1);
+		while (s != "") {
+			temp = s;
+			if (temp.find("|") == -1)
+				s = "";
+			else {
+				temp.erase(temp.find("|"), temp.length());
+				s.erase(0, s.find("|") + 1);
+			}
+			m.status.push_back(temp);
+		}
+		m.defined = true;
+		m.wild = false;
+		m.enemy = false;
 	}
 };
 

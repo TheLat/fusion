@@ -185,6 +185,7 @@ int main(int argc, char** argv) {
 	e.mc.loc.y = 4.0;
 	e.mc.loc.level = "pallet-town";
 	e.mc.money = 3000;
+	e.load_game();
 
 	//Initialize GLUT
 	glutInit(&argc, argv);
