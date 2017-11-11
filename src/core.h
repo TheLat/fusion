@@ -942,8 +942,9 @@ public:
 				if (all_mon[m.number].evolution[i].second == effect) {
 					// TODO:  EVOLUTION SCREEN
 					do_alert(string("What? ") + get_nickname(m) + string(" is evolving!"));
+					string old_nickname = get_nickname(m);
 					m.number = all_mon[m.number].evolution[i].first;
-					do_alert(get_nickname(m) + string(" evolved into ") + all_mon[m.number].name + string("!"));
+					do_alert(old_nickname + string(" evolved into ") + all_mon[m.number].name + string("!"));
 					mc.seen[m.number] = true;
 					mc.caught[m.number] = true;
 					break;
@@ -1208,11 +1209,13 @@ public:
 						min_level = stoi(temp);
 						if (min_level <= out.level) {
 							do_alert(string("What? ") + get_nickname(out) + string(" is evolving!"));
-							// TODO: Evolution screen and cancel option
+							string old_nickname = get_nickname(out);
+							// TODO: Evolution screen and cancel option;
 							out.number = all_mon[out.number].evolution[x].first;
-							do_alert(get_nickname(out) + string(" evolved into ") + all_mon[out.number].name + string("!"));
+							do_alert(old_nickname + string(" evolved into ") + all_mon[out.number].name + string("!"));
 							mc.seen[out.number] = true;
 							mc.caught[out.number] = true;
+							rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
 						}
 					}
 				}
@@ -1235,6 +1238,10 @@ public:
 		vector<int> choices;
 		if (m.wild) {
 			return false;
+		}
+		for (int i = 0; i < 4; ++i) {
+			if (m.moves[i] == move)
+				return false;
 		}
 		int counter = get_move_count(m);
 		if (counter < 4) {
@@ -1273,7 +1280,7 @@ public:
 					string oldmove = m.moves[choices[choices.size() - 2]];
 					create_move(m, move, choices[choices.size() - 2]);
 					do_menu("ALERT", string("1, 2 and... Poof!"));
-					do_menu("ALERT", get_nickname(m) + string(" forgot ") + move + string("!"));
+					do_menu("ALERT", get_nickname(m) + string(" forgot ") + oldmove + string("!"));
 					do_menu("ALERT", string("And..."));
 					do_menu("ALERT", get_nickname(m) + string(" learned ") + move + string("!"));
 					return true;
