@@ -318,7 +318,7 @@ public:
 			if (string_lookup[key].defined)
 				key = string_lookup[key].value;
 			if (key != string("\n.bmp")) {
-				if (key == string("space.bmp") && x_curr == x && y_curr != y + height) {
+				if (key == string("white.bmp") && x_curr == x && y_curr != y + height) {
 				}
 				else {
 					push_quad(x_curr, y_curr, size, size, tex[key]);
@@ -343,7 +343,7 @@ public:
 		push_quad(xmin + 0.1f, ymin + height - 0.1f, length - 0.2f, 0.1f, tex[string("bar-top.bmp")]);
 		push_quad(xmin, ymin + 0.1f, 0.1f, height - 0.2f, tex[string("bar-left.bmp")]);
 		push_quad(xmin + length - 0.1f, ymin + 0.1f, 0.1f, height - 0.2f, tex[string("bar-right.bmp")]);
-		push_quad(xmin + 0.1f, ymin + 0.1f, length - 0.2f, height - 0.2f, tex[string("space.bmp")]);
+		push_quad(xmin + 0.1f, ymin + 0.1f, length - 0.2f, height - 0.2f, tex[string("white.bmp")]);
 		push_quad(xmin, ymin, 0.1f, 0.1f, tex[string("corner-bl.bmp")]);
 		push_quad(xmin + length - 0.1f, ymin, 0.1f, 0.1f, tex[string("corner-br.bmp")]);
 		push_quad(xmin + 0.1f, ymin, length - 0.2f, 0.1f, tex[string("bar-bottom.bmp")]);
