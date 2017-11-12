@@ -4373,6 +4373,7 @@ public:
 	}
 	void save_game() {
 		ofstream f("../SAVE.dat");
+		f << string("WARNING: Editing this file can easily corrupt game state.\n");
 		f << string("NAME:") + mc.name;
 		f << string("\nRIVAL_NAME:") + mc.rivalname;
 		f << string("\nDIRECTION:");
@@ -4469,6 +4470,17 @@ public:
 			}
 		}
 		f << string("\nEND");
+		f << string("\nLEVEL:");
+		std::map<string, level>::iterator l = levels.begin();
+		while (l != levels.end()) {
+			f << string("\n") + l->first;
+			for (unsigned i = 0; i < l->second.characters.size(); ++i) {
+				f << string("\n") << i << string("|") << int(l->second.characters[i].dir) << string("|") << int(l->second.characters[i].loc.x) << string("|") << int(l->second.characters[i].loc.y);
+			}
+			f << string("\nEND");
+			++l;
+		}
+		f << string("\nEND_LEVELS");
 		f.close();
 	}
 	void save_mon(ofstream& f, mon& m) {
@@ -4641,6 +4653,47 @@ public:
 					std::getline(f, line);
 				}
 			}
+			else if (line.find("LEVEL:") == 0) {
+				std::getline(f, line);
+				while (line != "END_LEVELS") {
+					string key;
+					key = line;
+					std::getline(f, line);
+					while (line != "END") {
+						int i, dir, x, y;
+						temp = line;
+						temp.erase(temp.find("|"), temp.length());
+						line.erase(0, line.find("|") + 1);
+						i = stoi(temp);
+						temp = line;
+						temp.erase(temp.find("|"), temp.length());
+						line.erase(0, line.find("|") + 1);
+						dir = stoi(temp);
+						temp = line;
+						temp.erase(temp.find("|"), temp.length());
+						line.erase(0, line.find("|") + 1);
+						x = stoi(temp);
+						temp = line;
+						y = stoi(temp);
+						levels[key].characters[i].dir = direction(dir);
+						levels[key].characters[i].loc.x = x;
+						levels[key].characters[i].loc.y = y;
+						std::getline(f, line);
+					}
+					std::getline(f, line);
+				}
+			}
+			/*f << string("\nLEVEL:");
+			std::map<string, level>::iterator l = levels.begin();
+			while (l != levels.end()) {
+				f << string("\n") + l->first;
+				for (unsigned i = 0; i < l->second.characters.size(); ++i) {
+					f << string("\n") << i << string("|") << int(l->second.characters[i].dir) << string("|") << int(l->second.characters[i].loc.x) << string("|") << int(l->second.characters[i].loc.y);
+				}
+				f << string("\nEND");
+				++l;
+			}
+			f << string("\nEND_LEVELS");*/
 		}
 		f.close();
 	}
