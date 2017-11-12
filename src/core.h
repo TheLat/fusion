@@ -740,6 +740,9 @@ public:
 		else if (in == "{PLAYER_NAME}") {
 			return mc.name;
 		}
+		else if (in == "{MONEY}") {
+			return string("$") + to_string(mc.money);
+		}
 		else if (in == "{SEEN}") {
 			std::map<string, bool>::iterator it = mc.seen.begin();
 			unsigned count = 0;
@@ -4065,6 +4068,7 @@ public:
 								else {
 									s = "";
 								}
+								do_menu(string("SHOP_FRAME"), s2); // TODO: Reopen on anything except cancel.
 							}
 							else if (s.find("GIVE_MON") == 0) {
 								s.erase(0, string("GIVE_MON:").length());
