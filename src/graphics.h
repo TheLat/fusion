@@ -304,7 +304,17 @@ public:
 			double_spaced = false;
 			s.erase(0, string("{SINGLE}").length());
 		}
+		bool newline = false;
 		for (unsigned i = 0; i < s.size(); ++i) {
+			if (newline) {
+				while (i < s.size() && s[i] == ' ') {
+					++i;
+				}
+				newline = false;
+				if (i >= s.size()) {
+					return i;
+				}
+			}
 			if (chunk[s[i]])
 				no_chunk_yet = false;
 			key = s[i];
@@ -331,6 +341,7 @@ public:
 				y_curr -= size;
 				if (double_spaced)
 					y_curr -= size;
+				newline = true;
 			}
 			if (y_curr < y)
 				return i + 1;
