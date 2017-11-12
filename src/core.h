@@ -2122,7 +2122,6 @@ public:
 		m.unlock();
 	}
 	bool battle(trainer& t) { // trainer battle
-		// TODO:  Implement trainer battle
 		int i;
 		int index;
 		int escape_attempts = 0;
@@ -4054,6 +4053,16 @@ public:
 								}
 								else {
 									mc.interaction[s2]++;
+									s = "";
+								}
+							}
+							else if (s.find("SHOP:") == 0) {
+								s.erase(0, s.find(":") + 1);
+								s2 = s;
+								if (s2.find("|") != -1) {
+									s2.erase(s2.find("|"), s2.length());
+								}
+								else {
 									s = "";
 								}
 							}
