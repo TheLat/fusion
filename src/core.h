@@ -4068,7 +4068,10 @@ public:
 								else {
 									s = "";
 								}
-								do_menu(string("SHOP_FRAME"), s2); // TODO: Reopen on anything except cancel.
+								choices.clear();
+								while (choices.size() == 0 || choices[choices.size() - 1] != 2) {
+									choices = do_menu(string("SHOP_FRAME"), s2); // TODO: Reopen on anything except cancel.
+								}
 							}
 							else if (s.find("GIVE_MON") == 0) {
 								s.erase(0, string("GIVE_MON:").length());
