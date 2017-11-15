@@ -243,7 +243,7 @@ public:
 							}
 						}
 						selection_cap = ((b.height + 0.0001) - 0.3) / 0.2;
-						max = seen.size();
+						max = seen.size() - 1;
 						for (count = 0; (count < max) && (count + 1 < selection_cap); count++) {
 							t.xmin = x;
 							t.ymin = y;
@@ -266,8 +266,6 @@ public:
 						t.height = 0.1;
 						t.length = b.length - 0.2;
 						t.s = string("R") + to_string(count);
-						reserve.push_back(string("CANCEL"));
-						reserve_followup.push_back(string(""));
 						followup.push_back("");
 						raw.push_back(t);
 						for (unsigned i = 0; i < seen.size(); ++i) {
@@ -276,8 +274,6 @@ public:
 							else
 								reserve.push_back(seen[i]);
 						}
-						reserve.push_back(string(""));
-						cancel_option = max;
 						selection_cap = count + 1;
 
 						x = b.xmin + 0.2;
