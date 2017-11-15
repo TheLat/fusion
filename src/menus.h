@@ -469,7 +469,7 @@ public:
 							followup.push_back("");
 						}
 						for (int i = 0; i < max; ++i) {
-							reserve.push_back(string("{TIMES}") + to_string(i + 1));
+							reserve.push_back(string("{TIMES}") + to_string(max - i));
 							reserve_followup.push_back(string(""));
 						}
 						t.xmin = x;
@@ -480,7 +480,7 @@ public:
 						followup.push_back("");
 						raw.push_back(t);
 						for (int i = 0; i < max; ++i) {
-							reserve.push_back(string("RIGHT_JUSTIFY:7:$") + to_string((i + 1)*cost));
+							reserve.push_back(string("RIGHT_JUSTIFY:7:$") + to_string((max - i)*cost));
 						}
 						max--;
 						selection_cap = count + 1;
@@ -496,6 +496,7 @@ public:
 							y -= 0.2f;
 							raw.push_back(t);
 						}
+						scroll = max;
 						update_reserves();
 					}
 					else if (temp1 == "TEXT") {
