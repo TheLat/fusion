@@ -398,7 +398,7 @@ public:
 						}
 						for (int i = 0; i < max; ++i) {
 							reserve.push_back(string("ITEM:") + temp1 + string(":") + to_string(i));
-							reserve_followup.push_back("EXCHANGE:" + to_string(get_item_cost(get_special_string(string("ITEM:") + temp1 + string(":") + to_string(i)))) + string("_") + to_string(get_item_count(get_special_string(string("ITEM:") + temp1 + string(":") + to_string(i)))));
+							reserve_followup.push_back("EXCHANGE:" + to_string(get_item_cost(get_special_string(string("ITEM:") + temp1 + string(":") + to_string(i)))/2) + string("_") + to_string(get_item_count(get_special_string(string("ITEM:") + temp1 + string(":") + to_string(i)))));
 						}
 						t.xmin = x;
 						t.ymin = y;
@@ -470,7 +470,7 @@ public:
 						}
 						for (int i = 0; i < max; ++i) {
 							reserve.push_back(string("{TIMES}") + to_string(max - i));
-							reserve_followup.push_back(string(""));
+							reserve_followup.push_back(string("ALERT_YES_NO:I can pay $") + to_string((max - i)*cost) + string(" for that."));
 						}
 						t.xmin = x;
 						t.ymin = y;

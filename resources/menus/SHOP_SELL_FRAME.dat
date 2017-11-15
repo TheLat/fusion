@@ -5,8 +5,8 @@ END
 ARROWBOXES:
 END
 TEXT:
--0.9 -1.0 1.8 0.3 {CHOICE}
+-0.9 -1.0 1.8 0.3 What would you like to sell?
 END
 FOLLOW_UP:
-YES_NO
+SHOP_SELL
 END
