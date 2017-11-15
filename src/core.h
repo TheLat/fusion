@@ -1005,6 +1005,16 @@ public:
 		}
 		return string("NOT FOUND");
 	}
+	int get_item_cost(string in) {
+		return e.items[in].price;
+	}
+	int get_inventory_count(string in) {
+		for (unsigned i = 0; i < mc.inventory.size(); ++i) {
+			if (in == mc.inventory[i].first)
+				return mc.inventory[i].second;
+		}
+		return 0;
+	}
 	string get_item_count(string type, int index) {
 		unsigned i = 0, count = 0;
 		while (count < e.mc.inventory.size()) {

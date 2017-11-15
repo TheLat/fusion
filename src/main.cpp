@@ -99,6 +99,14 @@ string get_item_effect(string in) {
 	return e.get_item_effect(in);
 }
 
+
+int get_item_count(string in) {
+	return e.get_inventory_count(in);
+}
+int get_item_cost(string in) {
+	return e.get_item_cost(in);
+}
+
 vector<int> do_menu(string menu) {
 	vector<int> def;
 	string temp;
