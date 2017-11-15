@@ -481,15 +481,12 @@ public:
 						t.height = 0.1;
 						t.length = b.length - 0.2;
 						t.s = string("R") + to_string(count);
-						reserve.push_back(string("CANCEL"));
-						reserve_followup.push_back(string(""));
 						followup.push_back("");
 						raw.push_back(t);
 						for (int i = 0; i < max; ++i) {
 							reserve.push_back(string("RIGHT_JUSTIFY:7:$") + to_string((i + 1)*cost));
 						}
-						reserve.push_back(string(""));
-						cancel_option = max;
+						max--;
 						selection_cap = count + 1;
 
 						x = b.xmin + 0.7;
