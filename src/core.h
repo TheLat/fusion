@@ -1037,6 +1037,14 @@ public:
 		}
 		return string("NOT FOUND");
 	}
+	bool remove_item(string s, int count) {
+		bool ret = true;
+		while (count > 0) {
+			ret = ret & remove_item(s);
+			count--;
+		}
+		return ret;
+	}
 	bool remove_item(string s) {
 		for (unsigned i = 0; i < mc.inventory.size(); ++i) {
 			if (mc.inventory[i].first == s) {
@@ -4100,6 +4108,15 @@ public:
 											}
 										}
 										else if (choices[0] == 1) { // SELL
+											if (choices[choices.size() - 1] == 0) { // Sold
+												holder = get_item_count(string("ALL"), choices[1]);
+												while (holder.find("}") != -1) {
+													holder.erase(0, holder.find("}") + 1);
+												}
+												int num = stoi(holder) - choices[2];
+												mc.money += num * items[get_item_name(string("ALL"), choices[1])].price / 2;
+												remove_item(get_item_name(string("ALL"), choices[1]), num);
+											}
 										}
 									}
 								}

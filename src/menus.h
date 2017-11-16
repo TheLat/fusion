@@ -398,7 +398,10 @@ public:
 						}
 						for (int i = 0; i < max; ++i) {
 							reserve.push_back(string("ITEM:") + temp1 + string(":") + to_string(i));
-							reserve_followup.push_back("EXCHANGE_SELL:" + to_string(get_item_cost(get_special_string(string("ITEM:") + temp1 + string(":") + to_string(i)))/2) + string("_") + to_string(get_item_count(get_special_string(string("ITEM:") + temp1 + string(":") + to_string(i)))));
+							if (get_item_cost(get_special_string(string("ITEM:") + temp1 + string(":") + to_string(i))) > 0)
+								reserve_followup.push_back("EXCHANGE_SELL:" + to_string(get_item_cost(get_special_string(string("ITEM:") + temp1 + string(":") + to_string(i))) / 2) + string("_") + to_string(get_item_count(get_special_string(string("ITEM:") + temp1 + string(":") + to_string(i)))));
+							else
+								reserve_followup.push_back("ALERT:I can't buy that.");
 						}
 						t.xmin = x;
 						t.ymin = y;
