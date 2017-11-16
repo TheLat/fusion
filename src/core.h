@@ -4079,8 +4079,29 @@ public:
 									s = "";
 								}
 								choices.clear();
-								while (choices.size() == 0 || choices[choices.size() - 1] != 2) {
+								string holder = s2;
+								vector<string> item_holder;
+								while (holder.find(",") != -1) {
+									string holder2 = holder;
+									holder2.erase(holder2.find(","), holder2.length());
+									holder.erase(0, holder.find(",") + 1);
+									item_holder.push_back(holder2);
+								}
+								item_holder.push_back(holder);
+								while (choices.size() == 0 || choices[0] != 2) {
 									choices = do_menu(string("SHOP_FRAME"), s2); // TODO: Reopen on anything except cancel.
+									choices = remove_cancels(choices);
+									if (choices.size() > 1) {
+										if (choices[0] == 0) { // BUY
+											if (choices[choices.size() - 1] == 0) { // Bought
+												int num = (mc.money / items[item_holder[choices[1]]].price) - choices[2];
+												gain_item(item_holder[choices[1]], num, true);
+												mc.money -= num * items[item_holder[choices[1]]].price;
+											}
+										}
+										else if (choices[0] == 1) { // SELL
+										}
+									}
 								}
 							}
 							else if (s.find("GIVE_MON") == 0) {
