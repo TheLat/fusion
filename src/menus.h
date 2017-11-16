@@ -398,7 +398,7 @@ public:
 						}
 						for (int i = 0; i < max; ++i) {
 							reserve.push_back(string("ITEM:") + temp1 + string(":") + to_string(i));
-							reserve_followup.push_back("EXCHANGE:" + to_string(get_item_cost(get_special_string(string("ITEM:") + temp1 + string(":") + to_string(i)))/2) + string("_") + to_string(get_item_count(get_special_string(string("ITEM:") + temp1 + string(":") + to_string(i)))));
+							reserve_followup.push_back("EXCHANGE_SELL:" + to_string(get_item_cost(get_special_string(string("ITEM:") + temp1 + string(":") + to_string(i)))/2) + string("_") + to_string(get_item_count(get_special_string(string("ITEM:") + temp1 + string(":") + to_string(i)))));
 						}
 						t.xmin = x;
 						t.ymin = y;
@@ -429,8 +429,88 @@ public:
 						}
 						update_reserves();
 					}
+					else if (temp1.find("BUY") == 0) {
+						int count = 0;
+						std::getline(f, line);
+						temp1 = "ALL";
+						temp2 = line;
+						temp2.erase(temp2.find(" "), temp2.length());
+						line.erase(0, line.find(" ") + 1);
+						b.xmin = stof(temp2);
+						temp2 = line;
+						temp2.erase(temp2.find(" "), temp2.length());
+						line.erase(0, line.find(" ") + 1);
+						b.ymin = stof(temp2);
+						temp2 = line;
+						temp2.erase(temp2.find(" "), temp2.length());
+						line.erase(0, line.find(" ") + 1);
+						b.length = stof(temp2);
+						temp2 = line;
+						b.height = stof(temp2);
+						boxes.push_back(b);
+						std::getline(f, line);
+						float x = b.xmin + 0.2;
+						float y = b.ymin + b.height - 0.4f;
+						selection_cap = ((b.height + 0.0001) - 0.3) / 0.2;
+						vector<string> items;
+						while (choice.find(",") != -1) {
+							string s = choice;
+							s.erase(s.find(","), s.length());
+							choice.erase(0, choice.find(",") + 1);
+							items.push_back(s);
+						}
+						items.push_back(choice);
+						max = items.size();
+						string money_str = get_special_string(string("{MONEY}"));
+						while (money_str.find("$") != -1)
+							money_str.erase(money_str.find("$"), money_str.find("$") + 1);
+						int money = stoi(money_str);
+						for (count = 0; (count < max) && (count + 1 < selection_cap); count++) {
+							t.xmin = x;
+							t.ymin = y;
+							t.height = 0.1;
+							t.length = b.length - 0.2f;
+							t.s = string("R") + to_string(count);
+							y -= 0.2f;
+							raw.push_back(t);
+							followup.push_back("");
+						}
+						for (int i = 0; i < max; ++i) {
+							reserve.push_back(items[i]);
+							reserve_followup.push_back("EXCHANGE_BUY:" + to_string(get_item_cost(items[i])) + string("_") + to_string(money / get_item_cost(items[i])));
+						}
+						t.xmin = x;
+						t.ymin = y;
+						t.height = 0.1;
+						t.length = b.length - 0.2;
+						t.s = string("R") + to_string(count);
+						reserve.push_back(string("CANCEL"));
+						reserve_followup.push_back(string(""));
+						followup.push_back("");
+						raw.push_back(t);
+						for (int i = 0; i < max; ++i) {
+							reserve.push_back(string("RIGHT_JUSTIFY:") + to_string(int((b.length +-0.3) * 10.0)) + string(":$") + to_string(get_item_cost(items[i])));
+						}
+						reserve.push_back(string(""));
+						cancel_option = max;
+						selection_cap = count + 1;
+
+						x = b.xmin + 0.2;
+						y = b.ymin + b.height - 0.5f;
+						for (count = 0; count + 1 <= selection_cap; count++) {
+							t.xmin = x;
+							t.ymin = y;
+							t.height = 0.1;
+							t.length = b.length - 0.2f;
+							t.s = string("R") + to_string(count);
+							y -= 0.2f;
+							raw.push_back(t);
+						}
+						update_reserves();
+					}
 					else if (temp1.find("EXCHANGE") == 0) {
 						int count = 0;
+						string menu_name = temp1;
 						temp1 = choice;
 						temp1.erase(temp1.find("_"), temp1.length());
 						int cost = stoi(temp1);
@@ -470,7 +550,10 @@ public:
 						}
 						for (int i = 0; i < max; ++i) {
 							reserve.push_back(string("{TIMES}") + to_string(max - i));
-							reserve_followup.push_back(string("ALERT_YES_NO:I can pay $") + to_string((max - i)*cost) + string(" for that."));
+							if (menu_name.find("SELL") != -1)
+								reserve_followup.push_back(string("ALERT_YES_NO:I can pay $") + to_string((max - i)*cost) + string(" for that."));
+							else
+								reserve_followup.push_back(string("ALERT_YES_NO:That will be $") + to_string((max - i)*cost) + string(", OK?"));
 						}
 						t.xmin = x;
 						t.ymin = y;
