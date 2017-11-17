@@ -2537,12 +2537,6 @@ public:
 								count++;
 							}
 						}
-						for (unsigned i = 0; i < 6; ++i) {
-							if (mc.enemy_team[mc.enemy_selected].fought[i] && mc.team[i].defined && !is_KO(mc.team[i])) {
-								gain_exp(mc.team[i], mc.enemy_team[mc.enemy_selected], count);
-								rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
-							}
-						}						
 						for (int i = 0; i < 6; ++i) {
 							if (!mc.team[i].defined) {
 								do_alert(string("Wild ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string(" was captured!"));
@@ -2550,10 +2544,17 @@ public:
 								mc.team[i] = mc.enemy_team[mc.enemy_selected];
 								mc.team[i].wild = false;
 								mc.team[i].enemy = false;
-								g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
-								return true;
+								break;
 							}
 						}
+						for (unsigned i = 0; i < 6; ++i) {
+							if (mc.enemy_team[mc.enemy_selected].fought[i] && mc.team[i].defined && !is_KO(mc.team[i])) {
+								gain_exp(mc.team[i], mc.enemy_team[mc.enemy_selected], count);
+								rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
+							}
+						}
+						g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
+						return true;
 						// TODO:  Implement storage
 					}
 				}
