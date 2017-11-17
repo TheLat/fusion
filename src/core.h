@@ -3972,6 +3972,20 @@ public:
 				choices = do_menu(string("MAINMENU") + to_string(offset));
 				choices = remove_cancels(choices);
 				choices[0] += offset;
+				if (choices[0] == 1) {
+					if (choices.size() == 4) {
+						if (choices[2] == 1) {
+							mon holder;
+							holder = mc.team[choices[1]];
+							mc.team[choices[1]] = mc.team[choices[3]];
+							mc.team[choices[3]] = holder;
+							mc.team[choices[1]].wild = false;
+							mc.team[choices[1]].enemy = false;
+							mc.team[choices[3]].wild = false;
+							mc.team[choices[3]].enemy = false;
+						}
+					}
+				}
 				if (choices[0] == 2) { // INVENTORY
 					string o;
 					if (!can_use_item(string("NONCOMBAT"), get_item_name(string("ALL"), choices[1])) || !use_item(string("ALL"), choices, o)) { // TODO: Correct message for Oak's parcel
