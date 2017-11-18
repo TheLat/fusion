@@ -166,6 +166,7 @@ public:
 	std::map<string, bool> active;
 	std::map<string, unsigned> interaction;
 	std::vector<pair<string, int>> inventory;
+	std::vector<pair<string, int>> inventory_storage;
 	std::map<string, unsigned> values;
 	std::map<string, bool> seen;
 	std::map<string, bool> caught;
@@ -733,6 +734,20 @@ public:
 				int index = stoi(temp);
 				return get_item_count(type, index);
 			}
+			else if (parse == "ITEM_STORAGE") {
+				string type = temp;
+				type.erase(type.find(":"), type.length());
+				temp.erase(0, temp.find(":") + 1);
+				int index = stoi(temp);
+				return get_item_storage_name(type, index);
+			}
+			else if (parse == "ITEM_STORAGE_COUNT") {
+				string type = temp;
+				type.erase(type.find(":"), type.length());
+				temp.erase(0, temp.find(":") + 1);
+				int index = stoi(temp);
+				return get_item_storage_count(type, index);
+			}
 		}
 		if (in == "{RIVAL_NAME}") {
 			return mc.rivalname;
@@ -1005,6 +1020,28 @@ public:
 		}
 		return string("NOT FOUND");
 	}
+	string get_item_storage_name(string type, int index) {
+		unsigned i = 0, count = 0;
+		while (count < e.mc.inventory_storage.size()) {
+			bool found = false;
+			if (type == "ALL")
+				found = true;
+			for (unsigned j = 0; j < e.items[e.mc.inventory_storage[count].first].use.size(); ++j) {
+				if (type == e.items[e.mc.inventory_storage[count].first].use[j])
+					found = true;
+			}
+			if (!found) {
+				count++;
+				continue;
+			}
+			if (i == index) {
+				return e.mc.inventory_storage[count].first;
+			}
+			i++;
+			count++;
+		}
+		return string("NOT FOUND");
+	}
 	int get_item_cost(string in) {
 		return e.items[in].price;
 	}
@@ -1012,6 +1049,13 @@ public:
 		for (unsigned i = 0; i < mc.inventory.size(); ++i) {
 			if (in == mc.inventory[i].first)
 				return mc.inventory[i].second;
+		}
+		return 0;
+	}
+	int get_inventory_storage_count(string in) {
+		for (unsigned i = 0; i < mc.inventory_storage.size(); ++i) {
+			if (in == mc.inventory_storage[i].first)
+				return mc.inventory_storage[i].second;
 		}
 		return 0;
 	}
@@ -1031,6 +1075,28 @@ public:
 			}
 			if (i == index) {
 				return string("{TIMES}") + to_string(e.mc.inventory[count].second);
+			}
+			i++;
+			count++;
+		}
+		return string("NOT FOUND");
+	}
+	string get_item_storage_count(string type, int index) {
+		unsigned i = 0, count = 0;
+		while (count < e.mc.inventory_storage.size()) {
+			bool found = false;
+			if (type == "ALL")
+				found = true;
+			for (unsigned j = 0; j < e.items[e.mc.inventory_storage[count].first].use.size(); ++j) {
+				if (type == e.items[e.mc.inventory_storage[count].first].use[j])
+					found = true;
+			}
+			if (!found) {
+				count++;
+				continue;
+			}
+			if (i == index) {
+				return string("{TIMES}") + to_string(e.mc.inventory_storage[count].second);
 			}
 			i++;
 			count++;
@@ -4134,6 +4200,20 @@ public:
 											}
 										}
 									}
+								}
+							}
+							else if (s.find("ITEM_STORAGE") == 0) {
+								s.erase(0, s.find(":") + 1);
+								s2 = s;
+								if (s2.find("|") != -1) {
+									s2.erase(s2.find("|"), s2.length());
+								}
+								else {
+									s = "";
+								}
+								choices.clear();
+								while (choices.size() == 0 || choices[0] != 2) {
+									choices = do_menu("ITEM_STORAGE");
 								}
 							}
 							else if (s.find("GIVE_MON") == 0) {

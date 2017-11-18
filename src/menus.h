@@ -10,11 +10,13 @@ extern string get_special_string(string in);
 extern void push_hp_bar_if_exists(float x, float y, int index);
 extern string get_item_effect(string in);
 extern int get_item_count(string in);
+extern int get_item_storage_count(string in);
 extern int get_item_cost(string in);
 extern int get_team_size();
 extern int get_active_mon_move_size();
 extern int get_mon_move_size(int index);
 extern int get_inventory_count(string type);
+extern int get_inventory_storage_count(string type);
 extern std::map<string, bool> get_seen_table();
 extern std::map<string, bool> get_caught_table();
 extern bool is_menu(string s);
@@ -362,6 +364,140 @@ public:
 						}
 						update_reserves();
 					}
+					else if (temp1.find("WITHDRAW_ITEM") == 0) {
+						int count = 0;
+						std::getline(f, line);
+						temp1 = "ALL";
+						temp2 = line;
+						temp2.erase(temp2.find(" "), temp2.length());
+						line.erase(0, line.find(" ") + 1);
+						b.xmin = stof(temp2);
+						temp2 = line;
+						temp2.erase(temp2.find(" "), temp2.length());
+						line.erase(0, line.find(" ") + 1);
+						b.ymin = stof(temp2);
+						temp2 = line;
+						temp2.erase(temp2.find(" "), temp2.length());
+						line.erase(0, line.find(" ") + 1);
+						b.length = stof(temp2);
+						temp2 = line;
+						b.height = stof(temp2);
+						boxes.push_back(b);
+						std::getline(f, line);
+						float x = b.xmin + 0.2;
+						float y = b.ymin + b.height - 0.4f;
+						selection_cap = ((b.height + 0.0001) - 0.3) / 0.2;
+						max = get_inventory_storage_count(temp1);
+						for (count = 0; (count < max) && (count + 1 < selection_cap); count++) {
+							t.xmin = x;
+							t.ymin = y;
+							t.height = 0.1;
+							t.length = b.length - 0.2f;
+							t.s = string("R") + to_string(count);
+							y -= 0.2f;
+							raw.push_back(t);
+							followup.push_back("");
+						}
+						for (int i = 0; i < max; ++i) {
+							reserve.push_back(string("ITEM_STORAGE:") + temp1 + string(":") + to_string(i));
+							reserve_followup.push_back(string("EXCHANGE_STORAGE:0_") + to_string(get_item_storage_count(get_special_string(string("ITEM_STORAGE:") + temp1 + string(":") + to_string(i)))));
+						}
+						t.xmin = x;
+						t.ymin = y;
+						t.height = 0.1;
+						t.length = b.length - 0.2;
+						t.s = string("R") + to_string(count);
+						reserve.push_back(string("CANCEL"));
+						reserve_followup.push_back(string(""));
+						followup.push_back("");
+						raw.push_back(t);
+						for (int i = 0; i < max; ++i) {
+							reserve.push_back(string("RIGHT_JUSTIFY:") + to_string(int((b.length + 0.3) * 10.0)) + string(":ITEM_STORAGE_COUNT:") + temp1 + string(":") + to_string(i));
+						}
+						reserve.push_back(string(""));
+						cancel_option = max;
+						selection_cap = count + 1;
+
+						x = b.xmin + 0.2;
+						y = b.ymin + b.height - 0.5f;
+						for (count = 0; count + 1 <= selection_cap; count++) {
+							t.xmin = x;
+							t.ymin = y;
+							t.height = 0.1;
+							t.length = b.length - 0.2f;
+							t.s = string("R") + to_string(count);
+							y -= 0.2f;
+							raw.push_back(t);
+						}
+						update_reserves();
+					}
+					else if (temp1.find("DEPOSIT_ITEM") == 0) {
+						int count = 0;
+						std::getline(f, line);
+						temp1 = "ALL";
+						temp2 = line;
+						temp2.erase(temp2.find(" "), temp2.length());
+						line.erase(0, line.find(" ") + 1);
+						b.xmin = stof(temp2);
+						temp2 = line;
+						temp2.erase(temp2.find(" "), temp2.length());
+						line.erase(0, line.find(" ") + 1);
+						b.ymin = stof(temp2);
+						temp2 = line;
+						temp2.erase(temp2.find(" "), temp2.length());
+						line.erase(0, line.find(" ") + 1);
+						b.length = stof(temp2);
+						temp2 = line;
+						b.height = stof(temp2);
+						boxes.push_back(b);
+						std::getline(f, line);
+						float x = b.xmin + 0.2;
+						float y = b.ymin + b.height - 0.4f;
+						selection_cap = ((b.height + 0.0001) - 0.3) / 0.2;
+						max = get_inventory_count(temp1);
+						for (count = 0; (count < max) && (count + 1 < selection_cap); count++) {
+							t.xmin = x;
+							t.ymin = y;
+							t.height = 0.1;
+							t.length = b.length - 0.2f;
+							t.s = string("R") + to_string(count);
+							y -= 0.2f;
+							raw.push_back(t);
+							followup.push_back("");
+						}
+						for (int i = 0; i < max; ++i) {
+							reserve.push_back(string("ITEM:") + temp1 + string(":") + to_string(i));
+							reserve_followup.push_back(string("EXCHANGE_STORAGE:0_") + to_string(get_item_count(get_special_string(string("ITEM:") + temp1 + string(":") + to_string(i)))));
+						}
+						t.xmin = x;
+						t.ymin = y;
+						t.height = 0.1;
+						t.length = b.length - 0.2;
+						t.s = string("R") + to_string(count);
+						reserve.push_back(string("CANCEL"));
+						reserve_followup.push_back(string(""));
+						followup.push_back("");
+						raw.push_back(t);
+						for (int i = 0; i < max; ++i) {
+							reserve.push_back(string("RIGHT_JUSTIFY:") + to_string(int((b.length + 0.3) * 10.0)) + string(":ITEM_COUNT:") + temp1 + string(":") + to_string(i));
+						}
+						reserve.push_back(string(""));
+						cancel_option = max;
+						selection_cap = count + 1;
+
+						x = b.xmin + 0.2;
+						y = b.ymin + b.height - 0.5f;
+						for (count = 0; count + 1 <= selection_cap; count++) {
+							t.xmin = x;
+							t.ymin = y;
+							t.height = 0.1;
+							t.length = b.length - 0.2f;
+							t.s = string("R") + to_string(count);
+							y -= 0.2f;
+							raw.push_back(t);
+						}
+						update_reserves();
+					}
 					else if (temp1.find("SELL") == 0) {
 						int count = 0;
 						std::getline(f, line);
@@ -555,18 +691,25 @@ public:
 							reserve.push_back(string("{TIMES}") + to_string(max - i));
 							if (menu_name.find("SELL") != -1)
 								reserve_followup.push_back(string("ALERT_YES_NO:I can pay $") + to_string((max - i)*cost) + string(" for that."));
-							else
+							else if (menu_name.find("BUY") != -1)
 								reserve_followup.push_back(string("ALERT_YES_NO:That will be $") + to_string((max - i)*cost) + string(", OK?"));
+							else if (menu_name.find("STORAGE") != -1)
+								reserve_followup.push_back(string(""));
+							else
+								reserve_followup.push_back(string(""));
 						}
 						t.xmin = x;
 						t.ymin = y;
 						t.height = 0.1;
-						t.length = b.length - 0.2;
+						t.length = b.length - 0.2; 
 						t.s = string("R") + to_string(count);
 						followup.push_back("");
 						raw.push_back(t);
 						for (int i = 0; i < max; ++i) {
-							reserve.push_back(string("RIGHT_JUSTIFY:7:$") + to_string((max - i)*cost));
+							if (menu_name.find("STORAGE") != -1)
+								reserve.push_back(string(""));
+							else
+								reserve.push_back(string("RIGHT_JUSTIFY:7:$") + to_string((max - i)*cost));
 						}
 						max--;
 						selection_cap = count + 1;

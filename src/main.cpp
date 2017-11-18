@@ -27,6 +27,25 @@ std::map<string, bool> get_seen_table() {
 std::map<string, bool> get_caught_table() {
 	return e.mc.caught;
 }
+
+int get_inventory_storage_count(string type) {
+	int ret = 0;
+	bool found;
+	for (unsigned i = 0; i < e.mc.inventory_storage.size(); ++i) {
+		found = false;
+		if (type == "ALL")
+			found = true;
+		for (unsigned j = 0; j < e.items[e.mc.inventory_storage[i].first].use.size(); ++j) {
+			if (e.items[e.mc.inventory_storage[i].first].use[j] == type) {
+				found = true;
+			}
+		}
+		if (found)
+			ret++;
+	}
+	return ret;
+}
+
 int get_inventory_count(string type) {
 	int ret = 0;
 	bool found;
@@ -102,6 +121,9 @@ string get_item_effect(string in) {
 
 int get_item_count(string in) {
 	return e.get_inventory_count(in);
+}
+int get_item_storage_count(string in) {
+	return e.get_inventory_storage_count(in);
 }
 int get_item_cost(string in) {
 	return e.get_item_cost(in);
