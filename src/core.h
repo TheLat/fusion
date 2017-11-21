@@ -1103,6 +1103,26 @@ public:
 		}
 		return string("NOT FOUND");
 	}
+	bool withdraw_item(string s, int count) {
+		bool ret = true;
+		while (count > 0) {
+			ret = ret & withdraw_item(s);
+			count--;
+		}
+		return ret;
+	}
+	bool withdraw_item(string s) {
+		for (unsigned i = 0; i < mc.inventory_storage.size(); ++i) {
+			if (mc.inventory_storage[i].first == s) {
+				mc.inventory_storage[i].second--;
+				if (mc.inventory_storage[i].second <= 0) {
+					mc.inventory_storage.erase(mc.inventory_storage.begin() + i);
+				}
+				return true;
+			}
+		}
+		return false;
+	}
 	bool remove_item(string s, int count) {
 		bool ret = true;
 		while (count > 0) {
@@ -1122,6 +1142,27 @@ public:
 			}
 		}
 		return false;
+	}
+	bool store_item(string s, int count = 1) {
+		bool found = false;
+		if (!items[s].defined) {
+			do_menu(string("ALERT"), string("Game attempted to store bad item: ") + s);
+			return false;
+		}
+		for (unsigned i = 0; i < mc.inventory_storage.size(); ++i) {
+			if (mc.inventory_storage[i].first == s) {
+				found = true;
+				mc.inventory_storage[i].second += count;
+				break;
+			}
+		}
+		if (!found) {
+			pair<string, int> item;
+			item.first = s;
+			item.second = count;
+			mc.inventory_storage.push_back(item);
+		}
+		return true;
 	}
 	bool gain_item(string s, int count=1, bool silent=false) {
 		bool found = false;
@@ -4214,6 +4255,25 @@ public:
 								choices.clear();
 								while (choices.size() == 0 || choices[0] != 2) {
 									choices = do_menu("ITEM_STORAGE");
+									choices = remove_cancels(choices);
+									if (choices.size() > 0) {
+										if (choices[0] == 0) { // withdraw
+											string dep = get_item_storage_name(string("ALL"), choices[1]);
+											string holder = get_item_storage_count(string("ALL"), choices[1]);
+											holder.erase(0, holder.find("}") + 1);
+											int diff = stoi(holder) - choices[2];
+											gain_item(dep, diff, true);
+											withdraw_item(dep, diff);
+										}
+										else if (choices[0] == 1) { // deposit
+											string dep = get_item_name(string("ALL"), choices[1]);
+											string holder = get_item_count(string("ALL"), choices[1]);
+											holder.erase(0, holder.find("}") + 1);
+											int diff = stoi(holder) - choices[2];
+											remove_item(dep, diff);
+											store_item(dep, diff);
+										}
+									}
 								}
 							}
 							else if (s.find("GIVE_MON") == 0) {
@@ -4579,6 +4639,13 @@ public:
 			f << string("|");
 			f << mc.inventory[i].second;
 		}
+		f << string("\nEND\nINVENTORY_STORAGE:");
+		for (unsigned i = 0; i < mc.inventory_storage.size(); ++i) {
+			f << string("\n");
+			f << mc.inventory_storage[i].first;
+			f << string("|");
+			f << mc.inventory_storage[i].second;
+		}
 		f << string("\nEND\nSEEN:");
 		it2 = mc.seen.begin();
 		while (it2 != mc.seen.end()) {
@@ -4759,6 +4826,19 @@ public:
 					p.first = temp;
 					p.second = stoi(line);
 					mc.inventory.push_back(p);
+					std::getline(f, line);
+				}
+			}
+			else if (line.find("INVENTORY_STORAGE:") == 0) {
+				std::getline(f, line);
+				while (line != "END") {
+					pair<string, int> p;
+					temp = line;
+					temp.erase(temp.find("|"), temp.length());
+					line.erase(0, line.find("|") + 1);
+					p.first = temp;
+					p.second = stoi(line);
+					mc.inventory_storage.push_back(p);
 					std::getline(f, line);
 				}
 			}
