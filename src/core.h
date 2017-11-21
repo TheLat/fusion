@@ -159,6 +159,7 @@ public:
 	int selected;
 	int enemy_selected;
 	int extra_winnings;
+	int box_number;
 	mon team[6];
 	mon enemy_team[6];
 	mon storage[20][20];
@@ -170,7 +171,7 @@ public:
 	std::map<string, unsigned> values;
 	std::map<string, bool> seen;
 	std::map<string, bool> caught;
-	player() { wins = 0; losses = 0; money = 0; name = "RED"; rivalname = "BLUE"; repel = 0; selected = 0; enemy_selected = 0; }
+	player() { wins = 0; losses = 0; money = 0; name = "RED"; rivalname = "BLUE"; repel = 0; selected = 0; enemy_selected = 0; box_number = 0; }
 };
 
 class status_effect {
@@ -754,6 +755,14 @@ public:
 		}
 		else if (in == "{PLAYER_NAME}") {
 			return mc.name;
+		}
+		else if (in.find("{BOX_NUMBER}") != -1) {
+			string out = to_string(mc.box_number + 1);
+			if (mc.box_number < 9)
+				out = string(" ") + out;
+			in.insert(in.find("{BOX_NUMBER}"), out);
+			in.erase(in.find("{BOX_NUMBER}"), string("{BOX_NUMBER}").length());
+			return in;
 		}
 		else if (in == "{MONEY}") {
 			return string("$") + to_string(mc.money);
@@ -4239,6 +4248,26 @@ public:
 												mc.money += num * items[get_item_name(string("ALL"), choices[1])].price / 2;
 												remove_item(get_item_name(string("ALL"), choices[1]), num);
 											}
+										}
+									}
+								}
+							}
+							else if (s.find("MON_STORAGE") == 0) {
+								s.erase(0, s.find(":") + 1);
+								s2 = s;
+								if (s2.find("|") != -1) {
+									s2.erase(s2.find("|"), s2.length());
+								}
+								else {
+									s = "";
+								}
+								choices.clear();
+								while (choices.size() == 0 || choices[0] != 4) {
+									choices = do_menu("MON_STORAGE");
+									choices = remove_cancels(choices);
+									if (choices.size() > 0) {
+										if (choices[0] == 3) {
+											mc.box_number = 19 - choices[1];
 										}
 									}
 								}
