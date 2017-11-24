@@ -410,6 +410,20 @@ public:
 					return string("");
 				return get_nickname(mc.team[index]);
 			}
+			else if (parse == "STORAGE_MON_NAME"){
+				int index = stoi(temp);
+				if (!mc.storage[mc.box_number][index].defined)
+					return string("");
+				return get_nickname(mc.storage[mc.box_number][index]);
+			}
+			else if (parse == "STORAGE_MON_LEVEL"){
+				int index = stoi(temp);
+				if (!mc.storage[mc.box_number][index].defined)
+					return string("");
+				if (mc.storage[mc.box_number][index].level == 100)
+					return string("{LEVEL}**");
+				return string("{LEVEL}") + to_string(mc.storage[mc.box_number][index].level);
+			}
 			else if (parse == "TEAM_MON_LEVEL"){
 				int index = stoi(temp);
 				if (!mc.team[index].defined)
@@ -4277,7 +4291,23 @@ public:
 									choices = do_menu("MON_STORAGE");
 									choices = remove_cancels(choices);
 									if (choices.size() > 0) {
-										if (choices[0] == 1) {
+										if (choices[0] == 0) {
+											if (choices[2] == 0) {
+												if (get_team_size() == 6) {
+													do_alert(string("There's no room in your team!"));
+												}
+												else {
+													unsigned holder = get_team_size();
+													mc.team[holder] = mc.storage[mc.box_number][choices[1]];
+													mc.team[holder].wild = false;
+													mc.team[holder].enemy = false;
+													mc.storage[mc.box_number][choices[1]].defined = false;
+													pack_team();
+													pack_storage();
+												}
+											}
+										}
+										else if (choices[0] == 1) {
 											if (choices[2] == 0) {
 												unsigned count = 0;
 												while (count < 20 && mc.storage[mc.box_number][count].defined) {

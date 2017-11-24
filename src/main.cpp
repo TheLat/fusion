@@ -11,6 +11,17 @@ mutex m;
 engine e;
 graphics g;
 
+int get_storage_use() {
+	int ret = 0;
+	for (int i = 0; i < 20; ++i) {
+		if (e.mc.storage[e.mc.box_number][i].defined)
+			ret++;
+		else
+			break;
+	}
+	return ret;
+}
+
 int get_team_size() {
 	int ret = 0;
 	for (int i = 0; i < 6; ++i) {
