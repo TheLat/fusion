@@ -9,34 +9,34 @@ pallet-town-fat fat 16 14 WANDER
 INTERACTIONS
 MENU:ALERT:Technology is incredible!  You can now store and recall items and POK{e-accent}MON as data via PC!
 END
-pallet-town-sign1 blank 12 9 NO_WANDER
+pallet-town-sign1 blank 12 9
 INTERACTIONS
 MENU:ALERT:PALLET TOWN{NEWLINE}Shade of your journey await!
 END
-pallet-town-sign2 blank 8 5 NO_WANDER
+pallet-town-sign2 blank 8 5
 INTERACTIONS
 MENU:ALERT:{PLAYER_NAME}'s house.
 END
-pallet-town-sign3 blank 16 5 NO_WANDER
+pallet-town-sign3 blank 16 5
 INTERACTIONS
 MENU:ALERT:{RIVAL_NAME}'s house.
 END
-pallet-town-sign4 blank 18 13 NO_WANDER
+pallet-town-sign4 blank 18 13
 INTERACTIONS
 MENU:ALERT:OAK POK{e-accent}MON RESEARCH LAB
 END
-pallet-town-oak oak 12 6 NO_WANDER INACTIVE
+pallet-town-oak oak 12 6 INACTIVE
 INTERACTIONS
 MENU:ALERT:NULL
 END
-pallet-town-script1 blank 15 0 NO_WANDER
+pallet-town-script1 blank 15 0
 FORCE_INTERACTION
 0 1
 END
 INTERACTIONS
 ACTIVATE:oak-lab-script1|ACTIVATE:oak|SET_FACE:PLAYER:DOWN|ACTIVATE:pallet-town-oak|MENU:ALERT:OAK: Hey! Wait! Don't go out!|!:PLAYER|MOVE:pallet-town-oak:1,0|MOVE:pallet-town-oak:0,-1|MOVE:pallet-town-oak:1,0|MOVE:pallet-town-oak:0,-1|MOVE:pallet-town-oak:1,0|MOVE:pallet-town-oak:0,-1|MOVE:pallet-town-oak:0,-1|MENU:ALERT:OAK: It's unsafe! Wild POK{e-accent}MON live in tall grass! You need your own POK{e-accent}MON for your protection.{NEWLINE}I know!|MENU:ALERT:Here, come with me!|DEACTIVATE:pallet-town-script1|DEACTIVATE:pallet-town-script2|MOVE:pallet-town-oak:0,1|MOVE:PLAYER:0,1|MOVE:pallet-town-oak:0,1|MOVE:PLAYER:0,1|MOVE:pallet-town-oak:0,1|MOVE:PLAYER:0,1|MOVE:pallet-town-oak:-1,0|MOVE:PLAYER:0,1|MOVE:pallet-town-oak:0,1|MOVE:PLAYER:-1,0|MOVE:pallet-town-oak:0,1|MOVE:PLAYER:0,1|MOVE:pallet-town-oak:0,1|MOVE:PLAYER:0,1|MOVE:pallet-town-oak:0,1|MOVE:PLAYER:0,1|MOVE:pallet-town-oak:0,1|MOVE:PLAYER:0,1|MOVE:pallet-town-oak:0,1|MOVE:PLAYER:0,1|MOVE:pallet-town-oak:0,1|MOVE:PLAYER:0,1|MOVE:pallet-town-oak:1,0|MOVE:PLAYER:0,1|MOVE:pallet-town-oak:1,0|MOVE:PLAYER:1,0|MOVE:pallet-town-oak:1,0|MOVE:PLAYER:1,0|MOVE:pallet-town-oak:0,-1|DEACTIVATE:pallet-town-oak|MOVE:PLAYER:1,0|MOVE:PLAYER:0,-1
 END
-pallet-town-script2 blank 16 0 NO_WANDER
+pallet-town-script2 blank 16 0
 FORCE_INTERACTION
 0 1
 END

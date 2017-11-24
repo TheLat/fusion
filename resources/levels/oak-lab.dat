@@ -1,13 +1,13 @@
 NAME
 Oak's Lab
 NPCS
-oak-lab-rival1 rival 4 3 NO_WANDER
+oak-lab-rival1 rival 4 3
 INTERACTIONS
 MENU:ALERT:{RIVAL_NAME}: Yo {PLAYER_NAME}! Gramps isn't around!|NO_ADVANCE
 MENU:ALERT:{RIVAL_NAME}: Heh, I don't need to be greedy like you!|MENU:ALERT:Go ahead and choose, {PLAYER_NAME}!|NO_ADVANCE
 MENU:ALERT:{RIVAL_NAME}: My POK{e-accent}MON looks a lot stronger.|NO_ADVANCE
 END
-oak-lab-rival2 rival 4 9 NO_WANDER INACTIVE
+oak-lab-rival2 rival 4 9 INACTIVE
 INTERACTIONS
 MENU:ALERT:ERROR
 END
@@ -15,119 +15,119 @@ oak-lab-woman woman3 1 9 WANDER
 INTERACTIONS
 MENU:ALERT:PROF.OAK is the authority on POK{e-accent}MON!|MENU:ALERT:Many POK{e-accent}MON trainers hold him in high regard!
 END
-oak-lab-aide1 doctor 2 10 NO_WANDER
+oak-lab-aide1 doctor 2 10
 INTERACTIONS
 MENU:ALERT:I study POK{e-accent}MON as PROF.OAK's aide.
 END
-oak-lab-aide2 doctor 8 10 NO_WANDER
+oak-lab-aide2 doctor 8 10
 INTERACTIONS
 MENU:ALERT:I study POK{e-accent}MON as PROF.OAK's aide.
 END
-oak-pc1 blank 0 1 NO_WANDER
+oak-pc1 blank 0 1
 INTERACTIONS
 MENU:ALERT:There's an e-mail message here!|MENU:ALERT:...|MENU:ALERT:Calling all POK{e-accent}MON trainers!|MENU:ALERT:The elite trainers of POK{e-accent}MON LEAGUE are ready to take on all comers!|MENU:ALERT:Bring your best POK{e-accent}MON and see how you rate as a trainer!|MENU:ALERT:POK{e-accent}MON LEAGUE HQ INDIGO PLATEAU|MENU:ALERT:PS: PROF.OAK, please visit us!{NEWLINE}...
 END
-oak-pc2 blank 1 1 NO_WANDER
+oak-pc2 blank 1 1
 INTERACTIONS
 MENU:ALERT:There's an e-mail message here!|MENU:ALERT:...|MENU:ALERT:Calling all POK{e-accent}MON trainers!|MENU:ALERT:The elite trainers of POK{e-accent}MON LEAGUE are ready to take on all comers!|MENU:ALERT:Bring your best POK{e-accent}MON and see how you rate as a trainer!|MENU:ALERT:POK{e-accent}MON LEAGUE HQ INDIGO PLATEAU|MENU:ALERT:PS: PROF.OAK, please visit us!{NEWLINE}...
 END
-pokedex1 book 2 1 NO_WANDER
+pokedex1 book 2 1
 INTERACTIONS
 MENU:ALERT:It's encyclopedia-like, but the pages are blank!
 END
-pokedex2 book 3 1 NO_WANDER
+pokedex2 book 3 1
 INTERACTIONS
 MENU:ALERT:It's encyclopedia-like, but the pages are blank!
 END
-oak-lab-wallscroll1 blank 4 0 NO_WANDER
+oak-lab-wallscroll1 blank 4 0
 INTERACTIONS
 MENU:ALERT:Push START to open the MENU!
 END
-oak-lab-wallscroll2 blank 5 0 NO_WANDER
+oak-lab-wallscroll2 blank 5 0
 INTERACTIONS
 MENU:ALERT:The SAVE option is on the MENU screen.
 END
-oak-lab-bookshelf1 blank 6 1 NO_WANDER
+oak-lab-bookshelf1 blank 6 1
 INTERACTIONS
 MENU:ALERT:Crammed full of POK{e-accent}MON books!
 END
-oak-lab-bookshelf2 blank 7 1 NO_WANDER
+oak-lab-bookshelf2 blank 7 1
 INTERACTIONS
 MENU:ALERT:Crammed full of POK{e-accent}MON books!
 END
-oak-lab-bookshelf3 blank 8 1 NO_WANDER
+oak-lab-bookshelf3 blank 8 1
 INTERACTIONS
 MENU:ALERT:Crammed full of POK{e-accent}MON books!
 END
-oak-lab-bookshelf4 blank 9 1 NO_WANDER
+oak-lab-bookshelf4 blank 9 1
 INTERACTIONS
 MENU:ALERT:Crammed full of POK{e-accent}MON books!
 END
-oak-lab-bookshelf5 blank 0 7 NO_WANDER
+oak-lab-bookshelf5 blank 0 7
 INTERACTIONS
 MENU:ALERT:Crammed full of POK{e-accent}MON books!
 END
-oak-lab-bookshelf6 blank 1 7 NO_WANDER
+oak-lab-bookshelf6 blank 1 7
 INTERACTIONS
 MENU:ALERT:Crammed full of POK{e-accent}MON books!
 END
-oak-lab-bookshelf7 blank 2 7 NO_WANDER
+oak-lab-bookshelf7 blank 2 7
 INTERACTIONS
 MENU:ALERT:Crammed full of POK{e-accent}MON books!
 END
-oak-lab-bookshelf8 blank 3 7 NO_WANDER
+oak-lab-bookshelf8 blank 3 7
 INTERACTIONS
 MENU:ALERT:Crammed full of POK{e-accent}MON books!
 END
-oak-lab-bookshelf9 blank 6 7 NO_WANDER
+oak-lab-bookshelf9 blank 6 7
 INTERACTIONS
 MENU:ALERT:Crammed full of POK{e-accent}MON books!
 END
-oak-lab-bookshelf10 blank 7 7 NO_WANDER
+oak-lab-bookshelf10 blank 7 7
 INTERACTIONS
 MENU:ALERT:Crammed full of POK{e-accent}MON books!
 END
-oak-lab-bookshelf11 blank 8 7 NO_WANDER
+oak-lab-bookshelf11 blank 8 7
 INTERACTIONS
 MENU:ALERT:Crammed full of POK{e-accent}MON books!
 END
-oak-lab-bookshelf12 blank 9 7 NO_WANDER
+oak-lab-bookshelf12 blank 9 7
 INTERACTIONS
 MENU:ALERT:Crammed full of POK{e-accent}MON books!
 END
-oak-lab-script1 oak 5 10 NO_WANDER INACTIVE
+oak-lab-script1 oak 5 10 INACTIVE
 FORCE_INTERACTION
 0 1
 END
 INTERACTIONS
 ACTIVATE:oak|MOVE:oak-lab-script1:0,-1|MOVE:oak-lab-script1:0,-1|MOVE:oak-lab-script1:0,-1|MOVE:oak-lab-script1:0,-1|MOVE:oak-lab-script1:0,-1|DEACTIVATE:oak-lab-script1|SET_FACE:oak-lab-rival1:UP|MOVE:PLAYER:0,-1|MOVE:PLAYER:0,-1|MOVE:PLAYER:0,-1|MOVE:PLAYER:0,-1|MOVE:PLAYER:0,-1|MOVE:PLAYER:0,-1|MOVE:PLAYER:0,-1|MOVE:PLAYER:0,-1|MENU:ALERT:{RIVAL_NAME}: Gramps! I'm fed up with waiting!|MENU:ALERT:{RIVAL_NAME}?{NEWLINE}Let me think...|MENU:ALERT:Oh, that's right, I told you to come! Just wait!|MENU:ALERT:Here, {PLAYER_NAME}!|MENU:ALERT:There are 3 POK{e-accent}MON here!|MENU:ALERT:Haha!|MENU:ALERT:They are inside the POK{e-accent} BALLs.|MENU:ALERT:When I was young, I was a serious POK{e-accent}MON trainer!|MENU:ALERT:In my old age, I have only 3 left, but you can have one! Choose!|MENU:ALERT:{RIVAL_NAME}: Hey!{NEWLINE}Gramps! What about me?|MENU:ALERT:OAK: Be patient! {RIVAL_NAME}, you can have one too!|ADVANCE:oak-lab-rival1|ACTIVATE:oak-lab-script2|ACTIVATE:oak-lab-script3|ADVANCE:oak-lab-ball1|ADVANCE:oak-lab-ball2|ADVANCE:oak-lab-ball3
 END
-oak-lab-ball1 orb 6 3 NO_WANDER
+oak-lab-ball1 orb 6 3
 INTERACTIONS
 MENU:ALERT:Those are POK{e-accent} BALLs. They contain POK{e-accent}MON!|NO_ADVANCE
 MENU:DEX_ENTRY:4-4|MENU:ALERT_YES_NO:So! You want the fire POK{e-accent}MON, CHARMANDER?|{ADVANCE:oak|DEACTIVATE:oak-lab-ball1|GIVE_MON:5:4-4|ADVANCE:oak-lab-ball1|ADVANCE:oak-lab-ball2|ADVANCE:oak-lab-ball3|ADVANCE:oak-lab-rival1|MOVE:oak-lab-rival1:0,1|MOVE:oak-lab-rival1:0,1|MOVE:oak-lab-rival1:1,0|MOVE:oak-lab-rival1:1,0|MOVE:oak-lab-rival1:1,0|MOVE:oak-lab-rival1:0,-1|MENU:ALERT:{RIVAL_NAME}: I'll take this one, then!|DEACTIVATE:oak-lab-ball2|MENU:ALERT:{RIVAL_NAME} received a SQUIRTLE!|SET:RIVALVALUE:0|ADVANCE:oak-lab-script2|ADVANCE:oak-lab-script3}{NO_ADVANCE}
 MENU:ALERT:That's PROF.OAK's last POK{e-accent}MON!
 END
-oak-lab-ball2 orb 7 3 NO_WANDER
+oak-lab-ball2 orb 7 3
 INTERACTIONS
 MENU:ALERT:Those are POK{e-accent} BALLs. They contain POK{e-accent}MON!|NO_ADVANCE
 MENU:DEX_ENTRY:7-7|MENU:ALERT_YES_NO:So! You want the water POK{e-accent}MON, SQUIRTLE?|{ADVANCE:oak|DEACTIVATE:oak-lab-ball2|GIVE_MON:5:7-7|ADVANCE:oak-lab-ball1|ADVANCE:oak-lab-ball2|ADVANCE:oak-lab-ball3|ADVANCE:oak-lab-rival1|MOVE:oak-lab-rival1:0,1|MOVE:oak-lab-rival1:0,1|MOVE:oak-lab-rival1:1,0|MOVE:oak-lab-rival1:1,0|MOVE:oak-lab-rival1:1,0|MOVE:oak-lab-rival1:1,0|MOVE:oak-lab-rival1:0,-1|MENU:ALERT:{RIVAL_NAME}: I'll take this one, then!|DEACTIVATE:oak-lab-ball3|MENU:ALERT:{RIVAL_NAME} received a BULBASAUR!|SET:RIVALVALUE:1|ADVANCE:oak-lab-script2|ADVANCE:oak-lab-script3}{NO_ADVANCE}
 MENU:ALERT:That's PROF.OAK's last POK{e-accent}MON!
 END
-oak-lab-ball3 orb 8 3 NO_WANDER
+oak-lab-ball3 orb 8 3
 INTERACTIONS
 MENU:ALERT:Those are POK{e-accent} BALLs. They contain POK{e-accent}MON!|NO_ADVANCE
 MENU:DEX_ENTRY:1-1|MENU:ALERT_YES_NO:So! You want the plant POK{e-accent}MON, BULBASAUR?|{ADVANCE:oak|DEACTIVATE:oak-lab-ball3|GIVE_MON:5:1-1|ADVANCE:oak-lab-ball1|ADVANCE:oak-lab-ball2|ADVANCE:oak-lab-ball3|ADVANCE:oak-lab-rival1|MOVE:oak-lab-rival1:0,1|MOVE:oak-lab-rival1:0,1|MOVE:oak-lab-rival1:1,0|MOVE:oak-lab-rival1:1,0||MOVE:oak-lab-rival1:0,-1|MENU:ALERT:{RIVAL_NAME}: I'll take this one, then!|DEACTIVATE:oak-lab-ball1|MENU:ALERT:{RIVAL_NAME} received a CHARMANDER!|SET:RIVALVALUE:2|ADVANCE:oak-lab-script2|ADVANCE:oak-lab-script3}{NO_ADVANCE}
 MENU:ALERT:That's PROF.OAK's last POK{e-accent}MON!
 END
-oak oak 5 2 DOWN NO_WANDER INACTIVE
+oak oak 5 2 DOWN INACTIVE
 INTERACTIONS
 SET_FACE:PLAYER:UP|MENU:ALERT:OAK: Now, {PLAYER_NAME}, which POK{e-accent}MON do you want?|NO_ADVANCE
 MENU:ALERT:OAK: If a wild POK{e-accent}MON appears, your POK{e-accent}MON can fight against it!|NO_ADVANCE
 IN_INVENTORY:OAK's PARCEL|{MENU:ALERT:OAK: {PLAYER_NAME}, raise your young POK{e-accent}MON by making it fight!|NO_ADVANCE}{MENU:ALERT:OAK: Oh, {PLAYER_NAME}!|MENU:ALERT:How is my old POK{e-accent}MON?|MENU:ALERT:Well, it seems to like you a lot.|MENU:ALERT:You must be talented as a POK{e-accent}MON trainer!|MENU:ALERT:What? You have something for me?|REMOVE_ITEM:OAK's PARCEL|MENU:ALERT:Ah! This is the custom POK{e-accent} BALL I ordered!{NEWLINE}Thank you!|MENU:ALERT:{RIVAL_NAME}: Gramps!|ACTIVATE:oak-lab-rival2|MOVE:oak-lab-rival2:0,-1|MOVE:oak-lab-rival2:0,-1|MOVE:oak-lab-rival2:0,-1|MOVE:oak-lab-rival2:0,-1|MOVE:oak-lab-rival2:0,-1|MOVE:oak-lab-rival2:0,-1|MENU:ALERT:{RIVAL_NAME}: What did you call me for?|MENU:ALERT:OAK: Oh, right! I have a request of you two.|MENU:ALERT:On the desk there is my invention, POK{e-accent}DEX!|MENU:ALERT:It automatically records data on POK{e-accent}MON you've seen or caught!|MENU:ALERT:It's a high-tech encyclopedia!|MENU:ALERT:OAK: {PLAYER_NAME} and {RIVAL_NAME}! Take these with you!|MENU:ALERT:{PLAYER_NAME} got POK{e-accent}DEX from OAK!|DEACTIVATE:pokedex1|DEACTIVATE:pokedex2|MENU:ALERT:To make complete guide on all the POK{e-accent}MON in the world...|MENU:ALERT:That was my dream!|MENU:ALERT:But, I'm too old! I can't do it!|MENU:ALERT:So, I want you two to fulfill my dream for me!|MENU:ALERT:Get moving, you two!|MENU:ALERT:This is a great undertaking in POK{e-accent}MON history!|MENU:ALERT:{RIVAL_NAME}: Alright	Gramps! Leave it all to me!|SET_FACE:oak-lab-rival2:RIGHT|MENU:ALERT:{PLAYER_NAME}, I hate to say it, but I don't need you!|MENU:ALERT:I know! I'll borrow a TOWN MAP from my sis!|MENU:ALERT:I'll tell her not to lend you one, {PLAYER_NAME}! Hahaha!|MOVE:oak-lab-rival2:0,1|MOVE:oak-lab-rival2:0,1|MOVE:oak-lab-rival2:0,1|MOVE:oak-lab-rival2:0,1|MOVE:oak-lab-rival2:0,1|MOVE:oak-lab-rival2:0,1|DEACTIVATE:oak-lab-rival2|ADVANCE:viridian-mart-clerkdesk2|ADVANCE:viridian-mart-clerkdesk1|ADVANCE:rival-sister}|SET:DEX:1
 MENU:ALERT:OAK: Good to see you! How is your POK{e-accent}DEX coming? Here, let me take a look!|MENU:ALERT:POK{e-accent}DEX completion is:|MENU:ALERT:{SEEN} POK{e-accent}MON seen and {CAUGHT} POK{e-accent}MON owned|MENU:ALERT:PROF.OAK's Rating:|MENU:ALERT:You still have a lot of work to do.
 END
-oak-lab-script2 blank 5 7 NO_WANDER INACTIVE
+oak-lab-script2 blank 5 7 INACTIVE
 FORCE_INTERACTION
 0 -1
 END
@@ -135,7 +135,7 @@ INTERACTIONS
 SET_FACE:PLAYER:UP|MENU:ALERT:OAK: Hey! Don't go away yet!|MOVE:PLAYER:0,-1|NO_ADVANCE
 SET_FACE:oak-lab-rival1:DOWN|SET_FACE:PLAYER:UP|MENU:ALERT:{RIVAL_NAME}: Wait {PLAYER_NAME}!|MENU:ALERT:Let's check out our POK{e-accent}MON!|MENU:ALERT:Come one, I'll take you on!|GET:RIVALVALUE|{MOVE:oak-lab-rival1:-1,0}{MOVE:oak-lab-rival1:-1,0|MOVE:oak-lab-rival1:-1,0}{}|MOVE:oak-lab-rival1:-1,0|MOVE:oak-lab-rival1:0,1|GET:RIVALVALUE|{BATTLE:rival-oak-lab0}{BATTLE:rival-oak-lab1}{BATTLE:rival-oak-lab2}|{FULL_HEAL}{FULL_HEAL}|MENU:ALERT:{RIVAL_NAME}: Okay! I'll make my POK{e-accent}MON fight to toughen it up!|MENU:ALERT:{PLAYER_NAME}! Gramps! Smell you later!|MOVE:oak-lab-rival1:-1,0|MOVE:oak-lab-rival1:0,1|MOVE:oak-lab-rival1:0,1|MOVE:oak-lab-rival1:0,1|MOVE:oak-lab-rival1:0,1|MOVE:oak-lab-rival1:0,1|DEACTIVATE:oak-lab-rival1|DEACTIVATE:oak-lab-script2|DEACTIVATE:oak-lab-script3|ADVANCE:oak|ADVANCE:mom
 END
-oak-lab-script3 blank 4 7 NO_WANDER INACTIVE
+oak-lab-script3 blank 4 7 INACTIVE
 FORCE_INTERACTION
 0 -1
 END

@@ -1,45 +1,45 @@
 NAME
 Viridian City Mart
 NPCS
-viridian-mart-shelf1 blank 4 4 NO_WANDER
+viridian-mart-shelf1 blank 4 4
 INTERACTIONS
 MENU:ALERT:Wow! Tons of POK{e-accent}MON stuff!
 END
-viridian-mart-shelf2 blank 5 4 NO_WANDER
+viridian-mart-shelf2 blank 5 4
 INTERACTIONS
 MENU:ALERT:Wow! Tons of POK{e-accent}MON stuff!
 END
-viridian-mart-shelf3 blank 6 4 NO_WANDER
+viridian-mart-shelf3 blank 6 4
 INTERACTIONS
 MENU:ALERT:Wow! Tons of POK{e-accent}MON stuff!
 END
-viridian-mart-shelf4 blank 7 4 NO_WANDER
+viridian-mart-shelf4 blank 7 4
 INTERACTIONS
 MENU:ALERT:Wow! Tons of POK{e-accent}MON stuff!
 END
-viridian-mart-boy boy 7 6 NO_WANDER
+viridian-mart-boy boy 7 6
 INTERACTIONS
 MENU:ALERT:This shop sells many ANTIDOTEs.
 END
-viridian-mart-man guy2 3 3 NO_WANDER
+viridian-mart-man guy2 3 3
 INTERACTIONS
 MENU:ALERT:No! POTIONs are sold out.
 END
-viridian-mart-clerk clerk2 0 5 NO_WANDER RIGHT
+viridian-mart-clerk clerk2 0 5 RIGHT
 INTERACTIONS
 MENU:ALERT:NULL
 END
-viridian-mart-clerkdesk1 blank 1 5 NO_WANDER
+viridian-mart-clerkdesk1 blank 1 5
 INTERACTIONS
 SET_FACE:viridian-mart-clerk:RIGHT|MENU:ALERT:Okay! Say hi to PROF.OAK for me!|NO_ADVANCE
 SET_FACE:viridian-mart-clerk:RIGHT|SHOP:POK{e-accent} BALL,ANTIDOTE,PARLYZ HEAL,BURN HEAL
 END
-viridian-mart-clerkdesk2 blank 0 6 NO_WANDER
+viridian-mart-clerkdesk2 blank 0 6
 INTERACTIONS
 SET_FACE:viridian-mart-clerk:DOWN|MENU:ALERT:Okay! Say hi to PROF.OAK for me!|NO_ADVANCE
 SET_FACE:viridian-mart-clerk:DOWN|SHOP:POK{e-accent} BALL,ANTIDOTE,PARLYZ HEAL,BURN HEAL
 END
-viridian-mart-script blank 2 7 NO_WANDER
+viridian-mart-script blank 2 7
 FORCE_INTERACTION
 1 0
 END

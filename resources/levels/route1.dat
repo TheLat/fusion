@@ -10,7 +10,7 @@ route1-boy2 boy 17 12 WANDER
 INTERACTIONS
 MENU:ALERT:See those ledges along the road?|MENU:ALERT:It's a bit scary, but you can jump from them.|MENU:ALERT:You can get back to PALLET TOWN quicker that way.
 END
-route1-sign1 blank 12 26 NO_WANDER
+route1-sign1 blank 12 26
 INTERACTIONS
 MENU:ALERT:ROUTE 1{NEWLINE}PALLET TOWN - VIRIDIAN CITY
 END

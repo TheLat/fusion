@@ -9,27 +9,27 @@ viridian-house1-bird bird 3 5 WANDER
 INTERACTIONS
 MENU:ALERT:SPEARY: Tetweet!
 END
-viridian-house1-man man 5 3 NO_WANDER LEFT
+viridian-house1-man man 5 3 LEFT
 INTERACTIONS
 MENU:ALERT:Coming up with nicknames is fun, but hard.|MENU:ALERT:Simple names are the easiest to remember.
 END
-viridian-house1-clipboard clipboard 4 0 NO_WANDER
+viridian-house1-clipboard clipboard 4 0
 INTERACTIONS
 SOUND:21-21|MENU:ALERT:SPEAROW{NEWLINE}Name: SPEARY
 END
-viridian-house1-bookshelf1 blank 0 1 NO_WANDER
+viridian-house1-bookshelf1 blank 0 1
 INTERACTIONS
 MENU:ALERT:Crammed full of POK{e-accent}MON books!
 END
-viridian-house1-bookshelf2 blank 1 1 NO_WANDER
+viridian-house1-bookshelf2 blank 1 1
 INTERACTIONS
 MENU:ALERT:Crammed full of POK{e-accent}MON books!
 END
-viridian-house1-bookshelf3 blank 7 1 NO_WANDER
+viridian-house1-bookshelf3 blank 7 1
 INTERACTIONS
 MENU:ALERT:Crammed full of POK{e-accent}MON books!
 END
-viridian-house1-map blank 3 0 NO_WANDER
+viridian-house1-map blank 3 0
 INTERACTIONS
 MENU:ALERT:A TOWN MAP.|MAP
 END
