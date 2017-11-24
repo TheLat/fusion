@@ -4505,6 +4505,47 @@ public:
 												}
 											}
 										}
+										else if (choices[0] == 2) {
+											if (choices[2] == 0) {
+												unsigned choice = choices[1];
+												string name = get_nickname(mc.storage[mc.box_number][choice]);
+												do_alert(string("You will probably never see ") + get_nickname(mc.storage[mc.box_number][choice]) + string(" again."));
+												choices = do_menu(string("ALERT_YES_NO"), string("Are you sure you want to do this?"));
+												if (choices[0] == 0) {
+													do_alert(string("{PLAYER_NAME} released ") + name + string("."));
+													switch (int(random(0.0, 7.0))) {
+													case 0:
+														do_alert(name + string(" lived happily ever after."));
+														break;
+													case 1:
+														do_alert(name + string(" left to explore the Safari Zone."));
+														break;
+													case 2:
+														do_alert(name + string(" will always fondly remember its time with you."));
+														break;
+													case 3:
+														do_alert(name + string(" started a family and used your training to keep them safe."));
+														break;
+													case 4:
+														do_alert(name + string(" returned home to its family."));
+														break;
+													case 5:
+														do_alert(name + string(" returned to the wild with newfound confidence."));
+														break;
+													case 6:
+														do_alert(name + string(" still brags to its friends that it was trained by {PLAYER_NAME}."));
+														break;
+													default:
+														do_alert(name + string(" left the party."));
+														break;
+													}
+													mc.storage[mc.box_number][choice].defined = false;
+												}
+												pack_storage();
+												pack_team();
+												choices.clear();
+											}
+										}
 										else if (choices[0] == 3) {
 											mc.box_number = 19 - choices[1];
 										}
