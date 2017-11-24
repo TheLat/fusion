@@ -111,6 +111,14 @@ int get_mon_move_size(int index){
 	}
 	return ret;
 }
+int get_storage_mon_move_size(int index){
+	int ret = 0;
+	for (int i = 0; i < 4; ++i) {
+		if (e.get_special_string(string("STORAGE_MON_MOVE:") + to_string(index) + string(":") + to_string(i)) != "-")
+			ret++;
+	}
+	return ret;
+}
 
 int get_active_mon_move_size() {
 	int ret = 0;

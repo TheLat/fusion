@@ -16,6 +16,7 @@ extern int get_team_size();
 extern int get_storage_use();
 extern int get_active_mon_move_size();
 extern int get_mon_move_size(int index);
+extern int get_storage_mon_move_size(int index);
 extern int get_inventory_count(string type);
 extern int get_inventory_storage_count(string type);
 extern std::map<string, bool> get_seen_table();
@@ -118,6 +119,10 @@ public:
 						else if (temp2.find("{MON_MOVE_COUNT:") == 0) {
 							temp2.erase(temp2.find("{MON_MOVE_COUNT:"), string("{MON_MOVE_COUNT:").length());
 							selection_cap = get_mon_move_size(stoi(temp2));
+						}
+						else if (temp2.find("{STORAGE_MON_MOVE_COUNT:") == 0) {
+							temp2.erase(temp2.find("{STORAGE_MON_MOVE_COUNT:"), string("{STORAGE_MON_MOVE_COUNT:").length());
+							selection_cap = get_storage_mon_move_size(stoi(temp2));
 						}
 						else
 							selection_cap = stoi(temp2);

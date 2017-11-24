@@ -365,6 +365,18 @@ public:
 				}
 				return out;
 			}
+			else if (parse == "STORAGE_MON_MOVE") {
+				int index1 = 0;
+				int index2 = 0;
+				index1 = stoi(temp);
+				temp.erase(0, temp.find(":") + 1);
+				index2 = stoi(temp);
+				out = mc.storage[mc.box_number][index1].moves[index2];
+				if (out == "") {
+					out = "-";
+				}
+				return out;
+			}
 			else if (parse == "ACTIVE_MON_MOVE_TYPE") {
 				if (!number)
 					return in;
@@ -391,6 +403,16 @@ public:
 					return string(" ");
 				return string("PP");
 			}
+			else if (parse == "STORAGE_MON_MOVE_PP_IF_EXISTS") {
+				int index1 = 0;
+				int index2 = 0;
+				index1 = stoi(temp);
+				temp.erase(0, temp.find(":") + 1);
+				index2 = stoi(temp);
+				if (!moves[mc.storage[mc.box_number][index1].moves[index2]].defined)
+					return string(" ");
+				return string("PP");
+			}
 			else if (parse == "MON_MOVE_PP") {
 				int index1 = 0;
 				int index2 = 0;
@@ -400,6 +422,19 @@ public:
 				if (!moves[mc.team[index1].moves[index2]].defined)
 					return string(" ");
 				out = to_string(mc.team[index1].pp[index2]) + string("/") + to_string(mc.team[index1].max_pp[index2]);
+				while (out.length() < 9)
+					out = string(" ") + out;
+				return out;
+			}
+			else if (parse == "STORAGE_MON_MOVE_PP") {
+				int index1 = 0;
+				int index2 = 0;
+				index1 = stoi(temp);
+				temp.erase(0, temp.find(":") + 1);
+				index2 = stoi(temp);
+				if (!moves[mc.storage[mc.box_number][index1].moves[index2]].defined)
+					return string(" ");
+				out = to_string(mc.storage[mc.box_number][index1].pp[index2]) + string("/") + to_string(mc.storage[mc.box_number][index1].max_pp[index2]);
 				while (out.length() < 9)
 					out = string(" ") + out;
 				return out;
@@ -488,11 +523,23 @@ public:
 					return string("");
 				return string("{NO}.") + mc.team[index].number;
 			}
+			else if (parse == "STORAGE_MON_NUMBER"){
+				int index = stoi(temp);
+				if (!mc.storage[mc.box_number][index].defined)
+					return string("");
+				return string("{NO}.") + mc.storage[mc.box_number][index].number;
+			}
 			else if (parse == "TEAM_MON_IMAGE"){
 				int index = stoi(temp);
 				if (!mc.team[index].defined)
 					return string("");
 				return mc.team[index].number + string(".png");
+			}
+			else if (parse == "STORAGE_MON_IMAGE"){
+				int index = stoi(temp);
+				if (!mc.storage[mc.box_number][index].defined)
+					return string("");
+				return mc.storage[mc.box_number][index].number + string(".png");
 			}
 			else if (parse == "TEAM_MON_CURRENT_HP"){
 				int index = stoi(temp);
@@ -509,11 +556,29 @@ public:
 					o = string(" ") + o;
 				return o;
 			}
+			else if (parse == "STORAGE_MON_FORMATTED_HP") {
+				int index = stoi(temp);
+				if (!mc.storage[mc.box_number][index].defined)
+					return string("");
+				string o = to_string(mc.storage[mc.box_number][index].curr_hp) + string("/") + to_string(get_stat(mc.storage[mc.box_number][index], HP));
+				while (o.length() < 7)
+					o = string(" ") + o;
+				return o;
+			}
 			else if (parse == "TEAM_MON_ATTACK"){
 				int index = stoi(temp);
 				if (!mc.team[index].defined)
 					return string("");
 				string o = to_string(get_stat(mc.team[index], ATTACK, true, true));
+				while (o.length() < 8)
+					o = string(" ") + o;
+				return o;
+			}
+			else if (parse == "STORAGE_MON_ATTACK"){
+				int index = stoi(temp);
+				if (!mc.storage[mc.box_number][index].defined)
+					return string("");
+				string o = to_string(get_stat(mc.storage[mc.box_number][index], ATTACK, true, true));
 				while (o.length() < 8)
 					o = string(" ") + o;
 				return o;
@@ -561,11 +626,29 @@ public:
 					o = string(" ") + o;
 				return o;
 			}
+			else if (parse == "STORAGE_MON_DEFENSE"){
+				int index = stoi(temp);
+				if (!mc.storage[mc.box_number][index].defined)
+					return string("");
+				string o = to_string(get_stat(mc.storage[mc.box_number][index], DEFENSE, true, true));
+				while (o.length() < 8)
+					o = string(" ") + o;
+				return o;
+			}
 			else if (parse == "TEAM_MON_SPEED"){
 				int index = stoi(temp);
 				if (!mc.team[index].defined)
 					return string("");
 				string o = to_string(get_stat(mc.team[index], SPEED, true, true));
+				while (o.length() < 8)
+					o = string(" ") + o;
+				return o;
+			}
+			else if (parse == "STORAGE_MON_SPEED"){
+				int index = stoi(temp);
+				if (!mc.storage[mc.box_number][index].defined)
+					return string("");
+				string o = to_string(get_stat(mc.storage[mc.box_number][index], SPEED, true, true));
 				while (o.length() < 8)
 					o = string(" ") + o;
 				return o;
@@ -579,11 +662,26 @@ public:
 					o = string(" ") + o;
 				return o;
 			}
+			else if (parse == "STORAGE_MON_SPECIAL"){
+				int index = stoi(temp);
+				if (!mc.storage[mc.box_number][index].defined)
+					return string("");
+				string o = to_string(get_stat(mc.storage[mc.box_number][index], SPECIAL, true, true));
+				while (o.length() < 8)
+					o = string(" ") + o;
+				return o;
+			}
 			else if (parse == "TEAM_MON_TYPE1") {
 				int index = stoi(temp);
 				if (!mc.team[index].defined)
 					return string("");
 				return get_type_1(mc.team[index]);
+			}
+			else if (parse == "STORAGE_MON_TYPE1") {
+				int index = stoi(temp);
+				if (!mc.storage[mc.box_number][index].defined)
+					return string("");
+				return get_type_1(mc.storage[mc.box_number][index]);
 			}
 			else if (parse == "TEAM_MON_TYPE2") {
 				int index = stoi(temp);
@@ -591,11 +689,25 @@ public:
 					return string("");
 				return get_type_2(mc.team[index]);
 			}
+			else if (parse == "STORAGE_MON_TYPE2") {
+				int index = stoi(temp);
+				if (!mc.storage[mc.box_number][index].defined)
+					return string("");
+				return get_type_2(mc.storage[mc.box_number][index]);
+			}
 			else if (parse == "TYPE2_IF_EXISTS") {
 				int index = stoi(temp);
 				if (!mc.team[index].defined)
 					return string("");
 				if (get_type_2(mc.team[index]) != "")
+					return string("TYPE2/");
+				return string("");
+			}
+			else if (parse == "STORAGE_TYPE2_IF_EXISTS") {
+				int index = stoi(temp);
+				if (!mc.storage[mc.box_number][index].defined)
+					return string("");
+				if (get_type_2(mc.storage[mc.box_number][index]) != "")
 					return string("TYPE2/");
 				return string("");
 			}
@@ -606,6 +718,16 @@ public:
 				if (mc.team[index].curr_hp <= 0)
 					return string("STATUS/KO");
 				if (mc.team[index].status.size() != 0)
+					return string("STATUS/BAD");
+				return string("STATUS/OK");
+			}
+			else if (parse == "STORAGE_STATUS_BOOL") {
+				int index = stoi(temp);
+				if (!mc.storage[mc.box_number][index].defined)
+					return string("");
+				if (mc.storage[mc.box_number][index].curr_hp <= 0)
+					return string("STATUS/KO");
+				if (mc.storage[mc.box_number][index].status.size() != 0)
 					return string("STATUS/BAD");
 				return string("STATUS/OK");
 			}
@@ -626,11 +748,37 @@ public:
 					o = "{SINGLE}OK";
 				return o;
 			}
+			else if (parse == "STORAGE_MON_STATUS") {
+				int index = stoi(temp);
+				if (!mc.storage[mc.box_number][index].defined)
+					return string("");
+				if (mc.storage[mc.box_number][index].curr_hp <= 0)
+					return string("KO");
+				string o = "{SINGLE}";
+				for (unsigned i = 0; i < mc.storage[mc.box_number][index].status.size(); ++i) {
+					if (status[mc.storage[mc.box_number][index].status[i]].defined)
+						if (status[mc.storage[mc.box_number][index].status[i]].nonvolatile)
+							if (o.find(mc.storage[mc.box_number][index].status[i]) == -1)
+								o = o + mc.storage[mc.box_number][index].status[i] + string("\n");
+				}
+				if (o == "{SINGLE}")
+					o = "{SINGLE}OK";
+				return o;
+			}
 			else if (parse == "TEAM_MON_NAME_RIGHT_JUSTIFIED") {
 				int index = stoi(temp);
 				if (!mc.team[index].defined)
 					return string("");
 				string o = get_nickname(mc.team[index]);
+				while (o.length() < 14)
+					o = string(" ") + o;
+				return o;
+			}
+			else if (parse == "STORAGE_MON_NAME_RIGHT_JUSTIFIED") {
+				int index = stoi(temp);
+				if (!mc.storage[mc.box_number][index].defined)
+					return string("");
+				string o = get_nickname(mc.storage[mc.box_number][index]);
 				while (o.length() < 14)
 					o = string(" ") + o;
 				return o;
@@ -644,6 +792,15 @@ public:
 					o = string(" ") + o;
 				return o;
 			}
+			else if (parse == "STORAGE_EXP_POINTS") {
+				int index = stoi(temp);
+				if (!mc.storage[mc.box_number][index].defined)
+					return string("");
+				string o = to_string(mc.storage[mc.box_number][index].exp);
+				while (o.length() < 10)
+					o = string(" ") + o;
+				return o;
+			}
 			else if (parse == "LEVEL_UP") {
 				int index = stoi(temp);
 				if (!mc.team[index].defined)
@@ -652,6 +809,25 @@ public:
 				for (int i = 0; i <= 100; ++i) {
 					if (e.level_to_exp[i] > mc.team[index].exp) {
 						tot = e.level_to_exp[i] - mc.team[index].exp;
+						break;
+					}
+				}
+				string o = string("");
+				if (tot != -1) {
+					o = to_string(tot);
+				}
+				while (o.length() < 10)
+					o = string(" ") + o;
+				return o;
+			}
+			else if (parse == "STORAGE_LEVEL_UP") {
+				int index = stoi(temp);
+				if (!mc.storage[mc.box_number][index].defined)
+					return string("");
+				int tot = -1;
+				for (int i = 0; i <= 100; ++i) {
+					if (e.level_to_exp[i] > mc.storage[mc.box_number][index].exp) {
+						tot = e.level_to_exp[i] - mc.storage[mc.box_number][index].exp;
 						break;
 					}
 				}
