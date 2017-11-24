@@ -653,8 +653,19 @@ public:
 				unsigned len = stoi(temp);
 				temp.erase(0, temp.find(':') + 1);
 				temp = get_special_string(temp);
-				while (temp.length() < len)
+				unsigned real_len = 0;
+				for (unsigned i = 0; i < temp.length(); ++i) {
+					real_len++;
+					if (temp[i] == '{') {
+						while (temp[i] != '}') {
+							++i;
+						}
+					}
+				}
+				while (real_len < len) {
 					temp = string(" ") + temp;
+					real_len++;
+				}
 				return temp;
 			}
 			else if (parse == "CENTER_JUSTIFY") {
@@ -4266,7 +4277,29 @@ public:
 									choices = do_menu("MON_STORAGE");
 									choices = remove_cancels(choices);
 									if (choices.size() > 0) {
-										if (choices[0] == 3) {
+										if (choices[0] == 1) {
+											if (choices[2] == 0) {
+												unsigned count = 0;
+												while (count < 20 && mc.storage[mc.box_number][count].defined) {
+													count++;
+												}
+												if (get_team_size() == 1) {
+													do_alert(string("You can't deposit your last POK{e-accent}MON!"));
+												}
+												else if (count == 20) {
+													do_alert(string("No room left in that box!")); // TODO: Test this
+												}
+												else {
+													mc.storage[mc.box_number][count] = mc.team[choices[1]];
+													mc.storage[mc.box_number][count].wild = false;
+													mc.storage[mc.box_number][count].enemy = false;
+													mc.team[choices[1]].defined = false;
+													pack_team();
+													pack_storage();
+												}
+											}
+										}
+										else if (choices[0] == 3) {
 											mc.box_number = 19 - choices[1];
 										}
 									}
@@ -4619,6 +4652,44 @@ public:
 			}
 		}
 	}
+	void pack_team() {
+		unsigned j;
+		for (unsigned i = 0; i < 6; ++i) {
+			if (!mc.team[i].defined) {
+				for (j = i + 1; j < 6; ++j) {
+					if (mc.team[j].defined) {
+						mc.team[i] = mc.team[j];
+						mc.team[j].defined = false;
+						mc.team[i].wild = false;
+						mc.team[i].enemy = false;
+						break;
+					}
+				}
+				if (j == 6) {
+					break;
+				}
+			}
+		}
+	}
+	void pack_storage() {
+		unsigned j;
+		for (unsigned i = 0; i < 20; ++i) {
+			if (!mc.storage[mc.box_number][i].defined) {
+				for (j = i + 1; j < 20; ++j) {
+					if (mc.storage[mc.box_number][j].defined) {
+						mc.storage[mc.box_number][i] = mc.storage[mc.box_number][j];
+						mc.storage[mc.box_number][j].defined = false;
+						mc.storage[mc.box_number][i].wild = false;
+						mc.storage[mc.box_number][i].enemy = false;
+						break;
+					}
+				}
+				if (j == 20) {
+					break;
+				}
+			}
+		}
+	}
 	void save_game() {
 		ofstream f("../SAVE.dat");
 		f << string("WARNING: Editing this file can easily corrupt game state.\n");
@@ -4900,7 +4971,7 @@ public:
 				while (line != "END") {
 					temp = line;
 					temp.erase(temp.find("|"), temp.length());
-					line.erase(0, line.find("|"));
+					line.erase(0, line.find("|") + 1);
 					load_mon(line, mc.team[stoi(temp)]);
 					std::getline(f, line);
 				}
@@ -4911,11 +4982,11 @@ public:
 					int i, j;
 					temp = line;
 					temp.erase(temp.find("|"), temp.length());
-					line.erase(0, line.find("|"));
+					line.erase(0, line.find("|") + 1);
 					i = stoi(temp);
 					temp = line;
 					temp.erase(temp.find("|"), temp.length());
-					line.erase(0, line.find("|"));
+					line.erase(0, line.find("|") + 1);
 					j = stoi(temp);
 					load_mon(line, mc.storage[i][j]);
 					std::getline(f, line);
@@ -4951,23 +5022,11 @@ public:
 					std::getline(f, line);
 				}
 			}
-			/*f << string("\nLEVEL:");
-			std::map<string, level>::iterator l = levels.begin();
-			while (l != levels.end()) {
-				f << string("\n") + l->first;
-				for (unsigned i = 0; i < l->second.characters.size(); ++i) {
-					f << string("\n") << i << string("|") << int(l->second.characters[i].dir) << string("|") << int(l->second.characters[i].loc.x) << string("|") << int(l->second.characters[i].loc.y);
-				}
-				f << string("\nEND");
-				++l;
-			}
-			f << string("\nEND_LEVELS");*/
 		}
 		f.close();
 	}
 	void load_mon(string s, mon& m) {
 		string temp = s;
-		s.erase(0, s.find("|") + 1);
 		temp.erase(0, temp.find(":") + 1);
 		temp.erase(temp.find("|"), temp.length());
 		m.number = temp;
