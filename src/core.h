@@ -2854,16 +2854,35 @@ public:
 								count++;
 							}
 						}
+						bool found = false;
 						for (int i = 0; i < 6; ++i) {
 							if (!mc.team[i].defined) {
 								do_alert(string("Wild ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string(" was captured!"));
-								mc.caught[mc.enemy_team[mc.enemy_selected].number] = true;
 								mc.team[i] = mc.enemy_team[mc.enemy_selected];
 								mc.team[i].wild = false;
 								mc.team[i].enemy = false;
+								found = true;
 								break;
 							}
 						}
+						if (!found) {
+							for (int i = 0; i < 20 && !found; ++i) {
+								for (int j = 0; j < 20 && !found; ++j) {
+									if (!mc.storage[i][j].defined) {
+										found = true;
+										do_alert(string("Wild ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string(" was captured!"));
+										mc.storage[i][j] = mc.enemy_team[mc.enemy_selected];
+										mc.storage[i][j].wild = false;
+										mc.storage[i][j].enemy = false;
+									}
+								}
+							}
+						}
+						if (!found) {
+							do_alert(string("There's no room in storage!"));
+							do_alert(string("You have no choice but to let it go."));
+						}
+						mc.caught[mc.enemy_team[mc.enemy_selected].number] = true;
 						for (unsigned i = 0; i < 6; ++i) {
 							if (mc.enemy_team[mc.enemy_selected].fought[i] && mc.team[i].defined && !is_KO(mc.team[i])) {
 								gain_exp(mc.team[i], mc.enemy_team[mc.enemy_selected], count);
