@@ -2842,6 +2842,22 @@ public:
 						o.erase(0, o.find(":") + 1);
 						out = attempt_capture(stof(o), mc.enemy_team[mc.enemy_selected]);
 					}
+					switch (out) {
+					case 0:
+						do_alert("Oh, no! The POK{e-accent}MON broke free!");
+						break;
+					case 1:
+						do_alert("Aww! It appeared to be caught!");
+						break;
+					case 2:
+						do_alert("Aargh! Almost had it!");
+						break;
+					case 3:
+						do_alert("Shoot! It was so close!");
+						break;
+					default:
+						break;
+					}
 					// TODO:  Capture messages
 					if (out == 4) {
 						clear_volatile(mc.enemy_team[mc.enemy_selected]);
