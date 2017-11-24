@@ -351,7 +351,7 @@ public:
 						followup.push_back("");
 						raw.push_back(t);
 						for (int i = 0; i < max; ++i) {
-							reserve.push_back(string("RIGHT_JUSTIFY:") + to_string(int((b.length + 0.3) * 10.0)) + string(":ITEM_COUNT:") + temp1 + string(":") + to_string(i));
+							reserve.push_back(string("RIGHT_JUSTIFY:") + to_string(int((b.length - 0.3) * 10.0)) + string(":ITEM_COUNT:") + temp1 + string(":") + to_string(i));
 						}
 						reserve.push_back(string(""));
 						cancel_option = max;
@@ -418,7 +418,7 @@ public:
 						followup.push_back("");
 						raw.push_back(t);
 						for (int i = 0; i < max; ++i) {
-							reserve.push_back(string("RIGHT_JUSTIFY:") + to_string(int((b.length + 0.3) * 10.0)) + string(":ITEM_STORAGE_COUNT:") + temp1 + string(":") + to_string(i));
+							reserve.push_back(string("RIGHT_JUSTIFY:") + to_string(int((b.length - 0.3) * 10.0)) + string(":ITEM_STORAGE_COUNT:") + temp1 + string(":") + to_string(i));
 						}
 						reserve.push_back(string(""));
 						cancel_option = max;
@@ -686,7 +686,7 @@ public:
 						followup.push_back("");
 						raw.push_back(t);
 						for (int i = 0; i < max; ++i) {
-							reserve.push_back(string("RIGHT_JUSTIFY:") + to_string(int((b.length + 0.3) * 10.0)) + string(":ITEM_COUNT:") + temp1 + string(":") + to_string(i));
+							reserve.push_back(string("RIGHT_JUSTIFY:") + to_string(int((b.length - 0.3) * 10.0)) + string(":ITEM_COUNT:") + temp1 + string(":") + to_string(i));
 						}
 						reserve.push_back(string(""));
 						cancel_option = max;
@@ -756,7 +756,7 @@ public:
 						followup.push_back("");
 						raw.push_back(t);
 						for (int i = 0; i < max; ++i) {
-							reserve.push_back(string("RIGHT_JUSTIFY:") + to_string(int((b.length + 0.3) * 10.0)) + string(":ITEM_COUNT:") + temp1 + string(":") + to_string(i));
+							reserve.push_back(string("RIGHT_JUSTIFY:") + to_string(int((b.length - 0.3) * 10.0)) + string(":ITEM_COUNT:") + temp1 + string(":") + to_string(i));
 						}
 						reserve.push_back(string(""));
 						cancel_option = max;
@@ -823,7 +823,10 @@ public:
 						}
 						for (int i = 0; i < max; ++i) {
 							reserve.push_back(items[i]);
-							reserve_followup.push_back("EXCHANGE_BUY:" + to_string(get_item_cost(items[i])) + string("_") + to_string(money / get_item_cost(items[i])));
+							if (money / get_item_cost(items[i]) > 0)
+								reserve_followup.push_back("EXCHANGE_BUY:" + to_string(get_item_cost(items[i])) + string("_") + to_string(money / get_item_cost(items[i])));
+							else
+								reserve_followup.push_back("ALERT:I'm sorry, but you don't have enough money for that.");
 						}
 						t.xmin = x;
 						t.ymin = y;
@@ -835,7 +838,7 @@ public:
 						followup.push_back("");
 						raw.push_back(t);
 						for (int i = 0; i < max; ++i) {
-							reserve.push_back(string("RIGHT_JUSTIFY:") + to_string(int((b.length +-0.3) * 10.0)) + string(":$") + to_string(get_item_cost(items[i])));
+							reserve.push_back(string("RIGHT_JUSTIFY:") + to_string(int((b.length - 0.3) * 10.0)) + string(":$") + to_string(get_item_cost(items[i])));
 						}
 						reserve.push_back(string(""));
 						cancel_option = max;
