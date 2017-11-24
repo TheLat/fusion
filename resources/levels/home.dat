@@ -30,6 +30,10 @@ tv1 blank 3 20
 INTERACTIONS
 MENU:ALERT:There's a movie on TV. Four boys are walking on railroad tracks.|MENU:ALERT:I better go, too.
 END
+home-pc blank 0 1
+INTERACTIONS
+MENU:ALERT:{PLAYER_NAME} turned on the PC.|ITEM_STORAGE
+END
 TELEPORT
 7 1 home 6 20
 7 20 home 6 1

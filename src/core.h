@@ -4548,7 +4548,7 @@ public:
 												choices = do_menu(string("ALERT_YES_NO"), string("Are you sure you want to do this?"));
 												if (choices[0] == 0) {
 													do_alert(string("{PLAYER_NAME} released ") + name + string("."));
-													switch (int(random(0.0, 7.0))) {
+													switch (int(random(0.0, 8.0))) {
 													case 0:
 														do_alert(name + string(" lived happily ever after."));
 														break;
@@ -4569,6 +4569,9 @@ public:
 														break;
 													case 6:
 														do_alert(name + string(" still brags to its friends that it was trained by {PLAYER_NAME}."));
+														break;
+													case 7:
+														do_alert(name + string(" never liked you anyway."));
 														break;
 													default:
 														do_alert(name + string(" left the party."));
