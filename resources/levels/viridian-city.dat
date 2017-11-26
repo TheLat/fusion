@@ -11,7 +11,8 @@ MENU:ALERT_YES_NO:You want to know about the 2 kinds of caterpillar POK{e-accent
 END
 viridian-city-girl woman3 17 9 RIGHT
 INTERACTIONS
-MENU:ALERT:Oh Grandpa! Don't be so mean!{NEWLINE}He hasn't had his coffee yet.|FACE:RIGHT
+MENU:ALERT:Oh Grandpa! Don't be so mean!{NEWLINE}He hasn't had his coffee yet.|FACE:RIGHT|NO_ADVANCE
+MENU:ALERT:When I go shop in PEWTER CITY, I have to take the winding trail in VIRIDIAN FOREST.
 END
 viridian-city-grandpa sleep 18 9
 FORCE_INTERACTION
@@ -33,6 +34,26 @@ END
 viridian-city-potion blank 14 4
 INTERACTIONS
 GIVE_ITEM:POTION|DEACTIVATE:viridian-city-potion
+END
+viridian-city-grandpa2 bald4 18 6 WANDER INACTIVE
+INTERACTIONS
+MENU:ALERT:Ahh, I've had my coffee now and I feel great!|MENU:ALERT:Sure you can go through!
+END
+viridian-city-sign3 blank 19 1
+INTERACTIONS
+MENU:ALERT:TRAINER TIPS|MENU:ALERT:Catch POK{e-accent}MON and expand your collection!|MENU:ALERT:The more you have, the easier it is to fight!
+END
+viridian-city-grandpa3 bald4 30 8
+INTERACTIONS
+MENU:ALERT:This POK{e-accent}MON GYM is always closed.|MENU:ALERT:I wonder who the LEADER is?
+END
+viridian-city-gym-lock blank 32 7
+INTERACTIONS
+MENU:ALERT:This GYM's doors are locked...
+END
+viridian-city-sign4 blank 27 7
+INTERACTIONS
+MENU:ALERT:VIRIDIAN CITY POK{e-accent}MON GYM
 END
 TELEPORT
 20 37 route1 13 1
