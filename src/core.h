@@ -2457,6 +2457,7 @@ public:
 			g.draw_list[e.sprite_index].tex = g.tex[g.draw_list[e.sprite_index].filename];
 			resize_exp_bar(p);
 			resize_hp_bars(p);
+			resize_hp_bars(e);
 			g.new_load = true;
 		}
 		m.unlock();
@@ -2673,6 +2674,7 @@ public:
 				mc.team[mc.selected].damage_dealt.clear();
 				mc.selected = choices[0];
 				mc.team[mc.selected].exp_bar_index = exp_bar_index;
+				mc.team[mc.selected].sprite_index = team_sprite;
 				rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
 			}
 			if (is_KO(mc.enemy_team[mc.enemy_selected])) {
@@ -2693,6 +2695,8 @@ public:
 				for (unsigned i = 0; i < 6; ++i) {
 					if (mc.enemy_team[i].defined && mc.enemy_team[i].curr_hp > 0) {
 						found = true;
+						mc.enemy_team[i].sprite_index = enemy_sprite;
+						mc.enemy_team[i].hp_bar_index = mc.enemy_team[mc.enemy_selected].hp_bar_index;
 						mc.enemy_selected = i; // TODO: Smart team selection
 						do_alert(t.display_name + string(" sent out ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string("!"));
 						mc.seen[mc.enemy_team[mc.enemy_selected].number] = true;
