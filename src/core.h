@@ -1635,8 +1635,10 @@ public:
 		return false;
 	}
 	bool create_move(mon& m, string move, int index) {
-		if (!moves[move].defined)
+		if (!moves[move].defined) {
+			m.moves[index] = "";
 			return false;
+		}
 		m.moves[index] = move;
 		m.pp[index] = moves[m.moves[index]].pp;
 		m.max_pp[index] = m.pp[index];
@@ -2694,6 +2696,7 @@ public:
 						mc.enemy_selected = i; // TODO: Smart team selection
 						do_alert(t.display_name + string(" sent out ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string("!"));
 						mc.seen[mc.enemy_team[mc.enemy_selected].number] = true;
+						rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
 						break;
 					}
 				}
@@ -3522,38 +3525,50 @@ public:
 					for (unsigned j = 0; j < 6; ++j) {
 						d.team[j].defined = false;
 					}
-					while (s.find(":") != -1) {
+					while (s != "") {
 						if (s.find("|") == 0)
 							s.erase(0, 1);
 						s2 = s;
 						s2.erase(s2.find(":"), s2.length());
 						s.erase(0, s.find(":") + 1);
 						s3 = s;
+						if (s3.find("|") != -1) {
+							s3.erase(s3.find("|"), s3.length());
+						}
 						if (s3.find(":") != -1) {
 							s3.erase(s3.find(":"), s3.length());
 						}
-						if (s3.find(" ") != -1) {
-							s3.erase(s3.find(" "), s3.length());
-						}
 						count = stoi(s3);
-						s.erase(0, s3.length());
 						make_mon(s2, count, d.team[i]);
 						d.team[i].wild = false;
+						s.erase(0, s3.length());
 						if (s.find(":") == 0) {
 							s.erase(0, 1);
+						}
+						s3 = s;
+						if (s.find("|") != -1) {
+							s.erase(0, s.find("|") + 1);
+							s3.erase(s3.find("|"), s3.length());
+						}
+						else {
+							s = "";
+						}
+						if (s3 != "") {
 							count = 0;
-							while (s != "" && s.find("|") != 0) {
-								s2 = s;
+							while (count < 4) {
+								s2 = s3;
 								if (s2.find("|") != -1) {
 									s2.erase(s2.find("|"), s2.length());
+								}
+								if (s2.find(",") == 0) {
+									s2 = "";
 								}
 								if (s2.find(",") != -1) {
 									s2.erase(s2.find(","), s2.length());
 								}
 								create_move(d.team[i], s2, count);
-								s.erase(0, s2.length());
-								if (s.find(",") == 0) {
-									s.erase(0, 1);
+								if (s3.find(",") != -1) {
+									s3.erase(0, s3.find(",") + 1);
 								}
 								count++;
 							}
