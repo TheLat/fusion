@@ -193,8 +193,8 @@ public:
 	vector<string> interactions;
 	vector<location> force_interactions;
 	location loc, origin;
-	bool wander;
-	character() { wander = false; dir = DOWN;  }
+	bool wander, incorporeal;
+	character() { wander = false; dir = DOWN; incorporeal = false; }
 };
 
 class trainer {
@@ -3420,6 +3420,12 @@ public:
 					else {
 						mc.active[levels[levelname].characters[levels[levelname].characters.size() - 1].name] = true;
 					}
+					if (s.find("INCORPOREAL") != -1) {
+						levels[levelname].characters[levels[levelname].characters.size() - 1].incorporeal = true;
+					}
+					else {
+						levels[levelname].characters[levels[levelname].characters.size() - 1].incorporeal = false;
+					}
 					if (s.find("WANDER") != -1) {
 						levels[levelname].characters[levels[levelname].characters.size() - 1].wander = true;
 					}
@@ -4228,6 +4234,8 @@ public:
 				return;
 			for (unsigned i = 0; i < levels[mc.loc.level].characters.size(); ++i) {
 				if (!mc.active[levels[mc.loc.level].characters[i].name])
+					continue;
+				if (levels[mc.loc.level].characters[i].incorporeal)
 					continue;
 				if (l.x == levels[mc.loc.level].characters[i].loc.x && l.y == levels[mc.loc.level].characters[i].loc.y)
 					return;

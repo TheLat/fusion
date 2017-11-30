@@ -31,7 +31,7 @@ viridian-city-sign2 blank 17 17
 INTERACTIONS
 MENU:ALERT:VIRIDIAN CITY{NEWLINE}The Eternally Green Paradise
 END
-viridian-city-potion blank 14 4
+viridian-city-potion blank 14 4 INCORPOREAL
 INTERACTIONS
 GIVE_ITEM:POTION|DEACTIVATE:viridian-city-potion
 END
