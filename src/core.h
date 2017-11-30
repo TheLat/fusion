@@ -4936,6 +4936,7 @@ public:
 								mc.interaction[levels[mc.loc.level].characters[i].name]++;
 							}
 						}
+						break;
 					}
 				}
 			}
