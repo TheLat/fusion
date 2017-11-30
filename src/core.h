@@ -4459,6 +4459,32 @@ public:
 								else
 									choices.push_back(0);
 							}
+							else if (s.find("HAS_MOVE:") == 0) {
+								s.erase(0, string("HAS_MOVE:").length());
+								s2 = s;
+								if (s.find("|") != -1) {
+									s.erase(0, s.find("|"));
+									s2.erase(s2.find("|"), s2.length());
+								}
+								else {
+									s = "";
+								}
+								choices.clear();
+								bool found_move = false;
+								for (unsigned x = 0; x < 6; ++x) {
+									if (mc.team[x].defined) {
+										for (unsigned y = 0; y < 4; ++y) {
+											if (mc.team[x].moves[y] == s2) {
+												found_move = true;
+											}
+										}
+									}
+								}
+								if (found_move)
+									choices.push_back(1);
+								else
+									choices.push_back(0);
+							}
 							else if (s.find("ADVANCE") == 0) {
 								s.erase(0, string("ADVANCE:").length());
 								s2 = s;
