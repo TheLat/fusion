@@ -1401,10 +1401,25 @@ public:
 		double chance = (double(get_stat(escapee, SPEED))*32.0 / double(get_stat(m, SPEED))) + (30.0 * double(attempts));
 		return chance > random(0.0, 255.0);
 	}
+	int has_move_in_party(string s) {
+		bool found_move = false;
+		for (unsigned i = 0; i < 6; ++i) {
+			if (mc.team[i].defined) {
+				for (unsigned j = 0; j < 4; ++j) {
+					if (mc.team[i].moves[j] == s) {
+						found_move = true;
+					}
+				}
+			}
+		}
+		if (found_move)
+			return 1;
+		return 0;
+	}
 	int in_inventory(string s) {
 		for (unsigned i = 0; i < mc.inventory.size(); ++i) {
 			if (mc.inventory[i].first == s) {
-				return mc.inventory[i].second;
+				return min(mc.inventory[i].second, 1);
 			}
 		}
 		return 0;
@@ -4472,20 +4487,7 @@ public:
 									s = "";
 								}
 								choices.clear();
-								bool found_move = false;
-								for (unsigned x = 0; x < 6; ++x) {
-									if (mc.team[x].defined) {
-										for (unsigned y = 0; y < 4; ++y) {
-											if (mc.team[x].moves[y] == s2) {
-												found_move = true;
-											}
-										}
-									}
-								}
-								if (found_move)
-									choices.push_back(1);
-								else
-									choices.push_back(0);
+								choices.push_back(has_move_in_party(s2));
 							}
 							else if (s.find("ADVANCE") == 0) {
 								s.erase(0, string("ADVANCE:").length());
