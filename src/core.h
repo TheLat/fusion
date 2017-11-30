@@ -4230,8 +4230,10 @@ public:
 				return;
 			if (l.x >= levels[mc.loc.level].data[int(l.y)].size())
 				return;
-			if (blocking[get_tile(l.y, l.x)])
+			if (blocking[get_tile(l.y, l.x)] && !(down && jumpdown[get_tile(l.y, l.x)]))
 				return;
+			if (down && jumpdown[get_tile(l.y, l.x)])
+				l.y += 1.0;
 			for (unsigned i = 0; i < levels[mc.loc.level].characters.size(); ++i) {
 				if (!mc.active[levels[mc.loc.level].characters[i].name])
 					continue;
