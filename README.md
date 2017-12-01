@@ -61,6 +61,8 @@ List of changes:
 - Increased Hi Jump Kick's power.
 - Moves that deal set damage (Sonicboom, Seismic Toss) are now subject to type multipliers and can score critical hits.  This may be removed in the final version.
 - Critical hits will instead deal x1.5 damage, but ignore all buffs on the target and all debuffs on the user.
+- CUT no longer shows up in your menu options for a pokemon.  Instead, you just have to walk up to a bush and interact with it and if something in your party knows CUT, it will be cut down.
+- Bushes don't grow back.
 
 Concerning Fusions:
   There are 22,801 pokemon that can appear in Pokemon: Fusion.  The developer can't inspect all of them.  Some may be duds with few or no attack moves (Pikachu-Bulbasaur is quite terrible).  Some things may happen that make no sense (things fused with Gengar will learn Hypnosis from Gengar or Dream Eater from Gengar, but not both).  As a way to balance this, fusions are compatible with every TM and HM that either parent could learn.
