@@ -225,6 +225,7 @@ int main(int argc, char** argv) {
 	e.init_levels();
 	e.init_blocking();
 	e.init_jumpdown();
+	e.init_encounter_tiles();
 	e.init_swimming();
 	e.init_items();
 	e.init_hm();

@@ -286,6 +286,7 @@ public: // TODO:  Change back to private
 	std::map<string, item> items;
 	std::map<int, bool> blocking;
 	std::map<int, bool> jumpdown;
+	std::map<int, bool> encounter_tile;
 	std::map<int, bool> water;
 	std::vector<menu*> menus;
 	std::map<int, string> TM;
@@ -4062,6 +4063,16 @@ public:
 			f.close();
 		}
 	}
+	void init_encounter_tiles() {
+		string line;
+		ifstream f("../resources/data/encounter-tiles.dat");
+		while (f.is_open()) {
+			while (std::getline(f, line)) {
+				encounter_tile[stoi(line)] = true;
+			}
+			f.close();
+		}
+	}
 	void init_swimming() {
 		string line;
 		ifstream f("../resources/data/water-tiles.dat");
@@ -4265,7 +4276,7 @@ public:
 			}
 			mc.loc = l;
 			update_level();
-			if (get_tile(mc.loc.y, mc.loc.x) == 4) {
+			if (encounter_tile[get_tile(mc.loc.y, mc.loc.x)]) {
 				if (levels[mc.loc.level].encounters.size() > 0) {
 					if (random(0.0, 187.5) < 8.5) {
 						int choice = int(random(0.0, double(levels[mc.loc.level].encounters.size())));
