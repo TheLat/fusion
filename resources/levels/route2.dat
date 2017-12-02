@@ -9,6 +9,18 @@ route2-sign2 blank 10 66
 INTERACTIONS
 MENU:ALERT:ROUTE 2{NEWLINE}VIRIDIAN CITY - PEWTER CITY
 END
+route2-bush1 bush 17 69
+INTERACTIONS
+HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:viridian-city-bush1}
+END
+route2-bush2 bush 17 61
+INTERACTIONS
+HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:viridian-city-bush1}
+END
+route2-bush3 bush 16 53
+INTERACTIONS
+HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:viridian-city-bush1}
+END
 TELEPORT
 13 74 viridian-city 18 1
 12 74 viridian-city 17 1
