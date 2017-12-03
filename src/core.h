@@ -2691,6 +2691,7 @@ public:
 				mc.selected = choices[0];
 				mc.team[mc.selected].exp_bar_index = exp_bar_index;
 				mc.team[mc.selected].sprite_index = team_sprite;
+				mc.enemy_team[mc.enemy_selected].fought[mc.selected] = true;
 				rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
 			}
 			if (is_KO(mc.enemy_team[mc.enemy_selected])) {
@@ -2716,6 +2717,7 @@ public:
 						mc.enemy_selected = i; // TODO: Smart team selection
 						do_alert(t.display_name + string(" sent out ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string("!"));
 						mc.seen[mc.enemy_team[mc.enemy_selected].number] = true;
+						mc.enemy_team[mc.enemy_selected].fought[mc.selected] = true;
 						rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
 						break;
 					}
