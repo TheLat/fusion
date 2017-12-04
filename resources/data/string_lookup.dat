@@ -36,6 +36,7 @@ $.bmp money.bmp
 ?.bmp question-mark.bmp
 /.bmp slash.bmp
  .bmp space.bmp
+{SPACE}.bmp space.bmp
 {TIMES}.bmp times.bmp
 {LEVEL}.bmp level.bmp
 {NO}.bmp no.bmp

@@ -193,8 +193,8 @@ public:
 	vector<string> interactions;
 	vector<location> force_interactions;
 	location loc, origin;
-	bool wander, incorporeal;
-	character() { wander = false; dir = DOWN; incorporeal = false; }
+	bool wander, incorporeal, no_force;
+	character() { wander = false; dir = DOWN; incorporeal = false; no_force = false; }
 };
 
 class trainer {
@@ -4344,7 +4344,7 @@ public:
 			for (unsigned i = 0; i < levels[mc.loc.level].characters.size(); ++i) {
 				if (!mc.active[levels[mc.loc.level].characters[i].name])
 					continue;
-				for (unsigned j = 0; j < levels[mc.loc.level].characters[i].force_interactions.size(); ++j) {
+				for (unsigned j = 0; !levels[mc.loc.level].characters[i].no_force && j < levels[mc.loc.level].characters[i].force_interactions.size(); ++j) {
 					if (mc.loc.x == levels[mc.loc.level].characters[i].force_interactions[j].x + levels[mc.loc.level].characters[i].loc.x &&
 						mc.loc.y == levels[mc.loc.level].characters[i].force_interactions[j].y + levels[mc.loc.level].characters[i].loc.y) {
 						if (levels[mc.loc.level].characters[i].loc.x > mc.loc.x)
@@ -4947,6 +4947,25 @@ public:
 									s = "";
 								}
 							}
+							else if (s.find("DISABLE_FORCE") == 0) {
+								if (s.find("|") == -1) {
+									s = "";
+								}
+								levels[mc.loc.level].characters[i].no_force = true;
+							}
+							else if (s.find("MOVE_TO_PLAYER") == 0) {
+								if (s.find("|") == -1) {
+									s = "";
+								}
+								if (levels[mc.loc.level].characters[i].loc.x < mc.loc.x)
+									levels[mc.loc.level].characters[i].loc.x = mc.loc.x - 1.0;
+								if (levels[mc.loc.level].characters[i].loc.x > mc.loc.x)
+									levels[mc.loc.level].characters[i].loc.x = mc.loc.x + 1.0;
+								if (levels[mc.loc.level].characters[i].loc.y < mc.loc.y)
+									levels[mc.loc.level].characters[i].loc.y = mc.loc.y - 1.0;
+								if (levels[mc.loc.level].characters[i].loc.y > mc.loc.y)
+									levels[mc.loc.level].characters[i].loc.y = mc.loc.y + 1.0;
+							}
 							else if (s.find("BATTLE") == 0) {
 								s2 = s;
 								s2.erase(0, s2.find(":") + 1);
@@ -5157,7 +5176,11 @@ public:
 		while (l != levels.end()) {
 			f << string("\n") + l->first;
 			for (unsigned i = 0; i < l->second.characters.size(); ++i) {
-				f << string("\n") << i << string("|") << int(l->second.characters[i].dir) << string("|") << int(l->second.characters[i].loc.x) << string("|") << int(l->second.characters[i].loc.y);
+				f << string("\n") << i << string("|") << int(l->second.characters[i].dir) << string("|") << int(l->second.characters[i].loc.x) << string("|") << int(l->second.characters[i].loc.y) << string("|");
+				if (l->second.characters[i].no_force)
+					f << string("1");
+				else
+					f << string("0");
 			}
 			f << string("\nEND");
 			++l;
@@ -5369,10 +5392,13 @@ public:
 						line.erase(0, line.find("|") + 1);
 						x = stoi(temp);
 						temp = line;
+						temp.erase(temp.find("|"), temp.length());
+						line.erase(0, line.find("|") + 1);
 						y = stoi(temp);
 						levels[key].characters[i].dir = direction(dir);
 						levels[key].characters[i].loc.x = x;
 						levels[key].characters[i].loc.y = y;
+						levels[key].characters[i].no_force = stoi(line) == 1;
 						std::getline(f, line);
 					}
 					std::getline(f, line);
