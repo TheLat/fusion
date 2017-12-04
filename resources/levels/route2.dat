@@ -15,16 +15,21 @@ HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:viridian-city-bush1}
 END
 route2-bush2 bush 17 61
 INTERACTIONS
-HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:viridian-city-bush1}
+HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:viridian-city-bush2}
 END
 route2-bush3 bush 16 53
 INTERACTIONS
-HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:viridian-city-bush1}
+HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:viridian-city-bush3}
+END
+route2-bush4 bush 10 10
+INTERACTIONS
+HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:viridian-city-bush4}
 END
 TELEPORT
 13 74 viridian-city 18 1
 12 74 viridian-city 17 1
 8 44 viridian-station 4 7
+8 12 viridian-station2 5 1
 ENCOUNTERS
 10 13 16 19 29 32
 LEVELS
