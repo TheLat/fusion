@@ -5,7 +5,7 @@ pewter-station1-oldman oldman 2 5
 INTERACTIONS
 MENU:ALERT:Have you noticed the bushes on the roadside?|MENU:ALERT:They can be cut down by a special POK{e-accent}MON move!
 END
-viridian-station1-man man 4 2 WANDER
+viridian-station1-man man2 4 2 WANDER
 INTERACTIONS
 MENU:ALERT:Many POK{e-accent}MON live only in forests and caves.|MENU:ALERT:You need to look everywhere to get different kinds!
 END
