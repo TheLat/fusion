@@ -1,11 +1,11 @@
 NAME
 Viridian Station 2
 NPCS
-pewter-station1-oldman oldman 2 5
+viridian-station2-oldman oldman 2 5
 INTERACTIONS
 MENU:ALERT:Have you noticed the bushes on the roadside?|MENU:ALERT:They can be cut down by a special POK{e-accent}MON move!
 END
-viridian-station1-man man2 4 2 WANDER
+viridian-station2-man man2 4 2 WANDER
 INTERACTIONS
 MENU:ALERT:Many POK{e-accent}MON live only in forests and caves.|MENU:ALERT:You need to look everywhere to get different kinds!
 END

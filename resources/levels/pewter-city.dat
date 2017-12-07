@@ -1,9 +1,54 @@
 NAME
 Pewter City
 NPCS
-viridian-city-boy boy 10 20 WANDER
+pewter-city-sign1 blank 19 33
 INTERACTIONS
-MENU:ALERT:Those POK{e-accent} BALLs at your waist!{NEWLINE}You have POK{e-accent}MON!|MENU:ALERT:It's great that you can carry and use POK{e-accent}MON any time, anywhere!
+MENU:ALERT:TRAINER TIPS|MENU:ALERT:Any POK{e-accent}MON that takes part in battle, however short, earns EXP!
+END
+pewter-city-guy guy2 17 29
+INTERACTIONS
+MENU:ALERT:There aren't many serious POK{e-accent}MON trainers here. They're all, like, BUG CATCHERs, but PEWTER GYM's BROCK is totally into it!
+END
+pewter-city-guy2 man2 25 29 WANDER
+INTERACTIONS
+MENU:ALERT:Psssst!|MENU:ALERT_YES_NO:Do you know what I'm doing?|{MENU:ALERT:That's right!{NEWLINE}It's hard work!}{MENU:ALERT:I'm spraying REPEL to keep POK{e-accent}MON out of my garden!}
+END
+pewter-city-sign2 blank 25 27
+INTERACTIONS
+MENU:ALERT:PEWTER CITY{NEWLINE}A Stone Gray City
+END
+pewter-city-sign3 blank 33 23
+INTERACTIONS
+MENU:ALERT:NOTICE!|MENU:ALERT:Thieves have been stealing POK{e-accent}MON fossils at MT. MOON! Please call PEWTER POLICE with any info!
+END
+pewter-city-blocker boy 35 20
+FORCE_INTERACTION
+0 1
+0 2
+0 3
+END
+INTERACTIONS
+!:pewter-city-blocker|GET:BOULDERBADGE|{MENU:ALERT:You're a trainer, right? Only people with Brock's seal of approval are allowed through here.|MOVE:PLAYER:-1,0}{MENU:ALERT:DO STUFF HERE}
+END
+pewter-city-guy3 man2 27 21
+INTERACTIONS
+MENU:ALERT_YES_NO:Did you check out the MUSEUM?|{MENU:ALERT:Weren't those fossils from MT. MOON amazing?}{MENU:ALERT:Really?{NEWLINE}You absolutely have to go!}
+END
+pewter-city-girl girl 8 19
+INTERACTIONS
+MENU:ALERT:It's rumored that CLEFAIRYs came from the moon!|MENU:ALERT:They appeared after MOON STONE fell on MT. MOON.
+END
+pewter-city-bush bush 26 8
+INTERACTIONS
+HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:pewter-city-bush}
+END
+pewter-city-sign4 blank 11 21
+INTERACTIONS
+MENU:ALERT:PEWTER CITY POK{e-accent}MON GYM{NEWLINE}LEADER: BROCK|MENU:ALERT:The Rock Solid POK{e-accent}MON Trainer!
+END
+pewter-city-sign5 blank 15 13
+INTERACTIONS
+MENU:ALERT:PEWTER MUSEUM OF SCIENCE
 END
 TELEPORT
 18 41 route2 13 1
