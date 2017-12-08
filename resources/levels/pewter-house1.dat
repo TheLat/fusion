@@ -1,0 +1,40 @@
+NAME
+Pewter City House 1
+NPCS
+pewter-house1-bald bald4 2 3 RIGHT
+INTERACTIONS
+MENU:ALERT:POK{e-accent}MON learn new techniques as they grow!|MENU:ALERT:But, some moves must be taught by the trainer!
+END
+pewter-house1-boy boy 4 5
+INTERACTIONS
+MENU:ALERT:POK{e-accent}MON become easier to catch when they are hurt or asleep!|MENU:ALERT:But, it's not a sure thing!
+END
+pewter-house1-bookshelf1 blank 0 1
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+pewter-house1-bookshelf2 blank 1 1
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+pewter-house1-bookshelf3 blank 7 1
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+pewter-house1-map blank 3 0
+INTERACTIONS
+MENU:ALERT:A TOWN MAP.|MAP
+END
+TELEPORT
+2 8 pewter-city 7 34
+3 8 pewter-city 7 34
+DATA
+31 31  17  33 17 34 17 31
+32 32  18  18 18 18 18 36
+18 18  18  18 18 18 18 18
+18 18  37  48 52 37 18 18
+18 18  37  23 24 37 18 18
+18 18  18  18 18 18 18 18
+30 18  18  18 18 18 18 30
+29 18  38  38 18 18 18 29
+82 82 166 166

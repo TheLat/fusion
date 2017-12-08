@@ -1,0 +1,44 @@
+NAME
+Pewter City House 2
+NPCS
+pewter-house2-bald bald3 1 2
+INTERACTIONS
+MENU:ALERT:My daughter is working hard to become a POK{e-accent}MON trainer!|MENU:ALERT:I'm worried that she'll get discouraged when she meets Brock.
+END
+pewter-house2-girl girl2 3 5 RIGHT
+INTERACTIONS
+MENU:ALERT:NIDORAN sit!|FACE:RIGHT
+END
+pewter-house2-mon mon 4 5 LEFT
+INTERACTIONS
+MENU:ALERT:NIDORAN: Bowbow!|FACE:LEFT
+END
+pewter-house2-bookshelf1 blank 0 1
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+pewter-house2-bookshelf2 blank 1 1
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+pewter-house2-bookshelf3 blank 7 1
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+pewter-house2-map blank 3 0
+INTERACTIONS
+MENU:ALERT:A TOWN MAP.|MAP
+END
+TELEPORT
+2 8 pewter-city 29 18
+3 8 pewter-city 29 18
+DATA
+31 31  17  33 17 34 17 31
+32 32  18  18 18 18 18 36
+18 18  18  18 18 18 18 18
+18 18  37  48 52 37 18 18
+18 18  37  23 24 37 18 18
+18 18  18  18 18 18 18 18
+30 18  18  18 18 18 18 30
+29 18  38  38 18 18 18 29
+82 82 166 166
