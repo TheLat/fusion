@@ -1,0 +1,52 @@
+NAME
+Pewter City Mart
+NPCS
+pewter-mart-shelf1 blank 4 4
+INTERACTIONS
+MENU:ALERT:Wow! Tons of POK{e-accent}MON stuff!
+END
+pewter-mart-shelf2 blank 5 4
+INTERACTIONS
+MENU:ALERT:Wow! Tons of POK{e-accent}MON stuff!
+END
+pewter-mart-shelf3 blank 6 4
+INTERACTIONS
+MENU:ALERT:Wow! Tons of POK{e-accent}MON stuff!
+END
+pewter-mart-shelf4 blank 7 4
+INTERACTIONS
+MENU:ALERT:Wow! Tons of POK{e-accent}MON stuff!
+END
+pewter-mart-boy boy 3 3 WANDER
+INTERACTIONS
+MENU:ALERT:A shady, old man got me to buy this really weird fish POK{e-accent}MON!|MENU:ALERT:It's totally weak and it cost me $500!
+END
+pewter-mart-man man2 5 5
+INTERACTIONS
+MENU:ALERT:Good things can happen if you raise POK{e-accent}MON diligently, even the weak ones!
+END
+pewter-mart-clerk clerk2 0 5 RIGHT
+INTERACTIONS
+MENU:ALERT:NULL
+END
+pewter-mart-clerkdesk1 blank 1 5
+INTERACTIONS
+SET_FACE:pewter-mart-clerk:RIGHT|SHOP:POK{e-accent} BALL,POTION,ESCAPE ROPE,ANTIDOTE,BURN HEAL,AWAKENING,PARLYZ HEAL
+END
+pewter-mart-clerkdesk2 blank 0 6
+INTERACTIONS
+SET_FACE:pewter-mart-clerk:DOWN|SHOP:POK{e-accent} BALL,POTION,ESCAPE ROPE,ANTIDOTE,BURN HEAL,AWAKENING,PARLYZ HEAL
+END
+TELEPORT
+3 8 pewter-city 23 22
+4 8 pewter-city 23 22
+DATA
+118 118 119 119 119 119 118 118
+120 120 121 121 121 121 120 120
+122 123 123 123 123 123 123 123
+124 125 123 123 124 125 124 125
+128 129 122 123 126 127 126 127
+122 130 122 123 123 123 123 123
+131 132 122 123 123 123 123 123
+122 123 123 133 133 123 123 123
+82   82  82 166 166
