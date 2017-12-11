@@ -28,7 +28,7 @@ FORCE_INTERACTION
 0 3
 END
 INTERACTIONS
-!:pewter-city-blocker|GET:BOULDERBADGE|{MENU:ALERT:You're a trainer, right? Only people with Brock's seal of approval are allowed through here.|MOVE:PLAYER:-1,0}{MENU:ALERT:DO STUFF HERE}
+!:pewter-city-blocker|MENU:ALERT:You're a trainer, right? Only people with Brock's seal of approval are allowed through here.|MOVE:PLAYER:-1,0
 END
 pewter-city-guy3 man2 27 21
 INTERACTIONS
