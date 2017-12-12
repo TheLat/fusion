@@ -33,7 +33,7 @@ MENU:ALERT:There are all kinds of trainers in the world!|MENU:ALERT:You appear t
 END
 TRAINERS
 pewter-gym-trainer 20 0.0 0.0 JR.TRAINER{MALE} jrtrainerm.png {JR.TRAINER{MALE}: Darn!{NEWLINE}Light years isn't time! It measures distance!}{} 50-50:11|27-27:11
-brock 99 0.0 0.0 BROCK brock.png {BROCK: I took you for granted.{NEWLINE}As proof of your victory, here's the BOULDERBADGE!{NEWLINE} {PLAYER_NAME} received BOULDERBADGE! {NEWLINE} That's an official POK{e-accent}MON LEAGUE BADGE!}{} 74-74:12|95-95:14
+brock 99 1.0 1.0 BROCK brock.png {BROCK: I took you for granted.{NEWLINE}As proof of your victory, here's the BOULDERBADGE!{NEWLINE} {PLAYER_NAME} received BOULDERBADGE! {NEWLINE} That's an official POK{e-accent}MON LEAGUE BADGE!}{} 74-74:12|95-95:14
 END
 TELEPORT
 4 14 pewter-city 16 22
