@@ -1,9 +1,97 @@
 NAME
 Route 3
 NPCS
-route2-sign1 blank 14 74
+route3-girl girl 16 10 LEFT
+FORCE_INTERACTION
+-1 0
+-2 0
+END
 INTERACTIONS
-MENU:ALERT:TRAINER TIPS|MENU:ALERT:Catch POK{e-accent}MON and expand your collection!|MENU:ALERT:The more you have, the easier it is to fight!
+!:route3-girl|MOVE_TO_PLAYER|MENU:ALERT:You looked at me, didn't you?|BATTLE:route3-girl-1|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Quit staring if you don't want to fight!
+END
+route3-boy boy 10 7 RIGHT
+FORCE_INTERACTION
+1 0
+END
+INTERACTIONS
+!:route3-boy|MOVE_TO_PLAYER|MENU:ALERT:Hey! I met you in VIRIDIAN FOREST!|BATTLE:route3-boy-1|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:There are other kinds of POK{e-accent}MON than those found in the forest!
+END
+route3-boy2 boy 14 5 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+END
+INTERACTIONS
+!:route3-boy2|MOVE_TO_PLAYER|MENU:ALERT:Hi! I like shorts! They're comfy and easy to wear!|BATTLE:route3-boy-2|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Are you storing your POK{e-accent}MON on PC? Each box can hold 20 POK{e-accent}MON!
+END
+route3-girl2 girl 23 5 LEFT
+FORCE_INTERACTION
+-1 0
+-2 0
+-3 0
+-4 0
+END
+INTERACTIONS
+!:route3-girl2|MOVE_TO_PLAYER|MENU:ALERT:That look you gave me, it's so intriguing!|BATTLE:route3-girl-2|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Avoid fights by not letting people see you!
+END
+route3-boy3 boy 19 6 DOWN
+FORCE_INTERACTION
+0 1
+END
+INTERACTIONS
+!:route3-boy3|MOVE_TO_PLAYER|MENU:ALERT:Are you a trainer? Let's fight!|BATTLE:route3-boy-3|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:If a POK{e-accent}MON BOX on the PC gets full, just switch to another BOX!
+END
+route3-boy4 boy 22 10 LEFT
+FORCE_INTERACTION
+-1 0
+-2 0
+-3 0
+END
+INTERACTIONS
+!:route3-boy4|MOVE_TO_PLAYER|MENU:ALERT:Hey! You're not wearing shorts!|BATTLE:route3-boy-4|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I always wear shorts, even in winter!
+END
+route3-boy5 boy 24 7 RIGHT
+FORCE_INTERACTION
+1 0
+2 0
+3 0
+END
+INTERACTIONS
+!:route3-boy5|MOVE_TO_PLAYER|MENU:ALERT:You can fight my new POK{e-accent}MON!|BATTLE:route3-boy-5|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Trained POK{e-accent}MON are stronger than the wild ones.
+END
+route3-girl3 girl 33 11 UP
+FORCE_INTERACTION
+0 -1
+0 -2
+END
+INTERACTIONS
+!:route3-girl3|MOVE_TO_PLAYER|MENU:ALERT:Eek! Did you touch me?|BATTLE:route3-girl-3|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:ROUTE 4 is at the foot of MT. MOON.
+END
+route3-man man2 57 12
+INTERACTIONS
+MENU:ALERT:Whew... I better take a rest...{NEWLINE}Groan...|MENU:ALERT:The tunnel from CERULEAN takes a lot out of you!
+END
+route3-sign blank 59 10
+INTERACTIONS
+MENU:ALERT:ROUTE 3{NEWLINE}MT. MOON AHEAD
+END
+TRAINERS
+route3-girl-1 15 0.1 0.1 LASS lass.png {LASS: You're mean!}{} 16-16:9|19-16:9
+route3-boy-1 10 0.1 0.1 BUG{SPACE}CATCHER bugcatcher.png {BUG CATCHER: You beat me again!}{} 10-10:10|13-13:10|10-10:10
+route3-boy-2 15 0.1 0.1 YOUNGSTER youngster.png {YOUNGSTER: I don't believe it!}{} 19-19:11|23-23:11
+route3-girl-2 15 0.1 0.1 LASS lass.png {LASS: Be nice!}{} 19-19:10|32-32:10
+route3-boy-3 10 0.1 0.1 BUG{SPACE}CATCHER bugcatcher.png {BUG CATCHER: If I had new POK{e-accent}MON I would've won!}{} 13-13:9|14-14:9|10-10:9|11-11:9
+route3-boy-4 15 0.1 0.1 YOUNGSTER youngster.png {YOUNGSTER: Lost! Lost! Lost!}{} 21-21:14
+route3-boy-5 10 0.1 0.1 BUG{SPACE}CATCHER bugcatcher.png {BUG CATCHER: Done like dinner!}{} 10-10:11|11-11:11
+route3-girl-3 15 0.1 0.1 LASS lass.png {LASS: That's it?}{} 39-39:14
 END
 TELEPORT
 0 9 pewter-city 38 20
