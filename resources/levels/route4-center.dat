@@ -1,37 +1,45 @@
 NAME
-Pewter Pok{e-accent}center
+Route 4 Pok{e-accent}center
 NPCS
-pewter-center-couch blank 0 4
+route4-center-couch blank 0 4
 INTERACTIONS
-MENU:ALERT:Yawn!|MENU:ALERT:When JIGGLYPUFF sings, POK{e-accent}MON get drowsy...|MENU:ALERT:...Me too...{NEWLINE}Snore...
+MENU:ALERT:If you have too many POK{e-accent}MON, you should store them via PC!
 END
-pewter-center-joy joy 3 1
+route4-center-joy joy 3 1
 INTERACTIONS
 MENU:ALERT:ERROR
 END
-pewter-center-joy-desk blank 3 2
+route4-center-joy-desk blank 3 2
 INTERACTIONS
 MENU:ALERT:Welcome to our Pok{e-accent}MON CENTER!|MENU:ALERT:We heal your POK{e-accent}MON back to|MENU:ALERT_YES_NO:perfect health!|{MENU:ALERT:OK, we'll need your POK{e-accent}MON.|FULL_HEAL|MENU:ALERT:Thank you!{NEWLINE}Your POK{e-accent}MON are fighting fit!}{}|MENU:ALERT:We hope to see you again!
 END
-pewter-center-jigglypuff clefairy 1 3
+route4-center-boy boy 4 3 UP
 INTERACTIONS
-MENU:ALERT:JIGGLYPUFF SINGING GOES HERE
+MENU:ALERT:I've got 6 POK{e-accent} BALLs set in my belt.|MENU:ALERT:At most, you can carry 6 POK{e-accent}MON.
 END
-pewter-center-guy hat 11 7 LEFT
+route4-center-guy hat 7 3 UP
 INTERACTIONS
-MENU:ALERT:What!?|MENU:ALERT:TEAM ROCKET is at MT. MOON? Huh?|MENU:ALERT:I'm on the phone!|MENU:ALERT:Scram!|FACE:LEFT
+MENU:ALERT:TEAM ROCKET attacks CERULEAN citizens...|MENU:ALERT:TEAM ROCKET is always in the news!|FACE:UP
 END
-pewter-center-cableclub woman 11 2
+route4-center-cableclub woman 11 2
 INTERACTIONS
 MENU:ALERT:Welcome to the Cable Club.|MENU:ALERT:This area is reserved for 2 friends who are linked by cable.
 END
-pewter-center-pc blank 13 3
+route4-center-pc blank 13 3
 INTERACTIONS
 MENU:ALERT:{PLAYER_NAME} turned on the PC.|MENU:PC:|{MENU:ALERT:Accessed someone's PC.|MENU:ALERT:Accessed POK{e-accent}MON Storage System.|MON_STORAGE}{MENU:ALERT:Accessed my PC.|MENU:ALERT:Accessed Item Storage System.|ITEM_STORAGE}{MENU:ALERT:OAK RATING GOES HERE}{}
 END
+route4-center-bald bald3 10 6
+INTERACTIONS
+MENU:ALERT:TRADE LOGIC HERE
+END
+route4-center-paper clipboard 7 2
+INTERACTIONS
+MENU:ALERT:ERROR
+END
 TELEPORT
-3 8 pewter-city 13 30
-4 8 pewter-city 13 30
+3 8 route4 13 6
+4 8 route4 13 6
 DATA
 134 135 136 137 138 134 135 136 139 139 140 139 140 139
 134 141 142 143 123 134 144 145 123 123 123 123 123 123
