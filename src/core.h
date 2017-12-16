@@ -1655,6 +1655,11 @@ public:
 			m.moves[index] = "";
 			return false;
 		}
+		for (unsigned i = 0; i < 4; ++i) {
+			if (m.moves[i] == move) {
+				return false;
+			}
+		}
 		m.moves[index] = move;
 		m.pp[index] = moves[m.moves[index]].pp;
 		m.max_pp[index] = m.pp[index];
@@ -4502,6 +4507,46 @@ public:
 								choices.clear();
 								choices.push_back(has_move_in_party(s2));
 							}
+							else if (s.find("HAS_MONEY:") == 0) {
+								s.erase(0, string("HAS_MONEY:").length());
+								s2 = s;
+								if (s.find("|") != -1) {
+									s.erase(0, s.find("|"));
+									s2.erase(s2.find("|"), s2.length());
+								}
+								else {
+									s = "";
+								}
+								choices.clear();
+								if (mc.money >= stoi(s2))
+									choices.push_back(1);
+								else
+									choices.push_back(0);
+							}
+							else if (s.find("REMOVE_MONEY:") == 0) {
+								s.erase(0, string("REMOVE_MONEY:").length());
+								s2 = s;
+								if (s.find("|") != -1) {
+									s.erase(0, s.find("|"));
+									s2.erase(s2.find("|"), s2.length());
+								}
+								else {
+									s = "";
+								}
+								mc.money -= stoi(s2);
+							}
+							else if (s.find("GIVE_MONEY:") == 0) {
+								s.erase(0, string("GIVE_MONEY:").length());
+								s2 = s;
+								if (s.find("|") != -1) {
+									s.erase(0, s.find("|"));
+									s2.erase(s2.find("|"), s2.length());
+								}
+								else {
+									s = "";
+								}
+								mc.money += stoi(s2);
+							}
 							else if (s.find("ADVANCE") == 0) {
 								s.erase(0, string("ADVANCE:").length());
 								s2 = s;
@@ -4693,7 +4738,7 @@ public:
 									}
 								}
 							}
-							else if (s.find("GIVE_MON") == 0) {
+							else if (s.find("GIVE_MON:") == 0) {
 								s.erase(0, string("GIVE_MON:").length());
 								s2 = s;
 								s.erase(0, s.find(":") + 1);
@@ -4702,6 +4747,9 @@ public:
 								s2 = s;
 								if (s2.find("|") != -1) {
 									s2.erase(s2.find("|"), s2.length());
+								}
+								else {
+									s = "";
 								}
 								for (unsigned i = 0; i < 6; ++i) {
 									if (!mc.team[i].defined) {
