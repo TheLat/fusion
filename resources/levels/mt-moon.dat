@@ -1,0 +1,10 @@
+NAME
+Mt. Moon
+NPCS
+route4-girl girl 10 8
+INTERACTIONS
+MENU:ALERT:Ouch! I tripped over a rocky POK{e-accent}MON, GEODUDE!
+END
+TELEPORT
+9 19 route3 57 2
+DATA
