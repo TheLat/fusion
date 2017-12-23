@@ -180,15 +180,15 @@ mt-moon-rocket4 35 0.1 0.1 ROCKET rocket.png {ROCKET: Urgh! Now I'm mad!}{} 19-1
 mt-moon-man2 25 0.1 0.35 SUPER{SPACE}NERD supernerd.png {SUPER NERD: OK! You can have them!}{} 88-88:12|100-100:12|109-109:12
 END
 TELEPORT
-14 36 route4 20 6
-15 36 route4 20 6
+14 36 route4 20 16
+15 36 route4 20 16
 5 5 mt-moon 1 94
 1 93 mt-moon 5 6
 18 110 mt-moon 21 60
 21 61 mt-moon 17 110
 5 51 mt-moon 3 155
 3 156 mt-moon 5 52
-4 156 route4 1 1
+7 156 route4 20 16
 17 11 mt-moon 10 144
 11 144 mt-moon 16 11
 3 146 mt-moon 25 52
