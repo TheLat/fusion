@@ -1,13 +1,21 @@
 NAME
 Route 4
 NPCS
-route4-girl girl 10 8
+route4-girl girl 10 18
 INTERACTIONS
 MENU:ALERT:Ouch! I tripped over a rocky POK{e-accent}MON, GEODUDE!
 END
-route4-sign blank 19 7
+route4-sign blank 19 17
 INTERACTIONS
 MENU:ALERT:MT. MOON{NEWLINE}Tunnel Entrance
+END
+route4-sign2 blank 32 17
+INTERACTIONS
+MENU:ALERT:TODO: Fix this sign
+END
+route4-item orb 62 13
+INTERACTIONS
+GIVE_ITEM:TM04|DEACTIVATE:route4-item
 END
 TELEPORT
 9 29 route3 57 2
