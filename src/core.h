@@ -286,6 +286,8 @@ public: // TODO:  Change back to private
 	std::map<string, item> items;
 	std::map<int, bool> blocking;
 	std::map<int, bool> jumpdown;
+	std::map<int, bool> jumpright;
+	std::map<int, bool> jumpleft;
 	std::map<int, bool> encounter_tile;
 	std::map<int, bool> water;
 	std::vector<menu*> menus;
@@ -4070,6 +4072,26 @@ public:
 			f.close();
 		}
 	}
+	void init_jumpright() {
+		string line;
+		ifstream f("../resources/data/jumpright-tiles.dat");
+		while (f.is_open()) {
+			while (std::getline(f, line)) {
+				jumpright[stoi(line)] = true;
+			}
+			f.close();
+		}
+	}
+	void init_jumpleft() {
+		string line;
+		ifstream f("../resources/data/jumpleft-tiles.dat");
+		while (f.is_open()) {
+			while (std::getline(f, line)) {
+				jumpleft[stoi(line)] = true;
+			}
+			f.close();
+		}
+	}
 	void init_encounter_tiles() {
 		string line;
 		ifstream f("../resources/data/encounter-tiles.dat");
@@ -4263,10 +4285,19 @@ public:
 				return;
 			if (l.x >= levels[mc.loc.level].data[int(l.y)].size())
 				return;
-			if (blocking[get_tile(l.y, l.x)] && !(down && jumpdown[get_tile(l.y, l.x)]))
-				return;
+			if (blocking[get_tile(l.y, l.x)]) {
+				if (down && jumpdown[get_tile(l.y, l.x)]) {}
+				else if (right && jumpright[get_tile(l.y, l.x)]) {}
+				else if (left && jumpleft[get_tile(l.y, l.x)]) {}
+				else
+					return;
+			}
 			if (down && jumpdown[get_tile(l.y, l.x)])
 				l.y += 1.0;
+			if (right && jumpright[get_tile(l.y, l.x)])
+				l.x += 1.0;
+			if (left && jumpleft[get_tile(l.y, l.x)])
+				l.x -= 1.0;
 			for (unsigned i = 0; i < levels[mc.loc.level].characters.size(); ++i) {
 				if (!mc.active[levels[mc.loc.level].characters[i].name])
 					continue;
