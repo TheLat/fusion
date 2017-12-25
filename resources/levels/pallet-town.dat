@@ -47,8 +47,16 @@ TELEPORT
 16 0 route1 14 35
 15 0 route1 13 35
 10 5 home 2 26
-18 5 rival-home 2 7 
-17 11 oak-lab 5 11 
+18 5 rival-home 2 7
+17 11 oak-lab 5 11
+WATER_ENCOUNTERS_OLD
+129
+WATER_ENCOUNTERS_GOOD
+60 118
+WATER_ENCOUNTERS_SUPER
+60 72 120
+LEVELS
+5-5
 DATA
 4 4 4 4 4 1  1  1  0  1  1  1  1  1  0  4  4  0  1  1  1  1  1  0 1 4 4 4 4 4
 4 4 4 4 4 0  0  0  0  0  0  0  0  0  0  4  4  0  0  0  0  0  0  0 0 4 4 4 4 4

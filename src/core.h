@@ -215,7 +215,7 @@ public:
 	std::vector<std::vector<int>> data;
 	std::vector<std::pair<location, location>> teleport;
 	std::vector<character> characters;
-	std::vector<int> encounters;
+	std::vector<int> encounters, water_encounters_old, water_encounters_good, water_encounters_super;
 	std::pair<int, int> level_range;
 	std::map<string, trainer> trainers;
 };
@@ -3414,7 +3414,7 @@ public:
 			}
 			if (line == "NPCS") {
 				std::getline(f, line);
-				while (line != "TELEPORT" && line != "DATA" && line != "ENCOUNTERS" && line != "LEVELS" && line != "TRAINERS") {
+				while (line != "TELEPORT" && line != "DATA" && line != "ENCOUNTERS" && line != "LEVELS" && line != "TRAINERS" && line.find("WATER_ENCOUNTERS_") != 0) {
 					character c;
 					string s;
 					levels[levelname].characters.push_back(c);
@@ -3501,7 +3501,7 @@ public:
 			if (line == "TRAINERS") {
 				std::getline(f, line);
 				trainer d;
-				while (line != "DATA" && line != "ENCOUNTERS" && line != "LEVELS" && line != "TELEPORT" && line != "END") {
+				while (line != "DATA" && line != "ENCOUNTERS" && line != "LEVELS" && line != "TELEPORT" && line != "END" && line.find("WATER_ENCOUNTERS_") != 0) {
 					string s, s2, s3;
 					unsigned i = 1;
 					unsigned count = 1;
@@ -3619,7 +3619,7 @@ public:
 			{
 				std::getline(f, line);
 				std::pair<location, location> temp;
-				while (line != "DATA" && line != "ENCOUNTERS" && line != "LEVELS") {
+				while (line != "DATA" && line != "ENCOUNTERS" && line != "LEVELS" && line.find("WATER_ENCOUNTERS_") != 0) {
 					temp.first.level = levelname;
 					temp.first.x = double(stoi(line));
 					line.erase(0, line.find(" ") + 1);
@@ -3642,6 +3642,42 @@ public:
 				std::getline(f, line);
 				while (line.size() > 0) {
 					levels[levelname].encounters.push_back(stoi(line));
+					if (line.find(' ') == -1)
+						break;
+					line.erase(0, line.find(' ') + 1);
+					while (line.find(' ') == 0)
+						line.erase(0, 1);
+				}
+				std::getline(f, line);
+			}
+			if (line == "WATER_ENCOUNTERS_OLD") {
+				std::getline(f, line);
+				while (line.size() > 0) {
+					levels[levelname].water_encounters_old.push_back(stoi(line));
+					if (line.find(' ') == -1)
+						break;
+					line.erase(0, line.find(' ') + 1);
+					while (line.find(' ') == 0)
+						line.erase(0, 1);
+				}
+				std::getline(f, line);
+			}
+			if (line == "WATER_ENCOUNTERS_GOOD") {
+				std::getline(f, line);
+				while (line.size() > 0) {
+					levels[levelname].water_encounters_good.push_back(stoi(line));
+					if (line.find(' ') == -1)
+						break;
+					line.erase(0, line.find(' ') + 1);
+					while (line.find(' ') == 0)
+						line.erase(0, 1);
+				}
+				std::getline(f, line);
+			}
+			if (line == "WATER_ENCOUNTERS_SUPER") {
+				std::getline(f, line);
+				while (line.size() > 0) {
+					levels[levelname].water_encounters_super.push_back(stoi(line));
 					if (line.find(' ') == -1)
 						break;
 					line.erase(0, line.find(' ') + 1);
