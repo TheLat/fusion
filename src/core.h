@@ -4574,6 +4574,25 @@ public:
 								choices.clear();
 								choices.push_back(has_move_in_party(s2));
 							}
+							else if (s.find("IS_SELECTION_SPECIES:") == 0) {
+								s.erase(0, string("IS_SELECTION_SPECIES:").length());
+								s2 = s;
+								if (s.find("|") != -1) {
+									s.erase(0, s.find("|"));
+									s2.erase(s2.find("|"), s2.length());
+								}
+								else {
+									s = "";
+								}
+								if (s2 == mc.team[choices[0]].number) {
+									choices.clear();
+									choices.push_back(1);
+								}
+								else {
+									choices.clear();
+									choices.push_back(0);
+								}
+							}
 							else if (s.find("HAS_MONEY:") == 0) {
 								s.erase(0, string("HAS_MONEY:").length());
 								s2 = s;

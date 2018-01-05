@@ -23,7 +23,8 @@ MENU:ALERT:My husband likes trading POK{e-accent}MON.|MENU:ALERT:If you are a co
 END
 cerulean-house1-man bald4 1 2
 INTERACTIONS
-MENU:ALERT:Hello, there! Do you want to trade|MENU:ALERT_YES_NO:your POLIWHIRL for JYNX?|{MENU:ALERT:TODO: TRADE LOGIC}{MENU:ALERT:Well, if you don't want to...}
+MENU:ALERT:Hello, there! Do you want to trade|MENU:ALERT_YES_NO:your POLIWHIRL for JYNX?|{MENU:MON_SELECT:|IS_SELECTION_SPECIES:5-5|{MENU:ALERT:Hmmm? This isn't a POLIWHIRL.|MENU:ALERT:Think of me when you get one.|NO_ADVANCE}{MENU:ALERT:TODO: Trade logic|NO_ADVANCE}}{MENU:ALERT:Well, if you don't want to...|NO_ADVANCE}
+MENU:ALERT:TODO: Whatever this guy says after trading.
 END
 TELEPORT
 2 8 cerulean-city 15 18
