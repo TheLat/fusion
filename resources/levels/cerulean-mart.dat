@@ -1,0 +1,52 @@
+NAME
+Cerulean City Mart
+NPCS
+cerulean-mart-shelf1 blank 4 4
+INTERACTIONS
+MENU:ALERT:Wow! Tons of POK{e-accent}MON stuff!
+END
+cerulean-mart-shelf2 blank 5 4
+INTERACTIONS
+MENU:ALERT:Wow! Tons of POK{e-accent}MON stuff!
+END
+cerulean-mart-shelf3 blank 6 4
+INTERACTIONS
+MENU:ALERT:Wow! Tons of POK{e-accent}MON stuff!
+END
+cerulean-mart-shelf4 blank 7 4
+INTERACTIONS
+MENU:ALERT:Wow! Tons of POK{e-accent}MON stuff!
+END
+cerulean-mart-girl girl 6 2
+INTERACTIONS
+MENU:ALERT:Have you seen any RARE CANDY?|MENU:ALERT:It's supposed to make POK{e-accent}MON go up one level!
+END
+cerulean-mart-guy guy2 5 5
+INTERACTIONS
+MENU:ALERT:User REPEL to keep bugs and weak POK{e-accent}MON away.|MENU:ALERT:Put your strongest POK{e-accent}MON at the top of the list for best results!
+END
+cerulean-mart-clerk clerk2 0 5 RIGHT
+INTERACTIONS
+MENU:ALERT:NULL
+END
+cerulean-mart-clerkdesk1 blank 1 5
+INTERACTIONS
+SET_FACE:cerulean-mart-clerk:RIGHT|SHOP:POK{e-accent} BALL,POTION,REPEL,ANTIDOTE,BURN HEAL,AWAKENING,PARLYZ HEAL
+END
+cerulean-mart-clerkdesk2 blank 0 6
+INTERACTIONS
+SET_FACE:cerulean-mart-clerk:DOWN|SHOP:POK{e-accent} BALL,POTION,REPEL,ANTIDOTE,BURN HEAL,AWAKENING,PARLYZ HEAL
+END
+TELEPORT
+3 8 cerulean-city 27 28
+4 8 cerulean-city 27 28
+DATA
+118 118 119 119 119 119 118 118
+120 120 121 121 121 121 120 120
+122 123 123 123 123 123 123 123
+124 125 123 123 124 125 124 125
+128 129 122 123 126 127 126 127
+122 130 122 123 123 123 123 123
+131 132 122 123 123 123 123 123
+122 123 123 133 133 123 123 123
+82   82  82 166 166
