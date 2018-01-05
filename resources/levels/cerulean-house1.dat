@@ -1,0 +1,40 @@
+NAME
+Cerulean House 1
+NPCS
+bookshelf3 blank 0 1
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+cerulean-house1-bookshelf4 blank 1 1
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+cerulean-house1-bookshelf5 blank 7 1
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+cerulean-house1-map-wall blank 3 0
+INTERACTIONS
+MENU:ALERT:A TOWN MAP.|MAP
+END
+cerulean-house1-woman oldwoman 5 4 LEFT
+INTERACTIONS
+MENU:ALERT:My husband likes trading POK{e-accent}MON.|MENU:ALERT:If you are a collector, would you please trade with him?|FACE:LEFT
+END
+cerulean-house1-man bald4 1 2
+INTERACTIONS
+MENU:ALERT:Hello, there! Do you want to trade|MENU:ALERT_YES_NO:your POLIWHIRL for JYNX?|{MENU:ALERT:TODO: TRADE LOGIC}{MENU:ALERT:Well, if you don't want to...}
+END
+TELEPORT
+2 8 cerulean-city 15 18
+3 8 cerulean-city 15 18
+DATA
+31 31  17  33 17 34 17 35
+32 32  18  18 18 18 18 36
+18 18  18  18 18 18 18 18
+18 18  37  48 52 37 18 18
+18 18  37  23 24 37 18 18
+18 18  18  18 18 18 18 18
+30 18  18  18 18 18 18 30
+29 18  38  38 18 18 18 29
+82 82 166 166

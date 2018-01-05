@@ -43,11 +43,16 @@ cerulean-city-bush1 bush 21 30
 INTERACTIONS
 HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:viridian-city-bush1}
 END
+cerulean-city-sign3 blank 13 27
+INTERACTIONS
+MENU:ALERT:Grass and caves handled easily!{NEWLINE}BIKE SHOP
+END
 TELEPORT
 0 20 route4 93 20
 0 21 route4 93 21
 21 19 cerulean-center 3 7
 27 27 cerulean-mart 3 7
+15 17 cerulean-house1 2 7
 WATER_ENCOUNTERS_OLD
 129
 WATER_ENCOUNTERS_GOOD
