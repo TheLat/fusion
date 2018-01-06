@@ -63,6 +63,7 @@ List of changes:
 - Critical hits will instead deal x1.5 damage, but ignore all buffs on the target and all debuffs on the user.
 - CUT no longer shows up in your menu options for a pokemon.  Instead, you just have to walk up to a bush and interact with it and if something in your party knows CUT, it will be cut down.
 - Bushes don't grow back.
+- Gym badges no longer do anything, aside from being required to pass certain NPCs.  You will be able to use all HMs from the beginning.
 
 Concerning Fusions:
   There are 22,801 pokemon that can appear in Pokemon: Fusion.  The developer can't inspect all of them.  Some may be duds with few or no attack moves (Pikachu-Bulbasaur is quite terrible).  Some things may happen that make no sense (things fused with Gengar will learn Hypnosis from Gengar or Dream Eater from Gengar, but not both).  As a way to balance this, fusions are compatible with every TM and HM that either parent could learn.

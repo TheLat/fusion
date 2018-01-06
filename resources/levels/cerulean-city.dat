@@ -47,12 +47,18 @@ cerulean-city-sign3 blank 13 27
 INTERACTIONS
 MENU:ALERT:Grass and caves handled easily!{NEWLINE}BIKE SHOP
 END
+cerulean-city-item1 blank 17 10 INCORPOREAL
+INTERACTIONS
+GIVE_ITEM:RARE CANDY|DEACTIVATE:cerulean-city-item1
+END
 TELEPORT
 0 20 route4 93 20
 0 21 route4 93 21
 21 19 cerulean-center 3 7
 27 27 cerulean-mart 3 7
 15 17 cerulean-house1 2 7
+11 13 cerulean-house2 3 7
+11 12 cerulean-house2 2 1
 WATER_ENCOUNTERS_OLD
 129
 WATER_ENCOUNTERS_GOOD
@@ -74,7 +80,7 @@ DATA
 96  96  96  96  96  96  96  97  81   0   1   1   1   1   1   1   1   1   1   1   1  76   1   1  76   1   1  76   1   1   1   1   1   1   1   1  76  76  76  76  76   1
 96  96  96  96  96  96  96  97  81   0 163 163 163 163 163 163 163 163 163 163   1  76   1   1  76   1   1  76 163 163 163 163 163 163 163 163  76  76  76  76  76   1
 96  96  96  96  96  96  96  97  81   0 163 163 163 163 163 163 163 163 163 163   1  76   1   1  76   1   1  76 163 163 163 163 163 163 163 163  76  76  76  76  76   1
-96  96  96  96  96  96  96  97  81   0   8   9   9   9   9  13   8   9   9   9   9  13   2   3   2   3   2   3   8   9   9   9   9  13   2   3   8   9   9   9   9  13
+96  96  96  96  96  96  96  97  81   0   8 252   9   9   9  13   8   9   9   9   9  13   2   3   2   3   2   3   8   9   9   9   9  13   2   3   8   9   9   9   9  13
 99  99  99  99  99  99 167  98  81   0   7  15 239  10  11  12   7  10 239  10  11  12   3   2   3   2   3   2   7  15 239  10  11  12   3   2   7  10 239  10  11  12
 56  56  56  56  56  56  56  56  81   0   2   3   2   3   2   3   2   3   2   3   2   3   2   3   1   1   2   3   1   1   1   1   1   1  55   3   1   1   1   1   0   1
 0    0  56  56  56  56  56  56  81   0   3   2   3   2   3   2   3   2   3   2   3   2   3   2   1   1   3   2   1   1   1   1   1   1  55   2   1   1   1   1   0   1
