@@ -231,9 +231,6 @@ int main(int argc, char** argv) {
 	printf("Loading move database...");
 	e.init_moves();
 	printf("Done!\n");
-	printf("Loading levels...");
-	e.init_levels();
-	printf("Done!\n");
 	printf("Loading blocking tiles...");
 	e.init_blocking();
 	printf("Done!\n");
@@ -257,6 +254,9 @@ int main(int argc, char** argv) {
 	printf("Done!\n");
 	printf("Loading mon database...");
 	e.init_mon();
+	printf("Done!\n");
+	printf("Loading levels...");
+	e.init_levels();
 	printf("Done!\n");
 
 	e.mc.loc.x = 6.0;

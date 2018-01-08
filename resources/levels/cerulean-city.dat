@@ -51,6 +51,19 @@ cerulean-city-item1 blank 17 10 INCORPOREAL
 INTERACTIONS
 GIVE_ITEM:RARE CANDY|DEACTIVATE:cerulean-city-item1
 END
+cerulean-city-script1 blank 22 7
+FORCE_INTERACTION
+0 1
+END
+INTERACTIONS
+ACTIVATE:cerulean-city-rival1|MOVE:cerulean-city-rival1:0,1|MOVE:cerulean-city-rival1:0,1|MOVE:cerulean-city-rival1:0,1|MOVE:cerulean-city-rival1:0,1|MOVE:cerulean-city-rival1:0,1|MENU:ALERT:{RIVAL_NAME}: Yo!{NEWLINE}{PLAYER_NAME}!|MENU:ALERT:You're still struggling along back here?|MENU:ALERT:I'm doing great! I caught a bunch of strong and smart POK{e-accent}MON!|MENU:ALERT:Here, let me see what you caught, {PLAYER_NAME}!|GET:RIVALVALUE|{BATTLE:rival-cerulean-city-0}{BATTLE:rival-cerulean-city-1}{BATTLE:rival-cerulean-city-2}
+END
+cerulean-city-rival1 rival 22 2 INACTIVE
+TRAINERS
+rival-cerulean-city-0 35 0.0 0.0 {RIVAL_NAME} rival1.png {{RIVAL_NAME}: Hey! Take it easy! You won already!}{{RIVAL_NAME}: Yeah! Am I great or what?} 25-25:20|19-19:15|8-8:19
+rival-cerulean-city-1 35 0.0 0.0 {RIVAL_NAME} rival1.png {{RIVAL_NAME}: Hey! Take it easy! You won already!}{{RIVAL_NAME}: Yeah! Am I great or what?} 17-17:18|19-19:15|74-74:16|2-2:17
+rival-cerulean-city-2 35 0.0 0.0 {RIVAL_NAME} rival1.png {{RIVAL_NAME}: Hey! Take it easy! You won already!}{{RIVAL_NAME}: Yeah! Am I great or what?} 69-69:18|19-19:15|56-56:15|5-5:17
+END
 TELEPORT
 0 20 route4 93 20
 0 21 route4 93 21
