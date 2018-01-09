@@ -56,13 +56,27 @@ FORCE_INTERACTION
 0 1
 END
 INTERACTIONS
-ACTIVATE:cerulean-city-rival1|MOVE:cerulean-city-rival1:0,1|MOVE:cerulean-city-rival1:0,1|MOVE:cerulean-city-rival1:0,1|MOVE:cerulean-city-rival1:0,1|MOVE:cerulean-city-rival1:0,1|MENU:ALERT:{RIVAL_NAME}: Yo!{NEWLINE}{PLAYER_NAME}!|MENU:ALERT:You're still struggling along back here?|MENU:ALERT:I'm doing great! I caught a bunch of strong and smart POK{e-accent}MON!|MENU:ALERT:Here, let me see what you caught, {PLAYER_NAME}!|GET:RIVALVALUE|{BATTLE:rival-cerulean-city-0}{BATTLE:rival-cerulean-city-1}{BATTLE:rival-cerulean-city-2}
+ACTIVATE:cerulean-city-rival1|MOVE:cerulean-city-rival1:0,1|MOVE:cerulean-city-rival1:0,1|MOVE:cerulean-city-rival1:0,1|MOVE:cerulean-city-rival1:0,1|MOVE:cerulean-city-rival1:0,1|MENU:ALERT:{RIVAL_NAME}: Yo!{NEWLINE}{PLAYER_NAME}!|MENU:ALERT:You're still struggling along back here?|MENU:ALERT:I'm doing great! I caught a bunch of strong and smart POK{e-accent}MON!|MENU:ALERT:Here, let me see what you caught, {PLAYER_NAME}!|GET:RIVALVALUE|{BATTLE:rival-cerulean-city-0}{BATTLE:rival-cerulean-city-1}{BATTLE:rival-cerulean-city-2}|{NO_ADVANCE}{MENU:ALERT:{RIVAL_NAME}: Hey, {NEWLINE}guess what?|MENU:ALERT:I went to BILL's and got him to show me his rare POK{e-accent}MON!|MENU:ALERT:That added a lot of pages to my POK{e-accent}DEX!|MENU:ALERT:After all, BILL's world famous as a POK{e-accent}MANIAC!|MENU:ALERT:He invented the POK{e-accent}MON Storage System on PC!|MENU:ALERT:Since you're using his system, go thank him!|MENU:ALERT:Well, I better get rolling!|MENU:ALERT:Smell ya later!|MOVE:cerulean-city-rival1:1,0|MOVE:cerulean-city-rival1:0,1|MOVE:cerulean-city-rival1:0,1|MOVE:cerulean-city-rival1:0,1|MOVE:cerulean-city-rival1:0,1|MOVE:cerulean-city-rival1:0,1|MOVE:cerulean-city-rival1:0,1|DEACTIVATE:cerulean-city-script1|DEACTIVATE:cerulean-city-script2|DEACTIVATE:cerulean-city-rival1}
 END
 cerulean-city-rival1 rival 22 2 INACTIVE
+INTERACTIONS
+MENU:ALERT:ERROR
+END
+cerulean-city-script2 blank 23 7
+FORCE_INTERACTION
+0 1
+END
+INTERACTIONS
+ACTIVATE:cerulean-city-rival2|MOVE:cerulean-city-rival2:0,1|MOVE:cerulean-city-rival2:0,1|MOVE:cerulean-city-rival2:0,1|MOVE:cerulean-city-rival2:0,1|MOVE:cerulean-city-rival2:0,1|MENU:ALERT:{RIVAL_NAME}: Yo!{NEWLINE}{PLAYER_NAME}!|MENU:ALERT:You're still struggling along back here?|MENU:ALERT:I'm doing great! I caught a bunch of strong and smart POK{e-accent}MON!|MENU:ALERT:Here, let me see what you caught, {PLAYER_NAME}!|GET:RIVALVALUE|{BATTLE:rival-cerulean-city-0}{BATTLE:rival-cerulean-city-1}{BATTLE:rival-cerulean-city-2}|{NO_ADVANCE}{MENU:ALERT:{RIVAL_NAME}: Hey, {NEWLINE}guess what?|MENU:ALERT:I went to BILL's and got him to show me his rare POK{e-accent}MON!|MENU:ALERT:That added a lot of pages to my POK{e-accent}DEX!|MENU:ALERT:After all, BILL's world famous as a POK{e-accent}MANIAC!|MENU:ALERT:He invented the POK{e-accent}MON Storage System on PC!|MENU:ALERT:Since you're using his system, go thank him!|MENU:ALERT:Well, I better get rolling!|MENU:ALERT:Smell ya later!|MOVE:cerulean-city-rival2:-1,0|MOVE:cerulean-city-rival2:0,1|MOVE:cerulean-city-rival2:0,1|MOVE:cerulean-city-rival2:0,1|MOVE:cerulean-city-rival2:0,1|MOVE:cerulean-city-rival2:0,1|MOVE:cerulean-city-rival2:0,1|DEACTIVATE:cerulean-city-script1|DEACTIVATE:cerulean-city-script2|DEACTIVATE:cerulean-city-rival2}
+END
+cerulean-city-rival2 rival 23 2 INACTIVE
+INTERACTIONS
+MENU:ALERT:ERROR
+END
 TRAINERS
-rival-cerulean-city-0 35 0.0 0.0 {RIVAL_NAME} rival1.png {{RIVAL_NAME}: Hey! Take it easy! You won already!}{{RIVAL_NAME}: Yeah! Am I great or what?} 25-25:20|19-19:15|8-8:19
-rival-cerulean-city-1 35 0.0 0.0 {RIVAL_NAME} rival1.png {{RIVAL_NAME}: Hey! Take it easy! You won already!}{{RIVAL_NAME}: Yeah! Am I great or what?} 17-17:18|19-19:15|74-74:16|2-2:17
-rival-cerulean-city-2 35 0.0 0.0 {RIVAL_NAME} rival1.png {{RIVAL_NAME}: Hey! Take it easy! You won already!}{{RIVAL_NAME}: Yeah! Am I great or what?} 69-69:18|19-19:15|56-56:15|5-5:17
+rival-cerulean-city-0 35 0.2 0.2 {RIVAL_NAME} rival1.png {{RIVAL_NAME}: Hey! Take it easy! You won already!}{{RIVAL_NAME}: Yeah! Am I great or what?} 25-25:20|19-19:15|8-8:19
+rival-cerulean-city-1 35 0.2 0.2 {RIVAL_NAME} rival1.png {{RIVAL_NAME}: Hey! Take it easy! You won already!}{{RIVAL_NAME}: Yeah! Am I great or what?} 17-17:18|19-19:15|74-74:16|2-2:17
+rival-cerulean-city-2 35 0.2 0.2 {RIVAL_NAME} rival1.png {{RIVAL_NAME}: Hey! Take it easy! You won already!}{{RIVAL_NAME}: Yeah! Am I great or what?} 69-69:18|19-19:15|56-56:15|5-5:17
 END
 TELEPORT
 0 20 route4 93 20
@@ -81,8 +95,8 @@ WATER_ENCOUNTERS_SUPER
 LEVELS
 6-12
 DATA
-96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  97  81  81  81  81  81   0 238 238   0   1   1   1   0  81  81  81  81  81  81  81  81  81  81  81  81  81
-96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  97  81  81  81  81  81   0 238 238   0   1   1   1   0  81  81  81  81  81  81  81  81  81  81  81  81  81
+96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  97  81  81  81  81  81   0 238 238   0   1   1   0  81  81  81  81  81  81  81  81  81  81  81  81  81  81
+96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  97  81  81  81  81  81   0 238 238   0   1   1   0  81  81  81  81  81  81  81  81  81  81  81  81  81  81
 96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  97  81  81  81  81  81   0 238 238   0   1   1   1   0  81  81  81  81  81  81  81  81  81  81  81  81  81
 96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  97  81  81  81  81  81   0 238 238   0   1   1   1   0  81  81  81  81  81  81  81  81  81  81  81  81  81
 96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  97  81  81  81  81  81   0 238 238   0   1   1   1   0  81  81  81  81  81  81  81  81  81  81  81  81  81
