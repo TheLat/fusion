@@ -139,7 +139,7 @@ for s in moves.keys():
     if "ACC" not in moves[s].keys() and "POWER" in moves[s].keys():
         print "Error:  %s has power, but no accuracy."
     if "ACC" not in moves[s].keys() and "TARGET" in moves[s].keys():
-        print "Error:  %s has target, but no accuracy."
+        print "Error:  %s has target, but no accuracy." % s
     if "POWER" in moves[s].keys() and not "DEFENSE" in moves[s].keys():
         print "Error:  %s has power, but not defense." % s
     if "SELF" in moves[s].keys():

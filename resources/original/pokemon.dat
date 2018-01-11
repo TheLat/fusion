@@ -316,6 +316,7 @@ EXP_YIELD: 173
 CATCHRATE: 45
 HEIGHT: 43
 WEIGHT: 12.5
+SWITCH: YES
 HP: 60
 ATTACK: 45
 DEFENSE: 50
@@ -3818,8 +3819,8 @@ MOVES:
 1 AGILITY
 33 SUPERSONIC
 38 BITE
-42 ROCK SLIDE
 45 TAKE DOWN
+42 ROCK SLIDE
 54 HYPER BEAM
 TM: 2 4 6 9 10 15 20 23 31 32 33 34 38 39 43 44 48 50
 HM: 2
@@ -3958,8 +3959,8 @@ TM: 6 8 9 10 11 12 13 14 20 23 24 25 31 32 33 34 38 39 40 44 45 50
 HM: 3
 
 NUMBER: 148
-NAME: DRAGO
-SURNAME: NAIR
+NAME: DRAG
+SURNAME: ONAIR
 TYPE1: DRAGON
 DEX1: This Pok{e-accent}mon is said to live in seas and lakes.
 DEX2: Its body exudes a gentle aura. It is said to have the ability to control the weather.
@@ -3986,8 +3987,8 @@ TM: 6 7 8 9 10 11 12 13 14 20 23 24 25 31 32 33 34 38 39 40 44 45 50
 HM: 3
 
 NUMBER: 149
-NAME: DRAG
-SURNAME: ONITE
+NAME: DRAGO
+SURNAME: NITE
 TYPE1: DRAGON
 TYPE2: FLYING
 DEX1: This Pok{e-accent}mon is said to have intelligence that rivals humans. It prefers to hide in the ocean.
