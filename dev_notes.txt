@@ -2,3 +2,5 @@ This is a list of all changes I make to the game script and why.
 
 1, Pewter City.  The guy doesn't walk you to the gym because I'm lazy.
 2, Route 24.  Added a level 20 Arbok to the Rocket's team at the end of the bridge.  I want Team Rocket to be less of a joke, since they are actually working behind the scenes to try to save the world and you keep ruining their plans because you're awesome.  Unless you've already faced Misty, this will be the biggest, scariest thing you've fought so far.  It flows much better with him trying to recruit you by force and then having a big, powerful pokemon, than the original where he just has a level 15 Ekans and a level 15 Zubat.  Also, Arboks don't naturally occur until level 23, but you have to remember that this guy is a major recruiter, so he's good at nurturing talent.
+3, Cerulean City.  Guy who explains what badges do instead tells you that they don't do anything, because I've removed all benefits and badge restrictions from the game.
+
