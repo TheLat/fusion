@@ -1,9 +1,78 @@
 NAME
 Route 24
 NPCS
-route4-girl girl 10 18
+route24-boy1 boy 13 33 LEFT
+FORCE_INTERACTION
+-1 0
+END
 INTERACTIONS
-MENU:ALERT:Ouch! I tripped over a rocky POK{e-accent}MON, GEODUDE!
+!:route24-boy1|MENU:ALERT:This is NUGGET BRIDGE! Beat us 5 trainers and win a fabulous prize!|MENU:ALERT:Think you got what it takes?|BATTLE:route24-boy1|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I did my best. I have no regrets!
+END
+route24-girl1 girl 12 30 RIGHT
+FORCE_INTERACTION
+1 0
+END
+INTERACTIONS
+!:route24-girl1|MENU:ALERT:I'm second!{NEWLINE}Now it's serious!|BATTLE:route24-girl1|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I did my best. I have no regrets!
+END
+route24-boy2 boy 13 27 LEFT
+FORCE_INTERACTION
+-1 0
+END
+INTERACTIONS
+!:route24-boy2|MENU:ALERT:Here's No. 3! I won't be easy!|BATTLE:route24-boy2|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I did my best. I have no regrets!
+END
+route24-girl2 girl 12 24 RIGHT
+FORCE_INTERACTION
+1 0
+END
+INTERACTIONS
+!:route24-girl2|MENU:ALERT:I'm No. 4! Getting tired?|BATTLE:route24-girl2|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I did my best. I have no regrets!
+END
+route24-guy1 guy2 13 21 LEFT
+FORCE_INTERACTION
+-1 0
+END
+INTERACTIONS
+!:route24-guy1|MENU:ALERT:OK! I'm No. 5! I'll stomp you!|BATTLE:route24-guy1|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I did my best. I have no regrets!
+END
+route24-guy2 guy2 13 17 LEFT
+FORCE_INTERACTION
+-1 0
+END
+INTERACTIONS
+MENU:ALERT:Congratulations! You beat our 5 contest trainers!|MENU:ALERT:You just earned a fabulous prize!|GIVE_ITEM:NUGGET
+MENU:ALERT:By the way, would you like to join TEAM ROCKET?|MENU:ALERT:We're a group dedicated to evil using POK{e-accent}MON.|MENU:ALERT:Want to join?|MENU:ALERT:Are you sure?|MENU:ALERT:Come on, join us!|MENU:ALERT:I'm telling you to join!|MENU:ALERT:OK, you need convincing!|I'll make you an offer you can't refuse!|BATTLE:route24-guy2|{NO_ADVANCE}{MENU:ALERT:With your ability, you could become a top leader in TEAM ROCKET!|DISABLE_FORCE}
+MENU:ALERT:With your ability, you could become a top leader in TEAM ROCKET!
+END
+route24-guy3 guy2 7 22 UP
+FORCE_INTERACTION
+0 -1
+0 -2
+0 -3
+0 -4
+END
+INTERACTIONS
+!:route24-guy3|MOVE_TO_PLAYER|MENU:ALERT:I saw your feat from the grass!|BATTLE:route24-guy3|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I hid because people on the bridge scare me!
+END
+route24-item1 orb 12 7
+INTERACTIONS
+GIVE_ITEM:TM45|DEACTIVATE:route24-item1
+END
+TRAINERS
+route24-boy1 10 0.1 0.1 BUG{SPACE}CATCHER bugcatcher.png {BUG CATCHER: Whoo! Good stuff!}{} 10-10:14|13-13:14
+route24-girl1 15 0.1 0.1 LASS lass.png {LASS: How could I lose?}{} 16-16:14|29-29:14
+route24-boy2 15 0.1 0.1 YOUNGSTER youngster.png {YOUNGSTER: Ow! Stomped flat!}{} 19-19:14|23-23:14|41-41:14
+route24-girl2 15 0.1 0.1 LASS lass.png {LASS: I lost, too!}{} 16-16:16|29-29:16
+route24-guy1 20 0.1 0.1 JR.TRAINER{MALE} jrtrainerm.png {JR.TRAINER{MALE}: Whoa! Too much!}{} 56-56:18
+route24-guy2 35 0.3 0.3 ROCKET rocket.png {ROCKET: Arrgh! You are good!}{} 23-23:15|41-41:15|24-24:20
+route24-guy3 20 0.1 0.1 JR.TRAINER{MALE} jrtrainerm.png {JR.TRAINER{MALE}: I thought not!}{} 19-19:14|23-23:14
 END
 TELEPORT
 6 39 cerulean-city 16 1
