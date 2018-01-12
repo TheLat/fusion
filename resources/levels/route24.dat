@@ -82,6 +82,14 @@ TELEPORT
 10 39 cerulean-city 20 1
 12 39 cerulean-city 22 1
 13 39 cerulean-city 23 1
+15 39 cerulean-city 25 1
+16 39 cerulean-city 26 1
+23 6 route25 1 8
+23 7 route25 1 9
+23 8 route25 1 10
+23 10 route25 1 12
+23 11 route25 1 13
+23 13 route25 1 15
 ENCOUNTERS
 69 11 48 63 14 16 43 27
 WATER_ENCOUNTERS_OLD
