@@ -1,11 +1,114 @@
 NAME
 Route 25
 NPCS
-route24-item1 orb 12 7
+route25-hiker1 tough 8 8 RIGHT
+FORCE_INTERACTION
+1 0
+2 0
+3 0
+END
 INTERACTIONS
-GIVE_ITEM:TM45|DEACTIVATE:route24-item1
+!:route25-hiker1|MOVE_TO_PLAYER|MENU:ALERT:I just got down from MT. MOON, but I'm ready!|BATTLE:route25-hiker1|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Drat!{NEWLINE}A ZUBAT bit me back there.
+END
+route25-hiker2 tough 13 11 RIGHT
+FORCE_INTERACTION
+1 0
+2 0
+3 0
+END
+INTERACTIONS
+!:route25-hiker2|MOVE_TO_PLAYER|MENU:ALERT:You're going to see BILL? First, let's fight!|BATTLE:route25-hiker2|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:The trail below is a shortcut to CERULEAN CITY.
+END
+route25-boy1 boy 14 6 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+END
+INTERACTIONS
+!:route25-boy1|MOVE_TO_PLAYER|MENU:ALERT:Local trainers come here to practice!|BATTLE:route25-boy1|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:All POK{e-accent}MON have weaknesses.  It's best to raise different kinds.
+END
+route25-boy2 boy 18 9 UP
+FORCE_INTERACTION
+0 -1
+0 -2
+0 -3
+END
+INTERACTIONS
+!:route25-boy2|MOVE_TO_PLAYER|MENU:ALERT:Dad took me to a great party on the S.S. Anne at VERMILLION CITY!|BATTLE:route25-boy2|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:On the S.S. Anne, I saw trainers from around the world.
+END
+route25-girl1 girl 18 12 RIGHT
+FORCE_INTERACTION
+1 0
+2 0
+3 0
+END
+INTERACTIONS
+!:route25-girl1|MOVE_TO_PLAYER|MENU:ALERT:Hi! My boyfriend is cool!|BATTLE:route25-girl1|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I wish my guy was as good as you!
+END
+route25-hiker3 tough 23 13 UP
+FORCE_INTERACTION
+0 -1
+0 -2
+0 -3
+END
+INTERACTIONS
+!:route25-hiker3|MOVE_TO_PLAYER|MENU:ALERT:I'm off to see a POK{e-accent}MON collector at the cape!|BATTLE:route25-hiker3|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:The collector has many rare kinds of POK{e-accent}MON.
+END
+route25-guy1 guy2 24 8 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+0 3
+END
+INTERACTIONS
+!:route25-guy1|MOVE_TO_PLAYER|MENU:ALERT:I'm a cool guy. I've got a girlfriend!|BATTLE:route25-guy1|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Oh, well. My girl will cheer me up.
+END
+route25-item1 orb 22 6
+INTERACTIONS
+GIVE_ITEM:TM19|DEACTIVATE:route25-item1
+END
+route25-bush1 bush 26 8
+INTERACTIONS
+HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:route25-bush1}
+END
+route25-boy3 boy 32 7 LEFT
+FORCE_INTERACTION
+-1 0
+-2 0
+-3 0
+-4 0
+END
+INTERACTIONS
+!:route25-boy3|MOVE_TO_PLAYER|MENU:ALERT:I knew I had to fight you!|BATTLE:route25-boy3|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:If your POK{e-accent}MON gets confused or falls asleep, switch it!
+END
+route25-girl2 girl 37 8 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+0 3
+END
+INTERACTIONS
+!:route25-girl2|MOVE_TO_PLAYER|MENU:ALERT:My friend has a cute POK{e-accent}MON. I'm so jealous!|BATTLE:route25-girl2|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:You came from MT. MOON? May I have a CLEFAIRY?
 END
 TRAINERS
+route25-hiker1 35 0.25 0.25 HIKER hiker.png {HIKER: You worked hard!}{} 66-66:15|74-74:15
+route25-hiker2 35 0.25 0.25 HIKER hiker.png {HIKER: You're something.}{} 95-95:17
+route25-boy1 15 0.1 0.5 YOUNGSTER youngster.png {YOUNGSTER: You're decent.}{} 19-19:15|21-21:15
+route25-boy2 15 0.1 0.5 YOUNGSTER youngster.png {YOUNGSTER: I'm not mad!}{} 79-79:17
+route25-girl1 15 0.2 0.2 LASS lass.png {LASS: I was in bad condition!}{} 32-32:15|29-29:15
+route25-hiker3 35 0.25 0.25 HIKER hiker.png {HIKER: You got me.}{} 74-74:13|74-74:13|74-66:13|95-66:13
+route25-guy1 20 0.25 0.25 JR.TRAINER{MALE} jrtrainerm.png {JR.TRAINER{MALE}: Aww, darn...}{} 19-16:14|19-23:14
+route25-boy3 15 0.1 0.5 YOUNGSTER youngster.png {YOUNGSTER: I knew I'd lose, too!}{} 23-19:14|27-27:14
+route25-girl2 15 0.2 0.2 LASS lass.png {LASS: I'm not so jealous!}{} 43-43:13|16-16:13|43-43:13
 END
 TELEPORT
 0 8 route24 22 6
