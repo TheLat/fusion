@@ -2226,7 +2226,7 @@ public:
 					attacker.queue.push_back(temp);
 			}
 		}
-		if (repeat != 1) {
+		if (!miss && repeat != 1) {
 			do_alert(string("Hit ") + to_string(repeat) + string(" times!"));
 		}
 		if (attacker.queue.size() > 0) {
@@ -2260,10 +2260,12 @@ public:
 			remove_status(m1, string("SLEEP"));
 			if (in_status(m1, string("SLEEP"))) {
 				do_alert(get_nickname(m1) + string(" is fast asleep."));
+				m1.queue.clear();
 				// TODO:  Sleep animation.
 			}
 			else {
 				do_alert(get_nickname(m1) + string(" woke up!"));
+				m1.queue.clear();
 			}
 		}
 		else if (in_status(m1, string("FREEZE"))) {
@@ -2318,10 +2320,12 @@ public:
 			remove_status(m2, string("SLEEP"));
 			if (in_status(m2, string("SLEEP"))) {
 				do_alert(get_nickname(m2) + string(" is fast asleep."));
+				m2.queue.clear();
 				// TODO:  Sleep animation
 			}
 			else {
 				do_alert(get_nickname(m2) + string(" woke up!"));
+				m2.queue.clear();
 			}
 		}
 		else if (in_status(m2, string("FREEZE"))) {
