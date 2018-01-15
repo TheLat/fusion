@@ -1,0 +1,68 @@
+NAME
+Cerulean City Gym
+NPCS
+cerulean-gym-clerk clerk 7 11
+INTERACTIONS
+MENU:ALERT:Yo! Champ in the making!|MENU:ALERT:Here's my advice:|MENU:ALERT:The LEADER, MISTY, is a pro who uses water POK{e-accent}MON!|MENU:ALERT:You can drain all their water with plant POK{e-accent}MON!|MENU:ALERT:Or, zap them with electricity!
+MENU:ALERT:Just as I thought! You're POK{e-accent}MON champ material!
+END
+cerulean-gym-board blank 3 12
+INTERACTIONS
+MENU:ALERT:CERULEAN CITY POK{e-accent}MON GYM{NEWLINE}LEADER: MISTY|MENU:ALERT:WINNING TRAINERS: {RIVAL_NAME}|NO_ADVANCE
+MENU:ALERT:CERULEAN CITY POK{e-accent}MON GYM{NEWLINE}LEADER: MISTY|MENU:ALERT:WINNING TRAINERS: {PLAYER_NAME}{NEWLINE}{RIVAL_NAME}
+END
+cerulean-gym-board2 blank 6 12
+INTERACTIONS
+MENU:ALERT:CERULEAN CITY POK{e-accent}MON GYM{NEWLINE}LEADER: MISTY|MENU:ALERT:WINNING TRAINERS: {RIVAL_NAME}|NO_ADVANCE
+MENU:ALERT:CERULEAN CITY POK{e-accent}MON GYM{NEWLINE}LEADER: MISTY|MENU:ALERT:WINNING TRAINERS: {PLAYER_NAME}{NEWLINE}{RIVAL_NAME}
+END
+cerulean-gym-trainer1 manswim 8 8 LEFT
+FORCE_INTERACTION
+-1 0
+-2 0
+-3 0
+END
+INTERACTIONS
+!:cerulean-gym-trainer1|MOVE_TO_PLAYER|MENU:ALERT:Splash!|MENU:ALERT:I'm first up!{NEWLINE}Let's do this!|BATTLE:cerulean-gym-trainer1|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:MISTY is going to keep improving!|MENU:ALERT:She won't lose to someone like you!
+END
+cerulean-gym-trainer2 girl 2 3 RIGHT
+FORCE_INTERACTION
+1 0
+2 0
+3 0
+END
+INTERACTIONS
+!:cerulean-gym-trainer2|MOVE_TO_PLAYER|MENU:ALERT:I'm more than good enough for you!|MENU:ALERT:MISTY can wait!|BATTLE:cerulean-gym-trainer2|{NO_ADVANCE}{SET:BOULDERBADGE:1|MENU:ALERT:You can also have my favorite TM!|GIVE_ITEM:TM11}
+MENU:ALERT:You have to face other trainers to find out how good you really are.
+END
+cerulean-gym-misty girl5 4 2
+INTERACTIONS
+MENU:ALERT:Hi, you're a new face!|MENU:ALERT:Trainers who want to turn pro have to have a policy about POK{e-accent}MON!|MENU:ALERT:What is your approach when you catch POK{e-accent}MON?|MENU:ALERT:My policy is an all-out offensive with water-type POK{e-accent}MON!|BATTLE:cerulean-gym-misty
+MENU:ALERT:TM11 teaches BUBBLEBEAM!|MENU:ALERT:Use it on aquatic POK{e-accent}MON!
+END
+TRAINERS
+cerulean-gym-trainer1 5 0.5 0.5 SWIMMER swimmer.png {SWIMMER: That can't be!}{} 116-116:16|90-90:16
+cerulean-gym-trainer2 20 0.5 0.5 JR.TRAINER{FEMALE} jrtrainerf.png {JR.TRAINER{FEMALE}: You overwhelmed me!}{} 118-118:19
+cerulean-gym-misty 99 1.0 1.0 MISTY misty.png {MISTY: Wow! You're too much!{NEWLINE}Alright!{NEWLINE}You can have the CASCADEBADGE to show you beat me!{NEWLINE}{PLAYER_NAME} received CASCADEBADGE!}{} 120-120:18|121-121:21:TACKLE,WATER GUN,BUBBLEBEAM,SPLASH
+END
+TELEPORT
+4 15 cerulean-city 32 22
+5 15 cerulean-city 32 22
+DATA
+257 257 257 257 257 257 257 257 257 257
+258 258 258 258  81  81 258 258 258 258
+258  81  81  81 259 259  81  81  81 258
+258  81 259 259 260 260 259 259  81 258
+258  81 261 261 261 261 261 260  81 258
+258  81  81  81  81  81  81 260  81 258
+258  81 259 259 259 259 259 260  81 258
+258  81 260 261 261 260  81  81  81 258
+258  81 260  81  81 260  81  81  81 258
+258  81 260 260 260 260  81  81  81 258
+258  81 261 261 260 260  81  81  81 258
+258  81  81 199 260 260 199 259  81 258
+258  81  81 200 260 260 200 260  81 258
+258 258 258 258 258 258 258 258 258 258
+258 258 258 258 133 133 258 258 258 258
+82   82  82  82 166 166
