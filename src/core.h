@@ -163,7 +163,7 @@ public:
 	mon team[6];
 	mon enemy_team[6];
 	mon storage[20][20];
-	location loc;
+	location loc, last_center;
 	std::map<string, bool> active;
 	std::map<string, unsigned> interaction;
 	std::vector<pair<string, int>> inventory;
@@ -2252,6 +2252,13 @@ public:
 		}
 		return false;
 	}
+	bool team_KO() {
+		for (unsigned i = 0; i < 6; ++i) {
+			if (mc.team[i].defined && mc.team[i].curr_hp > 0)
+				return false;
+		}
+		return true;
+	}
 	void do_turn_inner(mon& m1, mon& m2) {
 		int temp;
 		m1.turn_count++;
@@ -3469,7 +3476,6 @@ public:
 						levels[levelname].characters[levels[levelname].characters.size() - 1].dir = UP;
 					if (s.find("DOWN") != -1)
 						levels[levelname].characters[levels[levelname].characters.size() - 1].dir = DOWN;
-					// TODO:  LOAD FROM CHARACTER SAVE
 					mc.interaction[levels[levelname].characters[levels[levelname].characters.size() - 1].name] = 0;
 					std::getline(f, line);
 					if (line == "FORCE_INTERACTION") {
@@ -5005,6 +5011,9 @@ public:
 							}
 							else if (s.find("FULL_HEAL") == 0) {
 								full_heal();
+								mc.last_center.level = mc.loc.level;
+								mc.last_center.x = mc.loc.x;
+								mc.last_center.y = mc.loc.y;
 							}
 							else if (s.find("DEACTIVATE:") == 0) {
 								s2 = s;
@@ -5136,6 +5145,15 @@ public:
 								mc.interaction[levels[mc.loc.level].characters[i].name]++;
 							}
 						}
+						if (team_KO()) {
+							do_alert(string("{PLAYER_NAME} is out of useable POK{e-accent}MON!"));
+							do_alert(string("{PLAYER_NAME} blacked out!"));
+							full_heal();
+							mc.loc.level = mc.last_center.level;
+							mc.loc.x = mc.last_center.x;
+							mc.loc.y = mc.last_center.y;
+							mc.money /= 2;
+						}
 						break;
 					}
 				}
@@ -5220,6 +5238,12 @@ public:
 		f << mc.loc.x;
 		f << string("|");
 		f << mc.loc.y;
+		f << string("\nLAST_CENTER:");
+		f << mc.last_center.level;
+		f << string("|");
+		f << mc.last_center.x;
+		f << string("|");
+		f << mc.last_center.y;
 		f << string("\nMONEY:");
 		f << mc.money;
 		f << string("\nREPEL:");
@@ -5404,6 +5428,19 @@ public:
 				mc.loc.x = stoi(temp);
 				temp = line;
 				mc.loc.y = stoi(temp);
+			}
+			else if (line.find("LAST_CENTER:") == 0) {
+				line.erase(0, line.find(":") + 1);
+				temp = line;
+				temp.erase(temp.find("|"), temp.length());
+				line.erase(0, line.find("|") + 1);
+				mc.last_center.level = temp;
+				temp = line;
+				temp.erase(temp.find("|"), temp.length());
+				line.erase(0, line.find("|") + 1);
+				mc.last_center.x = stoi(temp);
+				temp = line;
+				mc.last_center.y = stoi(temp);
 			}
 			else if (line.find("MONEY:") == 0) {
 				line.erase(0, line.find(":") + 1);
