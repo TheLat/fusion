@@ -55,8 +55,8 @@ public:
 	vector<string> followup, reserve, reserve_followup;
 	int index, step, selection, columns, cursor, selection_cap, offset, cancel_option, scroll, max, replace_cancel;
 	float cursor_offset_x, cursor_offset_y;
-	bool done, always_cancel;
-	menu() { step = 0; index = 0; done = false; selection = 0; selection_cap = 0; columns = 1; cursor = -1; offset = 0; cancel_option = -1; cursor_offset_x = 0.0f; cursor_offset_y = 0.0; scroll = 0; max = 0; replace_cancel = -1; always_cancel = false; }
+	bool done, always_cancel, initialized;
+	menu() { step = 0; index = 0; done = false; selection = 0; selection_cap = 0; columns = 1; cursor = -1; offset = 0; cancel_option = -1; cursor_offset_x = 0.0f; cursor_offset_y = 0.0; scroll = 0; max = 0; replace_cancel = -1; always_cancel = false; initialized = false; }
 	void create_menu(string file, string choice = "", string text_override = "", string followup_override = "") {
 		image im;
 		box b;
@@ -1063,6 +1063,7 @@ public:
 			}
 		}
 		process_strings();
+		initialized = true;
 	}
 	void update_reserves() {
 		int shift = 0;
@@ -1118,6 +1119,8 @@ public:
 		}
 	}
 	void input(bool up, bool down, bool left, bool right, bool select, bool start, bool confirm, bool cancel) {
+		if (!initialized)
+			return;
 		m2.lock();
 		if (start) {
 			start = false;
