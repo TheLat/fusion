@@ -2430,6 +2430,58 @@ public:
 			return false;
 		return true;
 	}
+	int get_smart_move(mon& attacker, mon& defender) {
+		double magnitude = -1.0;
+		double pow = 0.0;
+		int ret = -1;
+		bool skip_accuracy_check = false;
+		for (unsigned i = 0; i < 4; ++i) {
+			if (is_valid_move(attacker, i)) {
+				pow = stoi(moves[attacker.moves[i]].pow);
+				if (moves[attacker.moves[i]].pow.find(string("x2-5")) != -1) {
+					pow *= 3.0;
+				}
+				else if (moves[attacker.moves[i]].pow.find(string("x2")) != -1) {
+					pow *= 2;
+				}
+				if (moves[attacker.moves[i]].defense == DEFENSE) {
+					pow *= double(get_stat(attacker, ATTACK));
+					pow /= double(get_stat(defender, DEFENSE));
+				}
+				else {
+					pow *= double(get_stat(attacker, SPECIAL));
+					pow /= double(get_stat(defender, SPECIAL));
+				}
+				for (unsigned j = 0; j < moves[attacker.moves[i]].special.size(); ++j) {
+					if (moves[attacker.moves[i]].special[j] == "UNAVOIDABLE") {
+						skip_accuracy_check = true;
+					}
+				}
+				if (!skip_accuracy_check) {
+					pow *= get_accuracy_modifier(attacker);
+					pow *= double(moves[attacker.moves[i]].acc) / 100.0;
+				}
+
+				if (get_type_1(defender) != "") {
+					pow *= types[moves[attacker.moves[i]].type][get_type_1(defender)];
+				}
+				if (get_type_2(defender) != "") {
+					pow *= types[moves[attacker.moves[i]].type][get_type_2(defender)];
+				}
+				if (get_type_1(attacker) != "" && moves[attacker.moves[i]].type == get_type_1(attacker)) {
+					pow *= 1.5;
+				}
+				if (get_type_2(attacker) != "" && moves[attacker.moves[i]].type == get_type_2(attacker)) {
+					pow *= 1.5;
+				}
+				if (pow > magnitude) {
+					magnitude = pow;
+					ret = i;
+				}
+			}
+		}
+		return ret;
+	}
 	void resize_exp_bar(mon& m) {
 		if (m.exp_bar_index > 0) {
 			float f = float(m.exp - level_to_exp[m.level]) / float(level_to_exp[m.level + 1] - level_to_exp[m.level]);
@@ -2642,6 +2694,9 @@ public:
 			}
 			else {
 				index = int(random(0.0, count));
+				if (random(0.0, 1.0) <= t.skill) {
+					index = get_smart_move(mc.enemy_team[mc.enemy_selected], mc.team[mc.selected]);
+				}
 				int choice = -1;
 				for (i = 0; i <= index; ++i) {
 					if (!is_valid_move(mc.enemy_team[mc.enemy_selected], i))
