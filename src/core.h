@@ -2736,12 +2736,16 @@ public:
 				do_alert(get_nickname(mc.team[mc.selected]) + string(" fainted!"));
 				team_clear_volatile();
 				for (i = 0; i < 6; ++i) {
+					if (!mc.team[i].defined)
+						continue;
 					if (!is_KO(mc.team[i])) {
 						break;
 					}
 				}
 				if (i == 6) {
 					// TODO:  Handle defeat
+					do_alert(string("{PLAYER_NAME} is out of useable POK{e-accent}MON!"));
+					do_alert(string("{PLAYER_NAME} blacked out!"));
 					if (t.lose_message != "") {
 						g.draw_list[enemy_trainer_sprite].x = 0.1f;
 						g.draw_list[enemy_sprite].x = 2.0f;
@@ -3073,13 +3077,16 @@ public:
 				do_alert(get_nickname(mc.team[mc.selected]) + string(" fainted!"));
 				team_clear_volatile();
 				for (i = 0; i < 6; ++i) {
+					if (!mc.team[i].defined)
+						continue;
 					if (!is_KO(mc.team[i])) {
 						break;
 					}
 				}
 				if (i == 6) {
 					// TODO:  Handle defeat
-					do_alert("You lost!");
+					do_alert(string("{PLAYER_NAME} is out of useable POK{e-accent}MON!"));
+					do_alert(string("{PLAYER_NAME} blacked out!"));
 					g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
 					team_clear_volatile();
 					return false;
@@ -5201,8 +5208,6 @@ public:
 							}
 						}
 						if (team_KO()) {
-							do_alert(string("{PLAYER_NAME} is out of useable POK{e-accent}MON!"));
-							do_alert(string("{PLAYER_NAME} blacked out!"));
 							full_heal();
 							mc.loc.level = mc.last_center.level;
 							mc.loc.x = mc.last_center.x;
@@ -5231,6 +5236,13 @@ public:
 					mc.team[i].exp_bar_index = 0;
 				}
 				encounter = "";
+				if (team_KO()) {
+					full_heal();
+					mc.loc.level = mc.last_center.level;
+					mc.loc.x = mc.last_center.x;
+					mc.loc.y = mc.last_center.y;
+					mc.money /= 2;
+				}
 			}
 			if (menus.size() > 0) {
 				menus[0]->main();
