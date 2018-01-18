@@ -327,7 +327,7 @@ public:
 			key = key + string(".bmp");
 			if (string_lookup[key].defined)
 				key = string_lookup[key].value;
-			if (key != string("\n.bmp")) {
+			if (key != string("{NEWLINE}.bmp")) {
 				if (key == string("white.bmp") && x_curr == x && y_curr != y + height) {
 				}
 				else {
@@ -335,7 +335,7 @@ public:
 					x_curr += size;
 				}
 			}
-			if ((key == string("\n.bmp")) || ((height != size) && (x_curr >= x + width || (!no_chunk_yet && ((float(next_chunk(s, i) - i))*size + x_curr > (x + width + 0.00001)))))) {
+			if ((key == string("{NEWLINE}.bmp")) || ((height != size) && (x_curr >= x + width || (!no_chunk_yet && ((float(next_chunk(s, i) - i))*size + x_curr > (x + width + 0.00001)))))) {
 				no_chunk_yet = true;
 				x_curr = x;
 				y_curr -= size;

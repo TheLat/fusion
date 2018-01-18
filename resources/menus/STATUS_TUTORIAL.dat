@@ -18,7 +18,7 @@ FOLLOW_UP:
 ALERT_CANCEL:A POK{e-accent}MON can't attack if it's asleep!{NEWLINE}POK{e-accent}MON will stay asleep even after battles.{NEWLINE}Use AWAKENING to wake them up!
 ALERT_CANCEL:A POK{e-accent}MON will have its attack score halved when suffering BURN. It also causes ongoing damage.{NEWLINE}Burns remain after battles.{NEWLINE}Use a BURN HEAL to cure a burn.
 ALERT_CANCEL:When poisoned, a POK{e-accent}MON's health steadily drops.{NEWLINE}Poison lingers after battle.{NEWLINE}Use an ANTIDOTE to cure poison!
-ALERT_CANCEL:If frozen, a POK{e-accent}MON becomes totally immobile.{NEWLINE}It stays frozen even after the battle ends.{NEWLINE} Use ICE HEAL to thaw out POK{e-accent}MON
+ALERT_CANCEL:If frozen, a POK{e-accent}MON becomes totally immobile.{NEWLINE}It stays frozen even after the battle ends.{NEWLINE}Use ICE HEAL to thaw out POK{e-accent}MON
 ALERT_CANCEL:Paralysis could make POK{e-accent}MON moves misfire!{NEWLINE}Paralysis remains after battles.{NEWLINE}Use PARALYZ HEAL for treatment!
 
 END
