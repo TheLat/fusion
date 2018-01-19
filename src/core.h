@@ -2253,6 +2253,13 @@ public:
 		return false;
 	}
 	bool team_KO() {
+		bool team_exists = false;
+		for (unsigned i = 0; i < 6; ++i) {
+			team_exists = team_exists | mc.team[i].defined;
+		}
+		if (!team_exists) {
+			return false;
+		}
 		for (unsigned i = 0; i < 6; ++i) {
 			if (mc.team[i].defined && mc.team[i].curr_hp > 0)
 				return false;
