@@ -168,9 +168,6 @@ void handleKeypress(unsigned char key, int x, int y) {
 	printf("%i\n", int(key));
 	num++;
 	switch (key) {
-	case 27: //Escape key
-		exit(0); // TODO:  Make this not crash on closing.
-		break;
 	case 'a':
 		e.input(false, false, true, false, false, false, false, false);
 		break;
@@ -194,6 +191,8 @@ void handleKeypress(unsigned char key, int x, int y) {
 		break;
 	case ',':
 		e.input(false, false, false, false, true, false, false, false);
+		break;
+	default:
 		break;
 	}
 }
