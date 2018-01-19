@@ -99,6 +99,14 @@ INTERACTIONS
 !:route25-girl2|MOVE_TO_PLAYER|MENU:ALERT:My friend has a cute POK{e-accent}MON. I'm so jealous!|BATTLE:route25-girl2|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:You came from MT. MOON? May I have a CLEFAIRY?
 END
+route25-item2 blank 10 5
+INTERACTIONS
+GIVE_ITEM:ELIXER|DEACTIVATE:route25-item2
+END
+route25-item3 blank 38 7
+INTERACTIONS
+GIVE_ITEM:ETHER|DEACTIVATE:route25-item3
+END
 TRAINERS
 route25-hiker1 35 0.25 0.25 HIKER hiker.png {HIKER: You worked hard!}{} 66-66:15|74-74:15
 route25-hiker2 35 0.25 0.25 HIKER hiker.png {HIKER: You're something.}{} 95-95:17
