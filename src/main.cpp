@@ -259,9 +259,10 @@ int main(int argc, char** argv) {
 	e.init_levels();
 	printf("Done!\n");
 
-	e.mc.loc.x = 6.0;
-	e.mc.loc.y = 4.0;
-	e.mc.loc.level = "pallet-town";
+	e.mc.loc.x = 3.0;
+	e.mc.loc.y = 6.0;
+	e.mc.loc.level = "home";
+	e.mc.dir = UP;
 	e.mc.money = 3000;
 	e.load_game();
 
