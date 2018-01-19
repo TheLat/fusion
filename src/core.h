@@ -187,7 +187,7 @@ public:
 
 class character {
 public:
-	direction dir;
+	direction dir, origin_dir;
 	string image;
 	string name; // MUST BE UNIQUE
 	vector<string> interactions;
@@ -2253,6 +2253,13 @@ public:
 		return false;
 	}
 	bool team_KO() {
+		bool team_exists = false;
+		for (unsigned i = 0; i < 6; ++i) {
+			team_exists = team_exists | mc.team[i].defined;
+		}
+		if (!team_exists) {
+			return false;
+		}
 		for (unsigned i = 0; i < 6; ++i) {
 			if (mc.team[i].defined && mc.team[i].curr_hp > 0)
 				return false;
@@ -3530,6 +3537,7 @@ public:
  					else {
 						levels[levelname].characters[levels[levelname].characters.size() - 1].wander = false;
 					}
+					levels[levelname].characters[levels[levelname].characters.size() - 1].dir = DOWN;
 					if (s.find("LEFT") != -1)
 						levels[levelname].characters[levels[levelname].characters.size() - 1].dir = LEFT;
 					if (s.find("RIGHT") != -1)
@@ -3538,6 +3546,7 @@ public:
 						levels[levelname].characters[levels[levelname].characters.size() - 1].dir = UP;
 					if (s.find("DOWN") != -1)
 						levels[levelname].characters[levels[levelname].characters.size() - 1].dir = DOWN;
+					levels[levelname].characters[levels[levelname].characters.size() - 1].origin_dir = levels[levelname].characters[levels[levelname].characters.size() - 1].dir;
 					mc.interaction[levels[levelname].characters[levels[levelname].characters.size() - 1].name] = 0;
 					std::getline(f, line);
 					if (line == "FORCE_INTERACTION") {
@@ -4342,6 +4351,10 @@ public:
 				mc.loc.x = levels[mc.loc.level].teleport[i].second.x;
 				mc.loc.y = levels[mc.loc.level].teleport[i].second.y;
 				mc.loc.level = levels[mc.loc.level].teleport[i].second.level;
+				for (unsigned j = 0; j < levels[mc.loc.level].characters.size(); ++j) {
+					levels[mc.loc.level].characters[j].dir = levels[mc.loc.level].characters[j].origin_dir;
+					levels[mc.loc.level].characters[j].loc = levels[mc.loc.level].characters[j].origin;
+				}
 				transition.unlock();
 				break;
 			}
