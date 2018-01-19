@@ -377,7 +377,7 @@ NOTES: Greatly increases speed.  Cures paralysis.
 MOVE: GUST
 TYPE: FLYING
 ACC: 100
-POWER: 40
+POWER: 30
 PP: 35
 DEFENSE: SPECIAL
 NOTES: Attacks with a gust of wind.
