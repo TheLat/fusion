@@ -9,6 +9,15 @@ cerulean-house3-bookshelf1 blank 1 1
 INTERACTIONS
 MENU:ALERT:Crammed full of POK{e-accent}MON books!
 END
+cerulean-house3-safari safari 2 1
+INTERACTIONS
+MENU:ALERT:Those miserable ROCKETs!|MENU:ALERT:Look what they did here!|MENU:ALERT:They stole a TM for teaching POK{e-accent}MON how to DIG holes!|MENU:ALERT:That cost me a bundle, it did!|NO_ADVANCE
+MENU:ALERT:I figure what's lost is lost!|MENU:ALERT:I decided to teach DIGLETT how to DIG without a TM!
+END
+cerulean-house3-woman woman3 5 5 WANDER
+INTERACTIONS
+MENU:ALERT:TEAM ROCKET must be trying to DIG their way into no good!
+END
 TELEPORT
 2 8 cerulean-city 29 14
 3 8 cerulean-city 29 14

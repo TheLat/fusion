@@ -77,10 +77,25 @@ cerulean-city-guard2 guard3 30 14 INACTIVE
 INTERACTIONS
 MENU:ALERT:These people were robbed.|MENU:ALERT:It's obvious that TEAM ROCKET is behind this most heinous crime!|MENU:ALERT:Even our POLICE force has trouble with ROCKETs!
 END
+cerulean-city-rocket rocket 32 10
+FORCE_INTERACTION
+0 1
+0 -1
+1 0
+-1 0
+END
+INTERACTIONS
+MENU:ALERT:Hey! Stay out! It's not your yard!|MENU:ALERT:Huh? Me?|MENU:ALERT:I'm an innocent bystander! Don't you believe me?|BATTLE:cerulean-city-rocket|{NO_ADVANCE}{MENU:ALERT:OK! I'll return the TM I stole!|GIVE_ITEM:TM28|MENU:ALERT:I better get moving! Bye!|DEACTIVATE:cerulean-city-rocket|ADVANCE:cerulean-house3-safari}
+END
+cerulean-city-sign4 blank 19 31
+INTERACTIONS
+MENU:ALERT:TRAINER TIPS|MENU:ALERT:Pressing B button during evolution cancels the whole process.
+END
 TRAINERS
 rival-cerulean-city-0 35 0.2 0.2 {RIVAL_NAME} rival1.png {{RIVAL_NAME}: Hey! Take it easy! You won already!}{{RIVAL_NAME}: Yeah! Am I great or what?} 25-25:20|19-19:15|8-8:19
 rival-cerulean-city-1 35 0.2 0.2 {RIVAL_NAME} rival1.png {{RIVAL_NAME}: Hey! Take it easy! You won already!}{{RIVAL_NAME}: Yeah! Am I great or what?} 17-17:18|19-19:15|74-74:16|2-2:17
 rival-cerulean-city-2 35 0.2 0.2 {RIVAL_NAME} rival1.png {{RIVAL_NAME}: Hey! Take it easy! You won already!}{{RIVAL_NAME}: Yeah! Am I great or what?} 69-69:18|19-19:15|56-56:15|5-5:17
+cerulean-city-rocket 35 0.3 0.3 ROCKET rocket.png {ROCKET: Stop! I give up! I'll leave quietly!}{} 23-66:17|96-96:17
 END
 TELEPORT
 0 20 route4 93 20
