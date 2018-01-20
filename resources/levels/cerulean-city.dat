@@ -73,6 +73,10 @@ cerulean-city-rival2 rival 23 2 INACTIVE
 INTERACTIONS
 MENU:ALERT:ERROR
 END
+cerulean-city-guard2 guard3 30 14 INACTIVE
+INTERACTIONS
+MENU:ALERT:These people were robbed.|MENU:ALERT:It's obvious that TEAM ROCKET is behind this most heinous crime!|MENU:ALERT:Even our POLICE force has trouble with ROCKETs!
+END
 TRAINERS
 rival-cerulean-city-0 35 0.2 0.2 {RIVAL_NAME} rival1.png {{RIVAL_NAME}: Hey! Take it easy! You won already!}{{RIVAL_NAME}: Yeah! Am I great or what?} 25-25:20|19-19:15|8-8:19
 rival-cerulean-city-1 35 0.2 0.2 {RIVAL_NAME} rival1.png {{RIVAL_NAME}: Hey! Take it easy! You won already!}{{RIVAL_NAME}: Yeah! Am I great or what?} 17-17:18|19-19:15|74-74:16|2-2:17

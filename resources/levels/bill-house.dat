@@ -1,9 +1,20 @@
 NAME
 Bill's House
 NPCS
-cerulean-house2-man bald3 5 3 RIGHT
+bill-house-computer blank 1 4
 INTERACTIONS
-MENU:ALERT:Gym BADGEs are so pretty.|MENU:ALERT:It's a shame that they don't do anything.|FACE:RIGHT
+MENU:ALERT:TELEPORTER is displayed on the PC monitor.|NO_ADVANCE
+MENU:ALERT:{PLAYER_NAME} initiated TELEPORTER's Cell Separator!|ACTIVATE:bill-house-bill|MOVE:bill-house-bill:0,1|MOVE:bill-house-bill:1,0|MOVE:bill-house-bill:1,0|MOVE:bill-house-bill:1,0|MOVE:bill-house-bill:0,1
+MENU:ALERT:TELEPORTER is displayed on the PC monitor.
+END
+bill-house-mon mon 6 5
+INTERACTIONS
+MENU:ALERT:Hiya! I'm a POK{e-accent}MON...|MENU:ALERT:...No, I'm not!|MENU:ALERT:Call me BILL! I'm a true blue POK{e-accent}MANIAC! Hey! What's with that skeptical look?|MENU:ALERT:I'm not joshing you, I screwed up an experiment and got combined with a POK{e-accent}MON!|MENU:ALERT_YES_NO:So, how about it? Help me out here!|{}{MENU:ALERT:No!? Come on, you gotta help a guy in deep trouble!|MENU:ALERT:What do you say, chief? Please?|MENU:ALERT:OK? Alright!}|MENU:ALERT:When I'm in the TELEPORTER, go to my PC and run the Cell Separation System!|MOVE:bill-house-mon:0,-1|MOVE:bill-house-mon:0,-1|MOVE:bill-house-mon:0,-1|DEACTIVATE:bill-house-mon|ADVANCE:bill-house-computer
+END
+bill-house-bill guy2 1 2 INACTIVE
+INTERACTIONS
+MENU:ALERT:BILL: Yeehah! Thanks, bud! I owe you one!|MENU:ALERT:So, did you come to see my POK{e-accent}MON collection?|MENU:ALERT:You didn't?|MENU:ALERT:That's a bummer.|MENU:ALERT:I've got to thank you...|MENU:ALERT:Oh, here, maybe this'll do.|GIVE_ITEM:S.S. TICKET|MENU:ALERT:That cruise ship, the S.S. ANNE, is in VERMILION CITY. Its passengers are all trainers!|MENU:ALERT:They invited me to their party, but I can't stand fancy do's. Why don't you go instead of me?|DEACTIVATE:cerulean-city-guard|ACTIVATE:cerulean-city-guard2
+MENU:ALERT:That cruise ship, the S.S. ANNE, is in VERMILION CITY. Its passengers are all trainers!|MENU:ALERT:They invited me to their party, but I can't stand fancy do's. Why don't you go instead of me?
 END
 TELEPORT
 3 8 route25 45 8
