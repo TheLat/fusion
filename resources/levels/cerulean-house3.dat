@@ -1,0 +1,25 @@
+NAME
+Cerulean House 3
+NPCS
+cerulean-house3-bookshelf2 blank 0 1
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+cerulean-house3-bookshelf1 blank 1 1
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+TELEPORT
+2 8 cerulean-city 29 14
+3 8 cerulean-city 29 14
+3 0 cerulean-city 29 11
+DATA
+31   31 280 281  34  17 280 280
+32   32 282 283  18  18  18  18
+284 285 283 286  18  18 287 288
+18   18  37  48  52  37 289 290
+18   18 291 292  24  37  18  18
+18   18 287 288  18  18  18  18
+30   18  18  18 287 288  18  18
+29   18  38  38 289 290 293 294
+82   82 166 166
