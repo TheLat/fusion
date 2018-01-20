@@ -107,6 +107,10 @@ route25-item3 blank 38 7
 INTERACTIONS
 GIVE_ITEM:ETHER|DEACTIVATE:route25-item3
 END
+route25-sign1 blank 43 7
+INTERACTIONS
+MENU:ALERT:SEA COTTAGE{NEWLINE}BILL lives here!
+END
 TRAINERS
 route25-hiker1 35 0.25 0.25 HIKER hiker.png {HIKER: You worked hard!}{} 66-66:15|74-74:15
 route25-hiker2 35 0.25 0.25 HIKER hiker.png {HIKER: You're something.}{} 95-95:17
@@ -125,6 +129,7 @@ TELEPORT
 0 12 route24 22 10
 0 13 route24 22 11
 0 15 route24 22 13
+45 7 bill-house 2 7
 ENCOUNTERS
 69 11 48 63 14 16 43 27
 WATER_ENCOUNTERS_OLD
