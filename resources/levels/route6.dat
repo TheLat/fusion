@@ -26,10 +26,43 @@ INTERACTIONS
 !:route6-girl1|MENU:ALERT:Excuse me! This is a private conversation!|BATTLE:route6-girl1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:whisper...{NEWLINE}whisper...|FACE:LEFT
 END
+route6-boy2 boy 24 27 LEFT
+FORCE_INTERACTION
+-1 0
+-2 0
+-3 0
+END
+INTERACTIONS
+!:route6-boy2|MOVE_TO_PLAYER|MENU:ALERT:I've never seen you around!|MENU:ALERT:Are you good?|BATTLE:route6-boy2|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Are my POK{e-accent}MON weak? Or, am I just bad?
+END
+route6-girl2 girl 16 31 LEFT
+FORCE_INTERACTION
+-1 0
+-2 0
+-3 0
+END
+INTERACTIONS
+!:route6-girl2|MOVE_TO_PLAYER|MENU:ALERT:Me? Well, OK.  I'll play!|BATTLE:route6-girl2|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I want to get stronger! What's your secret?
+END
+route6-guy2 guy2 16 32 LEFT
+FORCE_INTERACTION
+-1 0
+-2 0
+-3 0
+END
+INTERACTIONS
+!:route6-guy2|MOVE_TO_PLAYER|MENU:ALERT:Huh? You want to talk to me?|BATTLE:route6-guy2|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I should carry more POK{e-accent}MON with me for safety.
+END
 TRAINERS
 route6-boy1 10 0.25 0.25 BUG{SPACE}CATCHER bugcatcher.png {BUG CATCHER: No! You're kidding!}{} 13-13:10|10-10:10|15-15:16|12-12:16
 route6-guy1 20 0.2 0.2 JR.TRAINER{MALE} jrtrainerm.png {JR.TRAINER{MALE}: I just can't win!}{} 7-7:20
 route6-girl1 20 0.2 0.2 JR.TRAINER{FEMALE} jrtrainerf.png {JR.TRAINER{FEMALE}: Ugh! I hate losing!}{} 19-16:17|25-25:17
+route6-boy2 10 0.25 0.25 BUG{SPACE}CATCHER bugcatcher.png {BUG CATCHER: You are too good!}{} 12-12:20
+route6-girl2 20 0.2 0.2 JR.TRAINER{FEMALE} jrtrainerf.png {JR.TRAINER{FEMALE}: Just didn't work!}{} 16-16:16|16-16:16|17-17:18
+route6-guy2 20 0.2 0.2 JR.TRAINER{MALE} jrtrainerm.png {JR.TRAINER{MALE}: I didn't start it!}{} 21-21:16|20-20:16
 END
 TELEPORT
 22 14 route6-tunnel 3 7
