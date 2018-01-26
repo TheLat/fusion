@@ -1,0 +1,84 @@
+NAME
+Cerulean Bike Shop
+NPCS
+cerulean-bike-clerk tech 6 2
+INTERACTIONS
+MENU:ALERT:Fuck this guy.
+END
+cerulean-bike-desk1 blank 5 2
+INTERACTIONS
+SET_FACE:cerulean-bike-clerk:LEFT|MENU:ALERT:Hi! Welcome to our BIKE SHOP.|MENU:ALERT:Have we got just the BIKE for you!|MENU:ALERT_YES_NO:It's a cool BIKE! Only $1000000!|{MENU:ALERT:Sorry! You can't afford it!}{MENU:ALERT:Come back again some time!}
+END
+cerulean-bike-desk2 blank 6 3
+INTERACTIONS
+SET_FACE:cerulean-bike-clerk:DOWN|MENU:ALERT:Hi! Welcome to our BIKE SHOP.|MENU:ALERT:Have we got just the BIKE for you!|MENU:ALERT_YES_NO:It's a cool BIKE! Only $1000000!|{MENU:ALERT:Sorry! You can't afford it!}{MENU:ALERT:Come back again some time!}
+END
+cerulean-bike-boy boy 1 3 UP
+INTERACTIONS
+MENU:ALERT:These BIKEs are cool, but they're way expensive!|FACE:UP
+END
+cerulean-bike-woman woman5 5 6 WANDER
+INTERACTIONS
+MENU:ALERT:A plain city BIKE is good enough for me!|MENU:ALERT:You can't put a shopping basket on an MTB!
+END
+cerulean-bike-bike1 blank 0 1
+INTERACTIONS
+MENU:ALERT:A shiny new BICYCLE!
+END
+cerulean-bike-bike2 blank 1 1
+INTERACTIONS
+MENU:ALERT:A shiny new BICYCLE!
+END
+cerulean-bike-bike3 blank 2 1
+INTERACTIONS
+MENU:ALERT:A shiny new BICYCLE!
+END
+cerulean-bike-bike4 blank 3 1
+INTERACTIONS
+MENU:ALERT:A shiny new BICYCLE!
+END
+cerulean-bike-bike5 blank 0 2
+INTERACTIONS
+MENU:ALERT:A shiny new BICYCLE!
+END
+cerulean-bike-bike6 blank 1 2
+INTERACTIONS
+MENU:ALERT:A shiny new BICYCLE!
+END
+cerulean-bike-bike7 blank 2 2
+INTERACTIONS
+MENU:ALERT:A shiny new BICYCLE!
+END
+cerulean-bike-bike8 blank 3 2
+INTERACTIONS
+MENU:ALERT:A shiny new BICYCLE!
+END
+cerulean-bike-bike9 blank 0 4
+INTERACTIONS
+MENU:ALERT:A shiny new BICYCLE!
+END
+cerulean-bike-bike10 blank 1 4
+INTERACTIONS
+MENU:ALERT:A shiny new BICYCLE!
+END
+cerulean-bike-bike11 blank 0 5
+INTERACTIONS
+MENU:ALERT:A shiny new BICYCLE!
+END
+cerulean-bike-bike12 blank 1 5
+INTERACTIONS
+MENU:ALERT:A shiny new BICYCLE!
+END
+TELEPORT
+3 8 cerulean-city 15 28
+2 8 cerulean-city 15 28
+DATA
+319 320  47 312 313 314  47  47
+315 316 317 318 182 134 182 182
+317 318 317 318 182 134 182 182
+182 182 182 182 182 132 303 305
+317 318 182 182 182 182 182 182
+317 318 182 182 182 182 182 182
+182 182 182 182 182 182 321 182
+182 182 279 279 182 182 182 321
+82   82 166 166  
