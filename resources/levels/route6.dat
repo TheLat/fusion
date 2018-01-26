@@ -1,15 +1,47 @@
 NAME
 Route 6
 NPCS
-route5-sign blank 29 34
+route6-sign blank 24 16
 INTERACTIONS
-MENU:ALERT:UNDERGROUND PATH CERULEAN CITY - VERMILION CITY
+MENU:ALERT:UNDERGROUND PATH VERMILION CITY - CERULEAN CITY
+END
+route6-boy1 boy 5 16 RIGHT
+FORCE_INTERACTION
+1 0
+2 0
+3 0
+4 0
+END
+INTERACTIONS
+!:route6-boy1|MOVE_TO_PLAYER|MENU:ALERT:There aren't many bugs out here.|BATTLE:route6-boy1|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I like bugs, so I'm going back to VIRIDIAN FOREST.
+END
+route6-guy1 guy2 15 22 RIGHT
+INTERACTIONS
+!:route6-guy1|MENU:ALERT:Who's there?{NEWLINE}Quit listening in on us!|BATTLE:route6-guy1|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:whisper...{NEWLINE}whisper...|FACE:RIGHT
+END
+route6-girl1 girl 16 22 LEFT
+INTERACTIONS
+!:route6-girl1|MENU:ALERT:Excuse me! This is a private conversation!|BATTLE:route6-girl1|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:whisper...{NEWLINE}whisper...|FACE:LEFT
+END
+TRAINERS
+route6-boy1 10 0.25 0.25 BUG{SPACE}CATCHER bugcatcher.png {BUG CATCHER: No! You're kidding!}{} 13-13:10|10-10:10|15-15:16|12-12:16
+route6-guy1 20 0.2 0.2 JR.TRAINER{MALE} jrtrainerm.png {JR.TRAINER{MALE}: I just can't win!}{} 7-7:20
+route6-girl1 20 0.2 0.2 JR.TRAINER{FEMALE} jrtrainerf.png {JR.TRAINER{FEMALE}: Ugh! I hate losing!}{} 19-16:17|25-25:17
 END
 TELEPORT
 22 14 route6-tunnel 3 7
 15 8 route6-checkpoint 3 6
 ENCOUNTERS
 16 19 39 43 52 56 63 66 69
+WATER_ENCOUNTERS_OLD
+129
+WATER_ENCOUNTERS_GOOD
+60 118
+WATER_ENCOUNTERS_SUPER
+90 98 54 118
 LEVELS
 12-17
 DATA
