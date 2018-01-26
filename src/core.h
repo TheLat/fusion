@@ -3566,12 +3566,6 @@ public:
 					if (line == "INTERACTIONS") {
 						std::getline(f, line);
 						while (line != "END") {
-							while (line.find(string("{NEWLINE}")) != -1) {
-								int i;
-								i = line.find(string("{NEWLINE}"));
-								line.erase(i, string("{NEWLINE}").length());
-								line.insert(i, string("\n"));
-							}
 							levels[levelname].characters[levels[levelname].characters.size() - 1].interactions.push_back(line);
 							std::getline(f, line);
 						}
