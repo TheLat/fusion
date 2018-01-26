@@ -6,8 +6,8 @@ INTERACTIONS
 MENU:ALERT:People often lose things in that UNDERGROUND PATH.
 END
 TELEPORT
-3 8 route6 29 33
-4 8 route6 29 33
+3 8 route6 22 15
+4 8 route6 22 15
 4 4 tunnel1 2 39
 DATA
 30  265 265 265 265 265 265  30
