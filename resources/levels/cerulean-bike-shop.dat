@@ -3,7 +3,7 @@ Cerulean Bike Shop
 NPCS
 cerulean-bike-clerk tech 6 2
 INTERACTIONS
-MENU:ALERT:Fuck this guy.
+MENU:ALERT:Fuck this guy. --the developer
 END
 cerulean-bike-desk1 blank 5 2
 INTERACTIONS
