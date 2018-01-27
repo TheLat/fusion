@@ -27,7 +27,7 @@ MENU:ALERT:Welcome to the Cable Club.|MENU:ALERT:This area is reserved for 2 fri
 END
 viridian-center-pc blank 13 3
 INTERACTIONS
-MENU:ALERT:{PLAYER_NAME} turned on the PC.|MENU:PC:|{MENU:ALERT:Accessed someone's PC.|MENU:ALERT:Accessed POK{e-accent}MON Storage System.|MON_STORAGE}{MENU:ALERT:Accessed my PC.|MENU:ALERT:Accessed Item Storage System.|ITEM_STORAGE}{MENU:ALERT:OAK RATING GOES HERE}{}
+MENU:ALERT:{PLAYER_NAME} turned on the PC.|GET:BILL|{MENU:PC:}{MENU:PC2:}|{GET:BILL|{MENU:ALERT:Accessed someone's PC.}{MENU:ALERT:Accessed BILL's PC.}|MENU:ALERT:Accessed POK{e-accent}MON Storage System.|MON_STORAGE}{MENU:ALERT:Accessed my PC.|MENU:ALERT:Accessed Item Storage System.|ITEM_STORAGE}{MENU:ALERT:OAK RATING GOES HERE}{}
 END
 TELEPORT
 3 8 viridian-city 23 26
