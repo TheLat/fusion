@@ -1,9 +1,53 @@
 NAME
-Vermilion` City
+Vermilion City
 NPCS
-cerulean-city-guy1 man2 10 23 WANDER
+vermillion-city-sign1 blank 32 5
 INTERACTIONS
-MENU:ALERT:You're making an encyclopedia on POK{e-accent}MON? That sounds amusing.
+MENU:ALERT:VERMILION CITY{NEWLINE}The port of Exquisite Sunsets
+END
+vermilion-city-sign2 blank 12 15
+INTERACTIONS
+MENU:ALERT:POK{e-accent}MON FAN CLUB ALL POK{e-accent}MON fans welcome!
+END
+vermilion-city-sign3 blank 12 21
+INTERACTIONS
+MENU:ALERT:VERMILION CITY POK{e-accent}MON GYM|MENU:ALERT:LEADER: LT.SURGE|MENU:ALERT:The Lightning American!
+END
+vermilion-city-sign4 blank 34 17
+INTERACTIONS
+MENU:ALERT:VERMILION HARBOR
+END
+vermilion-city-sign5 blank 41 15
+INTERACTIONS
+MENU:ALERT:NOTICE!|MENU:ALERT:ROUTE 12 may be blocked off by a sleeping POK{e-accent}MON.|MENU:ALERT:Detour through ROCK TUNNEL to LAVENDER TOWN.|MENU:ALERT:-VERMILION POLICE
+END
+vermilion-city-man1 bald4 19 8
+INTERACTIONS
+MENU:ALERT:Did you see the S.S. ANNE moored in the harbor?
+END
+vermilion-city-woman1 woman4 25 9 WANDER
+INTERACTIONS
+MENU:ALERT:We're careful about pollution!|MENU:ALERT:We've heard GRIMER multiplies in toxic sludge!
+END
+vermilion-city-man2 bald4 34 9
+INTERACTIONS
+MENU:ALERT:I'm putting up a building on this plot of land.|MENU:ALERT:My POK{e-accent}MON is tamping the land.
+END
+vermilion-city-mon1 mon 33 10 WANDER
+INTERACTIONS
+MENU:ALERT:MACHOP: Guoh! Gogogoh!|MENU:ALERT:A MACHOP is stomping the land flat.
+END
+vermilion-city-worker1 cap 32 29 WANDER
+INTERACTIONS
+MENU:ALERT:S.S. ANNE is a famous luxury cruise ship.|MENU:ALERT:We visit VERMILION CITY once a year.
+END
+vermilion-city-worker2 cap 24 32 UP
+FORCE_INTERACTION
+-1 0
+END
+INTERACTIONS
+MENU:ALERT:Excuse me, do you have a ticket?|IN_INVENTORY:S.S. TICKET|{MENU:ALERT:Sorry!|MENU:ALERT:You need a ticket to get aboard.|MOVE:PLAYER:0,-1|NO_ADVANCE}{MENU:ALERT:{PLAYER_NAME} flashed the S.S. TICKET!|MENU:ALERT:Great! Welcome to the S.S. Anne!|DISABLE_FORCE}
+MENU:ALERT:Welcome to the S.S. ANNE!
 END
 TELEPORT
 23 0 route6 13 35
