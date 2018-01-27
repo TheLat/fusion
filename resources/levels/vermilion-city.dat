@@ -49,6 +49,10 @@ INTERACTIONS
 MENU:ALERT:Excuse me, do you have a ticket?|IN_INVENTORY:S.S. TICKET|{MENU:ALERT:Sorry!|MENU:ALERT:You need a ticket to get aboard.|MOVE:PLAYER:0,-1|NO_ADVANCE}{MENU:ALERT:{PLAYER_NAME} flashed the S.S. TICKET!|MENU:ALERT:Great! Welcome to the S.S. Anne!|DISABLE_FORCE}
 MENU:ALERT:Welcome to the S.S. ANNE!
 END
+vermilion-city-bush1 bush 20 20
+INTERACTIONS
+HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:vermilion-city-bush1}
+END
 TELEPORT
 23 0 route6 13 35
 24 0 route6 14 35
