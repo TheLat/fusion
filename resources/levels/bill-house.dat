@@ -13,7 +13,7 @@ MENU:ALERT:Hiya! I'm a POK{e-accent}MON...|MENU:ALERT:...No, I'm not!|MENU:ALERT
 END
 bill-house-bill guy2 1 2 INACTIVE
 INTERACTIONS
-MENU:ALERT:BILL: Yeehah! Thanks, bud! I owe you one!|MENU:ALERT:So, did you come to see my POK{e-accent}MON collection?|MENU:ALERT:You didn't?|MENU:ALERT:That's a bummer.|MENU:ALERT:I've got to thank you...|MENU:ALERT:Oh, here, maybe this'll do.|GIVE_ITEM:S.S. TICKET|MENU:ALERT:That cruise ship, the S.S. ANNE, is in VERMILION CITY. Its passengers are all trainers!|MENU:ALERT:They invited me to their party, but I can't stand fancy do's. Why don't you go instead of me?|DEACTIVATE:cerulean-city-guard|ACTIVATE:cerulean-city-guard2
+MENU:ALERT:BILL: Yeehah! Thanks, bud! I owe you one!|MENU:ALERT:So, did you come to see my POK{e-accent}MON collection?|MENU:ALERT:You didn't?|MENU:ALERT:That's a bummer.|MENU:ALERT:I've got to thank you...|MENU:ALERT:Oh, here, maybe this'll do.|GIVE_ITEM:S.S. TICKET|MENU:ALERT:That cruise ship, the S.S. ANNE, is in VERMILION CITY. Its passengers are all trainers!|MENU:ALERT:They invited me to their party, but I can't stand fancy do's. Why don't you go instead of me?|DEACTIVATE:cerulean-city-guard|ACTIVATE:cerulean-city-guard2|SET:BILL:1
 MENU:ALERT:That cruise ship, the S.S. ANNE, is in VERMILION CITY. Its passengers are all trainers!|MENU:ALERT:They invited me to their party, but I can't stand fancy do's. Why don't you go instead of me?
 END
 TELEPORT
