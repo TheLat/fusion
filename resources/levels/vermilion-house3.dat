@@ -1,0 +1,44 @@
+NAME
+Vermilion House 3
+NPCS
+vermilion-house3-bookshelf3 blank 0 1
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+vermilion-house3-bookshelf4 blank 1 1
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+vermilion-house3-bookshelf5 blank 7 1
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+vermilion-house3-map-wall blank 3 0
+INTERACTIONS
+MENU:ALERT:A TOWN MAP.|MAP
+END
+vermilion-house3-boy boy 5 3 LEFT
+INTERACTIONS
+MENU:ALERT:I'm getting my PIDGEY to fly a letter to SAFFRON in the north!|FACE:LEFT
+END
+vermilion-house3-note page 4 3
+INTERACTIONS
+MENU:ALERT:Dear PIPPI, I hope to see you soon.|MENU:ALERT:I heard SAFFRON has problems with TEAM ROCKET.|MENU:ALERT:VERMILION appears to be safe.
+END
+vermilion-house3-pidgey bird 4 5
+INTERACTIONS
+MENU:ALERT:PIDGEY: Kurukkoo!
+END
+TELEPORT
+2 8 vermilion-city 28 22
+3 8 vermilion-city 28 22
+DATA
+31 31  17  33 17 34 17 35
+32 32  18  18 18 18 18 36
+18 18  18  18 18 18 18 18
+18 18  37  48 52 37 18 18
+18 18  37  23 24 37 18 18
+18 18  18  18 18 18 18 18
+30 18  18  18 18 18 18 30
+29 18  38  38 18 18 18 29
+82 82 166 166

@@ -1,0 +1,52 @@
+NAME
+Vermilion City Mart
+NPCS
+vermilion-mart-shelf1 blank 4 4
+INTERACTIONS
+MENU:ALERT:Wow! Tons of POK{e-accent}MON stuff!
+END
+vermilion-mart-shelf2 blank 5 4
+INTERACTIONS
+MENU:ALERT:Wow! Tons of POK{e-accent}MON stuff!
+END
+vermilion-mart-shelf3 blank 6 4
+INTERACTIONS
+MENU:ALERT:Wow! Tons of POK{e-accent}MON stuff!
+END
+vermilion-mart-shelf4 blank 7 4
+INTERACTIONS
+MENU:ALERT:Wow! Tons of POK{e-accent}MON stuff!
+END
+vermilion-mart-girl girl 3 3 WANDER
+INTERACTIONS
+MENU:ALERT:I think POK{e-accent}MON can be good or evil, it depends on the trainer.
+END
+vermilion-mart-guy guy2 5 6
+INTERACTIONS
+MENU:ALERT:There are evil people who will use POK{e-accent}MON for criminal acts.|MENU:ALERT:TEAM ROCKET traffics in rare POK{e-accent}MON.|MENU:ALERT:They also abandon POK{e-accent}MON that they consider not to be popular or useful.
+END
+vermilion-mart-clerk clerk2 0 5 RIGHT
+INTERACTIONS
+MENU:ALERT:NULL
+END
+vermilion-mart-clerkdesk1 blank 1 5
+INTERACTIONS
+SET_FACE:vermilion-mart-clerk:RIGHT|SHOP:POK{e-accent} BALL,SUPER POTION,ICE HEAL,AWAKENING,PARLYZ HEAL,REPEL
+END
+vermilion-mart-clerkdesk2 blank 0 6
+INTERACTIONS
+SET_FACE:vermilion-mart-clerk:DOWN|SHOP:POK{e-accent} BALL,SUPER POTION,ICE HEAL,AWAKENING,PARLYZ HEAL,REPEL
+END
+TELEPORT
+3 8 vermilion-city 28 16
+4 8 vermilion-city 28 16
+DATA
+118 118 119 119 119 119 118 118
+120 120 121 121 121 121 120 120
+122 123 123 123 123 123 123 123
+124 125 123 123 124 125 124 125
+128 129 122 123 126 127 126 127
+122 130 122 123 123 123 123 123
+131 132 122 123 123 123 123 123
+122 123 123 133 133 123 123 123
+82   82  82 166 166

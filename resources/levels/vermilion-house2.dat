@@ -1,0 +1,37 @@
+NAME
+Vermilion House 2
+NPCS
+vermilion-house2-bookshelf3 blank 0 1
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+vermilion-house2-bookshelf4 blank 1 1
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+vermilion-house2-bookshelf5 blank 7 1
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+vermilion-house2-map-wall blank 3 0
+INTERACTIONS
+MENU:ALERT:A TOWN MAP.|MAP
+END
+vermilion-house2-girl girl2 3 5
+INTERACTIONS
+MENU:ALERT:Hi! Do you have a SPEAROW?|MENU:ALERT_YES_NO:Want to trade it for a FARFETCH'D|{MENU:MON_SELECT:|IS_SELECTION_SPECIES:83-83|{MENU:ALERT:...This is no SPEAROW.|MENU:ALERT:If you get one, trade with me!|NO_ADVANCE}{MENU:ALERT:TODO: Trade logic|NO_ADVANCE}}{MENU:ALERT:That's too bad.|NO_ADVANCE}
+MENU:ALERT:TODO: Whatever this guy says after trading.
+END
+TELEPORT
+2 8 vermilion-city 20 16
+3 8 vermilion-city 20 16
+DATA
+31 31  17  33 17 34 17 35
+32 32  18  18 18 18 18 36
+18 18  18  18 18 18 18 18
+18 18  37  48 52 37 18 18
+18 18  37  23 24 37 18 18
+18 18  18  18 18 18 18 18
+30 18  18  18 18 18 18 30
+29 18  38  38 18 18 18 29
+82 82 166 166
