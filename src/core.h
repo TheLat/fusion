@@ -4998,7 +4998,7 @@ public:
 									s2.erase(s2.find("|"), s2.length());
 								}
 								if (remove_item(s2)) {
-									do_alert(string("{PLAYER_NAME} delivered ") + s2 + string("!"));
+									do_alert(string("{PLAYER_NAME} gave ") + s2 + string("!"));
 								}
 								s.erase(0, s2.length());
 							}
