@@ -1,9 +1,38 @@
 NAME
 Vermilion House 4
 NPCS
-vermilion-house4-pidgey bird 4 5
+vermilion-house4-woman woman3 1 3 RIGHT
 INTERACTIONS
-MENU:ALERT:PIDGEY: Kurukkoo!
+MENU:ALERT:I just love my SEEL!|MENU:ALERT:It squeals when I hug it!|FACE:RIGHT
+END
+vermilion-house4-seal seal 1 4 RIGHT
+INTERACTIONS
+MENU:ALERT:SEEL: Kyuoo!|FACE:RIGHT
+END
+vermilion-house4-fat fat 6 3 LEFT
+INTERACTIONS
+MENU:ALERT:Humph! My PIKACHU is twice as cute as that one!|FACE:LEFT
+END
+vermilion-house4-pikachu pikachu 6 4 LEFT
+INTERACTIONS
+MENU:ALERT:Chu! Pikachu!|FACE:LEFT
+END
+vermilion-house4-plaque1 blank 1 0
+INTERACTIONS
+MENU:ALERT:Let's all listen politely to other trainers!
+END
+vermilion-house4-plaque2 blank 6 0
+INTERACTIONS
+MENU:ALERT:If someone brags, brag right back!
+END
+vermilion-house4-woman2 woman 5 1 DOWN
+INTERACTIONS
+MENU:ALERT:Our Chairman is very vocal about POK{e-accent}MON.|FACE:DOWN
+END
+vermilion-house4-hat hat 3 1 DOWN
+INTERACTIONS
+MENU:ALERT:I chair the POK{e-accent}MON Fan Club!|MENU:ALERT:I have collected over 100 POK{e-accent}MON!|MENU:ALERT:I'm very fussy when it comes to POK{e-accent}MON!|MENU:ALERT:So...|MENU:ALERT_YES_NO:Did you come visit to hear about my POK{e-accent}MON?|{MENU:ALERT:Good! {NEWLINE} Then listen up!}{MENU:ALERT:Oh. Come back when you want to hear my story!|NO_ADVANCE}|MENU:ALERT:My favorite is RAPIDASH...|MENU:ALERT:It's... cute... lovely... smart... plus... amazing... You think so? oh yes... it's... stunning... kindly... love it!|MENU:ALERT:Hug it... when... sleeping... warm... and cuddly... spectacular... ravishing...|MENU:ALERT:...oops! Look at the time! I kept you too long!|MENU:ALERT:Thanks for hearing me out! I want you to have this!|GIVE_ITEM:BIKE VOUCHER|MENU:ALERT:Exchange that for a BICYCLE!|MENU:ALERT:Don't worry, my FEAROW will FLY me anywhere!|MENU:ALERT:So, I don't need a BICYCLE!|MENU:ALERT:I hope you like cycling!
+MENU:ALERT:Hello, {PLAYER_NAME}!|MENU:ALERT:Did you come to see me about my POK{e-accent}MON again?|MENU:ALERT:No? Too bad!
 END
 TELEPORT
 2 8 vermilion-city 14 16
