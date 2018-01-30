@@ -1029,7 +1029,62 @@ public:
 				ret = effect;
 			}
 			else if (effect.find("FISH") == 0) {
-				// TODO: FISHING
+				location temp = mc.loc;
+				if (mc.dir == UP) {
+					temp.y -= 1.0;
+				}
+				if (mc.dir == DOWN) {
+					temp.y += 1.0;
+				}
+				if (mc.dir == LEFT) {
+					temp.x -= 1.0;
+				}
+				if (mc.dir == RIGHT) {
+					temp.x += 1.0;
+				}
+				if (!water[get_tile(temp.y, temp.x)]) {
+					return false;
+				}
+				string s = effect;
+				s.erase(0, s.find(":") + 1);
+				if (s.find("|") != -1) {
+					s.erase(s.find("|"), s.length());
+				}
+				int tier = stoi(s);
+				bool first = int(random(0.0, 2.0)) == 1;
+				vector<int> combination;
+				vector<int> base;
+				for (unsigned i = 0; i < levels[mc.loc.level].encounters.size(); ++i) {
+					combination.push_back(levels[mc.loc.level].encounters[i]);
+				}
+				if (tier == 0) {
+					for (unsigned i = 0; i < levels[mc.loc.level].water_encounters_old.size(); ++i) {
+						combination.push_back(levels[mc.loc.level].water_encounters_old[i]);
+						base.push_back(levels[mc.loc.level].water_encounters_old[i]);
+					}
+				}
+				else if (tier == 1) {
+					for (unsigned i = 0; i < levels[mc.loc.level].water_encounters_good.size(); ++i) {
+						combination.push_back(levels[mc.loc.level].water_encounters_good[i]);
+						base.push_back(levels[mc.loc.level].water_encounters_good[i]);
+					}
+				}
+				else if (tier == 2) {
+					for (unsigned i = 0; i < levels[mc.loc.level].water_encounters_super.size(); ++i) {
+						combination.push_back(levels[mc.loc.level].water_encounters_super[i]);
+						base.push_back(levels[mc.loc.level].water_encounters_super[i]);
+					}
+				}
+				int part1 = combination[int(random(0.0, combination.size()))];
+				int part2 = base[int(random(0.0, base.size()))];
+				if (first) {
+					encounter = to_string(part1) + string("-") + to_string(part2);
+				}
+				else {
+					encounter = to_string(part2) + string("-") + to_string(part1);
+				}
+				encounter_level = int(random(levels[mc.loc.level].level_range.first, levels[mc.loc.level].level_range.second + 1));
+				//TODO: Random chance for fishing to work
 			}
 			else if (effect.find("MAP") == 0) {
 				// TODO: MAP
