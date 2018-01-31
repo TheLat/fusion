@@ -1604,6 +1604,7 @@ public:
 		return counter;
 	}
 	bool level_up(mon& out, bool confirm_learn=false) {
+		bool evolved = false;
 		if (level_to_exp[out.level + 1] > out.exp)
 			return false;
 		int counter = get_move_count(out);
@@ -1623,6 +1624,7 @@ public:
 							string old_nickname = get_nickname(out);
 							// TODO: Evolution screen and cancel option;
 							out.number = all_mon[out.number].evolution[x].first;
+							evolved = true;
 							do_alert(old_nickname + string(" evolved into ") + all_mon[out.number].name + string("!"));
 							mc.seen[out.number] = true;
 							mc.caught[out.number] = true;
@@ -1632,7 +1634,7 @@ public:
 				}
 			}
 			for (unsigned x = 0; x < all_mon[out.number].learned.size(); ++x) {
-				if (all_mon[out.number].learned[x].first == out.level) {
+				if (all_mon[out.number].learned[x].first == out.level || (all_mon[out.number].learned[x].first == 0 && evolved)) {
 					if (!confirm_learn) { // TODO:  OR Surface confirmation window
 						create_move(out, all_mon[out.number].learned[x].second, counter % 4);
 						counter++;
