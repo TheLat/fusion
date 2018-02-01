@@ -1,0 +1,13 @@
+NAME
+S.S. Anne Halls
+NPCS
+vermilion-house1-bookshelf3 blank 0 1
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+TELEPORT
+2 8 vermilion-city 12 6
+3 8 vermilion-city 12 6
+DATA
+
+82 82
