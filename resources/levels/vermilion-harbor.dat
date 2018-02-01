@@ -7,6 +7,7 @@ MENU:ALERT:TODO: Add truck and MEW encounter
 END
 TELEPORT
 14 0 vermilion-city 23 33
+14 3 ss-anne-halls 25 1
 WATER_ENCOUNTERS_OLD
 129
 WATER_ENCOUNTERS_GOOD
