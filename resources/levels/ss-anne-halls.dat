@@ -1,9 +1,54 @@
 NAME
 S.S. Anne Halls
 NPCS
-vermilion-house1-bookshelf3 blank 0 1
+ss-anne-halls-guy1 cap 26 6
 INTERACTIONS
-MENU:ALERT:Crammed full of POK{e-accent}MON books!
+MENU:ALERT:The passengers are restless!|MENU:ALERT:You might be challenged by the more bored ones!
+END
+ss-anne-halls-guy2 bellhop 16 7 WANDER
+INTERACTIONS
+MENU:ALERT:Bonjour! {NEWLINE} I am le waiter on this ship!|MENU:ALERT:I will be happy to serve you anything you please!|MENU:ALERT:Ah! Le strong silent type!
+END
+ss-anne-halls-chef1 chef 1 43 WANDER
+INTERACTIONS
+MENU:ALERT:You, mon petit! We're busy here! Out of the way!
+END
+ss-anne-halls-chef2 chef 5 41 WANDER
+INTERACTIONS
+MENU:ALERT:I saw an odd ball in the trash.
+END
+ss-anne-halls-chef3 chef 9 46 WANDER
+INTERACTIONS
+MENU:ALERT:I'm so busy I'm getting dizzy!
+END
+ss-anne-halls-chef4 chef 11 49 UP
+INTERACTIONS
+MENU:ALERT:Er-hem! Indeed I am le CHEF!|MENU:ALERT:Le main course is|GET:CHEF_MESSAGE|{MENU:ALERT:Eels au Barbecue!|MENU:ALERT:Les guests will mutiny, I fear.|SET:CHEF_MESSAGE:1}{MENU:ALERT:Salmon du Salad!|MENU:ALERT:Les guests may gripe if it's fish again, however!|SET:CHEF_MESSAGE:2}{MENU:ALERT:Prime Beef Steak!|MENU:ALERT:But, have I enough fillets du beef?|SET:CHEF_MESSAGE:0}|FACE:UP
+END
+ss-anne-halls-chef5 chef 13 46
+INTERACTIONS
+MENU:ALERT:Snivel...sniff...|MENU:ALERT:I only get to peel onions...{NEWLINE}Snivel...
+END
+ss-anne-halls-chef6 chef 13 44
+INTERACTIONS
+MENU:ALERT:Did you hear about SNORLAX?|MENU:ALERT:All it does is eat and sleep!
+END
+ss-anne-halls-chef7 chef 13 42
+INTERACTIONS
+MENU:ALERT:Hum-de-hum-de-ho...|MENU:ALERT:I peel spuds every day!{NEWLINE}Hum-hum...
+END
+ss-anne-halls-trash1 blank 13 41
+INTERACTIONS
+MENU:ALERT:Nope, there's only trash here.
+END
+ss-anne-halls-trash2 blank 13 43
+INTERACTIONS
+MENU:ALERT:Nope, there's only trash here.
+END
+ss-anne-halls-trash3 blank 13 45
+INTERACTIONS
+GIVE_ITEM:GREAT BALL
+MENU:ALERT:Nope, there's only trash here.
 END
 TELEPORT
 25 0 vermilion-harbor 14 2
