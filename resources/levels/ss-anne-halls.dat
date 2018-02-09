@@ -50,6 +50,54 @@ INTERACTIONS
 GIVE_ITEM:GREAT BALL
 MENU:ALERT:Nope, there's only trash here.
 END
+ss-anne-halls-guy3 bellhop 2 64 WANDER
+INTERACTIONS
+MENU:ALERT:This ship, she is a luxury liner for trainers!|MENU:ALERT:At every port, we hold parties with invited trainers!
+END
+ss-anne-halls-guy4 cap 10 80 WANDER
+INTERACTIONS
+MENU:ALERT:Our CAPTAIN is a sword master!|MENU:ALERT:He even teaches CUT to POK{e-accent}MON!
+END
+ss-anne-halls-guy4 cap 10 80 WANDER
+INTERACTIONS
+MENU:ALERT:Our CAPTAIN is a sword master!|MENU:ALERT:He even teaches CUT to POK{e-accent}MON!
+END
+ss-anne-halls-guy5 cap 13 100 UP
+FORCE_INTERACTION
+0 -1
+0 -2
+0 -3
+END
+INTERACTIONS
+!:ss-anne-halls-guy5|MOVE_TO_PLAYER|MENU:ALERT:Ahoy there!{NEWLINE}Are you seasick?|BATTLE:ss-anne-halls-guy5|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:My Pa said there are 1000 kinds of POK{e-accent}MON. I think there are more.
+END
+ss-anne-halls-guy6 cap 7 96 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+0 3
+END
+INTERACTIONS
+!:ss-anne-halls-guy6|MOVE_TO_PLAYER|MENU:ALERT:Hey matey!|MENU:ALERT:Let's do a little jig!|BATTLE:ss-anne-halls-guy6|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:How many kinds of POK{e-accent}MON do you think there are?
+END
+ss-anne-halls-guy7 man2 8 94
+INTERACTIONS
+MENU:ALERT:The party's over. The ship will be departing soon.
+END
+ss-anne-halls-guy8 cap 7 101
+INTERACTIONS
+MENU:ALERT:Scrubbing the decks is hard work!
+END
+ss-anne-halls-guy9 guy2 10 103
+INTERACTIONS
+MENU:ALERT:Urf. I feel ill.|MENU:ALERT:I stepped out to get some air.
+END
+TRAINERS
+ss-anne-halls-guy5 30 0.3 0.3 SAILOR sailor.png {SAILOR: I was just careless!}{} 66-66:17|72-72:17
+ss-anne-halls-guy6 30 0.3 0.3 SAILOR sailor.png {SAILOR: You're impressive!}{} 66-66:18|90-90:18
+END
 TELEPORT
 25 0 vermilion-harbor 14 2
 26 0 vermilion-harbor 14 2
