@@ -94,9 +94,30 @@ ss-anne-halls-guy9 guy2 10 103
 INTERACTIONS
 MENU:ALERT:Urf. I feel ill.|MENU:ALERT:I stepped out to get some air.
 END
+ss-anne-halls-rival1 rival 35 60
+INTERACTIONS
+MENU:ALERT:ERROR
+END
+ss-anne-halls-rivalscript1 blank 35 63 INCORPOREAL
+FORCE_INTERACTION
+0 1
+END
+INTERACTIONS
+MOVE:ss-anne-halls-rival1:0,1|MOVE:ss-anne-halls-rival1:0,1|MOVE:ss-anne-halls-rival1:0,1|MENU:ALERT:{RIVAL_NAME}: Bonjour! {NEWLINE} {PLAYER_NAME}!|MENU:ALERT:Imagine seeing you here!|MENU:ALERT:{PLAYER_NAME}, were you really invited?|MENU:ALERT:So, how's your POK{e-accent}DEX coming?|MENU:ALERT:I already caught 40 kinds, pal!|MENU:ALERT:Different kinds are everywhere!|MENU:ALERT:Crawl around in grassy areas!|GET:RIVALVALUE|{BATTLE:rival-ss-anne-halls-0}{BATTLE:rival-ss-anne-halls-1}{BATTLE:rival-ss-anne-halls-2}|{NO_ADVANCE}{}|MENU:ALERT:{RIVAL_NAME}: I heard there was a CUT master on board.|MENU:ALERT:But, he was just a seasick, old man!|MENU:ALERT:But, CUT itself is really useful!|MENU:ALERT:You should go see him! Smell ya!|MOVE:ss-anne-halls-rival1:1,0|MOVE:ss-anne-halls-rival1:0,1|MOVE:ss-anne-halls-rival1:0,1|MOVE:ss-anne-halls-rival1:0,1|MOVE:ss-anne-halls-rival1:0,1|MOVE:ss-anne-halls-rival1:0,1|DEACTIVATE:ss-anne-halls-rivalscript1|DEACTIVATE:ss-anne-halls-rivalscript2|DEACTIVATE:ss-anne-halls-rival1
+END
+ss-anne-halls-rivalscript2 blank 35 64 INCORPOREAL
+FORCE_INTERACTION
+1 0
+END
+INTERACTIONS
+MOVE:ss-anne-halls-rival1:0,1|MOVE:ss-anne-halls-rival1:0,1|MOVE:ss-anne-halls-rival1:0,1|MOVE:ss-anne-halls-rival1:0,1|SET_FACE:ss-anne-halls-rival1:RIGHT|MENU:ALERT:{RIVAL_NAME}: Bonjour! {NEWLINE} {PLAYER_NAME}!|MENU:ALERT:Imagine seeing you here!|MENU:ALERT:{PLAYER_NAME}, were you really invited?|MENU:ALERT:So, how's your POK{e-accent}DEX coming?|MENU:ALERT:I already caught 40 kinds, pal!|MENU:ALERT:Different kinds are everywhere!|MENU:ALERT:Crawl around in grassy areas!|GET:RIVALVALUE|{BATTLE:rival-ss-anne-halls-0}{BATTLE:rival-ss-anne-halls-1}{BATTLE:rival-ss-anne-halls-2}|{NO_ADVANCE}{}|MENU:ALERT:{RIVAL_NAME}: I heard there was a CUT master on board.|MENU:ALERT:But, he was just a seasick, old man!|MENU:ALERT:But, CUT itself is really useful!|MENU:ALERT:You should go see him! Smell ya!|MOVE:ss-anne-halls-rival1:0,1|MOVE:ss-anne-halls-rival1:0,1|MOVE:ss-anne-halls-rival1:0,1|MOVE:ss-anne-halls-rival1:0,1|MOVE:ss-anne-halls-rival1:0,1|DEACTIVATE:ss-anne-halls-rivalscript1|DEACTIVATE:ss-anne-halls-rivalscript2|DEACTIVATE:ss-anne-halls-rival1
+END
 TRAINERS
 ss-anne-halls-guy5 30 0.3 0.3 SAILOR sailor.png {SAILOR: I was just careless!}{} 66-66:17|72-72:17
 ss-anne-halls-guy6 30 0.3 0.3 SAILOR sailor.png {SAILOR: You're impressive!}{} 66-66:18|90-90:18
+rival-ss-anne-halls-0 65 0.45 0.45 {RIVAL_NAME} rival2.png {{RIVAL_NAME}: Humph!{NEWLINE}At least you're raising your POK{e-accent}MON!}{{RIVAL_NAME}: Yeah! Am I great or what?} 25-25:26|19-19:16|22-28:25|8-8:27
+rival-ss-anne-halls-1 65 0.45 0.45 {RIVAL_NAME} rival2.png {{RIVAL_NAME}: Humph!{NEWLINE}At least you're raising your POK{e-accent}MON!}{{RIVAL_NAME}: Yeah! Am I great or what?} 17-17:26|19-19:16|74-74:25|2-2:27
+rival-ss-anne-halls-2 65 0.45 0.45 {RIVAL_NAME} rival2.png {{RIVAL_NAME}: Humph!{NEWLINE}At least you're raising your POK{e-accent}MON!}{{RIVAL_NAME}: Yeah! Am I great or what?} 70-70:26|19-19:16|56-56:18|5-5:28
 END
 TELEPORT
 25 0 vermilion-harbor 14 2
