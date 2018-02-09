@@ -112,6 +112,23 @@ END
 INTERACTIONS
 MOVE:ss-anne-halls-rival1:0,1|MOVE:ss-anne-halls-rival1:0,1|MOVE:ss-anne-halls-rival1:0,1|MOVE:ss-anne-halls-rival1:0,1|SET_FACE:ss-anne-halls-rival1:RIGHT|MENU:ALERT:{RIVAL_NAME}: Bonjour! {NEWLINE} {PLAYER_NAME}!|MENU:ALERT:Imagine seeing you here!|MENU:ALERT:{PLAYER_NAME}, were you really invited?|MENU:ALERT:So, how's your POK{e-accent}DEX coming?|MENU:ALERT:I already caught 40 kinds, pal!|MENU:ALERT:Different kinds are everywhere!|MENU:ALERT:Crawl around in grassy areas!|GET:RIVALVALUE|{BATTLE:rival-ss-anne-halls-0}{BATTLE:rival-ss-anne-halls-1}{BATTLE:rival-ss-anne-halls-2}|{NO_ADVANCE}{}|MENU:ALERT:{RIVAL_NAME}: I heard there was a CUT master on board.|MENU:ALERT:But, he was just a seasick, old man!|MENU:ALERT:But, CUT itself is really useful!|MENU:ALERT:You should go see him! Smell ya!|MOVE:ss-anne-halls-rival1:0,1|MOVE:ss-anne-halls-rival1:0,1|MOVE:ss-anne-halls-rival1:0,1|MOVE:ss-anne-halls-rival1:0,1|MOVE:ss-anne-halls-rival1:0,1|DEACTIVATE:ss-anne-halls-rivalscript1|DEACTIVATE:ss-anne-halls-rivalscript2|DEACTIVATE:ss-anne-halls-rival1
 END
+ss-anne-halls-book blank 1 118
+INTERACTIONS
+MENU:ALERT:How to Conquer Seasickness...|MENU:ALERT:The CAPTAIN's reading this!
+END
+ss-anne-halls-trash4 blank 4 117
+INTERACTIONS
+MENU:ALERT:Yuck! Shouldn't have looked!
+END
+ss-anne-halls-bookcase blank 5 117
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+ss-anne-halls-captain hat 4 118
+INTERACTIONS
+MENU:ALERT:CAPTAIN: Ooargh... I feel hideous... Uurp! Seasick...|MENU:ALERT:RED rubbed the CAPTAIN's back!|MENU:ALERT:Rub-rub{NEWLINE}Rub-rub|MENU:ALERT:CAPTAIN: Whew! Thank you! I feel much better now!|MENU:ALERT:You want to see my CUT technique?|MENU:ALERT:I could show you if I wasn't ill...|MENU:ALERT:I know! You can have this!|MENU:ALERT:Teach it to your POK{e-accent}MON and you can see it CUT any time!|GIVE_ITEM:HM01
+MENU:ALERT:CAPTAIN: Whew!|MENU:ALERT:Now that I'm not sick anymore, I can take us out of here.
+END
 TRAINERS
 ss-anne-halls-guy5 30 0.3 0.3 SAILOR sailor.png {SAILOR: I was just careless!}{} 66-66:17|72-72:17
 ss-anne-halls-guy6 30 0.3 0.3 SAILOR sailor.png {SAILOR: You're impressive!}{} 66-66:18|90-90:18
