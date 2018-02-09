@@ -152,6 +152,12 @@ TELEPORT
 16 99 ss-anne-halls 1 80
 35 60 ss-anne-halls 1 123
 0 123 ss-anne-halls 36 60
+6 9 ss-anne-rooms 0 1
+10 9 ss-anne-rooms 0 12
+14 9 ss-anne-rooms 0 23
+18 9 ss-anne-rooms 0 34
+22 9 ss-anne-rooms 0 45
+29 9 ss-anne-rooms 0 56
 DATA
 82   82  82  82  82  82  82  82  82  82  82  82  82  82  82  82  82  82  82  82  82  82  82  82  82 166 166  82
 82   82  82  82  82  82  82  82  82  82  82  82  82  82  82  82  82  82  82  82  82  82  82  82 389 401 402 388
