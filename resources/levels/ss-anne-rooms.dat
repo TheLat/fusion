@@ -1,9 +1,39 @@
 NAME
 S.S. Anne Rooms
 NPCS
-pewter-house1-bald bald4 2 3 RIGHT
+ss-anne-rooms-hat1 hat 2 3 WANDER
 INTERACTIONS
-MENU:ALERT:POK{e-accent}MON learn new techniques as they grow!|MENU:ALERT:But, some moves must be taught by the trainer!
+MENU:ALERT:Ssh! I'm a GLOBAL POLICE agent!|MENU:ALERT:I'm on the trail of TEAM ROCKET!
+END
+ss-anne-rooms-girl1 girl 3 12 LEFT
+FORCE_INTERACTION
+-1 0
+-2 0
+END
+INTERACTIONS
+!:ss-anne-rooms-girl1|MOVE_TO_PLAYER|MENU:ALERT:I collected these POK{e-accent}MON from all around the world!|BATTLE:ss-anne-rooms-girl1|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:You hurt my poor worldly POK{e-accent}MON!|MENU:ALERT:I demand that you heal them at a POK{e-accent}MON CENTER!
+END
+ss-anne-rooms-boy1 boy 1 15 UP
+FORCE_INTERACTION
+0 -1
+0 -2
+END
+INTERACTIONS
+!:ss-anne-rooms-boy1|MOVE_TO_PLAYER|MENU:ALERT:I love POK{e-accent}MON! Do you?|BATTLE:ss-anne-rooms-boy1|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Let me be your friend, OK?|MENU:ALERT:Then we can trade POK{e-accent}MON!
+END
+ss-anne-rooms-woman1 woman3 0 14 RIGHT
+INTERACTIONS
+MENU:ALERT:We are cruising around the world.
+END
+ss-anne-rooms-item1 orb 2 16
+INTERACTIONS
+GIVE_ITEM:TM08|DEACTIVATE:ss-anne-rooms-item1
+END
+TRAINERS
+ss-anne-rooms-girl1 15 0.2 0.2 LASS lass.png {LASS: Oh no! I went around the world for these!}{} 16-16:18|29-29:18
+ss-anne-rooms-boy1 15 0.4 0.1 YOUNGSTER youngster.png {YOUNGSTER: Wow! You're great!}{} 32-32:21
 END
 TELEPORT
 0 0 ss-anne-halls 6 8
