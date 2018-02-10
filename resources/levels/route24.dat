@@ -68,7 +68,7 @@ END
 TRAINERS
 route24-boy1 10 0.1 0.1 BUG{SPACE}CATCHER bugcatcher.png {BUG CATCHER: Whoo! Good stuff!}{} 10-10:14|13-13:14
 route24-girl1 15 0.1 0.1 LASS lass.png {LASS: How could I lose?}{} 16-16:14|29-29:14
-route24-boy2 15 0.1 0.1 YOUNGSTER youngster.png {YOUNGSTER: Ow! Stomped flat!}{} 19-19:14|23-23:14|41-41:14
+route24-boy2 15 0.4 0.1 YOUNGSTER youngster.png {YOUNGSTER: Ow! Stomped flat!}{} 19-19:14|23-23:14|41-41:14
 route24-girl2 15 0.1 0.1 LASS lass.png {LASS: I lost, too!}{} 16-16:16|29-29:16
 route24-guy1 20 0.1 0.1 JR.TRAINER{MALE} jrtrainerm.png {JR.TRAINER{MALE}: Whoa! Too much!}{} 56-56:18
 route24-guy2 35 0.3 0.3 ROCKET rocket.png {ROCKET: Arrgh! You are good!}{} 23-23:15|41-41:15|24-24:20
