@@ -31,9 +31,36 @@ ss-anne-rooms-item1 orb 2 16
 INTERACTIONS
 GIVE_ITEM:TM08|DEACTIVATE:ss-anne-rooms-item1
 END
+ss-anne-rooms-girl2 girl2 2 23 DOWN
+INTERACTIONS
+MENU:ALERT:I always travel with my WIGGLYTUFF!
+END
+ss-anne-rooms-mon1 clefairy 3 23 DOWN
+INTERACTIONS
+MENU:ALERT:WIGGLYTUFF: Puup pu puu!
+END
+ss-anne-rooms-bald1 bald3 0 26 RIGHT
+INTERACTIONS
+MENU:ALERT:A cruise is so elegant yet cozy!
+END
+ss-anne-rooms-woman2 woman3 2 37 WANDER
+INTERACTIONS
+MENU:ALERT:Waiter, I would like a cherry pie please!
+END
+ss-anne-rooms-hat2 hat 1 48 UP
+FORCE_INTERACTION
+0 -1
+0 -2
+0 -3
+END
+INTERACTIONS
+!:ss-anne-rooms-hat2|MOVE_TO_PLAYER|MENU:ALERT:You pup! How dare you barge in!|BATTLE:ss-anne-rooms-hat2|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I wish to be left alone! Get out!
+END
 TRAINERS
 ss-anne-rooms-girl1 15 0.2 0.2 LASS lass.png {LASS: Oh no! I went around the world for these!}{} 16-16:18|29-29:18
 ss-anne-rooms-boy1 15 0.4 0.1 YOUNGSTER youngster.png {YOUNGSTER: Wow! You're great!}{} 32-32:21
+ss-anne-rooms-hat2 70 0.4 0.4 GENTLEMAN gentleman.png {GENTLEMAN: Humph! You rude child!}{} 32-32:19:DOUBLE-EDGE,RAGE,DOUBLE TEAM,REST|29-29:19:THUNDERBOLT,BODY SLAM,MIMIC,REST
 END
 TELEPORT
 0 0 ss-anne-halls 6 8

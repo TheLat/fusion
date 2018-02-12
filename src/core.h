@@ -2226,7 +2226,7 @@ public:
 					defender.last_hit_physical = dam;
 				}
 				attacker.last_damage = dam;
-				if (dam > 0 && in_status(defender, string("RAGE"))) {
+				if (dam > 0 && in_status(defender, string("RAGE")) && !is_KO(defender)) {
 					apply_status(defender, string("ATTACK_UPx2"));
 					apply_status(defender, string("DEFENSE_UPx2"));
 					apply_status(defender, string("SPECIAL_UPx2"));
@@ -2682,6 +2682,8 @@ public:
 		while (true) {
 			if (in_status(mc.team[mc.selected], string("RAGE")) && mc.team[mc.selected].queue.size() == 0)
 				mc.team[mc.selected].queue.push_back(string("RAGE2"));
+			if (in_status(mc.enemy_team[mc.enemy_selected], string("RAGE")) && mc.enemy_team[mc.enemy_selected].queue.size() == 0)
+				mc.enemy_team[mc.enemy_selected].queue.push_back(string("RAGE2"));
 			if (mc.team[mc.selected].queue.size() == 0) {
 				bool any_valid_moves;
 				any_valid_moves = false;
@@ -2832,7 +2834,8 @@ public:
 				mc.selected = choices[0];
 				mc.team[mc.selected].exp_bar_index = exp_bar_index;
 				mc.team[mc.selected].sprite_index = team_sprite;
-				mc.enemy_team[mc.enemy_selected].fought[mc.selected] = true;
+				if (!is_KO(mc.enemy_team[mc.enemy_selected]))
+					mc.enemy_team[mc.enemy_selected].fought[mc.selected] = true;
 				rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
 			}
 			if (is_KO(mc.enemy_team[mc.enemy_selected])) {
@@ -2947,6 +2950,8 @@ public:
 		while (true) {
 			if (in_status(mc.team[mc.selected], string("RAGE")) && mc.team[mc.selected].queue.size() == 0)
 				mc.team[mc.selected].queue.push_back(string("RAGE2"));
+			if (in_status(mc.enemy_team[mc.enemy_selected], string("RAGE")) && mc.enemy_team[mc.enemy_selected].queue.size() == 0)
+				mc.enemy_team[mc.enemy_selected].queue.push_back(string("RAGE2"));
 			if (mc.team[mc.selected].queue.size() == 0) { 
 				bool any_valid_moves;
 				any_valid_moves = false;
@@ -3179,6 +3184,8 @@ public:
 				mc.team[mc.selected].damage_dealt.clear();
 				mc.selected = choices[0];
 				mc.team[mc.selected].exp_bar_index = exp_bar_index;
+				if (!is_KO(mc.enemy_team[mc.enemy_selected]))
+					mc.enemy_team[mc.enemy_selected].fought[mc.selected] = true;
 				rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
 			}
 			if (is_KO(mc.enemy_team[mc.enemy_selected])) {
