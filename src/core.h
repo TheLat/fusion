@@ -2636,6 +2636,9 @@ public:
 			mc.enemy_team[i] = t.team[i];
 			mc.enemy_team[i].wild = false;
 			mc.enemy_team[i].enemy = true;
+			for (int j = 0; j < 6; ++j) {
+				mc.enemy_team[i].fought[j] = false;
+			}
 		}
 		mc.team[mc.selected].queue.clear();
 		mc.team[mc.selected].last_move = "";

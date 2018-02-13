@@ -57,10 +57,41 @@ INTERACTIONS
 !:ss-anne-rooms-hat2|MOVE_TO_PLAYER|MENU:ALERT:You pup! How dare you barge in!|BATTLE:ss-anne-rooms-hat2|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I wish to be left alone! Get out!
 END
+ss-anne-rooms-hat3 hat 2 58 LEFT
+FORCE_INTERACTION
+-1 0
+-2 0
+END
+INTERACTIONS
+!:ss-anne-rooms-hat3|MOVE_TO_PLAYER|MENU:ALERT:I travel alone on my journeys!|MENU:ALERT:My POK{e-accent}MON are my only friends!|BATTLE:ss-anne-rooms-hat3|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:You should be nice to friends!
+END
+ss-anne-rooms-fat1 fat 0 70 RIGHT
+FORCE_INTERACTION
+1 0
+2 0
+3 0
+END
+INTERACTIONS
+!:ss-anne-rooms-fat1|MOVE_TO_PLAYER|MENU:ALERT:Hello stranger! Stop and chat!|MENU:ALERT:All my POK{e-accent}MON are from the sea!|BATTLE:ss-anne-rooms-fat1|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I was going to make you my assistant, too!
+END
+ss-anne-rooms-cap1 cap 0 68 RIGHT
+FORCE_INTERACTION
+1 0
+2 0
+END
+INTERACTIONS
+!:ss-anne-rooms-cap1|MOVE_TO_PLAYER|MENU:ALERT:Matey, you're walking the plank if you lose!|BATTLE:ss-anne-rooms-cap1|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Jellyfish sometimes drift into the ship.
+END
 TRAINERS
 ss-anne-rooms-girl1 15 0.2 0.2 LASS lass.png {LASS: Oh no! I went around the world for these!}{} 16-16:18|29-29:18
 ss-anne-rooms-boy1 15 0.4 0.1 YOUNGSTER youngster.png {YOUNGSTER: Wow! You're great!}{} 32-32:21
 ss-anne-rooms-hat2 70 0.4 0.4 GENTLEMAN gentleman.png {GENTLEMAN: Humph! You rude child!}{} 32-32:19:DOUBLE-EDGE,RAGE,DOUBLE TEAM,REST|29-29:19:THUNDERBOLT,BODY SLAM,MIMIC,REST
+ss-anne-rooms-hat3 70 0.4 0.4 GENTLEMAN gentleman.png {GENTLEMAN: My, my friends...}{} 58-58:18:BITE,FIRE BLAST,DIG,DOUBLE TEAM|58-58:18:SWIFT,FIRE BLAST,RAGE,SUBSTITUTE
+ss-anne-rooms-fat1 35 0.3 0.3 FISHERMAN fisherman.png {FISHERMAN: Darn! I let that one get away!}{} 72-72:17|120-120:17|90-90:17
+ss-anne-rooms-cap1 30 0.3 0.3 SAILOR sailor.png {SAILOR: Argh! Beaten by a kid!}{} 66-66:20
 END
 TELEPORT
 0 0 ss-anne-halls 6 8
@@ -69,28 +100,28 @@ TELEPORT
 0 33 ss-anne-halls 18 8
 0 44 ss-anne-halls 22 8
 0 55 ss-anne-halls 29 8
-2 71 ss-anne-halls 6 27
-3 71 ss-anne-halls 6 27
-2 81 ss-anne-halls 10 27
-3 81 ss-anne-halls 10 27
-2 91 ss-anne-halls 14 27
-3 91 ss-anne-halls 14 27
-2 101 ss-anne-halls 18 27
-3 101 ss-anne-halls 18 27
-2 111 ss-anne-halls 22 27
-3 111 ss-anne-halls 22 27
-2 121 ss-anne-halls 8 68
-3 121 ss-anne-halls 8 68
-2 131 ss-anne-halls 12 68
-3 131 ss-anne-halls 12 68
-2 141 ss-anne-halls 16 68
-3 141 ss-anne-halls 16 68
-2 151 ss-anne-halls 20 68
-3 151 ss-anne-halls 20 68
-2 161 ss-anne-halls 24 68
-3 161 ss-anne-halls 24 68
-2 171 ss-anne-halls 28 68
-3 171 ss-anne-halls 28 68
+2 72 ss-anne-halls 6 27
+3 72 ss-anne-halls 6 27
+2 83 ss-anne-halls 10 27
+3 83 ss-anne-halls 10 27
+2 94 ss-anne-halls 14 27
+3 94 ss-anne-halls 14 27
+2 105 ss-anne-halls 18 27
+3 105 ss-anne-halls 18 27
+2 116 ss-anne-halls 22 27
+3 116 ss-anne-halls 22 27
+2 127 ss-anne-halls 8 68
+3 127 ss-anne-halls 8 68
+2 138 ss-anne-halls 12 68
+3 138 ss-anne-halls 12 68
+2 149 ss-anne-halls 16 68
+3 149 ss-anne-halls 16 68
+2 160 ss-anne-halls 20 68
+3 160 ss-anne-halls 20 68
+2 171 ss-anne-halls 24 68
+3 171 ss-anne-halls 24 68
+2 182 ss-anne-halls 28 68
+3 182 ss-anne-halls 28 68
 DATA
 400 398 397 398
 182 182 182 182
@@ -162,6 +193,7 @@ DATA
 426 427 182 423
 182 182 182 424
 425 182 182 182
+182 182 182 182
 182 182 185 185
 82   82 166 166
 82
@@ -172,6 +204,7 @@ DATA
 426 427 182 423
 182 182 182 424
 425 182 182 182
+182 182 182 182
 182 182 185 185
 82   82 166 166
 82
@@ -182,6 +215,7 @@ DATA
 426 427 182 423
 182 182 182 424
 425 182 182 182
+182 182 182 182
 182 182 185 185
 82   82 166 166
 82
@@ -192,6 +226,7 @@ DATA
 426 427 182 423
 182 182 182 424
 425 182 182 182
+182 182 182 182
 182 182 185 185
 82   82 166 166
 82
@@ -202,6 +237,7 @@ DATA
 426 427 182 423
 182 182 182 424
 425 182 182 182
+182 182 182 182
 182 182 185 185
 82   82 166 166
 82
@@ -212,6 +248,7 @@ DATA
 426 427 182 423
 182 182 182 424
 425 182 182 182
+182 182 182 182
 182 182 185 185
 82   82 166 166
 82
@@ -222,6 +259,7 @@ DATA
 426 427 182 423
 182 182 182 424
 425 182 182 182
+182 182 182 182
 182 182 185 185
 82   82 166 166
 82
@@ -232,6 +270,7 @@ DATA
 426 427 182 423
 182 182 182 424
 425 182 182 182
+182 182 182 182
 182 182 185 185
 82   82 166 166
 82
@@ -242,6 +281,7 @@ DATA
 426 427 182 423
 182 182 182 424
 425 182 182 182
+182 182 182 182
 182 182 185 185
 82   82 166 166
 82
@@ -252,6 +292,7 @@ DATA
 426 427 182 423
 182 182 182 424
 425 182 182 182
+182 182 182 182
 182 182 185 185
 82   82 166 166
 82
@@ -262,5 +303,6 @@ DATA
 426 427 182 423
 182 182 182 424
 425 182 182 182
+182 182 182 182
 182 182 185 185
 82   82 166 166
