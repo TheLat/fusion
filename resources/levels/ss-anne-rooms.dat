@@ -85,6 +85,51 @@ INTERACTIONS
 !:ss-anne-rooms-cap1|MOVE_TO_PLAYER|MENU:ALERT:Matey, you're walking the plank if you lose!|BATTLE:ss-anne-rooms-cap1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Jellyfish sometimes drift into the ship.
 END
+ss-anne-rooms-cap2 cap 2 80 LEFT
+FORCE_INTERACTION
+-1 0
+-2 0
+END
+INTERACTIONS
+!:ss-anne-rooms-cap2|MOVE_TO_PLAYER|MENU:ALERT:Us sailors have POK{e-accent}MON too!|BATTLE:ss-anne-rooms-cap2|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:We caught all our POK{e-accent}MON while out at sea!
+END
+ss-anne-rooms-item2 orb 0 79
+INTERACTIONS
+GIVE_ITEM:TM44|DEACTIVATE:ss-anne-rooms-item2
+END
+ss-anne-rooms-cap3 cap 2 90 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+END
+INTERACTIONS
+!:ss-anne-rooms-cap3|MOVE_TO_PLAYER|MENU:ALERT:I like feisty kids like you!|BATTLE:ss-anne-rooms-cap3|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Sea POK{e-accent}MON live in deep water. You'll need a ROD!
+END
+ss-anne-rooms-item3 orb 0 90
+INTERACTIONS
+GIVE_ITEM:ETHER|DEACTIVATE:ss-anne-rooms-item3
+END
+ss-anne-rooms-cap4 cap 2 100 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+0 3
+END
+INTERACTIONS
+!:ss-anne-rooms-cap4|MOVE_TO_PLAYER|MENU:ALERT:My sailor's pride is at stake!|BATTLE:ss-anne-rooms-cap4|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Did you see the FISHING GURU in VERMILION CITY?
+END
+ss-anne-rooms-cap5 cap 0 102 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+END
+INTERACTIONS
+!:ss-anne-rooms-cap5|MOVE_TO_PLAYER|MENU:ALERT:YOu know what they say about sailors and fighting!|BATTLE:ss-anne-rooms-cap5|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Haha! Want to be a sailor, mate?
+END
 TRAINERS
 ss-anne-rooms-girl1 15 0.2 0.2 LASS lass.png {LASS: Oh no! I went around the world for these!}{} 16-16:18|29-29:18
 ss-anne-rooms-boy1 15 0.4 0.1 YOUNGSTER youngster.png {YOUNGSTER: Wow! You're great!}{} 32-32:21
@@ -92,6 +137,10 @@ ss-anne-rooms-hat2 70 0.4 0.4 GENTLEMAN gentleman.png {GENTLEMAN: Humph! You rud
 ss-anne-rooms-hat3 70 0.4 0.4 GENTLEMAN gentleman.png {GENTLEMAN: My, my friends...}{} 58-58:18:BITE,FIRE BLAST,DIG,DOUBLE TEAM|58-58:18:SWIFT,FIRE BLAST,RAGE,SUBSTITUTE
 ss-anne-rooms-fat1 35 0.3 0.3 FISHERMAN fisherman.png {FISHERMAN: Darn! I let that one get away!}{} 72-72:17|120-120:17|90-90:17
 ss-anne-rooms-cap1 30 0.3 0.3 SAILOR sailor.png {SAILOR: Argh! Beaten by a kid!}{} 66-66:20
+ss-anne-rooms-cap2 30 0.3 0.3 SAILOR sailor.png {SAILOR: OK, you're not bad.}{} 72-72:18|120-120:18
+ss-anne-rooms-cap3 30 0.3 0.3 SAILOR sailor.png {SAILOR: Arg! Lost it!}{} 116-116:17|116-116:17|116-116:17
+ss-anne-rooms-cap4 30 0.3 0.3 SAILOR sailor.png {SAILOR: Your spirit sank me!}{} 116-116:17|90-90:17|72-72:17
+ss-anne-rooms-cap5 30 0.3 0.3 SAILOR sailor.png {SAILOR: Right! Good fight, mate!}{} 90-90:21
 END
 TELEPORT
 0 0 ss-anne-halls 6 8
