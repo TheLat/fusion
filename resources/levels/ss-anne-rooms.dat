@@ -127,8 +127,87 @@ FORCE_INTERACTION
 0 2
 END
 INTERACTIONS
-!:ss-anne-rooms-cap5|MOVE_TO_PLAYER|MENU:ALERT:YOu know what they say about sailors and fighting!|BATTLE:ss-anne-rooms-cap5|{NO_ADVANCE}{DISABLE_FORCE}
+!:ss-anne-rooms-cap5|MOVE_TO_PLAYER|MENU:ALERT:You know what they say about sailors and fighting!|BATTLE:ss-anne-rooms-cap5|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Haha! Want to be a sailor, mate?
+END
+ss-anne-rooms-guy1 man2 0 113
+INTERACTIONS
+MENU:ALERT:My buddy, MACHOKE, is super strong!|MENU:ALERT:He has the STRENGTH to move big rocks!
+END
+ss-anne-rooms-machoke mon 1 112 WANDER
+INTERACTIONS
+MENU:ALERT:MACHOKE: Gwoh! Goggoh!
+END
+ss-anne-rooms-item4 orb 2 111
+INTERACTIONS
+GIVE_ITEM:MAX POTION|DEACTIVATE:ss-anne-rooms-item4
+END
+ss-anne-rooms-cap5 cap 0 102 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+END
+INTERACTIONS
+!:ss-anne-rooms-cap5|MOVE_TO_PLAYER|MENU:ALERT:You know what they say about sailors and fighting!|BATTLE:ss-anne-rooms-cap5|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Haha! Want to be a sailor, mate?
+END
+ss-anne-rooms-hat4 hat 1 123 DOWN
+INTERACTIONS
+MENU:ALERT:In all my travels I've never seen any POK{e-accent}MON sleep like this one!|MENU:ALERT:It was something like this!|MENU:DEX_ENTRY_SEEN:143-143
+END
+ss-anne-rooms-hat5 hat 0 134 RIGHT
+FORCE_INTERACTION
+1 0
+2 0
+END
+INTERACTIONS
+!:ss-anne-rooms-hat5|MOVE_TO_PLAYER|MENU:ALERT:Competing against the young keeps me youthful.|BATTLE:ss-anne-rooms-hat5|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:15 years ago, I would have won!
+END
+ss-anne-rooms-fat2 fat 3 136 LEFT
+FORCE_INTERACTION
+-1 0
+-2 0
+-3 0
+END
+INTERACTIONS
+!:ss-anne-rooms-fat2|MOVE_TO_PLAYER|MENU:ALERT:Check out what I fished up!|BATTLE:ss-anne-rooms-fat2|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Party?|MENU:ALERT:The cruise ship's party should be over by now.
+END
+ss-anne-rooms-item5 orb 2 133
+INTERACTIONS
+GIVE_ITEM:MAX ETHER|DEACTIVATE:ss-anne-rooms-item5
+END
+ss-anne-rooms-old1 oldman 2 144
+INTERACTIONS
+MENU:ALERT:POK{e-accent}MON can CUT down small bushes.
+END
+ss-anne-rooms-hat6 hat 1 145
+INTERACTIONS
+MENU:ALERT:Ah yes, I have seen some POK{e-accent}MON ferry people across water!
+END
+ss-anne-rooms-hat7 hat 0 158 RIGHT
+FORCE_INTERACTION
+1 0
+2 0
+3 0
+END
+INTERACTIONS
+!:ss-anne-rooms-hat7|MOVE_TO_PLAYER|MENU:ALERT:Which do you like, a strong or a rare POK{e-accent}MON?|BATTLE:ss-anne-rooms-hat7|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I prefer strong and rare POK{e-accent}MON.
+END
+ss-anne-rooms-girl3 girl 2 155 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+END
+INTERACTIONS
+!:ss-anne-rooms-girl3|MOVE_TO_PLAYER|MENU:ALERT:I never saw you at the party.|BATTLE:ss-anne-rooms-girl3|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Oh, I adore your strong POK{e-accent}MON!
+END
+ss-anne-rooms-item6 orb 0 156
+INTERACTIONS
+GIVE_ITEM:RARE CANDY|DEACTIVATE:ss-anne-rooms-item6
 END
 TRAINERS
 ss-anne-rooms-girl1 15 0.2 0.2 LASS lass.png {LASS: Oh no! I went around the world for these!}{} 16-16:18|29-29:18
@@ -141,6 +220,10 @@ ss-anne-rooms-cap2 30 0.3 0.3 SAILOR sailor.png {SAILOR: OK, you're not bad.}{} 
 ss-anne-rooms-cap3 30 0.3 0.3 SAILOR sailor.png {SAILOR: Arg! Lost it!}{} 116-116:17|116-116:17|116-116:17
 ss-anne-rooms-cap4 30 0.3 0.3 SAILOR sailor.png {SAILOR: Your spirit sank me!}{} 116-116:17|90-90:17|72-72:17
 ss-anne-rooms-cap5 30 0.3 0.3 SAILOR sailor.png {SAILOR: Right! Good fight, mate!}{} 90-90:21
+ss-anne-rooms-fat2 35 0.3 0.3 FISHERMAN fisherman.png {FISHERMAN: I'm all out!}{} 118-118:17|72-72:17|118-118:17
+ss-anne-rooms-hat5 70 0.4 0.4 GENTLEMAN gentleman.png {GENTLEMAN: Good fight! Ah, I feel young again!}{} 25-25:23:THUNDER,BODY SLAM,SUBMISSION,SWIFT
+ss-anne-rooms-hat7 70 0.4 0.4 GENTLEMAN gentleman.png {GENTLEMAN: I must salute you!}{} 58-58:17:RAGE,FIRE BLAST,DIG,DOUBLE TEAM|77-77:17:BODY SLAM,FIRE BLAST,MIMIC,REST
+ss-anne-rooms-girl3 15 0.2 0.2 LASS lass.png {LASS: Take it easy!}{} 19-19:18|25-25:18
 END
 TELEPORT
 0 0 ss-anne-halls 6 8
