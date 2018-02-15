@@ -209,6 +209,22 @@ ss-anne-rooms-item6 orb 0 156
 INTERACTIONS
 GIVE_ITEM:RARE CANDY|DEACTIVATE:ss-anne-rooms-item6
 END
+ss-anne-rooms-hat8 hat 2 167
+INTERACTIONS
+MENU:ALERT:Have you gone to the SAFARI ZONE in FUCHSIA CITY?|MENU:ALERT:It had many rare kinds of POK{e-accent}MON!!
+END
+ss-anne-rooms-girl4 girl2 1 169
+INTERACTIONS
+MENU:ALERT:Me and my Daddy think the SAFARI zone is awesome!
+END
+ss-anne-rooms-girl5 woman4 0 178 RIGHT
+INTERACTIONS
+MENU:ALERT:I've heard many people get seasick!
+END
+ss-anne-rooms-girl6 girl4 2 178 LEFT
+INTERACTIONS
+MENU:ALERT:The CAPTAIN looked really sick and pale!
+END
 TRAINERS
 ss-anne-rooms-girl1 15 0.2 0.2 LASS lass.png {LASS: Oh no! I went around the world for these!}{} 16-16:18|29-29:18
 ss-anne-rooms-boy1 15 0.4 0.1 YOUNGSTER youngster.png {YOUNGSTER: Wow! You're great!}{} 32-32:21
