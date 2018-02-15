@@ -126,7 +126,7 @@ MENU:ALERT:Crammed full of POK{e-accent}MON books!
 END
 ss-anne-halls-captain hat 4 118 UP
 INTERACTIONS
-MENU:ALERT:CAPTAIN: Ooargh... I feel hideous... Uurp! Seasick...|MENU:ALERT:RED rubbed the CAPTAIN's back!|MENU:ALERT:Rub-rub{NEWLINE}Rub-rub|MENU:ALERT:CAPTAIN: Whew! Thank you! I feel much better now!|MENU:ALERT:You want to see my CUT technique?|MENU:ALERT:I could show you if I wasn't ill...|MENU:ALERT:I know! You can have this!|MENU:ALERT:Teach it to your POK{e-accent}MON and you can see it CUT any time!|GIVE_ITEM:HM01
+MENU:ALERT:CAPTAIN: Ooargh... I feel hideous... Uurp! Seasick...|MENU:ALERT:RED rubbed the CAPTAIN's back!|MENU:ALERT:Rub-rub...{NEWLINE}Rub-rub...|MENU:ALERT:CAPTAIN: Whew! Thank you! I feel much better now!|MENU:ALERT:You want to see my CUT technique?|MENU:ALERT:I could show you if I wasn't ill...|MENU:ALERT:I know! You can have this!|MENU:ALERT:Teach it to your POK{e-accent}MON and you can see it CUT any time!|GIVE_ITEM:HM01
 MENU:ALERT:CAPTAIN: Whew!|MENU:ALERT:Now that I'm not sick anymore, I can take us out of here.
 END
 TRAINERS
