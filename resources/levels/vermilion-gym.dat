@@ -16,7 +16,50 @@ INTERACTIONS
 MENU:ALERT:VERMILION CITY{NEWLINE} POK{e-accent}MON GYM LEADER: LT.SURGE|MENU:ALERT:WINNING TRAINERS: {RIVAL_NAME}|NO_ADVANCE
 MENU:ALERT:VERMILION CITY{NEWLINE} POK{e-accent}MON GYM LEADER: LT.SURGE|MENU:ALERT:WINNING TRAINERS: {PLAYER_NAME}{NEWLINE}{RIVAL_NAME}
 END
+vermilion-gym-trainer1 cap 0 10 RIGHT
+FORCE_INTERACTION
+1 0
+2 0
+3 0
+END
+INTERACTIONS
+!:vermilion-gym-trainer1|MOVE_TO_PLAYER|MENU:ALERT:This is no place for kids!|BATTLE:vermilion-gym-trainer1|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:LT.SURGE has set up double locks! Here's a hint!|MENU:ALERT:When you open the 1st lock, the 2nd lock is right next to it!
+END
+vermilion-gym-trainer2 guy2 3 8 LEFT
+FORCE_INTERACTION
+-1 0
+-2 0
+-3 0
+END
+INTERACTIONS
+!:vermilion-gym-trainer2|MOVE_TO_PLAYER|MENU:ALERT:I'm a lightweight, but I'm good with electricity!|BATTLE:vermilion-gym-trainer2|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:OK, I'll talk!|MENU:ALERT:LT.SURGE said he hid door switches inside something!
+END
+vermilion-gym-trainer3 hat 9 6 LEFT
+FORCE_INTERACTION
+-1 0
+-2 0
+-3 0
+END
+INTERACTIONS
+!:vermilion-gym-trainer3|MOVE_TO_PLAYER|MENU:ALERT:When I was in the Army, LT.SURGE was my strict CO!|BATTLE:vermilion-gym-trainer3|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:The door won't open?|MENU:ALERT:LT.SURGE always was cautious!
+END
+vermilion-gym-bookcase blank 7 1
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+vermilion-gym-surge punk 5 1 DOWN
+INTERACTIONS
+MENU:ALERT:Hey, kid! What do you think you're doing here?|MENU:ALERT:You won't live long in combat! That's for sure!|MENU:ALERT:I tell you kid, electric POK{e-accent}MON saved me during the war!|MENU:ALERT:They zapped my enemies into paralysis!|MENU:ALERT:They'll do the same to you!|BATTLE:vermilion-gym-surge|{NO_ADVANCE}{SET:THUNDERBADGE:1|MENU:ALERT:You're special, kid! Take this!|GIVE_ITEM:TM24|MENU:ALERT:TM24 contains THUNDERBOLT!|MENU:ALERT:Teach it to an electric POK{e-accent}MON!}
+MENU:ALERT:A little word of advice, kid!|MENU:ALERT:Electricity is sure powerful!|MENU:ALERT:But it's useless against ground-type POK{e-accent}MON!
+END
 TRAINERS
+vermilion-gym-trainer1 30 0.6 0.6 SAILOR sailor.png {SAILOR: Wow! Surprised me!}{} 25-25:21|25-25:21
+vermilion-gym-trainer2 25 0.55 0.55 ROCKER rocker.png {ROCKER: Fried!}{} 100-100:20|81-81:20|100-100:20
+vermilion-gym-trainer3 70 0.7 0.7 GENTLEMAN gentleman.png {GENTLEMAN: Stop! You're very good!}{} 25-25:23:THUNDER,BODY SLAM,SUBMISSION,SWIFT
+vermilion-gym-surge 99 1.0 1.0 LT.SURGE surge.png {LT.SURGE: Whoa! {NEWLINE} {NEWLINE} You're the real deal, kid! {NEWLNE} Fine then, take the THUNDERBADGE!}{} 100-100:22|100-100:22|125-125:24:LEER,THUNDERBOLT,RAGE,GROWL|1-25:27:RAZOR LEAF,SWIFT,THUNDERSHOCK,THUNDER WAVE|26-26:28:SWIFT,BODY SLAM,THUNDERBOLT,SUBMISSION
 END
 TELEPORT
 4 18 vermilion-city 17 22

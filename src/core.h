@@ -1463,10 +1463,8 @@ public:
 		bool found_move = false;
 		for (unsigned i = 0; i < 6; ++i) {
 			if (mc.team[i].defined) {
-				for (unsigned j = 0; j < 4; ++j) {
-					if (mc.team[i].moves[j] == s) {
-						found_move = true;
-					}
+				if (has_move(mc.team[i], s)) {
+					found_move = true;
 				}
 			}
 		}
@@ -2022,7 +2020,9 @@ public:
 		if (in_status(attacker, string("FLINCH"))) {
 			do_alert(get_nickname(attacker) + string(" flinched!"));
 			remove_status(attacker, string("FLINCH"), true);
-			attacker.queue.clear();
+			if (has_move(attacker, attacker.queue[0])) {
+				attacker.queue.clear();
+			}
 			return false;
 		}
 		if (!skip_accuracy_check && in_status(attacker, string("CONFUSE"))) {
@@ -2030,7 +2030,7 @@ public:
 			if (!in_status(attacker, string("CONFUSE"))) {
 				do_alert(get_nickname(attacker) + string(" is no longer confused!"));
 			}
-			else {
+			else if (has_move(attacker, attacker.queue[0])) {
 				do_alert(get_nickname(attacker) + string(" is confused!"));
 				if (int(random(0.0, 100.0)) > 50) {
 					attacker.queue.clear();
@@ -2323,6 +2323,29 @@ public:
 		}
 		return true;
 	}
+	bool has_move(mon& m, string& move) {
+		for (unsigned i = 0; i < 4; ++i) {
+			if (m.moves[i] == move) {
+				return true;
+			}
+		}
+		return false;
+	}
+	void KO_move_clear(mon& m) {
+		bool clear = true;
+		if (is_KO(m)) {
+		}
+		else if (m.queue.size() > 0 && has_move(m, m.queue[0])) {
+		}
+		else if (m.queue.size() > 0 && (m.queue[0] == "STRUGGLE" || m.queue[0] == "CONFUSED" || m.queue[0] == "")) {
+		}
+		else {
+			clear = false;
+		}
+		if (clear) {
+			m.queue.clear();
+		}
+	}
 	void do_turn_inner(mon& m1, mon& m2) {
 		int temp;
 		m1.turn_count++;
@@ -2331,29 +2354,34 @@ public:
 			remove_status(m1, string("SLEEP"));
 			if (in_status(m1, string("SLEEP"))) {
 				do_alert(get_nickname(m1) + string(" is fast asleep."));
-				m1.queue.clear();
+				if (has_move(m1, m1.queue[0]))
+					m1.queue.clear();
 				// TODO:  Sleep animation.
 			}
 			else {
 				do_alert(get_nickname(m1) + string(" woke up!"));
-				m1.queue.clear();
+				if (has_move(m1, m1.queue[0]))
+					m1.queue.clear();
 			}
 		}
 		else if (in_status(m1, string("FREEZE"))) {
 			if (0.2 > random(0.0, 1.0)) {
 				remove_status(m1, string("FREEZE"));
 				do_alert(get_nickname(m1) + string(" thawed out!"));
-				m1.queue.clear();
+				if (has_move(m1, m1.queue[0]))
+					m1.queue.clear();
 			}
 			else {
 				do_alert(get_nickname(m1) + string(" is frozen solid!"));
-				m2.queue.clear();
+				if (has_move(m1, m1.queue[0]))
+					m1.queue.clear();
 				// TODO:  Freeze animation
 			}
 		}
 		else if (in_status(m1, string("PARALYZE")) && (0.25 > random(0.0, 1.0))) {
 			do_alert(get_nickname(m1) + string(" is paralyzed! It can't move!"));
-			m1.queue.clear();
+			if (has_move(m1, m1.queue[0]))
+				m1.queue.clear();
 			// TODO:  Paralyze animation
 		}
 		else if (m1.queue[0] != "") {
@@ -2363,11 +2391,15 @@ public:
 			use_move(m1, m2, m1.queue[0]);
 			m2.damage_dealt.push_back(temp - m2.curr_hp);
 			if (is_KO(m2)) {
+				KO_move_clear(m1);
+				KO_move_clear(m2);
 				// TODO:  Return value
 				return;
 			}
 			use_status(m1, m2);
 			if (is_KO(m1)) {
+				KO_move_clear(m1);
+				KO_move_clear(m2);
 				// TODO:  Return value
 				return;
 			}
@@ -2391,29 +2423,34 @@ public:
 			remove_status(m2, string("SLEEP"));
 			if (in_status(m2, string("SLEEP"))) {
 				do_alert(get_nickname(m2) + string(" is fast asleep."));
-				m2.queue.clear();
+				if (has_move(m2, m2.queue[0]))
+					m2.queue.clear();
 				// TODO:  Sleep animation
 			}
 			else {
 				do_alert(get_nickname(m2) + string(" woke up!"));
-				m2.queue.clear();
+				if (has_move(m2, m2.queue[0]))
+					m2.queue.clear();
 			}
 		}
 		else if (in_status(m2, string("FREEZE"))) {
 			if (0.2 > random(0.0, 1.0)) {
 				remove_status(m2, string("FREEZE"));
 				do_alert(get_nickname(m2) + string(" thawed out!"));
-				m2.queue.clear();
+				if (has_move(m2, m2.queue[0]))
+					m2.queue.clear();
 			}
 			else {
 				do_alert(get_nickname(m2) + string(" is frozen solid!"));
-				m2.queue.clear();
+				if (has_move(m2, m2.queue[0]))
+					m2.queue.clear();
 				// TODO:  Freeze animation
 			}
 		}
 		else if (in_status(m2, string("PARALYZE")) && (0.25 > random(0.0, 1.0))) {
 			do_alert(get_nickname(m2) + string(" is paralyzed! It can't move!"));
-			m2.queue.clear();
+			if (has_move(m2, m2.queue[0]))
+				m2.queue.clear();
 			// TODO:  Paralyze animation
 		}
 		else if (m2.queue[0] != "") {
@@ -2423,11 +2460,15 @@ public:
 			use_move(m2, m1, m2.queue[0]);
 			m1.damage_dealt.push_back(temp - m1.curr_hp);
 			if (is_KO(m1)) {
+				KO_move_clear(m1);
+				KO_move_clear(m2);
 				// TODO:  Return value
 				return;
 			}
 			use_status(m2, m1);
 			if (is_KO(m2)) {
+				KO_move_clear(m1);
+				KO_move_clear(m2);
 				// TODO:  Return value
 				return;
 			}
