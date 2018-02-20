@@ -2026,7 +2026,9 @@ public:
 			return false;
 		}
 		if (!skip_accuracy_check && in_status(attacker, string("CONFUSE"))) {
-			remove_status(attacker, string("CONFUSE"));
+			if (has_move(attacker, attacker.queue[0])) {
+				remove_status(attacker, string("CONFUSE"));
+			}
 			if (!in_status(attacker, string("CONFUSE"))) {
 				do_alert(get_nickname(attacker) + string(" is no longer confused!"));
 			}
@@ -2725,9 +2727,9 @@ public:
 		mc.enemy_team[mc.enemy_selected].fought[mc.selected] = true;
 		while (true) {
 			if (in_status(mc.team[mc.selected], string("RAGE")) && mc.team[mc.selected].queue.size() == 0)
-				mc.team[mc.selected].queue.push_back(string("RAGE2"));
+				mc.team[mc.selected].queue.push_back(string("RAGE"));
 			if (in_status(mc.enemy_team[mc.enemy_selected], string("RAGE")) && mc.enemy_team[mc.enemy_selected].queue.size() == 0)
-				mc.enemy_team[mc.enemy_selected].queue.push_back(string("RAGE2"));
+				mc.enemy_team[mc.enemy_selected].queue.push_back(string("RAGE"));
 			if (mc.team[mc.selected].queue.size() == 0) {
 				bool any_valid_moves;
 				any_valid_moves = false;
@@ -2993,9 +2995,9 @@ public:
 		mc.enemy_team[mc.enemy_selected].fought[mc.selected] = true;
 		while (true) {
 			if (in_status(mc.team[mc.selected], string("RAGE")) && mc.team[mc.selected].queue.size() == 0)
-				mc.team[mc.selected].queue.push_back(string("RAGE2"));
+				mc.team[mc.selected].queue.push_back(string("RAGE"));
 			if (in_status(mc.enemy_team[mc.enemy_selected], string("RAGE")) && mc.enemy_team[mc.enemy_selected].queue.size() == 0)
-				mc.enemy_team[mc.enemy_selected].queue.push_back(string("RAGE2"));
+				mc.enemy_team[mc.enemy_selected].queue.push_back(string("RAGE"));
 			if (mc.team[mc.selected].queue.size() == 0) { 
 				bool any_valid_moves;
 				any_valid_moves = false;
