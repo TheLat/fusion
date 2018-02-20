@@ -4,7 +4,7 @@ NPCS
 vermilion-gym-clerk clerk 4 14 DOWN
 INTERACTIONS
 MENU:ALERT:Yo! Champ in the making!|MENU:ALERT:LT.SURGE has a nickname. People refer to him as the Lightning American!|MENU:ALERT:He's an expert on electric POK{e-accent}MON!|MENU:ALERT:Birds and water POK{e-accent}MON are at risk! Beware of paralysis, too!|MENU:ALERT:LT.SURGE is very cautious!|MENU:ALERT:You'll have to break a code to get to him!|NO_ADVANCE
-MENU:ALERT:You beat MISTY! What'd I tell ya?|MENU:ALERT:You and me kid, we make a pretty darn good team!
+MENU:ALERT:Whew! That match was electric!
 END
 vermilion-gym-board blank 3 14
 INTERACTIONS
@@ -52,7 +52,7 @@ MENU:ALERT:Crammed full of POK{e-accent}MON books!
 END
 vermilion-gym-surge punk 5 1 DOWN
 INTERACTIONS
-MENU:ALERT:Hey, kid! What do you think you're doing here?|MENU:ALERT:You won't live long in combat! That's for sure!|MENU:ALERT:I tell you kid, electric POK{e-accent}MON saved me during the war!|MENU:ALERT:They zapped my enemies into paralysis!|MENU:ALERT:They'll do the same to you!|BATTLE:vermilion-gym-surge|{NO_ADVANCE}{SET:THUNDERBADGE:1|MENU:ALERT:You're special, kid! Take this!|GIVE_ITEM:TM24|MENU:ALERT:TM24 contains THUNDERBOLT!|MENU:ALERT:Teach it to an electric POK{e-accent}MON!}
+MENU:ALERT:Hey, kid! What do you think you're doing here?|MENU:ALERT:You won't live long in combat! That's for sure!|MENU:ALERT:I tell you kid, electric POK{e-accent}MON saved me during the war!|MENU:ALERT:They zapped my enemies into paralysis!|MENU:ALERT:They'll do the same to you!|BATTLE:vermilion-gym-surge|{NO_ADVANCE}{SET:THUNDERBADGE:1|MENU:ALERT:You're special, kid! Take this!|GIVE_ITEM:TM24|MENU:ALERT:TM24 contains THUNDERBOLT!|MENU:ALERT:Teach it to an electric POK{e-accent}MON!|ADVANCE:vermilion-gym-board|ADVANCE:vermilion-gym-board2|ADVANCE:vermilion-gym-clerk}
 MENU:ALERT:A little word of advice, kid!|MENU:ALERT:Electricity is sure powerful!|MENU:ALERT:But it's useless against ground-type POK{e-accent}MON!
 END
 TRAINERS
