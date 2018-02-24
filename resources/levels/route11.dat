@@ -25,9 +25,103 @@ INTERACTIONS
 !:route11-bald1|MOVE_TO_PLAYER|MENU:ALERT:Win, lose, or draw!|BATTLE:route11-bald1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:POK{e-accent}MON is life! And to live is to gamble!
 END
+route11-boy2 boy 23 8 UP
+FORCE_INTERACTION
+0 -1
+0 -2
+0 -3
+0 -4
+END
+INTERACTIONS
+!:route11-boy2|MOVE_TO_PLAYER|MENU:ALERT:I just became a trainer! But I think I can win!|BATTLE:route11-boy2|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:What do you want? Leave me alone!
+END
+route11-boy3 boy 23 16 UP
+FORCE_INTERACTION
+0 -1
+0 -2
+0 -3
+0 -4
+END
+INTERACTIONS
+!:route11-boy3|MOVE_TO_PLAYER|MENU:ALERT:My POK{e-accent}MON should be ready by now!|BATTLE:route11-boy3|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I better go find stronger ones!
+END
+route11-bald2 bald4 27 13 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+END
+INTERACTIONS
+!:route11-bald2|MOVE_TO_PLAYER|MENU:ALERT:Competition! I can't get enough!|BATTLE:route11-bald2|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:You can't be a coward in the world of POK{e-accent}MON!
+END
+route11-bald3 bald4 34 7 UP
+FORCE_INTERACTION
+0 -1
+0 -2
+0 -3
+END
+INTERACTIONS
+!:route11-bald3|MOVE_TO_PLAYER|MENU:ALERT:I have never won before...|BATTLE:route11-bald3|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:It's just luck. Luck of the draw.
+END
+route11-man1 man2 37 15 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+0 3
+END
+INTERACTIONS
+!:route11-man1|MOVE_TO_PLAYER|MENU:ALERT:Careful! I'm laying down some cables!|BATTLE:route11-man1|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Spread the word to save energy!
+END
+route11-man2 man2 47 20 LEFT
+FORCE_INTERACTION
+-1 0
+-2 0
+-3 0
+END
+INTERACTIONS
+!:route11-man2|MOVE_TO_PLAYER|MENU:ALERT:Watch out for live wires!|BATTLE:route11-man2|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Well, better get back to work.
+END
+route11-bald4 bald4 46 11 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+0 3
+END
+INTERACTIONS
+!:route11-bald4|MOVE_TO_PLAYER|MENU:ALERT:Fwahaha! I have never lost!|BATTLE:route11-bald4|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Luck of the draw! Just luck!
+END
+route11-boy4 boy 44 9 RIGHT
+FORCE_INTERACTION
+1 0
+2 0
+3 0
+4 0
+END
+INTERACTIONS
+!:route11-boy4|MOVE_TO_PLAYER|MENU:ALERT:I'm the best in my class!|BATTLE:route11-boy4|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:There's a fat POK{e-accent}MON that comes down from the mountains.|MENU:ALERT:It's strong if you can get it.
+END
+route11-item1 blank 49 9
+INTERACTIONS
+GIVE_ITEM:ESCAPE ROPE|DEACTIVATE:route11-item1
+END
 TRAINERS
 route11-boy1 15 0.1 0.6 YOUNGSTER youngster.png {YOUNGSTER: Huh? That's not right!}{} 23-23:21
-route11-bald1 {NO_ACCURACY_CHECK} 70 0.6 0.6 GAMBLER gambler.png {GAMBLER: Atcha! Didn't go my way!}{} 60-60:18|116-116:18|
+route11-bald1 {NO_ACCURACY_CHECK} 70 0.75 0.75 GAMBLER gambler.png {GAMBLER: Atcha! Didn't go my way!}{} 60-60:18|116-116:18
+route11-boy2 15 0.1 0.6 YOUNGSTER youngster.png {YOUNGSTER: My POK{e-accent}MON couldn't!}{} 50-27:19|41-27:19
+route11-boy3 15 0.1 0.6 YOUNGSTER youngster.png {YOUNGSTER: Too much, too young!}{} 21-29:18|33-33:18
+route11-bald2 {NO_ACCURACY_CHECK} 70 0.75 0.75 GAMBLER gambler.png {GAMBLER: I had a chance!}{} 69-41:18|27-43:18
+route11-bald3 {NO_ACCURACY_CHECK} 70 0.75 0.75 GAMBLER gambler.png {GAMBLER: I saw this coming...}{} 58-37:18|37-58:18
+route11-man1 50 0.4 0.75 ENGINEER engineer.png {ENGINEER: That was electric!}{} 81-50:22
+route11-man2 50 0.4 0.75 ENGINEER engineer.png {ENGINEER: Woah! You spark plug!}{} 81-27:18|100-50:18|82-82:18
+route11-bald4 {NO_ACCURACY_CHECK} 70 0.75 0.75 GAMBLER gambler.png {GAMBLER: My first loss!}{} 100-58:18|81-37:18
+route11-boy4 15 0.1 0.6 YOUNGSTER youngster.png {YOUNGSTER: Darn! I need to make my POK{e-accent}MON stronger!}{} 19-23:17|19-32:17|20-24:18
 END
 TELEPORT
 0 10 vermilion-city 43 16
