@@ -206,6 +206,7 @@ public:
 	float skill, knowledge;
 	string lose_message;
 	string win_message;
+	bool skip_accuracy_check;
 	mon team[6];
 };
 
@@ -2537,7 +2538,7 @@ public:
 			return false;
 		return true;
 	}
-	int get_smart_move(mon& attacker, mon& defender) {
+	int get_smart_move(mon& attacker, mon& defender, trainer& t) {
 		double magnitude = -1.0;
 		double pow = 0.0;
 		int ret = -1;
@@ -2564,7 +2565,7 @@ public:
 						skip_accuracy_check = true;
 					}
 				}
-				if (!skip_accuracy_check) {
+				if (!skip_accuracy_check && !t.skip_accuracy_check) {
 					pow *= get_accuracy_modifier(attacker);
 					pow *= double(moves[attacker.moves[i]].acc) / 100.0;
 				}
@@ -2807,7 +2808,7 @@ public:
 			else {
 				index = int(random(0.0, count));
 				if (random(0.0, 1.0) <= t.skill) {
-					index = get_smart_move(mc.enemy_team[mc.enemy_selected], mc.team[mc.selected]);
+					index = get_smart_move(mc.enemy_team[mc.enemy_selected], mc.team[mc.selected], t);
 				}
 				int choice = -1;
 				for (i = 0; i <= index; ++i) {
@@ -3695,6 +3696,16 @@ public:
 					s.erase(0, s.find(" ") + 1);
 					s2.erase(s2.find(" "), s2.length());
 					d.name = s2;
+					d.skip_accuracy_check = false;
+					if (s.find("{") == 0) {
+						// Special modifiers here
+						s2 = s;
+						s.erase(0, s.find("}") + 2);
+						s2.erase(s2.find("}") + 1, s2.length());
+						if (s2.find("NO_ACCURACY_CHECK") != -1) {
+							d.skip_accuracy_check = true;
+						}
+					}
 					s2 = s;
 					s.erase(0, s.find(" ") + 1);
 					s2.erase(s2.find(" "), s2.length());

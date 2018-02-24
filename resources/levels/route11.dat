@@ -5,6 +5,30 @@ route11-sign1 blank 2 9
 INTERACTIONS
 MENU:ALERT:DIGLETT's CAVE
 END
+route11-boy1 boy 14 9 LEFT
+FORCE_INTERACTION
+-1 0
+-2 0
+-3 0
+END
+INTERACTIONS
+!:route11-boy1|MOVE_TO_PLAYER|MENU:ALERT:Let's go, but don't cheat!|BATTLE:route11-boy1|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I did my best! I have no regrets!
+END
+route11-bald1 bald4 11 18 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+0 3
+END
+INTERACTIONS
+!:route11-bald1|MOVE_TO_PLAYER|MENU:ALERT:Win, lose, or draw!|BATTLE:route11-bald1|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:POK{e-accent}MON is life! And to live is to gamble!
+END
+TRAINERS
+route11-boy1 15 0.1 0.6 YOUNGSTER youngster.png {YOUNGSTER: Huh? That's not right!}{} 23-23:21
+route11-bald1 {NO_ACCURACY_CHECK} 70 0.6 0.6 GAMBLER gambler.png {GAMBLER: Atcha! Didn't go my way!}{} 60-60:18|116-116:18|
+END
 TELEPORT
 0 10 vermilion-city 43 16
 0 11 vermilion-city 43 17
