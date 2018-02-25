@@ -63,6 +63,11 @@ viridian-city-bush2 bush 8 22
 INTERACTIONS
 HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:viridian-city-bush2}
 END
+viridian-city-fat fat 6 23
+INTERACTIONS
+MENU:ALERT:Yawn!{NEWLINE}I must have dozed off in the sun.|MENU:ALERT:I had this dream about a DROWZEE eating my dream.|MENU:ALERT:What's this?|MENU:ALERT:Where did this TM come from?|MENU:ALERT:This is spooky! Here, you can have this TM.|GIVE_ITEM:TM42
+MENU:ALERT:TM42 contains DREAM EATER... {NEWLINE} ...Snore...
+END
 TELEPORT
 20 37 route1 13 1
 21 37 route1 14 1

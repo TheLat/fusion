@@ -1,0 +1,41 @@
+NAME
+Viridian City House 3
+NPCS
+viridian-house3-doctor doctor 2 4 RIGHT
+INTERACTIONS
+MENU:ALERT:A fainted POK{e-accent}MON can't fight. But, it can still use moves like CUT!
+END
+viridian-house3-phone phone 4 1 DOWN
+INTERACTIONS
+MENU:ALERT:I'm looking for an ABRA!|MENU:ALERT_YES_NO:Wanna trade one for MR.MIME?|{MENU:MON_SELECT:|IS_SELECTION_SPECIES:61-61|{MENU:ALERT:What? That's not ABRA!|MENU:ALERT:If you get one, come back here!|NO_ADVANCE}{MENU:ALERT:TODO: Trade logic|NO_ADVANCE}}{MENU:ALERT:Awww!{NEWLINE}Oh well...|NO_ADVANCE}
+MENU:ALERT:TODO: Whatever this guy says after trading.
+END
+viridian-house3-bookshelf1 blank 0 1
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+viridian-house3-bookshelf2 blank 1 1
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+viridian-house3-bookshelf3 blank 7 1
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+viridian-house3-map blank 3 0
+INTERACTIONS
+MENU:ALERT:A TOWN MAP.|MAP
+END
+TELEPORT
+2 8 route2 20 20
+3 8 route2 20 20
+DATA
+31 31  17  33 17 34 17 31
+32 32  18  18 18 18 18 36
+18 18  18  18 18 18 18 18
+18 18  37  48 52 37 18 18
+18 18  37  23 24 37 18 18
+18 18  18  18 18 18 18 18
+30 18  18  18 18 18 18 30
+29 18  38  38 18 18 18 29
+82 82 166 166

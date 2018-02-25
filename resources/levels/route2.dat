@@ -11,19 +11,35 @@ MENU:ALERT:ROUTE 2{NEWLINE}VIRIDIAN CITY - PEWTER CITY
 END
 route2-bush1 bush 17 69
 INTERACTIONS
-HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:viridian-city-bush1}
+HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:route2-bush1}
 END
 route2-bush2 bush 17 61
 INTERACTIONS
-HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:viridian-city-bush2}
+HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:route2-bush2}
 END
 route2-bush3 bush 16 53
 INTERACTIONS
-HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:viridian-city-bush3}
+HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:route2-bush3}
 END
 route2-bush4 bush 10 10
 INTERACTIONS
-HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:viridian-city-bush4}
+HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:route2-bush4}
+END
+route2-sign3 blank 16 11
+INTERACTIONS
+MENU:ALERT:DIGLETT'S CAVE
+END
+route2-bush5 bush 20 22
+INTERACTIONS
+HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:route2-bush5}
+END
+route2-item1 orb 18 46
+INTERACTIONS
+GIVE_ITEM:HP UP|DEACTIVATE:route2-item1
+END
+route2-item2 orb 18 63
+INTERACTIONS
+GIVE_ITEM:MOON STONE|DEACTIVATE:route2-item2
 END
 TELEPORT
 13 74 viridian-city 18 1
@@ -33,6 +49,10 @@ TELEPORT
 13 0 pewter-city 18 40
 14 0 pewter-city 19 40
 17 9 digletts-cave 6 20
+20 19 viridian-house3 2 7
+21 37 viridian-station3 5 1
+22 37 viridian-station3 5 1
+20 40 viridian-station3 4 7
 ENCOUNTERS
 10 13 16 19 29 32
 LEVELS

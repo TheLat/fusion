@@ -4793,6 +4793,32 @@ public:
 									choices.push_back(0);
 								}
 							}
+							else if (s.find("CAUGHT:") == 0) {
+								s.erase(0, string("CAUGHT:").length());
+								s2 = s;
+								if (s.find("|") != -1) {
+									s.erase(0, s.find("|"));
+									s2.erase(s2.find("|"), s2.length());
+								}
+								else {
+									s = "";
+								}
+								std::map<string, bool>::iterator it = mc.caught.begin();
+								unsigned count = 0;
+								while (it != mc.caught.end()) {
+									if (it->second)
+										count++;
+									it++;
+								}
+								if (stoi(s2) <= count) {
+									choices.clear();
+									choices.push_back(1);
+								}
+								else {
+									choices.clear();
+									choices.push_back(0);
+								}
+							}
 							else if (s.find("HAS_MONEY:") == 0) {
 								s.erase(0, string("HAS_MONEY:").length());
 								s2 = s;

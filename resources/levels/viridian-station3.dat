@@ -1,0 +1,26 @@
+NAME
+Viridian Station 3
+NPCS
+viridian-station3-boy boy 6 4 WANDER
+INTERACTIONS
+MENU:ALERT:Once a POK{e-accent}MON learns FLASH, you can get through ROCK TUNNEL.
+END
+viridian-station3-doctor doctor 1 4 LEFT
+INTERACTIONS
+MENU:ALERT:Hi! Remember me? I'm PROF.OAK's AIDE!|MENU:ALERT:If you caught 10 kinds of POK{e-accent}MON, I'm supposed to give you an HM05!|MENU:ALERT:So, {PLAYER_NAME}! Have you caught at least 10 kinds of POK{e-accent}MON?|CAUGHT:10|{MENU:ALERT:Oh.  I see.|MENU:ALERT:When you get 10 kinds, come back for HM05.|NO_ADVANCE}{MENU:ALERT:Great! You have caught {CAUGHT} kinds of POK{e-accent}MON!|MENU:ALERT:Congratulations!|MENU:ALERT:Here you go!|GIVE_ITEM:HM05|MENU:ALERT:The HM FLASH lights even the darkest dungeons.}
+MENU:ALERT:The HM FLASH lights even the darkest dungeons.
+END
+TELEPORT
+5 0 route2 21 36
+4 8 route2 20 41
+5 8 route2 20 41
+DATA
+180 180 180 180 180 181 180 180 180 180
+182 182 182 182 182 182 182 182 182 182
+156 182 182 182 182 182 183 182 183 156
+29  182 182 182 182 182 184 182 184  29
+156 182 182 182 182 182 182 182 182 156
+29  182 182 182 182 182 183 182 183  29
+156 182 182 182 182 182 184 182 184 156
+29  182 182 182 185 185 182 182 182  29
+82   82  82  82 166 166  
