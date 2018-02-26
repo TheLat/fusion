@@ -11,7 +11,7 @@ MENU:ALERT:MT. MOON{NEWLINE}Tunnel Entrance
 END
 route4-sign2 blank 32 17
 INTERACTIONS
-MENU:ALERT:TODO: Fix this sign
+MENU:ALERT:ROUTE 4 - MT. MOON
 END
 route4-item orb 62 13
 INTERACTIONS

@@ -41,7 +41,7 @@ MENU:ALERT:These people were robbed.|MENU:ALERT:It's obvious that TEAM ROCKET is
 END
 cerulean-city-bush1 bush 21 30
 INTERACTIONS
-HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:viridian-city-bush1}
+HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:cerulean-city-bush1}
 END
 cerulean-city-sign3 blank 13 27
 INTERACTIONS

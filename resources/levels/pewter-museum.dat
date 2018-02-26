@@ -40,7 +40,7 @@ MENU:ALERT:SPACE SHUTTLE COLUMBIA
 END
 pewter-museum-exhibit2 blank 2 19
 INTERACTIONS
-MENU:ALERT:Meteorite that fell on MT.MOON.|MENU:ALERT:(MOON STONE?)
+MENU:ALERT:Meteorite that fell on MT. MOON.|MENU:ALERT:(MOON STONE?)
 END
 pewter-museum-exhibit3 blank 2 3
 INTERACTIONS
