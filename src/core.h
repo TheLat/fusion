@@ -4793,6 +4793,26 @@ public:
 									choices.push_back(0);
 								}
 							}
+							else if (s.find("TRADE_LOGIC:") == 0) {
+								s.erase(0, string("TRADE_LOGIC:").length());
+								s2 = s;
+								if (s.find("|") != -1) {
+									s.erase(0, s.find("|"));
+									s2.erase(s2.find("|"), s2.length());
+								}
+								else {
+									s = "";
+								}
+								if (s2 == mc.team[choices[0]].number) {
+									mc.team[choices[0]].defined = false;
+									choices.clear();
+									choices.push_back(1);
+								}
+								else {
+									choices.clear();
+									choices.push_back(0);
+								}
+							}
 							else if (s.find("CAUGHT:") == 0) {
 								s.erase(0, string("CAUGHT:").length());
 								s2 = s;

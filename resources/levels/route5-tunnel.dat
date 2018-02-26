@@ -3,8 +3,8 @@ Route 5 Tunnel
 NPCS
 route5-tunnel-girl girl2 2 3
 INTERACTIONS
-MENU:ALERT:Hi, do you have a NIDORAN{MALE}?|MENU:ALERT_YES_NO:Want to trade for a NIDORAN{FEMALE}?|{MENU:MON_SELECT:|IS_SELECTION_SPECIES:32-32|{MENU:ALERT:...this is no NIDORAN{MALE}.|MENU:ALERT:If you get one, trade it with me!|NO_ADVANCE}{MENU:ALERT:TODO: Trade logic|NO_ADVANCE}}{MENU:ALERT:That's too bad.|NO_ADVANCE}
-MENU:ALERT:TODO: Whatever she says after trading.
+MENU:ALERT:Hi, do you have a NIDORAN{MALE}?|MENU:ALERT_YES_NO:Want to trade for a NIDORAN{FEMALE}?|{MENU:MON_SELECT:|TRADE_LOGIC:32-32|{MENU:ALERT:...this is no NIDORAN{MALE}.|MENU:ALERT:If you get one, trade it with me!|NO_ADVANCE}{MENU:ALERT:Okay, connect the cable like so!|MENU:ALERT:ANIMATION GOES HERE|MENU:ALERT:{PLAYER_NAME} traded NIDORAN{MALE} for NIDORAN{FEMALE}!|GIVE_MON:5:29-29|MENU:ALERT:Thanks pal!}}{MENU:ALERT:That's too bad.|NO_ADVANCE}
+MENU:ALERT:How is my old NIDORAN{FEMALE}?|MENU:ALERT:My NIDORAN{MALE} is doing great!
 END
 TELEPORT
 3 8 route5 29 33

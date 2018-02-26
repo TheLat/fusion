@@ -7,8 +7,8 @@ MENU:ALERT:A fainted POK{e-accent}MON can't fight. But, it can still use moves l
 END
 viridian-house3-phone phone 4 1 DOWN
 INTERACTIONS
-MENU:ALERT:I'm looking for an ABRA!|MENU:ALERT_YES_NO:Wanna trade one for MR.MIME?|{MENU:MON_SELECT:|IS_SELECTION_SPECIES:61-61|{MENU:ALERT:What? That's not ABRA!|MENU:ALERT:If you get one, come back here!|NO_ADVANCE}{MENU:ALERT:TODO: Trade logic|NO_ADVANCE}}{MENU:ALERT:Awww!{NEWLINE}Oh well...|NO_ADVANCE}
-MENU:ALERT:TODO: Whatever this guy says after trading.
+MENU:ALERT:I'm looking for an ABRA!|MENU:ALERT_YES_NO:Wanna trade one for MR.MIME?|{MENU:MON_SELECT:|TRADE_LOGIC:63-63|{MENU:ALERT:What? That's not ABRA!|MENU:ALERT:If you get one, come back here!|NO_ADVANCE}{MENU:ALERT:Okay, connect the cable like so!|MENU:ALERT:ANIMATION GOES HERE|MENU:ALERT:{PLAYER_NAME} traded ABRA for MR.MIME!|GIVE_MON:5:122-122|MENU:ALERT:Hey, thanks.}}{MENU:ALERT:Awww!{NEWLINE}Oh well...|NO_ADVANCE}
+MENU:ALERT:Isn't my old MR.MIME great?
 END
 viridian-house3-bookshelf1 blank 0 1
 INTERACTIONS
