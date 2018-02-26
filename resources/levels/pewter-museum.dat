@@ -1,9 +1,71 @@
 NAME
 Pewter City Museum
 NPCS
-pewter-mart-shelf1 blank 4 4
+pewter-museum-entrance blank 11 4
+FORCE_INTERACTION
+-1 0
+-2 0
+END
 INTERACTIONS
-MENU:ALERT:Wow! Tons of POK{e-accent}MON stuff!
+MENU:ALERT:It's $50 for a child's ticket.|MENU:ALERT_YES_NO_MONEY:Would you like to come in?|{HAS_MONEY:50|{MENU:ALERT:You don't have enough money.|MENU:ALERT:Come again!|MOVE:PLAYER:0,1|NO_ADVANCE}{MENU:ALERT:Right, $50! {NEWLINE} Thank you!|REMOVE_MONEY:50|DISABLE_FORCE}}{MENU:ALERT:Come again!|MOVE:PLAYER:0,1|NO_ADVANCE}
+SET_FACE:pewter-museum-doctor2:LEFT|MENU:ALERT:Take plenty of time to look!
+END
+pewter-museum-bald1 bald4 1 4
+INTERACTIONS
+MENU:ALERT:That is one magnificent fossil!
+END
+pewter-museum-boy1 boy 4 21 WANDER
+INTERACTIONS
+MENU:ALERT:MOON STONE?|MENU:ALERT:What's so special about it?
+END
+pewter-museum-doctor1 doctor 7 19
+INTERACTIONS
+MENU:ALERT:We have a space exhibit now.
+END
+pewter-museum-old1 oldman 0 19
+INTERACTIONS
+MENU:ALERT:July 20, 1969!|MENU:ALERT:The 1st lunar landing!|MENU:ALERT:I bought a color TV to watch it!
+END
+pewter-museum-girl1 girl5 11 19
+INTERACTIONS
+MENU:ALERT:I want a PIKACHU! It's so cute!|MENU:ALERT:I asked my Daddy to catch me one!
+END
+pewter-museum-tough1 tough 12 19
+INTERACTIONS
+MENU:ALERT:Yeah, a PIKACHU soon, I promise!
+END
+pewter-museum-exhibit1 blank 11 16
+INTERACTIONS
+MENU:ALERT:SPACE SHUTTLE COLUMBIA
+END
+pewter-museum-exhibit2 blank 2 19
+INTERACTIONS
+MENU:ALERT:Meteorite that fell on MT.MOON.|MENU:ALERT:(MOON STONE?)
+END
+pewter-museum-exhibit3 blank 2 3
+INTERACTIONS
+MENU:FRAMED_PICTURE:fossil1.png|MENU:ALERT:AERODACTYL Fossil|MENU:ALERT:A primitive and rare POK{e-accent}MON.
+END
+pewter-museum-exhibit4 blank 2 6
+INTERACTIONS
+MENU:FRAMED_PICTURE:fossil2.png|MENU:ALERT:KABUTOPS Fossil|MENU:ALERT:A primitive and rare POK{e-accent}MON.
+END
+pewter-museum-doctor2 doctor 12 4 LEFT
+INTERACTIONS
+MENU:ALERT:You can't sneak in the back way!|MENU:ALERT:Oh, whatever!|MENU:ALERT_YES_NO:Do you know what AMBER is?|{MENU:ALERT:There's a lab somewhere trying to resurrect ancient POK{e-accent}MON from AMBER.}{MENU:ALERT:AMBER is fossilized tree sap.}
+END
+pewter-museum-doctor3 doctor 17 4
+INTERACTIONS
+MENU:ALERT:We are proud of 2 fossils of very rare, prehistoric POK{e-accent}MON!
+END
+pewter-museum-amber gem 16 2
+INTERACTIONS
+MENU:ALERT:The AMBER is clear and gold!
+END
+pewter-museum-doctor4 doctor 15 2
+INTERACTIONS
+MENU:ALERT:Ssh! I think that this chunk of AMBER contains POK{e-accent}MON DNA!|MENU:ALERT:It would be great if POK{e-accent}MON could be resurrected from it!|MENU:ALERT:But, my colleagues just ignore me!|MENU:ALERT:So, I have a favor to ask!|MENU:ALERT:Take this to a POK{e-accent}MON LAB and get it examined!|DEACTIVATE:pewter-museum-amber|GIVE_ITEM:OLD AMBER
+MENU:ALERT:Ssh! Get the OLD AMBER checked!
 END
 TELEPORT
 10 8 pewter-city 14 12
