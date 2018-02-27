@@ -2511,27 +2511,53 @@ public:
 			return false;
 		return true;
 	}
-	int get_smart_move(mon& attacker, mon& defender, trainer& t) {
+	int get_smart_move(mon& attacker, mon& defender, trainer& t, bool skip_recurse = false) {
+		int enemy_move = -1;
+		int enemy_damage = -1;
 		double magnitude = -1.0;
 		double pow = 0.0;
+		bool crit = false;
+		double mul = 0.0;
+		double chance = 0.0;
+		int turns_to_live = -1;
 		int ret = -1;
+		if (!skip_recurse) {
+			enemy_move = get_smart_move(defender, attacker, t, true);
+			if (enemy_move >= 0)
+				enemy_damage = damage(defender, attacker, defender.moves[enemy_move], crit, mul, true, false, true);
+			else
+				enemy_damage = damage(defender, attacker, string("STRUGGLE"), crit, mul, true, false, true);
+			turns_to_live = (attacker.curr_hp / enemy_damage);
+			if (get_stat(attacker, SPEED) > get_stat(defender, SPEED)) {
+				turns_to_live += 1;
+			}
+		}
+		int buff = 0;
+		for (unsigned i = 0; i < attacker.status.size(); ++i) {
+			if (attacker.status[i] == this->get_buff_name(SPEED)) {
+				buff++;
+			}
+			if (attacker.status[i] == this->get_debuff_name(SPEED)) {
+				buff--;
+			}
+		}
 		bool skip_accuracy_check = false;
 		for (unsigned i = 0; i < 4; ++i) {
 			if (is_valid_move(attacker, i)) {
-				pow = stoi(moves[attacker.moves[i]].pow);
+				chance = get_stat_modifier(buff) * all_mon[attacker.number].stats[SPEED] / 4.0;
+				if (in_status(attacker, string("FOCUS")))
+					chance *= 4.0;
+				chance *= moves[attacker.moves[i]].crit_chance;
+				chance = chance / 256.0;
+				double low = damage(attacker, defender, attacker.moves[i], crit, mul, true, false, true);
+				double high = damage(attacker, defender, attacker.moves[i], crit, mul, false, true, true);
+				pow = low + chance* (high - low);
+				pow = pow * 0.85;
 				if (moves[attacker.moves[i]].pow.find(string("x2-5")) != -1) {
 					pow *= 3.0;
 				}
-				else if (moves[attacker.moves[i]].pow.find(string("x2")) != -1) {
-					pow *= 2;
-				}
-				if (moves[attacker.moves[i]].defense == DEFENSE) {
-					pow *= double(get_stat(attacker, ATTACK));
-					pow /= double(get_stat(defender, DEFENSE));
-				}
-				else {
-					pow *= double(get_stat(attacker, SPECIAL));
-					pow /= double(get_stat(defender, SPECIAL));
+				if (moves[attacker.moves[i]].pow.find(string("x2")) != -1) {
+					pow *= 2.0;
 				}
 				for (unsigned j = 0; j < moves[attacker.moves[i]].special.size(); ++j) {
 					if (moves[attacker.moves[i]].special[j] == "UNAVOIDABLE") {
@@ -2542,18 +2568,29 @@ public:
 					pow *= get_accuracy_modifier(attacker);
 					pow *= double(moves[attacker.moves[i]].acc) / 100.0;
 				}
-
-				if (get_type_1(defender) != "") {
-					pow *= types[moves[attacker.moves[i]].type][get_type_1(defender)];
+				if (!skip_recurse) {
+					for (unsigned j = 0; j < moves[attacker.moves[i]].self.size(); ++j) {
+						if (moves[attacker.moves[i]].self[j] == "KO") {
+							if (turns_to_live > 1) {
+								pow = 0.0;
+								break;
+							}
+						}
+						if (moves[attacker.moves[i]].self[j] == "RAGE") {
+							if (turns_to_live >= 2) {
+								pow *= 3.0;
+								break;
+							}
+						}
+					}
 				}
-				if (get_type_2(defender) != "") {
-					pow *= types[moves[attacker.moves[i]].type][get_type_2(defender)];
-				}
-				if (get_type_1(attacker) != "" && moves[attacker.moves[i]].type == get_type_1(attacker)) {
-					pow *= 1.5;
-				}
-				if (get_type_2(attacker) != "" && moves[attacker.moves[i]].type == get_type_2(attacker)) {
-					pow *= 1.5;
+				else {
+					for (unsigned j = 0; j < moves[attacker.moves[i]].self.size(); ++j) {
+						if (moves[attacker.moves[i]].self[j] == "KO") {
+							pow = 0.0;
+							break;
+						}
+					}
 				}
 				if (pow > magnitude) {
 					magnitude = pow;
