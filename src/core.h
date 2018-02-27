@@ -2192,33 +2192,6 @@ public:
 			for (int i = 0; i < repeat; ++i) {
 				double mul;
 				int dam = min(damage(attacker, defender, move, crit, mul), defender.curr_hp);
-				for (int j = 0; j < moves[move].target.size(); ++j) {
-					// Possible TODO: Remove multiplier from self-level damage moves.
-					if (moves[move].target[j] == "SELF_LEVEL") {
-						dam = int(double(attacker.level) * mul);
-						if (crit)
-							dam = int(double(dam)*1.5);
-					}
-					else if (moves[move].target[j].find("EXACT_DAMAGE") == 0) {
-						string temp = moves[move].target[j];
-						temp.erase(0, temp.find(":") + 1);
-						dam = int(double(stoi(temp)) * mul);
-						if (crit)
-							dam = int(double(dam)*1.5);
-					}
-					else if (moves[move].target[j].find("TWICE_SELF_DAMAGE_OVER_TURNS") == 0) {
-						string temp = moves[move].target[j];
-						temp.erase(0, temp.find(":") + 1);
-						int turns = stoi(temp);
-						dam = 0;
-						for (int i = int(attacker.damage_dealt.size()) - 1; (i >= (int(attacker.damage_dealt.size()) - 3)) && (i >= 0); --i) {
-							dam = dam + attacker.damage_dealt[i];
-						}
-						dam = dam * 2;
-						crit = false;
-						mul = 1.0;
-					}
-				}
 				deal_damage(defender, dam);
 				if (moves[move].defense == SPECIAL) {
 					defender.last_hit_special = dam;
@@ -3281,7 +3254,7 @@ public:
 			do_turn_inner(m2, m1);
 		}
 	}
-	int damage(mon& attacker, mon& defender, string move, bool& crit, double &mul) {
+	int damage(mon& attacker, mon& defender, string move, bool& crit, double &mul, bool force_no_crit = false, bool force_crit = false, bool skip_damage_range = false) {
 		double pow = stoi(moves[move].pow);
 		mul = 1.0;
 		crit = false;
@@ -3302,6 +3275,10 @@ public:
 		if (random(0.0, 256.0) < chance) {
 			crit = true;
 		}
+		if (force_crit)
+			crit = true;
+		if (force_no_crit)
+			crit = false;
 		double damage = 2.0 * attacker.level;
 		damage = damage + 10.0;
 		damage *= get_stat(attacker, moves[move].attack, false, crit);
@@ -3326,9 +3303,37 @@ public:
 		if (crit) {
 			damage *= 1.5;
 		}
-		damage *= random(0.85, 1.0);
+		if (!skip_damage_range)
+			damage *= random(0.85, 1.0);
 		if (pow == 0.0)
-			return 0;
+			damage = 0.0;
+		for (int j = 0; j < moves[move].target.size(); ++j) {
+			// Possible TODO: Remove multiplier from self-level damage moves.
+			if (moves[move].target[j] == "SELF_LEVEL") {
+				damage = int(double(attacker.level) * mul);
+				if (crit)
+					damage = int(double(damage)*1.5);
+			}
+			else if (moves[move].target[j].find("EXACT_DAMAGE") == 0) {
+				string temp = moves[move].target[j];
+				temp.erase(0, temp.find(":") + 1);
+				damage = int(double(stoi(temp)) * mul);
+				if (crit)
+					damage = int(double(damage)*1.5);
+			}
+			else if (moves[move].target[j].find("TWICE_SELF_DAMAGE_OVER_TURNS") == 0) {
+				string temp = moves[move].target[j];
+				temp.erase(0, temp.find(":") + 1);
+				int turns = stoi(temp);
+				damage = 0;
+				for (int i = int(attacker.damage_dealt.size()) - 1; (i >= (int(attacker.damage_dealt.size()) - 3)) && (i >= 0); --i) {
+					damage = damage + attacker.damage_dealt[i];
+				}
+				damage = damage * 2;
+				crit = false;
+				mul = 1.0;
+			}
+		}
 		return int(damage);
 	}
 	string get_buff_name(STAT s) {
