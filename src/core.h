@@ -2554,10 +2554,12 @@ public:
 				pow = low + chance* (high - low);
 				pow = pow * 0.85;
 				if (moves[attacker.moves[i]].pow.find(string("x2-5")) != -1) {
-					pow *= 3.0;
+					if (!in_status(defender, string("RAGE")))
+						pow *= 3.0;
 				}
 				if (moves[attacker.moves[i]].pow.find(string("x2")) != -1) {
-					pow *= 2.0;
+					if (!in_status(defender, string("RAGE")))
+						pow *= 2.0;
 				}
 				for (unsigned j = 0; j < moves[attacker.moves[i]].special.size(); ++j) {
 					if (moves[attacker.moves[i]].special[j] == "UNAVOIDABLE") {
@@ -2577,8 +2579,14 @@ public:
 							}
 						}
 						if (moves[attacker.moves[i]].self[j] == "RAGE") {
-							if (turns_to_live >= 2) {
-								pow *= 3.0;
+							pow *= min(double(turns_to_live), 4.0);
+							break;
+						}
+					}
+					for (unsigned j = 0; j < moves[attacker.moves[i]].special.size(); ++j) {
+						if (moves[attacker.moves[i]].special[j] == "FIRST") {
+							if (turns_to_live <= 0) {
+								pow *= 1000.0;
 								break;
 							}
 						}
