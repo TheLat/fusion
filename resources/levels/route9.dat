@@ -54,11 +54,65 @@ route9-item2 blank 13 9
 INTERACTIONS
 GIVE_ITEM:ETHER|DEACTIVATE:route9-item2
 END
+route9-tough2 tough 44 17 RIGHT
+FORCE_INTERACTION
+1 0
+2 0
+END
+INTERACTIONS
+!:route9-tough2|MOVE_TO_PLAYER|MENU:ALERT:Hahahaha! {NEWLINE} Come on, dude!|BATTLE:route9-tough2|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Hahahaha! {NEWLINE} Us hearty guys always laugh!
+END
+route9-boy2 boy 39 10 RIGHT
+FORCE_INTERACTION
+1 0
+END
+INTERACTIONS
+!:route9-boy2|MOVE_TO_PLAYER|MENU:ALERT:Go, my super bug POK{e-accent}MON!|BATTLE:route9-boy2|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:If you don't like bug POK{e-accent}MON, you bug me!
+END
+route9-guy2 guy2 30 9 RIGHT
+FORCE_INTERACTION
+1 0
+2 0
+3 0
+4 0
+END
+INTERACTIONS
+!:route9-guy2|MOVE_TO_PLAYER|MENU:ALERT:I'm taking ROCK TUNNEL to go to LAVENDER...|BATTLE:route9-guy2|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Are you off to ROCK TUNNEL too?
+END
+route9-tough3 tough 42 5 LEFT
+FORCE_INTERACTION
+-1 0
+-2 0
+-3 0
+END
+INTERACTIONS
+!:route9-tough3|MOVE_TO_PLAYER|MENU:ALERT:Hahahaha! {NEWLINE} Aren't you a little toughie!|BATTLE:route9-tough3|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Hahahaha! Kids should be tough!
+END
+route9-girl2 girl 47 10 RIGHT
+FORCE_INTERACTION
+1 0
+2 0
+3 0
+4 0
+END
+INTERACTIONS
+!:route9-girl2|MOVE_TO_PLAYER|MENU:ALERT:Don't you dare condescend me!|BATTLE:route9-girl2|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:You're obviously talented! Good luck to you!
+END
 TRAINERS
 route9-girl1 20 0.25 0.25 JR.TRAINER{FEMALE} jrtrainerf.png {JR.TRAINER{FEMALE}: You deceived me!}{} 43-43:18|69-69:18|43-69:18|69-43:18
 route9-tough1 35 0.45 0.45 HIKER hiker.png {HIKER: Keep it coming, eh! {NEWLINE} Oh, wait. I'm out of POK{e-accent}MON!}{} 66-66:20|95-95:20
 route9-guy1 20 0.25 0.25 JR.TRAINER{MALE} jrtrainerm.png {JR.TRAINER{MALE}: Out like a light!}{} 58-58:21|5-5:21
 route9-boy1 10 0.2 0.2 BUG{SPACE}CATCHER bugcatcher.png {BUG CATCHER: What? {NEWLINE} What a total waste of time!}{} 15-15:19|12-12:19|15-15:19
+route9-tough2 35 0.45 0.45 HIKER hiker.png {HIKER: Hahahaha! You beat me fair!}{} 74-74:21|95-95:21
+route9-boy2 10 0.2 0.2 BUG{SPACE}CATCHER bugcatcher.png {BUG CATCHER: My bugs...}{} 10-10:21|13-13:21|48-48:21
+route9-guy2 20 0.25 0.25 JR.TRAINER{MALE} jrtrainerm.png {JR.TRAINER{MALE}: Can't measure up!}{} 19-19:19|50-50:19|23-23:19|27-27:19
+route9-tough3 35 0.45 0.45 HIKER hiker.png {HIKER: What's that?}{} 74-66:20|66-95:20|74-74:20
+route9-girl2 20 0.25 0.25 JR.TRAINER{FEMALE} jrtrainerf.png {JR.TRAINER{FEMALE}: No! You're too much!}{} 52-52:24
 END
 TELEPORT
 0 10 cerulean-city 43 18
