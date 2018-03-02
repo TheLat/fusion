@@ -1,12 +1,64 @@
 NAME
 Route 9
 NPCS
-cerulean-city-guy1 man2 10 23 WANDER
+route9-bush1 bush 4 10
 INTERACTIONS
-MENU:ALERT:You're making an encyclopedia on POK{e-accent}MON? That sounds amusing.
+HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:route9-bush1}
+END
+route9-girl1 girl 12 12 LEFT
+FORCE_INTERACTION
+-1 0
+-2 0
+-3 0
+END
+INTERACTIONS
+!:route9-girl1|MOVE_TO_PLAYER|MENU:ALERT:You have POK{e-accent}MON with you! {NEWLINE} You're mine!|BATTLE:route9-girl1|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:You need light to get through that dark tunnel ahead.
+END
+route9-tough1 tough 14 17 LEFT
+FORCE_INTERACTION
+-1 0
+-2 0
+END
+INTERACTIONS
+!:route9-tough1|MOVE_TO_PLAYER|MENU:ALERT:Bwahaha! {NEWLINE} Great! I was bored, eh!|BATTLE:route9-tough1|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:You sure had guts standing up to me there, eh?
+END
+route9-item1 orb 9 17
+INTERACTIONS
+GIVE_ITEM:TM30|DEACTIVATE:route9-item1
+END
+route9-sign1 blank 24 9
+INTERACTIONS
+MENU:ALERT:ROUTE 9 {NEWLINE} CERULEAN CITY - ROCK TUNNEL
+END
+route9-guy1 guy2 23 9 LEFT
+FORCE_INTERACTION
+-1 0
+-2 0
+END
+INTERACTIONS
+!:route9-guy1|MOVE_TO_PLAYER|MENU:ALERT:Who's that walking with those good look POK{e-accent}MON?|BATTLE:route9-guy1|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Keep walking!
+END
+route9-boy1 boy 22 4 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+END
+INTERACTIONS
+!:route9-boy1|MOVE_TO_PLAYER|MENU:ALERT:I got up early every day to raise my POK{e-accent}MON from cocoons!|BATTLE:route9-boy1|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I have to collect than bugs to get stronger...
+END
+route9-item2 blank 13 9
+INTERACTIONS
+GIVE_ITEM:ETHER|DEACTIVATE:route9-item2
 END
 TRAINERS
-cerulean-city-rocket 35 0.3 0.3 ROCKET rocket.png {ROCKET: Stop! I give up! I'll leave quietly!}{} 23-66:17|96-96:17
+route9-girl1 20 0.25 0.25 JR.TRAINER{FEMALE} jrtrainerf.png {JR.TRAINER{FEMALE}: You deceived me!}{} 43-43:18|69-69:18|43-69:18|69-43:18
+route9-tough1 35 0.45 0.45 HIKER hiker.png {HIKER: Keep it coming, eh! {NEWLINE} Oh, wait. I'm out of POK{e-accent}MON!}{} 66-66:20|95-95:20
+route9-guy1 20 0.25 0.25 JR.TRAINER{MALE} jrtrainerm.png {JR.TRAINER{MALE}: Out like a light!}{} 58-58:21|5-5:21
+route9-boy1 10 0.2 0.2 BUG{SPACE}CATCHER bugcatcher.png {BUG CATCHER: What? {NEWLINE} What a total waste of time!}{} 15-15:19|12-12:19|15-15:19
 END
 TELEPORT
 0 10 cerulean-city 43 18
@@ -20,7 +72,7 @@ WATER_ENCOUNTERS_GOOD
 WATER_ENCOUNTERS_SUPER
 54 98 118
 LEVELS
-14-20
+15-21
 DATA
 106 106 106 106 106 106 106 106 106 106 106 106 106 106 106 106 106 106 106 106 106 106 106 106 106 106 106 106 106 106 106 106 106 106 106 106 106 106 106 106 106 106 106 106 106 106 106 106 106 106 106 106 106 106 106 106 106 106 106
 96   96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96

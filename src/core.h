@@ -2846,7 +2846,7 @@ public:
 			if (in_status(mc.enemy_team[mc.enemy_selected], string("FLEE"))) {
 				if (!in_status(mc.enemy_team[mc.enemy_selected], string("TRAP"))) {
 					do_alert(string("ENEMY FLEE STATUS")); // TODO:  Swap logic
-					remove_status(mc.enemy_team[mc.enemy_selected], string("FLEE"));
+					remove_status(mc.enemy_team[mc.enemy_selected], string("FLEE"), true);
 				}
 				else {
 				}
@@ -2854,7 +2854,7 @@ public:
 			if (in_status(mc.team[mc.selected], string("FLEE"))) {
 				if (!in_status(mc.team[mc.selected], string("TRAP"))) {
 					do_alert(string("PLAYER FLEE STATUS")); // TODO:  Swap logic
-					remove_status(mc.team[mc.selected], string("FLEE"));
+					remove_status(mc.team[mc.selected], string("FLEE"), true);
 				}
 				else {
 					do_alert("Couldn't get away!");
