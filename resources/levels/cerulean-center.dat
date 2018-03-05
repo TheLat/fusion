@@ -11,7 +11,7 @@ MENU:ALERT:ERROR
 END
 cerulean-center-joy-desk blank 3 2
 INTERACTIONS
-MENU:ALERT:Welcome to our Pok{e-accent}MON CENTER!|MENU:ALERT:We heal your POK{e-accent}MON back to|MENU:ALERT_YES_NO:perfect health!|{MENU:ALERT:OK, we'll need your POK{e-accent}MON.|FULL_HEAL|MENU:ALERT:Thank you!{NEWLINE}Your POK{e-accent}MON are fighting fit!}{}|MENU:ALERT:We hope to see you again!
+MENU:ALERT:Welcome to our POK{e-accent}MON CENTER!|MENU:ALERT:We heal your POK{e-accent}MON back to|MENU:ALERT_YES_NO:perfect health!|{MENU:ALERT:OK, we'll need your POK{e-accent}MON.|FULL_HEAL|MENU:ALERT:Thank you!{NEWLINE}Your POK{e-accent}MON are fighting fit!}{}|MENU:ALERT:We hope to see you again!
 END
 cerulean-center-hat hat 4 3
 INTERACTIONS
