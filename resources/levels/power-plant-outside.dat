@@ -1,18 +1,38 @@
 NAME
 Power Plant Exterior
 NPCS
-route9-girl1 girl 12 12 LEFT
+power-plant-outside-girl1 girl 10 27 LEFT
 FORCE_INTERACTION
 -1 0
 -2 0
 -3 0
 END
 INTERACTIONS
-!:route9-girl1|MOVE_TO_PLAYER|MENU:ALERT:You have POK{e-accent}MON with you! {NEWLINE} You're mine!|BATTLE:route9-girl1|{NO_ADVANCE}{DISABLE_FORCE}
-MENU:ALERT:You need light to get through that dark tunnel ahead.
+!:power-plant-outside-girl1|MOVE_TO_PLAYER|MENU:ALERT:I've been to a POK{e-accent}MON GYM a few times. But, I lost each time.|BATTLE:power-plant-outside-girl1|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I noticed some POK{e-accent}MANIACs prowling around.
+END
+power-plant-outside-bush1 bush 12 26
+INTERACTIONS
+HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:power-plant-outside-bush1}
+END
+power-plant-outside-bush2 bush 12 24
+INTERACTIONS
+HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:power-plant-outside-bush2}
+END
+power-plant-outside-bush3 bush 12 22
+INTERACTIONS
+HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:power-plant-outside-bush3}
+END
+power-plant-outside-bush4 bush 12 20
+INTERACTIONS
+HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:power-plant-outside-bush4}
+END
+sign1 blank 10 21
+INTERACTIONS
+MENU:ALERT:ROCK TUNNEL
 END
 TRAINERS
-route9-girl1 20 0.25 0.25 JR.TRAINER{FEMALE} jrtrainerf.png {JR.TRAINER{FEMALE}: You deceived me!}{} 43-43:18|69-69:18|43-69:18|69-43:18
+power-plant-outside-girl1 20 0.25 0.25 JR.TRAINER{FEMALE} jrtrainerf.png {JR.TRAINER{FEMALE}: Ohh! Blew it again!}{} 25-25:22|35-35:22
 END
 TELEPORT
 1 10 route9 57 10
