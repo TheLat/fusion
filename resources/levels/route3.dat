@@ -86,10 +86,10 @@ END
 TRAINERS
 route3-girl-1 15 0.1 0.1 LASS lass.png {LASS: You're mean!}{} 16-16:9|19-16:9
 route3-boy-1 10 0.1 0.1 BUG{SPACE}CATCHER bugcatcher.png {BUG CATCHER: You beat me again!}{} 10-10:10|13-13:10|10-10:10
-route3-boy-2 15 0.1 0.1 YOUNGSTER youngster.png {YOUNGSTER: I don't believe it!}{} 19-19:11|23-23:11
+route3-boy-2 15 0.1 0.3 YOUNGSTER youngster.png {YOUNGSTER: I don't believe it!}{} 19-19:11|23-23:11
 route3-girl-2 15 0.1 0.1 LASS lass.png {LASS: Be nice!}{} 19-19:10|32-32:10
 route3-boy-3 10 0.1 0.1 BUG{SPACE}CATCHER bugcatcher.png {BUG CATCHER: If I had new POK{e-accent}MON I would've won!}{} 13-13:9|14-14:9|10-10:9|11-11:9
-route3-boy-4 15 0.1 0.1 YOUNGSTER youngster.png {YOUNGSTER: Lost! Lost! Lost!}{} 21-21:14
+route3-boy-4 15 0.1 0.3 YOUNGSTER youngster.png {YOUNGSTER: Lost! Lost! Lost!}{} 21-21:14
 route3-boy-5 10 0.1 0.1 BUG{SPACE}CATCHER bugcatcher.png {BUG CATCHER: Done like dinner!}{} 10-10:11|11-11:11
 route3-girl-3 15 0.1 0.1 LASS lass.png {LASS: That's it?}{} 39-39:14
 END

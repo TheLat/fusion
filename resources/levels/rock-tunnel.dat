@@ -1,12 +1,52 @@
 NAME
 Rock Tunnel
 NPCS
-mt-moon-item1 orb 5 32
+rock-tunnel-guy1 man2 23 8 LEFT
+FORCE_INTERACTION
+-1 0
+-2 0
+-3 0
+END
 INTERACTIONS
-GIVE_ITEM:TM12|DEACTIVATE:mt-moon-item1
-ENDS
+!:rock-tunnel-guy1|MOVE_TO_PLAYER|MENU:ALERT:POK{e-accent}MON fight! Ready, go!|BATTLE:rock-tunnel-guy1|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Oh well, I'll get a ZUBAT as I go!
+END
+rock-tunnel-guy2 man2 26 72 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+0 3
+END
+INTERACTIONS
+!:rock-tunnel-guy2|MOVE_TO_PLAYER|MENU:ALERT:I draw POK{e-accent}MON when I'm home.|BATTLE:rock-tunnel-guy2|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I'm an artist, not a fighter.
+END
+rock-tunnel-girl1 girl 14 70 RIGHT
+FORCE_INTERACTION
+1 0
+2 0
+3 0
+END
+INTERACTIONS
+!:rock-tunnel-girl1|MOVE_TO_PLAYER|MENU:ALERT:I don't often come here, but I will fight you.|BATTLE:rock-tunnel-girl1|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I like tiny POK{e-accent}MON, big ones are too scary!
+END
+rock-tunnel-guy3 man2 20 64 RIGHT
+FORCE_INTERACTION
+1 0
+2 0
+3 0
+4 0
+END
+INTERACTIONS
+!:rock-tunnel-guy3|MOVE_TO_PLAYER|MENU:ALERT:Do you know about costume players?|BATTLE:rock-tunnel-guy3|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Costume players dress up as POK{e-accent}MON for fun.
+END
 TRAINERS
-mt-moon-boy1 10 0.1 0.1 BUG{SPACE}CATCHER bugcatcher.png {BUG CATCHER: You got me!}{} 13-13:11|14-14:11
+rock-tunnel-guy1 50 1.0 0.4 POK{e-accent}MANIAC pokemaniac.png {POK{e-accent}MANIAC: Game over!}{} 104-104:23|79-79:23
+rock-tunnel-guy2 50 1.0 0.4 POK{e-accent}MANIAC pokemaniac.png {POK{e-accent}MANIAC: Whew! I'm exhausted!}{} 79-79:25
+rock-tunnel-girl1 20 0.35 0.35 JR.TRAINER{FEMALE} jrtrainerf.png {JR.TRAINER{FEMALE}: Oh! I lost!}{} 43-43:23|1-1:24
+rock-tunnel-guy3 50 1.0 0.4 POK{e-accent}MANIAC pokemaniac.png {POK{e-accent}MANIAC: Well, that's that.}{} 5-5:22|104-5:22
 END
 TELEPORT
 15 3 power-plant-outside 11 20
@@ -16,8 +56,10 @@ TELEPORT
 5 3 rock-tunnel 27 46
 17 11 rock-tunnel 22 53
 23 53 rock-tunnel 16 11
+3 45 rock-tunnel 37 16
+37 17 rock-tunnel 3 46
 ENCOUNTERS
-41 66 74 92 95 104
+41 64 66 74 92 95 104
 LEVELS
 18-24
 DATA
