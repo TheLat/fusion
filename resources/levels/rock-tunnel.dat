@@ -42,11 +42,137 @@ INTERACTIONS
 !:rock-tunnel-guy3|MOVE_TO_PLAYER|MENU:ALERT:Do you know about costume players?|BATTLE:rock-tunnel-guy3|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Costume players dress up as POK{e-accent}MON for fun.
 END
+rock-tunnel-tough1 tough 30 52 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+0 3
+END
+INTERACTIONS
+!:rock-tunnel-tough1|MOVE_TO_PLAYER|MENU:ALERT:My POK{e-accent}MON techniques will leave you crying!|BATTLE:rock-tunnel-tough1|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:In the mountains, you'll often find rock-type POK{e-accent}MON.
+END
+rock-tunnel-tough2 tough 33 47 RIGHT
+FORCE_INTERACTION
+1 0
+2 0
+3 0
+END
+INTERACTIONS
+!:rock-tunnel-tough2|MOVE_TO_PLAYER|MENU:ALERT:Hit me with your best shot!|BATTLE:rock-tunnel-tough2|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I'll raise my POK{e-accent}MON to beat yours, kid!
+END
+rock-tunnel-tough3 tough 7 5 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+0 3
+END
+INTERACTIONS
+!:rock-tunnel-tough3|MOVE_TO_PLAYER|MENU:ALERT:This tunnel goes a long way, kid!|BATTLE:rock-tunnel-tough3|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Watch for ONIX! It can put the squeeze on you!
+END
+rock-tunnel-tough4 tough 5 16 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+0 3
+END
+INTERACTIONS
+!:rock-tunnel-tough4|MOVE_TO_PLAYER|MENU:ALERT:Hmm. Maybe I'm lost in here...|BATTLE:rock-tunnel-tough4|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:That sleeping POK{e-accent}MON on ROUTE 12 forced me to take this detour.
+END
+rock-tunnel-tough5 tough 17 15 LEFT
+FORCE_INTERACTION
+-1 0
+-2 0
+-3 0
+END
+INTERACTIONS
+!:rock-tunnel-tough5|MOVE_TO_PLAYER|MENU:ALERT:Outsiders like you need to show me some respect!|BATTLE:rock-tunnel-tough5|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:You're talented enough to hike!
+END
+rock-tunnel-girl2 girl 11 55 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+0 3
+END
+INTERACTIONS
+!:rock-tunnel-girl2|MOVE_TO_PLAYER|MENU:ALERT:Hikers leave twigs as trail markers.|BATTLE:rock-tunnel-girl2|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I want to go home!
+END
+rock-tunnel-tough6 tough 6 52 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+0 3
+END
+INTERACTIONS
+!:rock-tunnel-tough6|MOVE_TO_PLAYER|MENU:ALERT:Hahaha! Can you beat my power!|BATTLE:rock-tunnel-tough6|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I go for power because I hate thinking!
+END
+rock-tunnel-guy4 man2 3 47 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+0 3
+0 4
+END
+INTERACTIONS
+!:rock-tunnel-guy4|MOVE_TO_PLAYER|MENU:ALERT:You have a POK{e-accent}DEX?|MENU:ALERT:I want one, too!|BATTLE:rock-tunnel-guy4|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:When you finish your POK{e-accent}DEX, can I have it?
+END
+rock-tunnel-girl3 girl 37 21 LEFT
+FORCE_INTERACTION
+-1 0
+-2 0
+-3 0
+END
+INTERACTIONS
+!:rock-tunnel-girl3|MOVE_TO_PLAYER|MENU:ALERT:Eek! Don't try anything funny in the dark!|BATTLE:rock-tunnel-girl3|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I saw a MACHOP in this tunnel!
+END
+rock-tunnel-girl4 girl 32 24 RIGHT
+FORCE_INTERACTION
+1 0
+2 0
+3 0
+END
+INTERACTIONS
+!:rock-tunnel-girl4|MOVE_TO_PLAYER|MENU:ALERT:You have POK{e-accent}MON! Let's start!|BATTLE:rock-tunnel-girl4|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Whew! I'm all sweaty now!
+END
+rock-tunnel-girl5 girl 22 24 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+0 3
+END
+INTERACTIONS
+!:rock-tunnel-girl5|MOVE_TO_PLAYER|MENU:ALERT:I came this far for POK{e-accent}MON!|BATTLE:rock-tunnel-girl5|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:You looked cute and harmless!
+END
+rock-tunnel-sign1 blank 11 29
+INTERACTIONS
+MENU:ALERT:ROCK TUNNEL CERULEAN CITY - LAVENDER TOWN
+END
 TRAINERS
 rock-tunnel-guy1 50 1.0 0.4 POK{e-accent}MANIAC pokemaniac.png {POK{e-accent}MANIAC: Game over!}{} 104-104:23|79-79:23
 rock-tunnel-guy2 50 1.0 0.4 POK{e-accent}MANIAC pokemaniac.png {POK{e-accent}MANIAC: Whew! I'm exhausted!}{} 79-79:25
 rock-tunnel-girl1 20 0.35 0.35 JR.TRAINER{FEMALE} jrtrainerf.png {JR.TRAINER{FEMALE}: Oh! I lost!}{} 43-43:23|1-1:24
-rock-tunnel-guy3 50 1.0 0.4 POK{e-accent}MANIAC pokemaniac.png {POK{e-accent}MANIAC: Well, that's that.}{} 5-5:22|104-5:22
+rock-tunnel-guy3 50 1.0 0.45 POK{e-accent}MANIAC pokemaniac.png {POK{e-accent}MANIAC: Well, that's that.}{} 5-5:22|104-5:22
+rock-tunnel-tough1 35 0.45 0.45 HIKER hiker.png {HIKER: I give! You're a better technician!}{} 75-75:25
+rock-tunnel-tough2 35 0.45 0.45 HIKER hiker.png {HIKER: Fired away!}{} 95-95:25
+rock-tunnel-tough3 35 0.45 0.45 HIKER hiker.png {HIKER: D'oh! {NEWLINE} You win!}{} 74-66:19|66-74:19|74-74:19|66-66:19
+rock-tunnel-tough4 35 0.45 0.45 HIKER hiker.png {HIKER: Ease up! What am I doing? Which way is out?}{} 64-95:21|41-95:21|95-64:21
+rock-tunnel-tough5 35 0.45 0.45 HIKER hiker.png {HIKER: I give!}{} 74-74:21|75-75:21
+rock-tunnel-girl2 20 0.35 0.35 JR.TRAINER{FEMALE} jrtrainerf.png {JR.TRAINER{FEMALE}: Ohhh! I did my best!}{} 39-39:23|16-16:23|52-52:23
+rock-tunnel-tough6 35 0.45 0.45 HIKER hiker.png {HIKER: Oops! Out-muscled!}{} 74-74:21|74-74:21|76-76:21
+rock-tunnel-guy4 50 1.0 0.45 POK{e-accent}MANIAC pokemaniac.png {POK{e-accent}MANIAC: Shoot! I'm so jealous!}{} 79-79:20|79-79:20|79-79:20
+rock-tunnel-girl3 20 0.35 0.35 JR.TRAINER{FEMALE} jrtrainerf.png {JR.TRAINER{FEMALE}: It was too dark!}{} 69-69:22|35-35:22
+rock-tunnel-girl4 20 0.35 0.35 JR.TRAINER{FEMALE} jrtrainerf.png {JR.TRAINER{FEMALE}: You play hard!}{} 16-16:19|19-19:19|19-16:19|69-69:19
+rock-tunnel-girl5 20 0.35 0.35 JR.TRAINER{FEMALE} jrtrainerf.png {JR.TRAINER{FEMALE}: I'm out of POK{e-accent}MON!}{} 52-43:20|43-16:20|16-52:20
 END
 TELEPORT
 15 3 power-plant-outside 11 20
@@ -58,6 +184,7 @@ TELEPORT
 23 53 rock-tunnel 16 11
 3 45 rock-tunnel 37 16
 37 17 rock-tunnel 3 46
+15 33 route10 2 2
 ENCOUNTERS
 41 64 66 74 92 95 104
 LEVELS
@@ -80,7 +207,7 @@ DATA
 206 207 201 201 201 201 206 207 201 201 201 201 201 201 201 201 201 201 206 207 206 210 210 207 206 210 210 207 206 210 210 207 206 210 210 207 206 207 204 205
 204 205 201 201 201 201 204 205 201 201 201 201 201 201 201 201 201 201 202 203 202 211 211 203 202 211 211 203 202 211 211 203 202 211 211 203 202 203 202 203
 204 205 201 201 201 201 204 205 201 201 201 201 201 201 201 201 201 201 201 201 201 201 206 207 201 201 201 201 201 201 206 207 201 201 201 201 201 201 206 207
-202 203 201 201 201 201 201 201 201 201 201 201 201 201 201 201 201 201 201 201 201 201 204 205 201 201 201 201 201 201 204 205 201 201 201 201 201 227 204 205
+202 203 201 201 201 201 202 203 201 201 201 201 201 201 201 201 201 201 201 201 201 201 204 205 201 201 201 201 201 201 204 205 201 201 201 201 201 227 204 205
 206 207 201 201 201 201 201 201 201 201 201 201 201 201 201 201 201 201 201 201 201 201 204 205 201 201 201 201 201 201 204 205 201 201 201 201 201 201 204 205
 204 205 201 201 201 201 201 201 201 201 201 201 201 201 201 201 201 201 201 201 201 201 202 203 201 201 201 201 201 201 202 203 201 201 201 201 201 201 202 203
 204 205 201 201 201 201 201 201 201 201 201 201 201 201 201 201 201 201 201 201 201 201 206 207 201 201 201 201 201 201 206 207 201 201 201 201 201 201 206 207
