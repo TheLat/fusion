@@ -1,6 +1,6 @@
 Professor Oak's team:
 Poliwrath-Chansey that knows MINIMIZE, AMNESIA, SOFTBOILED, and HYPER BEAM
-Parasect-Hypno that knows SPORE, DREAM EATER, PSYCHIC, and DIG
+Hypno-Parasect that knows SPORE, DREAM EATER, PSYCHIC, and DIG
 Golem-Beedrill that knows EARTHQUAKE, EXPLOSION, PIN MISSILE, and ROCK SLIDE
 Cloyster-Dragonite that knows BODY SLAM, SUPERSONIC, ICE BEAM, and HYPER BEAM
 Jynx-Gengar that knows LOVELY KISS, DREAM EATER, BODY SLAM, and BLIZZARD
