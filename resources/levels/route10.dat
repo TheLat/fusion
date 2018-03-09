@@ -1,24 +1,61 @@
 NAME
 Route 10
 NPCS
-route9-girl1 girl 12 12 LEFT
+route10-sign blank 13 9
+INTERACTIONS
+MENU:ALERT:ROCK TUNNEL
+END
+route10-girl1 girl 11 8 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+END
+INTERACTIONS
+!:route10-girl1|MOVE_TO_PLAYER|MENU:ALERT:I'm feeling a bit faint from this tough hike.|BATTLE:route10-girl1|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:The POK{e-accent}MON here are so chunky! There should be a pink one with a floral pattern!
+END
+route10-guy1 tough 7 11 UP
+FORCE_INTERACTION
+0 -1
+0 -2
+0 -3
+END
+INTERACTIONS
+!:route10-guy1|MOVE_TO_PLAYER|MENU:ALERT:Ha-hahaha-ah-ah!|BATTLE:route10-guy1|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Haha-ha-choo! {NEWLINE} Ha-choo! {NEWLINE} Snort! Snivel!
+END
+route10-guy2 tough 7 15 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+0 3
+END
+INTERACTIONS
+!:route10-guy2|MOVE_TO_PLAYER|MENU:ALERT:Ah! This mountain air is delicious!|BATTLE:route10-guy2|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I feel bloated on mountain air!
+END
+route10-guy3 man2 18 18 LEFT
 FORCE_INTERACTION
 -1 0
 -2 0
 -3 0
 END
 INTERACTIONS
-!:route9-girl1|MOVE_TO_PLAYER|MENU:ALERT:You have POK{e-accent}MON with you! {NEWLINE} You're mine!|BATTLE:route9-girl1|{NO_ADVANCE}{DISABLE_FORCE}
-MENU:ALERT:You need light to get through that dark tunnel ahead.
+!:route10-guy3|MOVE_TO_PLAYER|MENU:ALERT:Hi kid, want to see my POK{e-accent}MON?|BATTLE:route10-guy3|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I don't like you for beating me!
+END
+route10-item1 blank 20 7
+INTERACTIONS
+GIVE_ITEM:MAX ETHER|DEACTIVATE:route10-item1
 END
 TRAINERS
-route9-girl1 20 0.25 0.25 JR.TRAINER{FEMALE} jrtrainerf.png {JR.TRAINER{FEMALE}: You deceived me!}{} 43-43:18|69-69:18|43-69:18|69-43:18
+route10-girl1 20 0.35 0.35 JR.TRAINER{FEMALE} jrtrainerf.png {JR.TRAINER{FEMALE}: I'm not up to it!}{} 16-16:21|17-17:21
+route10-guy1 35 0.45 0.45 HIKER hiker.png {HIKER: Ha-haha! Not laughing! Ha-hay fever! Haha-ha-choo!}{} 95-74:21|74-95:21
+route10-guy2 35 0.45 0.45 HIKER hiker.png {HIKER: That cleared my head!}{} 95-95:21|75-75:21
+route10-guy3 50 1.0 0.45 POK{e-accent}MANIAC pokemaniac.png {POK{e-accent}MANIAC: Oh no! My POK{e-accent}MON!}{} 104-79:20|79-104:20
 END
 TELEPORT
-0 10 cerulean-city 43 18
-0 11 cerulean-city 43 19
-58 10 power-plant-outside 2 10
-58 11 power-plant-outside 2 11
+12 7 rock-tunnel 15 32
 ENCOUNTERS
 19 21 23 27 29 32 43 69
 WATER_ENCOUNTERS_OLD
@@ -30,24 +67,25 @@ WATER_ENCOUNTERS_SUPER
 LEVELS
 15-21
 DATA
-96   96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96
-96   96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96
-96   96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96
-96   96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96
-96   96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96
-96   96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96 159  99  99  99  99 160
-96   96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  97
-96   96  96  96  96 159  99  99  99  99  99  99 167  99  99  99  99  98
-96   96  96  96  96  97  56  56  56  56  56  56  56  56  56  56  56  56
-96   96  96  96  96  97  56  56  56  56  56  56  56   5  56  56  56  56
-96   96  96  96  96  97  56  56  56  56  56  56  56  56 165 106 106 107
-96   96  96  96  96  97  56  56  56  56  56  56  56  56 158  96  96  97
-96   96  96  96  96  97  56  56 165 106 106 106 106 106  96  96  96  97
-96   96  96  96  96  97  78  78 158  96  96  96  96  96  96  96  96  97
-96   96  96  96  96  97 481 481 158  96  96  96  96  96  96  96  96  97
-96   96  96  96  96  97 481 481 162  99  99  99  99  99  99  99  99  98
-96   96  96  96  96  97   1   1   1   1   1   1   1   1   1   1   1   1   1   1 481 481
-96   96  96  96  96  97   1   1   1   1   1   1   1   1   1   1   1   1   1   1 481 481
-96   96  96  96  96  96 106 106 106 106 106 106 106 107   1   1   1   1   1   1   1   1
-96   96  96  96  96
-96   96  96  96  96
+96   96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96
+96   96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96
+96   96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96
+96   96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96
+96   96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96
+96   96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96 159  99  99  99  99 160  96  96  96  96  96
+96   96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  96  97   1   1   1   1 158  96  96  96  96  96
+96   96  96  96  96 159  99  99  99  99  99  99 167  99  99  99  99  98   1   1  76   1 158  96  96  96  96  96
+96   96  96  96  96  97  56  56  56  56  56  56  56  56  56  56  56  56   1   1   1   1 158  96  96  96  96  96
+96   96  96  96  96  97  56  56  56  56  56  56  56   5  56  56  56  56   1   1   1   1 158  96  96  96  96  96
+96   96  96  96  96  97  56  56  56  56  56  56  56  56 165 106 106 107   1   1   1   1 158  96  96  96  96  96
+96   96  96  96  96  97  56  56  56  56  56  56  56  56 158  96  96  97  77  79  77  77 158  96  96  96  96  96
+96   96  96  96  96  97  56  56 165 106 106 106 106 106  96  96  96  97   1   1   1   1 158  96  96  96  96  96
+96   96  96  96  96  97  78  78 158  96  96  96  96  96  96  96  96  97   1   1   1   1 158  96  96  96  96  96
+96   96  96  96  96  97 481 481 158  96  96  96  96  96  96  96  96  97   1   1   1   1 158  96  96  96  96  96
+96   96  96  96  96  97 481 481 162  99  99  99  99  99  99  99  99  98  77  77  77  79 158  96  96  96  96  96
+96   96  96  96  96  97   1   1   1   1   1   1   1   1   1   1   1   1   1   1 481 481 158  96  96  96  96  96
+96   96  96  96  96  97   1   1   1   1   1   1   1   1   1   1   1   1   1   1 481 481 158  96  96  96  96  96
+96   96  96  96  96  96 106 106 106 106 106 106 106 107   1   1   1   1   1   1   1   1 158  96  96  96  96  96
+96   96  96  96  96  96  96  96  96  96  96  96  96  97   1   1   1   1   1   1   1   1 158  96  96  96  96  96
+96   96  96  96  96  96  96  96  96  96  96  96  96  97   1   1 102  71  71  71  71 103 158  96  96  96  96  96
+96   96  96  96  96  96  96  96 159  99  99  99  99  98  77  79 104  68  68  68  68 105 158  96  96  96  96  96
