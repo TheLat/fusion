@@ -1537,6 +1537,7 @@ public:
 		return m.nickname;
 	}
 	void make_mon(string ID, int e_level, mon& out) {
+		ID = "64-95";
 		out.level = 0;
 		out.status.clear();
 		out.last_move = "";
@@ -1633,7 +1634,7 @@ public:
 				}
 			}
 			for (unsigned x = 0; x < all_mon[out.number].learned.size(); ++x) {
-				if (all_mon[out.number].learned[x].first == out.level || (all_mon[out.number].learned[x].first == 0 && evolved)) {
+				if (all_mon[out.number].learned[x].first == out.level || (all_mon[out.number].learned[x].first == 0 && evolved) || (all_mon[out.number].learned[x].first == 0 && !confirm_learn && out.level == 1)) {
 					if (!confirm_learn) { // TODO:  OR Surface confirmation window
 						create_move(out, all_mon[out.number].learned[x].second, counter % 4);
 						counter++;
