@@ -56,6 +56,8 @@ route10-guy3 50 1.0 0.45 POK{e-accent}MANIAC pokemaniac.png {POK{e-accent}MANIAC
 END
 TELEPORT
 12 7 rock-tunnel 15 32
+14 20 lavender-town 14 1
+15 20 lavender-town 15 1
 ENCOUNTERS
 19 21 23 27 29 32 43 69
 WATER_ENCOUNTERS_OLD
