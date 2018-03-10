@@ -1,0 +1,52 @@
+NAME
+Lavender Town Mart
+NPCS
+lavender-mart-shelf1 blank 4 4
+INTERACTIONS
+MENU:ALERT:Wow! Tons of POK{e-accent}MON stuff!
+END
+lavender-mart-shelf2 blank 5 4
+INTERACTIONS
+MENU:ALERT:Wow! Tons of POK{e-accent}MON stuff!
+END
+lavender-mart-shelf3 blank 6 4
+INTERACTIONS
+MENU:ALERT:Wow! Tons of POK{e-accent}MON stuff!
+END
+lavender-mart-shelf4 blank 7 4
+INTERACTIONS
+MENU:ALERT:Wow! Tons of POK{e-accent}MON stuff!
+END
+lavender-mart-man man 3 4
+INTERACTIONS
+MENU:ALERT:I'm searching for items that raise the abilities of POK{e-accent}MON during a single battle.|MENU:ALERT:X ATTACK, X DEFEND, X SPEED, and X SPECIAL are what I'm after.|MENU:ALERT:They even heal debuffs!|MENU:ALERT:Do you know where I can get them?
+END
+lavender-mart-guy guy2 7 2
+INTERACTIONS
+MENU:ALERT:You know REVIVE? It revives any fainted POK{e-accent}MON!
+END
+lavender-mart-clerk clerk2 0 5 RIGHT
+INTERACTIONS
+MENU:ALERT:NULL
+END
+lavender-mart-clerkdesk1 blank 1 5
+INTERACTIONS
+SET_FACE:lavender-mart-clerk:RIGHT|SHOP:GREAT BALL,SUPER POTION,REVIVE,ESCAPE ROPE,SUPER REPEL,ANTIDOTE,BURN HEAL,ICE HEAL,PARLYZ HEAL
+END
+lavender-mart-clerkdesk2 blank 0 6
+INTERACTIONS
+SET_FACE:lavender-mart-clerk:DOWN|SHOP:GREAT BALL,SUPER POTION,REVIVE,ESCAPE ROPE,SUPER REPEL,ANTIDOTE,BURN HEAL,ICE HEAL,PARLYZ HEAL
+END
+TELEPORT
+3 8 lavender-town 19 21
+4 8 lavender-town 19 21
+DATA
+118 118 119 119 119 119 118 118
+120 120 121 121 121 121 120 120
+122 123 123 123 123 123 123 123
+124 125 123 123 124 125 124 125
+128 129 122 123 126 127 126 127
+122 130 122 123 123 123 123 123
+131 132 122 123 123 123 123 123
+122 123 123 133 133 123 123 123
+82   82  82 166 166
