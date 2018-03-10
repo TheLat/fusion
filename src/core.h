@@ -216,8 +216,8 @@ public:
 	std::vector<std::vector<int>> data;
 	std::vector<std::pair<location, location>> teleport;
 	std::vector<character> characters;
-	std::vector<int> encounters, water_encounters_old, water_encounters_good, water_encounters_super;
-	std::pair<int, int> level_range;
+	std::vector<int> encounters, water_encounters_old, water_encounters_good, water_encounters_super, mega_encounters;
+	std::pair<int, int> level_range, mega_level_range;
 	std::map<string, trainer> trainers;
 };
 
@@ -1537,7 +1537,6 @@ public:
 		return m.nickname;
 	}
 	void make_mon(string ID, int e_level, mon& out) {
-		ID = "64-95";
 		out.level = 0;
 		out.status.clear();
 		out.last_move = "";
@@ -3897,6 +3896,18 @@ public:
 				}
 				std::getline(f, line);
 			}
+			if (line == "MEGA_ENCOUNTERS") {
+				std::getline(f, line);
+				while (line.size() > 0) {
+					levels[levelname].mega_encounters.push_back(stoi(line));
+					if (line.find(' ') == -1)
+						break;
+					line.erase(0, line.find(' ') + 1);
+					while (line.find(' ') == 0)
+						line.erase(0, 1);
+				}
+				std::getline(f, line);
+			}
 			if (line == "WATER_ENCOUNTERS_OLD") {
 				std::getline(f, line);
 				while (line.size() > 0) {
@@ -3938,6 +3949,13 @@ public:
 				levels[levelname].level_range.first = stoi(line);
 				line.erase(0, line.find('-') + 1);
 				levels[levelname].level_range.second = stoi(line);
+				std::getline(f, line);
+			}
+			if (line == "MEGA_LEVELS") {
+				std::getline(f, line);
+				levels[levelname].mega_level_range.first = stoi(line);
+				line.erase(0, line.find('-') + 1);
+				levels[levelname].mega_level_range.second = stoi(line);
 				std::getline(f, line);
 			}
 			if (line == "DATA") {
@@ -4604,11 +4622,20 @@ public:
 			if (encounter_tile[get_tile(mc.loc.y, mc.loc.x)]) {
 				if (levels[mc.loc.level].encounters.size() > 0) {
 					if (random(0.0, 187.5) < 8.5) {
-						int choice = int(random(0.0, double(levels[mc.loc.level].encounters.size())));
-						int choice2 = int(random(0.0, double(levels[mc.loc.level].encounters.size())));
-						encounter = std::to_string(levels[mc.loc.level].encounters[choice]) + string("-") + std::to_string(levels[mc.loc.level].encounters[choice2]);
-						int l = int(random(levels[mc.loc.level].level_range.first, levels[mc.loc.level].level_range.second + 1));
-						encounter_level = l;
+						if (levels[mc.loc.level].mega_encounters.size() > 0 && random(0.0, 20.0) >= 19.0) {
+							int choice = int(random(0.0, double(levels[mc.loc.level].mega_encounters.size())));
+							int choice2 = int(random(0.0, double(levels[mc.loc.level].mega_encounters.size())));
+							encounter = std::to_string(levels[mc.loc.level].mega_encounters[choice]) + string("-") + std::to_string(levels[mc.loc.level].mega_encounters[choice2]);
+							int l = int(random(levels[mc.loc.level].mega_level_range.first, levels[mc.loc.level].mega_level_range.second + 1));
+							encounter_level = l;
+						}
+						else {
+							int choice = int(random(0.0, double(levels[mc.loc.level].encounters.size())));
+							int choice2 = int(random(0.0, double(levels[mc.loc.level].encounters.size())));
+							encounter = std::to_string(levels[mc.loc.level].encounters[choice]) + string("-") + std::to_string(levels[mc.loc.level].encounters[choice2]);
+							int l = int(random(levels[mc.loc.level].level_range.first, levels[mc.loc.level].level_range.second + 1));
+							encounter_level = l;
+						}
 					}
 				}
 			}
