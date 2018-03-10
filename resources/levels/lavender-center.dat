@@ -1,0 +1,44 @@
+NAME
+Lavender Pok{e-accent}center
+NPCS
+lavender-center-couch blank 0 4
+INTERACTIONS
+MENU:ALERT:CU- POK{e-accent}MON wear skulls, right?|MENU:ALERT:People will pay a lot for one!
+END
+lavender-center-joy joy 3 1
+INTERACTIONS
+MENU:ALERT:ERROR
+END
+lavender-center-joy-desk blank 3 2
+INTERACTIONS
+MENU:ALERT:Welcome to our POK{e-accent}MON CENTER!|MENU:ALERT:We heal your POK{e-accent}MON back to|MENU:ALERT_YES_NO:perfect health!|{MENU:ALERT:OK, we'll need your POK{e-accent}MON.|FULL_HEAL|MENU:ALERT:Thank you!{NEWLINE}Your POK{e-accent}MON are fighting fit!}{}|MENU:ALERT:We hope to see you again!
+END
+lavender-center-girl girl2 2 6 WANDER
+INTERACTIONS
+MENU:ALERT:I saw CUBONE's mother die trying to escape from TEAM ROCKET!
+END
+lavender-center-guy hat 5 3
+INTERACTIONS
+MENU:ALERT:TEAM ROCKET will do anything for the sake of gold!
+END
+lavender-center-cableclub woman 11 2
+INTERACTIONS
+MENU:ALERT:Welcome to the Cable Club.|MENU:ALERT:This area is reserved for 2 friends who are linked by cable.
+END
+lavender-center-pc blank 13 3
+INTERACTIONS
+MENU:ALERT:{PLAYER_NAME} turned on the PC.|GET:BILL|{MENU:PC:}{MENU:PC2:}|{GET:BILL|{MENU:ALERT:Accessed someone's PC.}{MENU:ALERT:Accessed BILL's PC.}|MENU:ALERT:Accessed POK{e-accent}MON Storage System.|MON_STORAGE}{MENU:ALERT:Accessed my PC.|MENU:ALERT:Accessed Item Storage System.|ITEM_STORAGE}{MENU:ALERT:OAK RATING GOES HERE}{}
+END
+TELEPORT
+3 8 lavender-town 7 13
+4 8 lavender-town 7 13
+DATA
+134 135 136 137 138 134 135 136 139 139 140 139 140 139
+134 141 142 143 123 134 144 145 123 123 123 123 123 123
+146 147 148 149 148 146 148 148 148 148 150 123 150 148
+123 123 123 123 123 123 123 123 123 123 123 123 123 151
+152 153 123 123 123 123 123 123 123 123 123 123 123 154
+155 122 123 123 123 123 123 123 123 123 123 123 123 123
+156 156 123 123 123 123 156 156 123 123 123 123 156 156
+157 157 123  54  54 123 157 157 123 123 123 123 157 157
+82   82  82 166 166

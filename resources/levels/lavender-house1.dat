@@ -1,0 +1,52 @@
+NAME
+Lavender City House 1
+NPCS
+lavender-house1-bookshelf1 blank 0 1
+INTERACTIONS
+MENU:ALERT:POK{e-accent}MON magazines!|MENU:ALERT:POK{e-accent}MON notebooks!|MENU:ALERT:POK{e-accent}MON graphs!
+END
+lavender-house1-bookshelf2 blank 1 1
+INTERACTIONS
+MENU:ALERT:POK{e-accent}MON magazines!|MENU:ALERT:POK{e-accent}MON notebooks!|MENU:ALERT:POK{e-accent}MON graphs!
+END
+lavender-house1-bookshelf3 blank 7 1
+INTERACTIONS
+MENU:ALERT:POK{e-accent}MON magazines!|MENU:ALERT:POK{e-accent}MON notebooks!|MENU:ALERT:POK{e-accent}MON graphs!
+END
+lavender-house1-map blank 3 0
+INTERACTIONS
+MENU:ALERT:A TOWN MAP.|MAP
+END
+lavender-house1-book1 book 3 3
+INTERACTIONS
+MENU:ALERT:POK{e-accent}MON Monthly Grand Prize Drawing!|MENU:ALERT:The application form is...|MENU:ALERT:Gone! It's been clipped out!
+END
+lavender-house1-mon1 mon 1 3
+INTERACTIONS
+MENU:ALERT:NIDORINO: Gaoo!
+END
+lavender-house1-mon2 mon 6 4 UP
+INTERACTIONS
+MENU:ALERT:PSYDUCK: Gwappa!|FACE:UP
+END
+lavender-house1-girl girl2 6 3 DOWN
+INTERACTIONS
+MENU:ALERT:This is really MR.FUJI's house.|MENU:ALERT:He's really kind!|MENU:ALERT:He looks after abandoned and orphaned POK{e-accent}MON!|FACE:DOWN
+END
+lavender-house1-man man2 3 5
+INTERACTIONS
+MENU:ALERT:That's odd, MR.FUJI isn't here. {NEWLINE} Where'd he go?
+END
+TELEPORT
+2 8 lavender-town 11 17
+3 8 lavender-town 11 17
+DATA
+31 31  17  33 17 34 17 31
+32 32  18  18 18 18 18 36
+18 18  18  18 18 18 18 18
+18 18  37  48 52 37 18 18
+18 18  37  23 24 37 18 18
+18 18  18  18 18 18 18 18
+30 18  18  18 18 18 18 30
+29 18  38  38 18 18 18 29
+82 82 166 166

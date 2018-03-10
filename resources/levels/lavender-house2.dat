@@ -1,0 +1,40 @@
+NAME
+Lavender City House 2
+NPCS
+lavender-house2-bookshelf1 blank 0 1
+INTERACTIONS
+MENU:ALERT:POK{e-accent}MON magazines!|MENU:ALERT:POK{e-accent}MON notebooks!|MENU:ALERT:POK{e-accent}MON graphs!
+END
+lavender-house2-bookshelf2 blank 1 1
+INTERACTIONS
+MENU:ALERT:POK{e-accent}MON magazines!|MENU:ALERT:POK{e-accent}MON notebooks!|MENU:ALERT:POK{e-accent}MON graphs!
+END
+lavender-house2-bookshelf3 blank 7 1
+INTERACTIONS
+MENU:ALERT:POK{e-accent}MON magazines!|MENU:ALERT:POK{e-accent}MON notebooks!|MENU:ALERT:POK{e-accent}MON graphs!
+END
+lavender-house2-map blank 3 0
+INTERACTIONS
+MENU:ALERT:A TOWN MAP.|MAP
+END
+lavender-house2-mon2 mon 3 5 UP
+INTERACTIONS
+MENU:ALERT:CUBONE: Kyarugoo!|FACE:UP
+END
+lavender-house2-girl girl4 2 4 RIGHT
+INTERACTIONS
+MENU:ALERT:I hate those horrible ROCKETs!|MENU:ALERT:That poor CUBONE's mother...|MENU:ALERT:She was killed helping CUBONE to escape from TEAM ROCKET!|FACE:RIGHT
+END
+TELEPORT
+2 8 lavender-town 7 21
+3 8 lavender-town 7 21
+DATA
+31 31  17  33 17 34 17 31
+32 32  18  18 18 18 18 36
+18 18  18  18 18 18 18 18
+18 18  37  48 52 37 18 18
+18 18  37  23 24 37 18 18
+18 18  18  18 18 18 18 18
+30 18  18  18 18 18 18 30
+29 18  38  38 18 18 18 29
+82 82 166 166
