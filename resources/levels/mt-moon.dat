@@ -146,7 +146,7 @@ FORCE_INTERACTION
 0 3
 END
 INTERACTIONS
-!:mt-moon-rocket4|MOVE_TO_PLAYER|MENU:ALERT:TEAM ROCKET will find the fossils, revive and sell them for cash!|BATTLE:mt-moon-rocket4|{NO_ADVANCE}{DISABLE_FORCE}
+!:mt-moon-rocket4|MOVE_TO_PLAYER|MENU:ALERT:TEAM ROCKET will find the fossils and revive them!|BATTLE:mt-moon-rocket4|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:You made me mad! TEAM ROCKET will blacklist you!
 END
 mt-moon-man2 man2 12 52 RIGHT
@@ -176,7 +176,7 @@ mt-moon-rocket2 35 0.1 0.1 ROCKET rocket.png {ROCKET: So, you are good.}{} 41-41
 mt-moon-boy3 10 0.1 0.1 YOUNGSTER youngster.png {YOUNGSTER: Losing stinks.}{} 19-19:10|19-19:10|41-41:10
 mt-moon-hiker1 35 0.25 0.25 HIKER hiker.png {HIKER: Wow! Shocked again!}{} 74-74:10|74-74:10|95-95:10
 mt-moon-rocket3 35 0.1 0.1 ROCKET rocket.png {ROCKET: I'm steamed!}{} 20-20:16
-mt-moon-rocket4 35 0.1 0.1 ROCKET rocket.png {ROCKET: Urgh! Now I'm mad!}{} 19-19:13|41-19:13
+mt-moon-rocket4 35 0.1 0.1 ROCKET rocket.png {ROCKET: No! This could be our chance to stop... nevermind.}{} 19-19:13|41-19:13
 mt-moon-man2 25 0.1 0.35 SUPER{SPACE}NERD supernerd.png {SUPER NERD: OK! You can have them!}{} 88-88:12|100-100:12|109-109:12
 END
 TELEPORT
