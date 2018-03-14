@@ -25,6 +25,29 @@ lavender-tower-lower-woman4 elder 15 7 LEFT
 INTERACTIONS
 MENU:ALERT:I am a CHANNELER! There are spirits up to mischief!
 END
+lavender-tower-lower-rival rival 12 30
+INTERACTIONS
+MENU:ALERT:ERROR
+END
+lavender-tower-lower-scriptl blank 11 30
+FORCE_INTERACTION
+2 0
+END
+INTERACTIONS
+SET_FACE:lavender-tower-lower-rival:RIGHT|MENU:ALERT:{RIVAL_NAME}: Hey, {PLAYER_NAME}! What brings you here?|MENU:ALERT:You're POK{e-accent}MON don't look dead!|MENU:ALERT:I can at least make them faint! Let's go, pal!|GET:RIVALVALUE|{BATTLE:lavender-tower-city-0}{BATTLE:lavender-tower-city-1}{BATTLE:lavender-tower-city-2}|{NO_ADVANCE}{}|MENU:ALERT:How's your POK{e-accent}DEX coming, pal?|MENU:ALERT:I just caught a CUBONE!|MENU:ALERT:I can't find any grown-up MAROWAKs yet!|MENU:ALERT:I doubt there are any left! Well, I better get going! I've got a lot to accomplish, pal!|MENU:ALERT:Smell ya later!|MOVE:lavender-tower-lower-rival:0,1|MOVE:lavender-tower-lower-rival:0,1|MOVE:lavender-tower-lower-rival:1,0|MOVE:lavender-tower-lower-rival:1,0|MOVE:lavender-tower-lower-rival:1,0|MOVE:lavender-tower-lower-rival:1,0|MOVE:lavender-tower-lower-rival:0,1|MOVE:lavender-tower-lower-rival:0,1|DEACTIVATE:lavender-tower-lower-scriptl|DEACTIVATE:lavender-tower-lower-script2|DEACTIVATE:lavender-tower-lower-rival
+END
+lavender-tower-lower-script2 blank 12 29
+FORCE_INTERACTION
+0 2
+END
+INTERACTIONS
+SET_FACE:lavender-tower-lower-rival:DOWN|MENU:ALERT:{RIVAL_NAME}: Hey, {PLAYER_NAME}! What brings you here?|MENU:ALERT:You're POK{e-accent}MON don't look dead!|MENU:ALERT:I can at least make them faint! Let's go, pal!|GET:RIVALVALUE|{BATTLE:lavender-tower-city-0}{BATTLE:lavender-tower-city-1}{BATTLE:lavender-tower-city-2}|{NO_ADVANCE}{}|MENU:ALERT:How's your POK{e-accent}DEX coming, pal?|MENU:ALERT:I just caught a CUBONE!|MENU:ALERT:I can't find any grown-up MAROWAKs yet!|MENU:ALERT:I doubt there are any left! Well, I better get going! I've got a lot to accomplish, pal!|MENU:ALERT:Smell ya later!|MOVE:lavender-tower-lower-rival:1,0|MOVE:lavender-tower-lower-rival:0,1|MOVE:lavender-tower-lower-rival:0,1|MOVE:lavender-tower-lower-rival:1,0|MOVE:lavender-tower-lower-rival:1,0|MOVE:lavender-tower-lower-rival:1,0|MOVE:lavender-tower-lower-rival:0,1|MOVE:lavender-tower-lower-rival:0,1|DEACTIVATE:lavender-tower-lower-scriptl|DEACTIVATE:lavender-tower-lower-script2|DEACTIVATE:lavender-tower-lower-rival
+END
+TRAINERS
+lavender-tower-city-0 65 0.65 0.65 {RIVAL_NAME} rival2.png {{RIVAL_NAME}: What? You stinker! {NEWLINE} I took it easy on you, too!}{{RIVAL_NAME}: Yeah! Am I great or what?} 25-25:31:THUNDERBOLT,SWIFT,THUNDER WAVE,QUICK ATTACK|22-28:30:SLASH,DIG,PECK,FURY ATTACK|9-9:32
+lavender-tower-city-1 65 0.65 0.65 {RIVAL_NAME} rival2.png {{RIVAL_NAME}: What? You stinker! {NEWLINE} I took it easy on you, too!}{{RIVAL_NAME}: Yeah! Am I great or what?} 17-17:31|75-75:31:EARTHQUAKE,SELFDESTRUCT,ROCK THROW,HARDEN|3-3:32
+lavender-tower-city-2 65 0.65 0.65 {RIVAL_NAME} rival2.png {{RIVAL_NAME}: What? You stinker! {NEWLINE} I took it easy on you, too!}{{RIVAL_NAME}: Yeah! Am I great or what?} 70-70:31:VINE WHIP,WRAP,ACID,POISON POWDER|56-56:20|64-95:30|6-6:32
+END
 TELEPORT
 8 18 lavender-town 18 13
 9 18 lavender-town 18 13
