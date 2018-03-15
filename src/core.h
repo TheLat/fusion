@@ -2511,7 +2511,50 @@ public:
 			return false;
 		return true;
 	}
-	int get_smart_move(mon& attacker, mon& defender, trainer& t, bool skip_recurse = false) {
+	double get_smart_damage(mon& attacker, mon& defender, unsigned i, trainer& t) {
+		bool crit = false;
+		bool skip_accuracy_check = false;
+		double mul = 0.0;
+		int buff = 0;
+		for (unsigned j = 0; j < attacker.status.size(); ++j) {
+			if (attacker.status[j] == this->get_buff_name(SPEED)) {
+				buff++;
+			}
+			if (attacker.status[j] == this->get_debuff_name(SPEED)) {
+				buff--;
+			}
+		}
+		double chance = get_stat_modifier(buff) * all_mon[attacker.number].stats[SPEED] / 4.0;
+		if (in_status(attacker, string("FOCUS")))
+			chance *= 4.0;
+		chance *= moves[attacker.moves[i]].crit_chance;
+		chance = chance / 256.0;
+		double low = damage(attacker, defender, attacker.moves[i], crit, mul, true, false, true);
+		double high = damage(attacker, defender, attacker.moves[i], crit, mul, false, true, true);
+		double pow = low + chance* (high - low);
+		pow = pow * 0.85;
+		if (moves[attacker.moves[i]].pow.find(string("x2-5")) != -1) {
+			if (!in_status(defender, string("RAGE")))
+				pow *= 3.0;
+		}
+		if (moves[attacker.moves[i]].pow.find(string("x2")) != -1) {
+			if (!in_status(defender, string("RAGE")))
+				pow *= 2.0;
+		}
+		for (unsigned j = 0; j < moves[attacker.moves[i]].special.size(); ++j) {
+			if (moves[attacker.moves[i]].special[j] == "UNAVOIDABLE") {
+				skip_accuracy_check = true;
+			}
+		}
+		if (!skip_accuracy_check && !t.skip_accuracy_check) {
+			pow *= get_accuracy_modifier(attacker);
+			pow *= double(moves[attacker.moves[i]].acc) / 100.0;
+		}
+		return pow;
+	}
+	int get_smart_move(mon& attacker, mon& defender, trainer& t, bool skip_recurse, int hp_offset, int& self_turns_to_live, int& opponent_turns_to_live) {
+		int a = 0, b = 0;
+		int dam;
 		int enemy_move = -1;
 		int enemy_damage = -1;
 		double magnitude = -1.0;
@@ -2522,7 +2565,7 @@ public:
 		int turns_to_live = -1;
 		int ret = -1;
 		if (!skip_recurse) {
-			enemy_move = get_smart_move(defender, attacker, t, true);
+			enemy_move = get_smart_move(defender, attacker, t, true, 0, a, b);
 			if (enemy_move >= 0)
 				enemy_damage = damage(defender, attacker, defender.moves[enemy_move], crit, mul, true, false, true);
 			else
@@ -2531,45 +2574,12 @@ public:
 			if (get_stat(attacker, SPEED) > get_stat(defender, SPEED)) {
 				turns_to_live += 1;
 			}
+			self_turns_to_live = turns_to_live;
 		}
-		int buff = 0;
-		for (unsigned i = 0; i < attacker.status.size(); ++i) {
-			if (attacker.status[i] == this->get_buff_name(SPEED)) {
-				buff++;
-			}
-			if (attacker.status[i] == this->get_debuff_name(SPEED)) {
-				buff--;
-			}
-		}
-		bool skip_accuracy_check = false;
 		for (unsigned i = 0; i < 4; ++i) {
 			if (is_valid_move(attacker, i)) {
-				chance = get_stat_modifier(buff) * all_mon[attacker.number].stats[SPEED] / 4.0;
-				if (in_status(attacker, string("FOCUS")))
-					chance *= 4.0;
-				chance *= moves[attacker.moves[i]].crit_chance;
-				chance = chance / 256.0;
-				double low = damage(attacker, defender, attacker.moves[i], crit, mul, true, false, true);
-				double high = damage(attacker, defender, attacker.moves[i], crit, mul, false, true, true);
-				pow = low + chance* (high - low);
-				pow = pow * 0.85;
-				if (moves[attacker.moves[i]].pow.find(string("x2-5")) != -1) {
-					if (!in_status(defender, string("RAGE")))
-						pow *= 3.0;
-				}
-				if (moves[attacker.moves[i]].pow.find(string("x2")) != -1) {
-					if (!in_status(defender, string("RAGE")))
-						pow *= 2.0;
-				}
-				for (unsigned j = 0; j < moves[attacker.moves[i]].special.size(); ++j) {
-					if (moves[attacker.moves[i]].special[j] == "UNAVOIDABLE") {
-						skip_accuracy_check = true;
-					}
-				}
-				if (!skip_accuracy_check && !t.skip_accuracy_check) {
-					pow *= get_accuracy_modifier(attacker);
-					pow *= double(moves[attacker.moves[i]].acc) / 100.0;
-				}
+				pow = get_smart_damage(attacker, defender, i, t);
+				dam = pow;
 				if (!skip_recurse) {
 					for (unsigned j = 0; j < moves[attacker.moves[i]].self.size(); ++j) {
 						if (moves[attacker.moves[i]].self[j] == "KO") {
@@ -2603,6 +2613,10 @@ public:
 				if (pow > magnitude) {
 					magnitude = pow;
 					ret = i;
+					opponent_turns_to_live = (defender.curr_hp / max(dam, 1));
+					if (get_stat(defender, SPEED) > get_stat(attacker, SPEED)) {
+						turns_to_live += 1;
+					}
 				}
 			}
 		}
@@ -2816,30 +2830,46 @@ public:
 				}
 			}
 			count = 0.0;
-			for (i = 0; i < 4; i++) {
-				if (is_valid_move(mc.enemy_team[mc.enemy_selected], i))
-					count = count + 1.0;
-			}
-			if (count == 0.0) {
-				mc.enemy_team[mc.enemy_selected].queue.push_back(string("STRUGGLE"));
-			}
-			else {
-				index = int(random(0.0, count));
-				if (random(0.0, 1.0) <= t.skill) {
-					index = get_smart_move(mc.enemy_team[mc.enemy_selected], mc.team[mc.selected], t);
+			bool ai_chooses_switch = false;
+			int a = 0, b = 0, fitness = 0;
+			bool crit;
+			double mul;
+			if (true) {
+				index = get_smart_move(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected], t, true, 0, a, b);
+				for (i = 0; i < 6; ++i) {
+					if (mc.enemy_team[i].defined && !is_KO(mc.enemy_team[i])) {
+						int hp_offset = get_smart_damage(mc.team[mc.selected], mc.enemy_team[i], index, t);
+						get_smart_move(mc.enemy_team[i], mc.team[mc.selected], t, false, hp_offset, a, b);
+						fitness = a - b;
+					}
 				}
-				int choice = -1;
-				for (i = 0; i <= index; ++i) {
-					if (!is_valid_move(mc.enemy_team[mc.enemy_selected], i))
-						choice++;
-					choice++;
+			}
+			if (!ai_chooses_switch) {
+				for (i = 0; i < 4; i++) {
+					if (is_valid_move(mc.enemy_team[mc.enemy_selected], i))
+						count = count + 1.0;
 				}
-				if (choice == -1) {
+				if (count == 0.0) {
 					mc.enemy_team[mc.enemy_selected].queue.push_back(string("STRUGGLE"));
 				}
 				else {
-					mc.enemy_team[mc.enemy_selected].queue.push_back(mc.enemy_team[mc.enemy_selected].moves[choice]);
-					mc.enemy_team[mc.enemy_selected].pp[index]--;
+					index = int(random(0.0, count));
+					if (random(0.0, 1.0) <= t.skill) {
+						index = get_smart_move(mc.enemy_team[mc.enemy_selected], mc.team[mc.selected], t, false, 0, a, b);
+					}
+					int choice = -1;
+					for (i = 0; i <= index; ++i) {
+						if (!is_valid_move(mc.enemy_team[mc.enemy_selected], i))
+							choice++;
+						choice++;
+					}
+					if (choice == -1) {
+						mc.enemy_team[mc.enemy_selected].queue.push_back(string("STRUGGLE"));
+					}
+					else {
+						mc.enemy_team[mc.enemy_selected].queue.push_back(mc.enemy_team[mc.enemy_selected].moves[choice]);
+						mc.enemy_team[mc.enemy_selected].pp[index]--;
+					}
 				}
 			}
 			do_turn(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
