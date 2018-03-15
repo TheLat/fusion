@@ -2975,20 +2975,26 @@ public:
 				}
 				bool found = false;
 				best_fitness = 0;
-				current_fitness = 0;
-				best_fitness_index = 0;
+				best_fitness_index = -1;
 				for (unsigned i = 0; i < 6; ++i) {
-					if (mc.enemy_team[i].defined && mc.enemy_team[i].curr_hp > 0) {
-						found = true;
-						mc.enemy_team[i].sprite_index = enemy_sprite;
-						mc.enemy_team[i].hp_bar_index = mc.enemy_team[mc.enemy_selected].hp_bar_index;
-						mc.enemy_selected = i; // TODO: Smart team selection
-						do_alert(t.display_name + string(" sent out ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string("!"));
-						mc.seen[mc.enemy_team[mc.enemy_selected].number] = true;
-						mc.enemy_team[mc.enemy_selected].fought[mc.selected] = true;
-						rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
-						break;
+					if (mc.enemy_team[i].defined && !is_KO(mc.enemy_team[i])) {
+						get_smart_move(mc.enemy_team[i], mc.team[mc.selected], t, false, 0, a, b);
+						fitness = a - b;
+						if (best_fitness_index == -1 || fitness > best_fitness) {
+							found = true;
+							best_fitness = fitness;
+							best_fitness_index = i;
+						}
 					}
+				}
+				if (found) {
+					mc.enemy_team[best_fitness_index].sprite_index = enemy_sprite;
+					mc.enemy_team[best_fitness_index].hp_bar_index = mc.enemy_team[mc.enemy_selected].hp_bar_index;
+					mc.enemy_selected = best_fitness_index; // TODO: Smart team selection
+					do_alert(t.display_name + string(" sent out ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string("!"));
+					mc.seen[mc.enemy_team[mc.enemy_selected].number] = true;
+					mc.enemy_team[mc.enemy_selected].fought[mc.selected] = true;
+					rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
 				}
 				if (!found)
 					break;
