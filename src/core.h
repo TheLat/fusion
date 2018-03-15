@@ -2695,6 +2695,7 @@ public:
 		vector<int> choices;
 		double count;
 		int clear_point = g.draw_list.size();
+		int old_team_selected;
 		g.push_box(-1.1f, -1.1f, 2.2f, 2.2f);
 		g.push_box(-1.0f, -1.0f, 2.0f, 0.6f);
 		mc.selected = -1;
@@ -2759,6 +2760,7 @@ public:
 		rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
 		mc.enemy_team[mc.enemy_selected].fought[mc.selected] = true;
 		while (true) {
+			old_team_selected = mc.selected;
 			if (in_status(mc.team[mc.selected], string("RAGE")) && mc.team[mc.selected].queue.size() == 0)
 				mc.team[mc.selected].queue.push_back(string("RAGE"));
 			if (in_status(mc.enemy_team[mc.enemy_selected], string("RAGE")) && mc.enemy_team[mc.enemy_selected].queue.size() == 0)
@@ -2832,19 +2834,43 @@ public:
 			count = 0.0;
 			bool ai_chooses_switch = false;
 			int a = 0, b = 0, fitness = 0;
-			bool crit;
-			double mul;
-			if (true) {
-				index = get_smart_move(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected], t, true, 0, a, b);
+			int best_fitness = 0;
+			int current_fitness = 0;
+			int best_fitness_index = -1;
+			if (random(0.0, 1.0) <= t.skill) {
+				index = get_smart_move(mc.team[old_team_selected], mc.enemy_team[mc.enemy_selected], t, true, 0, a, b);
 				for (i = 0; i < 6; ++i) {
 					if (mc.enemy_team[i].defined && !is_KO(mc.enemy_team[i])) {
-						int hp_offset = get_smart_damage(mc.team[mc.selected], mc.enemy_team[i], index, t);
-						get_smart_move(mc.enemy_team[i], mc.team[mc.selected], t, false, hp_offset, a, b);
+						int hp_offset = get_smart_damage(mc.team[old_team_selected], mc.enemy_team[i], index, t);
+						get_smart_move(mc.enemy_team[i], mc.team[old_team_selected], t, false, hp_offset, a, b);
 						fitness = a - b;
+						if (best_fitness_index == -1 || fitness > best_fitness) {
+							best_fitness = fitness;
+							best_fitness_index = i;
+						}
+						if (i == mc.enemy_selected) {
+							current_fitness = fitness;
+						}
 					}
 				}
+				if (best_fitness > 0 && best_fitness > 3 * current_fitness && best_fitness > 2) {
+					ai_chooses_switch = true;
+				}
 			}
-			if (!ai_chooses_switch) {
+			if (ai_chooses_switch) {
+				clear_queue(mc.enemy_team[mc.enemy_selected]);
+				clear_volatile(mc.enemy_team[mc.enemy_selected]);
+				string old_name = get_nickname(mc.enemy_team[mc.enemy_selected]);
+				mc.enemy_team[best_fitness_index].sprite_index = enemy_sprite;
+				mc.enemy_team[best_fitness_index].hp_bar_index = mc.enemy_team[mc.enemy_selected].hp_bar_index;
+				mc.enemy_selected = best_fitness_index;
+				do_alert(t.display_name + string(" withdrew ") + old_name + string(" and sent out ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string("!"));
+				mc.seen[mc.enemy_team[mc.enemy_selected].number] = true;
+				mc.enemy_team[mc.enemy_selected].fought[mc.selected] = true;
+				rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
+				mc.enemy_team[mc.enemy_selected].queue.push_back(string(""));
+			}
+			else {
 				for (i = 0; i < 4; i++) {
 					if (is_valid_move(mc.enemy_team[mc.enemy_selected], i))
 						count = count + 1.0;
@@ -2855,7 +2881,7 @@ public:
 				else {
 					index = int(random(0.0, count));
 					if (random(0.0, 1.0) <= t.skill) {
-						index = get_smart_move(mc.enemy_team[mc.enemy_selected], mc.team[mc.selected], t, false, 0, a, b);
+						index = get_smart_move(mc.enemy_team[mc.enemy_selected], mc.team[old_team_selected], t, false, 0, a, b);
 					}
 					int choice = -1;
 					for (i = 0; i <= index; ++i) {
@@ -2948,6 +2974,9 @@ public:
 					}
 				}
 				bool found = false;
+				best_fitness = 0;
+				current_fitness = 0;
+				best_fitness_index = 0;
 				for (unsigned i = 0; i < 6; ++i) {
 					if (mc.enemy_team[i].defined && mc.enemy_team[i].curr_hp > 0) {
 						found = true;
