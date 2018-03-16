@@ -2621,9 +2621,6 @@ public:
 					magnitude = pow;
 					ret = i;
 					opponent_turns_to_live = (defender.curr_hp / max(dam, 1));
-					if (get_stat(defender, SPEED) > get_stat(attacker, SPEED)) {
-						turns_to_live += 1;
-					}
 				}
 			}
 		}
