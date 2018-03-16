@@ -2511,7 +2511,7 @@ public:
 			return false;
 		return true;
 	}
-	double get_smart_damage(mon& attacker, mon& defender, unsigned i, trainer& t) {
+	double get_smart_damage(mon& attacker, mon& defender, string move, trainer& t) {
 		bool crit = false;
 		bool skip_accuracy_check = false;
 		double mul = 0.0;
@@ -2527,28 +2527,28 @@ public:
 		double chance = get_stat_modifier(buff) * all_mon[attacker.number].stats[SPEED] / 4.0;
 		if (in_status(attacker, string("FOCUS")))
 			chance *= 4.0;
-		chance *= moves[attacker.moves[i]].crit_chance;
+		chance *= moves[move].crit_chance;
 		chance = chance / 256.0;
-		double low = damage(attacker, defender, attacker.moves[i], crit, mul, true, false, true);
-		double high = damage(attacker, defender, attacker.moves[i], crit, mul, false, true, true);
+		double low = damage(attacker, defender, move, crit, mul, true, false, true);
+		double high = damage(attacker, defender, move, crit, mul, false, true, true);
 		double pow = low + chance* (high - low);
 		pow = pow * 0.85;
-		if (moves[attacker.moves[i]].pow.find(string("x2-5")) != -1) {
+		if (moves[move].pow.find(string("x2-5")) != -1) {
 			if (!in_status(defender, string("RAGE")))
 				pow *= 3.0;
 		}
-		if (moves[attacker.moves[i]].pow.find(string("x2")) != -1) {
+		if (moves[move].pow.find(string("x2")) != -1) {
 			if (!in_status(defender, string("RAGE")))
 				pow *= 2.0;
 		}
-		for (unsigned j = 0; j < moves[attacker.moves[i]].special.size(); ++j) {
-			if (moves[attacker.moves[i]].special[j] == "UNAVOIDABLE") {
+		for (unsigned j = 0; j < moves[move].special.size(); ++j) {
+			if (moves[move].special[j] == "UNAVOIDABLE") {
 				skip_accuracy_check = true;
 			}
 		}
 		if (!skip_accuracy_check && !t.skip_accuracy_check) {
 			pow *= get_accuracy_modifier(attacker);
-			pow *= double(moves[attacker.moves[i]].acc) / 100.0;
+			pow *= double(moves[move].acc) / 100.0;
 		}
 		return pow;
 	}
@@ -2578,7 +2578,14 @@ public:
 		}
 		for (unsigned i = 0; i < 4; ++i) {
 			if (is_valid_move(attacker, i)) {
-				pow = get_smart_damage(attacker, defender, i, t);
+				pow = get_smart_damage(attacker, defender, attacker.moves[i], t);
+				if (pow == 0.0) {
+					for (unsigned j = 0; j < moves[attacker.moves[i]].self.size(); ++j) {
+						if (moves[attacker.moves[i]].self[j] == "UNTARGETABLE") {
+							pow = get_smart_damage(attacker, defender, moves[attacker.moves[i]].queue[0], t);
+						}
+					}
+				}
 				dam = pow;
 				if (!skip_recurse) {
 					for (unsigned j = 0; j < moves[attacker.moves[i]].self.size(); ++j) {
@@ -2841,7 +2848,7 @@ public:
 				index = get_smart_move(mc.team[old_team_selected], mc.enemy_team[mc.enemy_selected], t, true, 0, a, b);
 				for (i = 0; i < 6; ++i) {
 					if (mc.enemy_team[i].defined && !is_KO(mc.enemy_team[i])) {
-						int hp_offset = get_smart_damage(mc.team[old_team_selected], mc.enemy_team[i], index, t);
+						int hp_offset = get_smart_damage(mc.team[old_team_selected], mc.enemy_team[i], mc.team[old_team_selected].moves[index], t);
 						get_smart_move(mc.enemy_team[i], mc.team[old_team_selected], t, false, hp_offset, a, b);
 						fitness = a - b;
 						if (best_fitness_index == -1 || fitness > best_fitness) {
