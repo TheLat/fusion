@@ -2841,64 +2841,66 @@ public:
 			int best_fitness = 0;
 			int current_fitness = 0;
 			int best_fitness_index = -1;
-			if (random(0.0, 1.0) <= t.skill) {
-				index = get_smart_move(mc.team[old_team_selected], mc.enemy_team[mc.enemy_selected], t, true, 0, a, b);
-				for (i = 0; i < 6; ++i) {
-					if (mc.enemy_team[i].defined && !is_KO(mc.enemy_team[i])) {
-						int hp_offset = get_smart_damage(mc.team[old_team_selected], mc.enemy_team[i], mc.team[old_team_selected].moves[index], t);
-						get_smart_move(mc.enemy_team[i], mc.team[old_team_selected], t, false, hp_offset, a, b);
-						fitness = a - b;
-						if (best_fitness_index == -1 || fitness > best_fitness) {
-							best_fitness = fitness;
-							best_fitness_index = i;
-						}
-						if (i == mc.enemy_selected) {
-							current_fitness = fitness;
+			if (mc.enemy_team[mc.enemy_selected].queue.size() == 0) {
+				if (random(0.0, 1.0) <= t.skill) {
+					index = get_smart_move(mc.team[old_team_selected], mc.enemy_team[mc.enemy_selected], t, true, 0, a, b);
+					for (i = 0; i < 6; ++i) {
+						if (mc.enemy_team[i].defined && !is_KO(mc.enemy_team[i])) {
+							int hp_offset = get_smart_damage(mc.team[old_team_selected], mc.enemy_team[i], mc.team[old_team_selected].moves[index], t);
+							get_smart_move(mc.enemy_team[i], mc.team[old_team_selected], t, false, hp_offset, a, b);
+							fitness = a - b;
+							if (best_fitness_index == -1 || fitness > best_fitness) {
+								best_fitness = fitness;
+								best_fitness_index = i;
+							}
+							if (i == mc.enemy_selected) {
+								current_fitness = fitness;
+							}
 						}
 					}
+					if (best_fitness > 0 && best_fitness > 3 * current_fitness && best_fitness > 2) {
+						ai_chooses_switch = true;
+					}
 				}
-				if (best_fitness > 0 && best_fitness > 3 * current_fitness && best_fitness > 2) {
-					ai_chooses_switch = true;
-				}
-			}
-			if (ai_chooses_switch) {
-				clear_queue(mc.enemy_team[mc.enemy_selected]);
-				clear_volatile(mc.enemy_team[mc.enemy_selected]);
-				string old_name = get_nickname(mc.enemy_team[mc.enemy_selected]);
-				mc.enemy_team[best_fitness_index].sprite_index = enemy_sprite;
-				mc.enemy_team[best_fitness_index].hp_bar_index = mc.enemy_team[mc.enemy_selected].hp_bar_index;
-				mc.enemy_selected = best_fitness_index;
-				do_alert(t.display_name + string(" withdrew ") + old_name + string(" and sent out ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string("!"));
-				mc.seen[mc.enemy_team[mc.enemy_selected].number] = true;
-				mc.enemy_team[mc.enemy_selected].fought[mc.selected] = true;
-				rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
-				mc.enemy_team[mc.enemy_selected].queue.push_back(string(""));
-			}
-			else {
-				for (i = 0; i < 4; i++) {
-					if (is_valid_move(mc.enemy_team[mc.enemy_selected], i))
-						count = count + 1.0;
-				}
-				if (count == 0.0) {
-					mc.enemy_team[mc.enemy_selected].queue.push_back(string("STRUGGLE"));
+				if (ai_chooses_switch) {
+					clear_queue(mc.enemy_team[mc.enemy_selected]);
+					clear_volatile(mc.enemy_team[mc.enemy_selected]);
+					string old_name = get_nickname(mc.enemy_team[mc.enemy_selected]);
+					mc.enemy_team[best_fitness_index].sprite_index = enemy_sprite;
+					mc.enemy_team[best_fitness_index].hp_bar_index = mc.enemy_team[mc.enemy_selected].hp_bar_index;
+					mc.enemy_selected = best_fitness_index;
+					do_alert(t.display_name + string(" withdrew ") + old_name + string(" and sent out ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string("!"));
+					mc.seen[mc.enemy_team[mc.enemy_selected].number] = true;
+					mc.enemy_team[mc.enemy_selected].fought[mc.selected] = true;
+					rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
+					mc.enemy_team[mc.enemy_selected].queue.push_back(string(""));
 				}
 				else {
-					index = int(random(0.0, count));
-					if (random(0.0, 1.0) <= t.skill) {
-						index = get_smart_move(mc.enemy_team[mc.enemy_selected], mc.team[old_team_selected], t, false, 0, a, b);
+					for (i = 0; i < 4; i++) {
+						if (is_valid_move(mc.enemy_team[mc.enemy_selected], i))
+							count = count + 1.0;
 					}
-					int choice = -1;
-					for (i = 0; i <= index; ++i) {
-						if (!is_valid_move(mc.enemy_team[mc.enemy_selected], i))
-							choice++;
-						choice++;
-					}
-					if (choice == -1) {
+					if (count == 0.0) {
 						mc.enemy_team[mc.enemy_selected].queue.push_back(string("STRUGGLE"));
 					}
 					else {
-						mc.enemy_team[mc.enemy_selected].queue.push_back(mc.enemy_team[mc.enemy_selected].moves[choice]);
-						mc.enemy_team[mc.enemy_selected].pp[index]--;
+						index = int(random(0.0, count));
+						if (random(0.0, 1.0) <= t.skill) {
+							index = get_smart_move(mc.enemy_team[mc.enemy_selected], mc.team[old_team_selected], t, false, 0, a, b);
+						}
+						int choice = -1;
+						for (i = 0; i <= index; ++i) {
+							if (!is_valid_move(mc.enemy_team[mc.enemy_selected], i))
+								choice++;
+							choice++;
+						}
+						if (choice == -1) {
+							mc.enemy_team[mc.enemy_selected].queue.push_back(string("STRUGGLE"));
+						}
+						else {
+							mc.enemy_team[mc.enemy_selected].queue.push_back(mc.enemy_team[mc.enemy_selected].moves[choice]);
+							mc.enemy_team[mc.enemy_selected].pp[index]--;
+						}
 					}
 				}
 			}
