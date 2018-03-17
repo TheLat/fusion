@@ -207,6 +207,7 @@ public:
 	string lose_message;
 	string win_message;
 	bool skip_accuracy_check;
+	int no_switch;
 	mon team[6];
 };
 
@@ -2841,6 +2842,12 @@ public:
 			int best_fitness = 0;
 			int current_fitness = 0;
 			int best_fitness_index = -1;
+			int num_KO = 0;
+			for (i = 0; i < 6; ++i) {
+				if (mc.enemy_team[i].defined && is_KO(mc.enemy_team[i])) {
+					num_KO++;
+				}
+			}
 			if (mc.enemy_team[mc.enemy_selected].queue.size() == 0) {
 				if (random(0.0, 1.0) <= t.skill) {
 					index = get_smart_move(mc.team[old_team_selected], mc.enemy_team[mc.enemy_selected], t, true, 0, a, b);
@@ -2858,7 +2865,7 @@ public:
 							}
 						}
 					}
-					if (best_fitness > 0 && best_fitness > 3 * current_fitness && best_fitness > 2) {
+					if (best_fitness > 0 && best_fitness > 3 * current_fitness && best_fitness > 2 && num_KO >= t.no_switch) {
 						ai_chooses_switch = true;
 					}
 				}
@@ -2983,13 +2990,22 @@ public:
 				best_fitness = 0;
 				best_fitness_index = -1;
 				for (unsigned i = 0; i < 6; ++i) {
-					if (mc.enemy_team[i].defined && !is_KO(mc.enemy_team[i])) {
-						get_smart_move(mc.enemy_team[i], mc.team[mc.selected], t, false, 0, a, b);
-						fitness = a - b;
-						if (best_fitness_index == -1 || fitness > best_fitness) {
-							found = true;
-							best_fitness = fitness;
+					if (num_KO + 1 >= t.no_switch) {
+						if (mc.enemy_team[i].defined && !is_KO(mc.enemy_team[i])) {
+							get_smart_move(mc.enemy_team[i], mc.team[mc.selected], t, false, 0, a, b);
+							fitness = a - b;
+							if (best_fitness_index == -1 || fitness > best_fitness) {
+								found = true;
+								best_fitness = fitness;
+								best_fitness_index = i;
+							}
+						}
+					}
+					else {
+						if (mc.enemy_team[i].defined && !is_KO(mc.enemy_team[i])) {
 							best_fitness_index = i;
+							found = true;
+							break;
 						}
 					}
 				}
@@ -3818,6 +3834,7 @@ public:
 					s2.erase(s2.find(" "), s2.length());
 					d.name = s2;
 					d.skip_accuracy_check = false;
+					d.no_switch = 0;
 					if (s.find("{") == 0) {
 						// Special modifiers here
 						s2 = s;
@@ -3825,6 +3842,27 @@ public:
 						s2.erase(s2.find("}") + 1, s2.length());
 						if (s2.find("NO_ACCURACY_CHECK") != -1) {
 							d.skip_accuracy_check = true;
+						}
+						if (s2.find("NO_SWITCH:1") != -1) {
+							d.no_switch = 1;
+						}
+						if (s2.find("NO_SWITCH:1") != -1) {
+							d.no_switch = 1;
+						}
+						if (s2.find("NO_SWITCH:2") != -1) {
+							d.no_switch = 2;
+						}
+						if (s2.find("NO_SWITCH:3") != -1) {
+							d.no_switch = 3;
+						}
+						if (s2.find("NO_SWITCH:4") != -1) {
+							d.no_switch = 4;
+						}
+						if (s2.find("NO_SWITCH:5") != -1) {
+							d.no_switch = 5;
+						}
+						if (s2.find("NO_SWITCH:6") != -1) {
+							d.no_switch = 6;
 						}
 					}
 					s2 = s;
