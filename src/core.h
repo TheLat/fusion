@@ -2987,10 +2987,14 @@ public:
 					}
 				}
 				bool found = false;
+				bool smart_switch = false;
 				best_fitness = 0;
 				best_fitness_index = -1;
+				if (num_KO + 1 >= t.no_switch && random(0.0, 1.0) <= t.skill) {
+					smart_switch = true;
+				}
 				for (unsigned i = 0; i < 6; ++i) {
-					if (num_KO + 1 >= t.no_switch) {
+					if (smart_switch) {
 						if (mc.enemy_team[i].defined && !is_KO(mc.enemy_team[i])) {
 							get_smart_move(mc.enemy_team[i], mc.team[mc.selected], t, false, 0, a, b);
 							fitness = a - b;
