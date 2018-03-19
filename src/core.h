@@ -2192,7 +2192,8 @@ public:
 		if (!miss) {
 			for (int i = 0; i < repeat; ++i) {
 				double mul;
-				int dam = min(damage(attacker, defender, move, crit, mul), defender.curr_hp);
+				bool non_zero;
+				int dam = min(damage(attacker, defender, move, crit, mul, non_zero), defender.curr_hp);
 				deal_damage(defender, dam);
 				if (moves[move].defense == SPECIAL) {
 					defender.last_hit_special = dam;
@@ -2208,18 +2209,18 @@ public:
 					apply_status(defender, string("DEFENSE_UPx2"));
 					apply_status(defender, string("SPECIAL_UPx2"));
 				}
-				if (dam > 0) {
+				if (non_zero) {
 					if (mul == 4.0)
 						do_alert("It's extremely effective!");
 					else if (mul == 2.0)
 						do_alert("It's super effective!");
 					else if (mul == 0.0)
-						do_alert("It had no effect!");
+						do_alert(string("It doesn't affect ") + get_nickname(defender) + string("!"));
 					else if (mul == 0.5)
 						do_alert("It's not very effective...");
 					else if (mul == 0.25)
 						do_alert("It barely had an effect...");
-					if (crit)
+					if (dam > 0 && crit)
 						do_alert(string("A critical hit!"));
 				}
 				if (!status_immunity(defender, move)) {
@@ -2516,6 +2517,7 @@ public:
 		bool crit = false;
 		bool skip_accuracy_check = false;
 		double mul = 0.0;
+		bool non_zero;
 		int buff = 0;
 		for (unsigned j = 0; j < attacker.status.size(); ++j) {
 			if (attacker.status[j] == this->get_buff_name(SPEED)) {
@@ -2530,8 +2532,8 @@ public:
 			chance *= 4.0;
 		chance *= moves[move].crit_chance;
 		chance = chance / 256.0;
-		double low = damage(attacker, defender, move, crit, mul, true, false, true);
-		double high = damage(attacker, defender, move, crit, mul, false, true, true);
+		double low = damage(attacker, defender, move, crit, mul, non_zero, true, false, true);
+		double high = damage(attacker, defender, move, crit, mul, non_zero, false, true, true);
 		double pow = low + chance* (high - low);
 		pow = pow * 0.85;
 		if (moves[move].pow.find(string("x2-5")) != -1) {
@@ -2561,6 +2563,7 @@ public:
 		double magnitude = -1.0;
 		double pow = 0.0;
 		bool crit = false;
+		bool non_zero;
 		double mul = 0.0;
 		double chance = 0.0;
 		int turns_to_live = -1;
@@ -2568,9 +2571,9 @@ public:
 		if (!skip_recurse) {
 			enemy_move = get_smart_move(defender, attacker, t, true, 0, a, b);
 			if (enemy_move >= 0)
-				enemy_damage = damage(defender, attacker, defender.moves[enemy_move], crit, mul, true, false, true);
+				enemy_damage = damage(defender, attacker, defender.moves[enemy_move], crit, mul, non_zero, true, false, true);
 			else
-				enemy_damage = damage(defender, attacker, string("STRUGGLE"), crit, mul, true, false, true);
+				enemy_damage = damage(defender, attacker, string("STRUGGLE"), crit, mul, non_zero, true, false, true);
 			turns_to_live = (attacker.curr_hp / enemy_damage);
 			if (get_stat(attacker, SPEED) > get_stat(defender, SPEED)) {
 				turns_to_live += 1;
@@ -3390,11 +3393,11 @@ public:
 			do_turn_inner(m2, m1);
 		}
 	}
-	int damage(mon& attacker, mon& defender, string move, bool& crit, double &mul, bool force_no_crit = false, bool force_crit = false, bool skip_damage_range = false) {
+	int damage(mon& attacker, mon& defender, string move, bool& crit, double &mul, bool &non_zero, bool force_no_crit = false, bool force_crit = false, bool skip_damage_range = false) {
+		non_zero = false;
 		double pow = stoi(moves[move].pow);
 		mul = 1.0;
 		crit = false;
-
 		int buff = 0;
 		for (unsigned i = 0; i < attacker.status.size(); ++i) {
 			if (attacker.status[i] == this->get_buff_name(SPEED)) {
@@ -3426,14 +3429,6 @@ public:
 			damage /= 2.0;
 		if (moves[move].defense == DEFENSE && in_status(defender, string("REFLECT")))
 			damage /= 2.0;
-		if (get_type_1(defender) != "") {
-			mul *= types[moves[move].type][get_type_1(defender)];
-			damage *= types[moves[move].type][get_type_1(defender)];
-		}
-		if (get_type_2(defender) != "") {
-			mul *= types[moves[move].type][get_type_2(defender)];
-			damage *= types[moves[move].type][get_type_2(defender)];
-		}
 		if ((get_type_1(attacker) == moves[move].type) || (get_type_2(attacker) == moves[move].type))
 			damage *= 1.5;
 		if (crit) {
@@ -3469,6 +3464,17 @@ public:
 				crit = false;
 				mul = 1.0;
 			}
+		}
+		if (damage > 0.0) {
+			non_zero = true;
+		}
+		if (get_type_1(defender) != "") {
+			mul *= types[moves[move].type][get_type_1(defender)];
+			damage *= types[moves[move].type][get_type_1(defender)];
+		}
+		if (get_type_2(defender) != "") {
+			mul *= types[moves[move].type][get_type_2(defender)];
+			damage *= types[moves[move].type][get_type_2(defender)];
 		}
 		return int(damage);
 	}
