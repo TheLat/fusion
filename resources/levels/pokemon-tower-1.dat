@@ -35,11 +35,12 @@ MENU:ALERT:My friends were possessed, too!
 END
 TRAINERS
 lavender-tower-1-woman1 30 0.45 0.45 CHANNELER channeler.png {CHANNELER: Hwa! I'm saved!}{} 92-92:30
-lavender-tower-1-woman2 30 0.45 0.45 CHANNELER channeler.png {CHANNELER: Hmm? What am I doing?}{} 92-20:30
-lavender-tower-1-woman3 30 0.45 0.45 CHANNELER channeler.png {CHANNELER: Whew! The spirit left!}{} 122-92:28|92-122:28
+lavender-tower-1-woman2 30 0.45 0.45 CHANNELER channeler.png {CHANNELER: Hmm? What am I doing?}{} 20-92:30
+lavender-tower-1-woman3 30 0.45 0.45 CHANNELER channeler.png {CHANNELER: Whew! The spirit left!}{} 92-122:28|122-92:28
 END
 TELEPORT
 1 9 pokemon-tower-lower 2 34
+16 9 pokemon-tower-2 15 9
 ENCOUNTERS
 92 92 92 104
 LEVELS
