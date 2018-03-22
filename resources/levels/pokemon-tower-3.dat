@@ -1,0 +1,101 @@
+NAME
+Pok{e-accent}mon Tower Floor 5
+NPCS
+lavender-tower-3-item1 orb 4 14
+INTERACTIONS
+GIVE_ITEM:NUGGET|DEACTIVATE:lavender-tower-3-item1
+END
+lavender-tower-3-woman1 elder 12 3 LEFT
+FORCE_INTERACTION
+-1 0
+-2 0
+-3 0
+END
+INTERACTIONS
+!:lavender-tower-3-woman1|MOVE_TO_PLAYER|MENU:ALERT:You...shall... join...us...|BATTLE:lavender-tower-3-woman1|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I was possessed!
+END
+lavender-tower-3-woman2 elder 15 7 LEFT
+FORCE_INTERACTION
+-1 0
+-2 0
+END
+INTERACTIONS
+!:lavender-tower-3-woman2|MOVE_TO_PLAYER|MENU:ALERT:Give...me... your...soul...|BATTLE:lavender-tower-3-woman2|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:POK{e-accent}MON that suffer when they die can become powerful spirits.|MENU:ALERT:...that one must have suffered so much...
+END
+lavender-tower-3-woman3 elder 4 10 RIGHT
+FORCE_INTERACTION
+1 0
+2 0
+END
+INTERACTIONS
+!:lavender-tower-3-woman3|MOVE_TO_PLAYER|MENU:ALERT:You will be a grand vessel!|BATTLE:lavender-tower-3-woman3|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I regained my senses!
+END
+lavender-tower-3-woman4 elder 7 16 RIGHT
+FORCE_INTERACTION
+1 0
+2 0
+END
+INTERACTIONS
+!:lavender-tower-3-woman4|MOVE_TO_PLAYER|MENU:ALERT:Urgah... {NEWLINE} Urff...|BATTLE:lavender-tower-3-woman4|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I fell to evil spirits despite my training!
+END
+lavender-tower-3-woman5 elder 10 8
+INTERACTIONS
+MENU:ALERT:Come, child! I have sealed this space with white magic!|MENU:ALERT:You can rest here!
+END
+lavender-tower-3-safe1 blank 0 0 NOLOOK
+FORCE_INTERACTION
+9 9
+8 9
+9 8
+8 8
+END
+INTERACTIONS
+MENU:ALERT:Entered purified, protected zone!|MENU:ALERT:{PLAYER_NAME}'s POK{e-accent}MON are fully healed!|FULL_HEAL|DEACTIVATE:lavender-tower-3-safe1|ACTIVATE:lavender-tower-3-safe2
+END
+lavender-tower-3-safe2 blank 0 0 INACTIVE NOLOOK
+FORCE_INTERACTION
+7 9
+10 9
+7 8
+10 8
+9 10
+8 10
+END
+INTERACTIONS
+DEACTIVATE:lavender-tower-3-safe2|ACTIVATE:lavender-tower-3-safe1
+END
+TRAINERS
+lavender-tower-3-woman1 30 0.45 0.45 CHANNELER channeler.png {CHANNELER: What a nightmare!}{} 70-92:31|21-92:31|83-93:31
+lavender-tower-3-woman2 30 0.45 0.45 CHANNELER channeler.png {CHANNELER: Gasp!}{} 93-124:35
+lavender-tower-3-woman3 30 0.45 0.45 CHANNELER channeler.png {CHANNELER: ...huh?}{} 92-58:31|92-52:31|93-77:31
+lavender-tower-3-woman4 30 0.45 0.45 CHANNELER channeler.png {CHANNELER: Whoo!?}{} 93-61:33|119-93:33
+END
+TELEPORT
+1 9 pokemon-tower-2 2 9
+ENCOUNTERS
+92 93 93 104
+LEVELS
+22-28
+DATA
+82   82  82  82  82  82 487 487 487 487 487 487
+82   82  82  82 487 487 487 495 495 495 495 487 487 487
+82   82  82 487 487 487 495 491 495 495 495 495 487 487 487
+82   82 487 487 491 491 491 495 495 495 495 495 495 495 487 487
+82  487 487 495 491 491 491 491 495 495 491 491 491 491 495 487 487
+82  487 487 491 491 495 495 495 495 495 495 495 495 491 491 487 487
+487 487 495 495 495 495 495 495 495 495 495 495 495 495 495 495 487 487
+487 495 495 495 495 495 491 491 491 491 495 495 495 495 495 495 495 487
+487 495 495 491 491 491 495 495 492 492 495 495 491 491 491 495 495 487
+487 489 495 491 491 491 495 495 492 492 495 495 491 491 491 495 488 487
+487 495 495 491 495 495 495 495 495 495 491 491 495 495 495 495 495 487
+487 487 495 491 495 495 495 495 491 491 495 495 495 495 495 495 487 487
+82  487 487 491 491 495 495 495 495 495 495 495 495 491 491 487 487
+82  487 487 495 491 491 491 491 495 495 491 491 491 491 495 487 487
+82   82 487 487 495 495 495 495 495 495 495 495 495 495 487 487
+82   82  82 487 487 487 495 495 495 495 495 495 487 487 487
+82   82  82  82 487 487 487 495 495 495 495 487 487 487
+82   82  82  82  82  82 487 487 487 487 487 487

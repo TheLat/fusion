@@ -193,8 +193,8 @@ public:
 	vector<string> interactions;
 	vector<location> force_interactions;
 	location loc, origin;
-	bool wander, incorporeal, no_force;
-	character() { wander = false; dir = DOWN; incorporeal = false; no_force = false; }
+	bool wander, incorporeal, no_force, nolook;
+	character() { wander = false; dir = DOWN; incorporeal = false; no_force = false; nolook = false; }
 };
 
 class trainer {
@@ -3789,6 +3789,12 @@ public:
 					else {
 						levels[levelname].characters[levels[levelname].characters.size() - 1].incorporeal = false;
 					}
+					if (s.find("NOLOOK") != -1) {
+						levels[levelname].characters[levels[levelname].characters.size() - 1].nolook = true;
+					}
+					else {
+						levels[levelname].characters[levels[levelname].characters.size() - 1].nolook = false;
+					}
 					if (s.find("WANDER") != -1) {
 						levels[levelname].characters[levels[levelname].characters.size() - 1].wander = true;
 					}
@@ -4816,14 +4822,16 @@ public:
 				for (unsigned j = 0; !levels[mc.loc.level].characters[i].no_force && j < levels[mc.loc.level].characters[i].force_interactions.size(); ++j) {
 					if (mc.loc.x == levels[mc.loc.level].characters[i].force_interactions[j].x + levels[mc.loc.level].characters[i].loc.x &&
 						mc.loc.y == levels[mc.loc.level].characters[i].force_interactions[j].y + levels[mc.loc.level].characters[i].loc.y) {
-						if (levels[mc.loc.level].characters[i].loc.x > mc.loc.x)
-							mc.dir = RIGHT;
-						else if (levels[mc.loc.level].characters[i].loc.x < mc.loc.x)
-							mc.dir = LEFT;
-						else if (levels[mc.loc.level].characters[i].loc.y > mc.loc.y)
-							mc.dir = DOWN;
-						else if (levels[mc.loc.level].characters[i].loc.y < mc.loc.y)
-							mc.dir = UP;
+						if (!levels[mc.loc.level].characters[i].nolook) {
+							if (levels[mc.loc.level].characters[i].loc.x > mc.loc.x)
+								mc.dir = RIGHT;
+							else if (levels[mc.loc.level].characters[i].loc.x < mc.loc.x)
+								mc.dir = LEFT;
+							else if (levels[mc.loc.level].characters[i].loc.y > mc.loc.y)
+								mc.dir = DOWN;
+							else if (levels[mc.loc.level].characters[i].loc.y < mc.loc.y)
+								mc.dir = UP;
+						}
 						ahead.x = levels[mc.loc.level].characters[i].loc.x;
 						ahead.y = levels[mc.loc.level].characters[i].loc.y;
 						interact = true;
