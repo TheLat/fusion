@@ -2332,13 +2332,13 @@ public:
 			remove_status(m1, string("SLEEP"));
 			if (in_status(m1, string("SLEEP"))) {
 				do_alert(get_nickname(m1) + string(" is fast asleep."));
-				if (has_move(m1, m1.queue[0]))
+				if (has_move(m1, m1.queue[0]) || m1.queue[0] == "")
 					m1.queue.clear();
 				// TODO:  Sleep animation.
 			}
 			else {
 				do_alert(get_nickname(m1) + string(" woke up!"));
-				if (has_move(m1, m1.queue[0]))
+				if (has_move(m1, m1.queue[0]) || m1.queue[0] == "")
 					m1.queue.clear();
 			}
 		}
@@ -2346,19 +2346,19 @@ public:
 			if (0.2 > random(0.0, 1.0)) {
 				remove_status(m1, string("FREEZE"));
 				do_alert(get_nickname(m1) + string(" thawed out!"));
-				if (has_move(m1, m1.queue[0]))
+				if (has_move(m1, m1.queue[0]) || m1.queue[0] == "")
 					m1.queue.clear();
 			}
 			else {
 				do_alert(get_nickname(m1) + string(" is frozen solid!"));
-				if (has_move(m1, m1.queue[0]))
+				if (has_move(m1, m1.queue[0]) || m1.queue[0] == "")
 					m1.queue.clear();
 				// TODO:  Freeze animation
 			}
 		}
 		else if (in_status(m1, string("PARALYZE")) && (0.25 > random(0.0, 1.0))) {
 			do_alert(get_nickname(m1) + string(" is paralyzed! It can't move!"));
-			if (has_move(m1, m1.queue[0]))
+			if (has_move(m1, m1.queue[0]) || m1.queue[0] == "")
 				m1.queue.clear();
 			// TODO:  Paralyze animation
 		}
@@ -2401,13 +2401,13 @@ public:
 			remove_status(m2, string("SLEEP"));
 			if (in_status(m2, string("SLEEP"))) {
 				do_alert(get_nickname(m2) + string(" is fast asleep."));
-				if (has_move(m2, m2.queue[0]))
+				if (has_move(m2, m2.queue[0]) || m2.queue[0] == "")
 					m2.queue.clear();
 				// TODO:  Sleep animation
 			}
 			else {
 				do_alert(get_nickname(m2) + string(" woke up!"));
-				if (has_move(m2, m2.queue[0]))
+				if (has_move(m2, m2.queue[0]) || m2.queue[0] == "")
 					m2.queue.clear();
 			}
 		}
@@ -2415,19 +2415,19 @@ public:
 			if (0.2 > random(0.0, 1.0)) {
 				remove_status(m2, string("FREEZE"));
 				do_alert(get_nickname(m2) + string(" thawed out!"));
-				if (has_move(m2, m2.queue[0]))
+				if (has_move(m2, m2.queue[0]) || m2.queue[0] == "")
 					m2.queue.clear();
 			}
 			else {
 				do_alert(get_nickname(m2) + string(" is frozen solid!"));
-				if (has_move(m2, m2.queue[0]))
+				if (has_move(m2, m2.queue[0]) || m2.queue[0] == "")
 					m2.queue.clear();
 				// TODO:  Freeze animation
 			}
 		}
 		else if (in_status(m2, string("PARALYZE")) && (0.25 > random(0.0, 1.0))) {
 			do_alert(get_nickname(m2) + string(" is paralyzed! It can't move!"));
-			if (has_move(m2, m2.queue[0]))
+			if (has_move(m2, m2.queue[0]) || m2.queue[0] == "")
 				m2.queue.clear();
 			// TODO:  Paralyze animation
 		}

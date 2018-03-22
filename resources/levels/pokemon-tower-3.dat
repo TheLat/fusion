@@ -69,13 +69,14 @@ INTERACTIONS
 DEACTIVATE:lavender-tower-3-safe2|ACTIVATE:lavender-tower-3-safe1
 END
 TRAINERS
-lavender-tower-3-woman1 30 0.45 0.45 CHANNELER channeler.png {CHANNELER: What a nightmare!}{} 70-92:31|21-92:31|83-93:31
+lavender-tower-3-woman1 30 0.45 0.45 CHANNELER channeler.png {CHANNELER: What a nightmare!}{} 70-92:31|21-92:31|83-93:31|3-93:32
 lavender-tower-3-woman2 30 0.45 0.45 CHANNELER channeler.png {CHANNELER: Gasp!}{} 93-124:35
-lavender-tower-3-woman3 30 0.45 0.45 CHANNELER channeler.png {CHANNELER: ...huh?}{} 92-58:31|92-52:31|93-77:31
-lavender-tower-3-woman4 30 0.45 0.45 CHANNELER channeler.png {CHANNELER: Whoo!?}{} 93-61:33|119-93:33
+lavender-tower-3-woman3 30 0.45 0.45 CHANNELER channeler.png {CHANNELER: ...huh?}{} 92-58:31|92-52:31|93-77:31|93-6:32
+lavender-tower-3-woman4 30 0.45 0.45 CHANNELER channeler.png {CHANNELER: Whoo!?}{} 93-61:33|119-93:33|9-93:33
 END
 TELEPORT
 1 9 pokemon-tower-2 2 9
+16 9 pokemon-tower-4 15 9
 ENCOUNTERS
 92 93 93 104
 LEVELS
