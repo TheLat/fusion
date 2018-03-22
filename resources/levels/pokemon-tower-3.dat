@@ -75,7 +75,7 @@ lavender-tower-3-woman3 30 0.45 0.45 CHANNELER channeler.png {CHANNELER: ...huh?
 lavender-tower-3-woman4 30 0.45 0.45 CHANNELER channeler.png {CHANNELER: Whoo!?}{} 93-61:33|119-93:33|9-93:33
 END
 TELEPORT
-1 9 pokemon-tower-2 2 9
+1 9 pokemon-tower-2 1 8
 16 9 pokemon-tower-4 15 9
 ENCOUNTERS
 92 93 93 104
