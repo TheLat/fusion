@@ -52,6 +52,7 @@ route6-checkpoint
 route6-tunnel
 route6
 route8-checkpoint
+route8-tunnel
 route8
 route9
 ss-anne-halls

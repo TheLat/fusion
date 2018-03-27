@@ -109,6 +109,7 @@ END
 TELEPORT
 57 11 lavender-town 1 15
 7 13 route8-checkpoint 6 4
+13 6 route8-tunnel 3 7
 ENCOUNTERS
 17 20 23 27 37 39 52 56 58 64 92 108
 LEVELS
