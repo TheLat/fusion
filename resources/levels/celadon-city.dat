@@ -1,13 +1,93 @@
 NAME
 Celadon City
 NPCS
-celadon-city-sign1 blank 4 16
+celadon-city-sign1 blank 30 19
 INTERACTIONS
-MENU:ALERT:UNDERGROUND PATH CELADON CITY - LAVENDER TOWN
+MENU:ALERT:TRAINER TIPS|MENU:ALERT:X ACCURACY boosts the accuracy of techniques!|MENU:ALERT:It even clears accuracy debuffs!|MENU:ALERT:DIRE HIT jacks up the likelihood of critical hits!|MENU:ALERT:Get your items at CELADON DEPT. STORE!
+END
+celadon-city-sign2 blank 22 19
+INTERACTIONS
+MENU:ALERT:CELADON CITY {NEWLINE} The City of Rainbow Dreams
+END
+celadon-city-sign3 blank 24 13
+INTERACTIONS
+MENU:ALERT:CELADON MANSION
+END
+celadon-city-sign4 blank 30 25
+INTERACTIONS
+MENU:ALERT:ROCKET GAME CORNER The playground for grown-ups!
+END
+celadon-city-sign5 blank 36 25
+INTERACTIONS
+MENU:ALERT:Coins exchanged for prizes! {NEWLINE} PRIZE EXCHANGE
+END
+celadon-city-sign6 blank 42 25
+INTERACTIONS
+MENU:ALERT:TRAINER TIPS|MENU:ALERT:GUARD SPEC. protects POK{e-accent}MON from having their stats altered.|MENU:ALERT:Get your items at CELADON DEPT. STORE!
+END
+celadon-city-sign7 blank 16 33
+INTERACTIONS
+MENU:ALERT:CELADON CITY POK{e-accent}MON GYM LEADER: ERIKA|MENU:ALERT:The Nature Loving Princess!
+END
+celadon-city-old1 oldman 14 32 UP
+INTERACTIONS
+MENU:ALERT:Heheh! This GYM is great! It's full of women!|FACE:UP
+END
+celadon-city-rocket1 rocket 34 33 WANDER
+INTERACTIONS
+MENU:ALERT:What are you staring at?
+END
+celadon-city-old2 oldman 28 26 DOWN
+INTERACTIONS
+MENU:ALERT:Moan! I blew it all at the slots!|MENU:ALERT:I knew I should have cashed in my coins for prizes!|FACE:DOWN
+END
+celadon-city-girl1 girl2 12 22 WANDER
+INTERACTIONS
+MENU:ALERT:I got my KOFFING in CINNABAR!|MENU:ALERT:It's nice, but it breathes poison when it's angry!
+END
+celadon-city-old3 oldman 25 20 DOWN
+INTERACTIONS
+MENU:ALERT:TODO: Whatever this guy says.
+END
+celadon-city-woman1 woman3 17 20 WANDER
+INTERACTIONS
+MENU:ALERT:The GAME CORNER is bad for our city's image!
+END
+celadon-city-mon1 mon 33 16 RIGHT
+INTERACTIONS
+MENU:ALERT:POLIWRATH: Ribi ribit!|FACE:RIGHT
+END
+celadon-city-fat1 fat 35 16 LEFT
+INTERACTIONS
+MENU:ALERT:This is my trusted pal, POLIWRATH!|MENU:ALERT:It evolved from POLIWHIRL when I used a WATER STONE on it!|FACE:LEFT
+END
+celadon-city-rocket2 rocket 45 18 WANDER
+INTERACTIONS
+MENU:ALERT:Keep out of TEAM ROCKET's way!
+END
+celadon-city-item1 blank 51 19
+INTERACTIONS
+GIVE_ITEM:PP UP|DEACTIVATE:celadon-city-item1
+END
+celadon-city-bush1 bush 50 24
+INTERACTIONS
+HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:celadon-city-bush1}
+END
+celadon-city-bush2 bush 38 36
+INTERACTIONS
+HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:celadon-city-bush2}
 END
 TELEPORT
 53 14 route7 1 5
 53 15 route7 1 6
+WATER_ENCOUNTERS_OLD
+129
+WATER_ENCOUNTERS_GOOD
+60 118
+WATER_ENCOUNTERS_SUPER
+61 79 118
+LEVELS
+16-22
 DATA
 76   76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76
 76   76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76
