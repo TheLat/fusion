@@ -1,0 +1,12 @@
+NAME
+Celadon House 3
+NPCS
+celadon-house3-oldman1 oldman 4 2 DOWN
+INTERACTIONS
+MENU:ALERT:Hehehe! The slots just reel in the dough, big time!|FACE:DOWN
+END
+TELEPORT
+2 8 celadon-city 34 32
+3 8 celadon-city 34 32
+DATA
+82   82  82 166 166
