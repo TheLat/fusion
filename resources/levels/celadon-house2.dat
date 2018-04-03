@@ -1,0 +1,44 @@
+NAME
+Celadon House 2
+NPCS
+celadon-house2-oldman1 oldman 4 2 DOWN
+INTERACTIONS
+MENU:ALERT:Hehehe! The slots just reel in the dough, big time!|FACE:DOWN
+END
+celadon-house2-cap1 cap 5 6 LEFT
+INTERACTIONS
+MENU:ALERT:Don't touch the poster at the GAME CORNER!|MENU:ALERT:There's no secret switch behind it!
+END
+celadon-house2-rocket1 rocket 1 3 WANDER
+INTERACTIONS
+MENU:ALERT:CHIEF!|MENU:ALERT:We just shipped 2000 POK{e-accent}MON as slot prizes!
+END
+celadon-house2-bookcase1 blank 2 1
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+celadon-house2-bookcase2 blank 3 1
+INTERACTIONS
+MENU:ALERT:It's a sculpture of DIGLETT.
+END
+celadon-house2-bookcase3 blank 4 1
+INTERACTIONS
+MENU:ALERT:It's a sculpture of DIGLETT.
+END
+celadon-house2-bookcase4 blank 5 1
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+TELEPORT
+2 8 celadon-city 38 32
+3 8 celadon-city 38 32
+DATA
+17   17 503 504 504 503  17  17
+502 502  85 505 505  85 502 502
+502 502 502 502 502 502 502 502
+502 502  48  50  50  52 502 502
+502 502  23 506 506  24 502 502
+502 502 502 502 502 502 502 502
+501 501 502 502 502 502 501 501
+500 500 499 499 502 502 500 500
+82  82  166 166

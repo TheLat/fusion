@@ -1,0 +1,36 @@
+NAME
+Celadon Hotel
+NPCS
+celadon-house1-couch blank 0 4
+INTERACTIONS
+MENU:ALERT:My sis brought me on this vacation!
+END
+celadon-house1-man man2 6 4 WANDER
+INTERACTIONS
+MENU:ALERT:Why did she bring her brother?
+END
+celadon-house1-woman woman4 4 4 WANDER
+INTERACTIONS
+MENU:ALERT:I'm on vacation with my brother and boyfriend.|MENU:ALERT:CELADON is such a pretty city!
+END
+celadon-house1-oldwoman oldwoman 3 1 DOWN
+INTERACTIONS
+MENU:ERROR
+END
+celadon-house1-oldwomandesk blank 3 2 DOWN
+INTERACTIONS
+MENU:ALERT:POK{e-accent}MON? No, this is a hotel for people.|MENU:ALERT:We're full up.
+END
+TELEPORT
+3 8 celadon-city 46 32
+4 8 celadon-city 46 32
+DATA
+139 139 139 139 139 139 139 139 139 139 139 139  30  30
+123 123 123 123 123 123 123 123 123 123 123 123 157 157
+148 148 148 148 148 148 148 148 148 148 148 148 148 148
+123 123 123 123 123 123 123 123 123 123 123 123 123 123
+152 153 123 123 123 123 123 123 123 123 123 123 123 123
+155 122 123 123 123 123 123 123 123 123 123 123 123 123
+156 156 123 123 123 123 156 156 123 123 123 123 156 156
+157 157 123  54  54 123 157 157 123 123 123 123 157 157
+82   82  82 166 166
