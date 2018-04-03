@@ -1,12 +1,37 @@
 NAME
 Celadon House 3
 NPCS
-celadon-house3-oldman1 oldman 4 2 DOWN
+celadon-house3-clerk clerk 0 1 DOWN
 INTERACTIONS
-MENU:ALERT:Hehehe! The slots just reel in the dough, big time!|FACE:DOWN
+MENU:ALERT:Go ahead! Laugh!|MENU:ALERT:I'm flat out busted!|MENU:ALERT:No more slots for me! I'm going straight!|MENU:ALERT:Here, I won't be needing this anymore!|GIVE_ITEM:COIN CASE
+MENU:ALERT:I always thought I was going to win it back...
+END
+celadon-house3-bald bald3 1 4 DOWN
+INTERACTIONS
+MENU:ALERT:Psst! There's a basement under the GAME CORNER.|FACE:DOWN
+END
+celadon-house3-fat fat 5 3 RIGHT
+INTERACTIONS
+MENU:ALERT:Munch...|MENU:ALERT:The man at that table lost it all at the slots.|FACE:RIGHT
+END
+celadon-house3-woman woman5 7 2 FARSPEAK
+INTERACTIONS
+MENU:ALERT:My POK{e-accent}MON are weak, so I often have to go to the DRUG STORE.
+END
+celadon-house3-chef chef 8 5 FARSPEAK WANDER
+INTERACTIONS
+MENU:ALERT:Hi!|MENU:ALERT:We're taking a break now.
 END
 TELEPORT
-2 8 celadon-city 34 32
 3 8 celadon-city 34 32
+4 8 celadon-city 34 32
 DATA
+516 516 516 516 516 516 517 516 516 516 516
+511 511 507 507 507 511 134 518 518 518 518
+512 513 507 507 507 511 134 518 518 518 518
+514 515 507 507 507 511 134 518 518 518 518
+511 511 507 507 507 511 134 518 518 518 518
+512 513 507 507 507 511 134 518 518 518 518
+514 515 507 507 507 507 508 509 509 509 510
+511 511 507  54  54 507 518 518 518 518 518
 82   82  82 166 166

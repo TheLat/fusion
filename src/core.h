@@ -193,8 +193,8 @@ public:
 	vector<string> interactions;
 	vector<location> force_interactions;
 	location loc, origin;
-	bool wander, incorporeal, no_force, nolook;
-	character() { wander = false; dir = DOWN; incorporeal = false; no_force = false; nolook = false; }
+	bool wander, incorporeal, no_force, nolook, far;
+	character() { wander = false; dir = DOWN; incorporeal = false; no_force = false; nolook = false; far = false; }
 };
 
 class trainer {
@@ -299,7 +299,7 @@ public: // TODO:  Change back to private
 	string encounter;
 	int encounter_level;
 	player mc;
-	location ahead;
+	location ahead, ahead2;
 	bool interact, open_menu;
 public:
 	void full_heal() {
@@ -3789,6 +3789,12 @@ public:
 					else {
 						levels[levelname].characters[levels[levelname].characters.size() - 1].incorporeal = false;
 					}
+					if (s.find("FARSPEAK") != -1) {
+						levels[levelname].characters[levels[levelname].characters.size() - 1].far = true;
+					}
+					else {
+						levels[levelname].characters[levels[levelname].characters.size() - 1].far = false;
+					}
 					if (s.find("NOLOOK") != -1) {
 						levels[levelname].characters[levels[levelname].characters.size() - 1].nolook = true;
 					}
@@ -4677,18 +4683,23 @@ public:
 			// TODO:  Animations
 			location l = mc.loc;
 			ahead = l;
+			ahead2 = l;
 			switch (mc.dir) {
 			case UP:
 				ahead.y -= 1.0;
+				ahead2.y -= 2.0;
 				break;
 			case DOWN:
 				ahead.y += 1.0;
+				ahead2.y += 2.0;
 				break;
 			case LEFT:
 				ahead.x -= 1.0;
+				ahead2.x -= 2.0;
 				break;
 			case RIGHT:
 				ahead.x += 1.0;
+				ahead2.x += 2.0;
 				break;
 			}
 			if (left) {
@@ -4891,7 +4902,8 @@ public:
 				for (unsigned i = 0; i < levels[mc.loc.level].characters.size(); ++i) {
 					if (!mc.active[levels[mc.loc.level].characters[i].name])
 						continue;
-					if (ahead.x == levels[mc.loc.level].characters[i].loc.x && ahead.y == levels[mc.loc.level].characters[i].loc.y) {
+					if ((ahead.x == levels[mc.loc.level].characters[i].loc.x && ahead.y == levels[mc.loc.level].characters[i].loc.y) || 
+						(levels[mc.loc.level].characters[i].far && (ahead2.x == levels[mc.loc.level].characters[i].loc.x && ahead2.y == levels[mc.loc.level].characters[i].loc.y))){
 						if (levels[mc.loc.level].characters[i].loc.x < mc.loc.x)
 							levels[mc.loc.level].characters[i].dir = RIGHT;
 						else if (levels[mc.loc.level].characters[i].loc.x > mc.loc.x)
