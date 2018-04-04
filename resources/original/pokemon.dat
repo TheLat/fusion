@@ -2336,14 +2336,15 @@ HM: 3 4
 NUMBER: 87
 NAME: DEW
 SURNAME: GONG
-TYPE1: WATER
-TYPE2: ICE
+TYPE1: ICE
+TYPE2: WATER
 DEX1: Its entire body is snow-white. It is unharmed, even by intense cold.
 DEX2: This Pok{e-accent}mon loves swimming in frigid seas and ice flows. It uses its long tail to propel itself through the water.
 EXP_YIELD: 166
 CATCHRATE: 75
 HEIGHT: 67
 WEIGHT: 264.6
+SWITCH: YES
 HP: 90
 ATTACK: 70
 DEFENSE: 80
