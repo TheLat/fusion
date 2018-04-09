@@ -41,6 +41,59 @@ celadon-dept-bald1 bald3 19 19 LEFT
 INTERACTIONS
 MENU:ALERT:SUPER REPEL keeps weak POK{e-accent}MON at bay...|MENU:ALERT:Hmm, it's a more powerful REPEL!
 END
+celadon-dept-sign6 blank 2 27
+INTERACTIONS
+MENU:ALERT:This is an elevator.
+END
+celadon-dept-sign7 blank 14 27
+INTERACTIONS
+MENU:ALERT:3F: TV GAME SHOP
+END
+celadon-dept-phone1 phone 7 28
+INTERACTIONS
+MENU:ALERT:All right!|MENU:ALERT:My buddy's going to trade me his KANGASKHAN for my GRAVELER!|FACE:DOWN
+END
+celadon-dept-phone2 phone 8 28
+INTERACTIONS
+MENU:ALERT:Come on GRAVELER!|MENU:ALERT:I love GRAVELER! I collect them!|MENU:ALERT:Huh?|MENU:ALERT:GRAVELER turned into a different POK{e-accent}MON!|FACE:DOWN
+END
+celadon-dept-girl1 girl2 2 31 UP
+INTERACTIONS
+MENU:ALERT:Training POK{e-accent}MON is too much work!|MENU:ALERT:I only wanna play video games!|FACE:UP
+END
+celadon-dept-phone3 phone 11 32
+INTERACTIONS
+MENU:ALERT:I hear they isolated the energy that makes some POK{e-accent}MON evolve when traded and put it in a stone.|FACE:DOWN
+END
+celadon-dept-clerk3 clerk2 16 31 FARSPEAK
+INTERACTIONS
+MENU:ALERT:Oh, hi! I finally finished POK{e-accent}MON!|MENU:ALERT:Not done yet? This might be useful!|GIVE_ITEM:TM18
+MENU:ALERT:TM18 is COUNTER! Not like the one I'm leaning on, mind you!
+END
+celadon-dept-sign8 blank 2 39
+INTERACTIONS
+MENU:ALERT:This is an elevator.
+END
+celadon-dept-sign9 blank 14 39
+INTERACTIONS
+MENU:ALERT:Express yourself with gifts!|MENU:ALERT:4F: WISEMAN GIFTS|MENU:ALERT:Evolution Special! Element STONEs on sale now!
+END
+celadon-dept-boy1 boy 6 40 WANDER
+INTERACTIONS
+MENU:ALERT:I heard something useful.|MENU:ALERT:You can run from wild POK{e-accent}MON by distracting them with a POK{e-accent} DOLL!
+END
+celadon-dept-man1 man2 19 44 WANDER
+INTERACTIONS
+MENU:ALERT:I'm getting a POK{e-accent} DOLL for my girlfriend!
+END
+celadon-dept-man2 guy2 11 45 RIGHT
+INTERACTIONS
+MENU:ALERT:I heard that a lot of POK{e-accent}MON stop learning moves when you expose them to an element STONE.|MENU:ALERT:They get a lot tougher, though, so you have to wait for the right time!
+END
+celadon-dept-clerk4 clerk2 5 45 FARSPEAK UP
+INTERACTIONS
+SHOP:POK{e-accent} DOLL,FIRE STONE,THUNDERSTONE,WATER STONE,LEAF STONE,TRADE STONE,MOON STONE
+END
 TELEPORT
 2 9 celadon-city 11 18
 3 9 celadon-city 11 18

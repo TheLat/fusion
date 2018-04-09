@@ -9,3 +9,7 @@ This is a list of all changes I make to the game script and why.
 7, Dramatically increased the power of Surge's team.  He now has 2 level 22 Voltorbs that both know Selfdestruct.  This is to show the player that there are reasons to not lead with your sweeper.  Then he has a level 24 Electabuzz, which only knows GROWL, LEER, THUNDERSHOCK, and RAGE, but he has a very high stat block for this level.  Then he has a level 27 Bulbachu to deal with RAZOR LEAF, SWIFT, THUNDERSHOCK, and THUNDER WAVE to deal with you inevitably bring a type ground to the party.  Then he has a level 28 Raichu that knows SWIFT, BODY SLAM, THUNDERBOLT, and SUBMISSION, because fuck you.
 8, Made the guy on the couch in Lavender Town Pokemon Center reference Cu- Pokemon, because all of them wear skulls.
 9, Slightly changed dialog in Lavender Town to provide more context on the background story.  Added note about how I changed X [stat] items to clear debuffs in addition to buffing.
+10, Drastically changed trainer battles in Lavender Tower.
+11, Replaced some dialog that talked about trading in Celadon City, because trading isn't in Fusion, aside from NPC interactions.
+12, Added NPC in Celadon Department Store who warns you that using an element stone causes most pokemon stop learning moves.
+13, Added MOON STONE and TRADE STONE to Celadon Department Store.
