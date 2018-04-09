@@ -94,6 +94,30 @@ celadon-dept-clerk4 clerk2 5 45 FARSPEAK UP
 INTERACTIONS
 SHOP:POK{e-accent} DOLL,FIRE STONE,THUNDERSTONE,WATER STONE,LEAF STONE,TRADE STONE,MOON STONE
 END
+celadon-dept-sign10 blank 2 51
+INTERACTIONS
+MENU:ALERT:This is an elevator.
+END
+celadon-dept-sign11 blank 14 51
+INTERACTIONS
+MENU:ALERT:5F: DRUG STORE
+END
+celadon-dept-hat1 hat 14 55 WANDER
+INTERACTIONS
+MENU:ALERT:POK{e-accent}MON ability enhancers can be bought only here.|MENU:ALERT:Use CALCIUM to increase SPECIAL.|MENU:ALERT:Use CARBOS to increase SPEED.
+END
+celadon-dept-cap1 cap 2 56 WANDER
+INTERACTIONS
+MENU:ALERT:I'm here for POK{e-accent}MON ability enhancers.|MENU:ALERT:PROTEIN increases ATTACK power.|MENU:ALERT:IRON increases DEFENSE!
+END
+celadon-dept-clerk5 clerk2 5 53 FARSPEAK DOWN
+INTERACTIONS
+SHOP:X ACCURACY,GUARD SPEC.,DIRE HIT,X ATTACK,X DEFEND,X SPEED,X SPECIAL
+END
+celadon-dept-clerk6 clerk2 6 53 FARSPEAK DOWN
+INTERACTIONS
+SHOP:HP UP,PROTEIN,IRON,CARBOS,CALCIUM
+END
 TELEPORT
 2 9 celadon-city 11 18
 3 9 celadon-city 11 18
