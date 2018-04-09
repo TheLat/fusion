@@ -118,6 +118,30 @@ celadon-dept-clerk6 clerk2 6 53 FARSPEAK DOWN
 INTERACTIONS
 SHOP:HP UP,PROTEIN,IRON,CARBOS,CALCIUM
 END
+celadon-dept-sign12 blank 17 70
+INTERACTIONS
+MENU:ALERT:ROOFTOP SQUARE: VENDING MACHINES
+END
+celadon-dept-man3 man2 14 72 LEFT
+INTERACTIONS
+MENU:ALERT:My sister is a trainer, believe it or not.|MENU:ALERT:But, she's so immature, she drives me nuts!|FACE:LEFT
+END
+celadon-dept-girl2 girl2 8 73 WANDER
+INTERACTIONS
+MENU:ALERT:I'm thirsty! {NEWLINE} I want something to drink!
+END
+celadon-dept-vending-machine1 blank 16 70
+INTERACTIONS
+SHOP:FRESH WATER,SODA POP,LEMONADE
+END
+celadon-dept-vending-machine2 blank 15 69
+INTERACTIONS
+SHOP:FRESH WATER,SODA POP,LEMONADE
+END
+celadon-dept-vending-machine3 blank 14 69
+INTERACTIONS
+SHOP:FRESH WATER,SODA POP,LEMONADE
+END
 TELEPORT
 2 9 celadon-city 11 18
 3 9 celadon-city 11 18
