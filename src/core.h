@@ -494,6 +494,26 @@ public:
 				else
 					return string("ERROR");
 			}
+			else if (parse == "TEAM_MON_CAN_EVOLVE"){
+				string temp2 = temp;
+				temp2.erase(temp2.find(":"), temp2.size());
+				temp.erase(0, temp.find(":") + 1);
+				int index = stoi(temp2);
+				if (!mc.team[index].defined)
+					return string("");
+				if (can_evolve(mc.team[index].number, temp))
+					return string("ABLE");
+				return string("NOT ABLE");
+			}
+			else if (parse == "TEAM_MON_CAN_EVOLVE_FOLLOW_UP") {
+				string temp2 = temp;
+				temp2.erase(temp2.find(":"), temp2.size());
+				temp.erase(0, temp.find(":") + 1);
+				int index = stoi(temp2);
+				if (can_evolve(mc.team[index].number, temp))
+					return string("");
+				return string("ALERT:It didn't seem to have any effect.");
+			}
 			else if (parse == "TEAM_MON_CAN_LEARN_FOLLOW_UP"){
 				string temp2 = temp;
 				temp2.erase(temp2.find(":"), temp2.size());
@@ -1091,6 +1111,27 @@ public:
 			else if (effect.find("MAP") == 0) {
 				// TODO: MAP
 			}
+			else if (effect.find("EVOLVE") == 0) {
+				effect.erase(0, effect.find(":") + 1);
+				choices = do_menu("EVOLVE_MON_SELECT", effect);
+				choices = remove_cancels(choices);
+				if (choices.size() <= 0)
+					return false;
+				if (!can_evolve(mc.team[choices[0]].number, effect))
+					return false;
+				for (unsigned i = 0; i < all_mon[mc.team[choices[0]].number].evolution.size(); ++i) {
+					if (all_mon[mc.team[choices[0]].number].evolution[i].second == effect) {
+						// TODO:  EVOLUTION SCREEN
+						do_alert(string("What? ") + get_nickname(mc.team[choices[0]]) + string(" is evolving!"));
+						string old_nickname = get_nickname(mc.team[choices[0]]);
+						mc.team[choices[0]].number = all_mon[mc.team[choices[0]].number].evolution[i].first;
+						do_alert(old_nickname + string(" evolved into ") + all_mon[mc.team[choices[0]].number].name + string("!"));
+						mc.seen[mc.team[choices[0]].number] = true;
+						mc.caught[mc.team[choices[0]].number] = true;
+						break;
+					}
+				}
+			}
 			else if (effect.find("TM") == 0) {
 				string move = effect;
 				move.erase(0, move.find(":") + 1);
@@ -1098,6 +1139,7 @@ public:
 				do_menu(string("ALERT"), string("Booted up a TM!"));
 				do_menu(string("ALERT"), string("It contained ") + move + string("!"));
 				choices = do_menu(string("ALERT_YES_NO"), string("Teach ") + move + string(" to a POK{e-accent}MON?"));
+				choices = remove_cancels(choices);
 				if (choices[0] == 1)
 					return false;
 				choices = do_menu(string("LEARN_MON_SELECT"), effect);
@@ -1223,21 +1265,6 @@ public:
 			effect.erase(0, effect.find(":") + 1);
 			// TODO: Add in-game EV boost limit
 			m.EV[s] += stoi(effect);
-		}
-		else if (effect.find("EVOLVE") == 0) {
-			effect.erase(0, effect.find(":") + 1);
-			for (unsigned i = 0; i < all_mon[m.number].evolution.size(); ++i) {
-				if (all_mon[m.number].evolution[i].second == effect) {
-					// TODO:  EVOLUTION SCREEN
-					do_alert(string("What? ") + get_nickname(m) + string(" is evolving!"));
-					string old_nickname = get_nickname(m);
-					m.number = all_mon[m.number].evolution[i].first;
-					do_alert(old_nickname + string(" evolved into ") + all_mon[m.number].name + string("!"));
-					mc.seen[m.number] = true;
-					mc.caught[m.number] = true;
-					break;
-				}
-			}
 		}
 		else if (effect.find("PP_UP") == 0) {
 			int i = int(double(moves[m.moves[extra]].pp) * 0.2) + m.max_pp[extra];
@@ -2273,6 +2300,13 @@ public:
 			clear_queue(attacker);
 		}
 		return success;
+	}
+	bool can_evolve(string& ID, string& effect) {
+		for (unsigned i = 0; i < all_mon[ID].evolution.size(); ++i) {
+			if (all_mon[ID].evolution[i].second == effect)
+				return true;
+		}
+		return false;
 	}
 	bool is_KO(mon& m) {
 		if (m.curr_hp <= 0) {
