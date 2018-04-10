@@ -142,6 +142,53 @@ celadon-dept-vending-machine3 blank 14 69
 INTERACTIONS
 SHOP:FRESH WATER,SODA POP,LEMONADE|NO_ADVANCE|ALERT:TODO: Make it so you can't sell to vending machines.
 END
+celadon-dept-elevator-entrance1 blank 1 1 NOLOOK
+FORCE_INTERACTION
+0 1
+END
+INTERACTIONS
+SET:celadon-dept-floor:1|TELEPORT:celadon-dept 1 89
+END
+celadon-dept-elevator-entrance2 blank 1 14 NOLOOK
+FORCE_INTERACTION
+0 1
+END
+INTERACTIONS
+SET:celadon-dept-floor:2|TELEPORT:celadon-dept 1 89
+END
+celadon-dept-elevator-entrance3 blank 1 26 NOLOOK
+FORCE_INTERACTION
+0 1
+END
+INTERACTIONS
+SET:celadon-dept-floor:3|TELEPORT:celadon-dept 1 89
+END
+celadon-dept-elevator-entrance4 blank 1 38 NOLOOK
+FORCE_INTERACTION
+0 1
+END
+INTERACTIONS
+SET:celadon-dept-floor:4|TELEPORT:celadon-dept 1 89
+END
+celadon-dept-elevator-entrance5 blank 1 50 NOLOOK
+FORCE_INTERACTION
+0 1
+END
+INTERACTIONS
+SET:celadon-dept-floor:5|TELEPORT:celadon-dept 1 89
+END
+celadon-dept-elevator-exit blank 0 91 NOLOOK
+FORCE_INTERACTION
+1 -1
+2 -1
+END
+INTERACTIONS
+GET:celadon-dept-floor|{}{TELEPORT:celadon-dept 1 3}{TELEPORT:celadon-dept 1 16}{TELEPORT:celadon-dept 1 28}{TELEPORT:celadon-dept 1 40}{TELEPORT:celadon-dept 1 52}
+END
+celadon-dept-elevator-controls blank 3 86
+INTERACTIONS
+MENU:ELEVATOR_CONTROLS:|{SET:celadon-dept-floor:1}{SET:celadon-dept-floor:2}{SET:celadon-dept-floor:3}{SET:celadon-dept-floor:4}{SET:celadon-dept-floor:5}{}
+END
 TELEPORT
 2 9 celadon-city 11 18
 3 9 celadon-city 11 18
@@ -248,4 +295,5 @@ DATA
 507 507 507 507
 507 507 507 507
 507  54  54 507
+82  166 166  82
 82   82  82  82

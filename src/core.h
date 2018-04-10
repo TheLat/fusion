@@ -4968,6 +4968,23 @@ public:
 								s.erase(0, string("NO_ADVANCE").length() + 1);
 								break;
 							}
+							else if (s.find("TELEPORT:") == 0) {
+								s.erase(0, string("TELEPORT:").length());
+								s2 = s;
+								s2.erase(s2.find(" "), s2.size());
+								s.erase(0, s.find(" ") + 1);
+								string destination = s2;
+								s2 = s;
+								s2.erase(s2.find(" "), s2.size());
+								s.erase(0, s.find(" ") + 1);
+								int newx = stoi(s2);
+								s2 = s;
+								int newy = stoi(s2);
+								mc.loc.level = destination;
+								mc.loc.x = newx;
+								mc.loc.y = newy;
+								break;
+							}
 							else if (s.find("SET:") == 0) {
 								s.erase(0, string("SET:").length());
 								s2 = s;
