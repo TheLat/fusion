@@ -8,7 +8,11 @@ FORCE_INTERACTION
 3 0
 END
 INTERACTIONS
-MENU:ALERT:I'm on guard duty. Gee, I'm thirsty, though.|MENU:ALERT:Oh, wait there, the road's closed.|MOVE:PLAYER:0,-1
+IN_INVENTORY:LEMONADE|{IN_INVENTORY:SODA POP|{IN_INVENTORY:FRESH WATER|{MENU:ALERT:I'm on guard duty. Gee, I'm thirsty, though.|MENU:ALERT:Oh, wait there, the road's closed.|MOVE:PLAYER:0,-1|NO_ADVANCE}{}}{}}{}|MENU:ALERT:Whoa, boy! {NEWLINE} I'm parched!|MENU:ALERT:...|MENU:ALERT:Huh? I can have this drink?|IN_INVENTORY:LEMONADE|{IN_INVENTORY:SODA POP|{IN_INVENTORY:FRESH WATER|{}{REMOVE_ITEM:FRESH WATER}}{REMOVE_ITEM:SODA POP}}{REMOVE_ITEM:LEMONADE}|MENU:ALERT:Gee, thanks!|MENU:ALERT:... {NEWLINE} Glug glug... {NEWLINE} ... {NEWLINE} Gulp...|MENU:ALERT:If you want to go to SAFFRON CITY...|MENU:ALERT:...|MENU:ALERT:You can go on through. I'll share this with the other guards!|ACTIVATE:route5-checkpoint-guard2|DEACTIVATE:route5-checkpoint-guard|ACTIVATE:route6-checkpoint-guard2|DEACTIVATE:route6-checkpoint-guard|ACTIVATE:route7-checkpoint-guard2|DEACTIVATE:route7-checkpoint-guard|ACTIVATE:route8-checkpoint-guard2|DEACTIVATE:route8-checkpoint-guard
+END
+route5-checkpoint-guard2 guard3 1 4 RIGHT FARSPEAK INACTIVE
+INTERACTIONS
+MENU:ALERT:Hi, thanks for the cool drinks!
 END
 TELEPORT
 3 0 route5 21 34
