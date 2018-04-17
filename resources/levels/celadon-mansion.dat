@@ -1,12 +1,113 @@
 NAME
 Celadon Mansion
 NPCS
-celadon-dept-sign1 blank 2 2
+celadon-mansion-bookcase1 blank 1 3
 INTERACTIONS
-MENU:ALERT:This is an elevator.
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+celadon-mansion-bookcase2 blank 3 3
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+celadon-mansion-bookcase3 blank 2 3
+INTERACTIONS
+MENU:ALERT:It's a sculpture of DIGLETT.
+END
+celadon-mansion-sign1 blank 4 9
+INTERACTIONS
+MENU:ALERT:CELADON MANSION Manager's Suite
+END
+celadon-mansion-oldwoman1 oldwoman 1 5 DOWN
+INTERACTIONS
+MENU:ALERT:My dear POK{e-accent}MON keep me company.|MENU:ALERT:MEOWTH even brings money home!|FACE:DOWN
+END
+celadon-mansion-mon1 mon 0 5 RIGHT
+INTERACTIONS
+MENU:ALERT:MEOWTH: Meow!|FACE:RIGHT
+END
+celadon-mansion-mon2 mon 4 6 WANDER
+INTERACTIONS
+MENU:ALERT:NIDORAN: Kya kyaoo!
+END
+celadon-mansion-mon3 clefairy 0 8 RIGHT
+INTERACTIONS
+MENU:ALERT:CLEFAIRY: Pi pippippi!
+END
+celadon-mansion-bookcase3 blank 0 21
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+celadon-mansion-bookcase4 blank 1 21
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+celadon-mansion-bookcase5 blank 2 21
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+celadon-mansion-bookcase6 blank 3 21
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+celadon-mansion-bookcase7 blank 4 21
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+celadon-mansion-sign2 blank 4 27
+INTERACTIONS
+MENU:ALERT:GAME FREAK Meeting Room
+END
+celadon-mansion-pc1 blank 0 23
+INTERACTIONS
+MENU:ALERT:{PLAYER_NAME} turned on the PC.|GET:BILL|{MENU:PC:}{MENU:PC2:}|{GET:BILL|{MENU:ALERT:Accessed someone's PC.}{MENU:ALERT:Accessed BILL's PC.}|MENU:ALERT:Accessed POK{e-accent}MON Storage System.|MON_STORAGE}{MENU:ALERT:Accessed my PC.|MENU:ALERT:Accessed Item Storage System.|ITEM_STORAGE}{MENU:ALERT:OAK RATING GOES HERE}{}
+END
+celadon-mansion-sign3 blank 4 44
+INTERACTIONS
+MENU:ALERT:GAME FREAK Development Room
+END
+celadon-mansion-guy1 tech 0 39 UP
+INTERACTIONS
+MENU:ALERT:Me? I'm the programmer!|FACE:UP
+END
+celadon-mansion-guy2 man2 0 42 UP
+INTERACTIONS
+MENU:ALERT:I wrote the story! Isn't ERIKA cute?|MENU:ALERT:I like MISTY a lot too!|MENU:ALERT:Oh, and SABRINA, I like her!|FACE:UP
+END
+celadon-mansion-guy3 clerk2 3 39 UP
+INTERACTIONS
+MENU:ALERT:I'm a graphic artist! {NEWLINE} I drew you!|FACE:UP
+END
+celadon-mansion-guy4 guy 2 38
+INTERACTIONS
+MENU:ALERT:I'm the game designer!|MENU:ALERT:Filling up your POK{e-accent}DEX is basically impossible.|MENU:ALERT:There are so many POK{e-accent}MON out there!
+END
+celadon-mansion-pc2 blank 1 38
+INTERACTIONS
+MENU:ALERT:It's the game program! Messing with it could bug out the game!
+END
+celadon-mansion-pc3 blank 4 38
+INTERACTIONS
+MENU:ALERT:Someone's playing a game instead of working!
+END
+celadon-mansion-pc4 blank 1 41
+INTERACTIONS
+MENU:ALERT:It's the script! Better not look at the ending!
+END
+celadon-mansion-sign4 blank 8 63
+INTERACTIONS
+MENU:ALERT:I KNOW EVERYTHING!
+END
+celadon-mansion-tough tough 2 79 DOWN
+INTERACTIONS
+MENU:ALERT:I know everything about the world of POK{e-accent}MON in your GAME BOY!|MENU:ALERT:Get out there and catch POK{e-accent}MON!
+END
+celadon-mansion-book blank 3 81
+INTERACTIONS
+MENU:ALERT:It's a pamphlet on TMs.|MENU:ALERT:...|MENU:ALERT:There are 50 TMs in all.|MENU:ALERT:There is a person who can recharge your TMs in TODO: PICK LOCATION AND SET IT HERE.|MENU:ALERT:There are also 5 HMs that can be used repeatedly.|MENU:ALERT:SILPH CO
 END
 TELEPORT
 4 12 celadon-city 27 14
+5 12 celadon-city 27 14
 4 0 celadon-city 27 7
 7 1 celadon-mansion 7 20
 7 19 celadon-mansion 7 2
