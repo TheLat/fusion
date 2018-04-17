@@ -105,6 +105,22 @@ celadon-mansion-book blank 3 81
 INTERACTIONS
 MENU:ALERT:It's a pamphlet on TMs.|MENU:ALERT:...|MENU:ALERT:There are 50 TMs in all.|MENU:ALERT:There is a person who can recharge your TMs in TODO: PICK LOCATION AND SET IT HERE.|MENU:ALERT:There are also 5 HMs that can be used repeatedly.|MENU:ALERT:SILPH CO
 END
+celadon-mansion-blackboard1 blank 3 77
+INTERACTIONS
+MENU:ALERT:This blackboard talks a lot about connecting with a link cable, whatever that is.
+END
+celadon-mansion-blackboard2 blank 4 77
+INTERACTIONS
+MENU:ALERT:This blackboard talks a lot about connecting with a link cable, whatever that is.
+END
+celadon-mansion-eevee orb 4 80
+INTERACTIONS
+GIVE_MON:5:133-133|DEACTIVATE:celadon-mansion-eevee
+END
+celadon-mansion-bookcase8 blank 7 78
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
 TELEPORT
 4 12 celadon-city 27 14
 5 12 celadon-city 27 14
