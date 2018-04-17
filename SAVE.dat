@@ -1,10 +1,10 @@
 WARNING: Editing this file can easily corrupt game state.
 NAME:RED
 RIVAL_NAME:BLUE
-DIRECTION:3
+DIRECTION:2
 WINS:0
 LOSSES:0
-LOCATION:celadon-city|25|16
+LOCATION:route7-checkpoint|4|4
 LAST_CENTER:celadon-center|3|3
 MONEY:68122
 REPEL:0
@@ -52,6 +52,13 @@ celadon-dept-clerk3|1
 celadon-dept-clerk4|0
 celadon-dept-clerk5|0
 celadon-dept-clerk6|0
+celadon-dept-elevator-controls|0
+celadon-dept-elevator-entrance1|0
+celadon-dept-elevator-entrance2|0
+celadon-dept-elevator-entrance3|0
+celadon-dept-elevator-entrance4|0
+celadon-dept-elevator-entrance5|0
+celadon-dept-elevator-exit|0
 celadon-dept-girl1|0
 celadon-dept-girl2|0
 celadon-dept-hat1|0
@@ -95,6 +102,35 @@ celadon-house3-chef|0
 celadon-house3-clerk|1
 celadon-house3-fat|0
 celadon-house3-woman|0
+celadon-mansion-blackboard1|0
+celadon-mansion-blackboard2|0
+celadon-mansion-book|0
+celadon-mansion-bookcase1|0
+celadon-mansion-bookcase2|0
+celadon-mansion-bookcase3|0
+celadon-mansion-bookcase4|0
+celadon-mansion-bookcase5|0
+celadon-mansion-bookcase6|0
+celadon-mansion-bookcase7|0
+celadon-mansion-bookcase8|0
+celadon-mansion-eevee|0
+celadon-mansion-guy1|0
+celadon-mansion-guy2|0
+celadon-mansion-guy3|0
+celadon-mansion-guy4|0
+celadon-mansion-mon1|0
+celadon-mansion-mon2|0
+celadon-mansion-mon3|0
+celadon-mansion-oldwoman1|0
+celadon-mansion-pc1|0
+celadon-mansion-pc2|0
+celadon-mansion-pc3|0
+celadon-mansion-pc4|0
+celadon-mansion-sign1|0
+celadon-mansion-sign2|0
+celadon-mansion-sign3|0
+celadon-mansion-sign4|0
+celadon-mansion-tough|0
 cerulean-bike-bike1|0
 cerulean-bike-bike10|0
 cerulean-bike-bike11|0
@@ -488,18 +524,21 @@ route4-item|0
 route4-sign|0
 route4-sign2|0
 route5-checkpoint-guard|0
+route5-checkpoint-guard2|0
 route5-sign|0
 route5-tunnel-girl|0
 route5-tunnel-woman|0
 route6-boy1|1
 route6-boy2|1
 route6-checkpoint-guard|0
+route6-checkpoint-guard2|0
 route6-girl1|1
 route6-girl2|1
 route6-guy1|1
 route6-guy2|1
 route6-sign|0
 route7-checkpoint-guard|0
+route7-checkpoint-guard2|0
 route7-sign1|0
 route7-tunnel-bald|0
 route8-bald1|1
@@ -507,6 +546,7 @@ route8-bald2|1
 route8-bush1|0
 route8-bush2|0
 route8-checkpoint-guard|0
+route8-checkpoint-guard2|0
 route8-girl1|1
 route8-girl2|1
 route8-girl3|1
@@ -776,6 +816,13 @@ celadon-dept-clerk3|1
 celadon-dept-clerk4|1
 celadon-dept-clerk5|1
 celadon-dept-clerk6|1
+celadon-dept-elevator-controls|1
+celadon-dept-elevator-entrance1|1
+celadon-dept-elevator-entrance2|1
+celadon-dept-elevator-entrance3|1
+celadon-dept-elevator-entrance4|1
+celadon-dept-elevator-entrance5|1
+celadon-dept-elevator-exit|1
 celadon-dept-girl1|1
 celadon-dept-girl2|1
 celadon-dept-hat1|1
@@ -819,6 +866,35 @@ celadon-house3-chef|1
 celadon-house3-clerk|1
 celadon-house3-fat|1
 celadon-house3-woman|1
+celadon-mansion-blackboard1|1
+celadon-mansion-blackboard2|1
+celadon-mansion-book|1
+celadon-mansion-bookcase1|1
+celadon-mansion-bookcase2|1
+celadon-mansion-bookcase3|1
+celadon-mansion-bookcase4|1
+celadon-mansion-bookcase5|1
+celadon-mansion-bookcase6|1
+celadon-mansion-bookcase7|1
+celadon-mansion-bookcase8|1
+celadon-mansion-eevee|0
+celadon-mansion-guy1|1
+celadon-mansion-guy2|1
+celadon-mansion-guy3|1
+celadon-mansion-guy4|1
+celadon-mansion-mon1|1
+celadon-mansion-mon2|1
+celadon-mansion-mon3|1
+celadon-mansion-oldwoman1|1
+celadon-mansion-pc1|1
+celadon-mansion-pc2|1
+celadon-mansion-pc3|1
+celadon-mansion-pc4|1
+celadon-mansion-sign1|1
+celadon-mansion-sign2|1
+celadon-mansion-sign3|1
+celadon-mansion-sign4|1
+celadon-mansion-tough|1
 cerulean-bike-bike1|1
 cerulean-bike-bike10|1
 cerulean-bike-bike11|1
@@ -1211,26 +1287,30 @@ route4-girl|1
 route4-item|1
 route4-sign|1
 route4-sign2|1
-route5-checkpoint-guard|1
+route5-checkpoint-guard|0
+route5-checkpoint-guard2|1
 route5-sign|1
 route5-tunnel-girl|1
 route5-tunnel-woman|1
 route6-boy1|1
 route6-boy2|1
-route6-checkpoint-guard|1
+route6-checkpoint-guard|0
+route6-checkpoint-guard2|1
 route6-girl1|1
 route6-girl2|1
 route6-guy1|1
 route6-guy2|1
 route6-sign|1
-route7-checkpoint-guard|1
+route7-checkpoint-guard|0
+route7-checkpoint-guard2|1
 route7-sign1|1
 route7-tunnel-bald|1
 route8-bald1|1
 route8-bald2|1
 route8-bush1|1
 route8-bush2|1
-route8-checkpoint-guard|1
+route8-checkpoint-guard|0
+route8-checkpoint-guard2|1
 route8-girl1|1
 route8-girl2|1
 route8-girl3|1
@@ -1493,9 +1573,7 @@ TM30|1
 PP UP|1
 COIN CASE|1
 TM18|1
-TRADE STONE|1
 FIRE STONE|1
-LEMONADE|1
 END
 INVENTORY_STORAGE:
 END
@@ -1532,6 +1610,7 @@ SEEN:
 13-25
 13-74
 130-130
+133-133
 14-11
 14-13
 14-14
@@ -1682,6 +1761,7 @@ SEEN:
 74-95
 75-15
 75-75
+76-15
 76-76
 77-77
 79-104
@@ -1707,6 +1787,7 @@ END
 CAUGHT:
 129-129
 130-130
+133-133
 19-16
 19-17
 20-17
@@ -1720,6 +1801,7 @@ CAUGHT:
 74-14
 74-15
 75-15
+76-15
 83-83
 END
 VALUES:
@@ -1732,14 +1814,15 @@ THUNDERBADGE|1
 END
 TEAM:
 0|NUMBER:47-47|NICKNAME:|HP:80|EXP:17085|LEVEL:27|EV:3413|4397|3772|3665|4855|IV:14|4|11|6|9|MOVES:SPORE|STUN SPORE|LEECH LIFE|CUT|PP:15|30|15|30|MAX_PP:15|30|15|30|STATUS:
-1|NUMBER:75-15|NICKNAME:|HP:81|EXP:21061|LEVEL:29|EV:9342|11970|9936|8564|11261|IV:2|15|9|10|11|MOVES:POISON STING|SELFDESTRUCT|FURY ATTACK|TWIN NEEDLE|PP:35|5|20|20|MAX_PP:35|5|20|20|STATUS:
-2|NUMBER:20-17|NICKNAME:|HP:63|EXP:9101|LEVEL:22|EV:2187|2769|2715|1973|2223|IV:8|1|4|4|1|MOVES:GUST|TAIL WHIP|QUICK ATTACK|HYPER FANG|PP:35|30|30|15|MAX_PP:35|30|30|15|STATUS:
-3|NUMBER:130-130|NICKNAME:|HP:107|EXP:25347|LEVEL:31|EV:11020|7447|8455|5820|6451|IV:0|13|10|10|14|MOVES:SPLASH|BITE|BUBBLEBEAM|DRAGON RAGE|PP:40|25|20|10|MAX_PP:40|25|20|10|STATUS:
-4|NUMBER:5-5|NICKNAME:|HP:79|EXP:21314|LEVEL:29|EV:8498|10305|9769|7789|10174|IV:0|13|10|10|14|MOVES:SCRATCH|RAGE|EMBER|LEER|PP:35|20|25|30|MAX_PP:35|20|25|30|STATUS:
+1|NUMBER:76-15|NICKNAME:|HP:88|EXP:21061|LEVEL:29|EV:9342|11970|9936|8564|11261|IV:2|15|9|10|11|MOVES:POISON STING|SELFDESTRUCT|FURY ATTACK|TWIN NEEDLE|PP:35|5|20|20|MAX_PP:35|5|20|20|STATUS:
+2|NUMBER:130-130|NICKNAME:|HP:107|EXP:25347|LEVEL:31|EV:11020|7447|8455|5820|6451|IV:0|13|10|10|14|MOVES:SPLASH|BITE|BUBBLEBEAM|DRAGON RAGE|PP:40|25|20|10|MAX_PP:40|25|20|10|STATUS:
+3|NUMBER:5-5|NICKNAME:|HP:79|EXP:21314|LEVEL:29|EV:8498|10305|9769|7789|10174|IV:0|13|10|10|14|MOVES:SCRATCH|RAGE|EMBER|LEER|PP:35|20|25|30|MAX_PP:35|20|25|30|STATUS:
+4|NUMBER:133-133|NICKNAME:|HP:20|EXP:100|LEVEL:5|EV:0|0|0|0|0|IV:0|13|10|10|14|MOVES:TACKLE|TAIL WHIP|||PP:35|30|||MAX_PP:35|30|||STATUS:
 END
 STORAGE:
 0|0|NUMBER:56-56|NICKNAME:|HP:44|EXP:4552|LEVEL:17|EV:2585|3393|4013|2039|2355|IV:4|3|2|0|0|MOVES:SCRATCH|LEER|KARATE CHOP||PP:35|30|25||MAX_PP:35|30|25||STATUS:
 0|1|NUMBER:83-83|NICKNAME:|HP:20|EXP:100|LEVEL:5|EV:0|0|0|0|0|IV:0|13|10|10|14|MOVES:PECK|SAND ATTACK|||PP:35|15|||MAX_PP:35|15|||STATUS:
+0|2|NUMBER:20-17|NICKNAME:|HP:63|EXP:9101|LEVEL:22|EV:2187|2769|2715|1973|2223|IV:8|1|4|4|1|MOVES:GUST|TAIL WHIP|QUICK ATTACK|HYPER FANG|PP:35|30|30|15|MAX_PP:35|30|30|15|STATUS:
 END
 LEVEL:
 bill-house
@@ -1748,11 +1831,11 @@ bill-house
 2|0|4|4|0
 END
 celadon-center
-0|3|0|4|0
+0|0|0|4|0
 1|0|3|1|0
 2|0|3|2|0
 3|0|5|3|0
-4|1|9|6|0
+4|0|9|6|0
 5|0|11|2|0
 6|0|13|3|0
 END
@@ -1813,6 +1896,13 @@ celadon-dept
 32|0|16|70|0
 33|0|15|69|0
 34|0|14|69|0
+35|0|1|1|0
+36|0|1|14|0
+37|0|1|26|0
+38|0|1|38|0
+39|0|1|50|0
+40|0|0|91|0
+41|0|3|86|0
 END
 celadon-house1
 0|0|0|4|0
@@ -1836,6 +1926,38 @@ celadon-house3
 2|3|5|3|0
 3|2|7|2|0
 4|0|8|5|0
+END
+celadon-mansion
+0|0|1|3|0
+1|0|3|3|0
+2|0|2|3|0
+3|0|4|9|0
+4|0|1|5|0
+5|3|0|5|0
+6|0|4|6|0
+7|3|0|8|0
+8|0|0|21|0
+9|0|1|21|0
+10|0|2|21|0
+11|0|3|21|0
+12|0|4|21|0
+13|0|4|27|0
+14|0|0|23|0
+15|0|4|44|0
+16|1|0|39|0
+17|1|0|42|0
+18|1|3|39|0
+19|0|2|38|0
+20|0|1|38|0
+21|0|4|38|0
+22|0|1|41|0
+23|0|8|63|0
+24|0|2|79|0
+25|0|3|81|0
+26|0|3|77|0
+27|0|4|77|0
+28|0|4|80|0
+29|0|7|78|0
 END
 cerulean-bike-shop
 0|2|6|2|0
@@ -2333,6 +2455,7 @@ route5
 END
 route5-checkpoint
 0|3|1|4|0
+1|3|1|4|0
 END
 route5-tunnel
 0|0|2|3|0
@@ -2348,6 +2471,7 @@ route6
 END
 route6-checkpoint
 0|2|6|3|0
+1|2|6|3|0
 END
 route6-tunnel
 0|0|2|3|0
@@ -2357,6 +2481,7 @@ route7
 END
 route7-checkpoint
 0|0|4|1|0
+1|0|4|1|0
 END
 route7-tunnel
 0|0|2|4|0
@@ -2377,6 +2502,7 @@ route8
 END
 route8-checkpoint
 0|0|3|1|0
+1|0|3|1|0
 END
 route8-tunnel
 0|0|3|4|0
