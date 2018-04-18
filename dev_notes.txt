@@ -13,3 +13,4 @@ This is a list of all changes I make to the game script and why.
 11, Replaced some dialog that talked about trading in Celadon City, because trading isn't in Fusion, aside from NPC interactions.
 12, Added NPC in Celadon Department Store who warns you that using an element stone causes most pokemon stop learning moves.
 13, Added MOON STONE and TRADE STONE to Celadon Department Store.  Since there are more than 4 pokemon in the game that require a MOON STONE to reach their final form, MOON STONEs are now infinite.
+14, Removed advice to trade with friends from the Celadon Mansion.
