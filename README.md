@@ -70,6 +70,7 @@ List of changes:
 - Confused, paralyzed, sleep, freeze, and flinch will only clear the move queue if the move is one that that pokemon knows.  Moves like the second turn component of Hyper Beam will still happen.
 - Confused only checks for the first part of multi-turn moves.
 - Anything that is part Drowzee or Hypno will learn Dream Eater by leveling up.  The pokedex entries in all the games talk about it eating dreams.
+- Increased the status effect chances of Aurora Beam, Bubble, Confusion, and Thundershock.
 
 Concerning Fusions:
   There are 22,801 pokemon that can appear in Pokemon: Fusion.  The developer can't inspect all of them.  Some may be duds with few or no attack moves (Pikachu-Bulbasaur is quite terrible).  Some things may happen that make no sense (things fused with Gengar will learn Hypnosis from Gengar or Dream Eater from Gengar, but not both).  As a way to balance this, fusions are compatible with every TM and HM that either parent could learn.
