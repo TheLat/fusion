@@ -976,9 +976,9 @@ TYPE: ICE
 ACC: 100
 POWER: 65
 PP: 20
-TARGET: ATTACK_DOWN:10
+TARGET: ATTACK_DOWN:33
 DEFENSE: SPECIAL
-NOTES: 1 in 10 chance to reduce opponent's attack.
+NOTES: 3 in 10 chance to reduce opponent's attack.
 
 MOVE: ICE BEAM
 TYPE: ICE
