@@ -5123,6 +5123,22 @@ public:
 								else
 									choices.push_back(0);
 							}
+							else if (s.find("HAS_COINS:") == 0) {
+								s.erase(0, string("HAS_COINS:").length());
+								s2 = s;
+								if (s.find("|") != -1) {
+									s.erase(0, s.find("|"));
+									s2.erase(s2.find("|"), s2.length());
+								}
+								else {
+									s = "";
+								}
+								choices.clear();
+								if (mc.coins >= stoi(s2))
+									choices.push_back(1);
+								else
+									choices.push_back(0);
+							}
 							else if (s.find("REMOVE_MONEY:") == 0) {
 								s.erase(0, string("REMOVE_MONEY:").length());
 								s2 = s;
@@ -5135,6 +5151,18 @@ public:
 								}
 								mc.money -= stoi(s2);
 							}
+							else if (s.find("REMOVE_COINS:") == 0) {
+								s.erase(0, string("REMOVE_COINS:").length());
+								s2 = s;
+								if (s.find("|") != -1) {
+									s.erase(0, s.find("|"));
+									s2.erase(s2.find("|"), s2.length());
+								}
+								else {
+									s = "";
+								}
+								mc.coins -= stoi(s2);
+							}
 							else if (s.find("GIVE_MONEY:") == 0) {
 								s.erase(0, string("GIVE_MONEY:").length());
 								s2 = s;
@@ -5146,6 +5174,18 @@ public:
 									s = "";
 								}
 								mc.money += stoi(s2);
+							}
+							else if (s.find("GIVE_COINS:") == 0) {
+								s.erase(0, string("GIVE_COINS:").length());
+								s2 = s;
+								if (s.find("|") != -1) {
+									s.erase(0, s.find("|"));
+									s2.erase(s2.find("|"), s2.length());
+								}
+								else {
+									s = "";
+								}
+								mc.coins += stoi(s2);
 							}
 							else if (s.find("ADVANCE") == 0) {
 								s.erase(0, string("ADVANCE:").length());
