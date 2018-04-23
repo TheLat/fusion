@@ -97,8 +97,8 @@ DEFENSE: SPECIAL
 ACC: 100
 POWER: 20
 PP: 30
-TARGET: SPEED_DOWN:10
-NOTES: 1 in 10 chance to decrease opponent's speed.
+TARGET: SPEED_DOWN:30
+NOTES: 3 in 10 chance to decrease opponent's speed.
 
 MOVE: WATER GUN
 TYPE: WATER
@@ -281,8 +281,8 @@ ACC: 100
 POWER: 50
 PP: 25
 DEFENSE: SPECIAL
-TARGET: CONFUSE:10
-NOTES: 1 in 10 chance to confuse opponent.
+TARGET: CONFUSE:20
+NOTES: 1 in 5 chance to confuse opponent.
 
 MOVE: STUN SPORE
 TYPE: GRASS
@@ -495,9 +495,9 @@ ACC: 100
 POWER: 40
 PP: 30
 DEFENSE: SPECIAL
-TARGET: PARALYZE:10
+TARGET: PARALYZE:30
 SPECIAL: STATUS_IMMUNITY:ELECTRIC STATUS_IMMUNITY:GROUND
-NOTES: 1 in 10 chance to paralyze opponent.
+NOTES: 3 in 10 chance to paralyze opponent.
 
 MOVE: THUNDER WAVE
 TYPE: ELECTRIC
@@ -978,7 +978,7 @@ POWER: 65
 PP: 20
 TARGET: ATTACK_DOWN:33
 DEFENSE: SPECIAL
-NOTES: 3 in 10 chance to reduce opponent's attack.
+NOTES: 1 in 3 chance to reduce opponent's attack.
 
 MOVE: ICE BEAM
 TYPE: ICE
