@@ -17,6 +17,8 @@ END
 TELEPORT
 3 7 route6 15 9
 4 7 route6 15 9
+3 0 saffron-city 29 44
+4 0 saffron-city 29 44
 DATA
 82   82  82 166 166
 298  31 182 299 300 182  31 298
