@@ -154,7 +154,7 @@ public:
 	string name, rivalname;
 	direction dir;
 	int wins, losses;
-	int money;
+	int money, coins;
 	int repel;
 	int selected;
 	int enemy_selected;
@@ -5755,6 +5755,8 @@ public:
 		f << mc.last_center.y;
 		f << string("\nMONEY:");
 		f << mc.money;
+		f << string("\nCOINS:");
+		f << mc.coins;
 		f << string("\nREPEL:");
 		f << mc.repel;
 		std::map<string, unsigned>::iterator it = mc.interaction.begin();
@@ -5954,6 +5956,10 @@ public:
 			else if (line.find("MONEY:") == 0) {
 				line.erase(0, line.find(":") + 1);
 				mc.money = stoi(line);
+			}
+			else if (line.find("COINS:") == 0) {
+				line.erase(0, line.find(":") + 1);
+				mc.coins = stoi(line);
 			}
 			else if (line.find("REPEL:") == 0) {
 				line.erase(0, line.find(":") + 1);
