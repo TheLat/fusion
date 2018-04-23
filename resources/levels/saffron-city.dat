@@ -1,9 +1,41 @@
 NAME
 Saffron City
 NPCS
-cerulean-city-guy1 man2 10 23 WANDER
+cerulean-city-rocket-house1 rocket 16 13
 INTERACTIONS
-MENU:ALERT:You're making an encyclopedia on POK{e-accent}MON? That sounds amusing.
+MENU:ALERT:What do you want? Get lost!
+END
+cerulean-city-rocket-house2 rocket 14 19
+INTERACTIONS
+MENU:ALERT:Buzz off, kid!
+END
+cerulean-city-rocket-house3 rocket 22 19
+INTERACTIONS
+MENU:ALERT:SAFFRON belongs to TEAM ROCKET!
+END
+cerulean-city-rocket-silph rocket 27 29
+INTERACTIONS
+MENU:ALERT:I'm a security guard.|MENU:ALERT:Suspicious kids I don't allow in!
+END
+cerulean-city-rocket-gym rocket 43 11
+INTERACTIONS
+MENU:ALERT:Get out of the way!
+END
+cerulean-city-rocket-wander1 rocket 29 15 WANDER
+INTERACTIONS
+MENU:ALERT:BOSS said he'll take this town!
+END
+cerulean-city-rocket-wander2 rocket 40 20 WANDER
+INTERACTIONS
+MENU:ALERT:Ow! Watch where you're walking!
+END
+cerulean-city-rocket-wander3 rocket 21 32 WANDER
+INTERACTIONS
+MENU:ALERT:Being evil makes me feel so alive!
+END
+cerulean-city-rocket-wander4 rocket 25 38 WANDER
+INTERACTIONS
+MENU:ALERT:With SILPH under control, we can exploit POK{e-accent}MON around the world!
 END
 TELEPORT
 6 25 route7-checkpoint 6 4
@@ -29,7 +61,7 @@ DATA
 76  76  76  76  76  76  76  76  76   0   1 242 243   2   3   2   3   2   3   2   3   2   3   2   3  56  56  56  56  56  56  56  56 102  71  71 103   2   3   2   3   2   3   2   3 242 243   1   0   0   0   0   0 158  96  96  96
 76  76  76  76  76  76  76  76  76   0   1 242 243 575 576 576 577 575 576 576 577 575 576 576 577  56  56  56  56  56  56  56  56 104  68  68 105 575 576 576 577 575 576 576 577 242 243   1   0   0   0   0   0 158  96  96  96
 4    4   4   4   4   2  55 482 482   1   1 242 243 578 579 580 581 578 579 580 581 582 583 584 585 102  71  71  71  71  71  71 103 108  65  65 109 578 579 580 581 578 579 580 581 242 243   1   0   0   0   0   0 158  96  96  96
-4    4   4   4   4   3  55 482 482   1   1 242 243 586 587 587 588 586 587 587 588 589  15 587 590 104  68  68  68  68  68  68 105 110  15 111 112 586 587 587 588 586 587 587 588 242 243   1   0   0   0   0   0 162  99  99  99
+4    4   4   4   4   3  55 482 482   1   1 242 243 586  15 587 588 586 587 587 588 589  15 587 590 104  68  68  68  68  68  68 105 110  15 111 112 586 587 587 588 586 587 587 588 242 243   1   0   0   0   0   0 162  99  99  99
 93  93  93  93  93   2  55 482 482   1   1 242 329 323 323 323 323 323 323 323 323 323 323 323 323 108  65  65  65  65  65  65 109 323 323 323 323 323 323 323 323 323 323 323 323 331 243   1   0   0   0   0   0   0   1   3   2
 94  94  94  94  94   3  55 482 482   1   1 242 328 326 326 326 326 326 326 326 326 326 326 326 326 108  65  65  65  65  65  65 109 326 326 326 326 326 326 326 326 326 326 326 326 330 243   1   0   0   0   0   0   0   1   2   3
 56  56  56  56  56   2  55 482 482   1   1 242 243 163 163 163 163 163 163 163 163 163 163 163 163 108  65  65  65  65  65  65 109 163 163 163 163 163 163 163 163 163 163 163 163 242 243   1   0   0   0   0   0   0   1   3   2
