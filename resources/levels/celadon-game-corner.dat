@@ -1,0 +1,13 @@
+NAME
+Game Corner
+NPCS
+celadon-game-clerk clerk 0 1 DOWN
+INTERACTIONS
+MENU:ALERT:I always thought I was going to win it back...
+END
+TELEPORT
+3 8 celadon-city 34 32
+4 8 celadon-city 34 32
+DATA
+
+82   82  82 166 166
