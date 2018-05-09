@@ -993,6 +993,9 @@ public:
 		else if (in == "{MONEY}") {
 			return string("$") + to_string(mc.money);
 		}
+		else if (in == "{COINS}") {
+			return to_string(mc.coins);
+		}
 		else if (in == "{SEEN}") {
 			std::map<string, bool>::iterator it = mc.seen.begin();
 			unsigned count = 0;
