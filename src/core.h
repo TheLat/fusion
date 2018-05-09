@@ -3257,6 +3257,7 @@ public:
 										mc.storage[i][j] = mc.enemy_team[mc.enemy_selected];
 										mc.storage[i][j].wild = false;
 										mc.storage[i][j].enemy = false;
+										do_alert(get_nickname(mc.storage[i][j]) + string(" was sent to box ") + to_string(i + 1) + string("."));
 									}
 								}
 							}
@@ -5420,7 +5421,7 @@ public:
 												mc.seen[mc.storage[i][j].number] = true;
 												mc.caught[mc.storage[i][j].number] = true;
 												mon_created = true;
-												do_menu(string("ALERT"), all_mon[mc.storage[i][j].number].name + string(" was send to box ") + to_string(i + 1) + string("."));
+												do_menu(string("ALERT"), all_mon[mc.storage[i][j].number].name + string(" was sent to box ") + to_string(i + 1) + string("."));
 												break;
 											}
 										}
