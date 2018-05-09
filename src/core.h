@@ -5394,6 +5394,7 @@ public:
 								else {
 									s = "";
 								}
+								bool mon_created = false;
 								for (unsigned i = 0; i < 6; ++i) {
 									if (!mc.team[i].defined) {
 										make_mon(s2, l, mc.team[i]);
@@ -5403,7 +5404,26 @@ public:
 										do_menu(string("ALERT"), mc.name + string(" got ") + all_mon[mc.team[i].number].name + string("!"));
 										mc.seen[mc.team[i].number] = true;
 										mc.caught[mc.team[i].number] = true;
+										mon_created = true;
 										break;
+									}
+								}
+								if (!mon_created) {
+									for (unsigned i = 0; i < 20 && !mon_created; ++i) {
+										for (unsigned j = 0; j < 20 && !mon_created; ++j) {
+											if (!mc.storage[i][j].defined) {
+												make_mon(s2, l, mc.storage[i][j]);
+												mc.storage[i][j].wild = false;
+												mc.storage[i][j].enemy = false;
+												// TODO: Nickname menu
+												do_menu(string("ALERT"), mc.name + string(" got ") + all_mon[mc.storage[i][j].number].name + string("!"));
+												mc.seen[mc.storage[i][j].number] = true;
+												mc.caught[mc.storage[i][j].number] = true;
+												mon_created = true;
+												do_menu(string("ALERT"), all_mon[mc.storage[i][j].number].name + string(" was send to box ") + to_string(i + 1) + string("."));
+												break;
+											}
+										}
 									}
 								}
 							}
