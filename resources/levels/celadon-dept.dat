@@ -128,7 +128,10 @@ MENU:ALERT:My sister is a trainer, believe it or not.|MENU:ALERT:But, she's so i
 END
 celadon-dept-girl2 girl2 8 73 WANDER
 INTERACTIONS
-MENU:ALERT:I'm thirsty! {NEWLINE} I want something to drink!
+IN_INVENTORY:SODA POP|{MENU:ALERT:I'm thirsty! {NEWLINE} I want soda!|NO_ADVANCE}{MENU:ALERT:I'm thirsty! {NEWLINE} I want soda!|MENU:ALERT_YES_NO:Give her SODA POP?|{REMOVE_ITEM:SODA POP|MENU:ALERT:Yay!|MENU:ALERT:SODA POP!|MENU:ALERT:Thank you!|MENU:ALERT:You can have this from me!|GIVE_ITEM:TM48|MENU:ALERT:TM48 contains ROCK SLIDE!|MENU:ALERT:It can spook the target sometimes!}{NO_ADVANCE}}
+IN_INVENTORY:LEMONADE|{MENU:ALERT:I'm thirsty! {NEWLINE} I want lemonade!|NO_ADVANCE}{MENU:ALERT:I'm thirsty! {NEWLINE} I want lemonade!|MENU:ALERT_YES_NO:Give her LEMONADE?|{REMOVE_ITEM:LEMONADE|MENU:ALERT:Yay!|MENU:ALERT:LEMONADE!|MENU:ALERT:Thank you!|MENU:ALERT:You can have this from me!|GIVE_ITEM:TM13|MENU:ALERT:TM13 contains ICE BEAM!|MENU:ALERT:It can freeze the target sometimes!}{NO_ADVANCE}}
+IN_INVENTORY:FRESH WATER|{MENU:ALERT:I'm thirsty! {NEWLINE} I want water!|NO_ADVANCE}{MENU:ALERT:I'm thirsty! {NEWLINE} I want water!|MENU:ALERT_YES_NO:Give her FRESH WATER?|{REMOVE_ITEM:FRESH WATER|MENU:ALERT:Yay!|MENU:ALERT:FRESH WATER!|MENU:ALERT:Thank you!|MENU:ALERT:You can have this from me!|GIVE_ITEM:TM49|MENU:ALERT:TM49 contains TRI ATTACK!|MENU:ALERT:It can burn, freeze, and paralyze the target sometimes!}{NO_ADVANCE}}
+MENU:ALERT:I'm not thirsty anymore!
 END
 celadon-dept-vending-machine1 blank 16 70
 INTERACTIONS

@@ -1,12 +1,13 @@
 WARNING: Editing this file can easily corrupt game state.
 NAME:RED
 RIVAL_NAME:BLUE
-DIRECTION:2
+DIRECTION:1
 WINS:0
 LOSSES:0
-LOCATION:route7-checkpoint|4|4
+LOCATION:celadon-prize|4|5
 LAST_CENTER:celadon-center|3|3
-MONEY:68122
+MONEY:67272
+COINS:0
 REPEL:0
 INTERACTIONS:
 bed1|0
@@ -60,7 +61,7 @@ celadon-dept-elevator-entrance4|0
 celadon-dept-elevator-entrance5|0
 celadon-dept-elevator-exit|0
 celadon-dept-girl1|0
-celadon-dept-girl2|0
+celadon-dept-girl2|3
 celadon-dept-hat1|0
 celadon-dept-man1|0
 celadon-dept-man2|0
@@ -85,6 +86,8 @@ celadon-dept-vending-machine2|0
 celadon-dept-vending-machine3|0
 celadon-dept-woman1|0
 celadon-dept-woman2|0
+celadon-game-corner-clerk|0
+celadon-game-corner-woman|0
 celadon-house1-couch|0
 celadon-house1-man|0
 celadon-house1-oldwoman|0
@@ -131,6 +134,11 @@ celadon-mansion-sign2|0
 celadon-mansion-sign3|0
 celadon-mansion-sign4|0
 celadon-mansion-tough|0
+celadon-prize-man|0
+celadon-prize-old|0
+celadon-prize-window1|0
+celadon-prize-window2|0
+celadon-prize-window3|0
 cerulean-bike-bike1|0
 cerulean-bike-bike10|0
 cerulean-bike-bike11|0
@@ -167,6 +175,15 @@ cerulean-city-item1|0
 cerulean-city-rival1|0
 cerulean-city-rival2|0
 cerulean-city-rocket|0
+cerulean-city-rocket-gym|0
+cerulean-city-rocket-house1|0
+cerulean-city-rocket-house2|0
+cerulean-city-rocket-house3|0
+cerulean-city-rocket-silph|0
+cerulean-city-rocket-wander1|0
+cerulean-city-rocket-wander2|0
+cerulean-city-rocket-wander3|0
+cerulean-city-rocket-wander4|0
 cerulean-city-script1|0
 cerulean-city-script2|0
 cerulean-city-sign1|0
@@ -849,6 +866,8 @@ celadon-dept-vending-machine2|1
 celadon-dept-vending-machine3|1
 celadon-dept-woman1|1
 celadon-dept-woman2|1
+celadon-game-corner-clerk|1
+celadon-game-corner-woman|1
 celadon-house1-couch|1
 celadon-house1-man|1
 celadon-house1-oldwoman|1
@@ -895,6 +914,11 @@ celadon-mansion-sign2|1
 celadon-mansion-sign3|1
 celadon-mansion-sign4|1
 celadon-mansion-tough|1
+celadon-prize-man|1
+celadon-prize-old|1
+celadon-prize-window1|1
+celadon-prize-window2|1
+celadon-prize-window3|1
 cerulean-bike-bike1|1
 cerulean-bike-bike10|1
 cerulean-bike-bike11|1
@@ -931,6 +955,15 @@ cerulean-city-item1|0
 cerulean-city-rival1|0
 cerulean-city-rival2|0
 cerulean-city-rocket|0
+cerulean-city-rocket-gym|1
+cerulean-city-rocket-house1|1
+cerulean-city-rocket-house2|1
+cerulean-city-rocket-house3|1
+cerulean-city-rocket-silph|1
+cerulean-city-rocket-wander1|1
+cerulean-city-rocket-wander2|1
+cerulean-city-rocket-wander3|1
+cerulean-city-rocket-wander4|1
 cerulean-city-script1|0
 cerulean-city-script2|0
 cerulean-city-sign1|1
@@ -1539,43 +1572,46 @@ END
 INVENTORY:
 POK{e-accent} BALL|11
 ANTIDOTE|1
-TM34|1
-TM12|1
 ESCAPE ROPE|2
-TM01|1
 ETHER|4
-MOON STONE|2
-DOME FOSSIL|1
-HELIX FOSSIL|1
 NUGGET|2
-TM45|1
-TM19|1
-TM11|1
 ELIXER|2
 S.S. TICKET|1
-TM28|1
 FULL RESTORE|1
 X SPECIAL|1
 BICYCLE|1
 OLD ROD|1
 GREAT BALL|1
-TM08|1
-TM44|1
 MAX POTION|1
 MAX ETHER|2
 RARE CANDY|1
-HM01|1
-HM05|1
-TM42|1
 OLD AMBER|1
-TM24|1
-TM30|1
 PP UP|1
 COIN CASE|1
-TM18|1
 FIRE STONE|1
 END
 INVENTORY_STORAGE:
+TM34|1
+TM12|1
+TM01|1
+MOON STONE|2
+DOME FOSSIL|1
+HELIX FOSSIL|1
+TM45|1
+TM19|1
+TM11|1
+TM28|1
+TM08|1
+TM44|1
+HM01|1
+HM05|1
+TM42|1
+TM24|1
+TM30|1
+TM18|1
+TM48|1
+TM13|1
+TM49|1
 END
 SEEN:
 1-25
@@ -1904,6 +1940,10 @@ celadon-dept
 40|0|0|91|0
 41|0|3|86|0
 END
+celadon-game-corner
+0|0|2|2|0
+1|0|5|2|0
+END
 celadon-house1
 0|0|0|4|0
 1|0|6|4|0
@@ -1958,6 +1998,13 @@ celadon-mansion
 27|0|4|77|0
 28|0|4|80|0
 29|0|7|78|0
+END
+celadon-prize
+0|0|1|4|0
+1|0|8|3|0
+2|0|2|2|0
+3|0|4|2|0
+4|0|6|2|0
 END
 cerulean-bike-shop
 0|2|6|2|0
@@ -2521,6 +2568,17 @@ route9
 10|3|30|9|1
 11|2|40|5|1
 12|3|49|10|1
+END
+saffron-city
+0|0|16|13|0
+1|0|14|19|0
+2|0|22|19|0
+3|0|27|29|0
+4|0|43|11|0
+5|0|29|15|0
+6|0|40|20|0
+7|0|21|32|0
+8|0|25|38|0
 END
 ss-anne-halls
 0|0|26|6|0
