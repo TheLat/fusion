@@ -19,8 +19,34 @@ MENU:ALERT:I think these machines have different odds.|FACE:LEFT
 END
 celadon-game-corner-player3 safari 5 7 RIGHT
 INTERACTIONS
-MENU:ALERT:Kid, do you want to play?|IN_INVENTORY:COIN CASE|{MENU:ALERT:Oops! Forgot the COIN CASE!|NO_ADVANCE}{GIVE_COINS:10|MENU:ALERT:{PLAYER_NAME} got 10 coins!|FACE:RIGHT}
+MENU:ALERT:Kid, do you want to play?|IN_INVENTORY:COIN CASE|{MENU:ALERT:Oops! Forgot the COIN CASE!|FACE:RIGHT|NO_ADVANCE}{GIVE_COINS:10|MENU:ALERT:{PLAYER_NAME} got 10 coins!|FACE:RIGHT}
 MENU:ALERT:Wins seem to come and go.|FACE:RIGHT
+END
+celadon-game-corner-player4 woman5 8 7 LEFT
+INTERACTIONS
+MENU:ALERT:I'm having a wonderful time!|FACE:LEFT
+END
+celadon-game-corner-player5 clerk 8 10 LEFT
+INTERACTIONS
+MENU:ALERT:Hey!|MENU:ALERT:You have better things to do, champ in making!|MENU:ALERT:CELADON GYM's LEADER is ERIKA! She uses grass-type POK{e-accent}MON!|MENU:ALERT:She might appear docile, but don't be fooled!|FACE:LEFT
+END
+celadon-game-corner-player6 bald4 11 11 RIGHT
+INTERACTIONS
+MENU:ALERT:Games are scary! It's so easy to get hooked!|FACE:RIGHT
+END
+celadon-game-corner-player7 clerk2 14 7 LEFT
+INTERACTIONS
+MENU:ALERT:What's up? Want some coins?|IN_INVENTORY:COIN CASE|{MENU:ALERT:Oops! Forgot the COIN CASE!|FACE:LEFT|NO_ADVANCE}{GIVE_COINS:20|MENU:ALERT:{PLAYER_NAME} got 20 coins!|FACE:LEFT}
+MENU:ALERT:Darn! I need more coins for the POK{e-accent}MON I want!|FACE:LEFT
+END
+celadon-game-corner-player8 hat 17 8 RIGHT
+INTERACTIONS
+MENU:ALERT:Hey, what? You're throwing me off! Here are some coins, shoo!|IN_INVENTORY:COIN CASE|{MENU:ALERT:Oops! Forgot the COIN CASE!|FACE:RIGHT|NO_ADVANCE}{GIVE_COINS:20|MENU:ALERT:{PLAYER_NAME} got 20 coins!|FACE:RIGHT}
+MENU:ALERT:The trick is to watch the reels closely!|FACE:RIGHT
+END
+celadon-game-corner-wall wall 17 0 RIGHT NO_OFFSET
+INTERACTIONS
+MENU:ALERT:There's something strange about this wall...
 END
 TELEPORT
 15 14 celadon-city 31 24

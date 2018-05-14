@@ -193,8 +193,8 @@ public:
 	vector<string> interactions;
 	vector<location> force_interactions;
 	location loc, origin;
-	bool wander, incorporeal, no_force, nolook, far;
-	character() { wander = false; dir = DOWN; incorporeal = false; no_force = false; nolook = false; far = false; }
+	bool wander, incorporeal, no_force, nolook, far, no_offset;
+	character() { wander = false; dir = DOWN; incorporeal = false; no_force = false; nolook = false; far = false; no_offset = false; }
 };
 
 class trainer {
@@ -3833,6 +3833,12 @@ public:
 					else {
 						levels[levelname].characters[levels[levelname].characters.size() - 1].far = false;
 					}
+					if (s.find("NO_OFFSET") != -1) {
+						levels[levelname].characters[levels[levelname].characters.size() - 1].no_offset = true;
+					}
+					else {
+						levels[levelname].characters[levels[levelname].characters.size() - 1].no_offset = false;
+					}
 					if (s.find("NOLOOK") != -1) {
 						levels[levelname].characters[levels[levelname].characters.size() - 1].nolook = true;
 					}
@@ -4855,9 +4861,10 @@ public:
 		for (unsigned i = 0; i < levels[mc.loc.level].characters.size(); ++i) {
 			if (!mc.active[levels[mc.loc.level].characters[i].name])
 				continue;
-			g.push_quad((levels[mc.loc.level].characters[i].loc.x - (mc.loc.x + 0.5)) / 5.0,
-				(-0.5 - levels[mc.loc.level].characters[i].loc.y + mc.loc.y) / 4.5f + 0.055,
-				1.0 / 5.0f, 1.0 / 4.5f, g.tex[levels[mc.loc.level].characters[i].image + string("-") + get_direction_string(levels[mc.loc.level].characters[i].dir) + string("-0.bmp")]);
+			if (levels[mc.loc.level].characters[i].no_offset)
+				g.push_quad((levels[mc.loc.level].characters[i].loc.x - (mc.loc.x + 0.5)) / 5.0, (-0.5 - levels[mc.loc.level].characters[i].loc.y + mc.loc.y) / 4.5f + 0.0, 1.0 / 5.0f, 1.0 / 4.5f, g.tex[levels[mc.loc.level].characters[i].image + string("-") + get_direction_string(levels[mc.loc.level].characters[i].dir) + string("-0.bmp")]);
+			else
+				g.push_quad((levels[mc.loc.level].characters[i].loc.x - (mc.loc.x + 0.5)) / 5.0, (-0.5 - levels[mc.loc.level].characters[i].loc.y + mc.loc.y) / 4.5f + 0.055, 1.0 / 5.0f, 1.0 / 4.5f, g.tex[levels[mc.loc.level].characters[i].image + string("-") + get_direction_string(levels[mc.loc.level].characters[i].dir) + string("-0.bmp")]);
 		}
 		g.push_quad(-0.1, -0.5 / 4.5 + 0.055, 1.0 / 5.0, 1.0 / 4.5, g.tex[string("player-") + get_direction_string(mc.dir) + string("-0.bmp")]);
 	}
