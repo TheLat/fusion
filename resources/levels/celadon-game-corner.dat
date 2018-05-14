@@ -48,6 +48,17 @@ celadon-game-corner-wall wall 17 0 RIGHT NO_OFFSET
 INTERACTIONS
 MENU:ALERT:There's something strange about this wall...
 END
+celadon-game-corner-rocker rocket 9 1 UP
+INTERACTIONS
+MENU:ALERT:I'm guarding this poster!|MENU:ALERT:Go away, or else!|BATTLE:celadon-game-corner-rocker|{NO_ADVANCE}{MENU:ALERT:Our hideout might be discovered! I better tell BOSS!|IS_PLAYER:RIGHT|{MOVE:celadon-game-corner-rocker:1,0|MOVE:celadon-game-corner-rocker:1,0}{MOVE:celadon-game-corner-rocker:0,1|MOVE:celadon-game-corner-rocker:1,0|MOVE:celadon-game-corner-rocker:1,0|MOVE:celadon-game-corner-rocker:0,-1}}|MOVE:celadon-game-corner-rocker:1,0|MOVE:celadon-game-corner-rocker:1,0|MOVE:celadon-game-corner-rocker:1,0|MOVE:celadon-game-corner-rocker:1,0|MOVE:celadon-game-corner-rocker:1,0|DEACTIVATE:celadon-game-corner-rocker
+END
+celadon-game-corner-poster blank 9 0
+INTERACTIONS
+MENU:ALERT:Hey!|MENU:ALERT:A switch behind the poster!? Let's push it!|DEACTIVATE:celadon-game-corner-wall|DEACTIVATE:celadon-game-corner-poster
+END
+TRAINERS
+celadon-game-corner-rocker 35 0.45 0.45 ROCKET rocket.png {ROCKET: Dang!}{} 42-20:28|20-42:28
+END
 TELEPORT
 15 14 celadon-city 31 24
 16 14 celadon-city 31 24

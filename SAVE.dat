@@ -1,13 +1,13 @@
 WARNING: Editing this file can easily corrupt game state.
 NAME:RED
 RIVAL_NAME:BLUE
-DIRECTION:1
+DIRECTION:3
 WINS:0
 LOSSES:0
-LOCATION:celadon-prize|4|5
+LOCATION:celadon-game-corner|14|1
 LAST_CENTER:celadon-center|3|3
-MONEY:67272
-COINS:0
+MONEY:68252
+COINS:50
 REPEL:0
 INTERACTIONS:
 bed1|0
@@ -87,6 +87,17 @@ celadon-dept-vending-machine3|0
 celadon-dept-woman1|0
 celadon-dept-woman2|0
 celadon-game-corner-clerk|0
+celadon-game-corner-player1|0
+celadon-game-corner-player2|0
+celadon-game-corner-player3|1
+celadon-game-corner-player4|0
+celadon-game-corner-player5|0
+celadon-game-corner-player6|0
+celadon-game-corner-player7|1
+celadon-game-corner-player8|1
+celadon-game-corner-poster|0
+celadon-game-corner-rocker|0
+celadon-game-corner-wall|0
 celadon-game-corner-woman|0
 celadon-house1-couch|0
 celadon-house1-man|0
@@ -867,6 +878,17 @@ celadon-dept-vending-machine3|1
 celadon-dept-woman1|1
 celadon-dept-woman2|1
 celadon-game-corner-clerk|1
+celadon-game-corner-player1|1
+celadon-game-corner-player2|1
+celadon-game-corner-player3|1
+celadon-game-corner-player4|1
+celadon-game-corner-player5|1
+celadon-game-corner-player6|1
+celadon-game-corner-player7|1
+celadon-game-corner-player8|1
+celadon-game-corner-poster|0
+celadon-game-corner-rocker|0
+celadon-game-corner-wall|0
 celadon-game-corner-woman|1
 celadon-house1-couch|1
 celadon-house1-man|1
@@ -1676,6 +1698,7 @@ SEEN:
 20-17
 20-20
 20-24
+20-42
 20-88
 21-19
 21-21
@@ -1730,6 +1753,7 @@ SEEN:
 41-64
 41-74
 41-95
+42-20
 43-11
 43-16
 43-27
@@ -1849,10 +1873,10 @@ RIVALVALUE|0
 THUNDERBADGE|1
 END
 TEAM:
-0|NUMBER:47-47|NICKNAME:|HP:80|EXP:17085|LEVEL:27|EV:3413|4397|3772|3665|4855|IV:14|4|11|6|9|MOVES:SPORE|STUN SPORE|LEECH LIFE|CUT|PP:15|30|15|30|MAX_PP:15|30|15|30|STATUS:
+0|NUMBER:5-5|NICKNAME:|HP:81|EXP:23369|LEVEL:30|EV:8628|10465|9899|7913|10360|IV:0|13|10|10|14|MOVES:SCRATCH|RAGE|EMBER|LEER|PP:35|20|25|30|MAX_PP:35|20|25|30|STATUS:
 1|NUMBER:76-15|NICKNAME:|HP:88|EXP:21061|LEVEL:29|EV:9342|11970|9936|8564|11261|IV:2|15|9|10|11|MOVES:POISON STING|SELFDESTRUCT|FURY ATTACK|TWIN NEEDLE|PP:35|5|20|20|MAX_PP:35|5|20|20|STATUS:
 2|NUMBER:130-130|NICKNAME:|HP:107|EXP:25347|LEVEL:31|EV:11020|7447|8455|5820|6451|IV:0|13|10|10|14|MOVES:SPLASH|BITE|BUBBLEBEAM|DRAGON RAGE|PP:40|25|20|10|MAX_PP:40|25|20|10|STATUS:
-3|NUMBER:5-5|NICKNAME:|HP:79|EXP:21314|LEVEL:29|EV:8498|10305|9769|7789|10174|IV:0|13|10|10|14|MOVES:SCRATCH|RAGE|EMBER|LEER|PP:35|20|25|30|MAX_PP:35|20|25|30|STATUS:
+3|NUMBER:47-47|NICKNAME:|HP:80|EXP:17085|LEVEL:27|EV:3413|4397|3772|3665|4855|IV:14|4|11|6|9|MOVES:SPORE|STUN SPORE|LEECH LIFE|CUT|PP:15|30|15|30|MAX_PP:15|30|15|30|STATUS:
 4|NUMBER:133-133|NICKNAME:|HP:20|EXP:100|LEVEL:5|EV:0|0|0|0|0|IV:0|13|10|10|14|MOVES:TACKLE|TAIL WHIP|||PP:35|30|||MAX_PP:35|30|||STATUS:
 END
 STORAGE:
@@ -1943,6 +1967,17 @@ END
 celadon-game-corner
 0|0|2|2|0
 1|0|5|2|0
+2|2|2|6|0
+3|2|2|9|0
+4|3|5|7|0
+5|2|8|7|0
+6|2|8|10|0
+7|3|11|11|0
+8|2|14|7|0
+9|3|17|8|0
+10|3|17|0|0
+11|1|9|1|0
+12|0|9|0|0
 END
 celadon-house1
 0|0|0|4|0

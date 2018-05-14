@@ -5024,6 +5024,50 @@ public:
 								choices.clear();
 								choices.push_back(e.mc.values[s2]);
 							}
+							else if (s.find("IS_PLAYER:") == 0) {
+								s.erase(0, string("IS_PLAYER:").length());
+								s2 = s;
+								if (s.find("|") != -1) {
+									s.erase(0, s.find("|"));
+									s2.erase(s2.find("|"), s2.length());
+								}
+								else {
+									s = "";
+								}
+								choices.clear();
+								if (s2 == "RIGHT") {
+									if (levels[mc.loc.level].characters[i].loc.x < mc.loc.x) {
+										choices.push_back(1);
+									}
+									else {
+										choices.push_back(0);
+									}
+								}
+								if (s2 == "LEFT") {
+									if (levels[mc.loc.level].characters[i].loc.x > mc.loc.x) {
+										choices.push_back(1);
+									}
+									else {
+										choices.push_back(0);
+									}
+								}
+								if (s2 == "UP") {
+									if (levels[mc.loc.level].characters[i].loc.y > mc.loc.y) {
+										choices.push_back(1);
+									}
+									else {
+										choices.push_back(0);
+									}
+								}
+								if (s2 == "DOWN") {
+									if (levels[mc.loc.level].characters[i].loc.y < mc.loc.y) {
+										choices.push_back(1);
+									}
+									else {
+										choices.push_back(0);
+									}
+								}
+							}
 							else if (s.find("IN_INVENTORY:") == 0) {
 								s.erase(0, string("IN_INVENTORY:").length());
 								s2 = s;
