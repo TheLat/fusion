@@ -1,12 +1,69 @@
 NAME
 Rocket Hideout
 NPCS
-celadon-game-corner-woman woman4 2 2 DOWN FARSPEAK
+celadon-hideout-rocket1 rocket 4 6 RIGHT
+FORCE_INTERACTION
+1 0
+2 0
+END
 INTERACTIONS
-MENU:ALERT:Welcome!|MENU:ALERT:You can exchange your coins for fabulous prizes next door.
+!:celadon-hideout-rocket1|MOVE_TO_PLAYER|MENU:ALERT:You broke into our operation?|BATTLE:celadon-hideout-rocket1|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:You're not going to get away with this, brat!
+END
+celadon-hideout-item1 orb 2 14
+INTERACTIONS
+GIVE_ITEM:ESCAPE ROPE|DEACTIVATE:celadon-hideout-item1
+END
+celadon-hideout-rocket2 rocket 18 8 LEFT
+FORCE_INTERACTION
+-1 0
+-2 0
+END
+INTERACTIONS
+!:celadon-hideout-rocket2|MOVE_TO_PLAYER|MENU:ALERT:Who are you? How did you get here?|BATTLE:celadon-hideout-rocket2|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Are you dissing TEAM ROCKET?
+END
+celadon-hideout-rocket3 rocket 20 40 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+0 3
+END
+INTERACTIONS
+!:celadon-hideout-rocket3|MOVE_TO_PLAYER|MENU:ALERT:BOSS said you can reveal powerful GHOSTs with the SILPH SCOPE!|BATTLE:celadon-hideout-rocket3|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:The TEAM ROCKET HQ has 4 basement floors. Can you reach the BOSS?
+END
+celadon-hideout-item2 orb 16 36
+INTERACTIONS
+GIVE_ITEM:NUGGET|DEACTIVATE:celadon-hideout-item2
+END
+celadon-hideout-item3 orb 1 39
+INTERACTIONS
+GIVE_ITEM:MOON STONE|DEACTIVATE:celadon-hideout-item3
+END
+celadon-hideout-item4 orb 6 40
+INTERACTIONS
+GIVE_ITEM:TM07|DEACTIVATE:celadon-hideout-item4
+END
+celadon-hideout-item5 orb 3 49
+INTERACTIONS
+GIVE_ITEM:SUPER POTION|DEACTIVATE:celadon-hideout-item5
+END
+celadon-hideout-rocket4 rocket 7 25 RIGHT
+FORCE_INTERACTION
+1 0
+2 0
+3 0
+END
+INTERACTIONS
+!:celadon-hideout-rocket4|MOVE_TO_PLAYER|MENU:ALERT:Why did you come here?|BATTLE:celadon-hideout-rocket4|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:OK, I'll talk! Take the elevator to see my BOSS!
 END
 TRAINERS
-celadon-game-corner-rocker 35 0.45 0.45 ROCKET rocket.png {ROCKET: Dang!}{} 42-20:28|20-42:28
+celadon-hideout-rocket1 35 0.5 0.5 ROCKET rocket.png {ROCKET: Burnt!}{} 24-20:28|58-20:28	
+celadon-hideout-rocket2 35 0.5 0.5 ROCKET rocket.png {ROCKET: Oww! Beaten!}{} 96-88:28|109-66:28
+celadon-hideout-rocket3 35 0.5 0.5 ROCKET rocket.png {ROCKET: I surrender!}{} 42-96:24|88-66:24|88-88:24|88-20:24|20-58:24
+celadon-hideout-rocket4 35 0.5 0.5 ROCKET rocket.png {ROCKET: This won't do!}{} 20-5:25|20-37:25|20-58:25|20-126:25
 END
 TELEPORT
 13 2 celadon-game-corner 17 1
@@ -135,3 +192,9 @@ DATA
 599 600 600 600 601 602 601 602 500 500 500 600 600 600 600 599
 599 600 600 600 600 600 600 600 600 600 600 600 600 600 600 599
 596 597 597 597 597 597 597 597 597 597 597 597 597 597 597 598
+82
+82
+82
+82
+82
+82
