@@ -174,6 +174,44 @@ celadon-hideout-elevator-controls blank 1 123
 INTERACTIONS
 IN_INVENTORY:LIFT KEY|{MENU:ALERT:It appears to need a key.}{MENU:ELEVATOR_CONTROLS_HIDEOUT:|{SET:celadon-hideout-floor:1}{SET:celadon-hideout-floor:2}{SET:celadon-hideout-floor:3}{}}
 END
+celadon-hideout-item12 orb 4 112
+INTERACTIONS
+GIVE_ITEM:IRON|DEACTIVATE:celadon-hideout-item12
+END
+celadon-hideout-door3 door 16 103 NO_OFFSET
+INTERACTIONS
+MENU:ALERT:There doesn't seem to be a way to open it!
+END
+celadon-hideout-door4 door 17 103 NO_OFFSET
+INTERACTIONS
+MENU:ALERT:There doesn't seem to be a way to open it!
+END
+celadon-hideout-door5 door 16 103 NO_OFFSET
+INTERACTIONS
+MENU:ALERT:There doesn't seem to be a way to open it!
+END
+celadon-hideout-door6 door 17 103 NO_OFFSET
+INTERACTIONS
+MENU:ALERT:There doesn't seem to be a way to open it!
+END
+celadon-hideout-rocket10 rocket 15 104 DOWN
+INTERACTIONS
+MENU:ALERT:I know you! You ruined our plans at MT. MOON!|BATTLE:celadon-hideout-rocket10|{NO_ADVANCE}{DISABLE_FORCE|DEACTIVATE:celadon-hideout-door3|DEACTIVATE:celadon-hideout-door4}
+MENU:ALERT:Do you have something against TEAM ROCKET?
+END
+celadon-hideout-rocket11 rocket 18 104 DOWN
+INTERACTIONS
+MENU:ALERT:How can you not see the beauty of our evil?|BATTLE:celadon-hideout-rocket11|{NO_ADVANCE}{DISABLE_FORCE|DEACTIVATE:celadon-hideout-door5|DEACTIVATE:celadon-hideout-door6}
+MENU:ALERT:BOSS! I'm sorry I failed you!
+END
+celadon-hideout-giovanni boss 17 95 DOWN
+INTERACTIONS
+MENU:ALERT:So! I must say, I am impressed you got here!|BATTLE:celadon-hideout-giovanni|{NO_ADVANCE}{MENU:ALERT:I see that you raise POK{e-accent}MON with utmost care.|MENU:ALERT:However, a child like you would never understand what I hope to achieve.|MENU:ALERT:I shall step aside this time!|MENU:ALERT:This was just a key to one of many solutions to the problem.|MENU:ALERT:I hope we meet again...|DEACTIVATE:celadon-hideout-giovanni|ACTIVATE:celadon-hideout-item13|DEACTIVATE:saffron-city-rocket-silph}
+END
+celadon-hideout-item13 orb 17 94 INACTIVE
+INTERACTIONS
+GIVE_ITEM:SILPH SCOPE|DEACTIVATE:celadon-hideout-item13
+END
 TRAINERS
 celadon-hideout-rocket1 35 0.5 0.5 ROCKET rocket.png {ROCKET: Burnt!}{} 24-20:28|58-20:28
 celadon-hideout-rocket2 35 0.5 0.5 ROCKET rocket.png {ROCKET: Oww! Beaten!}{} 96-88:28|109-66:28
@@ -184,6 +222,9 @@ celadon-hideout-rocket6 35 0.5 0.5 ROCKET rocket.png {ROCKET: What? I lost? No!}
 celadon-hideout-rocket7 35 0.5 0.5 ROCKET rocket.png {ROCKET: Oof! Taken down!}{} 109-20:26|88-20:26|109-96:27
 celadon-hideout-rocket8 35 0.5 0.5 ROCKET rocket.png {ROCKET: No!}{} 67-58:28|20-58:28
 celadon-hideout-rocket9 35 0.5 0.5 ROCKET rocket.png {ROCKET: Why...?}{} 20-37:28|20-58:28
+celadon-hideout-rocket10 35 0.5 0.5 ROCKET rocket.png {ROCKET: Burned again!}{} 24-28:27|24-24:27|58-28:27
+celadon-hideout-rocket11 35 0.5 0.5 ROCKET rocket.png {ROCKET: Ayaya!}{} 58-24:27|28-24:27|24-24:27
+celadon-hideout-giovanni 99 1.0 1.0 GIOVANNI giovanni.png {GIOVANNI: WHAT! This cannot be!}{} 111-111:35:HORN ATTACK,STOMP,ROCK SLIDE,DIG|115-115:33:RAGE,BODY SLAM,COMET PUNCH,BITE|68-28:34:SLASH,LOW KICK,FOCUS ENERGY,EARTHQUAKE|31-31:33:BODY SLAM,EARTHQUAKE,ICE BEAM,POISON STING|51-91:35:EARTHQUAKE,CLAMP,SAND ATTACK,ICE BEAM
 END
 TELEPORT
 13 2 celadon-game-corner 17 1

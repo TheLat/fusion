@@ -2577,7 +2577,7 @@ public:
 			if (!in_status(defender, string("RAGE")))
 				pow *= 3.0;
 		}
-		if (moves[move].pow.find(string("x2")) != -1) {
+		else if (moves[move].pow.find(string("x2")) != -1) {
 			if (!in_status(defender, string("RAGE")))
 				pow *= 2.0;
 		}

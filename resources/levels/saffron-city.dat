@@ -1,39 +1,39 @@
 NAME
 Saffron City
 NPCS
-cerulean-city-rocket-house1 rocket 16 13
+saffron-city-rocket-house1 rocket 16 13
 INTERACTIONS
 MENU:ALERT:What do you want? Get lost!
 END
-cerulean-city-rocket-house2 rocket 14 19
+saffron-city-rocket-house2 rocket 14 19
 INTERACTIONS
 MENU:ALERT:Buzz off, kid!
 END
-cerulean-city-rocket-house3 rocket 22 19
+saffron-city-rocket-house3 rocket 22 19
 INTERACTIONS
 MENU:ALERT:SAFFRON belongs to TEAM ROCKET!
 END
-cerulean-city-rocket-silph rocket 27 29
+saffron-city-rocket-silph rocket 27 29
 INTERACTIONS
 MENU:ALERT:I'm a security guard.|MENU:ALERT:Suspicious kids I don't allow in!
 END
-cerulean-city-rocket-gym rocket 43 11
+saffron-city-rocket-gym rocket 43 11
 INTERACTIONS
 MENU:ALERT:Get out of the way!
 END
-cerulean-city-rocket-wander1 rocket 29 15 WANDER
+saffron-city-rocket-wander1 rocket 29 15 WANDER
 INTERACTIONS
 MENU:ALERT:BOSS said he'll take this town!
 END
-cerulean-city-rocket-wander2 rocket 40 20 WANDER
+saffron-city-rocket-wander2 rocket 40 20 WANDER
 INTERACTIONS
 MENU:ALERT:Ow! Watch where you're walking!
 END
-cerulean-city-rocket-wander3 rocket 21 32 WANDER
+saffron-city-rocket-wander3 rocket 21 32 WANDER
 INTERACTIONS
 MENU:ALERT:Being evil makes me feel so alive!
 END
-cerulean-city-rocket-wander4 rocket 25 38 WANDER
+saffron-city-rocket-wander4 rocket 25 38 WANDER
 INTERACTIONS
 MENU:ALERT:With SILPH under control, we can exploit POK{e-accent}MON around the world!
 END
