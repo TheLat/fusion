@@ -59,11 +59,95 @@ INTERACTIONS
 !:celadon-hideout-rocket4|MOVE_TO_PLAYER|MENU:ALERT:Why did you come here?|BATTLE:celadon-hideout-rocket4|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:OK, I'll talk! Take the elevator to see my BOSS!
 END
+celadon-hideout-rocket5 rocket 10 17 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+END
+INTERACTIONS
+!:celadon-hideout-rocket5|MOVE_TO_PLAYER|MENU:ALERT:Intruder alert!|BATTLE:celadon-hideout-rocket5|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:SILPH SCOPE? {NEWLINE} I don't know where it is!
+END
+celadon-hideout-item6 orb 1 17
+INTERACTIONS
+GIVE_ITEM:HYPER POTION|DEACTIVATE:celadon-hideout-item6
+END
+celadon-hideout-item7 orb 12 72
+INTERACTIONS
+GIVE_ITEM:RARE CANDY|DEACTIVATE:celadon-hideout-item7
+END
+celadon-hideout-rocket6 rocket 18 70 UP
+FORCE_INTERACTION
+0 -1
+0 -2
+0 -3
+0 -4
+END
+INTERACTIONS
+!:celadon-hideout-rocket6|MOVE_TO_PLAYER|MENU:ALERT:We got word from upstairs that you were coming!|BATTLE:celadon-hideout-rocket6|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Go ahead and go! But, you need the LIFT KEY to run the elevator!
+END
+celadon-hideout-item8 orb 18 75
+INTERACTIONS
+GIVE_ITEM:TM10|DEACTIVATE:celadon-hideout-item8
+END
+celadon-hideout-rocket7 rocket 2 80 RIGHT
+FORCE_INTERACTION
+1 0
+2 0
+END
+INTERACTIONS
+!:celadon-hideout-rocket7|MOVE_TO_PLAYER|MENU:ALERT:Stop meddling in TEAM ROCKET's affairs!|BATTLE:celadon-hideout-rocket7|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:SILPH SCOPE? The machine the BOSS stole. It's here somewhere.
+END
+celadon-hideout-item9 orb 2 104
+INTERACTIONS
+GIVE_ITEM:HP UP|DEACTIVATE:celadon-hideout-item9
+END
+celadon-hideout-item10 orb 1 96
+INTERACTIONS
+GIVE_ITEM:TM02|DEACTIVATE:celadon-hideout-item10
+END
+celadon-hideout-rocket8 rocket 3 94 DOWN
+FORCE_INTERACTION
+0 1
+END
+INTERACTIONS
+!:celadon-hideout-rocket8|MOVE_TO_PLAYER|MENU:ALERT:The elevator doesn't work? Who has the LIFT KEY?|BATTLE:celadon-hideout-rocket8|{NO_ADVANCE}{DISABLE_FORCE}
+ACTIVATE:celadon-hideout-item11|MENU:ALERT:Oh, no! I dropped the LIFT KEY!
+END
+celadon-hideout-item11 orb 2 94 INACTIVE
+INTERACTIONS
+GIVE_ITEM:LIFT KEY|DEACTIVATE:celadon-hideout-item11
+END
+celadon-hideout-rocket9 rocket 20 18 LEFT
+FORCE_INTERACTION
+-1 0
+-2 0
+-3 0
+END
+INTERACTIONS
+!:celadon-hideout-rocket9|MOVE_TO_PLAYER|MENU:ALERT:Are you lost, you little rat?|BATTLE:celadon-hideout-rocket9|{NO_ADVANCE}{DISABLE_FORCE|DEACTIVATE:celadon-hideout-door1|DEACTIVATE:celadon-hideout-door2}
+MENU:ALERT:Uh-oh, that fight opened the door!
+END
+celadon-hideout-door1 door 16 16 NO_OFFSET
+INTERACTIONS
+MENU:ALERT:There doesn't seem to be a way to open it!
+END
+celadon-hideout-door2 door 17 16 NO_OFFSET
+INTERACTIONS
+MENU:ALERT:There doesn't seem to be a way to open it!
+END
 TRAINERS
-celadon-hideout-rocket1 35 0.5 0.5 ROCKET rocket.png {ROCKET: Burnt!}{} 24-20:28|58-20:28	
+celadon-hideout-rocket1 35 0.5 0.5 ROCKET rocket.png {ROCKET: Burnt!}{} 24-20:28|58-20:28
 celadon-hideout-rocket2 35 0.5 0.5 ROCKET rocket.png {ROCKET: Oww! Beaten!}{} 96-88:28|109-66:28
 celadon-hideout-rocket3 35 0.5 0.5 ROCKET rocket.png {ROCKET: I surrender!}{} 42-96:24|88-66:24|88-88:24|88-20:24|20-58:24
 celadon-hideout-rocket4 35 0.5 0.5 ROCKET rocket.png {ROCKET: This won't do!}{} 20-5:25|20-37:25|20-58:25|20-126:25
+celadon-hideout-rocket5 35 0.5 0.5 ROCKET rocket.png {ROCKET: I can't do it!}{} 66-30:26|20-88:26|109-30:27
+celadon-hideout-rocket6 35 0.5 0.5 ROCKET rocket.png {ROCKET: What? I lost? No!}{} 42-67:28:KARATE CHOP,SUPERSONIC,BITE,SCREECH|58-67:28
+celadon-hideout-rocket7 35 0.5 0.5 ROCKET rocket.png {ROCKET: Oof! Taken down!}{} 109-20:26|88-20:26|109-96:27
+celadon-hideout-rocket8 35 0.5 0.5 ROCKET rocket.png {ROCKET: No!}{} 67-58:28|20-58:28
+celadon-hideout-rocket9 35 0.5 0.5 ROCKET rocket.png {ROCKET: Why...?}{} 20-37:28|20-58:28
 END
 TELEPORT
 13 2 celadon-game-corner 17 1
