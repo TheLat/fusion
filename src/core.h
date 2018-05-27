@@ -767,7 +767,7 @@ public:
 					if (status[mc.team[index].status[i]].defined)
 						if (status[mc.team[index].status[i]].nonvolatile)
 							if (o.find(mc.team[index].status[i]) == -1)
-								o = o + mc.team[index].status[i] + string("\n");
+								o = o + mc.team[index].status[i] + string("{NEWLINE}");
 				}
 				if (o == "{SINGLE}")
 					o = "{SINGLE}OK";
@@ -3358,7 +3358,7 @@ public:
 					return false;
 				}
 				choices = do_menu(string("ALERT_YES_NO"), string("Use next POK{e-accent}MON?"));
-				if (choices[1] == 1) {
+				if (choices[choices.size() - 1] == 1) {
 					if (run_away(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected], escape_attempts)) {
 						do_alert(string("Got away safely!"));
 						g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
