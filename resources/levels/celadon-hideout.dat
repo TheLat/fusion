@@ -138,6 +138,42 @@ celadon-hideout-door2 door 17 16 NO_OFFSET
 INTERACTIONS
 MENU:ALERT:There doesn't seem to be a way to open it!
 END
+celadon-hideout-elevator-entrance1 blank 18 20 NOLOOK
+FORCE_INTERACTION
+-1 0
+-2 0
+END
+INTERACTIONS
+SET:celadon-hideout-floor:1|TELEPORT:celadon-hideout 2 124
+END
+celadon-hideout-elevator-entrance2 blank 26 48 NOLOOK
+FORCE_INTERACTION
+-1 0
+-2 0
+END
+INTERACTIONS
+SET:celadon-hideout-floor:2|TELEPORT:celadon-hideout 2 124
+END
+celadon-hideout-elevator-entrance3 blank 18 108 NOLOOK
+FORCE_INTERACTION
+-1 0
+-2 0
+END
+INTERACTIONS
+SET:celadon-hideout-floor:3|TELEPORT:celadon-hideout 2 124
+END
+celadon-hideout-elevator-exit blank 2 122 NOLOOK
+FORCE_INTERACTION
+0 1
+1 1
+END
+INTERACTIONS
+GET:celadon-hideout-floor|{}{TELEPORT:celadon-hideout 17 19}{TELEPORT:celadon-hideout 25 47}{TELEPORT:celadon-hideout 17 107}
+END
+celadon-hideout-elevator-controls blank 1 123
+INTERACTIONS
+IN_INVENTORY:LIFT KEY|{MENU:ALERT:It appears to need a key.}{MENU:ELEVATOR_CONTROLS_HIDEOUT:|{SET:celadon-hideout-floor:1}{SET:celadon-hideout-floor:2}{SET:celadon-hideout-floor:3}{}}
+END
 TRAINERS
 celadon-hideout-rocket1 35 0.5 0.5 ROCKET rocket.png {ROCKET: Burnt!}{} 24-20:28|58-20:28
 celadon-hideout-rocket2 35 0.5 0.5 ROCKET rocket.png {ROCKET: Oww! Beaten!}{} 96-88:28|109-66:28
@@ -282,3 +318,11 @@ DATA
 82
 82
 82
+618 618 618 618 618 618
+593 619 620 620 516 593
+593 507 185 185 507 593
+593 507 507 507 507 593
+593 507 507 507 507 593
+593 507 507 507 507 593
+593 507 507 507 507 593
+618 618 618 618 618 618
