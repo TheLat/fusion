@@ -43,12 +43,13 @@ FORCE_INTERACTION
 1 0
 END
 INTERACTIONS
-MENU:ALERT:Be gone... {NEWLINE} Intruders...|MOVE:PLAYER:1,0|MENU:ALERT:Pushed back by an unseen force!
+IN_INVENTORY:SILPH SCOPE|{MENU:ALERT:Be gone... {NEWLINE} Intruders...|MOVE:PLAYER:1,0|MENU:ALERT:Pushed back by an unseen force!}{MENU:ALERT:Be gone... {NEWLINE} Intruders...|BATTLE:lavender-tower-boss|{NO_ADVANCE}{DEACTIVATE:lavender-tower-boss|MENU:ALERT:The GHOST was the restless soul of CUBONE's mother!|MENU:ALERT:The mother's soul was calmed.|MENU:ALERT:It departed to the afterlife!}}
 END
 TRAINERS
 lavender-tower-4-woman1 30 0.45 0.45 CHANNELER channeler.png {CHANNELER: Groan!}{} 75-93:33|93-28:33|93-95:33
 lavender-tower-4-woman2 30 0.45 0.45 CHANNELER channeler.png {CHANNELER: Keee!}{} 93-67:34|93-57:34
 lavender-tower-4-woman3 30 0.45 0.45 CHANNELER channeler.png {CHANNELER: Something fell out!}{} 93-148:36
+lavender-tower-boss 0 1.0 1.0 MALEVOLENT{SPACE}FORCE ghost.png {}{} 94-105:40:EARTHQUAKE,RAGE,LICK,HYPNOSIS
 END
 TELEPORT
 16 9 pokemon-tower-3 15 9

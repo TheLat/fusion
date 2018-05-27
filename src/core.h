@@ -2611,7 +2611,7 @@ public:
 				enemy_damage = damage(defender, attacker, defender.moves[enemy_move], crit, mul, non_zero, true, false, true);
 			else
 				enemy_damage = damage(defender, attacker, string("STRUGGLE"), crit, mul, non_zero, true, false, true);
-			turns_to_live = (attacker.curr_hp / enemy_damage);
+			turns_to_live = (attacker.curr_hp / max(enemy_damage, 1));
 			if (get_stat(attacker, SPEED) > get_stat(defender, SPEED)) {
 				turns_to_live += 1;
 			}
@@ -3070,7 +3070,8 @@ public:
 		g.draw_list[enemy_trainer_sprite].x = 0.1f;
 		g.draw_list[enemy_sprite].x = 2.0f;
 		do_alert(string("{PLAYER_NAME} defeated ") + t.display_name + string("!"));
-		do_alert(t.win_message);
+		if (t.win_message != "")
+			do_alert(t.win_message);
 		int level = 0;
 		for (int i = 0; i < 6; ++i) {
 			if (mc.enemy_team[i].defined) {
