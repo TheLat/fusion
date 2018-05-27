@@ -68,6 +68,10 @@ public:
 		followup.clear();
 		ifstream f(string("../resources/menus/") + file + string(".dat"));
 		string line, temp1, temp2;
+		if (!f.good())
+			int i = 0;
+		if (f.bad())
+			int i = 0;
 		while (f.is_open()) {
 			while (std::getline(f, line)){
 				while (line.find("{NEWLINE}") != -1) {
@@ -1139,6 +1143,8 @@ public:
 					pop_menu();
 					push_menu();
 				}
+				m2.unlock();
+				return;
 			}
 		}
 		else if (type == "SELECT") {
