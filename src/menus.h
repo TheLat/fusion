@@ -1186,10 +1186,14 @@ public:
 			}
 			if (confirm | start) {
 				done = true;
+				m2.unlock();
+				return;
 			}
 			if (cancel) {
 				selection = replace_cancel;
 				done = true;
+				m2.unlock();
+				return;
 			}
 			process_strings();
 			pop_menu();
@@ -1214,10 +1218,14 @@ public:
 			}
 			if (confirm | start) {
 				done = true;
+				m2.unlock();
+				return;
 			}
 			if (cancel) {
 				selection = -1;
 				done = true;
+				m2.unlock();
+				return;
 			}
 			update_reserves();
 			process_strings();
