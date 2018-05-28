@@ -31,11 +31,18 @@ MENU:ALERT:PSYDUCK: Gwappa!|FACE:UP
 END
 lavender-house1-girl girl2 6 3 DOWN
 INTERACTIONS
-MENU:ALERT:This is really MR.FUJI's house.|MENU:ALERT:He's really kind!|MENU:ALERT:He looks after abandoned and orphaned POK{e-accent}MON!|FACE:DOWN
+MENU:ALERT:This is really MR. FUJI's house.|MENU:ALERT:He's really kind!|MENU:ALERT:He looks after abandoned and orphaned POK{e-accent}MON!|FACE:DOWN|NO_ADVANCE
+MENU:ALERT:It's so warm! POK{e-accent}MON are so nice to hug!
 END
 lavender-house1-man man2 3 5
 INTERACTIONS
-MENU:ALERT:That's odd, MR.FUJI isn't here. {NEWLINE} Where'd he go?
+MENU:ALERT:That's odd, MR. FUJI isn't here. {NEWLINE} Where'd he go?|NO_ADVANCE
+MENU:ALERT:MR. FUJI had been praying alone for CUBONE's mother.
+END
+lavender-house1-fuji oldman2 3 1 INACTIVE
+INTERACTIONS
+MENU:ALERT:MR. FUJI: {PLAYER_NAME}.|MENU:ALERT:Your POK{e-accent}DEX quest may fail without love for your POK{e-accent}MON.|MENU:ALERT:I think this may help you in your quest.|GIVE_ITEM:POK{e-accent}FLUTE|MENU:ALERT:Upon hearing the POK{e-accent}FLUTE, sleeping POK{e-accent}MON will spring awake.|MENU:ALERT:It works on all sleeping POK{e-accent}MON.
+MENU:ALERT:MR. FUJI: Has my FLUTE helped you?
 END
 TELEPORT
 2 8 lavender-town 11 17

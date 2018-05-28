@@ -53,6 +53,7 @@ lavender-tower-boss 0 1.0 1.0 MALEVOLENT{SPACE}FORCE ghost.png {}{} 94-105:40:EA
 END
 TELEPORT
 16 9 pokemon-tower-3 15 9
+7 16 pokemon-tower-5 8 16
 ENCOUNTERS
 93 93 93 104
 LEVELS
