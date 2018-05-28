@@ -1,12 +1,12 @@
 WARNING: Editing this file can easily corrupt game state.
 NAME:RED
 RIVAL_NAME:BLUE
-DIRECTION:0
+DIRECTION:1
 WINS:0
 LOSSES:0
-LOCATION:pokemon-tower-4|8|15
+LOCATION:lavender-house1|3|2
 LAST_CENTER:pokemon-tower-3|8|9
-MONEY:94502
+MONEY:97302
 COINS:50
 REPEL:0
 INTERACTIONS:
@@ -284,8 +284,9 @@ lavender-house1-book1|0
 lavender-house1-bookshelf1|0
 lavender-house1-bookshelf2|0
 lavender-house1-bookshelf3|0
-lavender-house1-girl|0
-lavender-house1-man|0
+lavender-house1-fuji|1
+lavender-house1-girl|1
+lavender-house1-man|1
 lavender-house1-map|0
 lavender-house1-mon1|0
 lavender-house1-mon2|0
@@ -332,6 +333,10 @@ lavender-tower-4-item2|0
 lavender-tower-4-woman1|1
 lavender-tower-4-woman2|1
 lavender-tower-4-woman3|1
+lavender-tower-5-fuji|0
+lavender-tower-5-rocket1|0
+lavender-tower-5-rocket2|0
+lavender-tower-5-rocket3|0
 lavender-tower-boss|0
 lavender-tower-lower-desk|0
 lavender-tower-lower-man1|0
@@ -1120,6 +1125,7 @@ lavender-house1-book1|1
 lavender-house1-bookshelf1|1
 lavender-house1-bookshelf2|1
 lavender-house1-bookshelf3|1
+lavender-house1-fuji|1
 lavender-house1-girl|1
 lavender-house1-man|1
 lavender-house1-map|1
@@ -1168,7 +1174,11 @@ lavender-tower-4-item2|0
 lavender-tower-4-woman1|1
 lavender-tower-4-woman2|1
 lavender-tower-4-woman3|1
-lavender-tower-boss|1
+lavender-tower-5-fuji|0
+lavender-tower-5-rocket1|0
+lavender-tower-5-rocket2|0
+lavender-tower-5-rocket3|0
+lavender-tower-boss|0
 lavender-tower-lower-desk|1
 lavender-tower-lower-man1|1
 lavender-tower-lower-rival|0
@@ -1711,6 +1721,7 @@ IRON|1
 SILPH SCOPE|1
 AWAKENING|1
 X ACCURACY|1
+POK{e-accent}FLUTE|1
 END
 INVENTORY_STORAGE:
 TM34|1
@@ -1758,6 +1769,7 @@ SEEN:
 109-30
 109-66
 109-96
+109-97
 11-11
 11-48
 11-63
@@ -1804,6 +1816,7 @@ SEEN:
 19-23
 19-29
 19-32
+19-41
 19-52
 19-56
 19-66
@@ -1877,6 +1890,7 @@ SEEN:
 41-74
 41-95
 42-20
+42-42
 42-67
 42-96
 43-11
@@ -2002,12 +2016,14 @@ SEEN:
 93-92
 93-93
 93-95
+94-105
 95-64
 95-66
 95-74
 95-95
 96-88
 96-96
+97-109
 END
 CAUGHT:
 129-129
@@ -2040,11 +2056,11 @@ THUNDERBADGE|1
 celadon-hideout-floor|1
 END
 TEAM:
-0|NUMBER:76-15|NICKNAME:|HP:91|EXP:37624|LEVEL:36|EV:10836|13740|11636|10795|13425|IV:2|15|9|10|11|MOVES:PIN MISSILE|EARTHQUAKE|FURY ATTACK|TWIN NEEDLE|PP:16|9|20|20|MAX_PP:20|10|20|20|STATUS:
-1|NUMBER:47-47|NICKNAME:|HP:99|EXP:31714|LEVEL:34|EV:4336|5554|4839|4995|6135|IV:14|4|11|6|9|MOVES:SPORE|STUN SPORE|LEECH LIFE|SLASH|PP:15|30|15|20|MAX_PP:15|30|15|20|STATUS:
-2|NUMBER:130-130|NICKNAME:|HP:120|EXP:36092|LEVEL:35|EV:11811|8444|9407|6706|7426|IV:0|13|10|10|14|MOVES:LEER|BITE|BUBBLEBEAM|DRAGON RAGE|PP:30|25|20|10|MAX_PP:30|25|20|10|STATUS:
-3|NUMBER:6-6|NICKNAME:|HP:111|EXP:38279|LEVEL:36|EV:10553|12747|11747|10654|13012|IV:0|13|10|10|14|MOVES:SLASH|RAGE|EMBER|LEER|PP:20|20|25|30|MAX_PP:20|20|25|30|STATUS:
-4|NUMBER:133-133|NICKNAME:|HP:20|EXP:100|LEVEL:5|EV:0|0|0|0|0|IV:0|13|10|10|14|MOVES:TACKLE|TAIL WHIP|||PP:35|30|||MAX_PP:35|30|||STATUS:
+0|NUMBER:133-133|NICKNAME:|HP:56|EXP:13545|LEVEL:25|EV:516|585|594|833|737|IV:0|13|10|10|14|MOVES:TACKLE|TAIL WHIP|SAND ATTACK||PP:35|30|15||MAX_PP:35|30|15||STATUS:
+1|NUMBER:47-47|NICKNAME:|HP:0|EXP:31944|LEVEL:34|EV:4416|5644|4909|5075|6245|IV:14|4|11|6|9|MOVES:SPORE|STUN SPORE|LEECH LIFE|SLASH|PP:14|30|15|12|MAX_PP:15|30|15|20|STATUS:
+2|NUMBER:130-130|NICKNAME:|HP:66|EXP:36325|LEVEL:35|EV:11903|8544|9522|6898|7586|IV:0|13|10|10|14|MOVES:LEER|BITE|BUBBLEBEAM|DRAGON RAGE|PP:30|25|14|10|MAX_PP:30|25|20|10|STATUS:PARALYZE
+3|NUMBER:6-6|NICKNAME:|HP:79|EXP:40559|LEVEL:37|EV:10778|12999|11992|11049|13369|IV:0|13|10|10|14|MOVES:SLASH|RAGE|EMBER|LEER|PP:20|20|22|30|MAX_PP:20|20|25|30|STATUS:
+4|NUMBER:76-15|NICKNAME:|HP:70|EXP:38929|LEVEL:36|EV:11160|14138|12000|11157|13839|IV:2|15|9|10|11|MOVES:PIN MISSILE|EARTHQUAKE|FURY ATTACK|TWIN NEEDLE|PP:14|7|20|20|MAX_PP:20|10|20|20|STATUS:
 END
 STORAGE:
 0|0|NUMBER:56-56|NICKNAME:|HP:44|EXP:4552|LEVEL:17|EV:2585|3393|4013|2039|2355|IV:4|3|2|0|0|MOVES:SCRATCH|LEER|KARATE CHOP||PP:35|30|25||MAX_PP:35|30|25||STATUS:
@@ -2366,11 +2382,12 @@ lavender-house1
 1|0|1|1|0
 2|0|7|1|0
 3|0|3|0|0
-4|0|3|3|0
+4|1|3|3|0
 5|0|1|3|0
 6|1|6|4|0
 7|0|6|3|0
 8|0|3|5|0
+9|0|3|1|0
 END
 lavender-house2
 0|0|0|1|0
@@ -2581,6 +2598,12 @@ pokemon-tower-4
 3|2|14|5|1
 4|0|7|5|1
 5|0|7|16|0
+END
+pokemon-tower-5
+0|3|7|11|1
+1|2|9|9|1
+2|3|7|7|1
+3|0|8|3|0
 END
 pokemon-tower-lower
 0|0|13|12|0
