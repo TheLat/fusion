@@ -2612,8 +2612,13 @@ public:
 			pow *= get_accuracy_modifier(attacker);
 			pow *= double(moves[move].acc) / 100.0;
 		}
-		if (in_status(defender, string("POISON"))) {
+		if (in_status(defender, string("POISON")) && !in_status(attacker, string("POISON")) && !in_status(attacker, string("TOXIC"))) {
 			pow += double(get_stat(defender, HP)*turn_count)*0.1;
+		}
+		else if (in_status(defender, string("TOXIC")) && !in_status(attacker, string("TOXIC"))) {
+			for (unsigned i = 1; i <= turn_count; ++i) {
+				pow += double(get_stat(defender, HP)*(defender.turn_count + i))*0.1;
+			}
 		}
 		return pow;
 	}
