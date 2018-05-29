@@ -1534,6 +1534,13 @@ public:
 		}
 		return false;
 	}
+	bool in_move_self(string move, string effect) {
+		for (unsigned i = 0; i < moves[move].self.size(); ++i) {
+			if (moves[move].self[i] == effect)
+				return true;
+		}
+		return false;
+	}
 	bool in_move_special(string move, string effect) {
 		for (unsigned i = 0; i < moves[move].special.size(); ++i) {
 			if (moves[move].special[i] == effect)
@@ -2573,7 +2580,7 @@ public:
 			return false;
 		return true;
 	}
-	double get_smart_damage(mon& attacker, mon& defender, string move, trainer& t, int future=0) {
+	double get_smart_damage(mon& attacker, mon& defender, string move, trainer& t, int future = 0) {
 		bool crit = false;
 		bool skip_accuracy_check = false;
 		double mul = 0.0;
@@ -2619,6 +2626,26 @@ public:
 		for (unsigned j = 0; j < moves[move].special.size(); ++j) {
 			if (moves[move].special[j] == "UNAVOIDABLE") {
 				skip_accuracy_check = true;
+			}
+		}
+		for (unsigned j = 0; j < moves[move].self.size(); ++j) {
+			if (moves[move].self[j].find("VAMPIRE") != -1) {
+				string to_parse = moves[move].self[j];
+				mul = 1.0;
+				if (to_parse.find(":") != -1) {
+					to_parse.erase(0, to_parse.find(":") + 1);
+					mul = double(stoi(to_parse)) / 100.0;
+				}
+				pow += min(pow*mul, double(get_stat(attacker, HP) - attacker.curr_hp));
+			}
+			if (moves[move].self[j].find("HEAL") != -1) {
+				string to_parse = moves[move].self[j];
+				mul = 1.0;
+				if (to_parse.find(":") != -1) {
+					to_parse.erase(0, to_parse.find(":") + 1);
+					mul = double(stoi(to_parse)) / 100.0;
+				}
+				pow += min(double(get_stat(attacker, HP))*mul, double(get_stat(attacker, HP) - attacker.curr_hp));
 			}
 		}
 		if (!skip_accuracy_check && !t.skip_accuracy_check) {
