@@ -2579,6 +2579,8 @@ public:
 		double mul = 0.0;
 		bool non_zero;
 		int buff = 0;
+		if (in_move_special(move, string("SLEEPING_TARGET_ONLY")) && !in_status(defender, string("SLEEP")))
+			return 0.0;
 		for (unsigned j = 0; j < attacker.status.size(); ++j) {
 			if (attacker.status[j] == this->get_buff_name(SPEED)) {
 				buff++;
@@ -2613,6 +2615,7 @@ public:
 				turn_count--;
 			}
 		}
+		pow *= double(turn_count);
 		for (unsigned j = 0; j < moves[move].special.size(); ++j) {
 			if (moves[move].special[j] == "UNAVOIDABLE") {
 				skip_accuracy_check = true;
@@ -2680,7 +2683,8 @@ public:
 						if (applied) {
 							int temp1, temp2;
 							int future_move = get_smart_move(attacker, defendercopy, t, skip_recurse, hp_offset, temp1, temp2, true);
-							pow = get_smart_damage(attacker, defendercopy, attacker.moves[future_move], t, 1);
+							pow = get_smart_damage(attacker, defendercopy, attacker.moves[future_move], t, 1)*double(moves[attacker.moves[i]].acc)/100.0;
+							pow *= double(self_turns_to_live - 1) / double(self_turns_to_live);
 						}
 					}
 				}
