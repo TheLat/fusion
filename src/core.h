@@ -1864,7 +1864,7 @@ public:
 		}
 		return success;
 	}
-	bool apply_status(mon& m, string s) {
+	bool apply_status(mon& m, string s, bool skip_chance=false, bool silent=false) {
 		string s2, s3;
 		int repeat = 1;
 		if (s.find("x2") != -1) {
@@ -1893,10 +1893,12 @@ public:
 				return false;
 			}
 		}
-		if (status[s2].chance) {
-			double c = double(stoi(s3));
-			if (random(0.0, 100.0) > c) {
-				return false;
+		if (!skip_chance) {
+			if (status[s2].chance) {
+				double c = double(stoi(s3));
+				if (random(0.0, 100.0) > c) {
+					return false;
+				}
 			}
 		}
 		if (!status[s2].specialcase) {
@@ -1945,11 +1947,13 @@ public:
 					s4 = s4 + "fell!";
 				if (s4.find("rose") != -1 || s4.find("fell") != -1) {
 					if (in_status(m, string("LOCK_STATS"))) {
-						do_alert(string("But, it failed!"));
+						if (!silent)
+							do_alert(string("But, it failed!"));
 						return false;
 					}
 					else {
-						do_alert(s4);
+						if (!silent)
+							do_alert(s4);
 					}
 				}
 				for (int i = 0; i < repeat; ++i)
@@ -1980,7 +1984,8 @@ public:
 				for (int i = 0; i < max; ++i) {
 					m.status.push_back(s2);
 				}
-				do_alert(string("Disabled ") + m.moves[m.disabled_move] + string("!"));
+				if (!silent)
+					do_alert(string("Disabled ") + m.moves[m.disabled_move] + string("!"));
 			}
 			else if (s2 == "HEAL") {
 				heal_damage(m, int(double(get_stat(m, HP)) * (double(value) / 100.0)));
@@ -1995,12 +2000,14 @@ public:
 			}
 			else if (s2 == "SUBSTITUTE") {
 				if (get_stat(m, HP) / 4 >= m.curr_hp) {
-					do_alert("But, it failed!");
+					if (!silent)
+						do_alert("But, it failed!");
 				}
 				else {
 					int dam = get_stat(m, HP) / 4;
 					deal_damage(m, dam);
-					do_alert(get_nickname(m) + string(" created a SUBSTITUTE!"));
+					if (!silent)
+						do_alert(get_nickname(m) + string(" created a SUBSTITUTE!"));
 					m.stored_hp = m.curr_hp;
 					m.curr_hp = 0;
 					heal_damage(m, dam + 1);
@@ -2566,7 +2573,7 @@ public:
 			return false;
 		return true;
 	}
-	double get_smart_damage(mon& attacker, mon& defender, string move, trainer& t) {
+	double get_smart_damage(mon& attacker, mon& defender, string move, trainer& t, int future=0) {
 		bool crit = false;
 		bool skip_accuracy_check = false;
 		double mul = 0.0;
@@ -2602,6 +2609,9 @@ public:
 			for (unsigned j = 0; j < moves[move].queue.size(); ++j) {
 				turn_count++;
 			}
+			if (get_stat(attacker, SPEED) < get_stat(defender, SPEED)) {
+				turn_count--;
+			}
 		}
 		for (unsigned j = 0; j < moves[move].special.size(); ++j) {
 			if (moves[move].special[j] == "UNAVOIDABLE") {
@@ -2617,12 +2627,12 @@ public:
 		}
 		else if (in_status(defender, string("TOXIC")) && !in_status(attacker, string("TOXIC"))) {
 			for (unsigned i = 1; i <= turn_count; ++i) {
-				pow += double(get_stat(defender, HP)*(defender.turn_count + i))*0.1;
+				pow += double(get_stat(defender, HP)*(future + defender.turn_count + i))*0.1;
 			}
 		}
 		return pow;
 	}
-	int get_smart_move(mon& attacker, mon& defender, trainer& t, bool skip_recurse, int hp_offset, int& self_turns_to_live, int& opponent_turns_to_live) {
+	int get_smart_move(mon& attacker, mon& defender, trainer& t, bool skip_recurse, int hp_offset, int& self_turns_to_live, int& opponent_turns_to_live, bool no_depth=false) {
 		int a = 0, b = 0;
 		int dam;
 		int enemy_move = -1;
@@ -2647,13 +2657,30 @@ public:
 			}
 			self_turns_to_live = turns_to_live;
 		}
+		bool delay;
 		for (unsigned i = 0; i < 4; ++i) {
 			if (is_valid_move(attacker, i)) {
+				delay = false;
 				pow = get_smart_damage(attacker, defender, attacker.moves[i], t);
-				if (pow == 0.0) {
+				if (pow == 0.0 && moves[attacker.moves[i]].target.size() == 0) {
 					for (unsigned j = 0; j < moves[attacker.moves[i]].self.size(); ++j) {
 						if (moves[attacker.moves[i]].self[j] == "UNTARGETABLE") {
 							pow = get_smart_damage(attacker, defender, moves[attacker.moves[i]].queue[0], t);
+						}
+					}
+				}
+				else if (pow == 0.0 && moves[attacker.moves[i]].target.size() != 0) {
+					if (!no_depth) {
+						mon defendercopy;
+						defendercopy = defender;
+						bool applied = false;
+						for (unsigned j = 0; j < moves[attacker.moves[i]].target.size(); ++j) {
+							applied = applied || apply_status(defendercopy, moves[attacker.moves[i]].target[j], true, true);
+						}
+						if (applied) {
+							int temp1, temp2;
+							int future_move = get_smart_move(attacker, defendercopy, t, skip_recurse, hp_offset, temp1, temp2, true);
+							pow = get_smart_damage(attacker, defendercopy, attacker.moves[future_move], t, 1);
 						}
 					}
 				}
@@ -2692,6 +2719,8 @@ public:
 					magnitude = pow;
 					ret = i;
 					opponent_turns_to_live = (defender.curr_hp / max(dam, 1));
+					if (delay)
+						opponent_turns_to_live++;
 				}
 			}
 		}
