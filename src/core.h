@@ -1527,6 +1527,20 @@ public:
 		}
 		return false;
 	}
+	bool in_move_target(string move, string effect) {
+		for (unsigned i = 0; i < moves[move].target.size(); ++i) {
+			if (moves[move].target[i] == effect)
+				return true;
+		}
+		return false;
+	}
+	bool in_move_special(string move, string effect) {
+		for (unsigned i = 0; i < moves[move].special.size(); ++i) {
+			if (moves[move].special[i] == effect)
+				return true;
+		}
+		return false;
+	}
 	void swap_mon(mon& a, mon& b) {
 		mon temp;
 		temp = a;
@@ -1739,14 +1753,16 @@ public:
 		}
 		return false;
 	}
-	bool create_move(mon& m, string move, int index) {
+	bool create_move(mon& m, string move, int index, bool overrule=false) {
 		if (!moves[move].defined) {
 			m.moves[index] = "";
 			return false;
 		}
-		for (unsigned i = 0; i < 4; ++i) {
-			if (m.moves[i] == move) {
-				return false;
+		if (!overrule) {
+			for (unsigned i = 0; i < 4; ++i) {
+				if (m.moves[i] == move) {
+					return false;
+				}
 			}
 		}
 		m.moves[index] = move;
@@ -2581,6 +2597,12 @@ public:
 			if (!in_status(defender, string("RAGE")))
 				pow *= 2.0;
 		}
+		int turn_count = 1;
+		if (in_move_target(move, string("FLINCH")) && in_move_target(move, string("TRAP"))) {
+			for (unsigned j = 0; j < moves[move].queue.size(); ++j) {
+				turn_count++;
+			}
+		}
 		for (unsigned j = 0; j < moves[move].special.size(); ++j) {
 			if (moves[move].special[j] == "UNAVOIDABLE") {
 				skip_accuracy_check = true;
@@ -2589,6 +2611,9 @@ public:
 		if (!skip_accuracy_check && !t.skip_accuracy_check) {
 			pow *= get_accuracy_modifier(attacker);
 			pow *= double(moves[move].acc) / 100.0;
+		}
+		if (in_status(defender, string("POISON"))) {
+			pow += double(get_stat(defender, HP)*turn_count)*0.1;
 		}
 		return pow;
 	}
@@ -4023,7 +4048,7 @@ public:
 								if (s2.find(",") != -1) {
 									s2.erase(s2.find(","), s2.length());
 								}
-								create_move(d.team[i], s2, count);
+								create_move(d.team[i], s2, count, true);
 								if (s3.find(",") != -1) {
 									s3.erase(0, s3.find(",") + 1);
 								}
