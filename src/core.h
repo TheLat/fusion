@@ -2626,11 +2626,14 @@ public:
 			pow *= double(moves[move].acc) / 100.0;
 		}
 		if (in_status(defender, string("POISON")) && !in_status(attacker, string("POISON")) && !in_status(attacker, string("TOXIC"))) {
-			pow += double(get_stat(defender, HP)*turn_count)*0.1;
+			pow += double(get_stat(defender, HP)*turn_count) / 16.0;
+		}
+		if (in_status(defender, string("BURN")) && !in_status(attacker, string("POISON")) && !in_status(attacker, string("TOXIC"))) {
+			pow += double(get_stat(defender, HP)*turn_count) / 16.0;
 		}
 		else if (in_status(defender, string("TOXIC")) && !in_status(attacker, string("TOXIC"))) {
 			for (unsigned i = 1; i <= turn_count; ++i) {
-				pow += double(get_stat(defender, HP)*(future + defender.turn_count + i))*0.1;
+				pow += double(get_stat(defender, HP)*(future + defender.turn_count + i)) / 16.0;
 			}
 		}
 		return pow;
