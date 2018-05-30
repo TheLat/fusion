@@ -2723,7 +2723,7 @@ public:
 		}
 		return ret;
 	}
-	int get_smart_move(mon& attacker, mon& defender, trainer& t, bool skip_recurse, int hp_offset, int& self_turns_to_live, int& opponent_turns_to_live, bool no_depth=false) {
+	int get_smart_move(mon& attacker, mon& defender, trainer& t, bool skip_recurse, int hp_offset, int& self_turns_to_live, int& opponent_turns_to_live, bool no_depth, double& future_damage) {
 		int a = 0, b = 0;
 		int dam;
 		int enemy_move = -1;
@@ -2734,19 +2734,23 @@ public:
 		double magnitude = -10000000.0;
 		double pow = 0.0;
 		bool crit = false;
-		bool non_zero;
 		double mul = 0.0;
 		double chance = 0.0;
 		int turns_to_live = -1;
 		int ret = -1;
+		future_damage = -1.0;
 		if (!skip_recurse) {
-			enemy_move = get_smart_move(defender, attacker, t, true, 0, a, b);
+			double future_damage = 0;
+			enemy_move = get_smart_move(defender, attacker, t, true, 0, a, b, false, future_damage);
 			if (enemy_move >= 0) {
 				enemy_damage = get_smart_damage(defender, attacker, defender.moves[enemy_move], t);
 				enemy_heal = get_smart_healing(defender, attacker, defender.moves[enemy_move], t);
 			}
 			else
 				enemy_damage = get_smart_damage(defender, attacker, string("STRUGGLE"), t);
+			if (future_damage > 0.0) {
+				enemy_damage = future_damage;
+			}
 			turns_to_live = (attacker.curr_hp / max(int(enemy_damage), 1));
 			if (get_stat(attacker, SPEED) > get_stat(defender, SPEED)) {
 				turns_to_live += 1;
@@ -2775,9 +2779,20 @@ public:
 						for (unsigned j = 0; j < moves[attacker.moves[i]].target.size(); ++j) {
 							applied = applied || apply_status(defendercopy, moves[attacker.moves[i]].target[j], true, true);
 						}
+						for (unsigned j = 0; j < moves[attacker.moves[i]].special.size(); ++j) {
+							if (moves[attacker.moves[i]].special[j].find(string("STATUS_IMMUNITY")) != -1) {
+								if (get_type_1(defender) != "" && moves[attacker.moves[i]].special[j].find(get_type_1(defender)) != -1) {
+									applied = false;
+								}
+								if (get_type_2(defender) != "" && moves[attacker.moves[i]].special[j].find(get_type_2(defender)) != -1) {
+									applied = false;
+								}
+							}
+						}
 						if (applied) {
 							int temp1, temp2;
-							int future_move = get_smart_move(attacker, defendercopy, t, skip_recurse, hp_offset, temp1, temp2, true);
+							double temp3;
+							int future_move = get_smart_move(attacker, defendercopy, t, skip_recurse, hp_offset, temp1, temp2, true, temp3);
 							self_damage = get_smart_damage(attacker, defendercopy, attacker.moves[future_move], t, 1)*double(moves[attacker.moves[i]].acc) / 100.0;
 							self_heal = get_smart_healing(attacker, defendercopy, attacker.moves[future_move], t, 1)*double(moves[attacker.moves[i]].acc) / 100.0;
 							turns_to_live = (attacker.curr_hp / max(int(enemy_damage - self_heal), 1));
@@ -2792,6 +2807,10 @@ public:
 								self_damage += enemy_heal * 0.25;
 								self_heal += enemy_damage * 0.25;
 							}
+							if (!in_status(defender, string("CONFUSE")) && in_status(defendercopy, string("CONFUSE"))) {
+								self_damage += enemy_heal * 0.5;
+								self_heal += enemy_damage * 0.5;
+							}
 						}
 					}
 				}
@@ -2801,18 +2820,20 @@ public:
 						if (moves[attacker.moves[i]].self[j] == "KO") {
 							if (turns_to_live > 1) {
 								dam = 0.0;
+								self_damage = 0.0;
+								self_heal = 0.0;
 								break;
 							}
 						}
 						if (moves[attacker.moves[i]].self[j] == "RAGE") {
-							dam *= min(double(turns_to_live), 4.0);
+							self_damage *= min(double(turns_to_live), 4.0);
 							break;
 						}
 					}
 					for (unsigned j = 0; j < moves[attacker.moves[i]].special.size(); ++j) {
 						if (moves[attacker.moves[i]].special[j] == "FIRST") {
 							if (turns_to_live <= 0) {
-								dam *= 1000.0;
+								self_damage *= 1000.0;
 								break;
 							}
 						}
@@ -2821,7 +2842,7 @@ public:
 				else {
 					for (unsigned j = 0; j < moves[attacker.moves[i]].self.size(); ++j) {
 						if (moves[attacker.moves[i]].self[j] == "KO") {
-							dam = 0.0;
+							self_damage = 0.0;
 							break;
 						}
 					}
@@ -2832,6 +2853,7 @@ public:
 					ret = i;
 					self_turns_to_live = (attacker.curr_hp / max(int(enemy_damage - self_heal), 1));
 					opponent_turns_to_live = (defender.curr_hp / max(int(self_damage - enemy_heal), 1));
+					future_damage = self_damage;
 					if (delay)
 						opponent_turns_to_live++;
 				}
@@ -3062,11 +3084,12 @@ public:
 			}
 			if (mc.enemy_team[mc.enemy_selected].queue.size() == 0) {
 				if (random(0.0, 1.0) <= t.skill) {
-					index = get_smart_move(mc.team[old_team_selected], mc.enemy_team[mc.enemy_selected], t, true, 0, a, b);
+					double temp3 = 0.0;
+					index = get_smart_move(mc.team[old_team_selected], mc.enemy_team[mc.enemy_selected], t, true, 0, a, b, false, temp3);
 					for (i = 0; i < 6; ++i) {
 						if (mc.enemy_team[i].defined && !is_KO(mc.enemy_team[i])) {
 							int hp_offset = get_smart_damage(mc.team[old_team_selected], mc.enemy_team[i], mc.team[old_team_selected].moves[index], t);
-							get_smart_move(mc.enemy_team[i], mc.team[old_team_selected], t, false, hp_offset, a, b);
+							get_smart_move(mc.enemy_team[i], mc.team[old_team_selected], t, false, hp_offset, a, b, false, temp3);
 							fitness = a - b;
 							if (best_fitness_index == -1 || fitness > best_fitness) {
 								best_fitness = fitness;
@@ -3105,7 +3128,8 @@ public:
 					else {
 						index = int(random(0.0, count));
 						if (random(0.0, 1.0) <= t.skill) {
-							index = get_smart_move(mc.enemy_team[mc.enemy_selected], mc.team[old_team_selected], t, false, 0, a, b);
+							double temp3;
+							index = get_smart_move(mc.enemy_team[mc.enemy_selected], mc.team[old_team_selected], t, false, 0, a, b, false, temp3);
 						}
 						int choice = -1;
 						for (i = 0; i <= index; ++i) {
@@ -3208,7 +3232,8 @@ public:
 				for (unsigned i = 0; i < 6; ++i) {
 					if (smart_switch) {
 						if (mc.enemy_team[i].defined && !is_KO(mc.enemy_team[i])) {
-							get_smart_move(mc.enemy_team[i], mc.team[mc.selected], t, false, 0, a, b);
+							double temp3;
+							get_smart_move(mc.enemy_team[i], mc.team[mc.selected], t, false, 0, a, b, false, temp3);
 							fitness = a - b;
 							if (best_fitness_index == -1 || fitness > best_fitness) {
 								found = true;
