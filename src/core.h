@@ -2628,34 +2628,14 @@ public:
 				skip_accuracy_check = true;
 			}
 		}
-		for (unsigned j = 0; j < moves[move].self.size(); ++j) {
-			if (moves[move].self[j].find("VAMPIRE") != -1) {
-				string to_parse = moves[move].self[j];
-				mul = 1.0;
-				if (to_parse.find(":") != -1) {
-					to_parse.erase(0, to_parse.find(":") + 1);
-					mul = double(stoi(to_parse)) / 100.0;
-				}
-				pow += min(pow*mul, double(get_stat(attacker, HP) - attacker.curr_hp));
-			}
-			if (moves[move].self[j].find("HEAL") != -1) {
-				string to_parse = moves[move].self[j];
-				mul = 1.0;
-				if (to_parse.find(":") != -1) {
-					to_parse.erase(0, to_parse.find(":") + 1);
-					mul = double(stoi(to_parse)) / 100.0;
-				}
-				pow += min(double(get_stat(attacker, HP))*mul, double(get_stat(attacker, HP) - attacker.curr_hp));
-			}
-		}
 		if (!skip_accuracy_check && !t.skip_accuracy_check) {
 			pow *= get_accuracy_modifier(attacker);
 			pow *= double(moves[move].acc) / 100.0;
 		}
-		if (in_status(defender, string("POISON")) && !in_status(attacker, string("POISON")) && !in_status(attacker, string("TOXIC"))) {
+		if (in_status(defender, string("POISON")) && !in_status(attacker, string("BURN")) && !in_status(attacker, string("POISON")) && !in_status(attacker, string("TOXIC"))) {
 			pow += double(get_stat(defender, HP)*turn_count) / 16.0;
 		}
-		if (in_status(defender, string("BURN")) && !in_status(attacker, string("POISON")) && !in_status(attacker, string("TOXIC"))) {
+		if (in_status(defender, string("BURN")) && !in_status(attacker, string("BURN")) && !in_status(attacker, string("POISON")) && !in_status(attacker, string("TOXIC"))) {
 			pow += double(get_stat(defender, HP)*turn_count) / 16.0;
 		}
 		else if (in_status(defender, string("TOXIC")) && !in_status(attacker, string("TOXIC"))) {
@@ -2665,12 +2645,93 @@ public:
 		}
 		return pow;
 	}
+	double get_smart_healing(mon& attacker, mon& defender, string move, trainer& t, int future = 0) {
+		bool crit = false;
+		bool skip_accuracy_check = false;
+		double mul = 0.0;
+		bool non_zero;
+		int buff = 0;
+		double ret = 0.0;
+		if (in_move_special(move, string("SLEEPING_TARGET_ONLY")) && !in_status(defender, string("SLEEP")))
+			return 0.0;
+		for (unsigned j = 0; j < attacker.status.size(); ++j) {
+			if (attacker.status[j] == this->get_buff_name(SPEED)) {
+				buff++;
+			}
+			if (attacker.status[j] == this->get_debuff_name(SPEED)) {
+				buff--;
+			}
+		}
+		double chance = get_stat_modifier(buff) * all_mon[attacker.number].stats[SPEED] / 4.0;
+		if (in_status(attacker, string("FOCUS")))
+			chance *= 4.0;
+		chance *= moves[move].crit_chance;
+		chance = chance / 256.0;
+		double low = damage(attacker, defender, move, crit, mul, non_zero, true, false, true);
+		double high = damage(attacker, defender, move, crit, mul, non_zero, false, true, true);
+		double pow = low + chance* (high - low);
+		pow = pow * 0.85;
+		if (moves[move].pow.find(string("x2-5")) != -1) {
+			if (!in_status(defender, string("RAGE")))
+				pow *= 3.0;
+		}
+		else if (moves[move].pow.find(string("x2")) != -1) {
+			if (!in_status(defender, string("RAGE")))
+				pow *= 2.0;
+		}
+		int turn_count = 1;
+		if (in_move_target(move, string("FLINCH")) && in_move_target(move, string("TRAP"))) {
+			for (unsigned j = 0; j < moves[move].queue.size(); ++j) {
+				turn_count++;
+			}
+			if (get_stat(attacker, SPEED) < get_stat(defender, SPEED)) {
+				turn_count--;
+			}
+		}
+		pow *= double(turn_count);
+		for (unsigned j = 0; j < moves[move].special.size(); ++j) {
+			if (moves[move].special[j] == "UNAVOIDABLE") {
+				skip_accuracy_check = true;
+			}
+		}
+		if (!skip_accuracy_check && !t.skip_accuracy_check) {
+			pow *= get_accuracy_modifier(attacker);
+			pow *= double(moves[move].acc) / 100.0;
+		}
+		for (unsigned j = 0; j < moves[move].self.size(); ++j) {
+			if (moves[move].self[j].find("VAMPIRE") != -1) {
+				string to_parse = moves[move].self[j];
+				mul = 1.0;
+				if (to_parse.find(":") != -1) {
+					to_parse.erase(0, to_parse.find(":") + 1);
+					mul = double(stoi(to_parse)) / 100.0;
+				}
+				ret += min(pow*mul, double(get_stat(attacker, HP) - attacker.curr_hp));
+			}
+			if (moves[move].self[j].find("HEAL") != -1) {
+				string to_parse = moves[move].self[j];
+				mul = 1.0;
+				if (to_parse.find(":") != -1) {
+					to_parse.erase(0, to_parse.find(":") + 1);
+					mul = double(stoi(to_parse)) / 100.0;
+				}
+				ret += min(double(get_stat(attacker, HP))*mul, double(get_stat(attacker, HP) - attacker.curr_hp));
+			}
+		}
+		if (in_status(defender, string("SEED")) && !in_status(attacker, string("BURN")) && !in_status(attacker, string("POISON")) && !in_status(attacker, string("TOXIC"))) {
+			ret += double(get_stat(defender, HP)*turn_count) / 16.0;
+		}
+		return ret;
+	}
 	int get_smart_move(mon& attacker, mon& defender, trainer& t, bool skip_recurse, int hp_offset, int& self_turns_to_live, int& opponent_turns_to_live, bool no_depth=false) {
 		int a = 0, b = 0;
 		int dam;
 		int enemy_move = -1;
-		int enemy_damage = -1;
-		double magnitude = -1.0;
+		double enemy_damage = 0.0;
+		double self_damage = 0.0;
+		double enemy_heal = 0.0;
+		double self_heal = 0.0;
+		double magnitude = -10000000.0;
 		double pow = 0.0;
 		bool crit = false;
 		bool non_zero;
@@ -2680,11 +2741,13 @@ public:
 		int ret = -1;
 		if (!skip_recurse) {
 			enemy_move = get_smart_move(defender, attacker, t, true, 0, a, b);
-			if (enemy_move >= 0)
-				enemy_damage = damage(defender, attacker, defender.moves[enemy_move], crit, mul, non_zero, true, false, true);
+			if (enemy_move >= 0) {
+				enemy_damage = get_smart_damage(defender, attacker, defender.moves[enemy_move], t);
+				enemy_heal = get_smart_healing(defender, attacker, defender.moves[enemy_move], t);
+			}
 			else
-				enemy_damage = damage(defender, attacker, string("STRUGGLE"), crit, mul, non_zero, true, false, true);
-			turns_to_live = (attacker.curr_hp / max(enemy_damage, 1));
+				enemy_damage = get_smart_damage(defender, attacker, string("STRUGGLE"), t);
+			turns_to_live = (attacker.curr_hp / max(int(enemy_damage), 1));
 			if (get_stat(attacker, SPEED) > get_stat(defender, SPEED)) {
 				turns_to_live += 1;
 			}
@@ -2694,15 +2757,17 @@ public:
 		for (unsigned i = 0; i < 4; ++i) {
 			if (is_valid_move(attacker, i)) {
 				delay = false;
-				pow = get_smart_damage(attacker, defender, attacker.moves[i], t);
-				if (pow == 0.0 && moves[attacker.moves[i]].target.size() == 0) {
+				self_damage = get_smart_damage(attacker, defender, attacker.moves[i], t);
+				self_heal = get_smart_healing(attacker, defender, attacker.moves[i], t);
+				if ((self_damage + self_heal) == 0.0 && moves[attacker.moves[i]].target.size() == 0) {
 					for (unsigned j = 0; j < moves[attacker.moves[i]].self.size(); ++j) {
 						if (moves[attacker.moves[i]].self[j] == "UNTARGETABLE") {
-							pow = get_smart_damage(attacker, defender, moves[attacker.moves[i]].queue[0], t);
+							self_damage = get_smart_damage(attacker, defender, moves[attacker.moves[i]].queue[0], t);
+							self_heal = get_smart_healing(attacker, defender, moves[attacker.moves[i]].queue[0], t);
 						}
 					}
 				}
-				else if (pow == 0.0 && moves[attacker.moves[i]].target.size() != 0) {
+				else if ((self_damage + self_heal) == 0.0 && moves[attacker.moves[i]].target.size() != 0) {
 					if (!no_depth) {
 						mon defendercopy;
 						defendercopy = defender;
@@ -2713,29 +2778,41 @@ public:
 						if (applied) {
 							int temp1, temp2;
 							int future_move = get_smart_move(attacker, defendercopy, t, skip_recurse, hp_offset, temp1, temp2, true);
-							pow = get_smart_damage(attacker, defendercopy, attacker.moves[future_move], t, 1)*double(moves[attacker.moves[i]].acc)/100.0;
-							pow *= double(self_turns_to_live - 1) / double(self_turns_to_live);
+							self_damage = get_smart_damage(attacker, defendercopy, attacker.moves[future_move], t, 1)*double(moves[attacker.moves[i]].acc) / 100.0;
+							self_heal = get_smart_healing(attacker, defendercopy, attacker.moves[future_move], t, 1)*double(moves[attacker.moves[i]].acc) / 100.0;
+							turns_to_live = (attacker.curr_hp / max(int(enemy_damage - self_heal), 1));
+							self_damage *= double(turns_to_live - 1) / double(turns_to_live);
+							self_heal *= double(turns_to_live - 1) / double(turns_to_live);
+							delay = true;
+							if (!in_status(defender, string("SLEEP")) && in_status(defendercopy, string("SLEEP"))) {
+								self_damage += enemy_heal;
+								self_heal += enemy_damage;
+							}
+							if (!in_status(defender, string("PARALYZE")) && in_status(defendercopy, string("PARALYZE"))) {
+								self_damage += enemy_heal * 0.25;
+								self_heal += enemy_damage * 0.25;
+							}
 						}
 					}
 				}
-				dam = pow;
+				dam = (self_damage + self_heal) / max(enemy_damage + enemy_heal, 1.0);
 				if (!skip_recurse) {
 					for (unsigned j = 0; j < moves[attacker.moves[i]].self.size(); ++j) {
 						if (moves[attacker.moves[i]].self[j] == "KO") {
 							if (turns_to_live > 1) {
-								pow = 0.0;
+								dam = 0.0;
 								break;
 							}
 						}
 						if (moves[attacker.moves[i]].self[j] == "RAGE") {
-							pow *= min(double(turns_to_live), 4.0);
+							dam *= min(double(turns_to_live), 4.0);
 							break;
 						}
 					}
 					for (unsigned j = 0; j < moves[attacker.moves[i]].special.size(); ++j) {
 						if (moves[attacker.moves[i]].special[j] == "FIRST") {
 							if (turns_to_live <= 0) {
-								pow *= 1000.0;
+								dam *= 1000.0;
 								break;
 							}
 						}
@@ -2744,15 +2821,17 @@ public:
 				else {
 					for (unsigned j = 0; j < moves[attacker.moves[i]].self.size(); ++j) {
 						if (moves[attacker.moves[i]].self[j] == "KO") {
-							pow = 0.0;
+							dam = 0.0;
 							break;
 						}
 					}
 				}
-				if (pow > magnitude) {
-					magnitude = pow;
+				dam = (attacker.curr_hp / max(int(enemy_damage - self_heal), 1)) - (defender.curr_hp / max(int(self_damage - enemy_heal), 1));
+				if (dam > magnitude) {
+					magnitude = dam;
 					ret = i;
-					opponent_turns_to_live = (defender.curr_hp / max(dam, 1));
+					self_turns_to_live = (attacker.curr_hp / max(int(enemy_damage - self_heal), 1));
+					opponent_turns_to_live = (defender.curr_hp / max(int(self_damage - enemy_heal), 1));
 					if (delay)
 						opponent_turns_to_live++;
 				}
