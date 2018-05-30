@@ -3,15 +3,15 @@ Celadon City Gym
 NPCS
 celadon-gym-bush1 bush 2 4
 INTERACTIONS
-HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:route8-bush1}
+HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:celadon-gym-bush1}
 END
 celadon-gym-bush2 bush 7 5
 INTERACTIONS
-HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:route8-bush2}
+HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:celadon-gym-bush2}
 END
 celadon-gym-bush3 bush 5 7
 INTERACTIONS
-HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:route8-bush3}
+HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:celadon-gym-bush3}
 END
 celadon-gym-board1 blank 3 15
 INTERACTIONS
@@ -22,6 +22,82 @@ celadon-gym-board2 blank 6 15
 INTERACTIONS
 MENU:ALERT:CELADON CITY{NEWLINE} POK{e-accent}MON GYM LEADER: ERIKA|MENU:ALERT:WINNING TRAINERS: {RIVAL_NAME}|NO_ADVANCE
 MENU:ALERT:CELADON CITY{NEWLINE} POK{e-accent}MON GYM LEADER: ERIKA|MENU:ALERT:WINNING TRAINERS: {PLAYER_NAME}{NEWLINE}{RIVAL_NAME}
+END
+celadon-gym-girl1 girl 2 11 RIGHT
+FORCE_INTERACTION
+1 0
+2 0
+END
+INTERACTIONS
+!:celadon-gym-girl1|MOVE_TO_PLAYER|MENU:ALERT:Hey!|MENU:ALERT:You're not allowed in here!|BATTLE:celadon-gym-girl1|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Bleaah! {NEWLINE} I hope ERIKA wipes you out!
+END
+celadon-gym-girl2 woman4 7 10 LEFT
+FORCE_INTERACTION
+-1 0
+-2 0
+END
+INTERACTIONS
+!:celadon-gym-girl2|MOVE_TO_PLAYER|MENU:ALERT:I was getting bored.|BATTLE:celadon-gym-girl2|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Grass-type POK{e-accent}MON are tough against the water-type!|MENU:ALERT:They also have the edge on rock and ground POK{e-accent}MON!
+END
+celadon-gym-girl3 woman4 1 5 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+0 3
+END
+INTERACTIONS
+!:celadon-gym-girl3|MOVE_TO_PLAYER|MENU:ALERT:Look at my grass POK{e-accent}MON!|MENU:ALERT:They're so easy to raise!|BATTLE:celadon-gym-girl3|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:We only use grass-type POK{e-accent}MON at our GYM!|MENU:ALERT:We also use them for making flower arrangements!
+END
+celadon-gym-girl4 girl 9 5 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+0 3
+END
+INTERACTIONS
+!:celadon-gym-girl4|MOVE_TO_PLAYER|MENU:ALERT:Aren't you the peeping Tom?|BATTLE:celadon-gym-girl4|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Oh, you weren't peeping? We get a lot of gawkers!
+END
+celadon-gym-girl5 woman4 3 3 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+0 3
+END
+INTERACTIONS
+!:celadon-gym-girl5|MOVE_TO_PLAYER|MENU:ALERT:Pleased to meet you. My hobby is POK{e-accent}MON training.|BATTLE:celadon-gym-girl5|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I have a blind date coming up. I have to learn to be polite.
+END
+celadon-gym-girl6 girl 5 3 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+0 3
+END
+INTERACTIONS
+!:celadon-gym-girl6|MOVE_TO_PLAYER|MENU:ALERT:Welcome to CELADON GYM!|MENU:ALERT:You better not underestimate girl power!|BATTLE:celadon-gym-girl6|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I didn't bring my best POK{e-accent}MON!|MENU:ALERT:Wait 'til next time!
+END
+celadon-gym-girl7 girl 6 3 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+END
+INTERACTIONS
+!:celadon-gym-girl7|MOVE_TO_PLAYER|MENU:ALERT:Don't bring any bugs or fire POK{e-accent}MON here!|BATTLE:celadon-gym-girl7|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Our LEADER, ERIKA, might be quiet, but she's also very skilled!
+END
+TRAINERS
+celadon-gym-girl1 15 0.4 0.4 LASS lass.png {LASS: You're too rough!}{} 69-69:29|70-70:29
+celadon-gym-girl2 70 0.8 0.8 BEAUTY beauty.png {BEAUTY: My makeup!}{} 43-43:26|69-69:26|43-43:26|69-69:26
+celadon-gym-girl3 70 0.8 0.8 BEAUTY beauty.png {BEAUTY: No!}{} 69-69:29|69-69:29
+celadon-gym-girl4 20 0.5 0.5 JR.TRAINER{FEMALE} jrtrainerf.png {JR.TRAINER{FEMALE}: I'm in shock!}{} 1-1:29|2-2:29
+celadon-gym-girl5 70 0.8 0.8 BEAUTY beauty.png {BEAUTY: Oh! Splendid!}{} 102-102:31
+celadon-gym-girl6 35 0.6 0.6 COOLTRAINER{FEMALE} cooltrainerf.png {COOLTRAINER{FEMALE}: Oh! Beaten!}{} 70-70:28|44-44:28|2-2:28
+celadon-gym-girl7 15 0.4 0.4 LASS lass.png {LASS: Oh! You!}{} 43-43:29|44-44:29
 END
 TELEPORT
 4 18 celadon-city 15 32
