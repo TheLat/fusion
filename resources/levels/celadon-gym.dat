@@ -90,14 +90,20 @@ INTERACTIONS
 !:celadon-gym-girl7|MOVE_TO_PLAYER|MENU:ALERT:Don't bring any bugs or fire POK{e-accent}MON here!|BATTLE:celadon-gym-girl7|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Our LEADER, ERIKA, might be quiet, but she's also very skilled!
 END
+celadon-gym-erika girl4 4 3 DOWN
+INTERACTIONS
+MENU:ALERT:Hello. Lovely weather, isn't it? It's so pleasant.|MENU:ALERT:...Oh dear... {NEWLINE} I must have dozed off. Welcome.|MENU:ALERT:My name is ERIKA. I am the leader of CELADON GYM.|MENU:ALERT:I teach the art of flower arranging. My POK{e-accent}MON are of the grass-type.|MENU:ALERT:Oh, I'm sorry, I had no idea that you wished to challenge me.|MENU:ALERT:Very well, but I shall not lose.|BATTLE:celadon-gym-erika|{NO_ADVANCE}{DISABLE_FORCE|SET:RAINBOWBADGE:1|MENU:ALERT:Please take this with you.|GIVE_ITEM:TM21|MENU:ALERT:TM21 contains MEGA DRAIN.|MENU:ALERT:Half the damage it inflicts is drained to heal your POK{e-accent}MON!}
+MENU:ALERT:You are cataloging POK{e-accent}MON? I must say I'm impressed.|MENU:ALERT:I would never collect POK{e-accent}MON if they weren't grass-type.
+END
 TRAINERS
-celadon-gym-girl1 15 0.4 0.4 LASS lass.png {LASS: You're too rough!}{} 69-69:29|70-70:29
-celadon-gym-girl2 70 0.8 0.8 BEAUTY beauty.png {BEAUTY: My makeup!}{} 43-43:26|69-69:26|43-43:26|69-69:26
-celadon-gym-girl3 70 0.8 0.8 BEAUTY beauty.png {BEAUTY: No!}{} 69-69:29|69-69:29
-celadon-gym-girl4 20 0.5 0.5 JR.TRAINER{FEMALE} jrtrainerf.png {JR.TRAINER{FEMALE}: I'm in shock!}{} 1-1:29|2-2:29
-celadon-gym-girl5 70 0.8 0.8 BEAUTY beauty.png {BEAUTY: Oh! Splendid!}{} 102-102:31
-celadon-gym-girl6 35 0.6 0.6 COOLTRAINER{FEMALE} cooltrainerf.png {COOLTRAINER{FEMALE}: Oh! Beaten!}{} 70-70:28|44-44:28|2-2:28
-celadon-gym-girl7 15 0.4 0.4 LASS lass.png {LASS: Oh! You!}{} 43-43:29|44-44:29
+celadon-gym-girl1 15 0.4 0.4 LASS lass.png {LASS: You're too rough!}{} 70-61:29|70-118:29
+celadon-gym-girl2 70 0.8 0.8 BEAUTY beauty.png {BEAUTY: My makeup!}{} 44-44:26|70-70:26|44-74:26|70-95:26
+celadon-gym-girl3 70 0.8 0.8 BEAUTY beauty.png {BEAUTY: No!}{} 71-71:33:RAZOR LEAF,ACID,STUN SPORE,SLEEP POWDER
+celadon-gym-girl4 20 0.5 0.5 JR.TRAINER{FEMALE} jrtrainerf.png {JR.TRAINER{FEMALE}: I'm in shock!}{} 2-2:30|2-25:30
+celadon-gym-girl5 70 0.8 0.8 BEAUTY beauty.png {BEAUTY: Oh! Splendid!}{} 114-114:32
+celadon-gym-girl6 35 0.6 0.6 COOLTRAINER{FEMALE} cooltrainerf.png {COOLTRAINER{FEMALE}: Oh! Beaten!}{} 70-70:28|22-44:28:FURY ATTACK,ABSORB,PECK,ACID|2-2:28:TACKLE,LEECH SEED,VINE WHIP,POISON POWDER
+celadon-gym-girl7 15 0.4 0.4 LASS lass.png {LASS: Oh! You!}{} 44-44:29|70-70:29
+celadon-gym-erika 99 1.0 1.0 ERIKA erika.png {ERIKA: Oh! I concede defeat. You are remarkably strong. I must confer you the RAINBOWBADGE.}{} 76-45:36:MEGA DRAIN,EXPLOSION,EARTHQUAKE,ROCK SLIDE|71-38:36:CONFUSE RAY,FIRE BLAST,ACID,MEGA DRAIN|103-103:36:STOMP,PSYCHIC,MEGA DRAIN,EXPLOSION|47-47:36:SPORE,SLASH,STUN SPORE,DIG|3-3:36:RAZOR LEAF,MEGA DRAIN,BODY SLAM,VINE WHIP
 END
 TELEPORT
 4 18 celadon-city 15 32
