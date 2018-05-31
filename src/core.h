@@ -2750,6 +2750,7 @@ public:
 				enemy_damage = get_smart_damage(defender, attacker, string("STRUGGLE"), t);
 			if (future_damage > 0.0) {
 				enemy_damage = future_damage;
+				turns_to_live++;
 			}
 			turns_to_live = (attacker.curr_hp / max(int(enemy_damage), 1));
 			if (get_stat(attacker, SPEED) > get_stat(defender, SPEED)) {
