@@ -2639,7 +2639,7 @@ public:
 			pow += double(get_stat(defender, HP)*turn_count) / 16.0;
 		}
 		else if (in_status(defender, string("TOXIC")) && !in_status(attacker, string("TOXIC"))) {
-			for (unsigned i = 1; i <= turn_count; ++i) {
+			for (int i = 1; i <= turn_count; ++i) {
 				pow += double(get_stat(defender, HP)*(future + defender.turn_count + i)) / 16.0;
 			}
 		}
@@ -2799,6 +2799,9 @@ public:
 							self_heal = get_smart_healing(attacker, defendercopy, attacker.moves[future_move], t, 1);
 							holder_turns_to_live = (attacker.curr_hp / max(int(enemy_damage - self_heal), 1));
 							if (in_status(defender, string("SLEEP"))) {
+								holder_turns_to_live++;
+							}
+							if (in_status(defender, string("FREEZE"))) {
 								holder_turns_to_live++;
 							}
 							delay = true;
@@ -3681,7 +3684,7 @@ public:
 			damage *= random(0.85, 1.0);
 		if (pow == 0.0)
 			damage = 0.0;
-		for (int j = 0; j < moves[move].target.size(); ++j) {
+		for (unsigned j = 0; j < moves[move].target.size(); ++j) {
 			// Possible TODO: Remove multiplier from self-level damage moves.
 			if (moves[move].target[j] == "SELF_LEVEL") {
 				damage = int(double(attacker.level) * mul);
@@ -5352,7 +5355,7 @@ public:
 									s = "";
 								}
 								std::map<string, bool>::iterator it = mc.caught.begin();
-								unsigned count = 0;
+								int count = 0;
 								while (it != mc.caught.end()) {
 									if (it->second)
 										count++;

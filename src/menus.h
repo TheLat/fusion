@@ -1128,11 +1128,11 @@ public:
 		}
 		if (type == "ALERT") {
 			if (start | select | confirm | cancel) {
-				if (step >= raw[0].s.size()) {
+				if (step >= int(raw[0].s.size())) {
 					done = true;
 				}
 				else {
-					while (step < raw[0].s.size() && raw[0].s[step] == ' ')
+					while (step < int(raw[0].s.size()) && raw[0].s[step] == ' ')
 						step++;
 					raw[0].s.erase(0, step);
 					process_strings();
