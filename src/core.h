@@ -2737,6 +2737,7 @@ public:
 		double mul = 0.0;
 		double chance = 0.0;
 		int turns_to_live = -1;
+		int holder_turns_to_live = -1;
 		int ret = -1;
 		future_damage = -1.0;
 		if (!skip_recurse) {
@@ -2796,9 +2797,9 @@ public:
 							int future_move = get_smart_move(attacker, defendercopy, t, skip_recurse, hp_offset, temp1, temp2, true, temp3);
 							self_damage = get_smart_damage(attacker, defendercopy, attacker.moves[future_move], t, 1);
 							self_heal = get_smart_healing(attacker, defendercopy, attacker.moves[future_move], t, 1);
-							turns_to_live = (attacker.curr_hp / max(int(enemy_damage - self_heal), 1));
+							holder_turns_to_live = (attacker.curr_hp / max(int(enemy_damage - self_heal), 1));
 							if (in_status(defender, string("SLEEP"))) {
-								turns_to_live++;
+								holder_turns_to_live++;
 							}
 							delay = true;
 							if (!in_status(defender, string("SLEEP")) && in_status(defendercopy, string("SLEEP"))) {
@@ -2806,7 +2807,7 @@ public:
 								self_heal += enemy_damage * 3.0;
 							}
 							if (!in_status(defender, string("PARALYZE")) && in_status(defendercopy, string("PARALYZE"))) {
-								double temp = min((defendercopy.curr_hp / max(int(self_damage - enemy_heal), 1)), turns_to_live);
+								double temp = min((defendercopy.curr_hp / max(int(self_damage - enemy_heal), 1)), holder_turns_to_live);
 								self_damage += enemy_heal * 0.25 * temp;
 								self_heal += enemy_damage * 0.25 * temp;
 							}
