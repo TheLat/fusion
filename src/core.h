@@ -1159,7 +1159,7 @@ public:
 				do_menu(string("ALERT"), string("Booted up an HM!"));
 				do_menu(string("ALERT"), string("It contained ") + move + string("!"));
 				choices = do_menu(string("ALERT_YES_NO"), string("Teach ") + move + string(" to a POK{e-accent}MON?"));
-				if (choices[1] == 1)
+				if (choices[choices.size() - 1] == 1)
 					return false;
 				choices = do_menu(string("LEARN_MON_SELECT"), effect);
 				if (choices.size() > 1)
@@ -2793,24 +2793,28 @@ public:
 							int temp1, temp2;
 							double temp3;
 							int future_move = get_smart_move(attacker, defendercopy, t, skip_recurse, hp_offset, temp1, temp2, true, temp3);
-							self_damage = get_smart_damage(attacker, defendercopy, attacker.moves[future_move], t, 1)*double(moves[attacker.moves[i]].acc) / 100.0;
-							self_heal = get_smart_healing(attacker, defendercopy, attacker.moves[future_move], t, 1)*double(moves[attacker.moves[i]].acc) / 100.0;
+							self_damage = get_smart_damage(attacker, defendercopy, attacker.moves[future_move], t, 1);
+							self_heal = get_smart_healing(attacker, defendercopy, attacker.moves[future_move], t, 1);
 							turns_to_live = (attacker.curr_hp / max(int(enemy_damage - self_heal), 1));
-							self_damage *= double(turns_to_live - 1) / double(turns_to_live);
-							self_heal *= double(turns_to_live - 1) / double(turns_to_live);
+							if (in_status(defender, string("SLEEP"))) {
+								turns_to_live++;
+							}
 							delay = true;
 							if (!in_status(defender, string("SLEEP")) && in_status(defendercopy, string("SLEEP"))) {
-								self_damage += enemy_heal;
-								self_heal += enemy_damage;
+								self_damage += enemy_heal * 3.0;
+								self_heal += enemy_damage * 3.0;
 							}
 							if (!in_status(defender, string("PARALYZE")) && in_status(defendercopy, string("PARALYZE"))) {
-								self_damage += enemy_heal * 0.25;
-								self_heal += enemy_damage * 0.25;
+								double temp = min((defendercopy.curr_hp / max(int(self_damage - enemy_heal), 1)), turns_to_live);
+								self_damage += enemy_heal * 0.25 * temp;
+								self_heal += enemy_damage * 0.25 * temp;
 							}
 							if (!in_status(defender, string("CONFUSE")) && in_status(defendercopy, string("CONFUSE"))) {
 								self_damage += enemy_heal * 0.5;
 								self_heal += enemy_damage * 0.5;
 							}
+							self_damage *= double(moves[attacker.moves[i]].acc) / 100.0;
+							self_heal *= double(moves[attacker.moves[i]].acc) / 100.0;
 						}
 					}
 				}
@@ -2848,6 +2852,7 @@ public:
 					}
 				}
 				dam = (attacker.curr_hp / max(int(enemy_damage - self_heal), 1)) - (defender.curr_hp / max(int(self_damage - enemy_heal), 1));
+				dam = (self_damage + self_heal) - (enemy_damage + enemy_heal);
 				if (dam > magnitude) {
 					magnitude = dam;
 					ret = i;
