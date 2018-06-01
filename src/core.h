@@ -2725,7 +2725,7 @@ public:
 	}
 	int get_smart_move(mon& attacker, mon& defender, trainer& t, bool skip_recurse, int hp_offset, int& self_turns_to_live, int& opponent_turns_to_live, bool no_depth, double& future_damage) {
 		int a = 0, b = 0;
-		int dam;
+		double dam;
 		int enemy_move = -1;
 		double enemy_damage = 0.0;
 		double self_damage = 0.0;
@@ -2751,9 +2751,11 @@ public:
 				enemy_damage = get_smart_damage(defender, attacker, string("STRUGGLE"), t);
 			if (future_damage > 0.0) {
 				enemy_damage = future_damage;
-				turns_to_live++;
 			}
 			turns_to_live = (attacker.curr_hp / max(int(enemy_damage), 1));
+			if (future_damage > 0.0) {
+				turns_to_live++;
+			}
 			if (get_stat(attacker, SPEED) > get_stat(defender, SPEED)) {
 				turns_to_live += 1;
 			}
@@ -2820,10 +2822,11 @@ public:
 							}
 							self_damage *= double(moves[attacker.moves[i]].acc) / 100.0;
 							self_heal *= double(moves[attacker.moves[i]].acc) / 100.0;
+							self_damage *= double(holder_turns_to_live - 1) / double(max(holder_turns_to_live, 1));
+							self_heal *= double(holder_turns_to_live - 1) / double(max(holder_turns_to_live, 1));
 						}
 					}
 				}
-				dam = (self_damage + self_heal) / max(enemy_damage + enemy_heal, 1.0);
 				if (!skip_recurse) {
 					for (unsigned j = 0; j < moves[attacker.moves[i]].self.size(); ++j) {
 						if (moves[attacker.moves[i]].self[j] == "KO") {
@@ -2856,8 +2859,10 @@ public:
 						}
 					}
 				}
-				dam = (attacker.curr_hp / max(int(enemy_damage - self_heal), 1)) - (defender.curr_hp / max(int(self_damage - enemy_heal), 1));
 				dam = (self_damage + self_heal) - (enemy_damage + enemy_heal);
+				dam = (-double(defender.curr_hp) / max(self_damage - enemy_heal, 1.0)) + (double(attacker.curr_hp) / max(enemy_damage - self_heal, 1.0));
+				if (delay)
+					dam -= 1.0;
 				if (dam > magnitude) {
 					magnitude = dam;
 					ret = i;
