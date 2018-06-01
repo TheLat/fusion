@@ -65,15 +65,15 @@ FORCE_INTERACTION
 -1 0
 END
 INTERACTIONS
-MENU:ALERT:Grunt!|MENU:ALERT:I am the KARATE MASTER! I am the LEADER here!|MENU:ALERT:You wish to challenge us? Expect no mercy!|MENU:ALERT:Fwaaa!|BATTLE:saffron-dojo-boss|{NO_ADVANCE}{DISABLE_FORCE|MENU:ALERT:Indeed, I have lost!|MENU:ALERT:You are a fine example of the merits of discipline and training.|MENU:ALERT:Here, take these with you. Maybe you will defeat the Psychic Gym in our name.|DEACTIVATE:saffron-dojo-orb1|GIVE_MON:30:106-106|DEACTIVATE:saffron-dojo-orb2|GIVE_MON:30:107-107|MENU:ALERT:They are young and will need your guidance to reach their full potential.}
+MENU:ALERT:Grunt!|MENU:ALERT:We suffered greatly when SABRINA attacked us.|MENU:ALERT:But, we will rise stronger for it.|MENU:ALERT:I am the KARATE MASTER! I am the LEADER here!|MENU:ALERT:You wish to challenge us? Expect no mercy!|MENU:ALERT:Fwaaa!|BATTLE:saffron-dojo-boss|{NO_ADVANCE}{DISABLE_FORCE|MENU:ALERT:Indeed, I have lost!|MENU:ALERT:You are a fine example of the merits of discipline and training.|MENU:ALERT:Here, take these with you. Maybe you will defeat the Psychic Gym in our name.|DEACTIVATE:saffron-dojo-orb1|GIVE_MON:30:106-106|DEACTIVATE:saffron-dojo-orb2|GIVE_MON:30:107-107|MENU:ALERT:They are young and will need your guidance to reach their full potential.}
 MENU:ALERT:Ho!|MENU:ALERT:Stay and train at Karate with us!
 END
 TRAINERS
-saffron-dojo-tough1 25 0.65 0.65 BLACKBELT blackbelt.png {BLACKBELT: Oof! I give up!}{} 67-67:35|57-57:35|67-67:35
-saffron-dojo-tough2 25 0.65 0.65 BLACKBELT blackbelt.png {BLACKBELT: Judge! 1 point!}{} 67-67:36|67-67:36
+saffron-dojo-tough1 25 0.65 0.65 BLACKBELT blackbelt.png {BLACKBELT: Oof! I give up!}{} 75-67:35|111-57:35|38-67:35:KARATE CHOP,FLAMETHROWER,LEER,TAIL WHIP
+saffron-dojo-tough2 25 0.65 0.65 BLACKBELT blackbelt.png {BLACKBELT: Judge! 1 point!}{} 67-75:36|97-67:36:KARATE CHOP,HYPNOSIS,CONFUSION,POISON GAS
 saffron-dojo-tough3 25 0.65 0.65 BLACKBELT blackbelt.png {BLACKBELT: Yow! Stubbed fingers!}{} 57-57:38
-saffron-dojo-tough4 25 0.65 0.65 BLACKBELT blackbelt.png {BLACKBELT: I give up!}{} 57-57:35|67-67:35|57-57:35
-saffron-dojo-boss 25 1.0 1.0 BLACKBELT blackbelt.png {BLACKBELT: Hwa! Arrgh! Beaten!}{} 57-57:35|67-67:35|57-57:35
+saffron-dojo-tough4 25 0.65 0.65 BLACKBELT blackbelt.png {BLACKBELT: I give up!}{} 57-125:37|67-59:37:EMBER,LOW KICK,TAKE DOWN,FOCUS ENERGY
+saffron-dojo-boss 25 1.0 1.0 BLACKBELT blackbelt.png {BLACKBELT: Hwa! Arrgh! Beaten!}{} 107-107:40|93-106:40|94-68:40:LICK,SUBMISSION,HYPNOSIS,EARTHQUAKE|68-65:40:SUBMISSION,RECOVER,FOCUS ENERGY,DISABLE|59-57:40:BITE,KARATE CHOP,FOCUS ENERGY,AGILITY|112-68:40:ROCK SLIDE,SUBMISSION,EARTHQUAKE,KARATE CHOP
 END
 TELEPORT
 4 12 saffron-city 35 11
