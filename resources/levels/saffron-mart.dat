@@ -1,0 +1,44 @@
+NAME
+Saffron City Mart
+NPCS
+saffron-mart-shelf1 blank 4 4
+INTERACTIONS
+MENU:ALERT:Wow! Tons of POK{e-accent}MON stuff!
+END
+saffron-mart-shelf2 blank 5 4
+INTERACTIONS
+MENU:ALERT:Wow! Tons of POK{e-accent}MON stuff!
+END
+saffron-mart-shelf3 blank 6 4
+INTERACTIONS
+MENU:ALERT:Wow! Tons of POK{e-accent}MON stuff!
+END
+saffron-mart-shelf4 blank 7 4
+INTERACTIONS
+MENU:ALERT:Wow! Tons of POK{e-accent}MON stuff!
+END
+saffron-mart-girl girl 6 6 WANDER
+INTERACTIONS
+MENU:ALERT:REVIVE is costly, but it revives fainted POK{e-accent}MON!
+END
+saffron-mart-man man2 4 2
+INTERACTIONS
+MENU:ALERT:MAX REPEL lasts longer than SUPER REPEL for keeping weaker POK{e-accent}MON away!
+END
+saffron-mart-clerk clerk2 0 5 RIGHT FARSPEAK
+INTERACTIONS
+SHOP:GREAT BALL,HYPER POTION,MAX REPEL,ESCAPE ROPE,FULL HEAL,REVIVE
+END
+TELEPORT
+3 8 saffron-city 34 19
+4 8 saffron-city 34 19
+DATA
+118 118 119 119 119 119 118 118
+120 120 121 121 121 121 120 120
+122 123 123 123 123 123 123 123
+124 125 123 123 124 125 124 125
+128 129 122 123 126 127 126 127
+122 130 122 123 123 123 123 123
+131 132 122 123 123 123 123 123
+122 123 123 133 133 123 123 123
+82   82  82 166 166
