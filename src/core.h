@@ -1227,7 +1227,13 @@ public:
 		}
 		else if (effect.find("FILL_HP") == 0) {
 			effect.erase(0, effect.find(":") + 1);
-			heal_damage(m, stoi(effect));
+			if (!is_KO(m)) {
+				heal_damage(m, stoi(effect));
+			}
+			else {
+				do_alert(string("It's knocked out cold!"));
+				return false;
+			}
 		}
 		else if (effect.find("FILL_PP") == 0) {
 			effect.erase(0, effect.find(":") + 1);
