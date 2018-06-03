@@ -37,6 +37,38 @@ saffron-city-rocket-wander4 rocket 25 38 WANDER
 INTERACTIONS
 MENU:ALERT:With SILPH under control, we can exploit POK{e-accent}MON around the world!
 END
+saffron-city-sign1 blank 26 12
+INTERACTIONS
+MENU:ALERT:SAFFRON CITY Shining, Golden Land of Commerce
+END
+saffron-city-sign2 blank 36 12
+INTERACTIONS
+MENU:ALERT:FIGHTING DOJO
+END
+saffron-city-sign3 blank 44 12
+INTERACTIONS
+MENU:ALERT:SAFFRON CITY POK{e-accent}MON GYM LEADER: SABRINA|MENU:ALERT:The Master of Psychic POK{e-accent}MON!
+END
+saffron-city-sign4 blank 10 26
+INTERACTIONS
+MENU:ALERT:SILPH's latest product!|MENU:ALERT:Release to be determined...
+END
+saffron-city-sign5 blank 14 28
+INTERACTIONS
+MENU:ALERT:TRAINER TIPS|MENU:ALERT:New GREAT BALL offers improved capture rates.|MENU:ALERT:Try it on hard-to-catch POK{e-accent}MON.
+END
+saffron-city-sign6 blank 24 28
+INTERACTIONS
+MENU:ALERT:SILPH CO. {NEWLINE} OFFICE BUILDING
+END
+saffron-city-sign7 blank 48 26
+INTERACTIONS
+MENU:ALERT:TRAINER TIPS|MENU:ALERT:FULL HEAL cures all ailments like SLEEP and BURN.|MENU:ALERT:It costs a bit more, but it's more convenient.
+END
+saffron-city-sign8 blank 36 36
+INTERACTIONS
+MENU:ALERT:MR. PSYCHIC's HOUSE
+END
 TELEPORT
 6 25 route7-checkpoint 6 4
 29 4 route5-checkpoint 3 6
