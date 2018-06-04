@@ -15,3 +15,7 @@ This is a list of all changes I make to the game script and why.
 13, Added MOON STONE and TRADE STONE to Celadon Department Store.  Since there are more than 4 pokemon in the game that require a MOON STONE to reach their final form, MOON STONEs are now infinite.
 14, Removed advice to trade with friends from the Celadon Mansion.
 15, Revamped prize exchange to actually be useful.
+16, Changed some dialog to support the fan-theory that Team Rocket is desperately trying to stop Mewtwo.
+17, Changed Erika's team.  She now has a Golem-Vileplume that knows MEGA DRAIN, EXPLOSION, EARTHQUAKE, and ROCK SLIDE, a Victreebell-Ninetales that knows CONFUSE RAY, FIRE BLAST, ACID, and MEGA DRAIN, an Exeggutor that knows STOMP, PSYCHIC, MEGA DRAIN, and EXPLOSION, a Parasect that knows SPORE, SLASH, STUN SPORE, and DIG, and a Venusaur that knows RAZOR LEAF, MEGA DRAIN, BODY SLAM, and VINE WHIP.  This is the 4th gym, so it's time to start having the gym leaders have completely balanced teams that still keep to the theme.  This should also be an interesting fight, because the AI has to manage 2 team members that have x4 vulnerabilities.
+18, Changed dialog to indicate that two of the Dojo Master's team members are now ghost types after being attacked by Sabrina.
+19, Adjusted placement of stairs and elevator for a more coherent Silph Co.
