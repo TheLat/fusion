@@ -161,6 +161,71 @@ silph-co-floor11-door1b door 7 243 NO_OFFSET
 INTERACTIONS
 IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor11-door1a|DEACTIVATE:silph-co-floor11-door1b}
 END
+silph-co-rocket1 rocket 8 109 RIGHT
+FORCE_INTERACTION
+1 0
+2 0
+END
+INTERACTIONS
+!:silph-co-rocket1|MOVE_TO_PLAYER|MENU:ALERT:I heard a kid was wandering around.|BATTLE:silph-co-rocket1|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:It's not smart to pick a fight with TEAM ROCKET!
+END
+silph-co-item1 orb 21 109
+INTERACTIONS
+GIVE_ITEM:CARD KEY|DEACTIVATE:silph-co-item1
+END
+silph-co-rocket2 rocket 24 31 UP
+FORCE_INTERACTION
+0 -1
+0 -2
+0 -3
+END
+INTERACTIONS
+!:silph-co-rocket2|MOVE_TO_PLAYER|MENU:ALERT:Hey, kid! What are you doing here?|BATTLE:silph-co-rocket2|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:SILPH CO. will be merged with TEAM ROCKET!
+END
+silph-co-woman1 girl4 10 25 UP
+INTERACTIONS
+MENU:ALERT:Eeek! No! Stop! Help!|MENU:ALERT:Oh, you're not with TEAM ROCKET.|MENU:ALERT:I thought...|MENU:ALERT:I'm sorry. Here, please take this.|GIVE_ITEM:TM36
+MENU:ALERT:TM36 is SELFDESTRUCT!|MENU:ALERT:It's powerful, but the POK{e-accent}MON that uses it faints!|MENU:ALERT:Be careful.
+END
+silph-co-rocket3 doctor 5 36 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+0 3
+END
+INTERACTIONS
+!:silph-co-rocket3|MOVE_TO_PLAYER|MENU:ALERT:Help! I'm a SILPH employee.|BATTLE:silph-co-rocket3|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I work for both SILPH and TEAM ROCKET!
+END
+silph-co-rocket4 rocket 16 35 UP
+FORCE_INTERACTION
+0 -1
+0 -2
+0 -3
+END
+INTERACTIONS
+!:silph-co-rocket4|MOVE_TO_PLAYER|MENU:ALERT:No kids are allowed in here!|BATTLE:silph-co-rocket4|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Diamond-shaped tiles are teleport blocks!|MENU:ALERT:They're hi-tech transporters!
+END
+silph-co-rocket5 doctor 24 37 LEFT
+FORCE_INTERACTION
+-1 0
+-2 0
+-3 0
+END
+INTERACTIONS
+!:silph-co-rocket5|MOVE_TO_PLAYER|MENU:ALERT:It's off limits here! Go home!|BATTLE:silph-co-rocket5|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Can you solve the maze in here?
+END
+TRAINERS
+silph-co-rocket1 35 0.65 0.65 ROCKET rocket.png {ROCKET: Boom!}{} 24-24:41
+silph-co-rocket2 35 0.65 0.65 ROCKET rocket.png {ROCKET: I goofed!}{} 42-42:36|42-42:36|42-42:36|20-20:36|42-42:36
+silph-co-rocket3 50 0.95 0.55 SCIENTIST scientist.png {SCIENTIST: How did you know I was a ROCKET?}{} 88-88:37|110-110:37|110-110:37|110-110:37
+silph-co-rocket4 35 0.65 0.65 ROCKET rocket.png {ROCKET: Tough!}{} 105-105:39|42-42:39
+silph-co-rocket5 50 0.95 0.55 SCIENTIST scientist.png {SCIENTIST: You're good.}{} 82-82:38|101-101:38|82-82:38
+END
 TELEPORT
 10 18 saffron-city 27 29
 11 18 saffron-city 27 29
