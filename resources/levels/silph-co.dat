@@ -1,9 +1,165 @@
 NAME
-Saffron Pok{e-accent}center
+Silph Co.
 NPCS
-saffron-center-joy joy 3 1
+silph-co-floor2-door1a door 4 28 NO_OFFSET
 INTERACTIONS
-MENU:ALERT:ERROR
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor2-door1a|DEACTIVATE:silph-co-floor2-door1b}
+END
+silph-co-floor2-door1b door 5 28 NO_OFFSET
+INTERACTIONS
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor2-door1a|DEACTIVATE:silph-co-floor2-door1b}
+END
+silph-co-floor2-door2a door 4 34 NO_OFFSET
+INTERACTIONS
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor2-door2a|DEACTIVATE:silph-co-floor2-door2b}
+END
+silph-co-floor2-door2b door 5 34 NO_OFFSET
+INTERACTIONS
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor2-door2a|DEACTIVATE:silph-co-floor2-door2b}
+END
+silph-co-floor3-door1a door2 9 55 NO_OFFSET
+INTERACTIONS
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor3-door1a|DEACTIVATE:silph-co-floor3-door1b}
+END
+silph-co-floor3-door1b door2 9 56 NO_OFFSET
+INTERACTIONS
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor3-door1a|DEACTIVATE:silph-co-floor3-door1b}
+END
+silph-co-floor3-door2a door2 17 55 NO_OFFSET
+INTERACTIONS
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor3-door2a|DEACTIVATE:silph-co-floor3-door2b}
+END
+silph-co-floor3-door2b door2 17 56 NO_OFFSET
+INTERACTIONS
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor3-door2a|DEACTIVATE:silph-co-floor3-door2b}
+END
+silph-co-floor4-door1a door 4 82 NO_OFFSET
+INTERACTIONS
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor4-door1a|DEACTIVATE:silph-co-floor4-door1b}
+END
+silph-co-floor4-door1b door 5 82 NO_OFFSET
+INTERACTIONS
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor4-door1a|DEACTIVATE:silph-co-floor4-door1b}
+END
+silph-co-floor4-door2a door 12 78 NO_OFFSET
+INTERACTIONS
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor4-door2a|DEACTIVATE:silph-co-floor4-door2b}
+END
+silph-co-floor4-door2b door 13 78 NO_OFFSET
+INTERACTIONS
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor4-door2a|DEACTIVATE:silph-co-floor4-door2b}
+END
+silph-co-floor5-door1a door2 7 97 NO_OFFSET
+INTERACTIONS
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor5-door1a|DEACTIVATE:silph-co-floor5-door1b}
+END
+silph-co-floor5-door1b door2 7 98 NO_OFFSET
+INTERACTIONS
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor5-door1a|DEACTIVATE:silph-co-floor5-door1b}
+END
+silph-co-floor5-door2a door2 7 105 NO_OFFSET
+INTERACTIONS
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor5-door2a|DEACTIVATE:silph-co-floor5-door2b}
+END
+silph-co-floor5-door2b door2 7 106 NO_OFFSET
+INTERACTIONS
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor5-door2a|DEACTIVATE:silph-co-floor5-door2b}
+END
+silph-co-floor5-door3a door2 15 103 NO_OFFSET
+INTERACTIONS
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor5-door3a|DEACTIVATE:silph-co-floor5-door3b}
+END
+silph-co-floor5-door3b door2 15 104 NO_OFFSET
+INTERACTIONS
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor5-door3a|DEACTIVATE:silph-co-floor5-door3b}
+END
+silph-co-floor6-door1a door2 5 128 NO_OFFSET
+INTERACTIONS
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor6-door1a|DEACTIVATE:silph-co-floor6-door1b}
+END
+silph-co-floor6-door1b door2 5 129 NO_OFFSET
+INTERACTIONS
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor6-door1a|DEACTIVATE:silph-co-floor6-door1b}
+END
+silph-co-floor7-door1a door 10 145 NO_OFFSET
+INTERACTIONS
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor7-door1a|DEACTIVATE:silph-co-floor7-door1b}
+END
+silph-co-floor7-door1b door 11 145 NO_OFFSET
+INTERACTIONS
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor7-door1a|DEACTIVATE:silph-co-floor7-door1b}
+END
+silph-co-floor7-door2a door 20 151 NO_OFFSET
+INTERACTIONS
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor7-door2a|DEACTIVATE:silph-co-floor7-door2b}
+END
+silph-co-floor7-door2b door 21 151 NO_OFFSET
+INTERACTIONS
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor7-door2a|DEACTIVATE:silph-co-floor7-door2b}
+END
+silph-co-floor7-door3a door 20 143 NO_OFFSET
+INTERACTIONS
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor7-door3a|DEACTIVATE:silph-co-floor7-door3b}
+END
+silph-co-floor7-door3b door 21 143 NO_OFFSET
+INTERACTIONS
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor7-door3a|DEACTIVATE:silph-co-floor7-door3b}
+END
+silph-co-floor8-door1a door2 7 170 NO_OFFSET
+INTERACTIONS
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor8-door1a|DEACTIVATE:silph-co-floor8-door1b}
+END
+silph-co-floor8-door1b door2 7 171 NO_OFFSET
+INTERACTIONS
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor8-door1a|DEACTIVATE:silph-co-floor8-door1b}
+END
+silph-co-floor9-door1a door2 3 193 NO_OFFSET
+INTERACTIONS
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor9-door1a|DEACTIVATE:silph-co-floor9-door1b}
+END
+silph-co-floor9-door1b door2 3 194 NO_OFFSET
+INTERACTIONS
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor9-door1a|DEACTIVATE:silph-co-floor9-door1b}
+END
+silph-co-floor9-door2a door2 11 197 NO_OFFSET
+INTERACTIONS
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor9-door2a|DEACTIVATE:silph-co-floor9-door2b}
+END
+silph-co-floor9-door2b door2 11 198 NO_OFFSET
+INTERACTIONS
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor9-door2a|DEACTIVATE:silph-co-floor9-door2b}
+END
+silph-co-floor9-door3a door 18 195 NO_OFFSET
+INTERACTIONS
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor9-door3a|DEACTIVATE:silph-co-floor9-door3b}
+END
+silph-co-floor9-door3b door 19 195 NO_OFFSET
+INTERACTIONS
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor9-door3a|DEACTIVATE:silph-co-floor9-door3b}
+END
+silph-co-floor9-door4a door 18 189 NO_OFFSET
+INTERACTIONS
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor9-door4a|DEACTIVATE:silph-co-floor9-door4b}
+END
+silph-co-floor9-door4b door 19 189 NO_OFFSET
+INTERACTIONS
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor9-door4a|DEACTIVATE:silph-co-floor9-door4b}
+END
+silph-co-floor10-door1a door 10 216 NO_OFFSET
+INTERACTIONS
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor10-door1a|DEACTIVATE:silph-co-floor10-door1b}
+END
+silph-co-floor10-door1b door 11 216 NO_OFFSET
+INTERACTIONS
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor10-door1a|DEACTIVATE:silph-co-floor10-door1b}
+END
+silph-co-floor11-door1a door 6 243 NO_OFFSET
+INTERACTIONS
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor11-door1a|DEACTIVATE:silph-co-floor11-door1b}
+END
+silph-co-floor11-door1b door 7 243 NO_OFFSET
+INTERACTIONS
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor11-door1a|DEACTIVATE:silph-co-floor11-door1b}
 END
 TELEPORT
 10 18 saffron-city 27 29
