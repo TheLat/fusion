@@ -207,6 +207,7 @@ public:
 	string lose_message;
 	string win_message;
 	bool skip_accuracy_check;
+	bool overswitch;
 	int no_switch;
 	mon team[6];
 };
@@ -3121,8 +3122,15 @@ public:
 							}
 						}
 					}
-					if (best_fitness > 0 && best_fitness > 3 * current_fitness && best_fitness > 2 && num_KO >= t.no_switch) {
-						ai_chooses_switch = true;
+					if (!t.overswitch) {
+						if (best_fitness > 0 && best_fitness > 3 * current_fitness && best_fitness > 2 && num_KO >= t.no_switch) {
+							ai_chooses_switch = true;
+						}
+					}
+					else {
+						if (best_fitness > current_fitness && num_KO >= t.no_switch) {
+							ai_chooses_switch = true;
+						}
 					}
 				}
 				if (ai_chooses_switch) {
@@ -4119,6 +4127,7 @@ public:
 					s2.erase(s2.find(" "), s2.length());
 					d.name = s2;
 					d.skip_accuracy_check = false;
+					d.overswitch = false;
 					d.no_switch = 0;
 					if (s.find("{") == 0) {
 						// Special modifiers here
@@ -4148,6 +4157,9 @@ public:
 						}
 						if (s2.find("NO_SWITCH:6") != -1) {
 							d.no_switch = 6;
+						}
+						if (s2.find("OVERSWITCH") != -1) {
+							d.overswitch = true;
 						}
 					}
 					s2 = s;
