@@ -1037,8 +1037,8 @@ public:
 		while (base.size() > 0) {
 			effect = base;
 			if (base.find("|") != -1) {
-				base.erase(0, base.find("|") + 1);
-				effect.erase(effect.find("|"), effect.size());
+				effect.erase(0, effect.find("|") + 1);
+				base.erase(base.find("|"), base.size());
 			}
 			else {
 				base = "";
