@@ -294,6 +294,60 @@ silph-co-man2 guy 6 72
 INTERACTIONS
 MENU:ALERT:Sssh! Can't you seem I'm hiding?
 END
+silph-co-rocket11 rocket 28 97 UP
+FORCE_INTERACTION
+0 -1
+0 -2
+0 -3
+END
+INTERACTIONS
+!:silph-co-rocket11|MOVE_TO_PLAYER|MENU:ALERT:Show TEAM ROCKET a little respect!|BATTLE:silph-co-rocket11|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Which reminds me.|MENU:ALERT:KOFFING evolves into WHEEZING!
+END
+silph-co-rocket12 doctor 8 96 RIGHT
+FORCE_INTERACTION
+1 0
+2 0
+END
+INTERACTIONS
+!:silph-co-rocket12|MOVE_TO_PLAYER|MENU:ALERT:We study POK{e-accent} BALL technology on this floor!|BATTLE:silph-co-rocket12|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:We worked on the ultimate POK{e-accent} BALL which would catch anything!
+END
+silph-co-item6 orb 4 99
+INTERACTIONS
+GIVE_ITEM:PROTEIN|DEACTIVATE:silph-co-item6
+END
+silph-co-item7 orb 2 106
+INTERACTIONS
+GIVE_ITEM:TM09|DEACTIVATE:silph-co-item7
+END
+silph-co-rocket13 punk 18 103 UP
+FORCE_INTERACTION
+0 -1
+0 -2
+0 -3
+0 -4
+END
+INTERACTIONS
+!:silph-co-rocket13|MOVE_TO_PLAYER|MENU:ALERT:Whaaat? There shouldn't be any children here?|BATTLE:silph-co-rocket13|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:You're only on 5F. It's a long way to my BOSS!
+END
+silph-co-man3 guy 13 102
+INTERACTIONS
+MENU:ALERT:TEAM ROCKET is in an uproar over some intruder. That's you, right?
+END
+silph-co-clipboard1 clipboard 22 105
+INTERACTIONS
+MENU:ALERT:It's a POK{e-accent}MON REPORT!|MENU:ALERT:POK{e-accent}MON LAP created PORYGON, the first virtual reality POK{e-accent}MON.
+END
+silph-co-clipboard2 clipboard 25 103
+INTERACTIONS
+MENU:ALERT:It's a POK{e-accent}MON REPORT!|MENU:ALERT:Over 160 POK{e-accent}MON techniques have been confirmed.
+END
+silph-co-clipboard3 clipboard 24 99
+INTERACTIONS
+MENU:ALERT:It's a POK{e-accent}MON REPORT!|MENU:ALERT:A number of POK{e-accent}MON only evolve when traded, but the energy they are exposed to in a trade has been isolated and replicated in the TRADE STONE.
+END
 TRAINERS
 silph-co-rocket1 35 0.65 0.65 ROCKET rocket.png {ROCKET: Boom!}{} 24-24:41
 silph-co-rocket2 35 0.65 0.65 ROCKET rocket.png {ROCKET: I goofed!}{} 42-42:36|42-42:36|42-42:36|20-20:36|42-42:36
@@ -305,6 +359,9 @@ silph-co-rocket7 50 0.95 0.55 SCIENTIST scientist.png {SCIENTIST: You really got
 silph-co-rocket8 35 0.65 0.65 ROCKET rocket.png {ROCKET: Who are you?}{} 24-24:38|42-42:38|105-105:38
 silph-co-rocket9 35 0.65 0.65 ROCKET rocket.png {ROCKET: Arrgh!}{} 67-67:39|97-97:39
 silph-co-rocket10 50 0.95 0.55 SCIENTIST scientist.png {SCIENTIST: Darn! You weak POK{e-accent}MON!}{} 101-101:41
+silph-co-rocket11 35 0.65 0.65 ROCKET rocket.png {ROCKET: Cough... cough...}{} 97-97:41
+silph-co-rocket12 50 0.95 0.55 SCIENTIST scientist.png {SCIENTIST: Dang! Blast it!}{} 82-82:37|110-110:37|110-110:37|82-82:37
+silph-co-rocket13 {OVERSWITCH} 35 0.55 0.95 JUGGLER juggler.png {JUGGLER: Oh goodness!}{} 20-20:36|64-64:36|58-58:36|42-42:36|82-82:36
 END
 TELEPORT
 10 18 saffron-city 27 29
