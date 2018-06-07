@@ -348,6 +348,62 @@ silph-co-clipboard3 clipboard 24 99
 INTERACTIONS
 MENU:ALERT:It's a POK{e-accent}MON REPORT!|MENU:ALERT:A number of POK{e-accent}MON only evolve when traded, but the energy they are exposed to in a trade has been isolated and replicated in the TRADE STONE.
 END
+silph-co-rocket14 rocket 17 119 RIGHT
+FORCE_INTERACTION
+1 0
+2 0
+END
+INTERACTIONS
+!:silph-co-rocket14|MOVE_TO_PLAYER|MENU:ALERT:I am one of the 4 ROCKET BROTHERS!|BATTLE:silph-co-rocket14|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:No matter! {NEWLINE} My brothers will avenge me!
+END
+silph-co-rocket15 rocket 14 131 LEFT
+FORCE_INTERACTION
+-1 0
+-2 0
+END
+INTERACTIONS
+!:silph-co-rocket15|MOVE_TO_PLAYER|MENU:ALERT:You dare betray TEAM ROCKET?|BATTLE:silph-co-rocket15|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:If you stand for justice, you betray evil!
+END
+silph-co-rocket16 doctor 7 124 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+0 3
+END
+INTERACTIONS
+!:silph-co-rocket16|MOVE_TO_PLAYER|MENU:ALERT:That rotten PRESIDENT!|MENU:ALERT:He shouldn't have sent me to the TIKSI BRANCH!|BATTLE:silph-co-rocket16|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:TIKSI BRANCH? {NEWLINE} It's in Russian no man's land!
+END
+silph-co-item8 orb 3 128
+INTERACTIONS
+GIVE_ITEM:HP UP|DEACTIVATE:silph-co-item8
+END
+silph-co-item9 orb 2 131
+INTERACTIONS
+GIVE_ITEM:X ACCURACY|DEACTIVATE:silph-co-item9
+END
+silph-co-man4 guy 20 122
+INTERACTIONS
+MENU:ALERT:Oh dear, oh dear. Help me please!
+END
+silph-co-woman2 girl4 21 122 DOWN
+INTERACTIONS
+MENU:ALERT:Look at him! He's such a coward!|FACE:DOWN
+END
+silph-co-man5 guy 10 122
+INTERACTIONS
+MENU:ALERT:The ROCKETs came and took over the building!
+END
+silph-co-woman3 girl4 11 126 RIGHT
+INTERACTIONS
+MENU:ALERT:TEAM ROCKET is trying to conquer the world with POK{e-accent}MON!|FACE:RIGHT
+END
+silph-co-man6 guy 18 129 UP
+INTERACTIONS
+MENU:ALERT:They must have targeted SILPH for our POK{e-accent}MON products.|FACE:UP
+END
 TRAINERS
 silph-co-rocket1 35 0.65 0.65 ROCKET rocket.png {ROCKET: Boom!}{} 24-24:41
 silph-co-rocket2 35 0.65 0.65 ROCKET rocket.png {ROCKET: I goofed!}{} 42-42:36|42-42:36|42-42:36|20-20:36|42-42:36
@@ -362,6 +418,9 @@ silph-co-rocket10 50 0.95 0.55 SCIENTIST scientist.png {SCIENTIST: Darn! You wea
 silph-co-rocket11 35 0.65 0.65 ROCKET rocket.png {ROCKET: Cough... cough...}{} 97-97:41
 silph-co-rocket12 50 0.95 0.55 SCIENTIST scientist.png {SCIENTIST: Dang! Blast it!}{} 82-82:37|110-110:37|110-110:37|82-82:37
 silph-co-rocket13 {OVERSWITCH} 35 0.55 0.95 JUGGLER juggler.png {JUGGLER: Oh goodness!}{} 20-20:36|64-64:36|58-58:36|42-42:36|82-82:36
+silph-co-rocket14 35 0.65 0.65 ROCKET rocket.png {ROCKET: Flame out!}{} 67-67:39|67-67:39
+silph-co-rocket15 35 0.65 0.65 ROCKET rocket.png {ROCKET: You traitor!}{} 42-42:38|42-42:38|42-42:38
+silph-co-rocket16 50 0.95 0.55 SCIENTIST scientist.png {SCIENTIST: Shoot!}{} 101-101:36|110-110:36|82-82:36|82-82:36|110-110:36
 END
 TELEPORT
 10 18 saffron-city 27 29
