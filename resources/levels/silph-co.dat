@@ -404,6 +404,66 @@ silph-co-man6 guy 18 129 UP
 INTERACTIONS
 MENU:ALERT:They must have targeted SILPH for our POK{e-accent}MON products.|FACE:UP
 END
+silph-co-rocket17 rocket 20 141 LEFT
+FORCE_INTERACTION
+-1 0
+-2 0
+-3 0
+END
+INTERACTIONS
+!:silph-co-rocket17|MOVE_TO_PLAYER|MENU:ALERT:I am one of the 4 ROCKET BROTHERS!|BATTLE:silph-co-rocket17|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Doesn't matter. My brothers will repay the favor!
+END
+silph-co-rocket18 rocket 13 140 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+END
+INTERACTIONS
+!:silph-co-rocket18|MOVE_TO_PLAYER|MENU:ALERT:Oh ho! I smell a little rat!|BATTLE:silph-co-rocket18|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:You won't find my BOSS by just scurrying around!
+END
+silph-co-rocket19 rocket 19 153 RIGHT
+FORCE_INTERACTION
+1 0
+2 0
+3 0
+4 0
+END
+INTERACTIONS
+!:silph-co-rocket19|MOVE_TO_PLAYER|MENU:ALERT:A child intruder? That must be you!|BATTLE:silph-co-rocket19|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Go on home before my BOSS gets ticked off!
+END
+silph-co-item10 orb 24 150
+INTERACTIONS
+GIVE_ITEM:TM03|DEACTIVATE:silph-co-item10
+END
+silph-co-item11 orb 1 148
+INTERACTIONS
+GIVE_ITEM:CALCIUM|DEACTIVATE:silph-co-item11
+END
+silph-co-rocket20 doctor 2 152 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+0 3
+END
+INTERACTIONS
+!:silph-co-rocket20|MOVE_TO_PLAYER|MENU:ALERT:Heheh!|MENU:ALERT:You mistook me for a SILPH worker?|BATTLE:silph-co-rocket20|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Despite your age, you are a skilled trainer!
+END
+silph-co-man7 guy 7 149
+INTERACTIONS
+MENU:ALERT:It would be bad if TEAM ROCKET took over SILPH or our POK{e-accent}MON!
+END
+silph-co-woman4 girl4 10 147
+INTERACTIONS
+MENU:ALERT:You! It's really dangerous here! You came to save me? You can't!
+END
+silph-co-man8 guy 13 152 UP
+INTERACTIONS
+MENU:ALERT:TEAM ROCKET was after the MASTER BALL which will catch any POK{e-accent}MON!|FACE:UP
+END
 TRAINERS
 silph-co-rocket1 35 0.65 0.65 ROCKET rocket.png {ROCKET: Boom!}{} 24-24:41
 silph-co-rocket2 35 0.65 0.65 ROCKET rocket.png {ROCKET: I goofed!}{} 42-42:36|42-42:36|42-42:36|20-20:36|42-42:36
@@ -421,6 +481,10 @@ silph-co-rocket13 {OVERSWITCH} 35 0.55 0.95 JUGGLER juggler.png {JUGGLER: Oh goo
 silph-co-rocket14 35 0.65 0.65 ROCKET rocket.png {ROCKET: Flame out!}{} 67-67:39|67-67:39
 silph-co-rocket15 35 0.65 0.65 ROCKET rocket.png {ROCKET: You traitor!}{} 42-42:38|42-42:38|42-42:38
 silph-co-rocket16 50 0.95 0.55 SCIENTIST scientist.png {SCIENTIST: Shoot!}{} 101-101:36|110-110:36|82-82:36|82-82:36|110-110:36
+silph-co-rocket17 35 0.65 0.65 ROCKET rocket.png {ROCKET: Aack! Brothers, I lost!}{} 105-105:39|105-105:39
+silph-co-rocket18 35 0.65 0.65 ROCKET rocket.png {ROCKET: Lights out!}{} 20-20:37|24-24:37|110-110:37|42-42:37
+silph-co-rocket19 35 0.65 0.65 ROCKET rocket.png {ROCKET: Fine! I lost!}{} 28-28:39|28-28:39
+silph-co-rocket20 50 0.95 0.55 SCIENTIST scientist.png {SCIENTIST: I'm done!}{} 101-101:39|89-89:39
 END
 TELEPORT
 10 18 saffron-city 27 29
