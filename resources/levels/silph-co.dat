@@ -464,6 +464,81 @@ silph-co-man8 guy 13 152 UP
 INTERACTIONS
 MENU:ALERT:TEAM ROCKET was after the MASTER BALL which will catch any POK{e-accent}MON!|FACE:UP
 END
+silph-co-rocket21 rocket 19 164 LEFT
+FORCE_INTERACTION
+-1 0
+-2 0
+-3 0
+-4 0
+END
+INTERACTIONS
+!:silph-co-rocket21|MOVE_TO_PLAYER|MENU:ALERT:That's as far as you'll go!|BATTLE:silph-co-rocket21|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:If you don't turn back, I'll call for backup!
+END
+silph-co-rocket22 rocket 12 177 RIGHT
+FORCE_INTERACTION
+1 0
+2 0
+3 0
+4 0
+END
+INTERACTIONS
+!:silph-co-rocket22|MOVE_TO_PLAYER|MENU:ALERT:I am one of the 4 ROCKET BROTHERS!|BATTLE:silph-co-rocket22|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I'll leave you up to my brothers!
+END
+silph-co-rocket23 doctor 10 164 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+0 3
+END
+INTERACTIONS
+!:silph-co-rocket23|MOVE_TO_PLAYER|MENU:ALERT:You're causing us problems!|BATTLE:silph-co-rocket23|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:So, what do you think of SILPH BUILDING's maze?
+END
+silph-co-man9 guy 4 164
+INTERACTIONS
+MENU:ALERT:I wonder if SILPH is finished...
+END
+silph-co-rocket24 rocket 13 201 UP
+FORCE_INTERACTION
+0 -1
+0 -2
+0 -3
+0 -4
+END
+INTERACTIONS
+!:silph-co-rocket24|MOVE_TO_PLAYER|MENU:ALERT:I am one of the 4 ROCKET BROTHERS!|BATTLE:silph-co-rocket24|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:My brothers will avenge me!
+END
+silph-co-woman5 woman 3 199
+INTERACTIONS
+MENU:ALERT:You look tired! You should take a quick nap!|FULL_HEAL|MENU:ALERT:Don't give up!
+END
+silph-co-item12 blank 2 200 INCORPOREAL
+INTERACTIONS
+GIVE_ITEM:MAX POTION|DEACTIVATE:silph-co-item12
+END
+silph-co-rocket25 rocket 2 189 UP
+FORCE_INTERACTION
+0 -1
+0 -2
+0 -3
+0 -4
+END
+INTERACTIONS
+!:silph-co-rocket25|MOVE_TO_PLAYER|MENU:ALERT:Your POK{e-accent}MON seem to adore you, kid!|BATTLE:silph-co-rocket25|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:If I had started as a trainer at your age...
+END
+silph-co-rocket26 doctor 21 198 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+END
+INTERACTIONS
+!:silph-co-rocket26|MOVE_TO_PLAYER|MENU:ALERT:Your POK{e-accent}MON have weak points! I can nail them!|BATTLE:silph-co-rocket26|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Exploiting weak spots does work! Think about element types!
+END
 TRAINERS
 silph-co-rocket1 35 0.65 0.65 ROCKET rocket.png {ROCKET: Boom!}{} 24-24:41
 silph-co-rocket2 35 0.65 0.65 ROCKET rocket.png {ROCKET: I goofed!}{} 42-42:36|42-42:36|42-42:36|20-20:36|42-42:36
@@ -485,6 +560,12 @@ silph-co-rocket17 35 0.65 0.65 ROCKET rocket.png {ROCKET: Aack! Brothers, I lost
 silph-co-rocket18 35 0.65 0.65 ROCKET rocket.png {ROCKET: Lights out!}{} 20-20:37|24-24:37|110-110:37|42-42:37
 silph-co-rocket19 35 0.65 0.65 ROCKET rocket.png {ROCKET: Fine! I lost!}{} 28-28:39|28-28:39
 silph-co-rocket20 50 0.95 0.55 SCIENTIST scientist.png {SCIENTIST: I'm done!}{} 101-101:39|89-89:39
+silph-co-rocket21 35 0.65 0.65 ROCKET rocket.png {ROCKET: Not enough grit!}{} 20-20:37|42-42:37|42-42:37|20-20:37
+silph-co-rocket22 35 0.65 0.65 ROCKET rocket.png {ROCKET: Whoo! Oh brothers!}{} 110-110:38|42-42:38|110-110:38
+silph-co-rocket23 50 0.95 0.55 SCIENTIST scientist.png {SCIENTIST: Huh? I lost?}{} 89-89:39|101-101:39
+silph-co-rocket24 35 0.65 0.65 ROCKET rocket.png {ROCKET: Warg! Brothers, I lost!}{} 42-42:38|97-97:38|97-97:38
+silph-co-rocket25 35 0.65 0.65 ROCKET rocket.png {ROCKET: Ghaaah!}{} 97-97:38|89-89:38|67-67:38
+silph-co-rocket26 50 0.95 0.55 SCIENTIST scientist.png {SCIENTIST: You hammered me!}{} 101-101:38|110-110:38|82-82:38
 END
 TELEPORT
 10 18 saffron-city 27 29
