@@ -539,6 +539,54 @@ INTERACTIONS
 !:silph-co-rocket26|MOVE_TO_PLAYER|MENU:ALERT:Your POK{e-accent}MON have weak points! I can nail them!|BATTLE:silph-co-rocket26|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Exploiting weak spots does work! Think about element types!
 END
+silph-co-rocket27 doctor 10 210 LEFT
+FORCE_INTERACTION
+-1 0
+-2 0
+-3 0
+END
+INTERACTIONS
+!:silph-co-rocket27|MOVE_TO_PLAYER|MENU:ALERT:Enough of your silly games!|BATTLE:silph-co-rocket27|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Are you satisfied with beating me? Then go on home!
+END
+silph-co-rocket28 rocket 1 217 RIGHT
+FORCE_INTERACTION
+1 0
+2 0
+3 0
+4 0
+END
+INTERACTIONS
+!:silph-co-rocket28|MOVE_TO_PLAYER|MENU:ALERT:Welcome to the 10F! So good of you to join me!|BATTLE:silph-co-rocket28|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Nice try, but the boardroom is up one more floor!
+END
+silph-co-item13 orb 5 219
+INTERACTIONS
+GIVE_ITEM:CARBOS|DEACTIVATE:silph-co-item13
+END
+silph-co-item14 orb 2 220
+INTERACTIONS
+GIVE_ITEM:TM26|DEACTIVATE:silph-co-item14
+END
+silph-co-item15 orb 4 222
+INTERACTIONS
+GIVE_ITEM:RARE CANDY|DEACTIVATE:silph-co-item15
+END
+silph-co-woman6 girl4 9 222 WANDER
+INTERACTIONS
+MENU:ALERT:Waaaaa!|MENU:ALERT:I'm scared!
+END
+silph-co-rocket29 rocket 15 240 UP
+FORCE_INTERACTION
+0 -1
+0 -2
+0 -3
+0 -4
+END
+INTERACTIONS
+!:silph-co-rocket29|MOVE_TO_PLAYER|MENU:ALERT:Halt! Do you have an appointment with my BOSS?|BATTLE:silph-co-rocket29|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Watch your step, my BOSS likes his POK{e-accent}MON tough!
+END
 TRAINERS
 silph-co-rocket1 35 0.65 0.65 ROCKET rocket.png {ROCKET: Boom!}{} 24-24:41
 silph-co-rocket2 35 0.65 0.65 ROCKET rocket.png {ROCKET: I goofed!}{} 42-42:36|42-42:36|42-42:36|20-20:36|42-42:36
@@ -566,6 +614,9 @@ silph-co-rocket23 50 0.95 0.55 SCIENTIST scientist.png {SCIENTIST: Huh? I lost?}
 silph-co-rocket24 35 0.65 0.65 ROCKET rocket.png {ROCKET: Warg! Brothers, I lost!}{} 42-42:38|97-97:38|97-97:38
 silph-co-rocket25 35 0.65 0.65 ROCKET rocket.png {ROCKET: Ghaaah!}{} 97-97:38|89-89:38|67-67:38
 silph-co-rocket26 50 0.95 0.55 SCIENTIST scientist.png {SCIENTIST: You hammered me!}{} 101-101:38|110-110:38|82-82:38
+silph-co-rocket27 50 0.95 0.55 SCIENTIST scientist.png {SCIENTIST: No continues left!}{} 82-82:39|110-110:39
+silph-co-rocket28 35 0.65 0.65 ROCKET rocket.png {ROCKET: I'm stunned!}{} 67-67:41
+silph-co-rocket29 35 0.65 0.65 ROCKET rocket.png {ROCKET: Gah! Demolished!}{} 20-20:36|20-20:36|42-42:36|42-42:36|24-24:36
 END
 TELEPORT
 10 18 saffron-city 27 29
