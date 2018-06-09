@@ -598,6 +598,29 @@ INTERACTIONS
 !:silph-co-rocket30|MOVE_TO_PLAYER|MENU:ALERT:Stop right there! Don't you move!|BATTLE:silph-co-rocket30|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:So, you want to see my BOSS?
 END
+silph-co-rival rival 3 146 UP
+INTERACTIONS
+MENU:ALERT:ERROR
+END
+silph-co-rival-script1 blank 3 143
+FORCE_INTERACTION
+0 -1
+END
+INTERACTIONS
+MENU:ALERT:{RIVAL_NAME}: What kept you {PLAYER_NAME}?|MOVE:silph-co-rival:0,-1|MOVE:silph-co-rival:0,-1|MOVE:silph-co-rival:0,-1|MENU:ALERT:{RIVAL_NAME}: Hahaha! I thought you'd turn up if I waited here!|MENU:ALERT:I guess TEAM ROCKET slowed you down! Not that I care!|MENU:ALERT:I saw you in SAFFRON, so I decided to see if you got better!|GET:RIVALVALUE|{BATTLE:silph-co-rival0}{BATTLE:silph-co-rival1}{BATTLE:silph-co-rival2}|{NO_ADVANCE}{}|MENU:ALERT:Well, {PLAYER_NAME}!|MENU:ALERT:I'm moving on up and ahead!|MENU:ALERT:By checking my POK{e-accent}DEX, I'm starting to see what's strong and how they evolve!|MENU:ALERT:I'm going to the POK{e-accent}MON LEAGUE to boot out the ELITE FOUR!|MENU:ALERT:I'll become the world's most powerful trainer!|MENU:ALERT:{PLAYER_NAME}, well, good luck to you! Don't sweat it! {NEWLINE} Smell ya!|MOVE:silph-co-rival:-1,0|MOVE:silph-co-rival:0,-1|MOVE:silph-co-rival:0,-1|MOVE:silph-co-rival:1,0|MOVE:silph-co-rival:1,0|MOVE:silph-co-rival:1,0|MOVE:silph-co-rival:0,1|DEACTIVATE:silph-co-rival-script2|DEACTIVATE:silph-co-rival-script1|DEACTIVATE:silph-co-rival
+END
+silph-co-rival-script2 blank 3 143
+FORCE_INTERACTION
+0 -2
+END
+INTERACTIONS
+MENU:ALERT:{RIVAL_NAME}: What kept you {PLAYER_NAME}?|MOVE:silph-co-rival:0,-1|MOVE:silph-co-rival:0,-1|MOVE:silph-co-rival:0,-1|MOVE:silph-co-rival:0,-1||MENU:ALERT:{RIVAL_NAME}: Hahaha! I thought you'd turn up if I waited here!|MENU:ALERT:I guess TEAM ROCKET slowed you down! Not that I care!|MENU:ALERT:I saw you in SAFFRON, so I decided to see if you got better!|GET:RIVALVALUE|{BATTLE:silph-co-rival0}{BATTLE:silph-co-rival1}{BATTLE:silph-co-rival2}|{NO_ADVANCE}{}|MENU:ALERT:Well, {PLAYER_NAME}!|MENU:ALERT:I'm moving on up and ahead!|MENU:ALERT:By checking my POK{e-accent}DEX, I'm starting to see what's strong and how they evolve!|MENU:ALERT:I'm going to the POK{e-accent}MON LEAGUE to boot out the ELITE FOUR!|MENU:ALERT:I'll become the world's most powerful trainer!|MENU:ALERT:{PLAYER_NAME}, well, good luck to you! Don't sweat it! {NEWLINE} Smell ya!|MOVE:silph-co-rival:1,0|MOVE:silph-co-rival:1,0|DEACTIVATE:silph-co-rival-script2|DEACTIVATE:silph-co-rival-script1|DEACTIVATE:silph-co-rival
+END
+silph-co-man10 guy 1 144
+INTERACTIONS
+MENU:ALERT:Oh! Hi! You're not a ROCKET! You came to save us?|MENU:ALERT:Why, thank you!|MENU:ALERT:I want you to have this POK{e-accent}MON for saving us.|GIVE_MON:15:131-131|MENU:ALERT:It's LAPRAS. It's very intelligent.|MENU:ALERT:We kept in in our lab, but it will be much better off with you!|MENU:ALERT:I think you will be a good trainer for LAPRAS!|MENU:ALERT:It's a good swimmer. It'll give you a lift!
+MENU:ALERT:TEAM ROCKET's BOSS went to the boardroom! Is our PRESIDENT OK?
+END
 TRAINERS
 silph-co-rocket1 35 0.65 0.65 ROCKET rocket.png {ROCKET: Boom!}{} 24-24:41
 silph-co-rocket2 35 0.65 0.65 ROCKET rocket.png {ROCKET: I goofed!}{} 42-42:36|42-42:36|42-42:36|20-20:36|42-42:36
@@ -629,6 +652,9 @@ silph-co-rocket27 50 0.95 0.55 SCIENTIST scientist.png {SCIENTIST: No continues 
 silph-co-rocket28 35 0.65 0.65 ROCKET rocket.png {ROCKET: I'm stunned!}{} 67-67:41
 silph-co-rocket29 35 0.65 0.65 ROCKET rocket.png {ROCKET: Gah! Demolished!}{} 20-20:36|20-20:36|42-42:36|42-42:36|24-24:36
 silph-co-rocket30 35 0.65 0.65 ROCKET rocket.png {ROCKET: Don't... Please!}{} 105-105:38|97-97:38|105-105:38
+silph-co-rival0 65 0.75 0.75 {RIVAL_NAME} rival2.png {{RIVAL_NAME}: Oh ho! {NEWLINE} So, you are ready for BOSS ROCKET!}{{RIVAL_NAME}: Yeah! Am I great or what?} 58-58:45:BITE,EMBER,TAKE DOWN,AGILITY|45-45:45|26-26:45:THUNDERBOLT,SWIFT,BODY SLAM,SUBMISSION|22-28:45:SLASH,EARTHQUAKE,DRILL PECK,SWIFT|9-9:45:BUBBLEBEAM,BODY SLAM,ICE BEAM,BITE
+silph-co-rival1 65 0.75 0.75 {RIVAL_NAME} rival2.png {{RIVAL_NAME}: What? You stinker! {NEWLINE} I took it easy on you, too!}{{RIVAL_NAME}: Yeah! Am I great or what?} 18-18:45:WING ATTACK,SKY ATTACK,HYPER BEAM,SWIFT|64-64:45:PSYCHIC,RECOVER,PSYBEAM,REFLECT|99-67:45:CRABHAMMER,SUBMISSION,EARTHQUAKE,ICE BEAM|76-76:45:EARTHQUAKE,EXPLOSION,ROCK SLIDE,BODY SLAM|3-3:45:BODY SLAM,MEGA DRAIN,RAZOR LEAF,SLEEP POWDER
+silph-co-rival2 65 0.75 0.75 {RIVAL_NAME} rival2.png {{RIVAL_NAME}: What? You stinker! {NEWLINE} I took it easy on you, too!}{{RIVAL_NAME}: Yeah! Am I great or what?} 70-70:45:RAZOR LEAF,TAKE DOWN,ACID,MEGA DRAIN|95-65:45:PSYCHIC,RECOVER,SLAM,ROCK SLIDE|82-82:45:SUPERSONIC,THUNDERBOLT,SWIFT,SONICBOOM|99-28:45:CRABHAMMER,SLASH,EARTHQUAKE,SWIFT|6-6:46:SLASH,FLAMETHROWER,SWORDS DANCE,BODY SLAM
 END
 TELEPORT
 10 18 saffron-city 27 29
