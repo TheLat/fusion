@@ -587,6 +587,17 @@ INTERACTIONS
 !:silph-co-rocket29|MOVE_TO_PLAYER|MENU:ALERT:Halt! Do you have an appointment with my BOSS?|BATTLE:silph-co-rocket29|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Watch your step, my BOSS likes his POK{e-accent}MON tough!
 END
+silph-co-rocket30 rocket 3 246 UP
+FORCE_INTERACTION
+0 -1
+0 -2
+0 -3
+0 -4
+END
+INTERACTIONS
+!:silph-co-rocket30|MOVE_TO_PLAYER|MENU:ALERT:Stop right there! Don't you move!|BATTLE:silph-co-rocket30|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:So, you want to see my BOSS?
+END
 TRAINERS
 silph-co-rocket1 35 0.65 0.65 ROCKET rocket.png {ROCKET: Boom!}{} 24-24:41
 silph-co-rocket2 35 0.65 0.65 ROCKET rocket.png {ROCKET: I goofed!}{} 42-42:36|42-42:36|42-42:36|20-20:36|42-42:36
@@ -617,6 +628,7 @@ silph-co-rocket26 50 0.95 0.55 SCIENTIST scientist.png {SCIENTIST: You hammered 
 silph-co-rocket27 50 0.95 0.55 SCIENTIST scientist.png {SCIENTIST: No continues left!}{} 82-82:39|110-110:39
 silph-co-rocket28 35 0.65 0.65 ROCKET rocket.png {ROCKET: I'm stunned!}{} 67-67:41
 silph-co-rocket29 35 0.65 0.65 ROCKET rocket.png {ROCKET: Gah! Demolished!}{} 20-20:36|20-20:36|42-42:36|42-42:36|24-24:36
+silph-co-rocket30 35 0.65 0.65 ROCKET rocket.png {ROCKET: Don't... Please!}{} 105-105:38|97-97:38|105-105:38
 END
 TELEPORT
 10 18 saffron-city 27 29
