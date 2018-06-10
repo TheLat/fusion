@@ -73,6 +73,30 @@ saffron-city-rocket-house4 rocket 34 29
 INTERACTIONS
 MENU:ALERT:Beat it, kid!|MENU:ALERT:There's a lot of dangerous lab equipment in here.
 END
+saffron-city-folk1 punk 27 15 INACTIVE
+INTERACTIONS
+MENU:ALERT:I saw ROCKET BOSS escaping SILPH's building.
+END
+saffron-city-folk2 doctor 18 21 INACTIVE WANDER
+INTERACTIONS
+MENU:ALERT:You beat TEAM ROCKET all alone? That's amazing!
+END
+saffron-city-folk3 hat 39 19 INACTIVE DOWN
+INTERACTIONS
+MENU:ALERT:I flew here on my PIDGEOT when I read about SILPH.|MENU:ALERT:It's already over? I missed the media action.
+END
+saffron-city-folk4 bird 40 19 INACTIVE DOWN
+INTERACTIONS
+MENU:ALERT:PIDGEOT: Bi bibii!
+END
+saffron-city-folk5 guy 32 30 INACTIVE WANDER
+INTERACTIONS
+MENU:ALERT:Yeah! TEAM ROCKET is gone!|MENU:ALERT:It's safe to go out again!
+END
+saffron-city-folk6 girl4 24 37 INACTIVE
+INTERACTIONS
+MENU:ALERT:People should be flocking back to SAFFRON now.
+END
 TELEPORT
 6 25 route7-checkpoint 6 4
 29 4 route5-checkpoint 3 6
