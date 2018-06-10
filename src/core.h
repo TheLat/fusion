@@ -2612,6 +2612,11 @@ public:
 		double high = damage(attacker, defender, move, crit, mul, non_zero, false, true, true);
 		double pow = low + chance* (high - low);
 		pow = pow * 0.85;
+		for (unsigned i = 0; i < moves[move].target.size(); ++i) {
+			if (moves[move].target[i] == "KO") {
+				pow = defender.curr_hp;
+			}
+		}
 		if (moves[move].pow.find(string("x2-5")) != -1) {
 			if (!in_status(defender, string("RAGE")))
 				pow *= 3.0;
@@ -2788,7 +2793,9 @@ public:
 						defendercopy = defender;
 						bool applied = false;
 						for (unsigned j = 0; j < moves[attacker.moves[i]].target.size(); ++j) {
-							applied = applied || apply_status(defendercopy, moves[attacker.moves[i]].target[j], true, true);
+							if (moves[attacker.moves[i]].target[j] != "KO") {
+								applied = applied || apply_status(defendercopy, moves[attacker.moves[i]].target[j], true, true);
+							}
 						}
 						for (unsigned j = 0; j < moves[attacker.moves[i]].special.size(); ++j) {
 							if (moves[attacker.moves[i]].special[j].find(string("STATUS_IMMUNITY")) != -1) {
