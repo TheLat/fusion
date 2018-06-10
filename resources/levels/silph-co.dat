@@ -621,6 +621,33 @@ INTERACTIONS
 MENU:ALERT:Oh! Hi! You're not a ROCKET! You came to save us?|MENU:ALERT:Why, thank you!|MENU:ALERT:I want you to have this POK{e-accent}MON for saving us.|GIVE_MON:15:131-131|MENU:ALERT:It's LAPRAS. It's very intelligent.|MENU:ALERT:We kept in in our lab, but it will be much better off with you!|MENU:ALERT:I think you will be a good trainer for LAPRAS!|MENU:ALERT:It's a good swimmer. It'll give you a lift!
 MENU:ALERT:TEAM ROCKET's BOSS went to the boardroom! Is our PRESIDENT OK?
 END
+silph-co-giovanni boss 6 240 DOWN
+INTERACTIONS
+MENU:ALERT:ERROR
+END
+silph-co-giovanni-script1 blank 6 242 DOWN
+FORCE_INTERACTION
+0 1
+END
+INTERACTIONS
+MENU:ALERT:Ah {PLAYER_NAME}! {NEWLINE} So, we meet again!|MENU:ALERT:The PRESIDENT and I are discussing a vital business proposition.|MENU:ALERT:Keep your nose out of grown-up matters...|MENU:ALERT:Or, experience a world of pain!|MOVE:silph-co-giovanni:0,1|MOVE:silph-co-giovanni:0,1|BATTLE:silph-co-giovanni|{NO_ADVANCE}{DISABLE_FORCE}|MENU:ALERT:Blast it all! You ruined our plans for SILPH!|MENU:ALERT:You have no idea what we're trying to stop!|MENU:ALERT:But, TEAM ROCKET will never fail!|MENU:ALERT:{PLAYER_NAME}! Never forget that all POK{e-accent}MON exist for TEAM ROCKET!|MENU:ALERT:I must go, but I shall return!|DEACTIVATE:viridian-city-gym-lock|DEACTIVATE:saffron-city-rocket-house1|DEACTIVATE:saffron-city-rocket-house2|DEACTIVATE:saffron-city-rocket-house3|DEACTIVATE:saffron-city-rocket-gym|DEACTIVATE:saffron-city-rocket-wander1|DEACTIVATE:saffron-city-rocket-wander2|DEACTIVATE:saffron-city-rocket-wander3|DEACTIVATE:saffron-city-rocket-wander4|DEACTIVATE:silph-co-rocket1|DEACTIVATE:silph-co-rocket2|DEACTIVATE:silph-co-rocket3|DEACTIVATE:silph-co-rocket4|DEACTIVATE:silph-co-rocket5|DEACTIVATE:silph-co-rocket6|DEACTIVATE:silph-co-rocket7|DEACTIVATE:silph-co-rocket8|DEACTIVATE:silph-co-rocket9|DEACTIVATE:silph-co-rocket10|DEACTIVATE:silph-co-rocket11|DEACTIVATE:silph-co-rocket12|DEACTIVATE:silph-co-rocket13|DEACTIVATE:silph-co-rocket14|DEACTIVATE:silph-co-rocket15|DEACTIVATE:silph-co-rocket16|DEACTIVATE:silph-co-rocket17|DEACTIVATE:silph-co-rocket18|DEACTIVATE:silph-co-rocket19|DEACTIVATE:silph-co-rocket20|DEACTIVATE:silph-co-rocket21|DEACTIVATE:silph-co-rocket22|DEACTIVATE:silph-co-rocket23|DEACTIVATE:silph-co-rocket24|DEACTIVATE:silph-co-rocket25|DEACTIVATE:silph-co-rocket26|DEACTIVATE:silph-co-rocket27|DEACTIVATE:silph-co-rocket28|DEACTIVATE:silph-co-rocket29|DEACTIVATE:silph-co-rocket30|ADVANCE:silph-co-woman1|ADVANCE:silph-co-woman2|ADVANCE:silph-co-woman3|ADVANCE:silph-co-woman4|ADVANCE:silph-co-woman5|ADVANCE:silph-co-woman6|ADVANCE:silph-co-man1|ADVANCE:silph-co-man2|ADVANCE:silph-co-man3|ADVANCE:silph-co-man4|ADVANCE:silph-co-man5|ADVANCE:silph-co-man6|ADVANCE:silph-co-man7|ADVANCE:silph-co-man8|ADVANCE:silph-co-man9|ADVANCE:silph-co-man10|ADVANCE:saffron-center-couch|ADVANCE:saffron-center-hat|DEACTIVATE:silph-co-giovanni|DEACTIVATE:silph-co-giovanni-script1|DEACTIVATE:silph-co-giovanni-script2
+END
+silph-co-giovanni-script2 blank 7 242 DOWN
+FORCE_INTERACTION
+0 1
+END
+INTERACTIONS
+MENU:ALERT:Ah {PLAYER_NAME}! {NEWLINE} So, we meet again!|MENU:ALERT:The PRESIDENT and I are discussing a vital business proposition.|MENU:ALERT:Keep your nose out of grown-up matters...|MENU:ALERT:Or, experience a world of pain!|MOVE:silph-co-giovanni:0,1|MOVE:silph-co-giovanni:0,1|MOVE:silph-co-giovanni:0,1|SET_FACE:silph-co-giovanni:RIGHT|SET_FACE:PLAYER:LEFT|BATTLE:silph-co-giovanni|{NO_ADVANCE}{DISABLE_FORCE}|MENU:ALERT:Blast it all! You ruined our plans for SILPH!|MENU:ALERT:You have no idea what we're trying to stop!|MENU:ALERT:But, TEAM ROCKET will never fail!|MENU:ALERT:{PLAYER_NAME}! Never forget that all POK{e-accent}MON exist for TEAM ROCKET!|MENU:ALERT:I must go, but I shall return!|DEACTIVATE:viridian-city-gym-lock|DEACTIVATE:saffron-city-rocket-house1|DEACTIVATE:saffron-city-rocket-house2|DEACTIVATE:saffron-city-rocket-house3|DEACTIVATE:saffron-city-rocket-gym|DEACTIVATE:saffron-city-rocket-wander1|DEACTIVATE:saffron-city-rocket-wander2|DEACTIVATE:saffron-city-rocket-wander3|DEACTIVATE:saffron-city-rocket-wander4|DEACTIVATE:silph-co-rocket1|DEACTIVATE:silph-co-rocket2|DEACTIVATE:silph-co-rocket3|DEACTIVATE:silph-co-rocket4|DEACTIVATE:silph-co-rocket5|DEACTIVATE:silph-co-rocket6|DEACTIVATE:silph-co-rocket7|DEACTIVATE:silph-co-rocket8|DEACTIVATE:silph-co-rocket9|DEACTIVATE:silph-co-rocket10|DEACTIVATE:silph-co-rocket11|DEACTIVATE:silph-co-rocket12|DEACTIVATE:silph-co-rocket13|DEACTIVATE:silph-co-rocket14|DEACTIVATE:silph-co-rocket15|DEACTIVATE:silph-co-rocket16|DEACTIVATE:silph-co-rocket17|DEACTIVATE:silph-co-rocket18|DEACTIVATE:silph-co-rocket19|DEACTIVATE:silph-co-rocket20|DEACTIVATE:silph-co-rocket21|DEACTIVATE:silph-co-rocket22|DEACTIVATE:silph-co-rocket23|DEACTIVATE:silph-co-rocket24|DEACTIVATE:silph-co-rocket25|DEACTIVATE:silph-co-rocket26|DEACTIVATE:silph-co-rocket27|DEACTIVATE:silph-co-rocket28|DEACTIVATE:silph-co-rocket29|DEACTIVATE:silph-co-rocket30|ADVANCE:silph-co-woman1|ADVANCE:silph-co-woman2|ADVANCE:silph-co-woman3|ADVANCE:silph-co-woman4|ADVANCE:silph-co-woman5|ADVANCE:silph-co-woman6|ADVANCE:silph-co-man1|ADVANCE:silph-co-man2|ADVANCE:silph-co-man3|ADVANCE:silph-co-man4|ADVANCE:silph-co-man5|ADVANCE:silph-co-man6|ADVANCE:silph-co-man7|ADVANCE:silph-co-man8|ADVANCE:silph-co-man9|ADVANCE:silph-co-man10|ADVANCE:saffron-center-couch|ADVANCE:saffron-center-hat|DEACTIVATE:silph-co-giovanni|DEACTIVATE:silph-co-giovanni-script1|DEACTIVATE:silph-co-giovanni-script2
+END
+silph-co-president bald 7 236 DOWN
+INTERACTIONS
+MENU:ALERT:PRESIDENT: Thank you for saving SILPH!|MENU:ALERT:I will never forget you saved us in our moment of peril!|MENU:ALERT:I have to thank you in some way!|MENU:ALERT:Because I am rich, I can give you anything!|MENU:ALERT:Here, maybe this will do!|GIVE_ITEM:MASTER BALL|MENU:ALERT:GIOVANNI desperately wanted that. For some reason, he only seemed to care about getting one.
+MENU:ALERT:You can't buy that anywhere!|MENU:ALERT:It's out secret prototype MASTER BALL!|MENU:ALERT:It will catch any POK{e-accent}MON without fail!|MENU:ALERT:You should be quiet about using it, though.
+END
+silph-co-woman7 woman 10 236 DOWN
+INTERACTIONS
+MENU:ALERT:SECRETARY: Thank you for saving all of us!|MENU:ALERT:We admire your courage.
+END
 TRAINERS
 silph-co-rocket1 35 0.65 0.65 ROCKET rocket.png {ROCKET: Boom!}{} 24-24:41
 silph-co-rocket2 35 0.65 0.65 ROCKET rocket.png {ROCKET: I goofed!}{} 42-42:36|42-42:36|42-42:36|20-20:36|42-42:36
@@ -655,6 +682,7 @@ silph-co-rocket30 35 0.65 0.65 ROCKET rocket.png {ROCKET: Don't... Please!}{} 10
 silph-co-rival0 65 0.75 0.75 {RIVAL_NAME} rival2.png {{RIVAL_NAME}: Oh ho! {NEWLINE} So, you are ready for BOSS ROCKET!}{{RIVAL_NAME}: Yeah! Am I great or what?} 58-58:45:BITE,EMBER,TAKE DOWN,AGILITY|45-45:45|26-26:45:THUNDERBOLT,SWIFT,BODY SLAM,SUBMISSION|22-28:45:SLASH,EARTHQUAKE,DRILL PECK,SWIFT|9-9:45:BUBBLEBEAM,BODY SLAM,ICE BEAM,BITE
 silph-co-rival1 65 0.75 0.75 {RIVAL_NAME} rival2.png {{RIVAL_NAME}: What? You stinker! {NEWLINE} I took it easy on you, too!}{{RIVAL_NAME}: Yeah! Am I great or what?} 18-18:45:WING ATTACK,SKY ATTACK,HYPER BEAM,SWIFT|64-64:45:PSYCHIC,RECOVER,PSYBEAM,REFLECT|99-67:45:CRABHAMMER,SUBMISSION,EARTHQUAKE,ICE BEAM|76-76:45:EARTHQUAKE,EXPLOSION,ROCK SLIDE,BODY SLAM|3-3:45:BODY SLAM,MEGA DRAIN,RAZOR LEAF,SLEEP POWDER
 silph-co-rival2 65 0.75 0.75 {RIVAL_NAME} rival2.png {{RIVAL_NAME}: What? You stinker! {NEWLINE} I took it easy on you, too!}{{RIVAL_NAME}: Yeah! Am I great or what?} 70-70:45:RAZOR LEAF,TAKE DOWN,ACID,MEGA DRAIN|95-65:45:PSYCHIC,RECOVER,SLAM,ROCK SLIDE|82-82:45:SUPERSONIC,THUNDERBOLT,SWIFT,SONICBOOM|99-28:45:CRABHAMMER,SLASH,EARTHQUAKE,SWIFT|6-6:46:SLASH,FLAMETHROWER,SWORDS DANCE,BODY SLAM
+silph-co-giovanni 99 1.0 1.0 GIOVANNI giovanni.png {GIOVANNI: Arrgh!! I lost again!?}{} 112-112:46:BODY SLAM,HORN DRILL,ROCK SLIDE,EARTHQUAKE|115-115:44:RAGE,BODY SLAM,DIZZY PUNCH,BITE|68-28:44:SLASH,SUBMISSION,FOCUS ENERGY,EARTHQUAKE|31-31:46:BODY SLAM,EARTHQUAKE,ICE BEAM,THUNDERBOLT|51-91:47:EARTHQUAKE,CLAMP,SAND ATTACK,BLIZZARD
 END
 TELEPORT
 10 18 saffron-city 27 29
