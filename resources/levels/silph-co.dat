@@ -341,7 +341,7 @@ MENU:ALERT:TEAM ROCKET took off! You're our hero! Thank you!
 END
 silph-co-clipboard1 clipboard 22 105
 INTERACTIONS
-MENU:ALERT:It's a POK{e-accent}MON REPORT!|MENU:ALERT:POK{e-accent}MON LAP created PORYGON, the first virtual reality POK{e-accent}MON.
+MENU:ALERT:It's a POK{e-accent}MON REPORT!|MENU:ALERT:POK{e-accent}MON LAB created PORYGON, the first virtual reality POK{e-accent}MON.
 END
 silph-co-clipboard2 clipboard 25 103
 INTERACTIONS
@@ -616,19 +616,19 @@ silph-co-rival rival 3 146 UP
 INTERACTIONS
 MENU:ALERT:ERROR
 END
-silph-co-rival-script1 blank 3 143
+silph-co-rival-script1 blank 2 142 NOLOOK
 FORCE_INTERACTION
-0 -1
+1 0
 END
 INTERACTIONS
-MENU:ALERT:{RIVAL_NAME}: What kept you {PLAYER_NAME}?|MOVE:silph-co-rival:0,-1|MOVE:silph-co-rival:0,-1|MOVE:silph-co-rival:0,-1|MENU:ALERT:{RIVAL_NAME}: Hahaha! I thought you'd turn up if I waited here!|MENU:ALERT:I guess TEAM ROCKET slowed you down! Not that I care!|MENU:ALERT:I saw you in SAFFRON, so I decided to see if you got better!|GET:RIVALVALUE|{BATTLE:silph-co-rival0}{BATTLE:silph-co-rival1}{BATTLE:silph-co-rival2}|{NO_ADVANCE}{}|MENU:ALERT:Well, {PLAYER_NAME}!|MENU:ALERT:I'm moving on up and ahead!|MENU:ALERT:By checking my POK{e-accent}DEX, I'm starting to see what's strong and how they evolve!|MENU:ALERT:I'm going to the POK{e-accent}MON LEAGUE to boot out the ELITE FOUR!|MENU:ALERT:I'll become the world's most powerful trainer!|MENU:ALERT:{PLAYER_NAME}, well, good luck to you! Don't sweat it! {NEWLINE} Smell ya!|MOVE:silph-co-rival:-1,0|MOVE:silph-co-rival:0,-1|MOVE:silph-co-rival:0,-1|MOVE:silph-co-rival:1,0|MOVE:silph-co-rival:1,0|MOVE:silph-co-rival:1,0|MOVE:silph-co-rival:0,1|DEACTIVATE:silph-co-rival-script2|DEACTIVATE:silph-co-rival-script1|DEACTIVATE:silph-co-rival
+SET_FACE:PLAYER:DOWN|MENU:ALERT:{RIVAL_NAME}: What kept you {PLAYER_NAME}?|MOVE:silph-co-rival:0,-1|MOVE:silph-co-rival:0,-1|MOVE:silph-co-rival:0,-1|MENU:ALERT:{RIVAL_NAME}: Hahaha! I thought you'd turn up if I waited here!|MENU:ALERT:I guess TEAM ROCKET slowed you down! Not that I care!|MENU:ALERT:I saw you in SAFFRON, so I decided to see if you got better!|GET:RIVALVALUE|{BATTLE:silph-co-rival0}{BATTLE:silph-co-rival1}{BATTLE:silph-co-rival2}|{NO_ADVANCE}{}|MENU:ALERT:Well, {PLAYER_NAME}!|MENU:ALERT:I'm moving on up and ahead!|MENU:ALERT:By checking my POK{e-accent}DEX, I'm starting to see what's strong and how they evolve!|MENU:ALERT:I'm going to the POK{e-accent}MON LEAGUE to boot out the ELITE FOUR!|MENU:ALERT:I'll become the world's most powerful trainer!|MENU:ALERT:{PLAYER_NAME}, well, good luck to you! Don't sweat it! {NEWLINE} Smell ya!|MOVE:silph-co-rival:-1,0|MOVE:silph-co-rival:0,-1|MOVE:silph-co-rival:0,-1|MOVE:silph-co-rival:1,0|MOVE:silph-co-rival:1,0|MOVE:silph-co-rival:1,0|MOVE:silph-co-rival:0,1|DEACTIVATE:silph-co-rival-script2|DEACTIVATE:silph-co-rival-script1|DEACTIVATE:silph-co-rival
 END
-silph-co-rival-script2 blank 3 143
+silph-co-rival-script2 blank 2 141 NOLOOK
 FORCE_INTERACTION
-0 -2
+1 0
 END
 INTERACTIONS
-MENU:ALERT:{RIVAL_NAME}: What kept you {PLAYER_NAME}?|MOVE:silph-co-rival:0,-1|MOVE:silph-co-rival:0,-1|MOVE:silph-co-rival:0,-1|MOVE:silph-co-rival:0,-1||MENU:ALERT:{RIVAL_NAME}: Hahaha! I thought you'd turn up if I waited here!|MENU:ALERT:I guess TEAM ROCKET slowed you down! Not that I care!|MENU:ALERT:I saw you in SAFFRON, so I decided to see if you got better!|GET:RIVALVALUE|{BATTLE:silph-co-rival0}{BATTLE:silph-co-rival1}{BATTLE:silph-co-rival2}|{NO_ADVANCE}{}|MENU:ALERT:Well, {PLAYER_NAME}!|MENU:ALERT:I'm moving on up and ahead!|MENU:ALERT:By checking my POK{e-accent}DEX, I'm starting to see what's strong and how they evolve!|MENU:ALERT:I'm going to the POK{e-accent}MON LEAGUE to boot out the ELITE FOUR!|MENU:ALERT:I'll become the world's most powerful trainer!|MENU:ALERT:{PLAYER_NAME}, well, good luck to you! Don't sweat it! {NEWLINE} Smell ya!|MOVE:silph-co-rival:1,0|MOVE:silph-co-rival:1,0|DEACTIVATE:silph-co-rival-script2|DEACTIVATE:silph-co-rival-script1|DEACTIVATE:silph-co-rival
+SET_FACE:PLAYER:DOWN|MENU:ALERT:{RIVAL_NAME}: What kept you {PLAYER_NAME}?|MOVE:silph-co-rival:0,-1|MOVE:silph-co-rival:0,-1|MOVE:silph-co-rival:0,-1|MOVE:silph-co-rival:0,-1||MENU:ALERT:{RIVAL_NAME}: Hahaha! I thought you'd turn up if I waited here!|MENU:ALERT:I guess TEAM ROCKET slowed you down! Not that I care!|MENU:ALERT:I saw you in SAFFRON, so I decided to see if you got better!|GET:RIVALVALUE|{BATTLE:silph-co-rival0}{BATTLE:silph-co-rival1}{BATTLE:silph-co-rival2}|{NO_ADVANCE}{}|MENU:ALERT:Well, {PLAYER_NAME}!|MENU:ALERT:I'm moving on up and ahead!|MENU:ALERT:By checking my POK{e-accent}DEX, I'm starting to see what's strong and how they evolve!|MENU:ALERT:I'm going to the POK{e-accent}MON LEAGUE to boot out the ELITE FOUR!|MENU:ALERT:I'll become the world's most powerful trainer!|MENU:ALERT:{PLAYER_NAME}, well, good luck to you! Don't sweat it! {NEWLINE} Smell ya!|MOVE:silph-co-rival:1,0|MOVE:silph-co-rival:1,0|DEACTIVATE:silph-co-rival-script2|DEACTIVATE:silph-co-rival-script1|DEACTIVATE:silph-co-rival
 END
 silph-co-man10 guy 1 144
 INTERACTIONS
@@ -672,38 +672,38 @@ MENU:ALERT:Saved at last! Thank you!
 END
 TRAINERS
 silph-co-rocket1 35 0.65 0.65 ROCKET rocket.png {ROCKET: Boom!}{} 24-24:41
-silph-co-rocket2 35 0.65 0.65 ROCKET rocket.png {ROCKET: I goofed!}{} 42-42:36|42-42:36|42-42:36|20-20:36|42-42:36
-silph-co-rocket3 50 0.95 0.55 SCIENTIST scientist.png {SCIENTIST: How did you know I was a ROCKET?}{} 88-88:37|110-110:37|110-110:37|110-110:37
-silph-co-rocket4 35 0.65 0.65 ROCKET rocket.png {ROCKET: Tough!}{} 105-105:39|42-42:39
-silph-co-rocket5 50 0.95 0.55 SCIENTIST scientist.png {SCIENTIST: You're good.}{} 82-82:38|101-101:38|82-82:38
-silph-co-rocket6 35 0.65 0.65 ROCKET rocket.png {ROCKET: I give up!}{} 20-20:38|97-97:38|20-20:38
-silph-co-rocket7 50 0.95 0.55 SCIENTIST scientist.png {SCIENTIST: You really got me!}{} 101-101:39|110-110:39
-silph-co-rocket8 35 0.65 0.65 ROCKET rocket.png {ROCKET: Who are you?}{} 24-24:38|42-42:38|105-105:38
-silph-co-rocket9 35 0.65 0.65 ROCKET rocket.png {ROCKET: Arrgh!}{} 67-67:39|97-97:39
+silph-co-rocket2 35 0.65 0.65 ROCKET rocket.png {ROCKET: I goofed!}{} 20-42:36|42-20:36|42-42:36|20-20:36|42-42:36
+silph-co-rocket3 50 0.95 0.55 SCIENTIST scientist.png {SCIENTIST: How did you know I was a ROCKET?}{} 88-110:37|110-88:37|110-105:37|105-110:37
+silph-co-rocket4 35 0.65 0.65 ROCKET rocket.png {ROCKET: Tough!}{} 105-42:39|42-105:39
+silph-co-rocket5 50 0.95 0.55 SCIENTIST scientist.png {SCIENTIST: You're good.}{} 82-101:38|101-82:38|82-82:38
+silph-co-rocket6 35 0.65 0.65 ROCKET rocket.png {ROCKET: I give up!}{} 20-97:38|97-97:38|97-20:38
+silph-co-rocket7 50 0.95 0.55 SCIENTIST scientist.png {SCIENTIST: You really got me!}{} 101-110:39|110-101:39
+silph-co-rocket8 35 0.65 0.65 ROCKET rocket.png {ROCKET: Who are you?}{} 24-42:38|42-24:38|105-42:38
+silph-co-rocket9 35 0.65 0.65 ROCKET rocket.png {ROCKET: Arrgh!}{} 67-97:39|97-67:39
 silph-co-rocket10 50 0.95 0.55 SCIENTIST scientist.png {SCIENTIST: Darn! You weak POK{e-accent}MON!}{} 101-101:41
-silph-co-rocket11 35 0.65 0.65 ROCKET rocket.png {ROCKET: Cough... cough...}{} 97-97:41
-silph-co-rocket12 50 0.95 0.55 SCIENTIST scientist.png {SCIENTIST: Dang! Blast it!}{} 82-82:37|110-110:37|110-110:37|82-82:37
+silph-co-rocket11 35 0.65 0.65 ROCKET rocket.png {ROCKET: Cough... cough...}{} 97-97:41:DREAM EATER,HYPNOSIS,POISON GAS,HEADBUTT
+silph-co-rocket12 50 0.95 0.55 SCIENTIST scientist.png {SCIENTIST: Dang! Blast it!}{} 82-110:37|110-82:37|110-110:37|82-82:37
 silph-co-rocket13 {OVERSWITCH} 35 0.55 0.95 JUGGLER juggler.png {JUGGLER: Oh goodness!}{} 20-20:36|64-64:36|58-58:36|42-42:36|82-82:36
-silph-co-rocket14 35 0.65 0.65 ROCKET rocket.png {ROCKET: Flame out!}{} 67-67:39|67-67:39
-silph-co-rocket15 35 0.65 0.65 ROCKET rocket.png {ROCKET: You traitor!}{} 42-42:38|42-42:38|42-42:38
-silph-co-rocket16 50 0.95 0.55 SCIENTIST scientist.png {SCIENTIST: Shoot!}{} 101-101:36|110-110:36|82-82:36|82-82:36|110-110:36
-silph-co-rocket17 35 0.65 0.65 ROCKET rocket.png {ROCKET: Aack! Brothers, I lost!}{} 105-105:39|105-105:39
+silph-co-rocket14 35 0.65 0.65 ROCKET rocket.png {ROCKET: Flame out!}{} 42-67:39:KARATE CHOP,SUPERSONIC,BITE,SCREECH|67-97:39
+silph-co-rocket15 35 0.65 0.65 ROCKET rocket.png {ROCKET: You traitor!}{} 42-122:38:BARRIER,SUPERSONIC,BITE,SCREECH|42-24:38|42-42:38
+silph-co-rocket16 50 0.95 0.55 SCIENTIST scientist.png {SCIENTIST: Shoot!}{} 101-110:36|110-82:36|110-82:36|82-101:36|82-110:36
+silph-co-rocket17 35 0.65 0.65 ROCKET rocket.png {ROCKET: Aack! Brothers, I lost!}{} 105-42:39|105-67:39
 silph-co-rocket18 35 0.65 0.65 ROCKET rocket.png {ROCKET: Lights out!}{} 20-20:37|24-24:37|110-110:37|42-42:37
-silph-co-rocket19 35 0.65 0.65 ROCKET rocket.png {ROCKET: Fine! I lost!}{} 28-28:39|28-28:39
-silph-co-rocket20 50 0.95 0.55 SCIENTIST scientist.png {SCIENTIST: I'm done!}{} 101-101:39|89-89:39
-silph-co-rocket21 35 0.65 0.65 ROCKET rocket.png {ROCKET: Not enough grit!}{} 20-20:37|42-42:37|42-42:37|20-20:37
+silph-co-rocket19 35 0.65 0.65 ROCKET rocket.png {ROCKET: Fine! I lost!}{} 42-28:39|28-42:39
+silph-co-rocket20 50 0.95 0.55 SCIENTIST scientist.png {SCIENTIST: I'm done!}{} 101-101:39|89-89:39:POUND,DISABLE,MINIMIZE,SLUDGE
+silph-co-rocket21 35 0.65 0.65 ROCKET rocket.png {ROCKET: Not enough grit!}{} 20-42:37|42-20:37|42-42:37|20-20:37
 silph-co-rocket22 35 0.65 0.65 ROCKET rocket.png {ROCKET: Whoo! Oh brothers!}{} 110-110:38|42-42:38|110-110:38
-silph-co-rocket23 50 0.95 0.55 SCIENTIST scientist.png {SCIENTIST: Huh? I lost?}{} 89-89:39|101-101:39
-silph-co-rocket24 35 0.65 0.65 ROCKET rocket.png {ROCKET: Warg! Brothers, I lost!}{} 42-42:38|97-97:38|97-97:38
-silph-co-rocket25 35 0.65 0.65 ROCKET rocket.png {ROCKET: Ghaaah!}{} 97-97:38|89-89:38|67-67:38
-silph-co-rocket26 50 0.95 0.55 SCIENTIST scientist.png {SCIENTIST: You hammered me!}{} 101-101:38|110-110:38|82-82:38
-silph-co-rocket27 50 0.95 0.55 SCIENTIST scientist.png {SCIENTIST: No continues left!}{} 82-82:39|110-110:39
-silph-co-rocket28 35 0.65 0.65 ROCKET rocket.png {ROCKET: I'm stunned!}{} 67-67:41
-silph-co-rocket29 35 0.65 0.65 ROCKET rocket.png {ROCKET: Gah! Demolished!}{} 20-20:36|20-20:36|42-42:36|42-42:36|24-24:36
-silph-co-rocket30 35 0.65 0.65 ROCKET rocket.png {ROCKET: Don't... Please!}{} 105-105:38|97-97:38|105-105:38
-silph-co-rival0 65 0.75 0.75 {RIVAL_NAME} rival2.png {{RIVAL_NAME}: Oh ho! {NEWLINE} So, you are ready for BOSS ROCKET!}{{RIVAL_NAME}: Yeah! Am I great or what?} 58-58:45:BITE,EMBER,TAKE DOWN,AGILITY|45-45:45|26-26:45:THUNDERBOLT,SWIFT,BODY SLAM,SUBMISSION|22-28:45:SLASH,EARTHQUAKE,DRILL PECK,SWIFT|9-9:45:BUBBLEBEAM,BODY SLAM,ICE BEAM,BITE
-silph-co-rival1 65 0.75 0.75 {RIVAL_NAME} rival2.png {{RIVAL_NAME}: What? You stinker! {NEWLINE} I took it easy on you, too!}{{RIVAL_NAME}: Yeah! Am I great or what?} 18-18:45:WING ATTACK,SKY ATTACK,HYPER BEAM,SWIFT|64-64:45:PSYCHIC,RECOVER,PSYBEAM,REFLECT|99-67:45:CRABHAMMER,SUBMISSION,EARTHQUAKE,ICE BEAM|76-76:45:EARTHQUAKE,EXPLOSION,ROCK SLIDE,BODY SLAM|3-3:45:BODY SLAM,MEGA DRAIN,RAZOR LEAF,SLEEP POWDER
-silph-co-rival2 65 0.75 0.75 {RIVAL_NAME} rival2.png {{RIVAL_NAME}: What? You stinker! {NEWLINE} I took it easy on you, too!}{{RIVAL_NAME}: Yeah! Am I great or what?} 70-70:45:RAZOR LEAF,TAKE DOWN,ACID,MEGA DRAIN|95-65:45:PSYCHIC,RECOVER,SLAM,ROCK SLIDE|82-82:45:SUPERSONIC,THUNDERBOLT,SWIFT,SONICBOOM|99-28:45:CRABHAMMER,SLASH,EARTHQUAKE,SWIFT|6-6:46:SLASH,FLAMETHROWER,SWORDS DANCE,BODY SLAM
+silph-co-rocket23 50 0.95 0.55 SCIENTIST scientist.png {SCIENTIST: Huh? I lost?}{} 89-101:39|101-89:39
+silph-co-rocket24 35 0.65 0.65 ROCKET rocket.png {ROCKET: Warg! Brothers, I lost!}{} 42-97:38|97-42:38|97-97:38
+silph-co-rocket25 35 0.65 0.65 ROCKET rocket.png {ROCKET: Ghaaah!}{} 89-97:38|67-89:38|67-97:38:KARATE CHOP,HYPNOSIS,CONFUSION,POISON GAS
+silph-co-rocket26 50 0.95 0.55 SCIENTIST scientist.png {SCIENTIST: You hammered me!}{} 101-101:38|82-110:38|110-82:38
+silph-co-rocket27 50 0.95 0.55 SCIENTIST scientist.png {SCIENTIST: No continues left!}{} 82-110:39|110-82:39
+silph-co-rocket28 35 0.65 0.65 ROCKET rocket.png {ROCKET: I'm stunned!}{} 68-68:41
+silph-co-rocket29 35 0.65 0.65 ROCKET rocket.png {ROCKET: Gah! Demolished!}{} 20-20:36|42-42:36|42-20:36|20-42:36|24-24:36
+silph-co-rocket30 35 0.65 0.65 ROCKET rocket.png {ROCKET: Don't... Please!}{} 105-97:38|97-105:38|105-105:38
+silph-co-rival0 65 0.8 0.8 {RIVAL_NAME} rival2.png {{RIVAL_NAME}: Oh ho! {NEWLINE} So, you are ready for BOSS ROCKET!}{{RIVAL_NAME}: Yeah! Am I great or what?} 58-58:45:BITE,EMBER,TAKE DOWN,AGILITY|45-45:45|26-26:45:THUNDERBOLT,SWIFT,BODY SLAM,SUBMISSION|22-28:45:SLASH,EARTHQUAKE,DRILL PECK,SWIFT|9-9:45:BUBBLEBEAM,BODY SLAM,ICE BEAM,BITE
+silph-co-rival1 65 0.8 0.8 {RIVAL_NAME} rival2.png {{RIVAL_NAME}: What? You stinker! {NEWLINE} I took it easy on you, too!}{{RIVAL_NAME}: Yeah! Am I great or what?} 18-18:45:WING ATTACK,SKY ATTACK,HYPER BEAM,SWIFT|64-64:45:PSYCHIC,RECOVER,PSYBEAM,REFLECT|99-67:45:CRABHAMMER,SUBMISSION,EARTHQUAKE,ICE BEAM|76-76:45:EARTHQUAKE,EXPLOSION,ROCK SLIDE,BODY SLAM|3-3:45:BODY SLAM,MEGA DRAIN,RAZOR LEAF,SLEEP POWDER
+silph-co-rival2 65 0.8 0.8 {RIVAL_NAME} rival2.png {{RIVAL_NAME}: What? You stinker! {NEWLINE} I took it easy on you, too!}{{RIVAL_NAME}: Yeah! Am I great or what?} 70-70:45:RAZOR LEAF,TAKE DOWN,ACID,MEGA DRAIN|95-65:45:PSYCHIC,RECOVER,SLAM,ROCK SLIDE|82-82:45:SUPERSONIC,THUNDERBOLT,SWIFT,SONICBOOM|99-28:45:CRABHAMMER,SLASH,EARTHQUAKE,SWIFT|6-6:46:SLASH,FLAMETHROWER,SWORDS DANCE,BODY SLAM
 silph-co-giovanni 99 1.0 1.0 GIOVANNI giovanni.png {GIOVANNI: Arrgh!! I lost again!?}{} 112-112:46:BODY SLAM,HORN DRILL,ROCK SLIDE,EARTHQUAKE|115-115:44:RAGE,BODY SLAM,DIZZY PUNCH,BITE|68-28:44:SLASH,SUBMISSION,FOCUS ENERGY,EARTHQUAKE|31-31:46:BODY SLAM,EARTHQUAKE,ICE BEAM,THUNDERBOLT|51-91:47:EARTHQUAKE,CLAMP,SAND ATTACK,BLIZZARD
 END
 TELEPORT
