@@ -2109,8 +2109,9 @@ public:
 				}
 			}
 		}
-		if (moves[move].desc == "")
+		if (moves[move].desc == "") {
 			do_alert(get_nickname(attacker) + string(" used ") + move + string("!"));
+		}
 		else if (moves[move].desc != "{NONE}") {
 			string temp = moves[move].desc;
 			while (temp.find("{NAME}") != -1) {
@@ -2125,6 +2126,12 @@ public:
 				do_alert(temp2);
 			}
 			do_alert(temp);
+		}
+		for (unsigned i = 0; i < 4; ++i) {
+			if (attacker.moves[i] == move) {
+				attacker.pp[i]--;
+				// TODO: Fix bug where Mirror Move consumes PP when copying a known move.
+			}
 		}
 		if (in_status(attacker, string("DISABLE")) && attacker.moves[attacker.disabled_move] == move) {
 			do_alert("But, it failed!");
@@ -3030,9 +3037,9 @@ public:
 		while (true) {
 			old_team_selected = mc.selected;
 			if (in_status(mc.team[mc.selected], string("RAGE")) && mc.team[mc.selected].queue.size() == 0)
-				mc.team[mc.selected].queue.push_back(string("RAGE"));
+				mc.team[mc.selected].queue.push_back(string("RAGE2"));
 			if (in_status(mc.enemy_team[mc.enemy_selected], string("RAGE")) && mc.enemy_team[mc.enemy_selected].queue.size() == 0)
-				mc.enemy_team[mc.enemy_selected].queue.push_back(string("RAGE"));
+				mc.enemy_team[mc.enemy_selected].queue.push_back(string("RAGE2"));
 			if (mc.team[mc.selected].queue.size() == 0) {
 				bool any_valid_moves;
 				any_valid_moves = false;
@@ -3058,7 +3065,6 @@ public:
 							continue;
 						}
 						mc.team[mc.selected].queue.push_back(mc.team[mc.selected].moves[choices[1]]);
-						mc.team[mc.selected].pp[choices[1]]--;
 					}
 					else {
 						mc.team[mc.selected].queue.push_back(string("STRUGGLE"));
@@ -3178,7 +3184,6 @@ public:
 						}
 						else {
 							mc.enemy_team[mc.enemy_selected].queue.push_back(mc.enemy_team[mc.enemy_selected].moves[choice]);
-							mc.enemy_team[mc.enemy_selected].pp[index]--;
 						}
 					}
 				}
@@ -3379,9 +3384,9 @@ public:
 		mc.enemy_team[mc.enemy_selected].fought[mc.selected] = true;
 		while (true) {
 			if (in_status(mc.team[mc.selected], string("RAGE")) && mc.team[mc.selected].queue.size() == 0)
-				mc.team[mc.selected].queue.push_back(string("RAGE"));
+				mc.team[mc.selected].queue.push_back(string("RAGE2"));
 			if (in_status(mc.enemy_team[mc.enemy_selected], string("RAGE")) && mc.enemy_team[mc.enemy_selected].queue.size() == 0)
-				mc.enemy_team[mc.enemy_selected].queue.push_back(string("RAGE"));
+				mc.enemy_team[mc.enemy_selected].queue.push_back(string("RAGE2"));
 			if (mc.team[mc.selected].queue.size() == 0) { 
 				bool any_valid_moves;
 				any_valid_moves = false;
@@ -3407,7 +3412,6 @@ public:
 							continue;
 						}
 						mc.team[mc.selected].queue.push_back(mc.team[mc.selected].moves[choices[1]]);
-						mc.team[mc.selected].pp[choices[1]]--;
 					}
 					else {
 						mc.team[mc.selected].queue.push_back(string("STRUGGLE"));
@@ -3549,7 +3553,6 @@ public:
 				}
 				else {
 					mc.enemy_team[mc.enemy_selected].queue.push_back(mc.enemy_team[mc.enemy_selected].moves[choice]);
-					mc.enemy_team[mc.enemy_selected].pp[index]--;
 				}
 			}
 			do_turn(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);

@@ -179,8 +179,19 @@ ACC: 100
 POWER: 20
 SELF: RAGE
 DEFENSE: DEFENSE
-QUEUE: RAGE
+QUEUE: RAGE2
 NOTES: Attacks continuously. Attack, defense, and special increase when damaged.
+
+MOVE: RAGE2
+TYPE: NORMAL
+PP: 20
+ACC: 100
+POWER: 20
+SELF: RAGE
+DEFENSE: DEFENSE
+QUEUE: RAGE2
+NOTES: Attacks continuously. Attack, defense, and special increase when damaged.
+DESC: {NAME} used RAGE!
 
 MOVE: SLASH
 TYPE: NORMAL
