@@ -45,7 +45,8 @@ MENU:ALERT:TRAINER TIPS|MENU:ALERT:Catch POK{e-accent}MON and expand your collec
 END
 viridian-city-grandpa3 bald4 30 8
 INTERACTIONS
-MENU:ALERT:This POK{e-accent}MON GYM is always closed.|MENU:ALERT:I wonder who the LEADER is?
+MENU:ALERT:This POK{e-accent}MON GYM is always closed.|MENU:ALERT:I wonder who the LEADER is?|NO_ADVANCE
+MENU:ALERT:TODO: Whatever this guy says.
 END
 viridian-city-gym-lock blank 32 7
 INTERACTIONS
