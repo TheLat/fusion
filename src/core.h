@@ -171,6 +171,7 @@ public:
 	std::map<string, unsigned> values;
 	std::map<string, bool> seen;
 	std::map<string, bool> caught;
+	std::map<string, bool> used_tms;
 	player() { wins = 0; losses = 0; money = 0; name = "RED"; rivalname = "BLUE"; repel = 0; selected = 0; enemy_selected = 0; box_number = 0; }
 };
 
@@ -1138,6 +1139,7 @@ public:
 			}
 			else if (effect.find("TM") == 0) {
 				string move = effect;
+				string record = effect;
 				move.erase(0, move.find(":") + 1);
 				move = TM[stoi(move)];
 				do_menu(string("ALERT"), string("Booted up a TM!"));
@@ -1151,7 +1153,14 @@ public:
 					return false;
 				if (choices[0] == -1)
 					return false;
-				return learn_move(mc.team[choices[0]], move);
+				bool out = learn_move(mc.team[choices[0]], move);
+				if (out) {
+					while (record.find(":") != -1) {
+						record.erase(record.find(":"), 1);
+					}
+					mc.used_tms[record] = true;
+				}
+				return out;
 			}
 			else if (effect.find("HM") == 0) {
 				string move = effect;
@@ -5504,6 +5513,26 @@ public:
 								else {
 									s = "";
 								}
+								if (s2 == "USED_TMS") {
+									s2 = "";
+									std::map<string, bool>::iterator it2 = mc.used_tms.begin();
+									bool first = true;
+									while (it2 != mc.used_tms.end()) {
+										if (it2->second) {
+											if (!first) {
+												s2 = s2 + ",";
+											}
+											s2 = s2 + it2->first;
+											first = false;
+										}
+										it2++;
+									}
+									if (s2 == "") {
+										do_alert("It looks like you don't have any TMs to recharge!");
+										advance = false;
+										break;
+									}
+								}
 								choices.clear();
 								string holder = s2;
 								vector<string> item_holder;
@@ -6168,6 +6197,15 @@ public:
 			}
 			it2++;
 		}
+		f << string("\nEND\nUSED_TMS:");
+		it2 = mc.used_tms.begin();
+		while (it2 != mc.used_tms.end()) {
+			if (it2->second) {
+				f << string("\n");
+				f << it2->first;
+			}
+			it2++;
+		}
 		f << string("\nEND\nVALUES:");
 		it = mc.values.begin();
 		while (it != mc.values.end()) {
@@ -6378,6 +6416,13 @@ public:
 				std::getline(f, line);
 				while (line != "END") {
 					mc.caught[line] = true;
+					std::getline(f, line);
+				}
+			}
+			else if (line.find("USED_TMS:") == 0) {
+				std::getline(f, line);
+				while (line != "END") {
+					mc.used_tms[line] = true;
 					std::getline(f, line);
 				}
 			}
