@@ -1,0 +1,48 @@
+NAME
+Saffron City House 2
+NPCS
+saffron-house2-boy boy 4 1 DOWN
+INTERACTIONS
+MENU:ALERT:The COPYCAT is cute! I'm getting her a POK{e-accent} DOLL!
+END
+saffron-house2-bird bird 0 5 WANDER
+INTERACTIONS
+MENU:ALERT:PIDGEY: Kurukkoo!
+END
+saffron-house2-girl girl5 2 3 RIGHT
+INTERACTIONS
+MENU:ALERT:Thank you for writing. I hope to see you soon!|MENU:ALERT:Hey! Don't look at my letter!
+END
+saffron-house2-letter page 3 3
+INTERACTIONS
+MENU:ALERT:I was given a PP UP as a gift.|MENU:ALERT:It's used for increasing the PP of techniques!
+END
+saffron-house2-bookshelf1 blank 0 1
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+saffron-house2-bookshelf2 blank 1 1
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+saffron-house2-bookshelf3 blank 7 1
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+saffron-house2-map blank 3 0
+INTERACTIONS
+MENU:ALERT:A TOWN MAP.|MAP
+END
+TELEPORT
+2 8 saffron-city 22 19
+3 8 saffron-city 22 19
+DATA
+31 31  17  33 17 34 17 31
+32 32  18  18 18 18 18 36
+18 18  18  18 18 18 18 18
+18 18  37  48 52 37 18 18
+18 18  37  23 24 37 18 18
+18 18  18  18 18 18 18 18
+30 18  18  18 18 18 18 30
+29 18  38  38 18 18 18 29
+82 82 166 166
