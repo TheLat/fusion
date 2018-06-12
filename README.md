@@ -22,7 +22,7 @@ List of changes:
 - TMs will be rechargeable instead of one-shots.  TM Recharging shop is in Saffron City.
 - Critical hit chance will be done on an individual attack basis for multi-attacks
 - Focus Energy will multiply your critical chance by 4 instead of dividing it by 4.
-- You will be able to explore the S.S. Anne area after the boat leaves and you will be able to push the truck to get Mew.  I am unsure of the validity of this in the original game, but it seems as good a place as any to let you get Mew.
+- The S.S. Anne will not leave and you will be able to push the truck to get Mew.  I am unsure of the validity of this in the original game, but it seems as good a place as any to let you get Mew.
 - Pokemon that can be found in the wild are a combination of everything you could find in Red or Blue, along with all possible fusions of those.
 - The Safari Zone will be normal combat.  That area was bullshit.
 - To deal with the fact that this game is not multiplayer, the Trade Stone item is added to allow you to evolve anything that contains at least part Kadabra, Machoke, Haunter, or Graveler.  You will need two trade stones to fully evolve fusions of those 4.
