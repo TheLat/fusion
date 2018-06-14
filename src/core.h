@@ -5514,6 +5514,7 @@ public:
 									s = "";
 								}
 								if (s2 == "USED_TMS") {
+									// TODO: Rebalance TM prices.
 									s2 = "";
 									std::map<string, bool>::iterator it2 = mc.used_tms.begin();
 									bool first = true;
