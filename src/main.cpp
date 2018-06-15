@@ -13,7 +13,7 @@ graphics g;
 
 int get_storage_use() {
 	int ret = 0;
-	for (int i = 0; i < 20; ++i) {
+	for (int i = 0; i < STORAGE_MAX; ++i) {
 		if (e.mc.storage[e.mc.box_number][i].defined)
 			ret++;
 		else

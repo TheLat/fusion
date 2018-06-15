@@ -24,6 +24,7 @@ extern std::map<string, bool> get_caught_table();
 extern bool is_menu(string s);
 extern string get_menu(string r);
 extern vector<int> do_menu(string menu);
+#define STORAGE_MAX 30
 mutex m2;
 
 class image {
@@ -865,7 +866,13 @@ public:
 						int cost = stoi(temp1);
 						temp1 = choice;
 						temp1.erase(0, temp1.find("_") + 1);
-						int limit = stoi(temp1);
+						int limit = 0;
+						if (temp1 != "MON_STORAGE_MAX") {
+							limit = stoi(temp1);
+						}
+						else {
+							limit = STORAGE_MAX;
+						}
 						std::getline(f, line);
 						temp2 = line;
 						temp2.erase(temp2.find(" "), temp2.length());

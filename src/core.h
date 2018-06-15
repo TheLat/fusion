@@ -11,7 +11,6 @@
 #include <fstream>
 #include "menus.h"
 
-
 using namespace std;
 
 class graphics;
@@ -162,7 +161,7 @@ public:
 	int box_number;
 	mon team[6];
 	mon enemy_team[6];
-	mon storage[20][20];
+	mon storage[STORAGE_MAX][STORAGE_MAX];
 	location loc, last_center;
 	std::map<string, bool> active;
 	std::map<string, unsigned> interaction;
@@ -3496,8 +3495,8 @@ public:
 							}
 						}
 						if (!found) {
-							for (int i = 0; i < 20 && !found; ++i) {
-								for (int j = 0; j < 20 && !found; ++j) {
+							for (int i = 0; i < STORAGE_MAX && !found; ++i) {
+								for (int j = 0; j < STORAGE_MAX && !found; ++j) {
 									if (!mc.storage[i][j].defined) {
 										found = true;
 										do_alert(string("Wild ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string(" was captured!"));
@@ -5504,10 +5503,33 @@ public:
 									s = "";
 								}
 							}
+							else if (s.find("FUSION:") == 0) {
+								s.erase(0, s.find(":") + 1);
+								s2 = s;
+								if (s2.find("|") != -1) {
+									s.erase(0, s.find("|"));
+									s2.erase(s2.find("|"), s2.length());
+								}
+								else {
+									s = "";
+								}
+								if (s2 == "JUVENILE" || s2 == "MATURE") {
+									unsigned i = 0;
+									unsigned j = 0;
+									for (i = 0; i < STORAGE_MAX && mc.storage[i][j].defined; ++i) {
+										for (j = 0; j < STORAGE_MAX && mc.storage[i][j].defined; ++j) {
+										}
+									}
+								}
+								else {
+									do_alert(string("SCRIPT ERROR: Called FUSION with parameter: ") + s2);
+								}
+							}
 							else if (s.find("SHOP:") == 0) {
 								s.erase(0, s.find(":") + 1);
 								s2 = s;
 								if (s2.find("|") != -1) {
+									s.erase(0, s.find("|"));
 									s2.erase(s2.find("|"), s2.length());
 								}
 								else {
@@ -5602,13 +5624,13 @@ public:
 										else if (choices[0] == 1) {
 											if (choices[2] == 0) {
 												unsigned count = 0;
-												while (count < 20 && mc.storage[mc.box_number][count].defined) {
+												while (count < STORAGE_MAX && mc.storage[mc.box_number][count].defined) {
 													count++;
 												}
 												if (get_team_size() == 1) {
 													do_alert(string("You can't deposit your last POK{e-accent}MON!"));
 												}
-												else if (count == 20) {
+												else if (count == STORAGE_MAX) {
 													do_alert(string("No room left in that box!")); // TODO: Test this
 												}
 												else {
@@ -5666,7 +5688,7 @@ public:
 											}
 										}
 										else if (choices[0] == 3) {
-											mc.box_number = 19 - choices[1];
+											mc.box_number = (STORAGE_MAX - 1) - choices[1];
 										}
 									}
 								}
@@ -5732,8 +5754,8 @@ public:
 									}
 								}
 								if (!mon_created) {
-									for (unsigned i = 0; i < 20 && !mon_created; ++i) {
-										for (unsigned j = 0; j < 20 && !mon_created; ++j) {
+									for (unsigned i = 0; i < STORAGE_MAX && !mon_created; ++i) {
+										for (unsigned j = 0; j < STORAGE_MAX && !mon_created; ++j) {
 											if (!mc.storage[i][j].defined) {
 												make_mon(s2, l, mc.storage[i][j]);
 												mc.storage[i][j].wild = false;
@@ -6099,9 +6121,9 @@ public:
 	}
 	void pack_storage() {
 		unsigned j;
-		for (unsigned i = 0; i < 20; ++i) {
+		for (unsigned i = 0; i < STORAGE_MAX; ++i) {
 			if (!mc.storage[mc.box_number][i].defined) {
-				for (j = i + 1; j < 20; ++j) {
+				for (j = i + 1; j < STORAGE_MAX; ++j) {
 					if (mc.storage[mc.box_number][j].defined) {
 						mc.storage[mc.box_number][i] = mc.storage[mc.box_number][j];
 						mc.storage[mc.box_number][j].defined = false;
@@ -6110,7 +6132,7 @@ public:
 						break;
 					}
 				}
-				if (j == 20) {
+				if (j == STORAGE_MAX) {
 					break;
 				}
 			}
@@ -6226,8 +6248,8 @@ public:
 			}
 		}
 		f << string("\nEND\nSTORAGE:");
-		for (unsigned i = 0; i < 20; ++i) {
-			for (unsigned j = 0; j < 20; ++j) {
+		for (unsigned i = 0; i < STORAGE_MAX; ++i) {
+			for (unsigned j = 0; j < STORAGE_MAX; ++j) {
 				if (mc.storage[i][j].defined) {
 					f << string("\n");
 					f << i;
