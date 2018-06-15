@@ -24,7 +24,7 @@ extern std::map<string, bool> get_caught_table();
 extern bool is_menu(string s);
 extern string get_menu(string r);
 extern vector<int> do_menu(string menu);
-#define STORAGE_MAX 30
+#define STORAGE_MAX 20
 mutex m2;
 
 class image {

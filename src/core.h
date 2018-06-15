@@ -5516,8 +5516,116 @@ public:
 								if (s2 == "JUVENILE" || s2 == "MATURE") {
 									unsigned i = 0;
 									unsigned j = 0;
-									for (i = 0; i < STORAGE_MAX && mc.storage[i][j].defined; ++i) {
-										for (j = 0; j < STORAGE_MAX && mc.storage[i][j].defined; ++j) {
+									int level = 5;
+									string parent1, parent2;
+									for (i = 0; i < STORAGE_MAX; ++i) {
+										for (j = 0; j < STORAGE_MAX; ++j) {
+											if (!mc.storage[i][j].defined)
+												break;
+										}
+										if (!mc.storage[i][j].defined)
+											break;
+									}
+									mc.box_number = i;
+									do_alert("Please select the first POK{e-accent}MON to take a sample from.");
+									vector<int> choice1 = do_menu(string("MON_SELECT"));
+									if (choice1[choice1.size() - 1] != -1) {
+										do_alert("Please select the second POK{e-accent}MON to take a sample from.");
+										vector<int> choice2 = do_menu(string("MON_SELECT"));
+										if (choice2[choice2.size() - 1] != -1) {
+											parent1 = mc.team[choice1[choice1.size() - 1]].number;
+											parent2 = mc.team[choice2[choice2.size() - 1]].number;
+											parent1.erase(parent1.find("-"), parent1.length());
+											parent2.erase(parent2.find("-"), parent2.length());
+											if (s2 == "MATURE") {
+												level = min(mc.team[choice1[choice1.size() - 1]].level, mc.team[choice2[choice2.size() - 1]].level);
+											}
+											if (s2 == "JUVENILE") {
+												parent1 = parent1 + string("-") + parent1;
+												parent2 = parent2 + string("-") + parent2;
+												std::map<string, mon_template>::iterator it;
+												bool found = true;
+												while (found) {
+													it = all_mon.begin();
+													found = false;
+													while (it != all_mon.end()) {
+														for (unsigned k = 0; k < it->second.evolution.size(); ++k) {
+															if (it->second.evolution[k].first == parent1) {
+																parent1 = it->second.number;
+																found = true;
+																break;
+															}
+														}
+														it++;
+													}
+												}
+												found = true;
+												while (found) {
+													it = all_mon.begin();
+													found = false;
+													while (it != all_mon.end()) {
+														for (unsigned k = 0; k < it->second.evolution.size(); ++k) {
+															if (it->second.evolution[k].first == parent2) {
+																parent2 = it->second.number;
+																found = true;
+																break;
+															}
+														}
+														it++;
+													}
+												}
+												parent1.erase(parent1.find("-"), parent1.length());
+												parent2.erase(parent2.find("-"), parent2.length());
+											}
+											do_alert(string("These samples will create this POK{e-accent}MON."));
+											make_mon(parent1 + string("-") + parent2, level, mc.storage[i][j]);
+											do_menu(string("STATS_STORAGE"), to_string(j));
+											int total = 0;
+											total += get_stat(mc.storage[i][j], HP);
+											total += get_stat(mc.storage[i][j], ATTACK);
+											total += get_stat(mc.storage[i][j], DEFENSE);
+											total += get_stat(mc.storage[i][j], SPECIAL);
+											total += get_stat(mc.storage[i][j], SPEED);
+											total += all_mon[mc.storage[i][j].number].stats[0];
+											total += all_mon[mc.storage[i][j].number].stats[1];
+											total += all_mon[mc.storage[i][j].number].stats[2];
+											total += all_mon[mc.storage[i][j].number].stats[3];
+											total += all_mon[mc.storage[i][j].number].stats[4];
+											float holder = float(total);
+											holder /= 150.0f;
+											holder *= holder;
+											holder *= sqrt(holder);
+											holder *= 150.0f;
+											total = int(holder);
+											if (total <= mc.money) {
+												vector<int> choice3 = do_menu(string("ALERT_YES_NO_MONEY"), string("Creating this will cost $") + to_string(total) + string("."));
+												if (choice3[choice3.size() - 1] == 0) {
+													bool found = false;
+													mc.money -= total;
+													do_alert(string("{PLAYER_NAME} GOT ") + get_nickname(mc.storage[i][j]) + string("!"));
+													for (unsigned k = 0; k < 6; ++k) {
+														if (!mc.team[k].defined) {
+															found = true;
+															mc.team[k] = mc.storage[i][j];
+															mc.team[k].enemy = false;
+															mc.team[k].wild = false;
+															mc.storage[i][j].defined = false;
+														}
+													}
+													if (!found) {
+														mc.storage[i][j].enemy = false;
+														mc.storage[i][j].wild = false;
+														do_alert(get_nickname(mc.storage[i][j]) + string(" was sent to box ") + to_string(i + 1) + string("!"));
+													}
+												}
+												else {
+													mc.storage[i][j].defined = false;
+												}
+											}
+											else {
+												do_alert("You don't have enough money for this!");
+												mc.storage[i][j].defined = false;
+											}
 										}
 									}
 								}
