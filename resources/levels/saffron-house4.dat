@@ -3,15 +3,15 @@ Fusion Lab
 NPCS
 saffron-house4-computer blank 1 4
 INTERACTIONS
-MENU:ALERT:TODO: Fusion explanation goes here
+MENU:ALERT:It's a company email about the work of the FUSION LAB!|MENU:ALERT:Thanks to advances in technology, we can now take a blood sample from two POK{e-accent}MON and culture that into a full creature!|MENU:ALERT:The end result is the same as the results of breeding in the wild!
 END
 saffron-house4-doctor1 doctor 4 3
 INTERACTIONS
-MENU:ALERT:I can help you with culturing juvenile FUSIONS!|FUSION:JUVENILE
+MENU:ALERT:I can help you with creating juvenile FUSIONS!|FUSION:JUVENILE
 END
 saffron-house4-doctor2 tech 6 4
 INTERACTIONS
-MENU:ALERT:I can help you with culturing mature FUSIONS!|FUSION:MATURE
+MENU:ALERT:I can help you with creating mature FUSIONS!|FUSION:MATURE
 END
 TELEPORT
 5 8 saffron-city 34 29

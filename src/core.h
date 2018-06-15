@@ -5527,10 +5527,10 @@ public:
 											break;
 									}
 									mc.box_number = i;
-									do_alert("Please select the first POK{e-accent}MON to take a sample from.");
+									do_alert("Please select the first POK{e-accent}MON to take a blood sample from.");
 									vector<int> choice1 = do_menu(string("MON_SELECT"));
 									if (choice1[choice1.size() - 1] != -1) {
-										do_alert("Please select the second POK{e-accent}MON to take a sample from.");
+										do_alert("Please select the second POK{e-accent}MON to take a blood sample from.");
 										vector<int> choice2 = do_menu(string("MON_SELECT"));
 										if (choice2[choice2.size() - 1] != -1) {
 											parent1 = mc.team[choice1[choice1.size() - 1]].number;
@@ -5579,6 +5579,7 @@ public:
 											}
 											do_alert(string("These samples will create this POK{e-accent}MON."));
 											make_mon(parent1 + string("-") + parent2, level, mc.storage[i][j]);
+											mc.seen[parent1 + string("-") + parent2] = true;
 											do_menu(string("STATS_STORAGE"), to_string(j));
 											int total = 0;
 											total += get_stat(mc.storage[i][j], HP);
@@ -5602,7 +5603,8 @@ public:
 												if (choice3[choice3.size() - 1] == 0) {
 													bool found = false;
 													mc.money -= total;
-													do_alert(string("{PLAYER_NAME} GOT ") + get_nickname(mc.storage[i][j]) + string("!"));
+													do_alert(string("{PLAYER_NAME} got ") + get_nickname(mc.storage[i][j]) + string("!"));
+													mc.caught[parent1 + string("-") + parent2] = true;
 													for (unsigned k = 0; k < 6; ++k) {
 														if (!mc.team[k].defined) {
 															found = true;
