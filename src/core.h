@@ -5098,11 +5098,22 @@ public:
 		m.unlock();
 	}
 	void draw_level() {
+		float xp, xl, yp, yl;
 		for (unsigned y = 0; y < levels[mc.loc.level].data.size(); ++y) {
 			for (unsigned x = 0; x < levels[mc.loc.level].data[y].size(); ++x) {
-				g.push_quad(-1.0f + (float(x) / 5.0f) - ((mc.loc.x - 4.5f) / 5.0f), 
-					(-float(y) / 4.5f) - (0.5f / 4.5f) + (mc.loc.y / 4.5f), 
-					1.0f / 5.0f, 1.0f / 4.5f, g.tiles[levels[mc.loc.level].data[y][x]]);
+				xp = -1.0f + (float(x) / 5.0f) - ((mc.loc.x - 4.5f) / 5.0f);
+				yp = (-float(y) / 4.5f) - (0.5f / 4.5f) + (mc.loc.y / 4.5f);
+				xl = 1.0f / 5.0f;
+				yl = 1.0 / 4.5f;
+				if (xp < -1.0f && xp + xl < -1.0f)
+					continue;
+				if (yp < -1.0f && yp + yl < -1.0f)
+					continue;
+				if (xp > 1.0f && xp + xl > 1.0f)
+					continue;
+				if (yp > 1.0f && yp + yl > 1.0f)
+					continue;
+				g.push_quad(xp, yp, xl, yl, g.tiles[levels[mc.loc.level].data[y][x]]);
 			}
 		}
 	}
