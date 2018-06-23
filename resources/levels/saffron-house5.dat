@@ -1,0 +1,90 @@
+NAME
+Saffron House 5
+NPCS
+saffron-house5-snes blank 3 5
+INTERACTIONS
+MENU:ALERT:A game with MARIO wearing a bucket on his head!
+END
+saffron-house5-bookshelf1 blank 0 20
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+saffron-house5-bookshelf2 blank 1 20
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+saffron-house5-pc blank 0 1
+INTERACTIONS
+MENU:ALERT:...|MENU:ALERT:My Secrets!|MENU:ALERT:Skill: Mimicry! Hobby: Collecting dolls! {NEWLINE} Favorite POK{e-accent}MON: CLEFAIRY!
+END
+saffron-house5-item blank 1 1 INCORPOREAL
+INTERACTIONS
+GIVE_ITEM:NUGGET|DEACTIVATE:saffron-house5-item
+END
+saffron-house5-bird1 bird 2 0 DOWN FARSPEAK
+INTERACTIONS
+MENU:ALERT:This is a rare POK{e-accent}MON!|MENU:ALERT:Huh?|MENU:ALERT:It's only a doll!
+END
+saffron-house5-mon1 mon 5 1 DOWN
+INTERACTIONS
+MENU:ALERT:This is a rare POK{e-accent}MON!|MENU:ALERT:Huh?|MENU:ALERT:It's only a doll!
+END
+saffron-house5-mon2 clefairy 1 6 RIGHT
+INTERACTIONS
+MENU:ALERT:This is a rare POK{e-accent}MON!|MENU:ALERT:Huh?|MENU:ALERT:It's only a doll!
+END
+saffron-house5-girl girl5 4 3 WANDER
+INTERACTIONS
+MENU:ALERT:{PLAYER_NAME}: Hi! Do you like POK{e-accent}MON?|MENU:ALERT:{PLAYER_NAME}: Uh no, I just asked you.|MENU:ALERT:{PLAYER_NAME}: Huh? You're strange!|MENU:ALERT:COPYCAT: Hmm? Quit mimicking?|MENU:ALERT:But, that's my favorite hobby!|IN_INVENTORY:POK{e-accent} DOLL|{NO_ADVANCE}{MENU:ALERT:Oh wow! {NEWLINE} A POK{e-accent} DOLL!|MENU:ALERT:For me? {NEWLINE} Thank you!|MENU:ALERT:You can have this, then!|GIVE_ITEM:TM31|MENU:ALERT:TM31 contains my favorite, MIMIC!|MENU:ALERT:Use it on a good POK{e-accent}MON!}
+MENU:ALERT:{PLAYER_NAME}: Hi! {NEWLINE} Thanks for TM31!|MENU:ALERT:{PLAYER_NAME}: Pardon?|MENU:ALERT:{PLAYER_NAME}:Is it that fun to mimic my every move?|MENU:ALERT:COPYCAT: You bet! It's a scream!
+END
+saffron-house5-bird2 bird 3 6 WANDER
+INTERACTIONS
+MENU:ALERT:DUDUO: Giiih!|MENU:ALERT:MIRROR MIRROR ON THE WALL, WHO IS THE FAIREST ONE OF ALL?
+END
+saffron-house5-mon3 clefairy 1 22 WANDER
+INTERACTIONS
+MENU:ALERT:CHANSEY:	Chaan! Sii!
+END
+saffron-house5-woman woman5 2 21 DOWN
+INTERACTIONS
+MENU:ALERT:My daughter is so self-centered. She only has a few friends.|FACE:DOWN
+END
+saffron-house5-man bald3 5 23 LEFT
+INTERACTIONS
+MENU:ALERT:My daughter likes to mimic people.|MENU:ALERT:Her mimicry has earned her the nickname COPYCAT around here!|FACE:LEFT
+END
+TELEPORT
+7 1 saffron-house5 6 20
+7 20 saffron-house5 6 1
+2 27 saffron-city 16 13
+3 27 saffron-city 16 13
+DATA
+19 21 22 17 17 16 17 16
+20 23 24 18 18 18 18 39
+18 18 18 18 18 18 18 18
+18 18 18 18 18 18 18 18
+18 18 18 25 18 18 18 18
+18 18 18 26 18 18 18 18
+27 18 18 18 18 18 30 18
+28 18 18 18 18 18 29 18
+82
+82
+82
+82
+82
+82
+82
+82
+82
+82
+82
+35 35  17  16 17 16 17 16
+36 36  18  25 18 18 18 40
+18 18  18  18 18 18 18 18
+18 18  18  18 18 18 18 18
+18 18  37  74 73 37 18 18
+18 18  37  23 24 37 18 18
+18 18  18  18 18 18 18 18
+18 18  41  41 18 18 18 18
+82 82 166 166
