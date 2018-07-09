@@ -92,7 +92,7 @@ MENU:ALERT:Our LEADER, ERIKA, might be quiet, but she's also very skilled!
 END
 celadon-gym-erika girl4 4 3 DOWN
 INTERACTIONS
-MENU:ALERT:Hello. Lovely weather, isn't it? It's so pleasant.|MENU:ALERT:...Oh dear... {NEWLINE} I must have dozed off. Welcome.|MENU:ALERT:My name is ERIKA. I am the leader of CELADON GYM.|MENU:ALERT:I teach the art of flower arranging. My POK{e-accent}MON are of the grass-type.|MENU:ALERT:Oh, I'm sorry, I had no idea that you wished to challenge me.|MENU:ALERT:Very well, but I shall not lose.|BATTLE:celadon-gym-erika|{NO_ADVANCE}{DISABLE_FORCE|SET:RAINBOWBADGE:1|MENU:ALERT:Please take this with you.|GIVE_ITEM:TM21|MENU:ALERT:TM21 contains MEGA DRAIN.|MENU:ALERT:Half the damage it inflicts is drained to heal your POK{e-accent}MON!|ADVANCE:celadon-gym-board1|ADVANCE:celadon-gym-board2}
+MENU:ALERT:Hello. Lovely weather, isn't it? It's so pleasant.|MENU:ALERT:...Oh dear... {NEWLINE} I must have dozed off. Welcome.|MENU:ALERT:My name is ERIKA. I am the leader of CELADON GYM.|MENU:ALERT:I teach the art of flower arranging. My POK{e-accent}MON are of the grass-type.|MENU:ALERT:Oh, I'm sorry, I had no idea that you wished to challenge me.|MENU:ALERT:Very well, but I shall not lose.|BATTLE:celadon-gym-erika|{NO_ADVANCE}{SET:RAINBOWBADGE:1|MENU:ALERT:Please take this with you.|GIVE_ITEM:TM21|MENU:ALERT:TM21 contains MEGA DRAIN.|MENU:ALERT:Half the damage it inflicts is drained to heal your POK{e-accent}MON!|ADVANCE:celadon-gym-board1|ADVANCE:celadon-gym-board2}
 MENU:ALERT:You are cataloging POK{e-accent}MON? I must say I'm impressed.|MENU:ALERT:I would never collect POK{e-accent}MON if they weren't grass-type.
 END
 TRAINERS
