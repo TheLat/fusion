@@ -2901,6 +2901,7 @@ public:
 					ret = i;
 					self_turns_to_live = (attacker.curr_hp / max(int(enemy_damage - self_heal), 1));
 					opponent_turns_to_live = (defender.curr_hp / max(int(self_damage - enemy_heal), 1));
+					self_turns_to_live = min(opponent_turns_to_live + 2, self_turns_to_live);
 					if (delay) {
 						future_damage = self_damage;
 						opponent_turns_to_live++;
@@ -3142,12 +3143,15 @@ public:
 							int hp_offset = get_smart_damage(mc.team[old_team_selected], mc.enemy_team[i], mc.team[old_team_selected].moves[index], t);
 							get_smart_move(mc.enemy_team[i], mc.team[old_team_selected], t, false, hp_offset, a, b, false, temp3);
 							fitness = a - b;
+							if (i == mc.enemy_selected) {
+								current_fitness = fitness;
+							}
+							else {
+								fitness--;
+							}
 							if (best_fitness_index == -1 || fitness > best_fitness) {
 								best_fitness = fitness;
 								best_fitness_index = i;
-							}
-							if (i == mc.enemy_selected) {
-								current_fitness = fitness;
 							}
 						}
 					}
