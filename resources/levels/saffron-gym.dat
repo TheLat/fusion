@@ -86,14 +86,14 @@ MENU:ALERT:I had a vision of your arrival!|MENU:ALERT:I have had psychic powers 
 MENU:ALERT:Everyone has psychic power! People just don't realize it!
 END
 TRAINERS
-saffron-gym-boy1 {PSYCHIC} 10 0.5 0.5 PSYCHIC psychic.png {PSYCHIC: I lost my concentration!}{} 79-79:33|79-79:33|80-80:33
-saffron-gym-boy2 {PSYCHIC} 10 0.5 0.5 PSYCHIC psychic.png {PSYCHIC: I don't believe this!}{} 122-122:34|64-64:34
-saffron-gym-old1 {PSYCHIC} 30 0.5 0.5 CHANNELER channeler.png {CHANNELER: I knew it!}{} 93-93:38
-saffron-gym-boy3 {PSYCHIC} 10 0.5 0.5 PSYCHIC psychic.png {PSYCHIC: Arrrgh!}{} 80-80:38
-saffron-gym-old2 {PSYCHIC} 30 0.5 0.5 CHANNELER channeler.png {CHANNELER: Not good enough!}{} 92-92:34|93-93:34
-saffron-gym-old3 {PSYCHIC} 30 0.5 0.5 CHANNELER channeler.png {CHANNELER: I lost after all!}{} 92-92:33|92-92:33|93-93:33
-saffron-gym-boy4 {PSYCHIC} 10 0.5 0.5 PSYCHIC psychic.png {PSYCHIC: I never foresaw this!}{} 64-64:31|79-79:31|122-122:31|64-64:31
-saffron-gym-sabrina {PSYCHIC} 99 1.0 1.0 SABRINA sabrina.png {SABRINA: I'm shocked! {NEWLINE} But, a loss is a loss. {NEWLINE} I admit I didn't work hard enough to win! {NEWLINE} You earned the MARSHBADGE!}{} 64-64:38|122-122:37|49-49:38|65-65:43
+saffron-gym-boy1 {PSYCHIC} 10 0.5 0.5 PSYCHIC psychic.png {PSYCHIC: I lost my concentration!}{} 80-38:42:AMNESIA,HEADBUTT,CONFUSE RAY,FIRE SPIN|80-44:41:AMNESIA,ACID,MEGA DRAIN,HEADBUTT|124-124:41:LOVELY KISS,LICK,ICE PUNCH,BODY SLAM
+saffron-gym-boy2 {PSYCHIC} 10 0.5 0.5 PSYCHIC psychic.png {PSYCHIC: I don't believe this!}{} 122-122:42:BARRIER,CONFUSION,LIGHT SCREEN,DOUBLESLAP|64-75:42:PSYCHIC,EARTHQUAKE,ROCK SLIDE,PSYBEAM
+saffron-gym-old1 {PSYCHIC} 30 0.85 0.85 CHANNELER channeler.png {CHANNELER: I knew it!}{} 93-93:44:NIGHT SHADE,CONFUSE RAY,HYPNOSIS,DREAM EATER
+saffron-gym-boy3 {PSYCHIC} 10 0.5 0.5 PSYCHIC psychic.png {PSYCHIC: Arrrgh!}{} 80-80:44:AMNESIA,PSYCHIC,HEADBUTT,SURF
+saffron-gym-old2 {PSYCHIC} 30 0.85 0.85 CHANNELER channeler.png {CHANNELER: Not good enough!}{} 64-93:42:PSYCHIC,PSYBEAM,NIGHT SHADE,CONFUSE RAY|93-93:42:NIGHT SHADE,CONFUSE RAY,HYPNOSIS,DREAM EATER
+saffron-gym-old3 {PSYCHIC} 30 0.85 0.85 CHANNELER channeler.png {CHANNELER: I lost after all!}{} 44-93:41:SLEEP POWDER,DREAM EATER,CONFUSE RAY,PETAL DANCE|121-93:41:MINIMIZE,RECOVER,NIGHT SHADE,CONFUSE RAY|93-91:41:AURORA BEAM,HYPNOSIS,CLAMP,LICK
+saffron-gym-boy4 {PSYCHIC} 10 0.5 0.5 PSYCHIC psychic.png {PSYCHIC: I never foresaw this!}{} 64-64:40|80-80:40:CONFUSION,WATER GUN,AMNESIA,HEADBUTT|122-122:40:BARRIER,CONFUSION,LIGHT SCREEN,DOUBLESLAP|64-64:40
+saffron-gym-sabrina {PSYCHIC} 99 1.0 1.0 SABRINA sabrina.png {SABRINA: I'm shocked! {NEWLINE} But, a loss is a loss. {NEWLINE} I admit I didn't work hard enough to win! {NEWLINE} You earned the MARSHBADGE!}{} 97-97:52:HYPNOSIS,DREAM EATER,SPLASH,SPLASH|124-124:51:PSYCHIC,BLIZZARD,BODY SLAM,LOVELY KISS|121-121:53:HYDROPUMP,RECOVER,SWIFT,PSYCHIC|103-103:51:SOLAR BEAM,PSYCHIC,HYPNOSIS,EXPLOSION|65-65:55:PSYCHIC,RECOVER,COUNTER,SUBSTITUTE
 END
 TELEPORT
 8 18 saffron-city 43 11

@@ -208,6 +208,7 @@ public:
 	string win_message;
 	bool skip_accuracy_check;
 	bool overswitch;
+	bool psychic;
 	int no_switch;
 	mon team[6];
 };
@@ -2766,9 +2767,9 @@ public:
 		int turns_to_live = -1;
 		int holder_turns_to_live = -1;
 		int ret = -1;
-		future_damage = -1.0;
+		future_damage = 0.0;
 		if (!skip_recurse) {
-			double future_damage = 0;
+			future_damage = 0.0;
 			enemy_move = get_smart_move(defender, attacker, t, true, 0, a, b, false, future_damage);
 			if (enemy_move >= 0) {
 				enemy_damage = get_smart_damage(defender, attacker, defender.moves[enemy_move], t);
@@ -2829,11 +2830,14 @@ public:
 							self_damage = get_smart_damage(attacker, defendercopy, attacker.moves[future_move], t, 1);
 							self_heal = get_smart_healing(attacker, defendercopy, attacker.moves[future_move], t, 1);
 							holder_turns_to_live = (attacker.curr_hp / max(int(enemy_damage - self_heal), 1));
-							if (in_status(defender, string("SLEEP"))) {
+							if (in_status(defendercopy, string("SLEEP"))) {
 								holder_turns_to_live++;
 							}
-							if (in_status(defender, string("FREEZE"))) {
+							if (in_status(defendercopy, string("FREEZE"))) {
 								holder_turns_to_live++;
+							}
+							if (get_stat(attacker, SPEED) > get_stat(defendercopy, SPEED)) {
+								holder_turns_to_live += 1;
 							}
 							delay = true;
 							if (!in_status(defender, string("SLEEP")) && in_status(defendercopy, string("SLEEP"))) {
@@ -2897,9 +2901,13 @@ public:
 					ret = i;
 					self_turns_to_live = (attacker.curr_hp / max(int(enemy_damage - self_heal), 1));
 					opponent_turns_to_live = (defender.curr_hp / max(int(self_damage - enemy_heal), 1));
-					future_damage = self_damage;
-					if (delay)
+					if (delay) {
+						future_damage = self_damage;
 						opponent_turns_to_live++;
+					}
+					else {
+						future_damage = 0.0;
+					}
 				}
 			}
 		}
@@ -4146,6 +4154,7 @@ public:
 					d.name = s2;
 					d.skip_accuracy_check = false;
 					d.overswitch = false;
+					d.psychic = false;
 					d.no_switch = 0;
 					if (s.find("{") == 0) {
 						// Special modifiers here
@@ -4178,6 +4187,9 @@ public:
 						}
 						if (s2.find("OVERSWITCH") != -1) {
 							d.overswitch = true;
+						}
+						if (s2.find("PSYCHIC") != -1) {
+							d.psychic = true;
 						}
 					}
 					s2 = s;
@@ -4272,6 +4284,9 @@ public:
 									s2.erase(s2.find(","), s2.length());
 								}
 								create_move(d.team[i], s2, count, true);
+								if (!moves[s2].defined) {
+									printf("\nERROR: Invalid move %s defined", s2.c_str());
+								}
 								if (s3.find(",") != -1) {
 									s3.erase(0, s3.find(",") + 1);
 								}
