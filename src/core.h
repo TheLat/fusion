@@ -2863,8 +2863,7 @@ public:
 				if (!skip_recurse) {
 					for (unsigned j = 0; j < moves[attacker.moves[i]].self.size(); ++j) {
 						if (moves[attacker.moves[i]].self[j] == "KO") {
-							if (turns_to_live > 1) {
-								dam = 0.0;
+							if (turns_to_live > 1 || in_status(defender, string("SLEEP")) || in_status(defender, string("FREEZE"))) {
 								self_damage = 0.0;
 								self_heal = 0.0;
 								break;
@@ -2892,8 +2891,14 @@ public:
 						}
 					}
 				}
+				if ((enemy_damage >= attacker.curr_hp) && (get_stat(attacker, SPEED) < get_stat(defender, SPEED))) {
+					self_heal = 0;
+				}
+				if ((get_stat(attacker, SPEED) > get_stat(defender, SPEED)) && self_damage >= defender.curr_hp) {
+					self_heal += enemy_damage;
+				}
 				dam = (self_damage + self_heal) - (enemy_damage + enemy_heal);
-				dam = (-double(defender.curr_hp) / max(self_damage - enemy_heal, 1.0)) + (double(attacker.curr_hp) / max(enemy_damage - self_heal, 1.0));
+				dam = (-double(defender.curr_hp) / max(self_damage - enemy_heal, 1.0)) + (double(attacker.curr_hp - hp_offset) / max(enemy_damage - self_heal, 1.0));
 				if (delay)
 					dam -= 1.0;
 				if (dam > magnitude) {
@@ -2901,7 +2906,6 @@ public:
 					ret = i;
 					self_turns_to_live = (attacker.curr_hp / max(int(enemy_damage - self_heal), 1));
 					opponent_turns_to_live = (defender.curr_hp / max(int(self_damage - enemy_heal), 1));
-					self_turns_to_live = min(opponent_turns_to_live + 2, self_turns_to_live);
 					if (delay) {
 						future_damage = self_damage;
 						opponent_turns_to_live++;
@@ -3141,6 +3145,9 @@ public:
 					for (i = 0; i < 6; ++i) {
 						if (mc.enemy_team[i].defined && !is_KO(mc.enemy_team[i])) {
 							int hp_offset = get_smart_damage(mc.team[old_team_selected], mc.enemy_team[i], mc.team[old_team_selected].moves[index], t);
+							if (i == mc.enemy_selected) {
+								hp_offset = 0;
+							}
 							get_smart_move(mc.enemy_team[i], mc.team[old_team_selected], t, false, hp_offset, a, b, false, temp3);
 							fitness = a - b;
 							if (i == mc.enemy_selected) {
