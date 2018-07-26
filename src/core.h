@@ -208,7 +208,6 @@ public:
 	string win_message;
 	bool skip_accuracy_check;
 	bool overswitch;
-	bool psychic;
 	int no_switch;
 	mon team[6];
 };
@@ -4165,7 +4164,6 @@ public:
 					d.name = s2;
 					d.skip_accuracy_check = false;
 					d.overswitch = false;
-					d.psychic = false;
 					d.no_switch = 0;
 					if (s.find("{") == 0) {
 						// Special modifiers here
@@ -4198,9 +4196,6 @@ public:
 						}
 						if (s2.find("OVERSWITCH") != -1) {
 							d.overswitch = true;
-						}
-						if (s2.find("PSYCHIC") != -1) {
-							d.psychic = true;
 						}
 					}
 					s2 = s;
