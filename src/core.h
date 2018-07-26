@@ -1036,25 +1036,25 @@ public:
 		string effect = get_item_effect(name);
 		string base = effect;
 		while (base.size() > 0) {
-			effect = base;
+			base = effect;
 			if (base.find("|") != -1) {
 				effect.erase(0, effect.find("|") + 1);
 				base.erase(base.find("|"), base.size());
 			}
 			else {
-				base = "";
+				effect = "";
 			}
-			if (is_menu(effect)) {
-				string menu = effect;
+			if (is_menu(base)) {
+				string menu = base;
 				menu.erase(menu.find(":"), menu.size());
-				effect.erase(0, effect.find(":") + 1);
-				if (!do_effect(mc.team[choices[2]], effect, choices[choices.size() - 1]))
+				base.erase(0, base.find(":") + 1);
+				if (!do_effect(mc.team[choices[2]], base, choices[choices.size() - 1]))
 					return false;
 			}
-			else if (effect.find("CAPTURE") == 0) {
-				ret = effect;
+			else if (base.find("CAPTURE") == 0) {
+				ret = base;
 			}
-			else if (effect.find("FISH") == 0) {
+			else if (base.find("FISH") == 0) {
 				location temp = mc.loc;
 				if (mc.dir == UP) {
 					temp.y -= 1.0;
@@ -1071,7 +1071,7 @@ public:
 				if (!water[get_tile(temp.y, temp.x)]) {
 					return false;
 				}
-				string s = effect;
+				string s = base;
 				s.erase(0, s.find(":") + 1);
 				if (s.find("|") != -1) {
 					s.erase(s.find("|"), s.length());
@@ -1112,19 +1112,19 @@ public:
 				encounter_level = int(random(levels[mc.loc.level].level_range.first, levels[mc.loc.level].level_range.second + 1));
 				//TODO: Random chance for fishing to work
 			}
-			else if (effect.find("MAP") == 0) {
+			else if (base.find("MAP") == 0) {
 				// TODO: MAP
 			}
-			else if (effect.find("EVOLVE") == 0) {
-				effect.erase(0, effect.find(":") + 1);
-				choices = do_menu("EVOLVE_MON_SELECT", effect);
+			else if (base.find("EVOLVE") == 0) {
+				base.erase(0, base.find(":") + 1);
+				choices = do_menu("EVOLVE_MON_SELECT", base);
 				choices = remove_cancels(choices);
 				if (choices.size() <= 0)
 					return false;
-				if (!can_evolve(mc.team[choices[0]].number, effect))
+				if (!can_evolve(mc.team[choices[0]].number, base))
 					return false;
 				for (unsigned i = 0; i < all_mon[mc.team[choices[0]].number].evolution.size(); ++i) {
-					if (all_mon[mc.team[choices[0]].number].evolution[i].second == effect) {
+					if (all_mon[mc.team[choices[0]].number].evolution[i].second == base) {
 						// TODO:  EVOLUTION SCREEN
 						do_alert(string("What? ") + get_nickname(mc.team[choices[0]]) + string(" is evolving!"));
 						string old_nickname = get_nickname(mc.team[choices[0]]);
@@ -1136,9 +1136,9 @@ public:
 					}
 				}
 			}
-			else if (effect.find("TM") == 0) {
-				string move = effect;
-				string record = effect;
+			else if (base.find("TM") == 0) {
+				string move = base;
+				string record = base;
 				move.erase(0, move.find(":") + 1);
 				move = TM[stoi(move)];
 				do_menu(string("ALERT"), string("Booted up a TM!"));
@@ -1147,7 +1147,7 @@ public:
 				choices = remove_cancels(choices);
 				if (choices[0] == 1)
 					return false;
-				choices = do_menu(string("LEARN_MON_SELECT"), effect);
+				choices = do_menu(string("LEARN_MON_SELECT"), base);
 				if (choices.size() > 1)
 					return false;
 				if (choices[0] == -1)
@@ -1159,10 +1159,9 @@ public:
 					}
 					mc.used_tms[record] = true;
 				}
-				return out;
 			}
-			else if (effect.find("HM") == 0) {
-				string move = effect;
+			else if (base.find("HM") == 0) {
+				string move = base;
 				move.erase(0, move.find(":") + 1);
 				move = HM[stoi(move)];
 				do_menu(string("ALERT"), string("Booted up an HM!"));
@@ -1170,34 +1169,33 @@ public:
 				choices = do_menu(string("ALERT_YES_NO"), string("Teach ") + move + string(" to a POK{e-accent}MON?"));
 				if (choices[choices.size() - 1] == 1)
 					return false;
-				choices = do_menu(string("LEARN_MON_SELECT"), effect);
+				choices = do_menu(string("LEARN_MON_SELECT"), base);
 				if (choices.size() > 1)
 					return false;
 				if (choices[0] == -1)
 					return false;
-				return learn_move(mc.team[choices[0]], move);
 			}
-			else if (effect.find("TARGET") == 0) {
-				do_effect(mc.enemy_team[mc.enemy_selected], effect);
+			else if (base.find("TARGET") == 0) {
+				do_effect(mc.enemy_team[mc.enemy_selected], base);
 			}
-			else if (effect.find("TEAM") == 0) {
+			else if (base.find("TEAM") == 0) {
 				for (int i = 0; i < 6; ++i) {
 					if (mc.team[i].defined)
-						do_effect(mc.team[i], effect);
+						do_effect(mc.team[i], base);
 				}
 			}
-			else if (effect.find("SELF") == 0) {
-				do_effect(mc.team[mc.selected], effect);
+			else if (base.find("SELF") == 0) {
+				do_effect(mc.team[mc.selected], base);
 			}
-			else if (effect.find("TELEPORT") == 0) {
+			else if (base.find("TELEPORT") == 0) {
 				ret = "TELEPORT";
 			}
-			else if (effect.find("FLEE") == 0) {
+			else if (base.find("FLEE") == 0) {
 				ret = "FLEE";
 			}
-			else if (effect.find("REPEL") == 0) {
-				effect.erase(0, effect.find(":") + 1);
-				mc.repel += stoi(effect);
+			else if (base.find("REPEL") == 0) {
+				base.erase(0, base.find(":") + 1);
+				mc.repel += stoi(base);
 				ret = "TELEPORT";
 			}
 		}
