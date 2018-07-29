@@ -4,9 +4,9 @@ RIVAL_NAME:BLUE
 DIRECTION:0
 WINS:0
 LOSSES:0
-LOCATION:saffron-center|3|4
+LOCATION:route11|50|13
 LAST_CENTER:saffron-center|3|3
-MONEY:164274
+MONEY:175011
 COINS:50
 REPEL:0
 INTERACTIONS:
@@ -693,11 +693,50 @@ saffron-dojo-tough1|1
 saffron-dojo-tough2|1
 saffron-dojo-tough3|1
 saffron-dojo-tough4|1
+saffron-gym-board|0
+saffron-gym-boy1|1
+saffron-gym-boy2|1
+saffron-gym-boy3|1
+saffron-gym-boy4|1
+saffron-gym-clerk|0
+saffron-gym-old1|1
+saffron-gym-old2|1
+saffron-gym-old3|1
+saffron-gym-sabrina|1
 saffron-house1-bookshelf1|0
 saffron-house1-bookshelf2|0
 saffron-house1-bookshelf3|0
 saffron-house1-man|1
 saffron-house1-map|0
+saffron-house2-bird|0
+saffron-house2-bookshelf1|0
+saffron-house2-bookshelf2|0
+saffron-house2-bookshelf3|0
+saffron-house2-boy|0
+saffron-house2-girl|0
+saffron-house2-letter|0
+saffron-house2-map|0
+saffron-house3-bookshelf1|0
+saffron-house3-bookshelf2|0
+saffron-house3-bookshelf3|0
+saffron-house3-map|0
+saffron-house3-recharger|0
+saffron-house4-computer|0
+saffron-house4-doctor1|0
+saffron-house4-doctor2|0
+saffron-house5-bird1|0
+saffron-house5-bird2|0
+saffron-house5-bookshelf1|0
+saffron-house5-bookshelf2|0
+saffron-house5-girl|0
+saffron-house5-item|0
+saffron-house5-man|0
+saffron-house5-mon1|0
+saffron-house5-mon2|0
+saffron-house5-mon3|0
+saffron-house5-pc|0
+saffron-house5-snes|0
+saffron-house5-woman|0
 saffron-mart-clerk|0
 saffron-mart-girl|0
 saffron-mart-man|0
@@ -1706,11 +1745,50 @@ saffron-dojo-tough1|1
 saffron-dojo-tough2|1
 saffron-dojo-tough3|1
 saffron-dojo-tough4|1
+saffron-gym-board|1
+saffron-gym-boy1|1
+saffron-gym-boy2|1
+saffron-gym-boy3|1
+saffron-gym-boy4|1
+saffron-gym-clerk|1
+saffron-gym-old1|1
+saffron-gym-old2|1
+saffron-gym-old3|1
+saffron-gym-sabrina|1
 saffron-house1-bookshelf1|1
 saffron-house1-bookshelf2|1
 saffron-house1-bookshelf3|1
 saffron-house1-man|1
 saffron-house1-map|1
+saffron-house2-bird|1
+saffron-house2-bookshelf1|1
+saffron-house2-bookshelf2|1
+saffron-house2-bookshelf3|1
+saffron-house2-boy|1
+saffron-house2-girl|1
+saffron-house2-letter|1
+saffron-house2-map|1
+saffron-house3-bookshelf1|1
+saffron-house3-bookshelf2|1
+saffron-house3-bookshelf3|1
+saffron-house3-map|1
+saffron-house3-recharger|1
+saffron-house4-computer|1
+saffron-house4-doctor1|1
+saffron-house4-doctor2|1
+saffron-house5-bird1|1
+saffron-house5-bird2|1
+saffron-house5-bookshelf1|1
+saffron-house5-bookshelf2|1
+saffron-house5-girl|1
+saffron-house5-item|1
+saffron-house5-man|1
+saffron-house5-mon1|1
+saffron-house5-mon2|1
+saffron-house5-mon3|1
+saffron-house5-pc|1
+saffron-house5-snes|1
+saffron-house5-woman|1
 saffron-mart-clerk|1
 saffron-mart-girl|1
 saffron-mart-man|1
@@ -2046,7 +2124,7 @@ FULL RESTORE|1
 BICYCLE|1
 OLD ROD|1
 GREAT BALL|1
-MAX POTION|2
+MAX POTION|1
 MAX ETHER|2
 RARE CANDY|4
 COIN CASE|1
@@ -2054,14 +2132,12 @@ HP UP|3
 LIFT KEY|1
 IRON|1
 SILPH SCOPE|1
-AWAKENING|1
 POK{e-accent}FLUTE|1
 CARD KEY|1
 TM09|1
 TM36|1
 HYPER POTION|1
 MAX REVIVE|1
-FULL HEAL|1
 PROTEIN|1
 X ACCURACY|1
 TM03|1
@@ -2069,6 +2145,7 @@ CALCIUM|1
 CARBOS|1
 TM26|1
 MASTER BALL|1
+TM46|1
 END
 INVENTORY_STORAGE:
 TM34|1
@@ -2160,7 +2237,10 @@ SEEN:
 12-92
 120-120
 121-121
+121-93
+122-122
 122-92
+124-124
 125-125
 129-129
 129-92
@@ -2294,6 +2374,7 @@ SEEN:
 43-93
 44-44
 44-74
+44-93
 45-45
 46-10
 46-27
@@ -2336,7 +2417,10 @@ SEEN:
 63-16
 64-41
 64-64
+64-75
+64-93
 64-95
+65-65
 66-16
 66-30
 66-41
@@ -2392,6 +2476,9 @@ SEEN:
 79-104
 79-79
 8-8
+80-38
+80-44
+80-80
 81-100
 81-27
 81-37
@@ -2431,6 +2518,7 @@ SEEN:
 93-61
 93-67
 93-77
+93-91
 93-92
 93-93
 93-95
@@ -2474,23 +2562,26 @@ CAUGHT:
 76-15
 83-83
 END
+USED_TMS:
+END
 VALUES:
 BILL|1
 BOULDERBADGE|1
 CASCADEBADGE|1
 DEX|1
+MARSHBADGE|1
 RAINBOWBADGE|1
 RIVALVALUE|0
 THUNDERBADGE|1
 celadon-hideout-floor|1
 END
 TEAM:
-0|NUMBER:6-6|NICKNAME:|HP:138|EXP:76089|LEVEL:45|EV:14028|16846|15469|14513|16698|IV:0|13|10|10|14|MOVES:SLASH|RAGE|EMBER|LEER|PP:20|20|25|30|MAX_PP:20|20|25|30|STATUS:
-1|NUMBER:76-15|NICKNAME:|HP:131|EXP:71005|LEVEL:44|EV:13139|16558|14765|13838|16365|IV:2|15|9|10|11|MOVES:PIN MISSILE|EARTHQUAKE|FURY ATTACK|TWIN NEEDLE|PP:20|10|20|20|MAX_PP:20|10|20|20|STATUS:
-2|NUMBER:47-47|NICKNAME:|HP:121|EXP:60555|LEVEL:42|EV:5477|6908|6159|6238|7314|IV:14|4|11|6|9|MOVES:SPORE|STUN SPORE|LEECH LIFE|SLASH|PP:15|30|15|20|MAX_PP:15|30|15|20|STATUS:
-3|NUMBER:135-135|NICKNAME:|HP:108|EXP:55349|LEVEL:41|EV:2175|2704|2612|2580|2776|IV:0|13|10|10|14|MOVES:TACKLE|TAIL WHIP|THUNDER WAVE|THUNDERBOLT|PP:35|30|20|15|MAX_PP:35|30|20|15|STATUS:
-4|NUMBER:130-130|NICKNAME:|HP:160|EXP:86418|LEVEL:47|EV:14682|11916|12688|9779|10424|IV:0|13|10|10|14|MOVES:HYDROPUMP|BITE|BUBBLEBEAM|DRAGON RAGE|PP:5|25|20|10|MAX_PP:5|25|20|10|STATUS:
-5|NUMBER:83-83|NICKNAME:|HP:20|EXP:100|LEVEL:5|EV:0|0|0|0|0|IV:0|13|10|10|14|MOVES:PECK|SAND ATTACK|CUT||PP:35|15|30||MAX_PP:35|15|30||STATUS:
+0|NUMBER:76-15|NICKNAME:|HP:0|EXP:95109|LEVEL:49|EV:13899|17329|15588|15229|17446|IV:2|15|9|10|11|MOVES:PIN MISSILE|EARTHQUAKE|FURY ATTACK|TWIN NEEDLE|PP:16|10|20|20|MAX_PP:20|10|20|20|STATUS:
+1|NUMBER:6-6|NICKNAME:|HP:0|EXP:82151|LEVEL:46|EV:14364|17141|15756|14990|17083|IV:0|13|10|10|14|MOVES:SLASH|RAGE|FLAMETHROWER|LEER|PP:20|20|13|30|MAX_PP:20|20|15|30|STATUS:SLEEP|SLEEP|SLEEP
+2|NUMBER:47-47|NICKNAME:|HP:0|EXP:63290|LEVEL:42|EV:5557|6988|6254|6458|7509|IV:14|4|11|6|9|MOVES:SPORE|STUN SPORE|LEECH LIFE|SLASH|PP:15|30|15|20|MAX_PP:15|30|15|20|STATUS:
+3|NUMBER:135-135|NICKNAME:|HP:18|EXP:70240|LEVEL:44|EV:2470|2999|2937|3000|3071|IV:0|13|10|10|14|MOVES:TACKLE|DOUBLE KICK|AGILITY|THUNDERBOLT|PP:35|30|30|13|MAX_PP:35|30|30|15|STATUS:
+4|NUMBER:130-130|NICKNAME:|HP:0|EXP:86418|LEVEL:47|EV:14682|11916|12688|9779|10424|IV:0|13|10|10|14|MOVES:HYDROPUMP|BITE|BUBBLEBEAM|DRAGON RAGE|PP:5|25|20|10|MAX_PP:5|25|20|10|STATUS:SLEEP|SLEEP|FREEZE
+5|NUMBER:83-83|NICKNAME:|HP:0|EXP:100|LEVEL:5|EV:0|0|0|0|0|IV:0|13|10|10|14|MOVES:PECK|SAND ATTACK|CUT||PP:35|15|30||MAX_PP:35|15|30||STATUS:FREEZE
 END
 STORAGE:
 0|0|NUMBER:56-56|NICKNAME:|HP:44|EXP:4552|LEVEL:17|EV:2585|3393|4013|2039|2355|IV:4|3|2|0|0|MOVES:SCRATCH|LEER|KARATE CHOP||PP:35|30|25||MAX_PP:35|30|25||STATUS:
@@ -3311,7 +3402,7 @@ saffron-city
 19|0|18|21|0
 20|0|39|19|0
 21|0|40|19|0
-22|2|32|30|0
+22|0|32|30|0
 23|0|24|37|0
 END
 saffron-dojo
@@ -3327,12 +3418,61 @@ saffron-dojo
 9|0|5|0|0
 10|0|5|3|1
 END
+saffron-gym
+0|0|9|15|0
+1|0|10|15|0
+2|0|17|13|1
+3|0|17|7|1
+4|0|3|7|1
+5|0|3|1|1
+6|0|10|1|1
+7|0|3|13|1
+8|0|17|1|1
+9|0|9|8|0
+END
 saffron-house1
 0|2|5|3|0
 1|0|0|1|0
 2|0|1|1|0
 3|0|7|1|0
 4|0|3|0|0
+END
+saffron-house2
+0|0|4|1|0
+1|0|0|5|0
+2|3|2|3|0
+3|0|3|3|0
+4|0|0|1|0
+5|0|1|1|0
+6|0|7|1|0
+7|0|3|0|0
+END
+saffron-house3
+0|3|2|3|0
+1|0|0|1|0
+2|0|1|1|0
+3|0|7|1|0
+4|0|3|0|0
+END
+saffron-house4
+0|0|1|4|0
+1|0|4|3|0
+2|0|6|4|0
+END
+saffron-house5
+0|0|3|5|0
+1|0|0|20|0
+2|0|1|20|0
+3|0|0|1|0
+4|0|1|1|0
+5|0|2|0|0
+6|0|5|1|0
+7|3|1|6|0
+8|0|4|3|0
+9|0|3|6|0
+10|0|1|22|0
+11|0|2|21|0
+12|2|5|23|0
 END
 saffron-mart
 0|0|4|4|0
