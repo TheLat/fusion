@@ -1,13 +1,33 @@
 NAME
 Route 11 Checkpoint
 NPCS
-route11-sign1 blank 2 9
+route11-checkpoint-guard guard3 5 1 FARSPEAK
 INTERACTIONS
-MENU:ALERT:DIGLETT's CAVE
+MENU:ALERT:When you catch lots of POK{e-accent}MON, isn't it hard to think up names?|MENU:ALERT:In LAVENDER TOWN, there's a man who rates POK{e-accent}MON nicknames.|MENU:ALERT:He'll help you rename them, too!
+END
+route11-checkpoint-binoculars1 blank 7 16 
+INTERACTIONS
+MENU:ALERT:Looked into the binoculars.|MENU:ALERT:The only way to get from CERULEAN CITY to LAVENDER TOWN is by way of the ROCK TUNNEL.
+END
+route11-checkpoint-binoculars2 blank 2 16 
+INTERACTIONS
+MENU:ALERT:Looked into the binoculars.|MENU:ALERT:A big POK{e-accent}MON is asleep on the road!
+END
+route11-checkpoint-doctor doctor 3 20
+INTERACTIONS
+MENU:ALERT:Hi! Remember me? I'm PROF.OAK's AIDE!|MENU:ALERT:If you caught 30 kinds of POK{e-accent}MON, I'm supposed to give you an ITEMFINDER!|MENU:ALERT:So, {PLAYER_NAME}! Have you caught at least 30 kinds of POK{e-accent}MON?|CAUGHT:30|{MENU:ALERT:Oh.  I see.|MENU:ALERT:When you get 30 kinds, come back for ITEMFINDER.|NO_ADVANCE}{MENU:ALERT:Great! You have caught {CAUGHT} kinds of POK{e-accent}MON!|MENU:ALERT:Congratulations!|MENU:ALERT:Here you go!|GIVE_ITEM:ITEMFINDER|MENU:ALERT:There are items on the ground that can't be seen.|MENU:ALERT:ITEMFINDER will detect an item close to you.|MENU:ALERT:It can't pinpoint it, so you have to look yourself!}
+MENU:ALERT:There are items on the ground that can't be seen.|MENU:ALERT:ITEMFINDER will detect an item close to you.|MENU:ALERT:It can't pinpoint it, so you have to look yourself!
+END
+route11-checkpoint-boy boy 4 16 WANDER
+INTERACTIONS
+MENU:ALERT:I'm looking for a NIDORINO!|MENU:ALERT_YES_NO:Wanna trade for a NIDARINA?|{MENU:MON_SELECT:|TRADE_LOGIC:33-33|{MENU:ALERT:What? That's not a NIDORINO!|MENU:ALERT:If you get one, trade it with me!|NO_ADVANCE}{MENU:ALERT:Okay, connect the cable like so!|MENU:ALERT:ANIMATION GOES HERE|MENU:ALERT:{PLAYER_NAME} traded NIDORINO for NIDARINA!|GIVE_MON:15:30-30|MENU:ALERT:Hey thanks!}}{MENU:ALERT:Awww! {NEWLINE} Oh well...|NO_ADVANCE}
+MENU:ALERT:Isn't my old NIDARINA great?
 END
 TELEPORT
 0 4 route11 50 13
 0 5 route11 50 13
+7 8 route11-checkpoint 7 21
+8 21 route11-checkpoint 6 8
 DATA
 82  298 298 298 298 298 298 298 298  82
 82  298 182 182 182 182 182 182 298  82
@@ -25,6 +45,9 @@ DATA
 82
 82  645 646 645 647 645 647 648 647
 82  649 650 649 651 649 651 652 651
-82  182 683 182 182 182 182 683 182
-82  182 684 182 182 182 182 684 182
-82  182
+82  182 653 182 182 182 182 653 182
+82  182 654 182 182 182 182 654 182
+82  182 655 655 182 182 655 655 182
+82  182 182 182 182 182 182 182 182
+82   30 182 182 182 182 182 182 182
+82   29 182 182 182 182 182 182  39

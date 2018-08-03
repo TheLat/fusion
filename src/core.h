@@ -1115,6 +1115,12 @@ public:
 			else if (base.find("MAP") == 0) {
 				// TODO: MAP
 			}
+			else if (base.find("BIKE") == 0) {
+				// TODO: BIKE
+			}
+			else if (base.find("ITEMFINDER") == 0) {
+				// TODO: ITEMFINDER
+			}
 			else if (base.find("EVOLVE") == 0) {
 				base.erase(0, base.find(":") + 1);
 				choices = do_menu("EVOLVE_MON_SELECT", base);
