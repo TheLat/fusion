@@ -15,6 +15,7 @@ TELEPORT
 1 65 route11-checkpoint 8 5
 14 18 route12-checkpoint 4 1
 15 18 route12-checkpoint 4 1
+14 23 route12-checkpoint 4 8
 ENCOUNTERS
 17 43 48 69 83
 WATER_ENCOUNTERS_OLD

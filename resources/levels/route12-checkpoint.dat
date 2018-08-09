@@ -10,11 +10,21 @@ INTERACTIONS
 MENU:ALERT:My POK{e-accent}MON's ashes are stored in POK{e-accent}MON TOWER.|MENU:ALERT:You can have this TM. I don't need it anymore...|GIVE_ITEM:TM39
 MENU:ALERT:TM39 is a move called SWIFT.|MENU:ALERT:It's very accurate, so use it during battles you can't afford to lose.
 END
+route12-checkpoint-binoculars1 blank 2 16
+INTERACTIONS
+MENU:ALERT:Looked into the binoculars.|MENU:ALERT:A man fishing!
+END
+route12-checkpoint-binoculars2 blank 7 16
+INTERACTIONS
+MENU:ALERT:Looked into the binoculars.|MENU:ALERT:It's POK{e-accent}MON TOWER!
+END
 TELEPORT
 8 7 route12-checkpoint 7 21
 8 21 route12-checkpoint 8 6
 4 0 route12 14 17
 5 0 route12 14 17
+4 9 route12 14 24
+5 9 route12 14 24
 DATA
 82   82  82  82 166 166
 298  35 298 182 299 300 182 298  35 298
