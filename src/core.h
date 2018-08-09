@@ -6171,6 +6171,40 @@ public:
 								if (levels[mc.loc.level].characters[i].loc.y > mc.loc.y)
 									levels[mc.loc.level].characters[i].loc.y = mc.loc.y + 1.0;
 							}
+							else if (s.find("WILD_BATTLE") == 0) {
+								s2 = s;
+								s2.erase(0, s2.find(":") + 1);
+								if (s2.find("|") != -1) {
+									s2.erase(s2.find("|"), s2.length());
+								}
+								s3 = s2;
+								s2.erase(s2.find(":"), s2.length());
+								s3.erase(0, s3.find(":") + 1);
+								mc.enemy_selected = 0;
+								make_mon(s2, stoi(s3), mc.enemy_team[mc.enemy_selected]);
+								for (int i = 0; i < 6; ++i) {
+									mc.team[i].hp_bar_index = 0;
+									mc.team[i].exp_bar_index = 0;
+								}
+								if (battle()) {
+									choices.push_back(1);
+								}
+								else {
+									choices.push_back(0);
+								}
+								for (int i = 0; i < 6; ++i) {
+									mc.team[i].hp_bar_index = 0;
+									mc.team[i].exp_bar_index = 0;
+								}
+								encounter = "";
+								if (team_KO()) {
+									full_heal();
+									mc.loc.level = mc.last_center.level;
+									mc.loc.x = mc.last_center.x;
+									mc.loc.y = mc.last_center.y;
+									mc.money /= 2;
+								}
+							}
 							else if (s.find("BATTLE") == 0) {
 								s2 = s;
 								s2.erase(0, s2.find(":") + 1);
