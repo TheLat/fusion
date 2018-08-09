@@ -1,12 +1,39 @@
 NAME
-Route 24
+Route 12
 NPCS
-route24-item1 orb 12 7
+route12-sign1 blank 17 15
 INTERACTIONS
-GIVE_ITEM:TM45|DEACTIVATE:route24-item1
+MENU:ALERT:ROUTE 12 {NEWLINE} North to LAVENDER
+END
+route12-fat1 fat 18 33 LEFT
+FORCE_INTERACTION
+-1 0
+-2 0
+-3 0
+-4 0
+END
+INTERACTIONS
+!:route12-fat1|MOVE_TO_PLAYER|MENU:ALERT:Yeah! I got a bite, here!|BATTLE:route12-fat1|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Hang on! My line's snagged!
+END
+route12-item1 orb 18 37
+INTERACTIONS
+GIVE_ITEM:TM16|DEACTIVATE:route12-item1
+END
+route12-fat2 fat 9 41 UP
+FORCE_INTERACTION
+0 -1
+0 -2
+0 -3
+0 -4
+END
+INTERACTIONS
+!:route12-fat2|MOVE_TO_PLAYER|MENU:ALERT:Be patient! Fishing is a waiting game!|BATTLE:route12-fat2|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:With a better ROD, I could catch better POK{e-accent}MON!
 END
 TRAINERS
-route24-boy1 10 0.1 0.1 BUG{SPACE}CATCHER bugcatcher.png {BUG CATCHER: Whoo! Good stuff!}{} 10-10:14|13-13:14
+route12-fat1 35 0.1 0.1 FISHERMAN fisherman.png {FISHERMAN: Tch! Just a small fy!}{} 118-118:22|60-60:22|118-118:22
+route12-fat2 35 0.1 0.1 FISHERMAN fisherman.png {FISHERMAN: That one got away!}{} 72-72:24|118-118:24
 END
 TELEPORT
 12 0 lavender-town 12 23
