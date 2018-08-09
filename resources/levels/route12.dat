@@ -13,6 +13,8 @@ TELEPORT
 13 0 lavender-town 13 23
 1 64 route11-checkpoint 8 5
 1 65 route11-checkpoint 8 5
+14 18 route12-checkpoint 4 1
+15 18 route12-checkpoint 4 1
 ENCOUNTERS
 17 43 48 69 83
 WATER_ENCOUNTERS_OLD
