@@ -60,11 +60,56 @@ END
 route12-snorlax snorlax 14 64
 INTERACTIONS
 IN_INVENTORY:POK{e-accent}FLUTE|{MENU:ALERT:A sleeping POK{e-accent}MON blocks the way!}{MENU:ALERT:{PLAYER_NAME} played the POK{e-accent}FLUTE!|MENU:ALERT:SNORLAX woke up!|MENU:ALERT:It attacked in a grumpy rage!|WILD_BATTLE:143-143:30|{NO_ADVANCE}{DEACTIVATE:route12-snorlax}}
+END
+route12-man1 man2 18 78 UP
+FORCE_INTERACTION
+0 -1
+0 -2
+0 -3
+0 -4
+END
+INTERACTIONS
+!:route12-man1|MOVE_TO_PLAYER|MENU:ALERT:Electricity is my specialty!|BATTLE:route12-man1|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Water conducts electricity, so you should zap sea POK{e-accent}MON!
+END
+route12-bush1 bush 11 90
+INTERACTIONS
+HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:route12-bush1}
+END
+route12-fat5 fat 10 89 DOWN
+FORCE_INTERACTION
+0 1
+END
+INTERACTIONS
+!:route12-fat5|MOVE_TO_PLAYER|MENU:ALERT:You never know what you could catch!|BATTLE:route12-fat5|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I catch MAGIKARP all the time, but they're so weak!
+END
+route12-item2 orb 9 91
+INTERACTIONS
+GIVE_ITEM:IRON|DEACTIVATE:route12-item2
+END
+route12-man2 guy2 15 94 LEFT
+FORCE_INTERACTION
+-1 0
+-2 0
+-3 0
+END
+INTERACTIONS
+!:route12-man2|MOVE_TO_PLAYER|MENU:ALERT:Have you found a MOON STONE?|BATTLE:route12-man2|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I could have made my POK{e-accent}MON evolve with a MOON STONE!
+END
+route12-bush2 bush 13 101
+INTERACTIONS
+HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:route12-bush2}
+END
 TRAINERS
-route12-fat1 35 0.1 0.1 FISHERMAN fisherman.png {FISHERMAN: Tch! Just a small fy!}{} 118-118:22|60-60:22|118-118:22
-route12-fat2 35 0.1 0.1 FISHERMAN fisherman.png {FISHERMAN: That one got away!}{} 72-72:24|118-118:24
-route12-fat3 35 0.1 0.1 FISHERMAN fisherman.png {FISHERMAN: Too much!}{} 118-118:27
-route12-fat4 35 0.1 0.1 FISHERMAN fisherman.png {FISHERMAN: It's not easy...}{} 60-60:21|90-90:21|118-118:21|116-116:21
+route12-fat1 35 0.35 0.35 FISHERMAN fisherman.png {FISHERMAN: Tch! Just a small fy!}{} 43-118:25|61-66:25|22-118:25
+route12-fat2 35 0.35 0.35 FISHERMAN fisherman.png {FISHERMAN: That one got away!}{} 72-72:26|118-54:26
+route12-fat3 35 0.35 0.35 FISHERMAN fisherman.png {FISHERMAN: Too much!}{} 118-58:29
+route12-fat4 35 0.35 0.35 FISHERMAN fisherman.png {FISHERMAN: It's not easy...}{} 60-69:24|90-74:24|118-118:24|69-116:24
+route12-man1 25 0.55 0.55 ROCKER rocker.png {ROCKER: Unplugged!}{} 101-28:42|101-119:42
+route12-fat5 35 0.65 0.65 FISHERMAN fisherman.png {FISHERMAN: Lost it!}{} 129-129:18|129-129:19|129-129:16|129-129:15|129-129:17|129-129:19
+route12-man2 20 0.50 0.50 JR.TRAINER{MALE} jrtrainerm.png {JR.TRAINER{MALE}: Oww!}{} 33-33:42|30-30:42
 END
 TELEPORT
 12 0 lavender-town 12 23
