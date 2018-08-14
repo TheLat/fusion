@@ -1128,6 +1128,8 @@ public:
 	void input(bool up, bool down, bool left, bool right, bool select, bool start, bool confirm, bool cancel) {
 		if (!initialized)
 			return;
+		if (done)
+			return;
 		m2.lock();
 		if (start) {
 			start = false;
