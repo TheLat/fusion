@@ -1110,6 +1110,12 @@ public:
 					encounter = to_string(part2) + string("-") + to_string(part1);
 				}
 				encounter_level = int(random(levels[mc.loc.level].level_range.first, levels[mc.loc.level].level_range.second + 1));
+				if (tier == 0) {
+					encounter_level = 5;
+				}
+				else if (tier == 1) {
+					encounter_level = max(encounter_level - 5, 5);
+				}
 				//TODO: Random chance for fishing to work
 			}
 			else if (base.find("MAP") == 0) {
