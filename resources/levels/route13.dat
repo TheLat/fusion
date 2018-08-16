@@ -1,19 +1,98 @@
 NAME
 Route 13
 NPCS
-route12-sign1 blank 17 15
-INTERACTIONS
-MENU:ALERT:ROUTE 12 {NEWLINE} North to LAVENDER
+route13-girl1 girl 62 6 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+0 3
 END
-route12-fat1 fat 18 33 LEFT
+INTERACTIONS
+!:route13-girl1|MOVE_TO_PLAYER|MENU:ALERT:I found CARBOS in a cave once.|BATTLE:route13-girl1|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:CARBOS boosted the SPEED of my POK{e-accent}MON.
+END
+route13-guy1 guy2 61 11 RIGHT
+FORCE_INTERACTION
+1 0
+2 0
+END
+INTERACTIONS
+!:route13-guy1|MOVE_TO_PLAYER|MENU:ALERT:My bird POK{e-accent}MON want to scrap!|BATTLE:route13-guy1|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:My POK{e-accent}MON look happy even though they lost.
+END
+route13-girl2 girl 60 11 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+END
+INTERACTIONS
+!:route13-girl2|MOVE_TO_PLAYER|MENU:ALERT:I'm told I'm good for a kid!|BATTLE:route13-girl2|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I want to become a good trainer. I'll train hard.
+END
+route13-item1 blank 29 14 INCORPOREAL
+INTERACTIONS
+GIVE_ITEM:CALCIUM|DEACTIVATE:route13-item1
+END
+route13-sign1 blank 43 12
+INTERACTIONS
+MENU:ALERT:ROUTE 13 {NEWLINE} North to SILENCE BRIDGE
+END
+route13-girl3 girl 39 10 DOWN
+FORCE_INTERACTION
+0 1
+END
+INTERACTIONS
+!:route13-girl3|MOVE_TO_PLAYER|MENU:ALERT:Wow! Your BADGEs are too cool!|BATTLE:route13-girl3|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:You got those BADGEs from GYM LEADERs. I know!
+END
+route13-girl4 girl 35 11 LEFT
 FORCE_INTERACTION
 -1 0
 -2 0
--3 0
--4 0
+END
+INTERACTIONS
+!:route13-girl4|MOVE_TO_PLAYER|MENU:ALERT:My cute POK{e-accent}MON wish to make your acquaintance.|BATTLE:route13-girl4|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:You have to make POK{e-accent}MON fight to toughen them up!
+END
+route13-sign2 blank 28 14
+INTERACTIONS
+MENU:ALERT:TRAINER TIPS|MENU:ALERT:Look to the left of that post!
+END
+route13-girl5 woman4 44 7 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+END
+INTERACTIONS
+!:route13-girl5|MOVE_TO_PLAYER|MENU:ALERT:Do you want to POK{e-accent}MON with me?|BATTLE:route13-girl5|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I don't know anything about POK{e-accent}MON. I just like cool ones!
+END
+route13-girl6 woman4 45 7 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+0 3
+END
+INTERACTIONS
+!:route13-girl6|MOVE_TO_PLAYER|MENU:ALERT:Sure, I'll play with you!|BATTLE:route13-girl6|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I wonder which is stronger, male or female POK{e-accent}MON?|MENU:ALERT:TODO: CRASH BUG IN THIS FIGHT, MAYBE CAUSED BY SUPER FANG
+END
+route13-sign3 blank 45 6
+INTERACTIONS
+MENU:ALERT:TRAINER TIPS|MENU:ALERT:Use SELECT to switch items in the ITEM window!|MENU:ALERT:TODO: THIS
+END
+route13-bush1 bush 46 5
+INTERACTIONS
+HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:route13-bush1}
 END
 TRAINERS
-route12-man2 20 0.50 0.50 JR.TRAINER{MALE} jrtrainerm.png {JR.TRAINER{MALE}: Oww!}{} 33-33:42|30-30:42
+route13-girl1 20 0.5 0.5 JR.TRAINER{FEMALE} jrtrainerf.png {JR.TRAINER{FEMALE}: Just messed up!}{} 119-119:41|61-61:41|117-117:41
+route13-guy1 25 0.6 0.6 BIRD{SPACE}KEEPER birdkeeper.png {BIRD{SPACE}KEEPER: My bird combo lost?}{} 18-18:42|18-18:42
+route13-girl2 20 0.5 0.5 JR.TRAINER{FEMALE} jrtrainerf.png {JR.TRAINER{FEMALE}: Ohh! I lost!}{} 18-18:39|53-53:39|20-20:39|25-25:39:THUNDERSHOCK,THUNDER WAVE,SWIFT,AGILITY|53-53:39
+route13-girl3 20 0.5 0.5 JR.TRAINER{FEMALE} jrtrainerf.png {JR.TRAINER{FEMALE}: Not enough!}{} 61-61:42|61-61:42
+route13-girl4 20 0.5 0.5 JR.TRAINER{FEMALE} jrtrainerf.png {JR.TRAINER{FEMALE}: Wow! You totally won!}{} 18-18:40|53-53:40|18-18:40|18-18:41
+route13-girl5 70 0.9 0.9 BEAUTY beauty.png {BEAUTY: It's over already?}{} 35-35:42|53-53:42
+route13-girl6 70 0.9 0.9 BEAUTY beauty.png {BEAUTY: Oh! You little brute!}{} 20-20:41|25-25:41:THUNDERSHOCK,THUNDER WAVE,SWIFT,AGILITY|20-20:41
 END
 TELEPORT
 62 0 route12 14 110
@@ -27,7 +106,7 @@ WATER_ENCOUNTERS_GOOD
 WATER_ENCOUNTERS_SUPER
 73 79 99 117 119
 LEVELS
-36-42
+32-38
 DATA
 0    56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  76  76  76  76  76  76  76   4   4   4   4   1  76 238 238  81  81  81  81  81  81  81 656  81  81  81  81
 0    56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56   2   3  76  76  76  76  76  76  76  76  76  76  76  76  76  76 238 238  81  81  81  81  81  81  81 656  81  81  81  81
@@ -41,7 +120,7 @@ DATA
 0    56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  55   2  56  56  56  56  56  56  56  56  56  56  56  56  56  55   2  56  56   2   3  76  76  76  76   1   1   1   1   1   1   1   1   1   1  76  76 238 238  81  81  81  81  81  81  81 656  81  81  81  81
 0    55  55  56  56  55  55  55  55  55  55  55  55  55  55  55  55  56  56  55  55  55  55  55  55  55   3  55  55  55  55  55  55  55  55  55  55  55  56  56  55   3  55  55   3   2  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76 238 238  81  81  81  81  81  81  81 656  81  81  81  81
 0    56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  55   2  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  55   2  56  56  56  56  56  56  56  56  56  56 238 238 238 238 238 238 238 238 238 238 238 238 238 238 238 238  81  81  81  81  81  81  81 656  81  81  81  81
-0    55  55  55  55  55  55  55  55  56  56  55  55  55  55  55  55  55  55  55   3  55  55  55  55  55  55  55  55  55  55  55  55  55  56  56  55   3  55  55  55  55  55   5  55  55  56  56 238 238 238 238 238 238 238 238 238 238 238 238 238 238 238 238  81  81  81  81  81  81  81 656  81  81  81  81
+0    55  55  55  55  55  55  55  55  56  56  55  55  55  55  55  55  55  55  55   3  56  56  55  55  55  55  55  55  55  55  55  55  55  56  56  55   3  55  55  55  55  55   5  55  55  56  56 238 238 238 238 238 238 238 238 238 238 238 238 238 238 238 238  81  81  81  81  81  81  81 656  81  81  81  81
 0    56  56  56  56  56  56   1   1 163 163   1   1  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  55   2  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56 261 261 261 261 261 261 261 261 261 261 261 261 261 261 261 261  81  81  81  81  81  81  81 656  81  81  81  81
 0    56  56  56  56  56  56   1   1 163 163   1   1  56   5  55  55  55  55  56  56  55  55  55  55  55  55  55   5  55   3  55  55  55  55  55  55  55  55  55  55  55  55  55  55  55  55  55  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81 656  81  81  81  81
 0    56  56  56  56  56  56   1   1 163 163   1   0  76  76  76  76   0   0   0   0   0   0   0   0   0   0   0   0   0   0  88  88  88  88  88  88  88  88  88  88  88  88  88  88  88  88 656  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81 656  81  81  81  81
