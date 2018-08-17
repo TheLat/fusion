@@ -3763,6 +3763,9 @@ public:
 				if (crit)
 					damage = int(double(damage)*1.5);
 			}
+			else if (moves[move].target[j].find("HALF_HP") == 0) {
+				damage = defender.curr_hp / 2;
+			}
 			else if (moves[move].target[j].find("TWICE_SELF_DAMAGE_OVER_TURNS") == 0) {
 				string temp = moves[move].target[j];
 				temp.erase(0, temp.find(":") + 1);
