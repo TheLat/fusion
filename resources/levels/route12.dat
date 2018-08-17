@@ -120,8 +120,15 @@ TELEPORT
 15 18 route12-checkpoint 4 1
 14 23 route12-checkpoint 4 8
 15 79 route12-house1 2 7
-14 111 route13 62 1
-15 111 route13 63 1
+14 111 route13 67 1
+15 111 route13 68 1
+16 111 route13 69 1
+17 111 route13 70 1
+18 111 route13 71 1
+19 111 route13 72 1
+20 111 route13 73 1
+21 111 route13 74 1
+22 111 route13 75 1
 ENCOUNTERS
 17 43 48 69 83
 WATER_ENCOUNTERS_OLD
