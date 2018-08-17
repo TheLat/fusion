@@ -2319,6 +2319,8 @@ public:
 					for (unsigned j = 0; j < moves[move].target.size(); ++j) {
 						if (moves[move].target[j].find("EXACT_DAMAGE") == 0)
 							continue;
+						if (moves[move].target[j].find("HALF_HP") == 0)
+							continue;
 						success = apply_status(defender, moves[move].target[j]) || success;
 						// TODO:  Status announcement
 					}
@@ -3765,6 +3767,8 @@ public:
 			}
 			else if (moves[move].target[j].find("HALF_HP") == 0) {
 				damage = defender.curr_hp / 2;
+				crit = false;
+				mul = 1.0;
 			}
 			else if (moves[move].target[j].find("TWICE_SELF_DAMAGE_OVER_TURNS") == 0) {
 				string temp = moves[move].target[j];
