@@ -85,6 +85,79 @@ route13-bush1 bush 46 5
 INTERACTIONS
 HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:route13-bush1}
 END
+route13-guy2 guy2 20 14 UP
+FORCE_INTERACTION
+0 -1
+0 -2
+0 -3
+END
+INTERACTIONS
+!:route13-guy2|MOVE_TO_PLAYER|MENU:ALERT:I always go with bird POK{e-accent}MON!|BATTLE:route13-guy2|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I wish I could fly like PIDGEY and PIDGEOTTO...
+END
+route13-item2 blank 16 15 INCORPOREAL
+INTERACTIONS
+GIVE_ITEM:PP UP|DEACTIVATE:route13-item2
+END
+route13-guy3 guy2 25 5 RIGHT
+FORCE_INTERACTION
+1 0
+2 0
+END
+INTERACTIONS
+!:route13-guy3|MOVE_TO_PLAYER|MENU:ALERT:The wind's blowing my way!|BATTLE:route13-guy3|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I'm beat. I guess I'll FLY home.
+END
+route13-guy4 biker 23 8 UP
+FORCE_INTERACTION
+0 -1
+END
+INTERACTIONS
+!:route13-guy4|MOVE_TO_PLAYER|MENU:ALERT:What're you lookin' at?|BATTLE:route13-guy4|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Get lost!
+END
+route13-guy5 guy2 12 7 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+END
+INTERACTIONS
+!:route13-guy5|MOVE_TO_PLAYER|MENU:ALERT:My bird POK{e-accent}MON should be ready for battle.|BATTLE:route13-guy5|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:They need to learn better moves.
+END
+route13-guy6 guy2 1 5 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+END
+INTERACTIONS
+!:route13-guy6|MOVE_TO_PLAYER|MENU:ALERT:You need to use TMs to teach good moves to POK{e-accent}MON!|BATTLE:route13-guy6|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:You have some HMs, right? Those are really important.
+END
+route13-guy7 guy2 9 12 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+0 3
+END
+INTERACTIONS
+!:route13-guy7|MOVE_TO_PLAYER|MENU:ALERT:TMs are on sale in CELADON! But, only a few people have HMs!|BATTLE:route13-guy7|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Teach POK{e-accent}MON moves of the same element type for more power.
+END
+route13-guy8 guy2 11 16 UP
+FORCE_INTERACTION
+0 -1
+0 -2
+0 -3
+END
+INTERACTIONS
+!:route13-guy8|MOVE_TO_PLAYER|MENU:ALERT:Have you taught your bird POK{e-accent}MON how to FLY?|BATTLE:route13-guy8|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Bird POK{e-accent}MON are my true love!
+END
+route13-sign4 blank 14 14
+INTERACTIONS
+MENU:ALERT:ROUTE 14 {NEWLINE} West to FUCHSIA CITY
+END
 TRAINERS
 route13-girl1 20 0.5 0.5 JR.TRAINER{FEMALE} jrtrainerf.png {JR.TRAINER{FEMALE}: Just messed up!}{} 119-119:41|61-61:41|117-117:41
 route13-guy1 25 0.6 0.6 BIRD{SPACE}KEEPER birdkeeper.png {BIRD{SPACE}KEEPER: My bird combo lost?}{} 18-18:42|18-18:42
@@ -93,6 +166,13 @@ route13-girl3 20 0.5 0.5 JR.TRAINER{FEMALE} jrtrainerf.png {JR.TRAINER{FEMALE}: 
 route13-girl4 20 0.5 0.5 JR.TRAINER{FEMALE} jrtrainerf.png {JR.TRAINER{FEMALE}: Wow! You totally won!}{} 18-18:40|53-53:40|18-18:40|18-18:41
 route13-girl5 70 0.9 0.9 BEAUTY beauty.png {BEAUTY: It's over already?}{} 35-35:42|53-53:42
 route13-girl6 70 0.9 0.9 BEAUTY beauty.png {BEAUTY: Oh! You little brute!}{} 20-20:41|25-25:41:THUNDERSHOCK,THUNDER WAVE,SWIFT,AGILITY|20-20:41
+route13-guy2 25 0.6 0.6 BIRD{SPACE}KEEPER birdkeeper.png {BIRD{SPACE}KEEPER: Out of power!}{} 18-18:40|18-18:40|22-22:40|22-22:40
+route13-guy3 25 0.6 0.6 BIRD{SPACE}KEEPER birdkeeper.png {BIRD{SPACE}KEEPER: The wind turned!}{} 22-22:39|18-18:39|18-18:39|22-22:39|22-22:39
+route13-guy4 20 0.5 0.5 BIKER biker.png {BIKER: Dang! Stripped gears!}{} 110-110:41|110-110:41|110-110:41
+route13-guy5 25 0.6 0.6 BIRD{SPACE}KEEPER birdkeeper.png {BIRD{SPACE}KEEPER: Not ready yet!}{} 18-18:40|22-22:40|18-18:40|22-22:40
+route13-guy6 25 0.6 0.6 BIRD{SPACE}KEEPER birdkeeper.png {BIRD{SPACE}KEEPER: Not good enough!}{} 18-18:41|85-85:41|18-18:41
+route13-guy7 25 0.6 0.6 BIRD{SPACE}KEEPER birdkeeper.png {BIRD{SPACE}KEEPER: Aww, bummer!}{} 18-18:42|22-22:42
+route13-guy8 25 0.6 0.6 BIRD{SPACE}KEEPER birdkeeper.png {BIRD{SPACE}KEEPER: Shot down in flames!}{} 22-22:41|85-85:41|22-22:41
 END
 TELEPORT
 62 0 route12 14 110
@@ -121,8 +201,8 @@ DATA
 0    55  55  56  56  55  55  55  55  55  55  55  55  55  55  55  55  56  56  55  55  55  55  55  55  55   3  55  55  55  55  55  55  55  55  55  55  55  56  56  55   3  55  55   3   2  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76 238 238  81  81  81  81  81  81  81 656  81  81  81  81
 0    56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  55   2  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  55   2  56  56  56  56  56  56  56  56  56  56 238 238 238 238 238 238 238 238 238 238 238 238 238 238 238 238  81  81  81  81  81  81  81 656  81  81  81  81
 0    55  55  55  55  55  55  55  55  56  56  55  55  55  55  55  55  55  55  55   3  56  56  55  55  55  55  55  55  55  55  55  55  55  56  56  55   3  55  55  55  55  55   5  55  55  56  56 238 238 238 238 238 238 238 238 238 238 238 238 238 238 238 238  81  81  81  81  81  81  81 656  81  81  81  81
-0    56  56  56  56  56  56   1   1 163 163   1   1  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  55   2  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56 261 261 261 261 261 261 261 261 261 261 261 261 261 261 261 261  81  81  81  81  81  81  81 656  81  81  81  81
-0    56  56  56  56  56  56   1   1 163 163   1   1  56   5  55  55  55  55  56  56  55  55  55  55  55  55  55   5  55   3  55  55  55  55  55  55  55  55  55  55  55  55  55  55  55  55  55  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81 656  81  81  81  81
+0    56  56  56  56  56  56   1   1 163 163   1   1  56  56  55   2  56  56  56  56  56  56  56  56  56  56  56  56  55   2  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56 261 261 261 261 261 261 261 261 261 261 261 261 261 261 261 261  81  81  81  81  81  81  81 656  81  81  81  81
+0    56  56  56  56  56  56   1   1 163 163   1   1  56   5  55   3  55  55  56  56  55  55  55  55  55  55  55   5  55   3  55  55  55  55  55  55  55  55  55  55  55  55  55  55  55  55  55  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81 656  81  81  81  81
 0    56  56  56  56  56  56   1   1 163 163   1   0  76  76  76  76   0   0   0   0   0   0   0   0   0   0   0   0   0   0  88  88  88  88  88  88  88  88  88  88  88  88  88  88  88  88 656  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81 656  81  81  81  81
 0    56  56  56  56  56  56   1   1 163 163   1   0  76  76  76  76   1   1   1   1   1   1   1   1   1   1   1   1   1   1  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81 656  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81 656  81  81  81  81
 0     2   3   2   3   2   3   1   1 163 163   1   0  76  76  76  76  88  88  88  88  88  88  88  88  88  88  88  88  88  88  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81 656  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81 656  81  81  81  81
