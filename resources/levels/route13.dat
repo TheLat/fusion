@@ -75,7 +75,7 @@ FORCE_INTERACTION
 END
 INTERACTIONS
 !:route13-girl6|MOVE_TO_PLAYER|MENU:ALERT:Sure, I'll play with you!|BATTLE:route13-girl6|{NO_ADVANCE}{DISABLE_FORCE}
-MENU:ALERT:I wonder which is stronger, male or female POK{e-accent}MON?|MENU:ALERT:TODO: CRASH BUG IN THIS FIGHT, MAYBE CAUSED BY SUPER FANG
+MENU:ALERT:I wonder which is stronger, male or female POK{e-accent}MON?
 END
 route13-sign3 blank 50 6
 INTERACTIONS
@@ -170,9 +170,9 @@ route13-guy2 25 0.6 0.6 BIRD{SPACE}KEEPER birdkeeper.png {BIRD{SPACE}KEEPER: Out
 route13-guy3 25 0.6 0.6 BIRD{SPACE}KEEPER birdkeeper.png {BIRD{SPACE}KEEPER: The wind turned!}{} 42-22:39|75-18:39|28-85:39|22-58:39|22-44:39:ABSORB,DRILL PECK,ACID,STUN SPORE
 route13-guy4 20 0.5 0.5 BIKER biker.png {BIKER: Dang! Stripped gears!}{} 110-44:41|110-58:41|110-75:41
 route13-guy5 25 0.6 0.6 BIRD{SPACE}KEEPER birdkeeper.png {BIRD{SPACE}KEEPER: Not ready yet!}{} 12-18:40|12-22:40|18-12:40|22-12:40
-route13-guy6 25 0.6 0.6 BIRD{SPACE}KEEPER birdkeeper.png {BIRD{SPACE}KEEPER: Not good enough!}{} 18-18:41|85-85:41|18-18:41
-route13-guy7 25 0.6 0.6 BIRD{SPACE}KEEPER birdkeeper.png {BIRD{SPACE}KEEPER: Aww, bummer!}{} 18-18:42|22-22:42
-route13-guy8 25 0.6 0.6 BIRD{SPACE}KEEPER birdkeeper.png {BIRD{SPACE}KEEPER: Shot down in flames!}{} 22-22:41|85-85:41|22-22:41
+route13-guy6 25 0.6 0.6 BIRD{SPACE}KEEPER birdkeeper.png {BIRD{SPACE}KEEPER: Not good enough!}{} 22-67:41:DRILL PECK,KARATE CHOP,FURY ATTACK,LEER|85-85:41|3-18:41
+route13-guy7 25 0.6 0.6 BIRD{SPACE}KEEPER birdkeeper.png {BIRD{SPACE}KEEPER: Aww, bummer!}{} 82-18:42|22-64:42
+route13-guy8 25 0.6 0.6 BIRD{SPACE}KEEPER birdkeeper.png {BIRD{SPACE}KEEPER: Shot down in flames!}{} 22-82:41|85-18:41|22-18:41
 END
 TELEPORT
 67 0 route12 14 110
