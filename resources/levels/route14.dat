@@ -90,6 +90,15 @@ TELEPORT
 14 1 route13 14 18
 15 1 route13 15 18
 16 1 route13 16 18
+0 24 route15 59 5
+0 25 route15 59 6
+0 26 route15 59 7
+0 28 route15 59 9
+0 29 route15 59 10
+0 30 route15 59 11
+0 31 route15 59 12
+0 32 route15 59 13
+0 33 route15 59 14
 ENCOUNTERS
 18 45 49 58 70 83 132
 LEVELS
