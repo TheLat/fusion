@@ -1,0 +1,137 @@
+NAME
+Route 14
+NPCS
+route14-bush1 bush 7 10
+INTERACTIONS
+HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:route14-bush1}
+END
+route14-bush2 bush 13 16
+INTERACTIONS
+HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:route14-bush2}
+END
+route14-guy1 biker 17 14 LEFT
+FORCE_INTERACTION
+-1 0
+-2 0
+-3 0
+-4 0
+END
+INTERACTIONS
+!:route14-guy1|MOVE_TO_PLAYER|MENU:ALERT:We ride out here because there's more room!|BATTLE:route14-guy1|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:It's cool you made your POK{e-accent}MON so strong!|MENU:ALERT:Might is right! And you know it!
+END
+route14-guy2 guy2 17 15 LEFT
+FORCE_INTERACTION
+-1 0
+-2 0
+-3 0
+END
+INTERACTIONS
+!:route14-guy2|MOVE_TO_PLAYER|MENU:ALERT:Have you heard of the legendary POK{e-accent}MON?|BATTLE:route14-guy2|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:The 3 legendary POK{e-accent}MON are all birds of prey.
+END
+route14-guy3 biker 6 14 RIGHT
+FORCE_INTERACTION
+1 0
+2 0
+3 0
+4 0
+END
+INTERACTIONS
+!:route14-guy3|MOVE_TO_PLAYER|MENU:ALERT:Perfect! I need to burn some time!|BATTLE:route14-guy3|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Raising POK{e-accent}MON is a drag, man.
+END
+route14-guy4 biker 6 15 RIGHT
+FORCE_INTERACTION
+1 0
+2 0
+3 0
+4 0
+END
+INTERACTIONS
+!:route14-guy4|MOVE_TO_PLAYER|MENU:ALERT:POK{e-accent}MON fight? Cool! Rumble!|BATTLE:route14-guy4|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:You know who'd win, you and me, one on one!
+END
+route14-guy5 biker 7 23 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+0 3
+0 4
+END
+INTERACTIONS
+!:route14-guy5|MOVE_TO_PLAYER|MENU:ALERT:C'mon, c'mon. Let's go, let's go, let's go!|BATTLE:route14-guy5|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:What, what, what? What do you want?
+END
+route14-guy6 guy2 8 33 UP
+FORCE_INTERACTION
+0 -1
+0 -2
+0 -3
+END
+INTERACTIONS
+!:route14-guy6|MOVE_TO_PLAYER|MENU:ALERT:I'm not into it, but OK! Let's go!|BATTLE:route14-guy6|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Winning, losing, it doesn't matter in the long run!
+END
+route14-bush3 bush 5 26
+INTERACTIONS
+HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:route14-bush3}
+END
+TRAINERS
+route14-guy1 20 0.5 0.5 BIKER biker.png {BIKER: Wipe out!}{} 110-110:43|89-89:43
+route14-guy2 25 0.6 0.6 BIRD{SPACE}KEEPER birdkeeper.png {BIRD{SPACE}KEEPER: Why? Why'd I lose?}{} 83-83:45
+route14-guy3 20 0.5 0.5 BIKER biker.png {BIKER: What? You!?}{} 89-89:42|89-89:42|110-110:42
+route14-guy4 20 0.5 0.5 BIKER biker.png {BIKER: Blown away!}{} 110-110:43|89-89:43
+route14-guy5 20 0.5 0.5 BIKER biker.png {BIKER: Arrg! Lost! Get lost!}{} 110-110:41|110-110:41|89-89:41|89-89:41
+route14-guy6 25 0.6 0.6 BIRD{SPACE}KEEPER birdkeeper.png {BIRD{SPACE}KEEPER: I knew it!}{} 22-22:43|22-22:43
+END
+TELEPORT
+13 1 route13 13 18
+14 1 route13 14 18
+15 1 route13 15 18
+16 1 route13 16 18
+ENCOUNTERS
+18 45 49 58 70 83 132
+LEVELS
+33-39
+DATA
+1     1   1   1   1   0   2   3   2   3   2   3   1   1 163 163   1   0  76  76  76  76
+1     1   1   1   1   0  76  76  76  76  76  76   1   1 163 163   1   0  76  76  76  76
+1     1   1   1   1   0   4   4   4   4   4   4  76   1 163 163   1   0  76  76  76  76
+1     1   1   1   1   0   4   4   4   4   4   4  76   1 163 163   1   0  76  76  76  76
+1     1   1   1   1   0   4   4   4   4   4   4  76   1 163 163   1   0  88  88  88  88
+1     1   1   1   1   0   4   4   4   4   4   4  76   1 163 163   1   0  81  81  81  81
+1     1   1   1   1   0   4   4   4   4   4   4  76   1 163 163   1   0  81  81  81  81
+1     1   1   1   1   0   4   4   4   4   4   4  76   1 163 163   1   0  81  81  81  81
+1     1   1   1   1   0   1  76   1   1   1   1  76   1 163 163   1   0  81  81  81  81  81  81
+1     1   1   1   1   0   1  76  77  77  77  77  76   1 163 163   1   0  81  81  81  81  81  81
+1     1   1   1   1   0   1   1   1   1 163 163  76   1 163 163   1   0  81  81  81  81  81  81
+1     1   1   1   1   0  76   1   1   1 163 163  76   1 163 163   1   0  81  81  81  81  81  81
+1     1   1   1   1   0   1   1   1   1 163 163  76   1 163 163   1   1   0   0  81  81  81  81
+1     1   1   1   1   0   1   1   1   1 163 163  76   1 163 163   1   1   1   0  81  81  81  81
+1     1   1   1   1   0   1   1   1   1 163 163  76   1 163 163   1   1   1   0  81  81  81  81
+1     1   1   1   1   0   1   1   1   1 163 163  76   1 163 163   1   1   1   0  81  81  81  81
+1     1   1   1   1   0   1   1   1   1 163 163   1   1 163 163   1   1   1   0  81  81  81  81
+1     1   1   1   1   0   1   1   1   1 163 163  76   1 163 163   1   1   1   0  81  81  81  81
+1     1   1   1   1   0   1   1   1   1 163 163  76   1 163 163   1   1   1   0  81  81  81  81
+1     1   1   1   1   0   1   1   1   1 163 163  76   1 163 163   1   1   1   0  81  81  81  81
+0     0   0   0   0   0   1   1   1   1 163 163  76   1 163 163   1   1   1   0  81  81  81  81
+0     0   0   0   0   0   1   1   1   1 163 163  76   1 163 163   1   1   1   0  81  81  81  81
+0     0   0   0   0   0   1   1   1   1 163 163  76   1 163 163   1   1   1   0  81  81  81  81
+0     0   0   0   0   0   1   1   1   1 163 163  76   1 163 163   1   1   1   0  81  81  81  81
+163 163 163 163   1  76 163 163 163 163 163 163   1   1 163 163   1   1   1   0  81  81  81  81
+163 163 163 163   1  76 163 163 163 163 163 163   1   1 163 163   1   1   1   0  81  81  81  81
+1     1   1   1   1   1   1   1   1   1   1   1   1   1 163 163   1   1   1   0  81  81  81  81
+77   77  77  77  76   1   1   1   1   1   1   1   1   1 163 163   1   1   1   0  81  81  81  81
+93    1   1   1   1   1   1   1   1   1   1   1   1   1 163 163   1   1   1   0  81  81  81  81
+94    1   1   1   1   1   1   1   1   1   1   1   1   1 163 163   1   1   1   0  81  81  81  81
+163 163 163 163 163 163 163 163 163 163 163 163 163 163 163 163   1   1   1   0  81  81  81  81
+163 163 163 163 163 163 163 163 163 163 163 163 163 163 163 163   1   1   1   0  81  81  81  81
+56    1   1   1   1   1   1   1   1   1   1   1   1   1 163 163   1   1   1   0  81  81  81  81
+56    1   1   1   1   1   1   1   1   1   1   1   1   1 163 163   1   1   1   0  81  81  81  81
+0     0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0  81  81  81  81
+1     1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1  81  81  81  81
+1     1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1  81  81  81  81
+1     1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1  81  81  81  81
+1     1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1  81  81  81  81
+1     1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1  81  81  81  81
