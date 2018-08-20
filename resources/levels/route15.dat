@@ -39,10 +39,89 @@ INTERACTIONS
 !:route15-girl3|MOVE_TO_PLAYER|MENU:ALERT:Oh, you're a little cutie!|BATTLE:route15-girl3|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I forgive you! I can take it!
 END
+route15-guy1 biker 48 11 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+0 3
+0 4
+END
+INTERACTIONS
+!:route15-guy1|MOVE_TO_PLAYER|MENU:ALERT:Hey kid! C'mon! I just got these!|BATTLE:route15-guy1|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:You only live once, so I live as an outlaw!|MENU:ALERT:TEAM ROCKET RULES!
+END
+route15-guy2 biker 46 11 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+0 3
+0 4
+END
+INTERACTIONS
+!:route15-guy2|MOVE_TO_PLAYER|MENU:ALERT:Fork over all your cash when you lost to me, kid!|BATTLE:route15-guy2|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I was just joking about the money!
+END
+route15-girl4 woman4 41 11 RIGHT
+FORCE_INTERACTION
+1 0
+2 0
+3 0
+END
+INTERACTIONS
+!:route15-girl4|MOVE_TO_PLAYER|MENU:ALERT:I raise POK{e-accent}MON because I live alone!|BATTLE:route15-girl4|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I just like going home to be with my POK{e-accent}MON!
+END
+route15-girl5 girl 41 12 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+0 3
+END
+INTERACTIONS
+!:route15-girl5|MOVE_TO_PLAYER|MENU:ALERT:Let me try out the POK{e-accent}MON I just got in a trade!|BATTLE:route15-girl5|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:It was so weird! They traded me GRAVELER and it evolved into GOLEM!
+END
+route15-guy3 guy2 35 14 UP
+FORCE_INTERACTION
+0 -1
+0 -2
+0 -3
+END
+INTERACTIONS
+!:route15-guy3|MOVE_TO_PLAYER|MENU:ALERT:Hmm? My birds are shivering! You're good, aren't you?|BATTLE:route15-guy3|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Did you know that moves like EARTHQUAKE don't have any effect on birds?
+END
+route15-guy4 guy2 31 14 UP
+FORCE_INTERACTION
+0 -1
+0 -2
+0 -3
+END
+INTERACTIONS
+!:route15-guy4|MOVE_TO_PLAYER|MENU:ALERT:When I whistle, I can summon bird POK{e-accent}MON!|BATTLE:route15-guy4|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Maybe I'm not cut out for battles.
+END
+route15-girl6 girl 18 14 UP
+FORCE_INTERACTION
+0 -1
+0 -2
+0 -3
+END
+INTERACTIONS
+!:route15-girl6|MOVE_TO_PLAYER|MENU:ALERT:Want to play with my POK{e-accent}MON?|BATTLE:route15-girl6|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I'll go train with weaker people.
+END
 TRAINERS
 route15-girl1 20 0.5 0.5 JR.TRAINER{FEMALE} jrtrainerf.png {JR.TRAINER{FEMALE}: I said trade!}{} 35-35:46
 route15-girl2 20 0.5 0.5 JR.TRAINER{FEMALE} jrtrainerf.png {JR.TRAINER{FEMALE}: No, wrong!}{} 25-25:44|26-26:44
 route15-girl3 70 0.9 0.9 BEAUTY beauty.png {BEAUTY: You looked so cute, too!}{} 18-18:44|40-40:44
+route15-guy1 20 0.5 0.5 BIKER biker.png {BIKER: Why not?}{} 110-110:41|110-110:41|110-110:41|110-110:41|89-89:41
+route15-guy2 20 0.5 0.5 BIKER biker.png {BIKER: That can't be true!}{} 110-110:43|89-89:43|110-110:43
+route15-girl4 70 0.9 0.9 BEAUTY beauty.png {BEAUTY: I didn't ask for this!}{} 3-3:44|3-3:44
+route15-girl5 20 0.5 0.5 JR.TRAINER{FEMALE} jrtrainerf.png {JR.TRAINER{FEMALE}: Not good enough!}{} 44-44:43|44-44:43|76-76:43
+route15-guy3 25 0.6 0.6 BIRD{SPACE}KEEPER birdkeeper.png {BIRD{SPACE}KEEPER: Just as I thought!}{} 85-85:43|85-85:43|85-85:43
+route15-guy4 25 0.6 0.6 BIRD{SPACE}KEEPER birdkeeper.png {BIRD{SPACE}KEEPER: Ow! That's tragic!}{} 18-18:42|83-83:42|85-85:42|22-22:42
+route15-girl6 20 0.5 0.5 JR.TRAINER{FEMALE} jrtrainerf.png {JR.TRAINER{FEMALE}: I was too impatient!}{} 70-70:43|44-44:43|114-114:43
 END
 TELEPORT
 60 5 route14 1 24
