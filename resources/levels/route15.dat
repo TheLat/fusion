@@ -113,15 +113,15 @@ MENU:ALERT:I'll go train with weaker people.
 END
 TRAINERS
 route15-girl1 20 0.5 0.5 JR.TRAINER{FEMALE} jrtrainerf.png {JR.TRAINER{FEMALE}: I said trade!}{} 35-35:46
-route15-girl2 20 0.5 0.5 JR.TRAINER{FEMALE} jrtrainerf.png {JR.TRAINER{FEMALE}: No, wrong!}{} 25-25:44|26-26:44
-route15-girl3 70 0.9 0.9 BEAUTY beauty.png {BEAUTY: You looked so cute, too!}{} 18-18:44|40-40:44
-route15-guy1 20 0.5 0.5 BIKER biker.png {BIKER: Why not?}{} 110-110:41|110-110:41|110-110:41|110-110:41|89-89:41
-route15-guy2 20 0.5 0.5 BIKER biker.png {BIKER: That can't be true!}{} 110-110:43|89-89:43|110-110:43
-route15-girl4 70 0.9 0.9 BEAUTY beauty.png {BEAUTY: I didn't ask for this!}{} 3-3:44|3-3:44
-route15-girl5 20 0.5 0.5 JR.TRAINER{FEMALE} jrtrainerf.png {JR.TRAINER{FEMALE}: Not good enough!}{} 44-44:43|44-44:43|76-76:43
-route15-guy3 25 0.6 0.6 BIRD{SPACE}KEEPER birdkeeper.png {BIRD{SPACE}KEEPER: Just as I thought!}{} 85-85:43|85-85:43|85-85:43
+route15-girl2 20 0.5 0.5 JR.TRAINER{FEMALE} jrtrainerf.png {JR.TRAINER{FEMALE}: No, wrong!}{} 25-25:44:SWIFT,THUNDERSHOCK,THUNDER WAVE,THUNDER|26-26:44:SWIFT,THUNDERSHOCK,THUNDER WAVE,THUNDER
+route15-girl3 70 0.9 0.9 BEAUTY beauty.png {BEAUTY: You looked so cute, too!}{} 40-18:44:DOUBLE-EDGE,WING ATTACK,REST,QUICK ATTACK|133-133:44
+route15-guy1 20 0.5 0.5 BIKER biker.png {BIKER: Why not?}{} 132-110:41|110-101:41|110-113:41:POUND,SMOG,SING,MINIMIZE|110-51:41|20-89:41
+route15-guy2 20 0.5 0.5 BIKER biker.png {BIKER: That can't be true!}{} 110-20:43|89-75:43|110-110:43
+route15-girl4 70 0.9 0.9 BEAUTY beauty.png {BEAUTY: I didn't ask for this!}{} 3-3:44|9-9:44
+route15-girl5 20 0.5 0.5 JR.TRAINER{FEMALE} jrtrainerf.png {JR.TRAINER{FEMALE}: Not good enough!}{} 44-28:43|44-44:43|76-76:43
+route15-guy3 25 0.6 0.6 BIRD{SPACE}KEEPER birdkeeper.png {BIRD{SPACE}KEEPER: Just as I thought!}{} 85-51:43|85-37:43|37-85:43
 route15-guy4 25 0.6 0.6 BIRD{SPACE}KEEPER birdkeeper.png {BIRD{SPACE}KEEPER: Ow! That's tragic!}{} 18-18:42|83-83:42|85-85:42|22-22:42
-route15-girl6 20 0.5 0.5 JR.TRAINER{FEMALE} jrtrainerf.png {JR.TRAINER{FEMALE}: I was too impatient!}{} 70-70:43|44-44:43|114-114:43
+route15-girl6 20 0.5 0.5 JR.TRAINER{FEMALE} jrtrainerf.png {JR.TRAINER{FEMALE}: I was too impatient!}{} 70-37:43|44-75:43|114-114:43
 END
 TELEPORT
 60 5 route14 1 24
