@@ -1642,7 +1642,7 @@ public:
 		}
 		out.status.clear();
 	}
-	void gain_exp(mon& winner, mon& loser, int num_fighters) {
+	void gain_exp(mon& winner, mon& loser, int num_fighters, double scale=1.0) {
 		if (winner.original) {
 			gain_exp(*winner.original, loser, num_fighters);
 			return;
@@ -1661,6 +1661,7 @@ public:
 		exp *= pow((2.0*double(loser.level) + 10.0), 2.5);
 		exp /= pow((double(winner.level + loser.level) + 10.0), 2.5);
 		exp += 1.0;
+		exp *= scale;
 		double diff = double(max(min(winner.level - loser.level, 5), -10)) / 10.0;
 		exp *= (1.0 - diff);
 		exp = max(int(exp), 1);
@@ -3291,13 +3292,13 @@ public:
 				do_alert(string("Enemy ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string(" fainted!"));
 				int count = 0;
 				for (unsigned i = 0; i < 6; ++i) {
-					if (mc.enemy_team[mc.enemy_selected].fought[i] && mc.team[i].defined && !is_KO(mc.team[i])) {
+					if ((mc.enemy_team[mc.enemy_selected].fought[i] || in_inventory(string("EXP.ALL"))) && mc.team[i].defined && !is_KO(mc.team[i])) {
 						count++;
 					}
 				}
 				for (unsigned i = 0; i < 6; ++i) {
-					if (mc.enemy_team[mc.enemy_selected].fought[i] && mc.team[i].defined && !is_KO(mc.team[i])) {
-						gain_exp(mc.team[i], mc.enemy_team[mc.enemy_selected], count);
+					if ((mc.enemy_team[mc.enemy_selected].fought[i] || in_inventory(string("EXP.ALL"))) && mc.team[i].defined && !is_KO(mc.team[i])) {
+						gain_exp(mc.team[i], mc.enemy_team[mc.enemy_selected], count, in_inventory(string("EXP.ALL")) ? 0.85 : 1.0);
 						rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
 					}
 				}
@@ -3543,9 +3544,15 @@ public:
 							do_alert(string("You have no choice but to let it go."));
 						}
 						mc.caught[mc.enemy_team[mc.enemy_selected].number] = true;
+						count = 0;
 						for (unsigned i = 0; i < 6; ++i) {
-							if (mc.enemy_team[mc.enemy_selected].fought[i] && mc.team[i].defined && !is_KO(mc.team[i])) {
-								gain_exp(mc.team[i], mc.enemy_team[mc.enemy_selected], count);
+							if ((mc.enemy_team[mc.enemy_selected].fought[i] || in_inventory(string("EXP.ALL"))) && mc.team[i].defined && !is_KO(mc.team[i])) {
+								count++;
+							}
+						}
+						for (unsigned i = 0; i < 6; ++i) {
+							if ((mc.enemy_team[mc.enemy_selected].fought[i] || in_inventory(string("EXP.ALL"))) && mc.team[i].defined && !is_KO(mc.team[i])) {
+								gain_exp(mc.team[i], mc.enemy_team[mc.enemy_selected], count, in_inventory(string("EXP.ALL")) ? 0.85 : 1.0);
 								rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
 							}
 						}
@@ -3664,13 +3671,13 @@ public:
 				do_alert(string("Enemy ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string(" fainted!"));
 				int count = 0;
 				for (unsigned i = 0; i < 6; ++i) {
-					if (mc.enemy_team[mc.enemy_selected].fought[i] && mc.team[i].defined && !is_KO(mc.team[i])) {
+					if ((mc.enemy_team[mc.enemy_selected].fought[i] || in_inventory(string("EXP.ALL"))) && mc.team[i].defined && !is_KO(mc.team[i])) {
 						count++;
 					}
 				}
 				for (unsigned i = 0; i < 6; ++i) {
-					if (mc.enemy_team[mc.enemy_selected].fought[i] && mc.team[i].defined && !is_KO(mc.team[i])) {
-						gain_exp(mc.team[i], mc.enemy_team[mc.enemy_selected], count);
+					if ((mc.enemy_team[mc.enemy_selected].fought[i] || in_inventory(string("EXP.ALL"))) && mc.team[i].defined && !is_KO(mc.team[i])) {
+						gain_exp(mc.team[i], mc.enemy_team[mc.enemy_selected], count, in_inventory(string("EXP.ALL")) ? 0.85 : 1.0);
 					}
 				}
 				break;
