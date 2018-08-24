@@ -13,8 +13,79 @@ route16-snorlax snorlax 32 14
 INTERACTIONS
 IN_INVENTORY:POK{e-accent}FLUTE|{MENU:ALERT:A sleeping POK{e-accent}MON blocks the way!}{MENU:ALERT:{PLAYER_NAME} played the POK{e-accent}FLUTE!|MENU:ALERT:SNORLAX woke up!|MENU:ALERT:It attacked in a grumpy rage!|WILD_BATTLE:143-143:30|{NO_ADVANCE}{DEACTIVATE:route16-snorlax}}
 END
+route16-guy1 biker 23 16 LEFT
+FORCE_INTERACTION
+-1 0
+-2 0
+-3 0
+-4 0
+END
+INTERACTIONS
+!:route16-guy1|MOVE_TO_PLAYER|MENU:ALERT:What do you want?|BATTLE:route16-guy1|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:We just like hanging out here, what's it to you?
+END
+route16-guy2 biker 21 17 RIGHT
+FORCE_INTERACTION
+1 0
+2 0
+3 0
+4 0
+END
+INTERACTIONS
+!:route16-guy2|MOVE_TO_PLAYER|MENU:ALERT:Nice BIKE! {NEWLINE} Hand it over!|BATTLE:route16-guy2|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Forget it, who needs your BIKE!
+END
+route16-guy3 biker 17 16 UP
+FORCE_INTERACTION
+0 -1
+0 -2
+END
+INTERACTIONS
+!:route16-guy3|MOVE_TO_PLAYER|MENU:ALERT:come out and play, little mouse!|BATTLE:route16-guy3|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I hate losing! Get away from me!
+END
+route16-guy4 biker 15 15 LEFT
+FORCE_INTERACTION
+-1 0
+-2 0
+-3 0
+-4 0
+END
+INTERACTIONS
+!:route16-guy4|MOVE_TO_PLAYER|MENU:ALERT:Hey, you bumped me!|BATTLE:route16-guy4|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:You can also get to FUCHSIA from VERMILION using a coastal road.
+END
+route16-guy5 biker 12 14 RIGHT
+FORCE_INTERACTION
+1 0
+2 0
+END
+INTERACTIONS
+!:route16-guy5|MOVE_TO_PLAYER|MENU:ALERT:I'm feeling hungry and mean!|BATTLE:route16-guy5|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I like my POK{e-accent}MON ferocious! They tear up enemies!
+END
+route16-guy6 biker 9 16 RIGHT
+FORCE_INTERACTION
+1 0
+2 0
+3 0
+4 0
+END
+INTERACTIONS
+!:route16-guy6|MOVE_TO_PLAYER|MENU:ALERT:Sure, I'll go!|BATTLE:route16-guy6|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I like harassing people with my vicious POK{e-accent}MON!
+END
+route16-sign2 blank 11 21
+INTERACTIONS
+MENU:ALERT:ROUTE 16 {NEWLINE} CELADON CITY - FUCHSIA CITY
+END
 TRAINERS
-route13-girl1 20 0.5 0.5 JR.TRAINER{FEMALE} jrtrainerf.png {JR.TRAINER{FEMALE}: Just messed up!}{} 119-18:41|70-61:41|117-35:41
+route16-guy1 20 0.5 0.5 BIKER biker.png {BIKER: Don't you dare laugh!}{} 89-89:42|110-110:42
+route16-guy2 25 0.55 0.55 CUE{SPACE}BALL fat.png {CUE{SPACE}BALL: Knock out!}{} 67-67:41|57-57:41|67-67:41
+route16-guy3 25 0.55 0.55 CUE{SPACE}BALL fat.png {CUE{SPACE}BALL: You little rat!}{} 57-57:42|67-67:42
+route16-guy4 20 0.5 0.5 BIKER biker.png {BIKER: Kaboom!}{} 110-110:44
+route16-guy5 25 0.55 0.55 CUE{SPACE}BALL fat.png {CUE{SPACE}BALL: Bad, bad, bad!}{} 68-68:44
+route16-guy6 20 0.5 0.5 BIKER biker.png {BIKER: Don't make me mad!}{} 89-89:40|89-89:40|89-89:40|89-89:40
 END
 TELEPORT
 44 14 celadon-city 1 22
@@ -49,3 +120,7 @@ DATA
 76  76  76  76  76  76   0   1  56  56   1   1   1   1  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76
 81  81  81  81  81  81   0   1  56  56   1   1   1   1  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76
 81  81  81  81  81  81   0   1  56  56   1   1   1   1  56  56  56  56   0   0   0   0   0   0   0   0   0   0   0   0  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76
+81  81  81  81  81  81   0   1  56  56   1   1   1   1  56  56  56  56   0   1   1   1   1   1   1   1   1   1   1   1  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76
+81  81  81  81  81  81   0   1  56  56  56  56  56  56  56  56   1   1   0   1  92  88  88  88  88  88  88  88  88  88  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76
+81  81  81  81  81  81   0   1  56  56  56   5  56  56  56  56   1   1   0   1  90  81  81  81  81  81  81  81  81  81  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76
+81  81  81  81  81  81   0   1 240 241  93  93  93  93 240 241  93  93   0   1  90  81  81  81  81  81  81  81  81  81  76  76  76  76  76  76  76  76  76  76  76  76  76  76  76
