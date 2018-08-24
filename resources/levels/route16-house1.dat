@@ -1,0 +1,41 @@
+NAME
+Route 16 House 1
+NPCS
+route16-house1-bookshelf3 blank 0 1
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+route16-house1-bookshelf4 blank 1 1
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+route16-house1-bookshelf5 blank 7 1
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+route16-house1-map-wall blank 3 0
+INTERACTIONS
+MENU:ALERT:A TOWN MAP.|MAP
+END
+route16-house1-girl girl5 2 3 RIGHT
+INTERACTIONS
+MENU:ALERT:Oh, you found my secret retreat!|MENU:ALERT:Please don't tell anyone I'm here.|MENU:ALERT:I'll make it up to you with this!|GIVE_ITEM:HM02
+MENU:ALERT:HM02 is FLY. It will take you back to any town.|MENU:ALERT:Put it to good use!
+END
+route16-house1-bird1 bird 5 5 WANDER
+INTERACTIONS
+MENU:ALERT:FEAROW: Kyueen!
+END
+TELEPORT
+2 8 route16 13 10
+3 8 route16 13 10
+DATA
+31 31  17  33 17 34 17 35
+32 32  18  18 18 18 18 36
+18 18  18  18 18 18 18 18
+18 18  37  48 52 37 18 18
+18 18  37  23 24 37 18 18
+18 18  18  18 18 18 18 18
+30 18  18  18 18 18 18 30
+29 18  38  38 18 18 18 29
+82 82 166 166

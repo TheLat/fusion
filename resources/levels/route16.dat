@@ -18,6 +18,13 @@ route13-girl1 20 0.5 0.5 JR.TRAINER{FEMALE} jrtrainerf.png {JR.TRAINER{FEMALE}: 
 END
 TELEPORT
 44 14 celadon-city 1 22
+29 14 route16-checkpoint 8 8
+29 9 route16-checkpoint 8 2
+29 8 route16-checkpoint 8 2
+24 9 route16-checkpoint 1 2
+24 8 route16-checkpoint 1 2
+24 14 route16-checkpoint 1 8
+13 9 route16-house1 2 7
 ENCOUNTERS
 20 22 25 44 70 84
 LEVELS
