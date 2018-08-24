@@ -80,12 +80,12 @@ INTERACTIONS
 MENU:ALERT:ROUTE 16 {NEWLINE} CELADON CITY - FUCHSIA CITY
 END
 TRAINERS
-route16-guy1 20 0.5 0.5 BIKER biker.png {BIKER: Don't you dare laugh!}{} 89-89:42|110-110:42
-route16-guy2 25 0.55 0.55 CUE{SPACE}BALL fat.png {CUE{SPACE}BALL: Knock out!}{} 67-67:41|57-57:41|67-67:41
-route16-guy3 25 0.55 0.55 CUE{SPACE}BALL fat.png {CUE{SPACE}BALL: You little rat!}{} 57-57:42|67-67:42
+route16-guy1 20 0.5 0.5 BIKER biker.png {BIKER: Don't you dare laugh!}{} 75-89:42|110-114:42
+route16-guy2 25 0.55 0.55 CUE{SPACE}BALL fat.png {CUE{SPACE}BALL: Knock out!}{} 67-95:41|75-57:41|22-67:41
+route16-guy3 25 0.55 0.55 CUE{SPACE}BALL fat.png {CUE{SPACE}BALL: You little rat!}{} 58-57:42|105-67:42
 route16-guy4 20 0.5 0.5 BIKER biker.png {BIKER: Kaboom!}{} 110-110:44
 route16-guy5 25 0.55 0.55 CUE{SPACE}BALL fat.png {CUE{SPACE}BALL: Bad, bad, bad!}{} 68-68:44
-route16-guy6 20 0.5 0.5 BIKER biker.png {BIKER: Don't make me mad!}{} 89-89:40|89-89:40|89-89:40|89-89:40
+route16-guy6 20 0.5 0.5 BIKER biker.png {BIKER: Don't make me mad!}{} 89-123:40|89-122:40|89-125:40|89-126:40
 END
 TELEPORT
 44 14 celadon-city 1 22
