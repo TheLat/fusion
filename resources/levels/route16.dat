@@ -96,6 +96,16 @@ TELEPORT
 24 8 route16-checkpoint 1 2
 24 14 route16-checkpoint 1 8
 13 9 route16-house1 2 7
+7 22 route17 7 1
+8 22 route17 8 1
+9 22 route17 9 1
+10 22 route17 10 1
+12 22 route17 12 1
+13 22 route17 13 1
+14 22 route17 14 1
+15 22 route17 15 1
+16 22 route17 16 1
+17 22 route17 17 1
 ENCOUNTERS
 20 22 25 44 70 84
 LEVELS
