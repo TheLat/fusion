@@ -1,7 +1,7 @@
 NAME
 Route 17
 NPCS
-route16-guy6 biker 9 16 RIGHT
+route17-guy1 biker 17 16 RIGHT
 FORCE_INTERACTION
 1 0
 2 0
@@ -9,11 +9,23 @@ FORCE_INTERACTION
 4 0
 END
 INTERACTIONS
-!:route16-guy6|MOVE_TO_PLAYER|MENU:ALERT:Sure, I'll go!|BATTLE:route16-guy6|{NO_ADVANCE}{DISABLE_FORCE}
-MENU:ALERT:I like harassing people with my vicious POK{e-accent}MON!
+!:route17-guy1|MOVE_TO_PLAYER|MENU:ALERT:What do you want, kiddo?|BATTLE:route17-guy1|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I could belly-bump you outta here!
+END
+route17-guy2 biker 18 19 LEFT
+FORCE_INTERACTION
+-1 0
+-2 0
+-3 0
+-4 0
+END
+INTERACTIONS
+!:route17-guy2|MOVE_TO_PLAYER|MENU:ALERT:There's no money in fighting kids!|BATTLE:route17-guy2|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Good stuff is lying around on CYCLING ROAD!
 END
 TRAINERS
-route16-guy1 20 0.5 0.5 BIKER biker.png {BIKER: Don't you dare laugh!}{} 75-89:42|110-114:42
+route17-guy1 25 0.55 0.55 CUE{SPACE}BALL fat.png {CUE{SPACE}BALL: Whoo!}{} 67-67:43|67-67:43
+route17-guy2 25 0.55 0.55 CUE{SPACE}BALL fat.png {CUE{SPACE}BALL: Burned out!}{} 57-57:43|57-57:43
 END
 TELEPORT
 7 0 route16 7 21
@@ -27,9 +39,15 @@ TELEPORT
 16 0 route16 16 21
 17 0 route16 17 21
 ENCOUNTERS
-20 22 25 44 70 84
+20 22 25 44 70 77 84
+WATER_ENCOUNTERS_OLD
+129
+WATER_ENCOUNTERS_GOOD
+60 118
+WATER_ENCOUNTERS_SUPER
+73 90 99 119
 LEVELS
-32-38
+33-39
 DATA
 81  81  81  81  81  81   0   1  56  56  56   5  56  56  56  56   1   1   0   1  90  81  81  81  81  81  81  81  81  81  76  76
 81  81  81  81  81  81   0   1 240 241  93  93  93  93 240 241  93  93   0   1  90  81  81  81  81  81  81  81  81  81  76  76
