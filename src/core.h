@@ -5144,9 +5144,10 @@ public:
 	}
 	void draw_level() {
 		float xp, xl, yp, yl;
-		unsigned maxy = levels[mc.loc.level].data.size();
+		string curr_level = mc.loc.level;
+		unsigned maxy = levels[curr_level].data.size();
 		for (unsigned y = 0; y < maxy; ++y) {
-			unsigned maxx = levels[mc.loc.level].data[y].size();
+			unsigned maxx = levels[curr_level].data[y].size();
 			for (unsigned x = 0; x < maxx; ++x) {
 				xp = -1.0f + (float(x) / 5.0f) - ((mc.loc.x - 4.5f) / 5.0f);
 				yp = (-float(y) / 4.5f) - (0.5f / 4.5f) + (mc.loc.y / 4.5f);
@@ -5160,18 +5161,21 @@ public:
 					continue;
 				if (yp > 1.0f && yp + yl > 1.0f)
 					continue;
-				g.push_quad(xp, yp, xl, yl, g.tiles[levels[mc.loc.level].data[y][x]]);
+				g.push_quad(xp, yp, xl, yl, g.tiles[levels[curr_level].data[y][x]]);
 			}
 		}
 	}
 	void draw_characters() {
-		for (unsigned i = 0; i < levels[mc.loc.level].characters.size(); ++i) {
-			if (!mc.active[levels[mc.loc.level].characters[i].name])
+		string curr_level = mc.loc.level;
+		double curr_x = mc.loc.x;
+		double curr_y = mc.loc.y;
+		for (unsigned i = 0; i < levels[curr_level].characters.size(); ++i) {
+			if (!mc.active[levels[curr_level].characters[i].name])
 				continue;
-			if (levels[mc.loc.level].characters[i].no_offset)
-				g.push_quad((levels[mc.loc.level].characters[i].loc.x - (mc.loc.x + 0.5)) / 5.0, (-0.5 - levels[mc.loc.level].characters[i].loc.y + mc.loc.y) / 4.5f + 0.0, 1.0 / 5.0f, 1.0 / 4.5f, g.tex[levels[mc.loc.level].characters[i].image + string("-") + get_direction_string(levels[mc.loc.level].characters[i].dir) + string("-0.bmp")]);
+			if (levels[curr_level].characters[i].no_offset)
+				g.push_quad((levels[curr_level].characters[i].loc.x - (curr_x + 0.5)) / 5.0, (-0.5 - levels[curr_level].characters[i].loc.y + curr_y) / 4.5f + 0.0, 1.0 / 5.0f, 1.0 / 4.5f, g.tex[levels[curr_level].characters[i].image + string("-") + get_direction_string(levels[curr_level].characters[i].dir) + string("-0.bmp")]);
 			else
-				g.push_quad((levels[mc.loc.level].characters[i].loc.x - (mc.loc.x + 0.5)) / 5.0, (-0.5 - levels[mc.loc.level].characters[i].loc.y + mc.loc.y) / 4.5f + 0.055, 1.0 / 5.0f, 1.0 / 4.5f, g.tex[levels[mc.loc.level].characters[i].image + string("-") + get_direction_string(levels[mc.loc.level].characters[i].dir) + string("-0.bmp")]);
+				g.push_quad((levels[curr_level].characters[i].loc.x - (curr_x + 0.5)) / 5.0, (-0.5 - levels[curr_level].characters[i].loc.y + curr_y) / 4.5f + 0.055, 1.0 / 5.0f, 1.0 / 4.5f, g.tex[levels[curr_level].characters[i].image + string("-") + get_direction_string(levels[curr_level].characters[i].dir) + string("-0.bmp")]);
 		}
 		g.push_quad(-0.1, -0.5 / 4.5 + 0.055, 1.0 / 5.0, 1.0 / 4.5, g.tex[string("player-") + get_direction_string(mc.dir) + string("-0.bmp")]);
 	}
