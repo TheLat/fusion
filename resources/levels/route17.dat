@@ -136,16 +136,16 @@ INTERACTIONS
 MENU:ALERT:CYCLING ROAD {NEWLINE} Slope ends here!
 END
 TRAINERS
-route17-guy1 25 0.55 0.55 CUE{SPACE}BALL fat.png {CUE{SPACE}BALL: Whoo!}{} 67-67:43|67-67:43
-route17-guy2 25 0.55 0.55 CUE{SPACE}BALL fat.png {CUE{SPACE}BALL: Burned out!}{} 57-57:43|57-57:43
-route17-guy3 20 0.5 0.5 BIKER biker.png {BIKER: Crash and burn!}{} 110-110:42|110-110:42|110-110:42
+route17-guy1 25 0.55 0.55 CUE{SPACE}BALL fat.png {CUE{SPACE}BALL: Whoo!}{} 101-67:43|110-67:43
+route17-guy2 25 0.55 0.55 CUE{SPACE}BALL fat.png {CUE{SPACE}BALL: Burned out!}{} 6-57:43|22-57:43
+route17-guy3 20 0.5 0.5 BIKER biker.png {BIKER: Crash and burn!}{} 110-44:42|110-95:42|110-15:42
 route17-guy4 20 0.5 0.5 BIKER biker.png {BIKER: Smoked!}{} 89-89:45
 route17-guy5 20 0.5 0.5 BIKER biker.png {BIKER: Grounded out!}{} 101-101:43|101-101:43
-route17-guy6 25 0.55 0.55 CUE{SPACE}BALL fat.png {CUE{SPACE}BALL: Whew! Good workout!}{} 57-57:41|57-57:41|67-67:41|67-67:41
-route17-guy7 20 0.5 0.5 BIKER biker.png {BIKER: Shoot!}{} 110-110:43|89-89:43
+route17-guy6 25 0.55 0.55 CUE{SPACE}BALL fat.png {CUE{SPACE}BALL: Whew! Good workout!}{} 101-57:41|3-57:41|70-67:41|119-67:41
+route17-guy7 20 0.5 0.5 BIKER biker.png {BIKER: Shoot!}{} 110-57:43|89-67:43
 route17-guy8 25 0.55 0.55 CUE{SPACE}BALL fat.png {CUE{SPACE}BALL: Why, you!}{} 67-67:45
-route17-guy9 25 0.55 0.55 CUE{SPACE}BALL fat.png {CUE{SPACE}BALL: Aaaargh!}{} 57-57:43|67-67:43
-route17-guy10 20 0.5 0.5 BIKER biker.png {BIKER: Are you satisfied?}{} 110-110:40|110-110:40|110-110:40|110-110:40|110-110:40
+route17-guy9 25 0.55 0.55 CUE{SPACE}BALL fat.png {CUE{SPACE}BALL: Aaaargh!}{} 120-57:43|75-67:43
+route17-guy10 20 0.5 0.5 BIKER biker.png {BIKER: Are you satisfied?}{} 110-95:40|110-113:40|110-67:40|110-114:40|110-122:40
 END
 TELEPORT
 7 0 route16 7 21
