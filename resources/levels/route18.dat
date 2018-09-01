@@ -44,8 +44,8 @@ INTERACTIONS
 MENU:ALERT:I also collect sea POK{e-accent}MON on weekends!
 END
 TRAINERS
-route18-guy1 25 0.6 0.6 BIRD{SPACE}KEEPER birdkeeper.png {BIRD{SPACE}KEEPER: Tch!}{} 22-22:44|22-22:44
-route18-guy2 25 0.6 0.6 BIRD{SPACE}KEEPER birdkeeper.png {BIRD{SPACE}KEEPER: Darn!}{} 22-22:42|22-22:42|22-22:42|22-22:42
+route18-guy1 25 0.6 0.6 BIRD{SPACE}KEEPER birdkeeper.png {BIRD{SPACE}KEEPER: Tch!}{} 22-15:44|22-12:44
+route18-guy2 25 0.6 0.6 BIRD{SPACE}KEEPER birdkeeper.png {BIRD{SPACE}KEEPER: Darn!}{} 22-122:42|101-22:42|22-80:42|44-22:42
 route18-guy3 25 0.6 0.6 BIRD{SPACE}KEEPER birdkeeper.png {BIRD{SPACE}KEEPER: I had to bug you!}{} 85-85:46
 END
 TELEPORT
