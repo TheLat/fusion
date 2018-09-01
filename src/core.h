@@ -5145,12 +5145,14 @@ public:
 	void draw_level() {
 		float xp, xl, yp, yl;
 		string curr_level = mc.loc.level;
+		double curr_x = mc.loc.x;
+		double curr_y = mc.loc.y;
 		unsigned maxy = levels[curr_level].data.size();
 		for (unsigned y = 0; y < maxy; ++y) {
 			unsigned maxx = levels[curr_level].data[y].size();
 			for (unsigned x = 0; x < maxx; ++x) {
-				xp = -1.0f + (float(x) / 5.0f) - ((mc.loc.x - 4.5f) / 5.0f);
-				yp = (-float(y) / 4.5f) - (0.5f / 4.5f) + (mc.loc.y / 4.5f);
+				xp = -1.0f + (float(x) / 5.0f) - ((curr_x - 4.5f) / 5.0f);
+				yp = (-float(y) / 4.5f) - (0.5f / 4.5f) + (curr_y / 4.5f);
 				xl = 1.0f / 5.0f;
 				yl = 1.0 / 4.5f;
 				if (xp < -1.0f && xp + xl < -1.0f)
