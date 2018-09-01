@@ -1,9 +1,49 @@
 NAME
 Fuchsia City
 NPCS
-fuchsia-city-sign1 blank 15 0
+fuchsia-city-sign1 blank 10 32
 INTERACTIONS
-MENU:ALERT:CYCLING ROAD {NEWLINE} Slope ends here!
+MENU:ALERT:FUCHSIA CITY POK{e-accent}MON GYM|MENU:ALERT:LEADER: KOGA|MENU:ALERT:The Poisonous Ninja Master
+END
+fuchsia-city-sign2 blank 32 32
+INTERACTIONS
+MENU:ALERT:SAFARI ZONE WARDEN's HOME
+END
+fuchsia-city-sign3 blank 30 18
+INTERACTIONS
+MENU:ALERT:FUCHSIA CITY {NEWLINE} Behold! It's Passion Pink!
+END
+fuchsia-city-sign4 blank 26 18
+INTERACTIONS
+MENU:ALERT:POK{e-accent}MON PARADISE SAFARI ZONE
+END
+fuchsia-city-sign5 blank 36 16
+INTERACTIONS
+MENU:ALERT:NAME: SLOWPOKE|MENU:ALERT:Friendly and very slow moving.|MENU:DEX_ENTRY:79-79
+END
+fuchsia-city-sign6 blank 38 10
+INTERACTIONS
+MENU:ALERT:NAME: CHANSEY|MENU:ALERT:Catching one is all up to chance.|MENU:DEX_ENTRY:113-113
+END
+fuchsia-city-sign7 blank 32 10
+INTERACTIONS
+MENU:ALERT:NAME: VOLTORB|MENU:ALERT:The very image of a POK{e-accent} BALL.|MENU:DEX_ENTRY:100-100
+END
+fuchsia-city-sign8 blank 18 18
+INTERACTIONS
+MENU:ALERT:NAME: LAPRAS|MENU:ALERT:A.K.A. the king of the seas.|MENU:DEX_ENTRY:131-131
+END
+fuchsia-city-sign9 blank 12 10
+INTERACTIONS
+MENU:ALERT:NAME: KABUTO|MENU:ALERT:A POK{e-accent}MON that was resurrected from a fossil.|MENU:DEX_ENTRY:140-140
+END
+fuchsia-city-sign10 blank 18 10
+INTERACTIONS
+MENU:ALERT:NAME: KANGASKHAN|MENU:ALERT:A maternal POK{e-accent}MON that raises its young in a pouch on its belly.|MENU:DEX_ENTRY:115-115
+END
+fuchsia-city-sign11 blank 22 8
+INTERACTIONS
+MENU:ALERT:SAFARI ZONE
 END
 TELEPORT
 4 19 route18 56 11
