@@ -70,6 +70,8 @@ TELEPORT
 41 12 route18-checkpoint 1 5
 46 11 route18-checkpoint 8 4
 46 12 route18-checkpoint 8 5
+57 11 fuchsia-city 5 19
+57 12 fuchsia-city 5 20
 ENCOUNTERS
 20 22 25 77 84 128
 WATER_ENCOUNTERS_OLD

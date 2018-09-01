@@ -23,6 +23,8 @@ TELEPORT
 8 21 route15-checkpoint 6 8
 9 4 route15 14 9
 9 5 route15 14 10
+0 4 fuchsia-city 52 19
+0 5 fuchsia-city 52 20
 DATA
 82  298 298 298 298 298 298 298 298  82
 82  298 182 182 182 182 182 182 298  82
