@@ -1,0 +1,44 @@
+NAME
+Fuchsia House 1
+NPCS
+fuchsia-house1-bookshelf3 blank 0 1
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+fuchsia-house1-bookshelf4 blank 1 1
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+fuchsia-house1-bookshelf5 blank 7 1
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+fuchsia-house1-map-wall blank 3 0
+INTERACTIONS
+MENU:ALERT:A TOWN MAP.|MAP
+END
+fuchsia-house1-bald bald4 7 2 UP
+INTERACTIONS
+MENU:ALERT:Hmm? You've met BILL?|MENU:ALERT:He's my grandson!|MENU:ALERT:He always liked collecting things even as a child!|FACE:UP
+END
+fuchsia-house1-woman woman5 2 3 RIGHT
+INTERACTIONS
+MENU:ALERT:SAFARI ZONE's WARDEN is old, but still active!|MENU:ALERT:All his teeth are false, though.|FACE:RIGHT
+END
+fuchsia-house1-boy boy 5 5
+INTERACTIONS
+MENU:ALERT:BILL files his own POK{e-accent}MON data on his PC!|MENU:ALERT:Did he show you?
+END
+TELEPORT
+2 8 fuchsia-city 16 31
+3 8 fuchsia-city 16 31
+DATA
+31 31  17  33 17 34 17 35
+32 32  18  18 18 18 18 36
+18 18  18  18 18 18 18 18
+18 18  37  48 52 37 18 18
+18 18  37  23 24 37 18 18
+18 18  18  18 18 18 18 18
+30 18  18  18 18 18 18 30
+29 18  38  38 18 18 18 29
+82 82 166 166

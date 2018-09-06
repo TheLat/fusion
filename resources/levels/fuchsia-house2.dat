@@ -1,0 +1,22 @@
+NAME
+Fuchsia House 2
+NPCS
+fuchsia-house2-man safari 5 3 RIGHT
+INTERACTIONS
+MENU:ALERT:I'm the FISHING GURU's older brother!|MENU:ALERT:I simply looove fishing!|MENU:ALERT_YES_NO:Do you like to fish?|{MENU:ALERT:Grand! I like your style!|MENU:ALERT:Take this and fish, young one!|GIVE_ITEM:GOOD ROD}{MENU:ALERT:Oh... That's so disappointing...|FACE:RIGHT|NO_ADVANCE}
+MENU:ALERT:Hello there, {PLAYER_NAME}!|MENU:ALERT:How are the fish biting?|FACE:RIGHT
+END
+TELEPORT
+3 8 fuchsia-city 36 31
+2 8 fuchsia-city 36 31
+2 0 fuchsia-city 36 27
+DATA
+244 244 245 244 244 244 244 244
+182 182 182 182 182 182 182 182
+182 182 182 182 182 182 182 182
+182 182 182 182 182 246 247 248
+182 182 182 182 182 182 249 250
+182 182 182 182 182 182 182 182
+182 182 182 182 182 182 182 182
+182 182 185 185 182 182 182 251
+82  82  166 166
