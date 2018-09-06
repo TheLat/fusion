@@ -45,6 +45,62 @@ fuchsia-city-sign11 blank 22 8
 INTERACTIONS
 MENU:ALERT:SAFARI ZONE
 END
+fuchsia-city-mon1 fossil 11 8
+INTERACTIONS
+MENU:ALERT:ERROR
+END
+fuchsia-city-mon2 mon 17 8 WANDER
+INTERACTIONS
+MENU:ALERT:ERROR
+END
+fuchsia-city-mon3 orb 30 9
+INTERACTIONS
+MENU:ALERT:ERROR
+END
+fuchsia-city-mon4 chansey 37 8 WANDER
+INTERACTIONS
+MENU:ALERT:ERROR
+END
+fuchsia-city-mon5 mon 36 15 WANDER
+INTERACTIONS
+MENU:ALERT:ERROR
+END
+fuchsia-city-mon6 seal 13 20 WANDER
+INTERACTIONS
+MENU:ALERT:ERROR
+END
+fuchsia-city-boy1 boy 24 15 WANDER
+INTERACTIONS
+MENU:ALERT:Did you try the SAFARI ZONE? Some POK{e-accent}MON can only be caught there.
+END
+fuchsia-city-boy2 boy 29 11 UP
+INTERACTIONS
+MENU:ALERT:That item ball in there is really a POK{e-accent}MON.
+END
+fuchsia-city-fat1 fat 35 17 DOWN
+INTERACTIONS
+MENU:ALERT:ERIK: Where's SARA? I said I'd meet her here.
+END
+fuchsia-city-bald1 bald4 28 20 WANDER
+INTERACTIONS
+MENU:ALERT:SAFARI ZONE has a zoo in front of the entrance.|MENU:ALERT:Out back is the SAFARI GAME for catching POK{e-accent}MON.
+END
+fuchsia-city-bush1 bush 23 22
+INTERACTIONS
+HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:fuchsia-city-bush1}
+END
+fuchsia-city-bush2 bush 31 16
+INTERACTIONS
+HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:fuchsia-city-bush2}
+END
+fuchsia-city-bush3 bush 27 10
+INTERACTIONS
+HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:fuchsia-city-bush3}
+END
+fuchsia-city-bush4 bush 21 14
+INTERACTIONS
+HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:fuchsia-city-bush4}
+END
 TELEPORT
 4 19 route18 56 11
 4 20 route18 56 12
