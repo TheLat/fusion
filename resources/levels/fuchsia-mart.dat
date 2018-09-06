@@ -1,0 +1,44 @@
+NAME
+Fuchsia City Mart
+NPCS
+fuchsia-mart-shelf1 blank 4 4
+INTERACTIONS
+MENU:ALERT:Wow! Tons of POK{e-accent}MON stuff!
+END
+fuchsia-mart-shelf2 blank 5 4
+INTERACTIONS
+MENU:ALERT:Wow! Tons of POK{e-accent}MON stuff!
+END
+fuchsia-mart-shelf3 blank 6 4
+INTERACTIONS
+MENU:ALERT:Wow! Tons of POK{e-accent}MON stuff!
+END
+fuchsia-mart-shelf4 blank 7 4
+INTERACTIONS
+MENU:ALERT:Wow! Tons of POK{e-accent}MON stuff!
+END
+fuchsia-mart-girl girl 6 6 WANDER
+INTERACTIONS
+MENU:ALERT:Did you try X SPEED? It speeds up a POK{e-accent}MON in battle and cures any speed down effects!
+END
+fuchsia-mart-bald bald3 4 2 UP
+INTERACTIONS
+MENU:ALERT:Do you have a SAFARI ZONE flag?|MENU:ALERT:What about cards or calendars?
+END
+fuchsia-mart-clerk clerk2 0 5 RIGHT FARSPEAK
+INTERACTIONS
+SHOP:ULTRA BALL,GREAT BALL,SUPER POTION,REVIVE,FULL HEAL,SUPER REPEL
+END
+TELEPORT
+3 8 fuchsia-city 10 17
+4 8 fuchsia-city 10 17
+DATA
+118 118 119 119 119 119 118 118
+120 120 121 121 121 121 120 120
+122 123 123 123 123 123 123 123
+124 125 123 123 124 125 124 125
+128 129 122 123 126 127 126 127
+122 130 122 123 123 123 123 123
+131 132 122 123 123 123 123 123
+122 123 123 133 133 123 123 123
+82   82  82 166 166

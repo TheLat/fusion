@@ -7,7 +7,7 @@ END
 ARROWBOXES:
 END
 TEXT:
--0.9 -1.0 1.8 0.3 Hi there!{NEWLINE}May I help you?
+-0.9 -1.0 1.8 0.3 Hi there! May I help you?
 0.3 0.8 0.5 0.1 MONEY
 0.2 0.7 0.7 0.1 RIGHT_JUSTIFY:7:{MONEY}
 END

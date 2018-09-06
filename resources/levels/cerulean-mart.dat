@@ -23,7 +23,7 @@ MENU:ALERT:Have you seen any RARE CANDY?|MENU:ALERT:It's supposed to make POK{e-
 END
 cerulean-mart-guy guy2 5 5
 INTERACTIONS
-MENU:ALERT:User REPEL to keep bugs and weak POK{e-accent}MON away.|MENU:ALERT:Put your strongest POK{e-accent}MON at the top of the list for best results!
+MENU:ALERT:Use REPEL to keep bugs and weak POK{e-accent}MON away.|MENU:ALERT:Put your strongest POK{e-accent}MON at the top of the list for best results!
 END
 cerulean-mart-clerk clerk2 0 5 RIGHT
 INTERACTIONS
