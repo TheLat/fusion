@@ -1,0 +1,37 @@
+NAME
+Fuchsia House 3
+NPCS
+fuchsia-house3-warden bald2 2 3 RIGHT
+INTERACTIONS
+IN_INVENTORY:GOLD TEETH|{MENU:ALERT:WARDEN: Hif fuff hefifoo!|MENU:ALERT:Ha lof ha feef ee hafahi ho.|MENU:ALERT_YES_NO:Heff hee fwee!|{MENU:ALERT:Ah howhee ho hoo! Eef ee hafahi ho!|NO_ADVANCE}{MENU:ALERT:Ha? He ohay heh ha hoo ee haheh!|NO_ADVANCE}}{}
+MENU:ALERT:STUFF
+END
+fuchsia-house3-item orb 8 3
+INTERACTIONS
+MENU:ALERT:ERROR
+END
+fuchsia-house3-stone boulder 8 4 PUSHABLE
+INTERACTIONS
+MENU:ALERT:This requires STRENGTH to move!
+END
+fuchsia-house3-display1 blank 4 3
+INTERACTIONS
+MENU:ALERT:POK{e-accent}MON photos and fossils.
+END
+fuchsia-house3-display2 blank 5 3
+INTERACTIONS
+MENU:ALERT:Old POK{e-accent}MON merchandise.
+END
+TELEPORT
+4 8 fuchsia-city 32 31
+5 8 fuchsia-city 32 31
+DATA
+662 662 662 662 662 662 662 662 662 662
+182 182 182 182 182 182 182 182 182 182
+663 664 182 182 668 669 182 624 624 624
+665 666 182 182 670 671 182 624 182 624
+182 182 182 182 182 182 182 182 182 182
+182 182 182 182 182 182 182 182 182 182
+30  182 182 182 182 182 182 182 182  30
+29  182 182 182 667 667 182 182 182  29
+82   82  82  82 166 166
