@@ -1,0 +1,43 @@
+NAME
+Safari Zone Checkpoint
+NPCS
+safari-zone-checkpoint-guard1 guard 6 3 LEFT
+FORCE_INTERACTION
+-2 0
+-3 0
+END
+INTERACTIONS
+MENU:ALERT:Welcome to the SAFARI ZONE!|MENU:ALERT:For just $2500, you can catch all the POK{e-accent}MON you want in the park!|MENU:ALERT_YES_NO_MONEY:Would you like to join the hunt?|{HAS_MONEY:2500|{MENU:ALERT:Oops! Not enough money!|MOVE:PLAYER:0,1}{MENU:ALERT:That'll be $2500 please!|ACTIVATE:safari-checkpoint-script|ACTIVATE:safari-zone-checkpoint-guard3|DEACTIVATE:safari-zone-checkpoint-guard1}}{MENU:ALERT:OK! Please come again!|MOVE:PLAYER:0,1}
+END
+safari-zone-checkpoint-guard2 guard 1 5 RIGHT FARSPEAK
+INTERACTIONS
+MENU:ALERT_YES_NO:Hi! Is it your first time here?|{MENU:ALERT:SAFARI ZONE has 4 zones in it.|MENU:ALERT:Each zone has different kinds of POK{e-accent}MON.|MENU:ALERT:Entry fees help pay for the care and maintenance of the SAFARI ZONE.}{MENU:ALERT:Sorry, you're a regular here!}
+END
+safari-zone-checkpoint-guard3 guard 6 3 LEFT FARSPEAK INACTIVE
+INTERACTIONS
+MENU:ALERT:Happy hunting!
+END
+safari-checkpoint-script blank 0 6 INACTIVE NOLOOK
+FORCE_INTERACTION
+1 0
+2 0
+3 0
+4 0
+5 0
+6 0
+END
+INTERACTIONS
+ACTIVATE:safari-zone-checkpoint-guard1|DEACTIVATE:safari-zone-checkpoint-guard3|DEACTIVATE:safari-checkpoint-script
+END
+TELEPORT
+3 7 fuchsia-city 23 7
+4 7 fuchsia-city 23 7
+DATA
+82   82  82 166 166
+298  31 182 299 300 182  31 298
+298 297 183 182 182 183 297 298
+298 182 134 182 182 134 182 298
+298 182 134 182 182 134 182 298
+298 182 184 182 182 184 182 298
+298 298 182 299 300 182 298 298
+82   82  82 166 166
