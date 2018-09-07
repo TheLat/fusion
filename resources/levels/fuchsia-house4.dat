@@ -1,0 +1,40 @@
+NAME
+Fuchsia House 4
+NPCS
+fuchsia-house4-guy1 guard 0 2 UP
+INTERACTIONS
+MENU:ALERT:SLOWPOKE is very knowledgeable about POK{e-accent}MON!|MENU:ALERT:He even has some fossils of rare, extinct POK{e-accent}MON!|FACE:UP
+END
+fuchsia-house4-guy2 guard 4 1 DOWN
+INTERACTIONS
+MENU:ALERT:We nicknamed the WARDEN SLOWPOKE.|MENU:ALERT:He and SLOWPOKE both look vacant!
+END
+fuchsia-house4-guy3 guard 10 1 DOWN
+INTERACTIONS
+MENU:ALERT:SLOWPOKE came in, but I couldn't understand him.|MENU:ALERT:I think he's got a speech problem!
+END
+fuchsia-house4-bookcase1 blank 1 1
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+fuchsia-house4-bookcase2 blank 2 1
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+fuchsia-house4-bookcase3 blank 3 1
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+TELEPORT
+4 8 fuchsia-city 27 17
+5 8 fuchsia-city 27 17
+DATA
+672 672 672 672 662 662 662 674 662 662 662 662 662 662
+673 673 673 673 182 182 182 182 182 182 655 182 182 182
+182 182 182 182 182  48  50  52 182 182  48  52 182 182
+182 182 182 182 182 676 677 678 182 182 679 680 182 182
+182 182 182 182 182 182 182 182 182 182 182 182 182 182
+682 683 182 182 681 682 682 682 682 682 682 682 682 682
+30  182 182 182 182 182 182 182 182 182 182 182 182  30
+29  182 182 182 667 667 182 182 182 182 182 182 182  29
+82   82  82  82 166 166
