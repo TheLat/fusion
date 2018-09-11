@@ -1,0 +1,40 @@
+NAME
+Safari Rest House 1
+NPCS
+safari-house1-doctor doctor 1 3 WANDER
+INTERACTIONS
+MENU:ALERT:I'm catching POK{e-accent}MON to take home as gifts!
+END
+safari-house1-woman woman3 3 2 DOWN
+INTERACTIONS
+MENU:ALERT:SARA: Where did my boy friend, ERIK, go?
+END
+safari-house1-bookshelf1 blank 4 1
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+safari-house1-bookshelf1 blank 5 1
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+safari-house1-bookshelf1 blank 6 1
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+safari-house1-bookshelf1 blank 7 1
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+TELEPORT
+2 8 safari-zone-main 18 21
+3 8 safari-zone-main 18 21
+DATA
+17   17  17  30 672 672 672 672
+182 182 182  29 673 673 673 673
+655 182 182 655 182 182 182 182
+182 182 182 182 182 182 182 182
+655 182 182 655 182  48 304 305
+182 182 182 182 182 134 182 182
+182 182 182 182 182 134 182 298
+182 182 185 185 182 134 182 298
+82   82 166 166

@@ -1,13 +1,22 @@
 NAME
 Safari Zone Main
 NPCS
-safari-zone-sign1 blank 15 23
+safari-zone-main-sign1 blank 15 23
 INTERACTIONS
 MENU:ALERT:TRAINER TIPS|MENU:ALERT:Different POK{e-accent}MON are available in different parts of the SAFARI ZONE!
+END
+safari-zone-main-sign2 blank 19 21
+INTERACTIONS
+MENU:ALERT:REST HOUSE
+END
+safari-zone-main-item1 orb 15 11
+INTERACTIONS
+GIVE_ITEM:NUGGET|DEACTIVATE:safari-zone-main-item1
 END
 TELEPORT
 15 27 safari-checkpoint 3 1
 16 27 safari-checkpoint 4 1
+18 20 safari-house1 3 7
 ENCOUNTERS
 30 33 47 49 102 111 113 114 123 127
 MEGA_ENCOUNTERS
