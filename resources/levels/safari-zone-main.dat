@@ -17,6 +17,8 @@ TELEPORT
 15 27 safari-checkpoint 3 1
 16 27 safari-checkpoint 4 1
 18 20 safari-house1 3 7
+31 11 safari-zone-east 1 22
+31 12 safari-zone-east 1 23
 ENCOUNTERS
 30 33 47 49 102 111 113 114 123 127
 MEGA_ENCOUNTERS
