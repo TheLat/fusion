@@ -17,11 +17,24 @@ safari-zone-east-item4 orb 22 10
 INTERACTIONS
 GIVE_ITEM:FULL RESTORE|DEACTIVATE:safari-zone-east-item4
 END
+safari-zone-east-sign1 blank 6 23
+INTERACTIONS
+MENU:ALERT:SAFARI ZONE EAST
+END
+safari-zone-east-sign2 blank 27 10
+INTERACTIONS
+MENU:ALERT:REST HOUSE
+END
+safari-zone-east-sign3 blank 7 4
+INTERACTIONS
+MENU:ALERT:Watch out for SCYTHER's powerful, scythe-like claws!
+END
 TELEPORT
 0 21 safari-zone-main 30 11
 0 22 safari-zone-main 30 11
 0 23 safari-zone-main 30 12
 0 24 safari-zone-main 30 12
+26 9 safari-house2 3 7
 ENCOUNTERS
 30 33 47 85 102 105 113 115 123 127 128
 MEGA_ENCOUNTERS

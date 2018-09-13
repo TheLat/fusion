@@ -1,0 +1,44 @@
+NAME
+Safari Rest House 2
+NPCS
+safari-house2-doctor doctor 1 3 WANDER
+INTERACTIONS
+MENU:ALERT:How many did you catch? I'm bushed from the work!
+END
+safari-house2-punk punk 4 2
+INTERACTIONS
+MENU:ALERT:I caught a CHANSEY!|MENU:ALERT:That makes this all worthwhile!
+END
+safari-house2-guy guy 5 2
+INTERACTIONS
+MENU:ALERT:Whew! I'm tired from all the fun!
+END
+safari-house2-bookshelf1 blank 4 1
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+safari-house2-bookshelf1 blank 5 1
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+safari-house2-bookshelf1 blank 6 1
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+safari-house2-bookshelf1 blank 7 1
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+TELEPORT
+2 8 safari-zone-east 26 10
+3 8 safari-zone-east 26 10
+DATA
+17   17  17  30 672 672 672 672
+182 182 182  29 673 673 673 673
+655 182 182 655 182 182 182 182
+182 182 182 182 182 182 182 182
+655 182 182 655 182  48 304 305
+182 182 182 182 182 134 182 182
+182 182 182 182 182 134 182 298
+182 182 185 185 182 134 182 298
+82   82 166 166
