@@ -1,9 +1,33 @@
 NAME
-Safari Zone East
+Safari Zone North
 NPCS
-safari-zone-east-item1 orb 21 13
+safari-zone-north-sign1 blank 27 28
 INTERACTIONS
-GIVE_ITEM:CARBOS|DEACTIVATE:safari-zone-east-item1
+MENU:ALERT:TRAINER TIPS|MENU:ALERT:Win a free HM for finding the SECRET HOUSE!
+END
+safari-zone-north-sign2 blank 20 33
+INTERACTIONS
+MENU:ALERT:TRAINER TIPS|MENU:ALERT:POK{e-accent}MON hide in tall grass!|MENU:ALERT:Zigzag through grassy areas to flush them out.
+END
+safari-zone-north-sign3 blank 14 31
+INTERACTIONS
+MENU:ALERT:SAFARI ZONE NORTH
+END
+safari-zone-north-item1 orb 20 7
+INTERACTIONS
+GIVE_ITEM:TM40|DEACTIVATE:safari-zone-north-item1
+END
+safari-zone-north-sign4 blank 37 4
+INTERACTIONS
+MENU:ALERT:REST HOUSE
+END
+safari-zone-north-item2 orb 26 1
+INTERACTIONS
+GIVE_ITEM:PROTEIN|DEACTIVATE:safari-zone-north-item2
+END
+safari-zone-north-sign5 blank 5 25
+INTERACTIONS
+MENU:ALERT:TRAINER TIPS|MENU:ALERT:The SECRET HOUSE is still ahead!
 END
 TELEPORT
 41 30 safari-zone-east 1 4
