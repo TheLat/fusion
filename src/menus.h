@@ -27,6 +27,14 @@ extern vector<int> do_menu(string menu);
 #define STORAGE_MAX 20
 mutex m2;
 
+enum MENUTYPE {
+	NONE=0,
+	ALERT,
+	SELECT,
+	AUTO_FOLLOWUP,
+	SCROLL
+};
+
 class image {
 public:
 	string filename;
@@ -50,6 +58,7 @@ public:
 class menu{
 public:
 	string type;
+	MENUTYPE etype;
 	vector<image> images;
 	vector<box> boxes, arrowboxes;
 	vector<text> raw, display, hp_bars;
@@ -57,7 +66,7 @@ public:
 	int index, step, selection, columns, cursor, selection_cap, offset, cancel_option, scroll, max, replace_cancel;
 	float cursor_offset_x, cursor_offset_y;
 	bool done, always_cancel, initialized;
-	menu() { step = 0; index = 0; done = false; selection = 0; selection_cap = 0; columns = 1; cursor = -1; offset = 0; cancel_option = -1; cursor_offset_x = 0.0f; cursor_offset_y = 0.0; scroll = 0; max = 0; replace_cancel = -1; always_cancel = false; initialized = false; }
+	menu() { step = 0; index = 0; done = false; selection = 0; selection_cap = 0; columns = 1; cursor = -1; offset = 0; cancel_option = -1; cursor_offset_x = 0.0f; cursor_offset_y = 0.0; scroll = 0; max = 0; replace_cancel = -1; always_cancel = false; initialized = false; etype = NONE; }
 	void create_menu(string file, string choice = "", string text_override = "", string followup_override = "") {
 		image im;
 		box b;
@@ -84,6 +93,14 @@ public:
 					temp2.erase(0, temp2.find(":") + 1);
 					if (temp1 == "TYPE") {
 						type = temp2;
+						if (type == "ALERT")
+							etype = ALERT;
+						if (type == "SELECT")
+							etype = SELECT;
+						if (type == "AUTO_FOLLOWUP")
+							etype = AUTO_FOLLOWUP;
+						if (type == "SCROLL")
+							etype = SCROLL;
 					}
 					if (temp1 == "AUTO_FOLLOW_UP") {
 						done = !(stoi(temp2) == 0);
@@ -1135,7 +1152,7 @@ public:
 			start = false;
 			confirm = true;
 		}
-		if (type == "ALERT") {
+		if (etype == ALERT) {
 			if (start | select | confirm | cancel) {
 				if (step >= int(raw[0].s.size())) {
 					done = true;
@@ -1152,7 +1169,7 @@ public:
 				return;
 			}
 		}
-		else if (type == "SELECT") {
+		else if (etype == SELECT) {
 			if (up) {
 				if (selection < columns) {
 					selection = selection_cap - (columns - selection);
@@ -1204,7 +1221,7 @@ public:
 			pop_menu();
 			push_menu();
 		}
-		else if (type == "SCROLL") {
+		else if (etype == SCROLL) {
 			if (up) {
 				if (selection - 1 < 0 && selection + scroll - 1 >= 0) {
 					scroll--;
@@ -1243,7 +1260,7 @@ public:
 		vector<int> choice;
 		while (!done || (done && (selection >= 0) && (selection < (int)followup.size()) && (followup[selection] != ""))) {
 			m2.lock();
-			if ((type == "SELECT" || type == "SCROLL") && cursor == -1) {
+			if ((etype == SELECT || etype == SCROLL) && cursor == -1) {
 				cursor = g.draw_list.size();
 				g.push_quad(display[0].xmin - 0.1f + cursor_offset_x, display[0].ymin - 0.1f + cursor_offset_y, 0.1f, 0.1f, g.tex[string("cursor-2.bmp")]);
 			}
@@ -1252,7 +1269,7 @@ public:
 				g.draw_list[cursor].y = display[selection].ymin + 0.1f + cursor_offset_y;
 			}
 			m2.unlock();
-			if (type == "AUTO_FOLLOWUP") {
+			if (etype == AUTO_FOLLOWUP) {
 				done = true;
 				selection = 0;
 			}
@@ -1261,7 +1278,7 @@ public:
 				if (followup[selection] == "")
 					break;
 				out = do_menu(followup[selection]);
-				if ((type != "AUTO_FOLLOWUP") && ((out.size() == 0) || (out[out.size() - 1] == -1))) {
+				if ((etype != AUTO_FOLLOWUP) && ((out.size() == 0) || (out[out.size() - 1] == -1))) {
 					done = false;
 				}
 				else {
@@ -1272,7 +1289,7 @@ public:
 			int a = 0;
 		}
 		pop_menu();
-		if (type != "AUTO_FOLLOWUP") {
+		if (etype != AUTO_FOLLOWUP) {
 			choice.insert(choice.begin(), selection != -1 ? selection + scroll : selection);
 			if ((choice.size() > 0) && (choice[0] == offset + cancel_option))
 				choice[0] = -1;
