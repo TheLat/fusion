@@ -1,9 +1,37 @@
 NAME
 Safari Zone West
 NPCS
-safari-zone-west-sign1 blank 6 23
+safari-zone-west-sign1 blank 26 5
 INTERACTIONS
-MENU:ALERT:SAFARI ZONE EAST
+MENU:ALERT:TRAINER TIPS|MENU:ALERT:Zone Exploration Campaign!|MENU:ALERT:The Search for the SECRET HOUSE!
+END
+safari-zone-west-sign2 blank 24 23
+INTERACTIONS
+MENU:ALERT:SAFARI ZONE WEST
+END
+safari-zone-west-item1 orb 18 19
+INTERACTIONS
+GIVE_ITEM:MAX REVIVE|DEACTIVATE:safari-zone-west-item1
+END
+safari-zone-west-item2 orb 8 21
+INTERACTIONS
+GIVE_ITEM:MAX POTION|DEACTIVATE:safari-zone-west-item2
+END
+safari-zone-west-sign3 blank 12 13
+INTERACTIONS
+MENU:ALERT:REST HOUSE
+END
+safari-zone-west-sign4 blank 17 4
+INTERACTIONS
+MENU:ALERT:REQUEST NOTICE|MENU:ALERT:Please find the SAFARI WARDEN's lost GOLD TEETH.|MENU:ALERT:They're around here somewhere.|MENU:ALERT:Reward offered! Contact: WARDEN
+END
+safari-zone-west-item3 orb 19 8
+INTERACTIONS
+GIVE_ITEM:GOLD TEETH|DEACTIVATE:safari-zone-west-item3
+END
+safari-zone-west-item4 orb 9 8
+INTERACTIONS
+GIVE_ITEM:TM32|DEACTIVATE:safari-zone-west-item4
 END
 TELEPORT
 21 0 safari-zone-north 4 35
