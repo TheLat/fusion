@@ -1186,6 +1186,7 @@ public:
 					return false;
 				if (choices[0] == -1)
 					return false;
+				bool out = learn_move(mc.team[choices[0]], move);
 			}
 			else if (base.find("TARGET") == 0) {
 				do_effect(mc.enemy_team[mc.enemy_selected], base);
