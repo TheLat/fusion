@@ -1,0 +1,44 @@
+NAME
+Safari Rest House 3
+NPCS
+safari-house3-hat hat 1 4 WANDER
+INTERACTIONS
+MENU:ALERT:My EEVEE evolved into FLAREON!|MENU:ALERT:But, a friend's EEVEE turned into a VAPOREON!|MENU:ALERT:I wonder why?
+END
+safari-house3-guard guard 3 4
+INTERACTIONS
+MENU:ALERT:Go to the deepest part of the SAFARI ZONE. You will win a prize!
+END
+safari-house3-doctor doctor 5 3 WANDER
+INTERACTIONS
+MENU:ALERT:You can keep any item you find on the ground here.
+END
+safari-house3-bookshelf1 blank 4 1
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+safari-house3-bookshelf1 blank 5 1
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+safari-house3-bookshelf1 blank 6 1
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+safari-house3-bookshelf1 blank 7 1
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+TELEPORT
+2 8 safari-zone-north 36 4
+3 8 safari-zone-north 36 4
+DATA
+17   17  17  30 672 672 672 672
+182 182 182  29 673 673 673 673
+655 182 182 655 182 182 182 182
+182 182 182 182 182 182 182 182
+655 182 182 655 182  48 304 305
+182 182 182 182 182 134 182 182
+182 182 182 182 182 134 182 298
+182 182 185 185 182 134 182 298
+82   82 166 166

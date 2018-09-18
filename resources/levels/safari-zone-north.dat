@@ -32,6 +32,9 @@ END
 TELEPORT
 41 30 safari-zone-east 1 4
 41 31 safari-zone-east 1 5
+36 3 safari-house3 3 7
+9 36 safari-zone-main 15 1
+10 36 safari-zone-main 16 1
 ENCOUNTERS
 30 33 47 49 102 105 111 113 115 123 127 128
 MEGA_ENCOUNTERS
