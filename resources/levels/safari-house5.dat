@@ -1,0 +1,21 @@
+NAME
+Secret House
+NPCS
+safari-house5-safari safari 3 3
+INTERACTIONS
+MENU:ALERT:Ah! Finally!|MENU:ALERT:You're the first person to reach the SECRET HOUSE!|MENU:ALERT:I was getting worried that no one would win our campaign prize.|MENU:ALERT:Congratulations! You have won!|GIVE_ITEM:HM03
+MENU:ALERT:HM03 is SURF!|MENU:ALERT:POK{e-accent}MON will be able to ferry you across water!|MENU:ALERT:And, like all HMs, this isn't disposable! You can use it over and over!|MENU:ALERT:You're super lucky for winning this fabulous prize!
+END
+TELEPORT
+2 8 safari-zone-west 3 5
+3 8 safari-zone-west 3 5
+DATA
+717 719 721 723 717 721 717 719
+718 720 722 724 725 722 718 720
+726 726 182 182 182 182 726 726
+722 722 182 182 182 182 722 722
+182 182 182 182 182 182 182 182
+182 182 182 182 182 182 182 182
+182 182 182 182 182 182 182 182
+182 182 185 185 182 182 182 182
+82   82 166 166

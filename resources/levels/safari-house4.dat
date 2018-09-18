@@ -1,0 +1,44 @@
+NAME
+Safari Rest House 4
+NPCS
+safari-house4-doctor doctor 3 4 WANDER
+INTERACTIONS
+MENU:ALERT:I think different areas in the SAFARI ZONE have different POK{e-accent}MON...
+END
+safari-house4-guy guy2 0 2 RIGHT
+INTERACTIONS
+MENU:ALERT:I wish I had some way to cut across the water here. It would save a lot of time.
+END
+safari-house4-girl girl4 6 2 DOWN
+INTERACTIONS
+MENU:ALERT:I hiked a lot, but I didn't see any POK{e-accent}MON that I wanted.
+END
+safari-house4-bookshelf1 blank 4 1
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+safari-house4-bookshelf1 blank 5 1
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+safari-house4-bookshelf1 blank 6 1
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+safari-house4-bookshelf1 blank 7 1
+INTERACTIONS
+MENU:ALERT:Crammed full of POK{e-accent}MON books!
+END
+TELEPORT
+2 8 safari-zone-west 11 13
+3 8 safari-zone-west 11 13
+DATA
+17   17  17  30 672 672 672 672
+182 182 182  29 673 673 673 673
+655 182 182 655 182 182 182 182
+182 182 182 182 182 182 182 182
+655 182 182 655 182  48 304 305
+182 182 182 182 182 134 182 182
+182 182 182 182 182 134 182 298
+182 182 185 185 182 134 182 298
+82   82 166 166
