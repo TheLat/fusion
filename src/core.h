@@ -150,7 +150,7 @@ public:
 
 class player {
 public:
-	string name, rivalname;
+	string name, rivalname, movement;
 	direction dir;
 	int wins, losses;
 	int money, coins;
@@ -171,7 +171,7 @@ public:
 	std::map<string, bool> seen;
 	std::map<string, bool> caught;
 	std::map<string, bool> used_tms;
-	player() { wins = 0; losses = 0; money = 0; name = "RED"; rivalname = "BLUE"; repel = 0; selected = 0; enemy_selected = 0; box_number = 0; }
+	player() { wins = 0; losses = 0; money = 0; name = "RED"; rivalname = "BLUE"; repel = 0; selected = 0; enemy_selected = 0; box_number = 0; movement = string("player");}
 };
 
 class status_effect {
@@ -5072,6 +5072,17 @@ public:
 				else
 					return;
 			}
+			if (water[get_tile(l.y, l.x)] && !has_move_in_party(string("SURF"))) {
+				return;
+			}
+			if (water[get_tile(l.y, l.x)] && has_move_in_party(string("SURF"))) {
+				if (!water[get_tile(mc.loc.x, mc.loc.y)]) {
+					mc.movement = string("seal");
+				}
+			}
+			if (mc.movement == string("seal") && !water[get_tile(l.y, l.x)]) {
+				mc.movement = string("player");
+			}
 			if (down && jumpdown[get_tile(l.y, l.x)])
 				l.y += 1.0;
 			if (right && jumpright[get_tile(l.y, l.x)])
@@ -5180,7 +5191,7 @@ public:
 			else
 				g.push_quad((levels[curr_level].characters[i].loc.x - (curr_x + 0.5)) / 5.0, (-0.5 - levels[curr_level].characters[i].loc.y + curr_y) / 4.5f + 0.055, 1.0 / 5.0f, 1.0 / 4.5f, g.tex[levels[curr_level].characters[i].image + string("-") + get_direction_string(levels[curr_level].characters[i].dir) + string("-0.bmp")]);
 		}
-		g.push_quad(-0.1, -0.5 / 4.5 + 0.055, 1.0 / 5.0, 1.0 / 4.5, g.tex[string("player-") + get_direction_string(mc.dir) + string("-0.bmp")]);
+		g.push_quad(-0.1, -0.5 / 4.5 + 0.055, 1.0 / 5.0, 1.0 / 4.5, g.tex[mc.movement + string("-") + get_direction_string(mc.dir) + string("-0.bmp")]);
 	}
 	void main() {
 		while (true) {
@@ -6352,6 +6363,7 @@ public:
 		f << string("WARNING: Editing this file can easily corrupt game state.\n");
 		f << string("NAME:") + mc.name;
 		f << string("\nRIVAL_NAME:") + mc.rivalname;
+		f << string("\nMOVEMENT:") + mc.movement;
 		f << string("\nDIRECTION:");
 		f << int(mc.dir);
 		f << string("\nWINS:");
@@ -6540,6 +6552,10 @@ public:
 			else if (line.find("RIVAL_NAME:") == 0) {
 				line.erase(0, line.find(":") + 1);
 				mc.rivalname = line;
+			}
+			else if (line.find("MOVEMENT:") == 0) {
+				line.erase(0, line.find(":") + 1);
+				mc.movement = line;
 			}
 			else if (line.find("DIRECTION:") == 0) {
 				line.erase(0, line.find(":") + 1);
