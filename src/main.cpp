@@ -232,6 +232,7 @@ int main(int argc, char** argv) {
 	printf("Done!\n");
 	printf("Loading blocking tiles...");
 	e.init_blocking();
+	e.init_npc_blocking();
 	printf("Done!\n");
 	printf("Loading jumping tiles...");
 	e.init_jumpdown();

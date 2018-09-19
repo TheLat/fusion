@@ -193,8 +193,8 @@ public:
 	vector<string> interactions;
 	vector<location> force_interactions;
 	location loc, origin;
-	bool wander, incorporeal, no_force, nolook, far, no_offset;
-	character() { wander = false; dir = DOWN; incorporeal = false; no_force = false; nolook = false; far = false; no_offset = false; }
+	bool wander, incorporeal, no_force, nolook, far, no_offset, pushable;
+	character() { wander = false; dir = DOWN; incorporeal = false; no_force = false; nolook = false; far = false; no_offset = false; pushable = false; }
 };
 
 class trainer {
@@ -288,6 +288,7 @@ public: // TODO:  Change back to private
 	std::map<string, level> levels;
 	std::map<string, item> items;
 	std::map<int, bool> blocking;
+	std::map<int, bool> npc_blocking;
 	std::map<int, bool> jumpdown;
 	std::map<int, bool> jumpright;
 	std::map<int, bool> jumpleft;
@@ -4139,6 +4140,12 @@ public:
  					else {
 						levels[levelname].characters[levels[levelname].characters.size() - 1].wander = false;
 					}
+					if (s.find("PUSHABLE") != -1) {
+						levels[levelname].characters[levels[levelname].characters.size() - 1].pushable = true;
+					}
+					else {
+						levels[levelname].characters[levels[levelname].characters.size() - 1].pushable = false;
+					}
 					levels[levelname].characters[levels[levelname].characters.size() - 1].dir = DOWN;
 					if (s.find("LEFT") != -1)
 						levels[levelname].characters[levels[levelname].characters.size() - 1].dir = LEFT;
@@ -4833,6 +4840,16 @@ public:
 			f.close();
 		}
 	}
+	void init_npc_blocking() {
+		string line;
+		ifstream f("../resources/data/npc-blocking-tiles.dat");
+		while (f.is_open()) {
+			while (std::getline(f, line)) {
+				npc_blocking[stoi(line)] = true;
+			}
+			f.close();
+		}
+	}
 	void init_jumpdown() {
 		string line;
 		ifstream f("../resources/data/jumpdown-tiles.dat");
@@ -5023,6 +5040,22 @@ public:
 			location l = mc.loc;
 			ahead = l;
 			ahead2 = l;
+			if (left) {
+				l.x -= 1.0;
+				mc.dir = LEFT;
+			}
+			if (right) {
+				l.x += 1.0;
+				mc.dir = RIGHT;
+			}
+			if (up) {
+				l.y -= 1.0;
+				mc.dir = UP;
+			}
+			if (down) {
+				l.y += 1.0;
+				mc.dir = DOWN;
+			}
 			switch (mc.dir) {
 			case UP:
 				ahead.y -= 1.0;
@@ -5040,22 +5073,6 @@ public:
 				ahead.x += 1.0;
 				ahead2.x += 2.0;
 				break;
-			}
-			if (left) {
-				l.x -= 1.0;
-				mc.dir = LEFT;
-			}
-			if (right) {
-				l.x += 1.0;
-				mc.dir = RIGHT;
-			}
-			if (up) {
-				l.y -= 1.0;
-				mc.dir = UP;
-			}
-			if (down) {
-				l.y += 1.0;
-				mc.dir = DOWN;
 			}
 			if (l.y == -1.0)
 				return;
@@ -5094,8 +5111,33 @@ public:
 					continue;
 				if (levels[mc.loc.level].characters[i].incorporeal)
 					continue;
-				if (l.x == levels[mc.loc.level].characters[i].loc.x && l.y == levels[mc.loc.level].characters[i].loc.y)
-					return;
+				if (l.x == levels[mc.loc.level].characters[i].loc.x && l.y == levels[mc.loc.level].characters[i].loc.y) {
+					if (levels[mc.loc.level].characters[i].pushable && has_move_in_party(string("STRENGTH"))) {
+						if (ahead2.x >= 0.0 && ahead2.y >= 0.0 && int(ahead2.y) < levels[mc.loc.level].data.size() && int(ahead2.x) < levels[mc.loc.level].data[int(ahead2.y)].size() && !blocking[get_tile(ahead2.y, ahead2.x)] && !npc_blocking[get_tile(ahead2.y, ahead2.x)]) {
+							bool npc_in_way = false;
+							for (unsigned j = 0; j < levels[mc.loc.level].characters.size(); ++j) {
+								if (ahead2.x == levels[mc.loc.level].characters[j].loc.x && ahead2.y == levels[mc.loc.level].characters[j].loc.y) {
+									npc_in_way = true;
+									break;
+								}
+							}
+							if (npc_in_way) {
+								return;
+							}
+							else {
+								levels[mc.loc.level].characters[i].loc.x = ahead2.x;
+								levels[mc.loc.level].characters[i].loc.y = ahead2.y;
+								return;
+							}
+						}
+						else {
+							return;
+						}
+					}
+					else {
+						return;
+					}
+				}
 			}
 			if (confirm) {
 				interact = true;
