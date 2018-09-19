@@ -5125,6 +5125,32 @@ public:
 					}
 				}
 			}
+			if (water[get_tile(mc.loc.y, mc.loc.x)]) {
+				if (levels[mc.loc.level].water_encounters_super.size() > 0) {
+					if (random(0.0, 187.5) < 8.5) {		
+						bool first = int(random(0.0, 2.0)) == 1;
+						vector<int> combination;
+						vector<int> base;
+						for (unsigned i = 0; i < levels[mc.loc.level].encounters.size(); ++i) {
+							combination.push_back(levels[mc.loc.level].encounters[i]);
+						}	
+						for (unsigned i = 0; i < levels[mc.loc.level].water_encounters_super.size(); ++i) {
+							combination.push_back(levels[mc.loc.level].water_encounters_super[i]);
+							base.push_back(levels[mc.loc.level].water_encounters_super[i]);
+						}
+						int part1 = combination[int(random(0.0, combination.size()))];
+						int part2 = base[int(random(0.0, base.size()))];
+						int l = int(random(levels[mc.loc.level].level_range.first, levels[mc.loc.level].level_range.second + 1));
+						encounter_level = l;
+						if (first) {
+							encounter = to_string(part1) + string("-") + to_string(part2);
+						}
+						else {
+							encounter = to_string(part2) + string("-") + to_string(part1);
+						}
+					}
+				}
+			}
 		}
 		else {
 			menus[menus.size() - 1]->input(up, down, left, right, select, start, confirm, cancel);
