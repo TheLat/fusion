@@ -3,12 +3,12 @@ Fuchsia House 3
 NPCS
 fuchsia-house3-warden bald2 2 3 RIGHT
 INTERACTIONS
-IN_INVENTORY:GOLD TEETH|{MENU:ALERT:WARDEN: Hif fuff hefifoo!|MENU:ALERT:Ha lof ha feef ee hafahi ho.|MENU:ALERT_YES_NO:Heff hee fwee!|{MENU:ALERT:Ah howhee ho hoo! Eef ee hafahi ho!|NO_ADVANCE}{MENU:ALERT:Ha? He ohay heh ha hoo ee haheh!|NO_ADVANCE}}{}
-MENU:ALERT:STUFF
+IN_INVENTORY:GOLD TEETH|{MENU:ALERT:WARDEN: Hif fuff hefifoo!|MENU:ALERT:Ha lof ha feef ee hafahi ho.|MENU:ALERT_YES_NO:Heff hee fwee!|{MENU:ALERT:Ah howhee ho hoo! Eef ee hafahi ho!|NO_ADVANCE}{MENU:ALERT:Ha? He ohay heh ha hoo ee haheh!|NO_ADVANCE}}{REMOVE_ITEM:GOLD TEETH|MENU:ALERT:The WARDEN popped in his teeth!|MENU:ALERT:WARDEN: Thanks, kid! No one could understand a word that I said.|MENU:ALERT:I couldn't work that way.|MENU:ALERT:Let me give you something for your trouble.|GIVE_ITEM:HM04}
+MENU:ALERT:HM04 teaches STRENGTH!|MENU:ALERT:It lets POK{e-accent}MON move boulders when you're outside of battle.|MENU:ALERT:Oh yes, did you find the SECRET HOUSE in SAFARI ZONE?|MENU:ALERT:If you do, you win an HM!|MENU:ALERT:I hear it's the rare SURF HM.
 END
 fuchsia-house3-item orb 8 3
 INTERACTIONS
-MENU:ALERT:ERROR
+GIVE_ITEM:RARE CANDY|DEACTIVATE:fuchsia-house3-item
 END
 fuchsia-house3-stone boulder 8 4 PUSHABLE
 INTERACTIONS
