@@ -54,7 +54,7 @@ INTERACTIONS
 !:fuchsia-gym-punk4|MOVE_TO_PLAYER|MENU:ALERT:I also study the way of the ninja with master KOGA!|MENU:ALERT:Ninja have a long history of using animals!|BATTLE:fuchsia-gym-punk4|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I still have much to learn!
 END
-fuchsia-gym-punk5 punk 3 4 UP
+fuchsia-gym-punk5 punk 3 5 UP
 FORCE_INTERACTION
 0 -1
 0 -2
@@ -63,13 +63,18 @@ INTERACTIONS
 !:fuchsia-gym-punk5|MOVE_TO_PLAYER|MENU:ALERT:Stop right there!|MENU:ALERT:Our invisible walls have you frustrated?|BATTLE:fuchsia-gym-punk5|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:You impressed me! Here's a hint!|MENU:ALERT:Look very closely for gaps in the invisible walls!
 END
-fuchsia-gym-punk6 punk 2 6 LEFT
+fuchsia-gym-punk6 punk 2 7 LEFT
 FORCE_INTERACTION
 -1 0
 END
 INTERACTIONS
-!:fuchsia-gym-punk6|MOVE_TO_PLAYER|MENU:ALERT:|BATTLE:fuchsia-gym-punk6|{NO_ADVANCE}{DISABLE_FORCE}
-MENU:ALERT:You impressed me! Here's a hint!|MENU:ALERT:Look very closely for gaps in the invisible walls!
+!:fuchsia-gym-punk6|MOVE_TO_PLAYER|MENU:ALERT:Master KOGA comes from a long line of ninjas!|MENU:ALERT:What did you descend from?|BATTLE:fuchsia-gym-punk6|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Where there is light, there is shadow!|MENU:ALERT:Light and shadow! Which do you choose?
+END
+fuchsia-gym-koga headband 4 10 DOWN
+INTERACTIONS
+MENU:ALERT:KOGA: Fwahahaha!|MENU:ALERT:A mere child like you dares to challenge me?|MENU:ALERT:Very well, I shall show you true terror as a ninja master!|MENU:ALERT:You shall feel the despair of poison and sleep techniques!|BATTLE:fuchsia-gym-koga|{NO_ADVANCE}{SET:SOULBADGE:1|ADVANCE:fuchsia-gym-board1|ADVANCE:fuchsia-gym-board2|ADVANCE:fuchsia-gym-clerk|MENU:ALERT:Ah! Take this, too!|GIVE_ITEM:TM06|MENU:ALERT:TM06 contains TOXIC!|MENU:ALERT:It is a secret technique over 400 years old!}
+MENU:ALERT:When afflicted by TOXIC, POK{e-accent}MON suffer more and more as battle progresses!|MENU:ALERT:It will surely terrorize foes!
 END
 TRAINERS
 fuchsia-gym-punk1 {OVERSWITCH} 35 0.95 0.95 JUGGLER juggler.png {JUGGLER: You had me fooled!}{} 97-97:34|64-64:34
@@ -77,6 +82,8 @@ fuchsia-gym-punk2 {OVERSWITCH} 35 0.95 0.95 JUGGLER juggler.png {JUGGLER: What? 
 fuchsia-gym-punk3 {OVERSWITCH} 35 0.95 0.95 JUGGLER juggler.png {JUGGLER: I'm done for!}{} 97-97:31|97-97:31|64-64:31|97-97:31
 fuchsia-gym-punk4 40 0.95 0.95 TAMER tamer.png {TAMER: Awoo!}{} 24-24:33|28-28:33|24-24:33
 fuchsia-gym-punk5 40 0.95 0.95 TAMER tamer.png {TAMER: Whoa! {NEWLINE} He's got it!}{} 28-28:34|28-28:34
+fuchsia-gym-punk6 {OVERSWITCH} 35 0.95 0.95 JUGGLER juggler.png {JUGGLER: Dropped my balls!}{} 97-97:34|64-64:34
+fuchsia-gym-koga 99 1.0 1.0 KOGA koga.png {KOGA: Humph! {NEWLINE} You have proven your worth! {NEWLINE} Here! Take the SOULBADGE!}{} 109-109:34
 END
 TELEPORT
 4 18 fuchsia-city 10 31
