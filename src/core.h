@@ -5093,7 +5093,7 @@ public:
 				return;
 			}
 			if (water[get_tile(l.y, l.x)] && has_move_in_party(string("SURF"))) {
-				if (!water[get_tile(mc.loc.x, mc.loc.y)]) {
+				if (!water[get_tile(mc.loc.y, mc.loc.x)]) {
 					mc.movement = string("seal");
 				}
 			}
