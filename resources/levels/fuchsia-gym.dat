@@ -1,0 +1,103 @@
+NAME
+Fuchsia City Gym
+NPCS
+fuchsia-gym-board1 blank 3 15
+INTERACTIONS
+MENU:ALERT:FUCHSIA CITY POK{e-accent}MON GYM|MENU:ALERT:LEADER: KOGA|MENU:ALERT:WINNING TRAINERS: {RIVAL_NAME}|NO_ADVANCE
+MENU:ALERT:FUCHSIA CITY POK{e-accent}MON GYM|MENU:ALERT:LEADER: KOGA|MENU:ALERT:WINNING TRAINERS: {PLAYER_NAME} {NEWLINE} {RIVAL_NAME}
+END
+fuchsia-gym-board2 blank 6 15
+INTERACTIONS
+MENU:ALERT:FUCHSIA CITY POK{e-accent}MON GYM|MENU:ALERT:LEADER: KOGA|MENU:ALERT:WINNING TRAINERS: {RIVAL_NAME}|NO_ADVANCE
+MENU:ALERT:FUCHSIA CITY POK{e-accent}MON GYM|MENU:ALERT:LEADER: KOGA|MENU:ALERT:WINNING TRAINERS: {PLAYER_NAME} {NEWLINE} {RIVAL_NAME}
+END
+fuchsia-gym-clerk clerk 7 15 DOWN
+INTERACTIONS
+MENU:ALERT:Yo! Champ in making!|MENU:ALERT:FUCHSIA GYM is riddled with invisible walls!|MENU:ALERT:KOGA might appear close, but he's blocked off.|MENU:ALERT:You have to find gaps in the walls to reach him!|NO_ADVANCE
+MENU:ALERT:STUFF
+END
+fuchsia-gym-punk1 punk 1 12 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+0 3
+END
+INTERACTIONS
+!:fuchsia-gym-punk1|MOVE_TO_PLAYER|MENU:ALERT:Let's see you beat my special techniques!|BATTLE:fuchsia-gym-punk1|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I like poison and sleep techniques, as they linger after battle.
+END
+fuchsia-gym-punk2 punk 8 13 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+END
+INTERACTIONS
+!:fuchsia-gym-punk2|MOVE_TO_PLAYER|MENU:ALERT:Strength isn't the key for POK{e-accent}MON!|MENU:ALERT:It's strategy!|MENU:ALERT:I'll show you how strategy can beat brute strength!|BATTLE:fuchsia-gym-punk2|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:So, you mix brawn with brains?|MENU:ALERT:Good strategy!
+END
+fuchsia-gym-punk3 punk 7 8 RIGHT
+FORCE_INTERACTION
+1 0
+2 0
+END
+INTERACTIONS
+!:fuchsia-gym-punk3|MOVE_TO_PLAYER|MENU:ALERT:I wanted to become a ninja, so I joined this GYM!|BATTLE:fuchsia-gym-punk3|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I will keep on training under KOGA, my ninja master!
+END
+fuchsia-gym-punk4 punk 8 2 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+0 3
+END
+INTERACTIONS
+!:fuchsia-gym-punk4|MOVE_TO_PLAYER|MENU:ALERT:I also study the way of the ninja with master KOGA!|MENU:ALERT:Ninja have a long history of using animals!|BATTLE:fuchsia-gym-punk4|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I still have much to learn!
+END
+fuchsia-gym-punk5 punk 3 4 UP
+FORCE_INTERACTION
+0 -1
+0 -2
+END
+INTERACTIONS
+!:fuchsia-gym-punk5|MOVE_TO_PLAYER|MENU:ALERT:Stop right there!|MENU:ALERT:Our invisible walls have you frustrated?|BATTLE:fuchsia-gym-punk5|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:You impressed me! Here's a hint!|MENU:ALERT:Look very closely for gaps in the invisible walls!
+END
+fuchsia-gym-punk6 punk 2 6 LEFT
+FORCE_INTERACTION
+-1 0
+END
+INTERACTIONS
+!:fuchsia-gym-punk6|MOVE_TO_PLAYER|MENU:ALERT:|BATTLE:fuchsia-gym-punk6|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:You impressed me! Here's a hint!|MENU:ALERT:Look very closely for gaps in the invisible walls!
+END
+TRAINERS
+fuchsia-gym-punk1 {OVERSWITCH} 35 0.95 0.95 JUGGLER juggler.png {JUGGLER: You had me fooled!}{} 97-97:34|64-64:34
+fuchsia-gym-punk2 {OVERSWITCH} 35 0.95 0.95 JUGGLER juggler.png {JUGGLER: What? Extraordinary!}{} 97-97:38
+fuchsia-gym-punk3 {OVERSWITCH} 35 0.95 0.95 JUGGLER juggler.png {JUGGLER: I'm done for!}{} 97-97:31|97-97:31|64-64:31|97-97:31
+fuchsia-gym-punk4 40 0.95 0.95 TAMER tamer.png {TAMER: Awoo!}{} 24-24:33|28-28:33|24-24:33
+fuchsia-gym-punk5 40 0.95 0.95 TAMER tamer.png {TAMER: Whoa! {NEWLINE} He's got it!}{} 28-28:34|28-28:34
+END
+TELEPORT
+4 18 fuchsia-city 10 31
+5 18 fuchsia-city 10 31
+DATA
+336 336 336 336 336 336 336 336 336 336
+260 260 260 260 260 260 260 260 260 260
+260 260 727 727 260 260 260 727 260 260
+260 260 260 260 727 727 260 727 260 260
+727 727 260 260 727 260 260 727 260 260
+260 260 260 260 727 260 260 727 260 260
+727 260 727 727 260 260 727 260 260 260
+727 260 260 260 260 260 727 260 260 260
+260 260 727 727 727 727 727 260 260 260
+260 260 260 260 260 260 727 260 260 260
+260 260 727 260 260 260 260 727 260 260
+727 727 727 260 260 260 260 727 260 260
+260 260 727 727 727 727 727 727 260 260
+260 260 260 260 260 260 260 260 260 260
+260 260 260 199 260 260 199 260 260 260
+260 260 260 200 260 260 200 260 260 260
+260 260 260 260 260 260 260 260 260 260
+260 260 260 260 667 667 260 260 260 260
+82   82  82  82 166 166
