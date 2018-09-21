@@ -14,7 +14,7 @@ END
 fuchsia-gym-clerk clerk 7 15 DOWN
 INTERACTIONS
 MENU:ALERT:Yo! Champ in making!|MENU:ALERT:FUCHSIA GYM is riddled with invisible walls!|MENU:ALERT:KOGA might appear close, but he's blocked off.|MENU:ALERT:You have to find gaps in the walls to reach him!|NO_ADVANCE
-MENU:ALERT:STUFF
+MENU:ALERT:It's amazing how ninja can terrify even now!
 END
 fuchsia-gym-punk1 punk 1 12 DOWN
 FORCE_INTERACTION
@@ -77,12 +77,12 @@ MENU:ALERT:KOGA: Fwahahaha!|MENU:ALERT:A mere child like you dares to challenge 
 MENU:ALERT:When afflicted by TOXIC, POK{e-accent}MON suffer more and more as battle progresses!|MENU:ALERT:It will surely terrorize foes!
 END
 TRAINERS
-fuchsia-gym-punk1 {OVERSWITCH} 35 0.95 0.95 JUGGLER juggler.png {JUGGLER: You had me fooled!}{} 97-97:34|64-64:34
-fuchsia-gym-punk2 {OVERSWITCH} 35 0.95 0.95 JUGGLER juggler.png {JUGGLER: What? Extraordinary!}{} 97-97:38
-fuchsia-gym-punk3 {OVERSWITCH} 35 0.95 0.95 JUGGLER juggler.png {JUGGLER: I'm done for!}{} 97-97:31|97-97:31|64-64:31|97-97:31
-fuchsia-gym-punk4 40 0.95 0.95 TAMER tamer.png {TAMER: Awoo!}{} 24-24:33|28-28:33|24-24:33
-fuchsia-gym-punk5 40 0.95 0.95 TAMER tamer.png {TAMER: Whoa! {NEWLINE} He's got it!}{} 28-28:34|28-28:34
-fuchsia-gym-punk6 {OVERSWITCH} 35 0.95 0.95 JUGGLER juggler.png {JUGGLER: Dropped my balls!}{} 97-97:34|64-64:34
+fuchsia-gym-punk1 {OVERSWITCH} 35 0.95 0.95 JUGGLER juggler.png {JUGGLER: You had me fooled!}{} 97-97:45:HYPNOSIS,DREAM EATER,POISON GAS,HEADBUTT|64-110:45|42-42:45:BITE,CONFUSE RAY,SCREECH,WING ATTACK|76-89:45|42-6:45|45-45:45:STUN SPORE,SLEEP POWDER,ACID,PETAL DANCE
+fuchsia-gym-punk2 {OVERSWITCH} 35 0.95 0.95 JUGGLER juggler.png {JUGGLER: What? Extraordinary!}{} 73-73:45|89-78:45|3-3:45:RAZOR LEAF,POISON POWDER,VINE WHIP,BODY SLAM|110-110:45:SMOG,SLUDGE,SMOKESCREEN,SELFDESTRUCT|89-80:45|110-28:45
+fuchsia-gym-punk3 {OVERSWITCH} 35 0.95 0.95 JUGGLER juggler.png {JUGGLER: I'm done for!}{} 110-135:45|94-94:45:CONFUSE RAY,LICK,HYPNOSIS,DREAM EATER|15-15:45|20-89:45|110-47:45|42-22:45:SUPERSONIC,BITE,SCREECH,MIRROR MOVE
+fuchsia-gym-punk4 40 0.95 0.95 TAMER tamer.png {TAMER: Awoo!}{} 64-123:48|28-28:48|89-38:48:FIRE SPIN,CONFUSE RAY,MINIMIZE,QUICK ATTACK
+fuchsia-gym-punk5 40 0.95 0.95 TAMER tamer.png {TAMER: Whoa! {NEWLINE} He's got it!}{} 110-110:49|110-18:49
+fuchsia-gym-punk6 {OVERSWITCH} 35 0.95 0.95 JUGGLER juggler.png {JUGGLER: Dropped my balls!}{} 42-42:45:BITE,CONFUSE RAY,SCREECH,WING ATTACK|110-125:45|110-142:45|71-71:45:RAZOR LEAF,ACID,STUN SPORE,SLEEP POWDER|94-94:45:CONFUSE RAY,LICK,HYPNOSIS,DREAM EATER|89-9:45:WATER GUN,MINIMIZE,DISABLE,BODY SLAM
 fuchsia-gym-koga 99 1.0 1.0 KOGA koga.png {KOGA: Humph! {NEWLINE} You have proven your worth! {NEWLINE} Here! Take the SOULBADGE!}{} 109-109:34
 END
 TELEPORT
