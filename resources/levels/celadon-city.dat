@@ -47,7 +47,8 @@ MENU:ALERT:I got my KOFFING in CINNABAR!|MENU:ALERT:It's nice, but it breathes p
 END
 celadon-city-old3 oldman 25 20 DOWN
 INTERACTIONS
-MENU:ALERT:TODO: Whatever this guy says.
+MENU:ALERT:Hello, there!|MENU:ALERT:I've seen you, but I never had a chance to talk!|MENU:ALERT:Here's a gift for dropping by!|GIVE_ITEM:TM41
+MENU:ALERT:TM41 teaches SOFTBOILED!|MENU:ALERT:Only POK{e-accent}MON that are part CHANSEY can use it!
 END
 celadon-city-woman1 woman3 17 20 WANDER
 INTERACTIONS

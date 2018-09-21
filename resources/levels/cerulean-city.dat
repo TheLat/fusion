@@ -91,6 +91,10 @@ cerulean-city-sign4 blank 19 31
 INTERACTIONS
 MENU:ALERT:TRAINER TIPS|MENU:ALERT:Pressing B button during evolution cancels the whole process.
 END
+cerulean-city-cave-guard man2 6 14 DOWN
+INTERACTIONS
+MENU:ALERT:This is CERULEAN CAVE! Horribly strong POK{e-accent}MON live in there!|MENU:ALERT:You need the approval of the POK{e-accent}MON LEAGUE to be allowed in!
+END
 TRAINERS
 rival-cerulean-city-0 35 0.2 0.2 {RIVAL_NAME} rival1.png {{RIVAL_NAME}: Hey! Take it easy! You won already!}{{RIVAL_NAME}: Yeah! Am I great or what?} 25-25:20|19-19:15|8-8:19
 rival-cerulean-city-1 35 0.2 0.2 {RIVAL_NAME} rival1.png {{RIVAL_NAME}: Hey! Take it easy! You won already!}{{RIVAL_NAME}: Yeah! Am I great or what?} 17-17:18|19-19:15|74-74:16|2-2:17
