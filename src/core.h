@@ -1210,7 +1210,6 @@ public:
 			else if (base.find("REPEL") == 0) {
 				base.erase(0, base.find(":") + 1);
 				mc.repel += stoi(base);
-				ret = "TELEPORT";
 			}
 		}
 		if (get_item_effect(name).find("INFINITE") == -1) {
@@ -1233,6 +1232,9 @@ public:
 			effect.erase(0, effect.find(":") + 1);
 		}
 		if (effect.find("TARGET") == 0) {
+			effect.erase(0, effect.find(":") + 1);
+		}
+		if (effect.find("TEAM") == 0) {
 			effect.erase(0, effect.find(":") + 1);
 		}
 		if (effect.find("CLEAR_STATUS") == 0) {
