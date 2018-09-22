@@ -1,18 +1,30 @@
 NAME
 Route 19
 NPCS
-route19-guy1 guy2 43 14 RIGHT
+route19-guy1 guy2 13 9 LEFT
 FORCE_INTERACTION
-1 0
-2 0
-3 0
+-1 0
+-2 0
+-3 0
+-4 0
 END
 INTERACTIONS
-!:route19-guy1|MOVE_TO_PLAYER|MENU:ALERT:I always check every grassy area for new POK{e-accent}MON.|BATTLE:route18-guy1|{NO_ADVANCE}{DISABLE_FORCE}
-MENU:ALERT:I wish I had a BIKE!
+!:route19-guy1|MOVE_TO_PLAYER|MENU:ALERT:Have to warm up before my swim!|BATTLE:route19-guy1|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Thanks, kid! I'm ready for a swim!
+END
+route19-guy2 guy2 18 9 LEFT
+FORCE_INTERACTION
+-1 0
+-2 0
+-3 0
+END
+INTERACTIONS
+!:route19-guy2|MOVE_TO_PLAYER|MENU:ALERT:Wait! You'll have a heart attack!|BATTLE:route19-guy2|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Watch out for TENTACRUEL!
 END
 TRAINERS
-route18-guy1 25 0.6 0.6 BIRD{SPACE}KEEPER birdkeeper.png {BIRD{SPACE}KEEPER: Tch!}{} 22-15:44|22-12:44
+route19-guy1 5 0.35 0.35 SWIMMER swimmer.png {SWIMMER: All warmed up!}{} 73-73:30|90-90:30
+route19-guy2 5 0.35 0.35 SWIMMER swimmer.png {SWIMMER: Ooh! That's chilly!}{} 119-119:29|117-117:29|120-120:29
 END
 TELEPORT
 11 0 fuchsia-city 21 37
@@ -43,7 +55,7 @@ DATA
 81  81  81  81  81  81  81  81   0  56  56  56  56  56  56  56  56  56  56   0  81  81  81  81  81  81  81  81  81  81
 81  81  81  81  81  81  81  81   0  56  56  56  56  56  56  56  56  56  56   0  81  81  81  81  81  81  81  81  81  81
 81  81  81  81  81  81  81  81   0  56  56  56  56  56  56  56  56  56  56   0  81  81  81  81  81  81  81  81  81  81
-81  81  81  81  81 656 656 656   0  56  56  56  56  56  56  56  56  56  56   0 656 656 656 656 656  81  81  81  81  81
+81  81  81  81  81 656 656 656   0  56  56  56  56  56  56  56   5  56  56   0 656 656 656 656 656  81  81  81  81  81
 81  81  81  81  81 656  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81 656  81  81  81  81  81
 81  81  81  81  81 656  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81 656  81  81  81  81  81
 81  81  81  81  81 656  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81  81 656  81  81  81  81  81
