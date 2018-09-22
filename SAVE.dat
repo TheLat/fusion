@@ -2,12 +2,12 @@ WARNING: Editing this file can easily corrupt game state.
 NAME:RED
 RIVAL_NAME:BLUE
 MOVEMENT:player
-DIRECTION:2
+DIRECTION:0
 WINS:0
 LOSSES:0
-LOCATION:fuchsia-city|10|31
-LAST_CENTER:fuchsia-center|3|3
-MONEY:231619
+LOCATION:fuchsia-city|24|33
+LAST_CENTER:cerulean-center|3|3
+MONEY:243694
 COINS:50
 REPEL:0
 INTERACTIONS:
@@ -34,7 +34,7 @@ celadon-city-item1|0
 celadon-city-mon1|0
 celadon-city-old1|0
 celadon-city-old2|0
-celadon-city-old3|0
+celadon-city-old3|1
 celadon-city-rocket1|0
 celadon-city-rocket2|0
 celadon-city-sign1|0
@@ -225,6 +225,7 @@ cerulean-center-joy-desk|0
 cerulean-center-man|0
 cerulean-center-pc|0
 cerulean-city-bush1|0
+cerulean-city-cave-guard|0
 cerulean-city-girl1|0
 cerulean-city-girl2|2
 cerulean-city-guard|0
@@ -316,6 +317,16 @@ fuchsia-city-sign6|0
 fuchsia-city-sign7|0
 fuchsia-city-sign8|0
 fuchsia-city-sign9|0
+fuchsia-gym-board1|0
+fuchsia-gym-board2|0
+fuchsia-gym-clerk|0
+fuchsia-gym-koga|0
+fuchsia-gym-punk1|1
+fuchsia-gym-punk2|1
+fuchsia-gym-punk3|1
+fuchsia-gym-punk4|1
+fuchsia-gym-punk5|1
+fuchsia-gym-punk6|1
 fuchsia-house1-bald|0
 fuchsia-house1-bookshelf3|0
 fuchsia-house1-bookshelf4|0
@@ -784,6 +795,7 @@ route4-center-joy-desk|0
 route4-center-paper|0
 route4-center-pc|0
 route4-girl|0
+route4-girl2|1
 route4-item|0
 route4-sign|0
 route4-sign2|0
@@ -1503,6 +1515,7 @@ cerulean-center-joy-desk|1
 cerulean-center-man|1
 cerulean-center-pc|1
 cerulean-city-bush1|0
+cerulean-city-cave-guard|1
 cerulean-city-girl1|1
 cerulean-city-girl2|1
 cerulean-city-guard|0
@@ -1594,6 +1607,16 @@ fuchsia-city-sign6|1
 fuchsia-city-sign7|1
 fuchsia-city-sign8|1
 fuchsia-city-sign9|1
+fuchsia-gym-board1|1
+fuchsia-gym-board2|1
+fuchsia-gym-clerk|1
+fuchsia-gym-koga|1
+fuchsia-gym-punk1|1
+fuchsia-gym-punk2|1
+fuchsia-gym-punk3|1
+fuchsia-gym-punk4|1
+fuchsia-gym-punk5|1
+fuchsia-gym-punk6|1
 fuchsia-house1-bald|1
 fuchsia-house1-bookshelf3|1
 fuchsia-house1-bookshelf4|1
@@ -2062,6 +2085,7 @@ route4-center-joy-desk|1
 route4-center-paper|1
 route4-center-pc|1
 route4-girl|1
+route4-girl2|1
 route4-item|1
 route4-sign|1
 route4-sign2|1
@@ -2575,6 +2599,7 @@ BICYCLE|1
 OLD ROD|1
 COIN CASE|1
 POK{e-accent}FLUTE|1
+TM41|1
 END
 INVENTORY_STORAGE:
 TM34|1
@@ -2689,9 +2714,15 @@ SEEN:
 110-113
 110-114
 110-122
+110-125
+110-135
+110-142
 110-15
+110-18
 110-20
+110-28
 110-44
+110-47
 110-51
 110-57
 110-58
@@ -2833,6 +2864,7 @@ SEEN:
 27-63
 27-74
 28-24
+28-28
 28-42
 28-85
 29-19
@@ -2881,6 +2913,7 @@ SEEN:
 42-24
 42-28
 42-42
+42-6
 42-67
 42-96
 42-97
@@ -2923,6 +2956,7 @@ SEEN:
 52-52
 53-18
 53-53
+54-48
 56-19
 56-21
 56-29
@@ -2948,6 +2982,8 @@ SEEN:
 61-66
 62-62
 63-16
+64-110
+64-123
 64-41
 64-64
 64-75
@@ -2990,6 +3026,7 @@ SEEN:
 71-38
 71-71
 72-72
+73-73
 74-104
 74-13
 74-14
@@ -3012,7 +3049,9 @@ SEEN:
 75-93
 76-15
 76-45
+76-47
 76-76
+76-89
 77-77
 79-104
 79-79
@@ -3044,12 +3083,18 @@ SEEN:
 89-123
 89-125
 89-126
+89-38
 89-67
 89-75
+89-78
+89-80
 89-89
+89-9
 89-97
+9-47
 9-9
 9-93
+90-73
 90-74
 90-90
 92-122
@@ -3078,6 +3123,7 @@ SEEN:
 93-95
 94-105
 94-68
+94-94
 95-64
 95-66
 95-74
@@ -3131,11 +3177,11 @@ THUNDERBADGE|1
 celadon-hideout-floor|1
 END
 TEAM:
-0|NUMBER:130-130|NICKNAME:|HP:181|EXP:120315|LEVEL:53|EV:17835|15541|16255|12879|13688|IV:0|13|10|10|14|MOVES:HYDROPUMP|BITE|SURF|HYPER BEAM|PP:5|25|15|5|MAX_PP:5|25|15|5|STATUS:
-1|NUMBER:135-135|NICKNAME:|HP:134|EXP:102392|LEVEL:50|EV:5548|6382|6036|6031|6434|IV:0|13|10|10|14|MOVES:PIN MISSILE|DOUBLE KICK|AGILITY|THUNDERBOLT|PP:20|30|30|15|MAX_PP:20|30|30|15|STATUS:
-2|NUMBER:6-6|NICKNAME:|HP:159|EXP:113684|LEVEL:52|EV:17018|20305|18850|17817|20647|IV:0|13|10|10|14|MOVES:SLASH|RAGE|FLAMETHROWER|LEER|PP:20|20|15|30|MAX_PP:20|20|15|30|STATUS:
-3|NUMBER:76-15|NICKNAME:|HP:149|EXP:103301|LEVEL:50|EV:14932|18564|16738|16207|18341|IV:2|15|9|10|11|MOVES:PIN MISSILE|EARTHQUAKE|FURY ATTACK|TWIN NEEDLE|PP:20|10|20|20|MAX_PP:20|10|20|20|STATUS:
-4|NUMBER:47-47|NICKNAME:|HP:132|EXP:79111|LEVEL:46|EV:6369|7767|6891|7069|8111|IV:14|4|11|6|9|MOVES:SPORE|STUN SPORE|LEECH LIFE|SLASH|PP:15|30|15|20|MAX_PP:15|30|15|20|STATUS:
+0|NUMBER:135-135|NICKNAME:|HP:142|EXP:121292|LEVEL:53|EV:6678|7744|7267|7399|7720|IV:0|13|10|10|14|MOVES:PIN MISSILE|DOUBLE KICK|AGILITY|THUNDERBOLT|PP:20|30|30|15|MAX_PP:20|30|30|15|STATUS:
+1|NUMBER:76-15|NICKNAME:|HP:160|EXP:129753|LEVEL:54|EV:16333|20153|18233|17849|19829|IV:2|15|9|10|11|MOVES:PIN MISSILE|EARTHQUAKE|FURY ATTACK|TWIN NEEDLE|PP:20|10|20|20|MAX_PP:20|10|20|20|STATUS:
+2|NUMBER:6-6|NICKNAME:|HP:166|EXP:126774|LEVEL:54|EV:17769|21203|19706|18645|21254|IV:0|13|10|10|14|MOVES:SLASH|RAGE|FLAMETHROWER|LEER|PP:20|20|15|30|MAX_PP:20|20|15|30|STATUS:
+3|NUMBER:130-130|NICKNAME:|HP:184|EXP:127611|LEVEL:54|EV:18353|16131|16852|13455|14225|IV:0|13|10|10|14|MOVES:HYDROPUMP|BITE|SURF|HYPER BEAM|PP:5|25|15|5|MAX_PP:5|25|15|5|STATUS:
+4|NUMBER:47-47|NICKNAME:|HP:135|EXP:85719|LEVEL:47|EV:6673|8123|7234|7366|8423|IV:14|4|11|6|9|MOVES:SPORE|STUN SPORE|LEECH LIFE|SLASH|PP:15|30|15|20|MAX_PP:15|30|15|20|STATUS:
 5|NUMBER:130-83|NICKNAME:|HP:22|EXP:100|LEVEL:5|EV:0|0|0|0|0|IV:0|13|10|10|14|MOVES:FLY|STRENGTH|CUT|SURF|PP:15|15|30|15|MAX_PP:15|15|30|15|STATUS:
 END
 STORAGE:
@@ -3404,6 +3450,7 @@ cerulean-city
 16|0|30|14|0
 17|0|32|10|0
 18|0|19|31|0
+19|0|6|14|0
 END
 cerulean-gym
 0|0|7|10|0
@@ -3487,6 +3534,18 @@ fuchsia-city
 22|0|31|16|0
 23|0|27|10|0
 24|0|21|14|0
+END
+fuchsia-gym
+0|0|3|15|0
+1|0|6|15|0
+2|0|7|15|0
+3|0|1|12|1
+4|0|8|13|1
+5|3|7|8|1
+6|0|8|2|1
+7|1|3|5|1
+8|2|2|7|1
+9|0|4|10|0
 END
 fuchsia-house1
 0|0|0|1|0
@@ -4063,8 +4122,9 @@ END
 route4
 0|0|10|18|0
 1|0|19|17|0
-2|1|32|17|0
+2|0|32|17|0
 3|0|62|13|0
+4|3|68|13|1
 END
 route4-center
 0|3|0|4|0
@@ -4105,6 +4165,8 @@ route6-tunnel
 END
 route7
 0|0|4|16|0
+END
+route7 checkpoint
 END
 route7-checkpoint
 0|0|4|1|0
