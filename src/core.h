@@ -1998,6 +1998,7 @@ public:
 			}
 			if (s2 == "TOXIC") {
 				remove_status(m, string("POISON"), true);
+				m.turn_count = 1;
 			}
 		}
 		else {
@@ -3041,8 +3042,10 @@ public:
 		g.draw_list[enemy_trainer_sprite].x = 2.0f; // TODO:  Animation
 		unsigned enemy_sprite = g.push_quad_load(0.1f, 0.1f, 0.9f, 0.9f, string("../resources/images/") + mc.enemy_team[mc.enemy_selected].number + string(".png"));
 		do_alert(t.display_name + string(" sent out ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string("!"));
+		mc.enemy_team[mc.enemy_selected].turn_count = 1;
 		mc.seen[mc.enemy_team[mc.enemy_selected].number] = true;
 		do_alert(string("Go! ") + get_nickname(mc.team[mc.selected]) + string("!"));
+		mc.team[mc.selected].turn_count = 1;
 		g.draw_list[player_sprite].x = -2.0f; // TODO:  Animation
 		string temp = mc.team[mc.selected].number;
 		temp.erase(0, temp.find("-") + 1); // TODO:  Back views
@@ -3126,6 +3129,7 @@ public:
 					mc.team[mc.selected].queue.clear();
 					mc.team[mc.selected].last_move = "";
 					mc.team[mc.selected].queue.push_back(string(""));
+					mc.team[mc.selected].turn_count = 1;
 				}
 				else if (choices[0] == 2) { // Player has selected ITEM
 					int out = 0;
@@ -3201,6 +3205,7 @@ public:
 					mc.enemy_team[mc.enemy_selected].fought[mc.selected] = true;
 					rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
 					mc.enemy_team[mc.enemy_selected].queue.push_back(string(""));
+					mc.enemy_team[mc.enemy_selected].turn_count = 1;
 				}
 				else {
 					for (i = 0; i < 4; i++) {
@@ -3342,6 +3347,7 @@ public:
 					mc.seen[mc.enemy_team[mc.enemy_selected].number] = true;
 					mc.enemy_team[mc.enemy_selected].fought[mc.selected] = true;
 					rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
+					mc.enemy_team[mc.enemy_selected].turn_count = 1;
 				}
 				if (!found)
 					break;
@@ -3395,8 +3401,10 @@ public:
 		mc.enemy_team[mc.enemy_selected].hud_index = 0;
 		unsigned player_sprite = g.push_quad_load(-1.0f, -0.422f, 0.9f, 0.9f, string("../resources/images/player-back.png"));
 		do_alert(string("Wild ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string(" appeared!"));
+		mc.enemy_team[mc.enemy_selected].turn_count = 0;
 		mc.seen[mc.enemy_team[mc.enemy_selected].number] = true;
 		do_alert(string("Go! ") + get_nickname(mc.team[mc.selected]) + string("!"));
+		mc.team[mc.selected].turn_count = 1;
 		g.draw_list[player_sprite].x = -2.0f; // TODO:  Animation
 		string temp = mc.team[mc.selected].number;
 		temp.erase(0, temp.find("-") + 1); // TODO:  Back views
@@ -3479,6 +3487,7 @@ public:
 					mc.team[mc.selected].queue.clear();
 					mc.team[mc.selected].last_move = "";
 					mc.team[mc.selected].queue.push_back(string(""));
+					mc.team[mc.selected].turn_count = 1;
 				}
 				else if (choices[0] == 2) { // Player has selected ITEM
 					int out = 0;
@@ -3670,6 +3679,7 @@ public:
 				if (!is_KO(mc.enemy_team[mc.enemy_selected]))
 					mc.enemy_team[mc.enemy_selected].fought[mc.selected] = true;
 				rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
+				mc.team[mc.selected].turn_count = 1;
 			}
 			if (is_KO(mc.enemy_team[mc.enemy_selected])) {
 				do_alert(string("Enemy ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string(" fainted!"));
