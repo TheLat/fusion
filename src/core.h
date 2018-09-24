@@ -2684,8 +2684,13 @@ public:
 			pow += double(get_stat(defender, HP)*turn_count) / 16.0;
 		}
 		else if (in_status(defender, string("TOXIC")) && !in_status(attacker, string("TOXIC"))) {
+			double scale = 1.0;
+			if (in_status(defender, string("SLEEP")))
+				scale *= 1.5;
+			if (in_status(defender, string("CONFUSE")))
+				scale *= 1.5;
 			for (int i = 1; i <= turn_count; ++i) {
-				pow += double(get_stat(defender, HP)*(future + defender.turn_count + i)) / 16.0;
+				pow += scale*double(get_stat(defender, HP)*(future + defender.turn_count + i)) / 16.0;
 			}
 		}
 		return pow;
