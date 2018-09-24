@@ -22,9 +22,108 @@ INTERACTIONS
 !:route19-guy2|MOVE_TO_PLAYER|MENU:ALERT:Wait! You'll have a heart attack!|BATTLE:route19-guy2|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Watch out for TENTACRUEL!
 END
+route19-sign1 blank 16 11
+INTERACTIONS
+MENU:ALERT:SEA ROUTE 19 {NEWLINE} FUCHSIA CITY - SEAFOAM ISLANDS
+END
+route19-guy3 manswim 14 13 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+0 3
+END
+INTERACTIONS
+!:route19-guy3|MOVE_TO_PLAYER|MENU:ALERT:I look at the sea to forget!|BATTLE:route19-guy3|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I'm looking at the sea to forget!
+END
+route19-guy4 manswim 18 27 LEFT
+FORCE_INTERACTION
+-1 0
+-2 0
+-3 0
+-4 0
+END
+INTERACTIONS
+!:route19-guy4|MOVE_TO_PLAYER|MENU:ALERT:I love swimming! What about you?|BATTLE:route19-guy4|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I can beat POK{e-accent}MON at swimming!
+END
+route19-guy5 manswim 9 29 RIGHT
+FORCE_INTERACTION
+1 0
+2 0
+3 0
+4 0
+END
+INTERACTIONS
+!:route19-guy5|MOVE_TO_PLAYER|MENU:ALERT:What's beyond the horizon?|BATTLE:route19-guy5|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I see a couple of islands!
+END
+route19-guy6 manswim 21 33 UP
+FORCE_INTERACTION
+0 -1
+0 -2
+0 -3
+0 -4
+END
+INTERACTIONS
+!:route19-guy6|MOVE_TO_PLAYER|MENU:ALERT:I tried diving for POK{e-accent}MON, but it was a no go!|BATTLE:route19-guy6|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:You have to fish for sea POK{e-accent}MON!
+END
+route19-guy7 manswim 16 44 RIGHT
+FORCE_INTERACTION
+1 0
+2 0
+3 0
+4 0
+END
+INTERACTIONS
+!:route19-guy7|MOVE_TO_PLAYER|MENU:ALERT:Swimming's great! Sunburns aren't!|BATTLE:route19-guy7|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:My boy friend wanted to swim to SEAFOAM ISLANDS.
+END
+route19-guy8 manswim 15 45 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+0 3
+0 4
+END
+INTERACTIONS
+!:route19-guy8|MOVE_TO_PLAYER|MENU:ALERT:I swam here, but I'm tired.|BATTLE:route19-guy8|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:LAPRAS is so big, it could keep you dry while you're on the water.
+END
+route19-guy9 manswim 14 43 UP
+FORCE_INTERACTION
+0 -1
+0 -2
+0 -3
+0 -4
+END
+INTERACTIONS
+!:route19-guy9|MOVE_TO_PLAYER|MENU:ALERT:These waters are treacherous!|BATTLE:route19-guy9|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I got a cramp! Glub, glub...
+END
+route19-guy10 manswim 13 44 LEFT
+FORCE_INTERACTION
+-1 0
+-2 0
+-3 0
+-4 0
+END
+INTERACTIONS
+!:route19-guy10|MOVE_TO_PLAYER|MENU:ALERT:I just love your ride! Can I have it if I win?|BATTLE:route19-guy10|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:It's still a long way to go to SEAFOAM ISLANDS.
+END
 TRAINERS
 route19-guy1 5 0.35 0.35 SWIMMER swimmer.png {SWIMMER: All warmed up!}{} 73-73:30|90-90:30
 route19-guy2 5 0.35 0.35 SWIMMER swimmer.png {SWIMMER: Ooh! That's chilly!}{} 119-119:29|117-117:29|120-120:29
+route19-guy3 5 0.35 0.35 SWIMMER swimmer.png {SWIMMER: Ooh! Traumatic!}{} 117-117:30|117-117:30
+route19-guy4 5 0.35 0.35 SWIMMER swimmer.png {SWIMMER: Belly flop!}{} 61-61:30|61-61:30
+route19-guy5 5 0.35 0.35 SWIMMER swimmer.png {SWIMMER: Glub!}{} 117-117:28|73-73:28|73-73:28|119-119:28
+route19-guy6 5 0.35 0.35 SWIMMER swimmer.png {SWIMMER: Help!}{} 119-119:29|90-90:29|119-119:29
+route19-guy7 70 0.9 0.9 BEAUTY beauty.png {BEAUTY: Shocker!}{} 119-119:30|119-119:30
+route19-guy8 70 0.9 0.9 BEAUTY beauty.png {BEAUTY: I'm exhausted...}{} 120-120:29|120-120:29|120-120:29
+route19-guy9 5 0.35 0.35 SWIMMER swimmer.png {SWIMMER: Ooh! {NEWLINE} Dangerous!}{} 73-73:27|73-73:27|120-120:27|117-117:27|73-73:27
+route19-guy10 70 0.9 0.9 BEAUTY beauty.png {BEAUTY: Oh! {NEWLINE} I lost!}{} 61-61:27|119-119:27|119-119:27|119-119:27|61-61:27
 END
 TELEPORT
 11 0 fuchsia-city 21 37
