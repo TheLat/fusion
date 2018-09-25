@@ -1,19 +1,31 @@
 NAME
 Route 20
 NPCS
-route20-guy1 guy2 13 9 LEFT
+route20-swimmer1 manswim 88 12 UP
 FORCE_INTERACTION
--1 0
--2 0
--3 0
--4 0
+0 -1
+0 -2
+0 -3
+0 -4
 END
 INTERACTIONS
-!:route20-guy1|MOVE_TO_PLAYER|MENU:ALERT:Have to warm up before my swim!|BATTLE:route20-guy1|{NO_ADVANCE}{DISABLE_FORCE}
-MENU:ALERT:Thanks, kid! I'm ready for a swim!
+!:route20-swimmer1|MOVE_TO_PLAYER|MENU:ALERT:The water is shallow here.|BATTLE:route20-swimmer1|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I wish I could ride my POK{e-accent}MON.
+END
+route20-swimmer2 manswim 88 17 UP
+FORCE_INTERACTION
+0 -1
+0 -2
+0 -3
+0 -4
+END
+INTERACTIONS
+!:route20-swimmer2|MOVE_TO_PLAYER|MENU:ALERT:Why are you riding a POK{e-accent}MON? Can't you swim?|BATTLE:route20-swimmer2|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Riding a POK{e-accent}MON sure looks fun!
 END
 TRAINERS
-route20-guy1 5 0.35 0.35 SWIMMER swimmer.png {SWIMMER: All warmed up!}{} 73-73:48|90-90:48
+route20-swimmer1 5 0.35 0.35 SWIMMER swimmer.png {SWIMMER: Splash!}{} 90-90:49|91-91:49
+route20-swimmer2 5 0.35 0.35 SWIMMER swimmer.png {SWIMMER: Ouch! Torpedoed!}{} 117-117:47|117-117:47|117-117:47|117-117:47
 END
 TELEPORT
 97 6 route19 1 40
