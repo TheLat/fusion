@@ -38,10 +38,20 @@ route20-sign1 blank 49 11
 INTERACTIONS
 MENU:ALERT:SEAFOAM ISLANDS
 END
+route20-swimmer4 manswim 43 14 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+END
+INTERACTIONS
+!:route20-swimmer4|MOVE_TO_PLAYER|MENU:ALERT:I love floading with the fishes!|BATTLE:route20-swimmer4|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Want to float with me?
+END
 TRAINERS
 route20-swimmer1 5 0.35 0.35 SWIMMER swimmer.png {SWIMMER: Splash!}{} 90-90:49|91-91:49
 route20-swimmer2 5 0.35 0.35 SWIMMER swimmer.png {SWIMMER: Ouch! Torpedoed!}{} 117-117:47|117-117:47|117-117:47|117-117:47
 route20-swimmer3 70 0.9 0.9 BEAUTY beauty.png {BEAUTY: Quit it!}{} 117-117:48|117-117:48|117-117:48
+route20-swimmer4 70 0.9 0.9 BEAUTY beauty.png {BEAUTY: Yowch!}{} 119-119:51
 END
 TELEPORT
 97 6 route19 1 40
