@@ -2685,13 +2685,16 @@ public:
 		}
 		else if (in_status(defender, string("TOXIC")) && !in_status(attacker, string("TOXIC"))) {
 			double scale = 1.0;
+			double toxic_damage = 0.0;
 			if (in_status(defender, string("SLEEP")))
 				scale *= 1.5;
 			if (in_status(defender, string("CONFUSE")))
 				scale *= 1.5;
-			for (int i = 1; i <= turn_count; ++i) {
-				pow += scale*double(get_stat(defender, HP)*(future + defender.turn_count + i)) / 16.0;
+			for (int i = 1; i <= turn_count*2; ++i) {
+				toxic_damage += scale*double(get_stat(defender, HP)*(future + defender.turn_count + i)) / 16.0;
 			}
+			toxic_damage /= 2.0;
+			pow += toxic_damage;
 		}
 		return pow;
 	}
