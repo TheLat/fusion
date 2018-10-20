@@ -1,16 +1,17 @@
 NAME
 Seafoam Islands
 NPCS
-rock-tunnel-sign1 blank 25 111
+seafoam-islands-sign1 blank 25 111
 INTERACTIONS
 MENU:ALERT:DANGER {NEWLINE} Fast current!
 END
-rock-tunnel-sign2 blank 11 125
+seafoam-islands-sign2 blank 11 125
 INTERACTIONS
 MENU:ALERT:Boulders might change the flow of water!
 END
-TRAINERS
-rock-tunnel-guy1 50 1.0 0.4 POK{e-accent}MANIAC pokemaniac.png {POK{e-accent}MANIAC: Game over!}{} 104-104:23|79-79:23
+seafoam-islands-item1 blank 27 127
+INTERACTIONS
+GIVE_ITEM:ULTRA BALL|DEACTIVATE:seafoam-islands-item1
 END
 TELEPORT
 6 19 route20 46 10
@@ -37,8 +38,18 @@ TELEPORT
 27 40 seafoam-islands 27 68
 25 44 seafoam-islands 25 16
 25 17 seafoam-islands 25 43
+27 5 seafoam-islands 27 33
+27 32 seafoam-islands 27 6
 28 19 route20 56 14
 29 19 route20 56 14
+19 8 seafoam-islands 20 36
+20 35 seafoam-islands 21 63
+21 62 seafoam-islands 20 90
+26 8 seafoam-islands 25 36
+25 35 seafoam-islands 24 63
+24 62 seafoam-islands 21 90
+8 99 seafoam-islands 7 124
+5 99 seafoam-islands 7 124
 ENCOUNTERS
 42 55 80 87 90 99 117 120
 MEGA_ENCOUNTERS
