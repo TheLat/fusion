@@ -26,7 +26,7 @@ END
 seafoam-islands-stone3 boulder 20 62 PUSHABLE TELEPORTABLE
 INTERACTIONS
 MENU:ALERT:This requires STRENGTH to move!|NO_ADVANCE
-ACTIVATE:seafoam-islands-stone4|DEACTIVATE:seafoam-islands-current1|DEACTIVATE:seafoam-islands-stone3
+ACTIVATE:seafoam-islands-stone4|DEACTIVATE:seafoam-islands-current1|DEACTIVATE:seafoam-islands-current3|DEACTIVATE:seafoam-islands-current5|DEACTIVATE:seafoam-islands-current7|DEACTIVATE:seafoam-islands-stone3
 END
 seafoam-islands-stone4 boulder 20 89
 INTERACTIONS
@@ -45,6 +45,38 @@ FORCE_INTERACTION
 END
 INTERACTIONS
 MOVE:PLAYER:0,1|MOVE:PLAYER:0,1|MOVE:PLAYER:0,1|MOVE:PLAYER:0,1|MOVE:PLAYER:1,0|MOVE:PLAYER:0,1|MOVE:PLAYER:0,1|MOVE:PLAYER:0,1|MOVE:PLAYER:0,1|MOVE:PLAYER:0,1|MOVE:PLAYER:0,1|TELEPORT:seafoam-islands 22 127
+END
+seafoam-islands-current3 blank 22 128
+FORCE_INTERACTION
+0 -1
+1 -1
+END
+INTERACTIONS
+MOVE:PLAYER:0,-1
+END
+seafoam-islands-current4 blank 22 128
+FORCE_INTERACTION
+0 -1
+1 -1
+END
+INTERACTIONS
+MOVE:PLAYER:0,-1
+END
+seafoam-islands-current5 blank 17 91
+INTERACTIONS
+MENU:ALERT:The current is too strong!
+END
+seafoam-islands-current6 blank 17 91
+INTERACTIONS
+MENU:ALERT:The current is too strong!
+END
+seafoam-islands-current7 blank 25 93
+INTERACTIONS
+MENU:ALERT:The current is too strong!
+END
+seafoam-islands-current8 blank 25 93
+INTERACTIONS
+MENU:ALERT:The current is too strong!
 END
 TELEPORT
 6 19 route20 46 10
