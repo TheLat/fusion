@@ -18,17 +18,17 @@ INTERACTIONS
 MENU:ALERT:This requires STRENGTH to move!|NO_ADVANCE
 ACTIVATE:seafoam-islands-stone2|DEACTIVATE:seafoam-islands-stone1
 END
-seafoam-islands-stone2 boulder 19 35 PUSHABLE TELEPORTABLE
+seafoam-islands-stone2 boulder 19 35 PUSHABLE TELEPORTABLE INACTIVE
 INTERACTIONS
-MENU:ALERT:This requires STRENGTH to move!|NO_ADVANCE
+MENU:ALERT:This requires STRENGTH to move!|NO_ADVANCE INACTIVE
 ACTIVATE:seafoam-islands-stone3|DEACTIVATE:seafoam-islands-stone2
 END
-seafoam-islands-stone3 boulder 20 62 PUSHABLE TELEPORTABLE
+seafoam-islands-stone3 boulder 20 62 PUSHABLE TELEPORTABLE INACTIVE
 INTERACTIONS
 MENU:ALERT:This requires STRENGTH to move!|NO_ADVANCE
 ACTIVATE:seafoam-islands-stone4|DEACTIVATE:seafoam-islands-current1|DEACTIVATE:seafoam-islands-current3|DEACTIVATE:seafoam-islands-current5|DEACTIVATE:seafoam-islands-current7|DEACTIVATE:seafoam-islands-stone3
 END
-seafoam-islands-stone4 boulder 20 89
+seafoam-islands-stone4 boulder 20 89 INACTIVE
 INTERACTIONS
 MENU:ALERT:It's blocking the current!
 END
@@ -77,6 +77,25 @@ END
 seafoam-islands-current8 blank 25 93
 INTERACTIONS
 MENU:ALERT:The current is too strong!
+END
+seafoam-islands-stone5 boulder 28 9 PUSHABLE TELEPORTABLE
+INTERACTIONS
+MENU:ALERT:This requires STRENGTH to move!|NO_ADVANCE
+ACTIVATE:seafoam-islands-stone6|DEACTIVATE:seafoam-islands-stone5
+END
+seafoam-islands-stone6 boulder 24 35 PUSHABLE TELEPORTABLE INACTIVE
+INTERACTIONS
+MENU:ALERT:This requires STRENGTH to move!|NO_ADVANCE
+ACTIVATE:seafoam-islands-stone7|DEACTIVATE:seafoam-islands-stone6
+END
+seafoam-islands-stone7 boulder 25 62 PUSHABLE TELEPORTABLE INACTIVE
+INTERACTIONS
+MENU:ALERT:This requires STRENGTH to move!|NO_ADVANCE
+ACTIVATE:seafoam-islands-stone8|DEACTIVATE:seafoam-islands-current2|DEACTIVATE:seafoam-islands-current4|DEACTIVATE:seafoam-islands-current6|DEACTIVATE:seafoam-islands-current8|DEACTIVATE:seafoam-islands-stone7
+END
+seafoam-islands-stone8 boulder 21 89 INACTIVE
+INTERACTIONS
+MENU:ALERT:It's blocking the current!
 END
 TELEPORT
 6 19 route20 46 10
