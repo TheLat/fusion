@@ -97,6 +97,54 @@ seafoam-islands-stone8 boulder 21 89 INACTIVE
 INTERACTIONS
 MENU:ALERT:It's blocking the current!
 END
+seafoam-islands-stone9 boulder 11 97 PUSHABLE
+INTERACTIONS
+MENU:ALERT:This requires STRENGTH to move!|NO_ADVANCE
+END
+seafoam-islands-stone10 boulder 7 97 PUSHABLE
+INTERACTIONS
+MENU:ALERT:This requires STRENGTH to move!|NO_ADVANCE
+END
+seafoam-islands-stone11 boulder 10 97 PUSHABLE TELEPORTABLE
+INTERACTIONS
+MENU:ALERT:This requires STRENGTH to move!|NO_ADVANCE
+ACTIVATE:seafoam-islands-stone12|DEACTIVATE:seafoam-islands-current9|DEACTIVATE:seafoam-islands-current11|DEACTIVATE:seafoam-islands-stone10
+END
+seafoam-islands-stone12 boulder 7 125 INACTIVE
+INTERACTIONS
+MENU:ALERT:It's blocking the current!
+END
+seafoam-islands-stone13 boulder 5 98 PUSHABLE TELEPORTABLE
+INTERACTIONS
+MENU:ALERT:This requires STRENGTH to move!|NO_ADVANCE
+ACTIVATE:seafoam-islands-stone14|DEACTIVATE:seafoam-islands-current10|DEACTIVATE:seafoam-islands-current12|DEACTIVATE:seafoam-islands-stone13
+END
+seafoam-islands-stone14 boulder 6 125 INACTIVE
+INTERACTIONS
+MENU:ALERT:It's blocking the current!
+END
+seafoam-islands-current9 blank 7 125
+FORCE_INTERACTION
+0 -1
+END
+INTERACTIONS
+MOVE:PLAYER:0,-1|MOVE:PLAYER:1,0|MOVE:PLAYER:1,0|MOVE:PLAYER:0,-1|MOVE:PLAYER:0,-1
+END
+seafoam-islands-current10 blank 7 125
+FORCE_INTERACTION
+0 -1
+END
+INTERACTIONS
+MOVE:PLAYER:0,-1|MOVE:PLAYER:1,0|MOVE:PLAYER:1,0|MOVE:PLAYER:0,-1|MOVE:PLAYER:0,-1
+END
+seafoam-islands-current11 blank 9 122
+INTERACTIONS
+MENU:ALERT:The current is too strong!
+END
+seafoam-islands-current12 blank 9 122
+INTERACTIONS
+MENU:ALERT:The current is too strong!
+END
 TELEPORT
 6 19 route20 46 10
 7 19 route20 46 10
