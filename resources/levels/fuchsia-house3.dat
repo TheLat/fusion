@@ -12,7 +12,7 @@ GIVE_ITEM:RARE CANDY|DEACTIVATE:fuchsia-house3-item
 END
 fuchsia-house3-stone boulder 8 4 PUSHABLE
 INTERACTIONS
-MENU:ALERT:This requires STRENGTH to move!
+MENU:ALERT:This requires STRENGTH to move!|NO_ADVANCE
 END
 fuchsia-house3-display1 blank 4 3
 INTERACTIONS
