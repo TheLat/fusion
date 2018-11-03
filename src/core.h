@@ -193,8 +193,8 @@ public:
 	vector<string> interactions;
 	vector<location> force_interactions;
 	location loc, origin;
-	bool wander, incorporeal, no_force, nolook, far, no_offset, pushable;
-	character() { wander = false; dir = DOWN; incorporeal = false; no_force = false; nolook = false; far = false; no_offset = false; pushable = false; }
+	bool wander, incorporeal, no_force, nolook, far, no_offset, pushable, teleportable;
+	character() { wander = false; dir = DOWN; incorporeal = false; no_force = false; nolook = false; far = false; no_offset = false; pushable = false; teleportable = false;}
 };
 
 class trainer {
@@ -4166,6 +4166,12 @@ public:
 					else {
 						levels[levelname].characters[levels[levelname].characters.size() - 1].pushable = false;
 					}
+					if (s.find("TELEPORTABLE") != -1) {
+						levels[levelname].characters[levels[levelname].characters.size() - 1].teleportable = true;
+					}
+					else {
+						levels[levelname].characters[levels[levelname].characters.size() - 1].teleportable = false;
+					}
 					levels[levelname].characters[levels[levelname].characters.size() - 1].dir = DOWN;
 					if (s.find("LEFT") != -1)
 						levels[levelname].characters[levels[levelname].characters.size() - 1].dir = LEFT;
@@ -5147,6 +5153,15 @@ public:
 							else {
 								levels[mc.loc.level].characters[i].loc.x = ahead2.x;
 								levels[mc.loc.level].characters[i].loc.y = ahead2.y;
+								if (levels[mc.loc.level].characters[i].teleportable) {
+									for (unsigned j = 0; j < levels[mc.loc.level].teleport.size(); ++j) {
+										if (levels[mc.loc.level].characters[i].loc.x == levels[mc.loc.level].teleport[j].first.x && levels[mc.loc.level].characters[i].loc.y == levels[mc.loc.level].teleport[j].first.y) {
+											mc.interaction[levels[mc.loc.level].characters[i].name] = levels[mc.loc.level].characters[i].interactions.size() - 1;
+											do_interaction(levels[mc.loc.level].characters[i]);
+											break;
+										}
+									}
+								}
 								return;
 							}
 						}
