@@ -5281,6 +5281,1011 @@ public:
 		}
 		g.push_quad(-0.1, -0.5 / 4.5 + 0.055, 1.0 / 5.0, 1.0 / 4.5, g.tex[mc.movement + string("-") + get_direction_string(mc.dir) + string("-0.bmp")]);
 	}
+	void do_interaction(character& npc) {
+		vector<int> choices;
+		string s = npc.interactions[mc.interaction[npc.name]];
+		string s2, s3;
+		choices.clear();
+		bool advance;
+		advance = true;
+		while (s != "") {
+			if (s.find("MENU") == 0) {
+				s.erase(0, s.find(":") + 1);
+				s2 = s;
+				s3 = s;
+				s2.erase(s2.find(":"), s2.length());
+				s3.erase(0, s3.find(":") + 1);
+				if (s3.find("|") != -1)
+					s3.erase(s3.find("|"), s3.length());
+				choices = do_menu(s2, s3);
+				s.erase(0, s2.length() + s3.length() + 1);
+			}
+			else if (s.find("NO_ADVANCE") == 0) {
+				advance = false;
+				s.erase(0, string("NO_ADVANCE").length() + 1);
+				break;
+			}
+			else if (s.find("TELEPORT:") == 0) {
+				s.erase(0, string("TELEPORT:").length());
+				s2 = s;
+				s2.erase(s2.find(" "), s2.size());
+				s.erase(0, s.find(" ") + 1);
+				string destination = s2;
+				s2 = s;
+				s2.erase(s2.find(" "), s2.size());
+				s.erase(0, s.find(" ") + 1);
+				int newx = stoi(s2);
+				s2 = s;
+				int newy = stoi(s2);
+				mc.loc.level = destination;
+				mc.loc.x = newx;
+				mc.loc.y = newy;
+				break;
+			}
+			else if (s.find("SET:") == 0) {
+				s.erase(0, string("SET:").length());
+				s2 = s;
+				s.erase(0, s.find(":") + 1);
+				s2.erase(s2.find(":"), s2.length());
+				s3 = s;
+				if (s.find("|") != -1) {
+					s.erase(0, s.find("|"));
+					s3.erase(s3.find("|"), s3.length());
+				}
+				else {
+					s = "";
+				}
+				mc.values[s2] = stoi(s3);
+			}
+			else if (s.find("GET:") == 0) {
+				s.erase(0, string("GET:").length());
+				s2 = s;
+				if (s.find("|") != -1) {
+					s.erase(0, s.find("|"));
+					s2.erase(s2.find("|"), s2.length());
+				}
+				else {
+					s = "";
+				}
+				choices.clear();
+				choices.push_back(e.mc.values[s2]);
+			}
+			else if (s.find("IS_PLAYER:") == 0) {
+				s.erase(0, string("IS_PLAYER:").length());
+				s2 = s;
+				if (s.find("|") != -1) {
+					s.erase(0, s.find("|"));
+					s2.erase(s2.find("|"), s2.length());
+				}
+				else {
+					s = "";
+				}
+				choices.clear();
+				if (s2 == "RIGHT") {
+					if (npc.loc.x < mc.loc.x) {
+						choices.push_back(1);
+					}
+					else {
+						choices.push_back(0);
+					}
+				}
+				if (s2 == "LEFT") {
+					if (npc.loc.x > mc.loc.x) {
+						choices.push_back(1);
+					}
+					else {
+						choices.push_back(0);
+					}
+				}
+				if (s2 == "UP") {
+					if (npc.loc.y > mc.loc.y) {
+						choices.push_back(1);
+					}
+					else {
+						choices.push_back(0);
+					}
+				}
+				if (s2 == "DOWN") {
+					if (npc.loc.y < mc.loc.y) {
+						choices.push_back(1);
+					}
+					else {
+						choices.push_back(0);
+					}
+				}
+			}
+			else if (s.find("IN_INVENTORY:") == 0) {
+				s.erase(0, string("IN_INVENTORY:").length());
+				s2 = s;
+				if (s.find("|") != -1) {
+					s.erase(0, s.find("|"));
+					s2.erase(s2.find("|"), s2.length());
+				}
+				else {
+					s = "";
+				}
+				choices.clear();
+				if (in_inventory(s2))
+					choices.push_back(1);
+				else
+					choices.push_back(0);
+			}
+			else if (s.find("HAS_MOVE:") == 0) {
+				s.erase(0, string("HAS_MOVE:").length());
+				s2 = s;
+				if (s.find("|") != -1) {
+					s.erase(0, s.find("|"));
+					s2.erase(s2.find("|"), s2.length());
+				}
+				else {
+					s = "";
+				}
+				choices.clear();
+				choices.push_back(has_move_in_party(s2));
+			}
+			else if (s.find("IS_SELECTION_SPECIES:") == 0) {
+				s.erase(0, string("IS_SELECTION_SPECIES:").length());
+				s2 = s;
+				if (s.find("|") != -1) {
+					s.erase(0, s.find("|"));
+					s2.erase(s2.find("|"), s2.length());
+				}
+				else {
+					s = "";
+				}
+				if (s2 == mc.team[choices[0]].number) {
+					choices.clear();
+					choices.push_back(1);
+				}
+				else {
+					choices.clear();
+					choices.push_back(0);
+				}
+			}
+			else if (s.find("TRADE_LOGIC:") == 0) {
+				s.erase(0, string("TRADE_LOGIC:").length());
+				s2 = s;
+				if (s.find("|") != -1) {
+					s.erase(0, s.find("|"));
+					s2.erase(s2.find("|"), s2.length());
+				}
+				else {
+					s = "";
+				}
+				if (s2 == mc.team[choices[0]].number) {
+					mc.team[choices[0]].defined = false;
+					choices.clear();
+					choices.push_back(1);
+				}
+				else {
+					choices.clear();
+					choices.push_back(0);
+				}
+			}
+			else if (s.find("CAUGHT:") == 0) {
+				s.erase(0, string("CAUGHT:").length());
+				s2 = s;
+				if (s.find("|") != -1) {
+					s.erase(0, s.find("|"));
+					s2.erase(s2.find("|"), s2.length());
+				}
+				else {
+					s = "";
+				}
+				std::map<string, bool>::iterator it = mc.caught.begin();
+				int count = 0;
+				while (it != mc.caught.end()) {
+					if (it->second)
+						count++;
+					it++;
+				}
+				if (stoi(s2) <= count) {
+					choices.clear();
+					choices.push_back(1);
+				}
+				else {
+					choices.clear();
+					choices.push_back(0);
+				}
+			}
+			else if (s.find("HAS_MONEY:") == 0) {
+				s.erase(0, string("HAS_MONEY:").length());
+				s2 = s;
+				if (s.find("|") != -1) {
+					s.erase(0, s.find("|"));
+					s2.erase(s2.find("|"), s2.length());
+				}
+				else {
+					s = "";
+				}
+				choices.clear();
+				if (mc.money >= stoi(s2))
+					choices.push_back(1);
+				else
+					choices.push_back(0);
+			}
+			else if (s.find("HAS_COINS:") == 0) {
+				s.erase(0, string("HAS_COINS:").length());
+				s2 = s;
+				if (s.find("|") != -1) {
+					s.erase(0, s.find("|"));
+					s2.erase(s2.find("|"), s2.length());
+				}
+				else {
+					s = "";
+				}
+				choices.clear();
+				if (mc.coins >= stoi(s2))
+					choices.push_back(1);
+				else
+					choices.push_back(0);
+			}
+			else if (s.find("REMOVE_MONEY:") == 0) {
+				s.erase(0, string("REMOVE_MONEY:").length());
+				s2 = s;
+				if (s.find("|") != -1) {
+					s.erase(0, s.find("|"));
+					s2.erase(s2.find("|"), s2.length());
+				}
+				else {
+					s = "";
+				}
+				mc.money -= stoi(s2);
+			}
+			else if (s.find("REMOVE_COINS:") == 0) {
+				s.erase(0, string("REMOVE_COINS:").length());
+				s2 = s;
+				if (s.find("|") != -1) {
+					s.erase(0, s.find("|"));
+					s2.erase(s2.find("|"), s2.length());
+				}
+				else {
+					s = "";
+				}
+				mc.coins -= stoi(s2);
+			}
+			else if (s.find("GIVE_MONEY:") == 0) {
+				s.erase(0, string("GIVE_MONEY:").length());
+				s2 = s;
+				if (s.find("|") != -1) {
+					s.erase(0, s.find("|"));
+					s2.erase(s2.find("|"), s2.length());
+				}
+				else {
+					s = "";
+				}
+				mc.money += stoi(s2);
+			}
+			else if (s.find("GIVE_COINS:") == 0) {
+				s.erase(0, string("GIVE_COINS:").length());
+				s2 = s;
+				if (s.find("|") != -1) {
+					s.erase(0, s.find("|"));
+					s2.erase(s2.find("|"), s2.length());
+				}
+				else {
+					s = "";
+				}
+				mc.coins += stoi(s2);
+			}
+			else if (s.find("ADVANCE") == 0) {
+				s.erase(0, string("ADVANCE:").length());
+				s2 = s;
+				if (s2.find("|") != -1) {
+					s2.erase(s2.find("|"));
+					mc.interaction[s2]++;
+				}
+				else {
+					mc.interaction[s2]++;
+					s = "";
+				}
+			}
+			else if (s.find("FUSION:") == 0) {
+				s.erase(0, s.find(":") + 1);
+				s2 = s;
+				if (s2.find("|") != -1) {
+					s.erase(0, s.find("|"));
+					s2.erase(s2.find("|"), s2.length());
+				}
+				else {
+					s = "";
+				}
+				if (s2 == "JUVENILE" || s2 == "MATURE") {
+					unsigned i = 0;
+					unsigned j = 0;
+					int level = 5;
+					string parent1, parent2;
+					for (i = 0; i < STORAGE_MAX; ++i) {
+						for (j = 0; j < STORAGE_MAX; ++j) {
+							if (!mc.storage[i][j].defined)
+								break;
+						}
+						if (!mc.storage[i][j].defined)
+							break;
+					}
+					mc.box_number = i;
+					do_alert("Please select the first POK{e-accent}MON to take a blood sample from.");
+					vector<int> choice1 = do_menu(string("MON_SELECT"));
+					if (choice1[choice1.size() - 1] != -1) {
+						do_alert("Please select the second POK{e-accent}MON to take a blood sample from.");
+						vector<int> choice2 = do_menu(string("MON_SELECT"));
+						if (choice2[choice2.size() - 1] != -1) {
+							parent1 = mc.team[choice1[choice1.size() - 1]].number;
+							parent2 = mc.team[choice2[choice2.size() - 1]].number;
+							parent1.erase(parent1.find("-"), parent1.length());
+							parent2.erase(parent2.find("-"), parent2.length());
+							if (s2 == "MATURE") {
+								level = min(mc.team[choice1[choice1.size() - 1]].level, mc.team[choice2[choice2.size() - 1]].level);
+							}
+							if (s2 == "JUVENILE") {
+								parent1 = parent1 + string("-") + parent1;
+								parent2 = parent2 + string("-") + parent2;
+								std::map<string, mon_template>::iterator it;
+								bool found = true;
+								while (found) {
+									it = all_mon.begin();
+									found = false;
+									while (it != all_mon.end()) {
+										for (unsigned k = 0; k < it->second.evolution.size(); ++k) {
+											if (it->second.evolution[k].first == parent1) {
+												parent1 = it->second.number;
+												found = true;
+												break;
+											}
+										}
+										it++;
+									}
+								}
+								found = true;
+								while (found) {
+									it = all_mon.begin();
+									found = false;
+									while (it != all_mon.end()) {
+										for (unsigned k = 0; k < it->second.evolution.size(); ++k) {
+											if (it->second.evolution[k].first == parent2) {
+												parent2 = it->second.number;
+												found = true;
+												break;
+											}
+										}
+										it++;
+									}
+								}
+								parent1.erase(parent1.find("-"), parent1.length());
+								parent2.erase(parent2.find("-"), parent2.length());
+							}
+							do_alert(string("These samples will create this POK{e-accent}MON."));
+							make_mon(parent1 + string("-") + parent2, level, mc.storage[i][j]);
+							mc.seen[parent1 + string("-") + parent2] = true;
+							do_menu(string("STATS_STORAGE"), to_string(j));
+							int total = 0;
+							total += get_stat(mc.storage[i][j], HP);
+							total += get_stat(mc.storage[i][j], ATTACK);
+							total += get_stat(mc.storage[i][j], DEFENSE);
+							total += get_stat(mc.storage[i][j], SPECIAL);
+							total += get_stat(mc.storage[i][j], SPEED);
+							total += all_mon[mc.storage[i][j].number].stats[0];
+							total += all_mon[mc.storage[i][j].number].stats[1];
+							total += all_mon[mc.storage[i][j].number].stats[2];
+							total += all_mon[mc.storage[i][j].number].stats[3];
+							total += all_mon[mc.storage[i][j].number].stats[4];
+							float holder = float(total);
+							holder /= 150.0f;
+							holder *= holder;
+							holder *= sqrt(holder);
+							holder *= 150.0f;
+							total = int(holder);
+							if (total <= mc.money) {
+								vector<int> choice3 = do_menu(string("ALERT_YES_NO_MONEY"), string("Creating this will cost $") + to_string(total) + string("."));
+								if (choice3[choice3.size() - 1] == 0) {
+									bool found = false;
+									mc.money -= total;
+									do_alert(string("{PLAYER_NAME} got ") + get_nickname(mc.storage[i][j]) + string("!"));
+									mc.caught[parent1 + string("-") + parent2] = true;
+									for (unsigned k = 0; k < 6; ++k) {
+										if (!mc.team[k].defined) {
+											found = true;
+											mc.team[k] = mc.storage[i][j];
+											mc.team[k].enemy = false;
+											mc.team[k].wild = false;
+											mc.storage[i][j].defined = false;
+										}
+									}
+									if (!found) {
+										mc.storage[i][j].enemy = false;
+										mc.storage[i][j].wild = false;
+										do_alert(get_nickname(mc.storage[i][j]) + string(" was sent to box ") + to_string(i + 1) + string("!"));
+									}
+								}
+								else {
+									mc.storage[i][j].defined = false;
+								}
+							}
+							else {
+								do_alert("You don't have enough money for this!");
+								mc.storage[i][j].defined = false;
+							}
+						}
+					}
+				}
+				else {
+					do_alert(string("SCRIPT ERROR: Called FUSION with parameter: ") + s2);
+				}
+			}
+			else if (s.find("SHOP:") == 0) {
+				s.erase(0, s.find(":") + 1);
+				s2 = s;
+				if (s2.find("|") != -1) {
+					s.erase(0, s.find("|"));
+					s2.erase(s2.find("|"), s2.length());
+				}
+				else {
+					s = "";
+				}
+				if (s2 == "USED_TMS") {
+					// TODO: Rebalance TM prices.
+					s2 = "";
+					std::map<string, bool>::iterator it2 = mc.used_tms.begin();
+					bool first = true;
+					while (it2 != mc.used_tms.end()) {
+						if (it2->second) {
+							if (!first) {
+								s2 = s2 + ",";
+							}
+							s2 = s2 + it2->first;
+							first = false;
+						}
+						it2++;
+					}
+					if (s2 == "") {
+						do_alert("It looks like you don't have any TMs to recharge!");
+						advance = false;
+						break;
+					}
+				}
+				choices.clear();
+				string holder = s2;
+				vector<string> item_holder;
+				while (holder.find(",") != -1) {
+					string holder2 = holder;
+					holder2.erase(holder2.find(","), holder2.length());
+					holder.erase(0, holder.find(",") + 1);
+					item_holder.push_back(holder2);
+				}
+				item_holder.push_back(holder);
+				while (choices.size() == 0 || choices[0] != 2) {
+					choices = do_menu(string("SHOP_FRAME"), s2); // TODO: Reopen on anything except cancel.
+					choices = remove_cancels(choices);
+					if (choices.size() > 1) {
+						if (choices[0] == 0) { // BUY
+							if (choices[choices.size() - 1] == 0) { // Bought
+								int num = (mc.money / items[item_holder[choices[1]]].price) - choices[2];
+								gain_item(item_holder[choices[1]], num, true);
+								mc.money -= num * items[item_holder[choices[1]]].price;
+							}
+						}
+						else if (choices[0] == 1) { // SELL
+							if (choices[choices.size() - 1] == 0) { // Sold
+								holder = get_item_count(string("ALL"), choices[1]);
+								while (holder.find("}") != -1) {
+									holder.erase(0, holder.find("}") + 1);
+								}
+								int num = stoi(holder) - choices[2];
+								mc.money += num * items[get_item_name(string("ALL"), choices[1])].price / 2;
+								remove_item(get_item_name(string("ALL"), choices[1]), num);
+							}
+						}
+					}
+				}
+			}
+			else if (s.find("MON_STORAGE") == 0) {
+				s.erase(0, s.find(":") + 1);
+				s2 = s;
+				if (s2.find("|") != -1) {
+					s2.erase(s2.find("|"), s2.length());
+				}
+				else {
+					s = "";
+				}
+				choices.clear();
+				while (choices.size() == 0 || choices[0] != 4) {
+					choices = do_menu("MON_STORAGE");
+					choices = remove_cancels(choices);
+					if (choices.size() > 0) {
+						if (choices[0] == 0) {
+							if (choices[2] == 0) {
+								if (get_team_size() == 6) {
+									do_alert(string("There's no room in your team!"));
+								}
+								else {
+									unsigned holder = get_team_size();
+									mc.team[holder] = mc.storage[mc.box_number][choices[1]];
+									mc.team[holder].wild = false;
+									mc.team[holder].enemy = false;
+									mc.storage[mc.box_number][choices[1]].defined = false;
+									pack_team();
+									pack_storage();
+								}
+							}
+						}
+						else if (choices[0] == 1) {
+							if (choices[2] == 0) {
+								unsigned count = 0;
+								while (count < STORAGE_MAX && mc.storage[mc.box_number][count].defined) {
+									count++;
+								}
+								if (get_team_size() == 1) {
+									do_alert(string("You can't deposit your last POK{e-accent}MON!"));
+								}
+								else if (count == STORAGE_MAX) {
+									do_alert(string("No room left in that box!")); // TODO: Test this
+								}
+								else {
+									mc.storage[mc.box_number][count] = mc.team[choices[1]];
+									mc.storage[mc.box_number][count].wild = false;
+									mc.storage[mc.box_number][count].enemy = false;
+									mc.team[choices[1]].defined = false;
+									pack_team();
+									pack_storage();
+								}
+							}
+						}
+						else if (choices[0] == 2) {
+							if (choices[2] == 0) {
+								unsigned choice = choices[1];
+								string name = get_nickname(mc.storage[mc.box_number][choice]);
+								do_alert(string("You will probably never see ") + get_nickname(mc.storage[mc.box_number][choice]) + string(" again."));
+								choices = do_menu(string("ALERT_YES_NO"), string("Are you sure you want to do this?"));
+								if (choices[0] == 0) {
+									do_alert(string("{PLAYER_NAME} released ") + name + string("."));
+									switch (int(random(0.0, 8.0))) {
+									case 0:
+										do_alert(name + string(" lived happily ever after."));
+										break;
+									case 1:
+										do_alert(name + string(" left to explore the Safari Zone."));
+										break;
+									case 2:
+										do_alert(name + string(" will always fondly remember its time with you."));
+										break;
+									case 3:
+										do_alert(name + string(" started a family and used your training to keep them safe."));
+										break;
+									case 4:
+										do_alert(name + string(" returned home to its family."));
+										break;
+									case 5:
+										do_alert(name + string(" returned to the wild with newfound confidence."));
+										break;
+									case 6:
+										do_alert(name + string(" still brags to its friends that it was trained by {PLAYER_NAME}."));
+										break;
+									case 7:
+										do_alert(name + string(" never liked you anyway."));
+										break;
+									default:
+										do_alert(name + string(" left the party."));
+										break;
+									}
+									mc.storage[mc.box_number][choice].defined = false;
+								}
+								pack_storage();
+								pack_team();
+								choices.clear();
+							}
+						}
+						else if (choices[0] == 3) {
+							mc.box_number = (STORAGE_MAX - 1) - choices[1];
+						}
+					}
+				}
+			}
+			else if (s.find("ITEM_STORAGE") == 0) {
+				s.erase(0, s.find(":") + 1);
+				s2 = s;
+				if (s2.find("|") != -1) {
+					s2.erase(s2.find("|"), s2.length());
+				}
+				else {
+					s = "";
+				}
+				choices.clear();
+				while (choices.size() == 0 || choices[0] != 2) {
+					choices = do_menu("ITEM_STORAGE");
+					choices = remove_cancels(choices);
+					if (choices.size() > 0) {
+						if (choices[0] == 0) { // withdraw
+							string dep = get_item_storage_name(string("ALL"), choices[1]);
+							string holder = get_item_storage_count(string("ALL"), choices[1]);
+							holder.erase(0, holder.find("}") + 1);
+							int diff = stoi(holder) - choices[2];
+							gain_item(dep, diff, true);
+							withdraw_item(dep, diff);
+						}
+						else if (choices[0] == 1) { // deposit
+							string dep = get_item_name(string("ALL"), choices[1]);
+							string holder = get_item_count(string("ALL"), choices[1]);
+							holder.erase(0, holder.find("}") + 1);
+							int diff = stoi(holder) - choices[2];
+							remove_item(dep, diff);
+							store_item(dep, diff);
+						}
+					}
+				}
+			}
+			else if (s.find("GIVE_MON:") == 0) {
+				s.erase(0, string("GIVE_MON:").length());
+				s2 = s;
+				s.erase(0, s.find(":") + 1);
+				s2.erase(s2.find(":"), s2.length());
+				int l = stoi(s2);
+				s2 = s;
+				if (s2.find("|") != -1) {
+					s2.erase(s2.find("|"), s2.length());
+				}
+				else {
+					s = "";
+				}
+				bool mon_created = false;
+				for (unsigned i = 0; i < 6; ++i) {
+					if (!mc.team[i].defined) {
+						make_mon(s2, l, mc.team[i]);
+						mc.team[i].wild = false;
+						mc.team[i].enemy = false;
+						// TODO: Nickname menu
+						do_menu(string("ALERT"), mc.name + string(" got ") + all_mon[mc.team[i].number].name + string("!"));
+						mc.seen[mc.team[i].number] = true;
+						mc.caught[mc.team[i].number] = true;
+						mon_created = true;
+						break;
+					}
+				}
+				if (!mon_created) {
+					for (unsigned i = 0; i < STORAGE_MAX && !mon_created; ++i) {
+						for (unsigned j = 0; j < STORAGE_MAX && !mon_created; ++j) {
+							if (!mc.storage[i][j].defined) {
+								make_mon(s2, l, mc.storage[i][j]);
+								mc.storage[i][j].wild = false;
+								mc.storage[i][j].enemy = false;
+								// TODO: Nickname menu
+								do_menu(string("ALERT"), mc.name + string(" got ") + all_mon[mc.storage[i][j].number].name + string("!"));
+								mc.seen[mc.storage[i][j].number] = true;
+								mc.caught[mc.storage[i][j].number] = true;
+								mon_created = true;
+								do_menu(string("ALERT"), all_mon[mc.storage[i][j].number].name + string(" was sent to box ") + to_string(i + 1) + string("."));
+								break;
+							}
+						}
+					}
+				}
+			}
+			else if (s.find("SET_FACE:") == 0) {
+				s.erase(0, s.find(":") + 1);
+				s2 = s;
+				s.erase(0, s.find(":") + 1);
+				s2.erase(s2.find(":"), s2.length());
+				direction dir = DOWN;
+				if (s.find("LEFT") == 0) {
+					dir = LEFT;
+				}
+				else if (s.find("RIGHT") == 0) {
+					dir = RIGHT;
+				}
+				else if (s.find("UP") == 0) {
+					dir = UP;
+				}
+				else if (s.find("DOWN") == 0) {
+					dir = DOWN;
+				}
+				if (s2 == "PLAYER") {
+					mc.dir = dir;
+				}
+				else {
+					map<string, level>::iterator it;
+					for (it = levels.begin(); it != levels.end(); it++) {
+						for (unsigned k = 0; k < it->second.characters.size(); ++k) {
+							if (it->second.characters[k].name == s2) {
+								it->second.characters[k].dir = dir;
+							}
+						}
+					}
+				}
+				update_level();
+			}
+			else if (s.find("FACE") == 0) {
+				s.erase(0, s.find(":") + 1);
+				if (s.find("LEFT") == 0) {
+					npc.dir = LEFT;
+					s.erase(0, string("LEFT").length());
+				}
+				else if (s.find("RIGHT") == 0) {
+					npc.dir = RIGHT;
+					s.erase(0, string("RIGHT").length());
+				}
+				else if (s.find("UP") == 0) {
+					npc.dir = UP;
+					s.erase(0, string("UP").length());
+				}
+				else if (s.find("DOWN") == 0) {
+					npc.dir = DOWN;
+					s.erase(0, string("DOWN").length());
+				}
+				update_level();
+			}
+			else if (s.find("GIVE_ITEM:") == 0) {
+				s.erase(0, string("GIVE_ITEM:").length());
+				s2 = s;
+				if (s2.find("|") != -1) {
+					s2.erase(s2.find("|"), s2.length());
+				}
+				gain_item(s2);
+				s.erase(0, s2.length());
+			}
+			else if (s.find("REMOVE_ITEM:") == 0) {
+				s.erase(0, string("REMOVE_ITEM:").length());
+				s2 = s;
+				if (s2.find("|") != -1) {
+					s2.erase(s2.find("|"), s2.length());
+				}
+				if (remove_item(s2)) {
+					do_alert(string("{PLAYER_NAME} gave ") + s2 + string("!"));
+				}
+				s.erase(0, s2.length());
+			}
+			else if (s.find("MOVE:") == 0) {
+				direction dir;
+				s.erase(0, string("MOVE:").length());
+				s2 = s;
+				s.erase(0, s.find(":") + 1);
+				s2.erase(s2.find(":"), s2.length());
+				s3 = s;
+				s.erase(0, s.find(",") + 1);
+				s3.erase(s3.find(","), s3.length());
+				int deltax = stoi(s3);
+				int deltay = 0;
+				s3 = s;
+				if (s.find("|") != -1) {
+					s.erase(0, s.find("|"));
+					s3.erase(s3.find("|"), s3.length());
+				}
+				else {
+					s = "";
+				}
+				deltay = stoi(s3);
+				if (deltax < 0)
+					dir = LEFT;
+				else if (deltax > 0)
+					dir = RIGHT;
+				else if (deltay > 0)
+					dir = DOWN;
+				else
+					dir = UP;
+				if (s2.find("PLAYER") == 0) {
+					mc.loc.x += double(deltax);
+					mc.loc.y += double(deltay);
+					mc.dir = dir;
+				}
+				else {
+					map<string, level>::iterator it;
+					for (it = levels.begin(); it != levels.end(); it++) {
+						for (unsigned k = 0; k < it->second.characters.size(); ++k) {
+							if (it->second.characters[k].name == s2) {
+								it->second.characters[k].loc.x += double(deltax);
+								it->second.characters[k].loc.y += double(deltay);
+								it->second.characters[k].dir = dir;
+							}
+						}
+					}
+				}
+				update_level();
+			}
+			else if (s.find("{") == 0) {
+				int counter;
+				vector<string> options;
+				unsigned x = 0;
+				counter = 1;
+				s2 = "";
+				for (x = 1; x < s.size(); ++x) {
+					if (s[x] == '{') {
+						counter++;
+						if (counter == 1) {
+							continue;
+						}
+					}
+					if (s[x] == '}') {
+						counter--;
+						if (counter == 0) {
+							options.push_back(s2);
+							s2 = "";
+							continue;
+						}
+					}
+					if (counter == 0 && s[x] == '|')
+						break;
+					s2 += s[x];
+				}
+				s.erase(0, x);
+				s = options[choices[choices.size() - 1]] + s;
+				continue;
+			}
+			else if (s.find("FULL_HEAL") == 0) {
+				full_heal();
+				mc.last_center.level = mc.loc.level;
+				mc.last_center.x = mc.loc.x;
+				mc.last_center.y = mc.loc.y;
+			}
+			else if (s.find("DEACTIVATE:") == 0) {
+				s2 = s;
+				s2.erase(0, string("DEACTIVATE:").length());
+				if (s2.find("|") != -1) {
+					s2.erase(s2.find("|"), s2.length());
+				}
+				else
+					s = "";
+				map<string, level>::iterator it;
+				for (it = levels.begin(); it != levels.end(); it++) {
+					for (unsigned k = 0; k < it->second.characters.size(); ++k) {
+						if (it->second.characters[k].name == s2) {
+							mc.active[it->second.characters[k].name] = false;
+						}
+					}
+				}
+				update_level();
+			}
+			else if (s.find("ACTIVATE:") == 0) {
+				s2 = s;
+				s2.erase(0, string("ACTIVATE:").length());
+				if (s2.find("|") != -1) {
+					s2.erase(s2.find("|"), s2.length());
+				}
+				else
+					s = "";
+				map<string, level>::iterator it;
+				for (it = levels.begin(); it != levels.end(); it++) {
+					for (unsigned k = 0; k < it->second.characters.size(); ++k) {
+						if (it->second.characters[k].name == s2) {
+							mc.active[it->second.characters[k].name] = true;
+						}
+					}
+				}
+				update_level();
+			}
+			else if (s.find("!:") == 0) {
+				int clear_point = g.draw_list.size();
+				s2 = s;
+				s2.erase(0, string("!:").length());
+				if (s2.find("|") != -1) {
+					s2.erase(s2.find("|"), s2.length());
+				}
+				else
+					s = "";
+				if (s2 == "PLAYER") {
+					g.push_quad_load(-0.1f, (0.5f / 4.5f) + 0.0416f, 0.2f, 1.0f / 4.5f, string("../resources/images/speechbubble.png"));
+				}
+				else {
+					map<string, level>::iterator it;
+					for (it = levels.begin(); it != levels.end(); it++) {
+						for (unsigned k = 0; k < it->second.characters.size(); ++k) {
+							if (it->second.characters[k].name == s2) {
+								g.push_quad_load((it->second.characters[k].loc.x - (mc.loc.x + 0.5)) / 5.0f, (0.5 - it->second.characters[k].loc.y + mc.loc.y) / 4.5f + 0.0416f, 0.2f, 1.0f / 4.5f, string("../resources/images/speechbubble.png"));
+							}
+						}
+					}
+				}
+				do_menu("BLANK", "BLANK");
+				g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
+			}
+			else if (s.find("SOUND:") == 0) {
+				// TODO: Implement sound playing
+				if (s.find("|") != -1) {
+					s.erase(0, s.find("|") + 1);
+				}
+				else {
+					s = "";
+				}
+			}
+			else if (s.find("MAP") == 0) {
+				// TODO: Implement MAP
+				if (s.find("|") != -1) {
+					s.erase(0, s.find("|") + 1);
+				}
+				else {
+					s = "";
+				}
+			}
+			else if (s.find("DISABLE_FORCE") == 0) {
+				if (s.find("|") == -1) {
+					s = "";
+				}
+				npc.no_force = true;
+			}
+			else if (s.find("MOVE_TO_PLAYER") == 0) {
+				if (s.find("|") == -1) {
+					s = "";
+				}
+				if (npc.loc.x < mc.loc.x)
+					npc.loc.x = mc.loc.x - 1.0;
+				if (npc.loc.x > mc.loc.x)
+					npc.loc.x = mc.loc.x + 1.0;
+				if (npc.loc.y < mc.loc.y)
+					npc.loc.y = mc.loc.y - 1.0;
+				if (npc.loc.y > mc.loc.y)
+					npc.loc.y = mc.loc.y + 1.0;
+			}
+			else if (s.find("WILD_BATTLE") == 0) {
+				s2 = s;
+				s2.erase(0, s2.find(":") + 1);
+				if (s2.find("|") != -1) {
+					s2.erase(s2.find("|"), s2.length());
+				}
+				s3 = s2;
+				s2.erase(s2.find(":"), s2.length());
+				s3.erase(0, s3.find(":") + 1);
+				mc.enemy_selected = 0;
+				make_mon(s2, stoi(s3), mc.enemy_team[mc.enemy_selected]);
+				for (int i = 0; i < 6; ++i) {
+					mc.team[i].hp_bar_index = 0;
+					mc.team[i].exp_bar_index = 0;
+				}
+				if (battle()) {
+					choices.push_back(1);
+				}
+				else {
+					choices.push_back(0);
+				}
+				for (int i = 0; i < 6; ++i) {
+					mc.team[i].hp_bar_index = 0;
+					mc.team[i].exp_bar_index = 0;
+				}
+				encounter = "";
+				if (team_KO()) {
+					full_heal();
+					mc.loc.level = mc.last_center.level;
+					mc.loc.x = mc.last_center.x;
+					mc.loc.y = mc.last_center.y;
+					mc.money /= 2;
+				}
+			}
+			else if (s.find("BATTLE") == 0) {
+				s2 = s;
+				s2.erase(0, s2.find(":") + 1);
+				if (s2.find("|") != -1) {
+					s2.erase(s2.find("|"), s2.length());
+				}
+				choices.clear();
+				for (int i = 0; i < 6; ++i) {
+					mc.team[i].hp_bar_index = 0;
+					mc.team[i].exp_bar_index = 0;
+				}
+				if (battle(levels[mc.loc.level].trainers[s2])) {
+					choices.push_back(1);
+				}
+				else {
+					choices.push_back(0);
+				}
+				for (int i = 0; i < 6; ++i) {
+					mc.team[i].hp_bar_index = 0;
+					mc.team[i].exp_bar_index = 0;
+				}
+			}
+			if (s.find("|") != -1)
+				s.erase(0, s.find("|") + 1);
+			if (!advance)
+				break;
+		}
+		if (advance) {
+			if (mc.interaction[npc.name] < npc.interactions.size() - 1) {
+				mc.interaction[npc.name]++;
+			}
+		}
+		if (team_KO()) {
+			full_heal();
+			mc.loc.level = mc.last_center.level;
+			mc.loc.x = mc.last_center.x;
+			mc.loc.y = mc.last_center.y;
+			mc.money /= 2;
+		}
+	}
 	void main() {
 		while (true) {
 			handle_teleport();
@@ -5355,7 +6360,6 @@ public:
 				}
 			}
 			else if (interact) {
-				vector<int> choices;
 				interact = false;
 				for (unsigned i = 0; i < levels[mc.loc.level].characters.size(); ++i) {
 					if (!mc.active[levels[mc.loc.level].characters[i].name])
@@ -5370,1008 +6374,7 @@ public:
 							levels[mc.loc.level].characters[i].dir = UP;
 						else if (levels[mc.loc.level].characters[i].loc.y < mc.loc.y)
 							levels[mc.loc.level].characters[i].dir = DOWN;
-						string s = levels[mc.loc.level].characters[i].interactions[mc.interaction[levels[mc.loc.level].characters[i].name]];
-						string s2, s3;
-						choices.clear();
-						bool advance;
-						advance = true;
-						while (s != "") {
-							if (s.find("MENU") == 0) {
-								s.erase(0, s.find(":") + 1);
-								s2 = s;
-								s3 = s;
-								s2.erase(s2.find(":"), s2.length());
-								s3.erase(0, s3.find(":") + 1);
-								if (s3.find("|") != -1)
-									s3.erase(s3.find("|"), s3.length());
-								choices = do_menu(s2, s3);
-								s.erase(0, s2.length() + s3.length() + 1);
-							}
-							else if (s.find("NO_ADVANCE") == 0) {
-								advance = false;
-								s.erase(0, string("NO_ADVANCE").length() + 1);
-								break;
-							}
-							else if (s.find("TELEPORT:") == 0) {
-								s.erase(0, string("TELEPORT:").length());
-								s2 = s;
-								s2.erase(s2.find(" "), s2.size());
-								s.erase(0, s.find(" ") + 1);
-								string destination = s2;
-								s2 = s;
-								s2.erase(s2.find(" "), s2.size());
-								s.erase(0, s.find(" ") + 1);
-								int newx = stoi(s2);
-								s2 = s;
-								int newy = stoi(s2);
-								mc.loc.level = destination;
-								mc.loc.x = newx;
-								mc.loc.y = newy;
-								break;
-							}
-							else if (s.find("SET:") == 0) {
-								s.erase(0, string("SET:").length());
-								s2 = s;
-								s.erase(0, s.find(":") + 1);
-								s2.erase(s2.find(":"), s2.length());
-								s3 = s;
-								if (s.find("|") != -1) {
-									s.erase(0, s.find("|"));
-									s3.erase(s3.find("|"), s3.length());
-								}
-								else {
-									s = "";
-								}
-								mc.values[s2] = stoi(s3);
-							}
-							else if (s.find("GET:") == 0) {
-								s.erase(0, string("GET:").length());
-								s2 = s;
-								if (s.find("|") != -1) {
-									s.erase(0, s.find("|"));
-									s2.erase(s2.find("|"), s2.length());
-								}
-								else {
-									s = "";
-								}
-								choices.clear();
-								choices.push_back(e.mc.values[s2]);
-							}
-							else if (s.find("IS_PLAYER:") == 0) {
-								s.erase(0, string("IS_PLAYER:").length());
-								s2 = s;
-								if (s.find("|") != -1) {
-									s.erase(0, s.find("|"));
-									s2.erase(s2.find("|"), s2.length());
-								}
-								else {
-									s = "";
-								}
-								choices.clear();
-								if (s2 == "RIGHT") {
-									if (levels[mc.loc.level].characters[i].loc.x < mc.loc.x) {
-										choices.push_back(1);
-									}
-									else {
-										choices.push_back(0);
-									}
-								}
-								if (s2 == "LEFT") {
-									if (levels[mc.loc.level].characters[i].loc.x > mc.loc.x) {
-										choices.push_back(1);
-									}
-									else {
-										choices.push_back(0);
-									}
-								}
-								if (s2 == "UP") {
-									if (levels[mc.loc.level].characters[i].loc.y > mc.loc.y) {
-										choices.push_back(1);
-									}
-									else {
-										choices.push_back(0);
-									}
-								}
-								if (s2 == "DOWN") {
-									if (levels[mc.loc.level].characters[i].loc.y < mc.loc.y) {
-										choices.push_back(1);
-									}
-									else {
-										choices.push_back(0);
-									}
-								}
-							}
-							else if (s.find("IN_INVENTORY:") == 0) {
-								s.erase(0, string("IN_INVENTORY:").length());
-								s2 = s;
-								if (s.find("|") != -1) {
-									s.erase(0, s.find("|"));
-									s2.erase(s2.find("|"), s2.length());
-								}
-								else {
-									s = "";
-								}
-								choices.clear();
-								if (in_inventory(s2))
-									choices.push_back(1);
-								else
-									choices.push_back(0);
-							}
-							else if (s.find("HAS_MOVE:") == 0) {
-								s.erase(0, string("HAS_MOVE:").length());
-								s2 = s;
-								if (s.find("|") != -1) {
-									s.erase(0, s.find("|"));
-									s2.erase(s2.find("|"), s2.length());
-								}
-								else {
-									s = "";
-								}
-								choices.clear();
-								choices.push_back(has_move_in_party(s2));
-							}
-							else if (s.find("IS_SELECTION_SPECIES:") == 0) {
-								s.erase(0, string("IS_SELECTION_SPECIES:").length());
-								s2 = s;
-								if (s.find("|") != -1) {
-									s.erase(0, s.find("|"));
-									s2.erase(s2.find("|"), s2.length());
-								}
-								else {
-									s = "";
-								}
-								if (s2 == mc.team[choices[0]].number) {
-									choices.clear();
-									choices.push_back(1);
-								}
-								else {
-									choices.clear();
-									choices.push_back(0);
-								}
-							}
-							else if (s.find("TRADE_LOGIC:") == 0) {
-								s.erase(0, string("TRADE_LOGIC:").length());
-								s2 = s;
-								if (s.find("|") != -1) {
-									s.erase(0, s.find("|"));
-									s2.erase(s2.find("|"), s2.length());
-								}
-								else {
-									s = "";
-								}
-								if (s2 == mc.team[choices[0]].number) {
-									mc.team[choices[0]].defined = false;
-									choices.clear();
-									choices.push_back(1);
-								}
-								else {
-									choices.clear();
-									choices.push_back(0);
-								}
-							}
-							else if (s.find("CAUGHT:") == 0) {
-								s.erase(0, string("CAUGHT:").length());
-								s2 = s;
-								if (s.find("|") != -1) {
-									s.erase(0, s.find("|"));
-									s2.erase(s2.find("|"), s2.length());
-								}
-								else {
-									s = "";
-								}
-								std::map<string, bool>::iterator it = mc.caught.begin();
-								int count = 0;
-								while (it != mc.caught.end()) {
-									if (it->second)
-										count++;
-									it++;
-								}
-								if (stoi(s2) <= count) {
-									choices.clear();
-									choices.push_back(1);
-								}
-								else {
-									choices.clear();
-									choices.push_back(0);
-								}
-							}
-							else if (s.find("HAS_MONEY:") == 0) {
-								s.erase(0, string("HAS_MONEY:").length());
-								s2 = s;
-								if (s.find("|") != -1) {
-									s.erase(0, s.find("|"));
-									s2.erase(s2.find("|"), s2.length());
-								}
-								else {
-									s = "";
-								}
-								choices.clear();
-								if (mc.money >= stoi(s2))
-									choices.push_back(1);
-								else
-									choices.push_back(0);
-							}
-							else if (s.find("HAS_COINS:") == 0) {
-								s.erase(0, string("HAS_COINS:").length());
-								s2 = s;
-								if (s.find("|") != -1) {
-									s.erase(0, s.find("|"));
-									s2.erase(s2.find("|"), s2.length());
-								}
-								else {
-									s = "";
-								}
-								choices.clear();
-								if (mc.coins >= stoi(s2))
-									choices.push_back(1);
-								else
-									choices.push_back(0);
-							}
-							else if (s.find("REMOVE_MONEY:") == 0) {
-								s.erase(0, string("REMOVE_MONEY:").length());
-								s2 = s;
-								if (s.find("|") != -1) {
-									s.erase(0, s.find("|"));
-									s2.erase(s2.find("|"), s2.length());
-								}
-								else {
-									s = "";
-								}
-								mc.money -= stoi(s2);
-							}
-							else if (s.find("REMOVE_COINS:") == 0) {
-								s.erase(0, string("REMOVE_COINS:").length());
-								s2 = s;
-								if (s.find("|") != -1) {
-									s.erase(0, s.find("|"));
-									s2.erase(s2.find("|"), s2.length());
-								}
-								else {
-									s = "";
-								}
-								mc.coins -= stoi(s2);
-							}
-							else if (s.find("GIVE_MONEY:") == 0) {
-								s.erase(0, string("GIVE_MONEY:").length());
-								s2 = s;
-								if (s.find("|") != -1) {
-									s.erase(0, s.find("|"));
-									s2.erase(s2.find("|"), s2.length());
-								}
-								else {
-									s = "";
-								}
-								mc.money += stoi(s2);
-							}
-							else if (s.find("GIVE_COINS:") == 0) {
-								s.erase(0, string("GIVE_COINS:").length());
-								s2 = s;
-								if (s.find("|") != -1) {
-									s.erase(0, s.find("|"));
-									s2.erase(s2.find("|"), s2.length());
-								}
-								else {
-									s = "";
-								}
-								mc.coins += stoi(s2);
-							}
-							else if (s.find("ADVANCE") == 0) {
-								s.erase(0, string("ADVANCE:").length());
-								s2 = s;
-								if (s2.find("|") != -1) {
-									s2.erase(s2.find("|"));
-									mc.interaction[s2]++;
-								}
-								else {
-									mc.interaction[s2]++;
-									s = "";
-								}
-							}
-							else if (s.find("FUSION:") == 0) {
-								s.erase(0, s.find(":") + 1);
-								s2 = s;
-								if (s2.find("|") != -1) {
-									s.erase(0, s.find("|"));
-									s2.erase(s2.find("|"), s2.length());
-								}
-								else {
-									s = "";
-								}
-								if (s2 == "JUVENILE" || s2 == "MATURE") {
-									unsigned i = 0;
-									unsigned j = 0;
-									int level = 5;
-									string parent1, parent2;
-									for (i = 0; i < STORAGE_MAX; ++i) {
-										for (j = 0; j < STORAGE_MAX; ++j) {
-											if (!mc.storage[i][j].defined)
-												break;
-										}
-										if (!mc.storage[i][j].defined)
-											break;
-									}
-									mc.box_number = i;
-									do_alert("Please select the first POK{e-accent}MON to take a blood sample from.");
-									vector<int> choice1 = do_menu(string("MON_SELECT"));
-									if (choice1[choice1.size() - 1] != -1) {
-										do_alert("Please select the second POK{e-accent}MON to take a blood sample from.");
-										vector<int> choice2 = do_menu(string("MON_SELECT"));
-										if (choice2[choice2.size() - 1] != -1) {
-											parent1 = mc.team[choice1[choice1.size() - 1]].number;
-											parent2 = mc.team[choice2[choice2.size() - 1]].number;
-											parent1.erase(parent1.find("-"), parent1.length());
-											parent2.erase(parent2.find("-"), parent2.length());
-											if (s2 == "MATURE") {
-												level = min(mc.team[choice1[choice1.size() - 1]].level, mc.team[choice2[choice2.size() - 1]].level);
-											}
-											if (s2 == "JUVENILE") {
-												parent1 = parent1 + string("-") + parent1;
-												parent2 = parent2 + string("-") + parent2;
-												std::map<string, mon_template>::iterator it;
-												bool found = true;
-												while (found) {
-													it = all_mon.begin();
-													found = false;
-													while (it != all_mon.end()) {
-														for (unsigned k = 0; k < it->second.evolution.size(); ++k) {
-															if (it->second.evolution[k].first == parent1) {
-																parent1 = it->second.number;
-																found = true;
-																break;
-															}
-														}
-														it++;
-													}
-												}
-												found = true;
-												while (found) {
-													it = all_mon.begin();
-													found = false;
-													while (it != all_mon.end()) {
-														for (unsigned k = 0; k < it->second.evolution.size(); ++k) {
-															if (it->second.evolution[k].first == parent2) {
-																parent2 = it->second.number;
-																found = true;
-																break;
-															}
-														}
-														it++;
-													}
-												}
-												parent1.erase(parent1.find("-"), parent1.length());
-												parent2.erase(parent2.find("-"), parent2.length());
-											}
-											do_alert(string("These samples will create this POK{e-accent}MON."));
-											make_mon(parent1 + string("-") + parent2, level, mc.storage[i][j]);
-											mc.seen[parent1 + string("-") + parent2] = true;
-											do_menu(string("STATS_STORAGE"), to_string(j));
-											int total = 0;
-											total += get_stat(mc.storage[i][j], HP);
-											total += get_stat(mc.storage[i][j], ATTACK);
-											total += get_stat(mc.storage[i][j], DEFENSE);
-											total += get_stat(mc.storage[i][j], SPECIAL);
-											total += get_stat(mc.storage[i][j], SPEED);
-											total += all_mon[mc.storage[i][j].number].stats[0];
-											total += all_mon[mc.storage[i][j].number].stats[1];
-											total += all_mon[mc.storage[i][j].number].stats[2];
-											total += all_mon[mc.storage[i][j].number].stats[3];
-											total += all_mon[mc.storage[i][j].number].stats[4];
-											float holder = float(total);
-											holder /= 150.0f;
-											holder *= holder;
-											holder *= sqrt(holder);
-											holder *= 150.0f;
-											total = int(holder);
-											if (total <= mc.money) {
-												vector<int> choice3 = do_menu(string("ALERT_YES_NO_MONEY"), string("Creating this will cost $") + to_string(total) + string("."));
-												if (choice3[choice3.size() - 1] == 0) {
-													bool found = false;
-													mc.money -= total;
-													do_alert(string("{PLAYER_NAME} got ") + get_nickname(mc.storage[i][j]) + string("!"));
-													mc.caught[parent1 + string("-") + parent2] = true;
-													for (unsigned k = 0; k < 6; ++k) {
-														if (!mc.team[k].defined) {
-															found = true;
-															mc.team[k] = mc.storage[i][j];
-															mc.team[k].enemy = false;
-															mc.team[k].wild = false;
-															mc.storage[i][j].defined = false;
-														}
-													}
-													if (!found) {
-														mc.storage[i][j].enemy = false;
-														mc.storage[i][j].wild = false;
-														do_alert(get_nickname(mc.storage[i][j]) + string(" was sent to box ") + to_string(i + 1) + string("!"));
-													}
-												}
-												else {
-													mc.storage[i][j].defined = false;
-												}
-											}
-											else {
-												do_alert("You don't have enough money for this!");
-												mc.storage[i][j].defined = false;
-											}
-										}
-									}
-								}
-								else {
-									do_alert(string("SCRIPT ERROR: Called FUSION with parameter: ") + s2);
-								}
-							}
-							else if (s.find("SHOP:") == 0) {
-								s.erase(0, s.find(":") + 1);
-								s2 = s;
-								if (s2.find("|") != -1) {
-									s.erase(0, s.find("|"));
-									s2.erase(s2.find("|"), s2.length());
-								}
-								else {
-									s = "";
-								}
-								if (s2 == "USED_TMS") {
-									// TODO: Rebalance TM prices.
-									s2 = "";
-									std::map<string, bool>::iterator it2 = mc.used_tms.begin();
-									bool first = true;
-									while (it2 != mc.used_tms.end()) {
-										if (it2->second) {
-											if (!first) {
-												s2 = s2 + ",";
-											}
-											s2 = s2 + it2->first;
-											first = false;
-										}
-										it2++;
-									}
-									if (s2 == "") {
-										do_alert("It looks like you don't have any TMs to recharge!");
-										advance = false;
-										break;
-									}
-								}
-								choices.clear();
-								string holder = s2;
-								vector<string> item_holder;
-								while (holder.find(",") != -1) {
-									string holder2 = holder;
-									holder2.erase(holder2.find(","), holder2.length());
-									holder.erase(0, holder.find(",") + 1);
-									item_holder.push_back(holder2);
-								}
-								item_holder.push_back(holder);
-								while (choices.size() == 0 || choices[0] != 2) {
-									choices = do_menu(string("SHOP_FRAME"), s2); // TODO: Reopen on anything except cancel.
-									choices = remove_cancels(choices);
-									if (choices.size() > 1) {
-										if (choices[0] == 0) { // BUY
-											if (choices[choices.size() - 1] == 0) { // Bought
-												int num = (mc.money / items[item_holder[choices[1]]].price) - choices[2];
-												gain_item(item_holder[choices[1]], num, true);
-												mc.money -= num * items[item_holder[choices[1]]].price;
-											}
-										}
-										else if (choices[0] == 1) { // SELL
-											if (choices[choices.size() - 1] == 0) { // Sold
-												holder = get_item_count(string("ALL"), choices[1]);
-												while (holder.find("}") != -1) {
-													holder.erase(0, holder.find("}") + 1);
-												}
-												int num = stoi(holder) - choices[2];
-												mc.money += num * items[get_item_name(string("ALL"), choices[1])].price / 2;
-												remove_item(get_item_name(string("ALL"), choices[1]), num);
-											}
-										}
-									}
-								}
-							}
-							else if (s.find("MON_STORAGE") == 0) {
-								s.erase(0, s.find(":") + 1);
-								s2 = s;
-								if (s2.find("|") != -1) {
-									s2.erase(s2.find("|"), s2.length());
-								}
-								else {
-									s = "";
-								}
-								choices.clear();
-								while (choices.size() == 0 || choices[0] != 4) {
-									choices = do_menu("MON_STORAGE");
-									choices = remove_cancels(choices);
-									if (choices.size() > 0) {
-										if (choices[0] == 0) {
-											if (choices[2] == 0) {
-												if (get_team_size() == 6) {
-													do_alert(string("There's no room in your team!"));
-												}
-												else {
-													unsigned holder = get_team_size();
-													mc.team[holder] = mc.storage[mc.box_number][choices[1]];
-													mc.team[holder].wild = false;
-													mc.team[holder].enemy = false;
-													mc.storage[mc.box_number][choices[1]].defined = false;
-													pack_team();
-													pack_storage();
-												}
-											}
-										}
-										else if (choices[0] == 1) {
-											if (choices[2] == 0) {
-												unsigned count = 0;
-												while (count < STORAGE_MAX && mc.storage[mc.box_number][count].defined) {
-													count++;
-												}
-												if (get_team_size() == 1) {
-													do_alert(string("You can't deposit your last POK{e-accent}MON!"));
-												}
-												else if (count == STORAGE_MAX) {
-													do_alert(string("No room left in that box!")); // TODO: Test this
-												}
-												else {
-													mc.storage[mc.box_number][count] = mc.team[choices[1]];
-													mc.storage[mc.box_number][count].wild = false;
-													mc.storage[mc.box_number][count].enemy = false;
-													mc.team[choices[1]].defined = false;
-													pack_team();
-													pack_storage();
-												}
-											}
-										}
-										else if (choices[0] == 2) {
-											if (choices[2] == 0) {
-												unsigned choice = choices[1];
-												string name = get_nickname(mc.storage[mc.box_number][choice]);
-												do_alert(string("You will probably never see ") + get_nickname(mc.storage[mc.box_number][choice]) + string(" again."));
-												choices = do_menu(string("ALERT_YES_NO"), string("Are you sure you want to do this?"));
-												if (choices[0] == 0) {
-													do_alert(string("{PLAYER_NAME} released ") + name + string("."));
-													switch (int(random(0.0, 8.0))) {
-													case 0:
-														do_alert(name + string(" lived happily ever after."));
-														break;
-													case 1:
-														do_alert(name + string(" left to explore the Safari Zone."));
-														break;
-													case 2:
-														do_alert(name + string(" will always fondly remember its time with you."));
-														break;
-													case 3:
-														do_alert(name + string(" started a family and used your training to keep them safe."));
-														break;
-													case 4:
-														do_alert(name + string(" returned home to its family."));
-														break;
-													case 5:
-														do_alert(name + string(" returned to the wild with newfound confidence."));
-														break;
-													case 6:
-														do_alert(name + string(" still brags to its friends that it was trained by {PLAYER_NAME}."));
-														break;
-													case 7:
-														do_alert(name + string(" never liked you anyway."));
-														break;
-													default:
-														do_alert(name + string(" left the party."));
-														break;
-													}
-													mc.storage[mc.box_number][choice].defined = false;
-												}
-												pack_storage();
-												pack_team();
-												choices.clear();
-											}
-										}
-										else if (choices[0] == 3) {
-											mc.box_number = (STORAGE_MAX - 1) - choices[1];
-										}
-									}
-								}
-							}
-							else if (s.find("ITEM_STORAGE") == 0) {
-								s.erase(0, s.find(":") + 1);
-								s2 = s;
-								if (s2.find("|") != -1) {
-									s2.erase(s2.find("|"), s2.length());
-								}
-								else {
-									s = "";
-								}
-								choices.clear();
-								while (choices.size() == 0 || choices[0] != 2) {
-									choices = do_menu("ITEM_STORAGE");
-									choices = remove_cancels(choices);
-									if (choices.size() > 0) {
-										if (choices[0] == 0) { // withdraw
-											string dep = get_item_storage_name(string("ALL"), choices[1]);
-											string holder = get_item_storage_count(string("ALL"), choices[1]);
-											holder.erase(0, holder.find("}") + 1);
-											int diff = stoi(holder) - choices[2];
-											gain_item(dep, diff, true);
-											withdraw_item(dep, diff);
-										}
-										else if (choices[0] == 1) { // deposit
-											string dep = get_item_name(string("ALL"), choices[1]);
-											string holder = get_item_count(string("ALL"), choices[1]);
-											holder.erase(0, holder.find("}") + 1);
-											int diff = stoi(holder) - choices[2];
-											remove_item(dep, diff);
-											store_item(dep, diff);
-										}
-									}
-								}
-							}
-							else if (s.find("GIVE_MON:") == 0) {
-								s.erase(0, string("GIVE_MON:").length());
-								s2 = s;
-								s.erase(0, s.find(":") + 1);
-								s2.erase(s2.find(":"), s2.length());
-								int l = stoi(s2);
-								s2 = s;
-								if (s2.find("|") != -1) {
-									s2.erase(s2.find("|"), s2.length());
-								}
-								else {
-									s = "";
-								}
-								bool mon_created = false;
-								for (unsigned i = 0; i < 6; ++i) {
-									if (!mc.team[i].defined) {
-										make_mon(s2, l, mc.team[i]);
-										mc.team[i].wild = false;
-										mc.team[i].enemy = false;
-										// TODO: Nickname menu
-										do_menu(string("ALERT"), mc.name + string(" got ") + all_mon[mc.team[i].number].name + string("!"));
-										mc.seen[mc.team[i].number] = true;
-										mc.caught[mc.team[i].number] = true;
-										mon_created = true;
-										break;
-									}
-								}
-								if (!mon_created) {
-									for (unsigned i = 0; i < STORAGE_MAX && !mon_created; ++i) {
-										for (unsigned j = 0; j < STORAGE_MAX && !mon_created; ++j) {
-											if (!mc.storage[i][j].defined) {
-												make_mon(s2, l, mc.storage[i][j]);
-												mc.storage[i][j].wild = false;
-												mc.storage[i][j].enemy = false;
-												// TODO: Nickname menu
-												do_menu(string("ALERT"), mc.name + string(" got ") + all_mon[mc.storage[i][j].number].name + string("!"));
-												mc.seen[mc.storage[i][j].number] = true;
-												mc.caught[mc.storage[i][j].number] = true;
-												mon_created = true;
-												do_menu(string("ALERT"), all_mon[mc.storage[i][j].number].name + string(" was sent to box ") + to_string(i + 1) + string("."));
-												break;
-											}
-										}
-									}
-								}
-							}
-							else if (s.find("SET_FACE:") == 0) {
-								s.erase(0, s.find(":") + 1);
-								s2 = s;
-								s.erase(0, s.find(":") + 1);
-								s2.erase(s2.find(":"), s2.length());
-								direction dir = DOWN;
-								if (s.find("LEFT") == 0) {
-									dir = LEFT;
-								}
-								else if (s.find("RIGHT") == 0) {
-									dir = RIGHT;
-								}
-								else if (s.find("UP") == 0) {
-									dir = UP;
-								}
-								else if (s.find("DOWN") == 0) {
-									dir = DOWN;
-								}
-								if (s2 == "PLAYER") {
-									mc.dir = dir;
-								}
-								else {
-									map<string, level>::iterator it;
-									for (it = levels.begin(); it != levels.end(); it++) {
-										for (unsigned k = 0; k < it->second.characters.size(); ++k) {
-											if (it->second.characters[k].name == s2) {
-												it->second.characters[k].dir = dir;
-											}
-										}
-									}
-								}
-								update_level();
-							}
-							else if (s.find("FACE") == 0) {
-								s.erase(0, s.find(":") + 1);
-								if (s.find("LEFT") == 0) {
-									levels[mc.loc.level].characters[i].dir = LEFT;
-									s.erase(0, string("LEFT").length());
-								}
-								else if (s.find("RIGHT") == 0) {
-									levels[mc.loc.level].characters[i].dir = RIGHT;
-									s.erase(0, string("RIGHT").length());
-								}
-								else if (s.find("UP") == 0) {
-									levels[mc.loc.level].characters[i].dir = UP;
-									s.erase(0, string("UP").length());
-								}
-								else if (s.find("DOWN") == 0) {
-									levels[mc.loc.level].characters[i].dir = DOWN;
-									s.erase(0, string("DOWN").length());
-								}
-								update_level();
-							}
-							else if (s.find("GIVE_ITEM:") == 0) {
-								s.erase(0, string("GIVE_ITEM:").length());
-								s2 = s;
-								if (s2.find("|") != -1) {
-									s2.erase(s2.find("|"), s2.length());
-								}
-								gain_item(s2);
-								s.erase(0, s2.length());
-							}
-							else if (s.find("REMOVE_ITEM:") == 0) {
-								s.erase(0, string("REMOVE_ITEM:").length());
-								s2 = s;
-								if (s2.find("|") != -1) {
-									s2.erase(s2.find("|"), s2.length());
-								}
-								if (remove_item(s2)) {
-									do_alert(string("{PLAYER_NAME} gave ") + s2 + string("!"));
-								}
-								s.erase(0, s2.length());
-							}
-							else if (s.find("MOVE:") == 0) {
-								direction dir;
-								s.erase(0, string("MOVE:").length());
-								s2 = s;
-								s.erase(0, s.find(":") + 1);
-								s2.erase(s2.find(":"), s2.length());
-								s3 = s;
-								s.erase(0, s.find(",") + 1);
-								s3.erase(s3.find(","), s3.length());
-								int deltax = stoi(s3);
-								int deltay = 0;
-								s3 = s;
-								if (s.find("|") != -1) {
-									s.erase(0, s.find("|"));
-									s3.erase(s3.find("|"), s3.length());
-								}
-								else {
-									s = "";
-								}
-								deltay = stoi(s3);
-								if (deltax < 0)
-									dir = LEFT;
-								else if (deltax > 0)
-									dir = RIGHT;
-								else if (deltay > 0)
-									dir = DOWN;
-								else
-									dir = UP;
-								if (s2.find("PLAYER") == 0) {
-									mc.loc.x += double(deltax);
-									mc.loc.y += double(deltay);
-									mc.dir = dir;
-								}
-								else {
-									map<string, level>::iterator it;
-									for (it = levels.begin(); it != levels.end(); it++) {
-										for (unsigned k = 0; k < it->second.characters.size(); ++k) {
-											if (it->second.characters[k].name == s2) {
-												it->second.characters[k].loc.x += double(deltax);
-												it->second.characters[k].loc.y += double(deltay);
-												it->second.characters[k].dir = dir;
-											}
-										}
-									}
-								}
-								update_level();
-							}
-							else if (s.find("{") == 0) {
-								int counter;
-								vector<string> options;
-								unsigned x = 0;
-								counter = 1;
-								s2 = "";
-								for (x = 1; x < s.size(); ++x) {
-									if (s[x] == '{') {
-										counter++;
-										if (counter == 1) {
-											continue;
-										}
-									}
-									if (s[x] == '}') {
-										counter--;
-										if (counter == 0) {
-											options.push_back(s2);
-											s2 = "";
-											continue;
-										}
-									}
-									if (counter == 0 && s[x] == '|')
-										break;
-									s2 += s[x];
-								}
-								s.erase(0, x);
-								s = options[choices[choices.size() - 1]] + s;
-								continue;
-							}
-							else if (s.find("FULL_HEAL") == 0) {
-								full_heal();
-								mc.last_center.level = mc.loc.level;
-								mc.last_center.x = mc.loc.x;
-								mc.last_center.y = mc.loc.y;
-							}
-							else if (s.find("DEACTIVATE:") == 0) {
-								s2 = s;
-								s2.erase(0, string("DEACTIVATE:").length());
-								if (s2.find("|") != -1) {
-									s2.erase(s2.find("|"), s2.length());
-								}
-								else
-									s = "";
-								map<string, level>::iterator it;
-								for (it = levels.begin(); it != levels.end(); it++) {
-									for (unsigned k = 0; k < it->second.characters.size(); ++k) {
-										if (it->second.characters[k].name == s2) {
-											mc.active[it->second.characters[k].name] = false;
-										}
-									}
-								}
-								update_level();
-							}
-							else if (s.find("ACTIVATE:") == 0) {
-								s2 = s;
-								s2.erase(0, string("ACTIVATE:").length());
-								if (s2.find("|") != -1) {
-									s2.erase(s2.find("|"), s2.length());
-								}
-								else
-									s = "";
-								map<string, level>::iterator it;
-								for (it = levels.begin(); it != levels.end(); it++) {
-									for (unsigned k = 0; k < it->second.characters.size(); ++k) {
-										if (it->second.characters[k].name == s2) {
-											mc.active[it->second.characters[k].name] = true;
-										}
-									}
-								}
-								update_level();
-							}
-							else if (s.find("!:") == 0) {
-								int clear_point = g.draw_list.size();
-								s2 = s;
-								s2.erase(0, string("!:").length());
-								if (s2.find("|") != -1) {
-									s2.erase(s2.find("|"), s2.length());
-								}
-								else
-									s = "";
-								if (s2 == "PLAYER") {
-									g.push_quad_load(-0.1f, (0.5f / 4.5f) + 0.0416f, 0.2f, 1.0f / 4.5f, string("../resources/images/speechbubble.png"));
-								}
-								else {
-									map<string, level>::iterator it;
-									for (it = levels.begin(); it != levels.end(); it++) {
-										for (unsigned k = 0; k < it->second.characters.size(); ++k) {
-											if (it->second.characters[k].name == s2) {
-												g.push_quad_load((it->second.characters[k].loc.x - (mc.loc.x + 0.5)) / 5.0f, (0.5 - it->second.characters[k].loc.y + mc.loc.y) / 4.5f + 0.0416f, 0.2f, 1.0f / 4.5f, string("../resources/images/speechbubble.png"));
-											}
-										}
-									}
-								}
-								do_menu("BLANK", "BLANK");
-								g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
-							}
-							else if (s.find("SOUND:") == 0) {
-								// TODO: Implement sound playing
-								if (s.find("|") != -1) {
-									s.erase(0, s.find("|") + 1);
-								}
-								else {
-									s = "";
-								}
-							}
-							else if (s.find("MAP") == 0) {
-								// TODO: Implement MAP
-								if (s.find("|") != -1) {
-									s.erase(0, s.find("|") + 1);
-								}
-								else {
-									s = "";
-								}
-							}
-							else if (s.find("DISABLE_FORCE") == 0) {
-								if (s.find("|") == -1) {
-									s = "";
-								}
-								levels[mc.loc.level].characters[i].no_force = true;
-							}
-							else if (s.find("MOVE_TO_PLAYER") == 0) {
-								if (s.find("|") == -1) {
-									s = "";
-								}
-								if (levels[mc.loc.level].characters[i].loc.x < mc.loc.x)
-									levels[mc.loc.level].characters[i].loc.x = mc.loc.x - 1.0;
-								if (levels[mc.loc.level].characters[i].loc.x > mc.loc.x)
-									levels[mc.loc.level].characters[i].loc.x = mc.loc.x + 1.0;
-								if (levels[mc.loc.level].characters[i].loc.y < mc.loc.y)
-									levels[mc.loc.level].characters[i].loc.y = mc.loc.y - 1.0;
-								if (levels[mc.loc.level].characters[i].loc.y > mc.loc.y)
-									levels[mc.loc.level].characters[i].loc.y = mc.loc.y + 1.0;
-							}
-							else if (s.find("WILD_BATTLE") == 0) {
-								s2 = s;
-								s2.erase(0, s2.find(":") + 1);
-								if (s2.find("|") != -1) {
-									s2.erase(s2.find("|"), s2.length());
-								}
-								s3 = s2;
-								s2.erase(s2.find(":"), s2.length());
-								s3.erase(0, s3.find(":") + 1);
-								mc.enemy_selected = 0;
-								make_mon(s2, stoi(s3), mc.enemy_team[mc.enemy_selected]);
-								for (int i = 0; i < 6; ++i) {
-									mc.team[i].hp_bar_index = 0;
-									mc.team[i].exp_bar_index = 0;
-								}
-								if (battle()) {
-									choices.push_back(1);
-								}
-								else {
-									choices.push_back(0);
-								}
-								for (int i = 0; i < 6; ++i) {
-									mc.team[i].hp_bar_index = 0;
-									mc.team[i].exp_bar_index = 0;
-								}
-								encounter = "";
-								if (team_KO()) {
-									full_heal();
-									mc.loc.level = mc.last_center.level;
-									mc.loc.x = mc.last_center.x;
-									mc.loc.y = mc.last_center.y;
-									mc.money /= 2;
-								}
-							}
-							else if (s.find("BATTLE") == 0) {
-								s2 = s;
-								s2.erase(0, s2.find(":") + 1);
-								if (s2.find("|") != -1) {
-									s2.erase(s2.find("|"), s2.length());
-								}
-								choices.clear();
-								for (int i = 0; i < 6; ++i) {
-									mc.team[i].hp_bar_index = 0;
-									mc.team[i].exp_bar_index = 0;
-								}
-								if (battle(levels[mc.loc.level].trainers[s2])) {
-									choices.push_back(1);
-								}
-								else {
-									choices.push_back(0);
-								}
-								for (int i = 0; i < 6; ++i) {
-									mc.team[i].hp_bar_index = 0;
-									mc.team[i].exp_bar_index = 0;
-								}
-							}
-							if (s.find("|") != -1)
-								s.erase(0, s.find("|") + 1);
-							if (!advance)
-								break;
-						}
-						if (advance) {
-							if (mc.interaction[levels[mc.loc.level].characters[i].name] < levels[mc.loc.level].characters[i].interactions.size() - 1) {
-								mc.interaction[levels[mc.loc.level].characters[i].name]++;
-							}
-						}
-						if (team_KO()) {
-							full_heal();
-							mc.loc.level = mc.last_center.level;
-							mc.loc.x = mc.last_center.x;
-							mc.loc.y = mc.last_center.y;
-							mc.money /= 2;
-						}
+						do_interaction(levels[mc.loc.level].characters[i]);
 						break;
 					}
 				}
