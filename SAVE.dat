@@ -2,10 +2,10 @@ WARNING: Editing this file can easily corrupt game state.
 NAME:RED
 RIVAL_NAME:BLUE
 MOVEMENT:player
-DIRECTION:1
+DIRECTION:3
 WINS:0
 LOSSES:0
-LOCATION:route20|46|10
+LOCATION:seafoam-islands|13|120
 LAST_CENTER:fuchsia-center|3|3
 MONEY:268984
 COINS:50
@@ -999,6 +999,36 @@ saffron-mart-shelf1|0
 saffron-mart-shelf2|0
 saffron-mart-shelf3|0
 saffron-mart-shelf4|0
+seafoam-islands-articuno|0
+seafoam-islands-current1|0
+seafoam-islands-current10|0
+seafoam-islands-current11|0
+seafoam-islands-current12|0
+seafoam-islands-current2|0
+seafoam-islands-current3|0
+seafoam-islands-current4|0
+seafoam-islands-current5|0
+seafoam-islands-current6|0
+seafoam-islands-current7|0
+seafoam-islands-current8|0
+seafoam-islands-current9|0
+seafoam-islands-item1|0
+seafoam-islands-sign1|0
+seafoam-islands-sign2|0
+seafoam-islands-stone1|1
+seafoam-islands-stone10|0
+seafoam-islands-stone11|1
+seafoam-islands-stone12|0
+seafoam-islands-stone13|1
+seafoam-islands-stone14|0
+seafoam-islands-stone2|1
+seafoam-islands-stone3|1
+seafoam-islands-stone4|0
+seafoam-islands-stone5|1
+seafoam-islands-stone6|1
+seafoam-islands-stone7|1
+seafoam-islands-stone8|0
+seafoam-islands-stone9|0
 sign1|0
 silph-co-clipboard1|0
 silph-co-clipboard2|0
@@ -2305,6 +2335,36 @@ saffron-mart-shelf1|1
 saffron-mart-shelf2|1
 saffron-mart-shelf3|1
 saffron-mart-shelf4|1
+seafoam-islands-articuno|0
+seafoam-islands-current1|0
+seafoam-islands-current10|0
+seafoam-islands-current11|0
+seafoam-islands-current12|0
+seafoam-islands-current2|0
+seafoam-islands-current3|0
+seafoam-islands-current4|0
+seafoam-islands-current5|0
+seafoam-islands-current6|0
+seafoam-islands-current7|0
+seafoam-islands-current8|0
+seafoam-islands-current9|0
+seafoam-islands-item1|1
+seafoam-islands-sign1|1
+seafoam-islands-sign2|1
+seafoam-islands-stone1|0
+seafoam-islands-stone10|1
+seafoam-islands-stone11|0
+seafoam-islands-stone12|1
+seafoam-islands-stone13|0
+seafoam-islands-stone14|1
+seafoam-islands-stone2|0
+seafoam-islands-stone3|0
+seafoam-islands-stone4|1
+seafoam-islands-stone5|0
+seafoam-islands-stone6|0
+seafoam-islands-stone7|0
+seafoam-islands-stone8|1
+seafoam-islands-stone9|1
 sign1|1
 silph-co-clipboard1|1
 silph-co-clipboard2|1
@@ -2623,7 +2683,7 @@ viridian-station3-boy|1
 viridian-station3-doctor|1
 END
 INVENTORY:
-POK{e-accent} BALL|7
+POK{e-accent} BALL|2
 ANTIDOTE|1
 ESCAPE ROPE|5
 S.S. TICKET|1
@@ -2773,9 +2833,11 @@ SEEN:
 115-115
 116-116
 117-117
+117-120
 117-135
 117-18
 117-35
+117-99
 118-118
 118-54
 118-58
@@ -2794,8 +2856,10 @@ SEEN:
 12-53
 12-61
 12-92
+120-117
 120-119
 120-120
+120-42
 120-57
 120-73
 120-90
@@ -2822,6 +2886,7 @@ SEEN:
 131-131
 132-110
 133-133
+134-131
 135-135
 14-11
 14-13
@@ -2830,6 +2895,7 @@ SEEN:
 14-48
 14-56
 143-143
+144-144
 15-15
 16-11
 16-13
@@ -2958,6 +3024,7 @@ SEEN:
 41-74
 41-95
 42-105
+42-120
 42-122
 42-20
 42-22
@@ -3010,6 +3077,9 @@ SEEN:
 53-18
 53-53
 54-48
+55-80
+55-87
+55-90
 56-19
 56-21
 56-29
@@ -3135,6 +3205,8 @@ SEEN:
 85-37
 85-51
 85-85
+87-120
+87-55
 87-87
 88-110
 88-20
@@ -3158,9 +3230,11 @@ SEEN:
 9-93
 90-119
 90-120
+90-42
 90-73
 90-74
 90-90
+90-99
 91-24
 91-91
 92-122
@@ -3204,6 +3278,8 @@ SEEN:
 97-67
 97-97
 99-119
+99-80
+99-87
 END
 CAUGHT:
 106-106
@@ -3214,6 +3290,7 @@ CAUGHT:
 131-131
 133-133
 135-135
+144-144
 19-16
 19-17
 20-17
@@ -3246,11 +3323,11 @@ THUNDERBADGE|1
 celadon-hideout-floor|1
 END
 TEAM:
-0|NUMBER:47-47|NICKNAME:|HP:146|EXP:110171|LEVEL:51|EV:7973|9412|8410|8759|9711|IV:14|4|11|6|9|MOVES:SPORE|STUN SPORE|LEECH LIFE|SLASH|PP:7|28|12|14|MAX_PP:15|30|15|20|STATUS:
+0|NUMBER:135-135|NICKNAME:|HP:84|EXP:153659|LEVEL:57|EV:9519|11105|11032|10967|11054|IV:0|13|10|10|14|MOVES:PIN MISSILE|DOUBLE KICK|THUNDER|THUNDERBOLT|PP:20|30|4|0|MAX_PP:20|30|10|15|STATUS:
 1|NUMBER:76-15|NICKNAME:|HP:169|EXP:150460|LEVEL:57|EV:16938|20843|18929|18596|20544|IV:2|15|9|10|11|MOVES:PIN MISSILE|EARTHQUAKE|FURY ATTACK|TWIN NEEDLE|PP:20|10|20|20|MAX_PP:20|10|20|20|STATUS:
-2|NUMBER:6-6|NICKNAME:|HP:166|EXP:132644|LEVEL:54|EV:17961|21420|19963|18865|21449|IV:0|13|10|10|14|MOVES:SLASH|RAGE|FLAMETHROWER|LEER|PP:20|20|15|30|MAX_PP:20|20|15|30|STATUS:
-3|NUMBER:130-130|NICKNAME:|HP:191|EXP:142093|LEVEL:56|EV:19300|17212|18056|14812|15432|IV:0|13|10|10|14|MOVES:HYDROPUMP|BITE|SURF|HYPER BEAM|PP:5|25|15|5|MAX_PP:5|25|15|5|STATUS:
-4|NUMBER:135-135|NICKNAME:|HP:151|EXP:143155|LEVEL:56|EV:8221|9677|9482|9473|9680|IV:0|13|10|10|14|MOVES:PIN MISSILE|DOUBLE KICK|THUNDER|THUNDERBOLT|PP:20|30|10|15|MAX_PP:20|30|10|15|STATUS:
+2|NUMBER:6-6|NICKNAME:|HP:0|EXP:132644|LEVEL:54|EV:17961|21420|19963|18865|21449|IV:0|13|10|10|14|MOVES:SLASH|RAGE|FLAMETHROWER|LEER|PP:17|20|15|30|MAX_PP:20|20|15|30|STATUS:
+3|NUMBER:130-130|NICKNAME:|HP:49|EXP:143807|LEVEL:56|EV:19390|17297|18156|14937|15517|IV:0|13|10|10|14|MOVES:HYDROPUMP|BITE|SURF|HYPER BEAM|PP:5|25|15|5|MAX_PP:5|25|15|5|STATUS:
+4|NUMBER:47-47|NICKNAME:|HP:0|EXP:110171|LEVEL:51|EV:7973|9412|8410|8759|9711|IV:14|4|11|6|9|MOVES:SPORE|STUN SPORE|LEECH LIFE|SLASH|PP:7|28|12|14|MAX_PP:15|30|15|20|STATUS:
 5|NUMBER:130-83|NICKNAME:|HP:22|EXP:100|LEVEL:5|EV:0|0|0|0|0|IV:0|13|10|10|14|MOVES:FLY|STRENGTH|CUT|SURF|PP:15|15|30|15|MAX_PP:15|15|30|15|STATUS:
 END
 STORAGE:
@@ -3260,6 +3337,7 @@ STORAGE:
 0|3|NUMBER:107-107|NICKNAME:|HP:75|EXP:21600|LEVEL:30|EV:0|0|0|0|0|IV:9|3|0|7|4|MOVES:COMET PUNCH|AGILITY|||PP:15|30|||MAX_PP:15|30|||STATUS:
 0|4|NUMBER:131-131|NICKNAME:|HP:64|EXP:2700|LEVEL:15|EV:0|0|0|0|0|IV:2|11|6|9|6|MOVES:WATER GUN|GROWL|||PP:25|40|||MAX_PP:25|40|||STATUS:
 0|5|NUMBER:83-83|NICKNAME:|HP:20|EXP:100|LEVEL:5|EV:0|0|0|0|0|IV:0|13|10|10|14|MOVES:PECK|SAND ATTACK|CUT||PP:35|15|30||MAX_PP:35|15|30||STATUS:
+0|6|NUMBER:144-144|NICKNAME:|HP:11|EXP:100000|LEVEL:50|EV:0|0|0|0|0|IV:0|13|10|10|14|MOVES:PECK|ICE BEAM|||PP:33|5|||MAX_PP:35|10|||STATUS:
 END
 LEVEL:
 bill-house
@@ -4487,6 +4565,38 @@ saffron-mart
 4|0|6|6|0
 5|2|4|2|0
 6|3|0|5|0
+END
+seafoam-islands
+0|0|25|111|0
+1|0|11|125|0
+2|0|27|127|0
+3|0|20|12|0
+4|0|19|35|0
+5|0|20|62|0
+6|0|20|89|0
+7|0|21|89|0
+8|0|21|89|0
+9|0|22|128|0
+10|0|22|128|0
+11|0|17|91|0
+12|0|17|91|0
+13|0|25|93|0
+14|0|25|93|0
+15|0|28|9|0
+16|0|24|35|0
+17|0|25|62|0
+18|0|21|89|0
+19|0|11|97|0
+20|0|7|97|0
+21|0|10|97|0
+22|1|7|125|0
+23|0|5|98|0
+24|1|6|125|0
+25|0|7|125|0
+26|0|7|125|0
+27|0|9|122|0
+28|0|9|122|0
+29|3|8|111|0
 END
 silph-co
 0|0|4|28|0
