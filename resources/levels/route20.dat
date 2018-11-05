@@ -47,11 +47,37 @@ INTERACTIONS
 !:route20-swimmer4|MOVE_TO_PLAYER|MENU:ALERT:I love floading with the fishes!|BATTLE:route20-swimmer4|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Want to float with me?
 END
+route20-sign2 blank 55 15
+INTERACTIONS
+MENU:ALERT:SEAFOAM ISLANDS
+END
+route20-swimmer5 manswim 53 18 RIGHT
+FORCE_INTERACTION
+1 0
+2 0
+3 0
+END
+INTERACTIONS
+!:route20-swimmer5|MOVE_TO_PLAYER|MENU:ALERT:Are you on vacation too?|BATTLE:route20-swimmer5|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Seafoam used to be one island!
+END
+route20-swimmer6 manswim 36 17 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+0 3
+END
+INTERACTIONS
+!:route20-swimmer6|MOVE_TO_PLAYER|MENU:ALERT:Check out my buff physique!|BATTLE:route20-swimmer6|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I should've been buffing up my POK{e-accent}MON, not me!
+END
 TRAINERS
 route20-swimmer1 5 0.35 0.35 SWIMMER swimmer.png {SWIMMER: Splash!}{} 90-90:49|91-91:49
 route20-swimmer2 5 0.35 0.35 SWIMMER swimmer.png {SWIMMER: Ouch! Torpedoed!}{} 117-117:47|117-117:47|117-117:47|117-117:47
 route20-swimmer3 70 0.9 0.9 BEAUTY beauty.png {BEAUTY: Quit it!}{} 117-117:48|117-117:48|117-117:48
 route20-swimmer4 70 0.9 0.9 BEAUTY beauty.png {BEAUTY: Yowch!}{} 119-119:51
+route20-swimmer5 20 0.55 0.55 JR.TRAINER{FEMALE} jrtrainerf.png {JR.TRAINER{FEMALE}: No mercy at all!}{} 73-73:48|117-117:48|87-87:48
+route20-swimmer6 5 0.35 0.35 SWIMMER swimmer.png {SWIMMER: Wimpy!}{} 121-121:51:HYDROPUMP,SWIFT,RECOVER,MINIMIZE
 END
 TELEPORT
 97 6 route19 1 40
