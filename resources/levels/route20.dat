@@ -111,16 +111,16 @@ INTERACTIONS
 MENU:ALERT:CINNABAR is a volcanic island!
 END
 TRAINERS
-route20-swimmer1 5 0.35 0.35 SWIMMER swimmer.png {SWIMMER: Splash!}{} 90-90:49|91-91:49
-route20-swimmer2 5 0.35 0.35 SWIMMER swimmer.png {SWIMMER: Ouch! Torpedoed!}{} 117-117:47|117-117:47|117-117:47|117-117:47
-route20-swimmer3 70 0.9 0.9 BEAUTY beauty.png {BEAUTY: Quit it!}{} 117-117:48|117-117:48|117-117:48
-route20-swimmer4 70 0.9 0.9 BEAUTY beauty.png {BEAUTY: Yowch!}{} 119-119:51
+route20-swimmer1 5 0.35 0.35 SWIMMER swimmer.png {SWIMMER: Splash!}{} 91-91:48:SUPERSONIC,CLAMP,AURORA BEAM,LEER|91-91:50:SUPERSONIC,CLAMP,ICE BEAM,LEER
+route20-swimmer2 5 0.35 0.35 SWIMMER swimmer.png {SWIMMER: Ouch! Torpedoed!}{} 117-28:47|117-18:47|117-114:47|117-117:47
+route20-swimmer3 70 0.9 0.9 BEAUTY beauty.png {BEAUTY: Quit it!}{} 51-117:47|62-62:49:HYDROPUMP,AMNESIA,BODY SLAM,HYPNOSIS|117-65:48
+route20-swimmer4 70 0.9 0.9 BEAUTY beauty.png {BEAUTY: Yowch!}{} 119-119:51:SUPERSONIC,WATERFALL,HORN DRILL,PECK
 route20-swimmer5 20 0.55 0.55 JR.TRAINER{FEMALE} jrtrainerf.png {JR.TRAINER{FEMALE}: No mercy at all!}{} 73-73:48|117-117:48|87-87:48
 route20-swimmer6 5 0.35 0.35 SWIMMER swimmer.png {SWIMMER: Wimpy!}{} 121-121:51:HYDROPUMP,SWIFT,RECOVER,MINIMIZE
 route20-guy1 25 0.6 0.6 BIRD{SPACE}KEEPER birdkeeper.png {BIRD{SPACE}KEEPER: Oh no!}{} 22-22:48|22-22:48|18-18:48
 route20-swimmer7 70 0.9 0.9 BEAUTY beauty.png {BEAUTY: Don't touch my pearls!}{} 90-90:48|90-90:48|90-90:48
 route20-swimmer8 20 0.55 0.55 JR.TRAINER{FEMALE} jrtrainerf.png {JR.TRAINER{FEMALE}: I'm so disappointed!}{} 119-119:49|119-119:49
-route20-swimmer9 70 0.9 0.9 BEAUTY beauty.png {BEAUTY: Wait!}{} 61-61:49|119-119:49
+route20-swimmer9 70 0.9 0.9 BEAUTY beauty.png {BEAUTY: Wait!}{} 117-59:52:FLAMETHROWER,HYDROPUMP,TAKE DOWN,SMOKESCREEN
 END
 TELEPORT
 97 6 route19 1 40
