@@ -90,6 +90,26 @@ INTERACTIONS
 !:route20-swimmer7|MOVE_TO_PLAYER|MENU:ALERT:My boyfriend gave me big pearls!|BATTLE:route20-swimmer7|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Will my pearls will grow bigger inside CLOYSTER?
 END
+route20-swimmer8 manswim 22 16 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+0 3
+END
+INTERACTIONS
+!:route20-swimmer8|MOVE_TO_PLAYER|MENU:ALERT:I swam here from CINNABAR ISLAND!|BATTLE:route20-swimmer8|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:POK{e-accent}MON have taken over an abandoned mansion on CINNABAR!
+END
+route20-swimmer9 manswim 13 12 UP
+FORCE_INTERACTION
+0 -1
+0 -2
+0 -3
+END
+INTERACTIONS
+!:route20-swimmer9|MOVE_TO_PLAYER|MENU:ALERT:CINNABAR, in the west, has a LAB for POK{e-accent}MON.|BATTLE:route20-swimmer9|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:CINNABAR is a volcanic island!
+END
 TRAINERS
 route20-swimmer1 5 0.35 0.35 SWIMMER swimmer.png {SWIMMER: Splash!}{} 90-90:49|91-91:49
 route20-swimmer2 5 0.35 0.35 SWIMMER swimmer.png {SWIMMER: Ouch! Torpedoed!}{} 117-117:47|117-117:47|117-117:47|117-117:47
@@ -99,6 +119,8 @@ route20-swimmer5 20 0.55 0.55 JR.TRAINER{FEMALE} jrtrainerf.png {JR.TRAINER{FEMA
 route20-swimmer6 5 0.35 0.35 SWIMMER swimmer.png {SWIMMER: Wimpy!}{} 121-121:51:HYDROPUMP,SWIFT,RECOVER,MINIMIZE
 route20-guy1 25 0.6 0.6 BIRD{SPACE}KEEPER birdkeeper.png {BIRD{SPACE}KEEPER: Oh no!}{} 22-22:48|22-22:48|18-18:48
 route20-swimmer7 70 0.9 0.9 BEAUTY beauty.png {BEAUTY: Don't touch my pearls!}{} 90-90:48|90-90:48|90-90:48
+route20-swimmer8 20 0.55 0.55 JR.TRAINER{FEMALE} jrtrainerf.png {JR.TRAINER{FEMALE}: I'm so disappointed!}{} 119-119:49|119-119:49
+route20-swimmer9 70 0.9 0.9 BEAUTY beauty.png {BEAUTY: Wait!}{} 61-61:49|119-119:49
 END
 TELEPORT
 97 6 route19 1 40
