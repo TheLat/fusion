@@ -255,6 +255,7 @@ public:
 
 	//Draws the 3D scene
 	void drawScene() {
+		std::vector<quad> draw_list_copy;
 		m.lock();
 		if (new_load) {
 			new_load = false;
@@ -268,17 +269,18 @@ public:
 					draw_list[i].tex = tex[draw_list[i].filename];
 			}
 		}
+		draw_list_copy = draw_list;
+		m.unlock();
 		//Clear information from last draw
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glMatrixMode(GL_MODELVIEW); //Switch to the drawing perspective
 		glLoadIdentity(); //Reset the drawing perspective
 		glColor3f(1.0f, 1.0f, 1.0f);
-		for (unsigned i = 0; i < draw_list.size(); i++) {
-			draw_quad(draw_list[i]);
+		for (unsigned i = 0; i < draw_list_copy.size(); i++) {
+			draw_quad(draw_list_copy[i]);
 		}
 		glutSwapBuffers(); //Send the 3D scene to the screen
 		glutPostRedisplay();
-		m.unlock();
 	}
 	int next_chunk(string& s, int index) {
 		unsigned ret = index + 1;
