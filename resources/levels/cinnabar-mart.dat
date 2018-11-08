@@ -1,0 +1,44 @@
+NAME
+Cinnabar Island Mart
+NPCS
+cinnabar-mart-shelf1 blank 4 4
+INTERACTIONS
+MENU:ALERT:Wow! Tons of POK{e-accent}MON stuff!
+END
+cinnabar-mart-shelf2 blank 5 4
+INTERACTIONS
+MENU:ALERT:Wow! Tons of POK{e-accent}MON stuff!
+END
+cinnabar-mart-shelf3 blank 6 4
+INTERACTIONS
+MENU:ALERT:Wow! Tons of POK{e-accent}MON stuff!
+END
+cinnabar-mart-shelf4 blank 7 4
+INTERACTIONS
+MENU:ALERT:Wow! Tons of POK{e-accent}MON stuff!
+END
+cinnabar-mart-girl girl4 6 2 WANDER
+INTERACTIONS
+MENU:ALERT:Don't they have X ATTACK? It's good for battles!|MENU:ALERT:Not only does it increase your POK{e-accent}MON's attack, but it clears any effects that lower your POK{e-accent}MON's attack!
+END
+cinnabar-mart-doctor doctor 3 4
+INTERACTIONS
+MENU:ALERT:It never hurts to have extra items!
+END
+cinnabar-mart-clerk clerk2 0 5 RIGHT FARSPEAK
+INTERACTIONS
+SHOP:ULTRA BALL,GREAT BALL,HYPER POTION,MAX REPEL,ESCAPE ROPE,FULL HEAL,REVIVE
+END
+TELEPORT
+3 8 cinnabar-island 20 16
+4 8 cinnabar-island 20 16
+DATA
+118 118 119 119 119 119 118 118
+120 120 121 121 121 121 120 120
+122 123 123 123 123 123 123 123
+124 125 123 123 124 125 124 125
+128 129 122 123 126 127 126 127
+122 130 122 123 123 123 123 123
+131 132 122 123 123 123 123 123
+122 123 123 133 133 123 123 123
+82   82  82 166 166
