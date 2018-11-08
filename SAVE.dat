@@ -1,12 +1,12 @@
 WARNING: Editing this file can easily corrupt game state.
 NAME:RED
 RIVAL_NAME:BLUE
-MOVEMENT:seal
-DIRECTION:2
+MOVEMENT:player
+DIRECTION:3
 WINS:0
 LOSSES:0
-LOCATION:route20|2|8
-LAST_CENTER:fuchsia-center|3|3
+LOCATION:cinnabar-island|14|16
+LAST_CENTER:cinnabar-center|3|3
 MONEY:279404
 COINS:50
 REPEL:0
@@ -278,6 +278,24 @@ cerulean-mart-shelf1|0
 cerulean-mart-shelf2|0
 cerulean-mart-shelf3|0
 cerulean-mart-shelf4|0
+cinnabar-center-cableclub|0
+cinnabar-center-couch|0
+cinnabar-center-girl|0
+cinnabar-center-hat|0
+cinnabar-center-joy|0
+cinnabar-center-joy-desk|0
+cinnabar-center-pc|0
+cinnabar-island-man1|0
+cinnabar-island-sign1|0
+cinnabar-island-sign2|0
+cinnabar-island-woman1|0
+cinnabar-mart-clerk|0
+cinnabar-mart-doctor|0
+cinnabar-mart-girl|0
+cinnabar-mart-shelf1|0
+cinnabar-mart-shelf2|0
+cinnabar-mart-shelf3|0
+cinnabar-mart-shelf4|0
 daycare-bookshelf1|0
 daycare-bookshelf2|0
 daycare-bookshelf3|0
@@ -1621,6 +1639,24 @@ cerulean-mart-shelf1|1
 cerulean-mart-shelf2|1
 cerulean-mart-shelf3|1
 cerulean-mart-shelf4|1
+cinnabar-center-cableclub|1
+cinnabar-center-couch|1
+cinnabar-center-girl|1
+cinnabar-center-hat|1
+cinnabar-center-joy|1
+cinnabar-center-joy-desk|1
+cinnabar-center-pc|1
+cinnabar-island-man1|1
+cinnabar-island-sign1|1
+cinnabar-island-sign2|1
+cinnabar-island-woman1|1
+cinnabar-mart-clerk|1
+cinnabar-mart-doctor|1
+cinnabar-mart-girl|1
+cinnabar-mart-shelf1|1
+cinnabar-mart-shelf2|1
+cinnabar-mart-shelf3|1
+cinnabar-mart-shelf4|1
 daycare-bookshelf1|1
 daycare-bookshelf2|1
 daycare-bookshelf3|1
@@ -3349,11 +3385,11 @@ THUNDERBADGE|1
 celadon-hideout-floor|1
 END
 TEAM:
-0|NUMBER:130-130|NICKNAME:|HP:28|EXP:149060|LEVEL:57|EV:19846|17858|18719|15513|15999|IV:0|13|10|10|14|MOVES:HYDROPUMP|BITE|SURF|HYPER BEAM|PP:4|12|15|4|MAX_PP:5|25|15|5|STATUS:
-1|NUMBER:76-15|NICKNAME:|HP:55|EXP:153539|LEVEL:57|EV:17205|21241|19478|18960|20875|IV:2|15|9|10|11|MOVES:PIN MISSILE|EARTHQUAKE|FURY ATTACK|TWIN NEEDLE|PP:20|4|19|20|MAX_PP:20|10|20|20|STATUS:
+0|NUMBER:130-130|NICKNAME:|HP:195|EXP:149060|LEVEL:57|EV:19846|17858|18719|15513|15999|IV:0|13|10|10|14|MOVES:HYDROPUMP|BITE|SURF|HYPER BEAM|PP:5|25|15|5|MAX_PP:5|25|15|5|STATUS:
+1|NUMBER:76-15|NICKNAME:|HP:169|EXP:153539|LEVEL:57|EV:17205|21241|19478|18960|20875|IV:2|15|9|10|11|MOVES:PIN MISSILE|EARTHQUAKE|FURY ATTACK|TWIN NEEDLE|PP:20|10|20|20|MAX_PP:20|10|20|20|STATUS:
 2|NUMBER:6-6|NICKNAME:|HP:166|EXP:132644|LEVEL:54|EV:17961|21420|19963|18865|21449|IV:0|13|10|10|14|MOVES:SLASH|RAGE|FLAMETHROWER|LEER|PP:20|20|15|30|MAX_PP:20|20|15|30|STATUS:
-3|NUMBER:135-135|NICKNAME:|HP:0|EXP:167372|LEVEL:59|EV:11030|12734|12778|12832|12695|IV:0|13|10|10|14|MOVES:PIN MISSILE|DOUBLE KICK|THUNDER|THUNDERBOLT|PP:20|30|3|1|MAX_PP:20|30|10|15|STATUS:
-4|NUMBER:47-47|NICKNAME:|HP:45|EXP:114669|LEVEL:52|EV:8555|10072|9138|9657|10629|IV:14|4|11|6|9|MOVES:SPORE|STUN SPORE|LEECH LIFE|SLASH|PP:0|16|0|0|MAX_PP:15|30|15|20|STATUS:
+3|NUMBER:135-135|NICKNAME:|HP:161|EXP:167372|LEVEL:59|EV:11030|12734|12778|12832|12695|IV:0|13|10|10|14|MOVES:PIN MISSILE|DOUBLE KICK|THUNDER|THUNDERBOLT|PP:20|30|10|15|MAX_PP:20|30|10|15|STATUS:
+4|NUMBER:47-47|NICKNAME:|HP:150|EXP:114669|LEVEL:52|EV:8555|10072|9138|9657|10629|IV:14|4|11|6|9|MOVES:SPORE|STUN SPORE|LEECH LIFE|SLASH|PP:15|30|15|20|MAX_PP:15|30|15|20|STATUS:
 5|NUMBER:130-83|NICKNAME:|HP:22|EXP:100|LEVEL:5|EV:0|0|0|0|0|IV:0|13|10|10|14|MOVES:FLY|STRENGTH|CUT|SURF|PP:15|15|30|15|MAX_PP:15|15|30|15|STATUS:
 END
 STORAGE:
@@ -3660,6 +3696,31 @@ cerulean-mart
 6|3|0|5|0
 7|3|1|5|0
 8|0|0|6|0
+END
+cinnabar-center
+0|3|0|4|0
+1|0|3|1|0
+2|0|3|2|0
+3|3|2|6|0
+4|1|10|5|0
+5|0|11|2|0
+6|0|13|3|0
+END
+cinnabar-island
+0|0|18|7|0
+1|0|14|9|0
+2|0|14|15|0
+3|0|19|10|0
+4|0|17|9|0
+END
+cinnabar-mart
+0|0|4|4|0
+1|0|5|4|0
+2|0|6|4|0
+3|0|7|4|0
+4|2|6|2|0
+5|2|3|4|0
+6|3|0|5|0
 END
 daycare
 0|0|0|1|0
