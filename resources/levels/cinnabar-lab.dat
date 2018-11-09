@@ -1,0 +1,34 @@
+NAME
+Pok{e-accent}mon Lab
+NPCS
+cinnabar-lab-safari1 safari 1 1
+INTERACTIONS
+MENU:ALERT:We study POK{e-accent}MON extensively here.|MENU:ALERT:People often bring us rare POK{e-accent}MON for examination.
+END
+cinnabar-lab-sign1 blank 3 0
+INTERACTIONS
+MENU:ALERT:A photo of the LAB's founder, DR.FUJI!
+END
+cinnabar-lab-sign2 blank 9 2
+INTERACTIONS
+MENU:ALERT:POK{e-accent}MON LAB Meeting Room
+END
+cinnabar-lab-sign3 blank 13 2
+INTERACTIONS
+MENU:ALERT:POK{e-accent}MON LAB R-and-D Room
+END
+cinnabar-lab-sign4 blank 17 2
+INTERACTIONS
+MENU:ALERT:POK{e-accent}MON LAB Testing Room
+END
+TELEPORT
+2 6 cinnabar-island 11 14
+3 6 cinnabar-island 11 14
+DATA
+30  729 729 730 729  30
+29  182 182 182 182  29
+182 182 182 182 182 182 731 729 732 733 729 729 732 733 729 729 732 733
+182 182 182 182 182 182 182 182 182 182 182 182 182 182 182 182 182 182
+182 182 182 182 182 182 182 182 182 182 182 182 182 182 182 182 182 182
+182 182 667 667 182 182 182 182 182 182 182 182 182 182 182 182 182 182
+82   82 166 166
