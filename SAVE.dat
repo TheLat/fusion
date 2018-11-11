@@ -2,10 +2,10 @@ WARNING: Editing this file can easily corrupt game state.
 NAME:RED
 RIVAL_NAME:BLUE
 MOVEMENT:player
-DIRECTION:3
+DIRECTION:2
 WINS:0
 LOSSES:0
-LOCATION:cinnabar-island|14|16
+LOCATION:cinnabar-island|11|8
 LAST_CENTER:cinnabar-center|3|3
 MONEY:279404
 COINS:50
@@ -289,6 +289,20 @@ cinnabar-island-man1|0
 cinnabar-island-sign1|0
 cinnabar-island-sign2|0
 cinnabar-island-woman1|0
+cinnabar-lab-doctor1|0
+cinnabar-lab-doctor2|0
+cinnabar-lab-doctor3|0
+cinnabar-lab-doctor4|0
+cinnabar-lab-man1|0
+cinnabar-lab-oldman1|0
+cinnabar-lab-pc1|0
+cinnabar-lab-pc2|0
+cinnabar-lab-safari1|0
+cinnabar-lab-sign1|0
+cinnabar-lab-sign2|0
+cinnabar-lab-sign3|0
+cinnabar-lab-sign4|0
+cinnabar-lab-woman1|0
 cinnabar-mart-clerk|0
 cinnabar-mart-doctor|0
 cinnabar-mart-girl|0
@@ -1650,6 +1664,20 @@ cinnabar-island-man1|1
 cinnabar-island-sign1|1
 cinnabar-island-sign2|1
 cinnabar-island-woman1|1
+cinnabar-lab-doctor1|1
+cinnabar-lab-doctor2|1
+cinnabar-lab-doctor3|1
+cinnabar-lab-doctor4|1
+cinnabar-lab-man1|1
+cinnabar-lab-oldman1|1
+cinnabar-lab-pc1|1
+cinnabar-lab-pc2|1
+cinnabar-lab-safari1|1
+cinnabar-lab-sign1|1
+cinnabar-lab-sign2|1
+cinnabar-lab-sign3|1
+cinnabar-lab-sign4|1
+cinnabar-lab-woman1|1
 cinnabar-mart-clerk|1
 cinnabar-mart-doctor|1
 cinnabar-mart-girl|1
@@ -2747,8 +2775,6 @@ TM34|1
 TM12|1
 TM01|1
 MOON STONE|3
-DOME FOSSIL|1
-HELIX FOSSIL|1
 TM45|1
 TM19|1
 TM11|1
@@ -2764,7 +2790,6 @@ TM13|1
 TM49|1
 NUGGET|5
 X SPECIAL|1
-OLD AMBER|1
 PP UP|2
 FIRE STONE|1
 TM07|1
@@ -2943,12 +2968,15 @@ SEEN:
 133-133
 134-131
 135-135
+138-138
 14-11
 14-13
 14-14
 14-27
 14-48
 14-56
+140-140
+142-142
 143-143
 144-144
 15-15
@@ -3352,6 +3380,9 @@ CAUGHT:
 131-131
 133-133
 135-135
+138-138
+140-140
+142-142
 144-144
 19-16
 19-17
@@ -3400,6 +3431,9 @@ STORAGE:
 0|4|NUMBER:131-131|NICKNAME:|HP:64|EXP:2700|LEVEL:15|EV:0|0|0|0|0|IV:2|11|6|9|6|MOVES:WATER GUN|GROWL|||PP:25|40|||MAX_PP:25|40|||STATUS:
 0|5|NUMBER:83-83|NICKNAME:|HP:20|EXP:100|LEVEL:5|EV:0|0|0|0|0|IV:0|13|10|10|14|MOVES:PECK|SAND ATTACK|CUT||PP:35|15|30||MAX_PP:35|15|30||STATUS:
 0|6|NUMBER:144-144|NICKNAME:|HP:11|EXP:100000|LEVEL:50|EV:0|0|0|0|0|IV:0|13|10|10|14|MOVES:PECK|ICE BEAM|||PP:33|5|||MAX_PP:35|10|||STATUS:
+0|7|NUMBER:138-138|NICKNAME:|HP:61|EXP:21600|LEVEL:30|EV:0|0|0|0|0|IV:0|13|10|10|14|MOVES:WATER GUN|WITHDRAW|||PP:25|40|||MAX_PP:25|40|||STATUS:
+0|8|NUMBER:140-140|NICKNAME:|HP:63|EXP:21600|LEVEL:30|EV:0|0|0|0|0|IV:9|2|14|11|7|MOVES:SCRATCH|HARDEN|||PP:35|30|||MAX_PP:35|30|||STATUS:
+0|9|NUMBER:142-142|NICKNAME:|HP:93|EXP:21600|LEVEL:30|EV:0|0|0|0|0|IV:9|13|5|10|15|MOVES:WING ATTACK|AGILITY|||PP:25|30|||MAX_PP:25|30|||STATUS:
 END
 LEVEL:
 bill-house
@@ -3698,11 +3732,11 @@ cerulean-mart
 8|0|0|6|0
 END
 cinnabar-center
-0|3|0|4|0
+0|0|0|4|0
 1|0|3|1|0
 2|0|3|2|0
-3|3|2|6|0
-4|1|10|5|0
+3|0|2|6|0
+4|0|10|5|0
 5|0|11|2|0
 6|0|13|3|0
 END
@@ -3712,6 +3746,22 @@ cinnabar-island
 2|0|14|15|0
 3|0|19|10|0
 4|0|17|9|0
+END
+cinnabar-lab
+0|0|1|1|0
+1|0|3|0|0
+2|0|9|2|0
+3|0|13|2|0
+4|0|17|2|0
+5|0|5|45|0
+6|0|0|47|0
+7|0|2|47|0
+8|1|7|49|0
+9|0|7|30|0
+10|0|3|31|0
+11|0|3|15|0
+12|1|5|18|0
+13|0|1|17|0
 END
 cinnabar-mart
 0|0|4|4|0
