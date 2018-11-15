@@ -1,12 +1,47 @@
 NAME
 Pok{e-accent}mon Mansion
 NPCS
-lavender-tower-4-item1 orb 12 14
+cinnabar-mansion-item1 orb 14 3
 INTERACTIONS
-GIVE_ITEM:X ACCURACY|DEACTIVATE:lavender-tower-4-item1
+GIVE_ITEM:ESCAPE ROPE|DEACTIVATE:cinnabar-mansion-item1
+END
+cinnabar-mansion-man1 man2 3 51 WANDER
+INTERACTIONS
+MENU:ALERT:I can't get out! This old place is one big puzzle!|BATTLE:cinnabar-mansion-man1|{NO_ADVANCE}{}
+MENU:ALERT:Switches open and close alternating sets of doors!
+END
+cinnabar-mansion-item2 orb 28 41
+INTERACTIONS
+GIVE_ITEM:CALCIUM|DEACTIVATE:cinnabar-mansion-item2
+END
+cinnabar-mansion-book1 book 18 36
+INTERACTIONS
+MENU:ALERT:Diary: July 5 {NEWLINE} Guyana, {NEWLINE} South America|MENU:ALERT:A new POK{e-accent}MON was discovered deep in the jungle.
+END
+cinnabar-mansion-book2 book 3 56
+INTERACTIONS
+MENU:ALERT:Diary: July 10 {NEWLINE} We christened the newly discovered POK{e-accent}MON, MEW.
+END
+cinnabar-mansion-book3 book 6 79
+INTERACTIONS
+MENU:ALERT:Diary: Feb. 6 {NEWLINE} MEW gave birth.|MENU:ALERT:We named the newborn MEWTWO.
+END
+cinnabar-mansion-man2 man2 5 78 WANDER
+INTERACTIONS
+MENU:ALERT:This place is like, huge!|BATTLE:cinnabar-mansion-man2|{NO_ADVANCE}{}
+MENU:ALERT:I wonder where my partner went.
+END
+cinnabar-mansion-item3 orb 1 83
+INTERACTIONS
+GIVE_ITEM:MAX POTION|DEACTIVATE:cinnabar-mansion-item3
+END
+cinnabar-mansion-item4 orb 25 72
+INTERACTIONS
+GIVE_ITEM:IRON|DEACTIVATE:cinnabar-mansion-item4
 END
 TRAINERS
-lavender-tower-4-woman1 30 0.45 0.45 CHANNELER channeler.png {CHANNELER: Groan!}{} 75-93:33|93-28:33|93-95:33
+cinnabar-mansion-man1 90 0.90 0.90 BURGLAR burglar.png {BURGLAR: Oh no! My bag of loot!}{} 4-4:34|5-5:34
+cinnabar-mansion-man2 90 0.90 0.90 BURGLAR burglar.png {BURGLAR: Ayah!}{} 38-38:38
 END
 TELEPORT
 4 28 cinnabar-island 11 8
