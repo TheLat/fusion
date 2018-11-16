@@ -39,9 +39,75 @@ cinnabar-mansion-item4 orb 25 72
 INTERACTIONS
 GIVE_ITEM:IRON|DEACTIVATE:cinnabar-mansion-item4
 END
+cinnabar-mansion-doctor1 doctor 20 78 LEFT
+FORCE_INTERACTION
+-1 0
+-2 0
+END
+INTERACTIONS
+!:cinnabar-mansion-doctor1|MOVE_TO_PLAYER|MENU:ALERT:My mentor once lived here.|BATTLE:cinnabar-mansion-doctor1|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:So, you're stuck? Try jumping off over there!
+END
+cinnabar-mansion-doctor2 doctor 17 17 LEFT
+FORCE_INTERACTION
+-1 0
+-2 0
+-3 0
+END
+INTERACTIONS
+!:cinnabar-mansion-doctor2|MOVE_TO_PLAYER|MENU:ALERT:Who are you? There shouldn't be anyone here.|BATTLE:cinnabar-mansion-doctor2|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:There's a lot of valuable research here.|MENU:ALERT:I didn't think anyone knew about that.
+END
+cinnabar-mansion-item5 orb 18 21
+INTERACTIONS
+GIVE_ITEM:CARBOS|DEACTIVATE:cinnabar-mansion-item5
+END
+cinnabar-mansion-item6 orb 1 112
+INTERACTIONS
+GIVE_ITEM:FULL RESTORE|DEACTIVATE:cinnabar-mansion-item6
+END
+cinnabar-mansion-book4 book 16 110
+INTERACTIONS
+MENU:ALERT:Diary: Sept. 1 {NEWLINE} MEWTWO is far too powerful.|MENU:ALERT:We have failed to curb its vicious tendencies...
+END
+cinnabar-mansion-item7 orb 19 115
+INTERACTIONS
+GIVE_ITEM:TM14|DEACTIVATE:cinnabar-mansion-item7
+END
+cinnabar-mansion-man3 man2 16 113 WANDER
+INTERACTIONS
+MENU:ALERT:Uh-oh. Where am I now?|BATTLE:cinnabar-mansion-man3|{NO_ADVANCE}{}
+MENU:ALERT:You can find stuff lying around.
+END
+cinnabar-mansion-doctor3 doctor 27 101 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+0 3
+END
+INTERACTIONS
+!:cinnabar-mansion-doctor3|MOVE_TO_PLAYER|MENU:ALERT:This place is ideal for a lab.|BATTLE:cinnabar-mansion-doctor3|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I like it here! It's conducive to my studies!
+END
+cinnabar-mansion-item8 orb 10 92
+INTERACTIONS
+GIVE_ITEM:RARE CANDY|DEACTIVATE:cinnabar-mansion-item8
+END
+cinnabar-mansion-item9 orb 5 94
+INTERACTIONS
+GIVE_ITEM:TM22|DEACTIVATE:cinnabar-mansion-item9
+END
+cinnabar-mansion-item10 orb 5 103
+INTERACTIONS
+GIVE_ITEM:MAX POTION|GIVE_ITEM:FULL RESTORE|GIVE_ITEM:MAX ETHER|GIVE_ITEM:NUGGET|GIVE_ITEM:ELIXER|GIVE_ITEM:MAX ELIXER|GIVE_ITEM:RARE CANDY|GIVE_ITEM:MAX REVIVE|DEACTIVATE:cinnabar-mansion-item10
+END
 TRAINERS
-cinnabar-mansion-man1 90 0.90 0.90 BURGLAR burglar.png {BURGLAR: Oh no! My bag of loot!}{} 4-4:34|5-5:34
-cinnabar-mansion-man2 90 0.90 0.90 BURGLAR burglar.png {BURGLAR: Ayah!}{} 38-38:38
+cinnabar-mansion-man1 90 0.95 0.95 BURGLAR burglar.png {BURGLAR: Oh no! My bag of loot!}{} 4-4:34|5-5:34
+cinnabar-mansion-man2 90 0.95 0.95 BURGLAR burglar.png {BURGLAR: Ayah!}{} 38-38:38
+cinnabar-mansion-doctor1 50 0.95 0.75 SCIENTIST scientist.png {SCIENTIST: Whew! Overwhelming!}{} 81-81:33|82-82:33|100-100:33
+cinnabar-mansion-doctor2 50 0.95 0.75 SCIENTIST scientist.png {SCIENTIST: Ouch!}{} 101-101:33|110-110:33
+cinnabar-mansion-man3 90 0.95 0.95 BURGLAR burglar.png {BURGLAR: Awooh!}{} 58-58:34|77-77:34
+cinnabar-mansion-doctor3 50 0.95 0.75 SCIENTIST scientist.png {SCIENTIST: What was that for?}{} 81-81:33|101-101:33
 END
 TELEPORT
 4 28 cinnabar-island 11 8
