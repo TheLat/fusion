@@ -101,6 +101,10 @@ cinnabar-mansion-item10 orb 5 103
 INTERACTIONS
 GIVE_ITEM:MAX POTION|GIVE_ITEM:FULL RESTORE|GIVE_ITEM:MAX ETHER|GIVE_ITEM:NUGGET|GIVE_ITEM:ELIXER|GIVE_ITEM:MAX ELIXER|GIVE_ITEM:RARE CANDY|GIVE_ITEM:MAX REVIVE|DEACTIVATE:cinnabar-mansion-item10
 END
+cinnabar-mansion-book5 book 4 94
+INTERACTIONS
+MENU:ALERT:Diary: Oct. 12 {NEWLINE} I have received a letter from TEAM ROCKET telling me that I must bring MEWTWO to them, as payment for funding my research.|MENU:ALERT:My colleagues have warned me about TEAM ROCKET's work with genetic manipulation.|MENU:ALERT:I am sure they intend to turn MEWTWO into the ultimate weapon.|MENU:ALERT:I can't let this happen.|MENU:ALERT:I, DR. FUJI, will have to disappear and destroy this place.|MENU:ALERT:I'll worry about where I land when this is done.
+END
 TRAINERS
 cinnabar-mansion-man1 90 0.95 0.95 BURGLAR burglar.png {BURGLAR: Oh no! My bag of loot!}{} 6-28:57:SLASH,EARTHQUAKE,RAGE,FIRE SPIN|71-59:57:FLAMETHROWER,RAZOR LEAF,TAKE DOWN,STUN SPORE
 cinnabar-mansion-man2 90 0.95 0.95 BURGLAR burglar.png {BURGLAR: Ayah!}{} 38-38:59:FIRE SPIN,FLAMETHROWER,CONFUSE RAY,DIG
