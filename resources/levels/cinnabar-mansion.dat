@@ -105,6 +105,130 @@ cinnabar-mansion-book5 book 4 94
 INTERACTIONS
 MENU:ALERT:Diary: Oct. 12 {NEWLINE} I have received a letter from TEAM ROCKET telling me that I must bring MEWTWO to them, as payment for funding my research.|MENU:ALERT:My colleagues have warned me about TEAM ROCKET's work with genetic manipulation.|MENU:ALERT:I am sure they intend to turn MEWTWO into the ultimate weapon.|MENU:ALERT:I can't let this happen.|MENU:ALERT:I, DR. FUJI, will have to disappear and destroy this place.|MENU:ALERT:I'll worry about where I land when this is done.
 END
+cinnabar-mansion-door-odd1 door 26 27 NO_OFFSET
+INTERACTIONS
+
+END
+cinnabar-mansion-door-odd2 door 27 27 NO_OFFSET
+INTERACTIONS
+
+END
+cinnabar-mansion-door-odd3 door 20 17 NO_OFFSET
+INTERACTIONS
+
+END
+cinnabar-mansion-door-odd4 door 21 17 NO_OFFSET
+INTERACTIONS
+
+END
+cinnabar-mansion-door-odd5 door 16 7 NO_OFFSET
+INTERACTIONS
+
+END
+cinnabar-mansion-door-odd6 door 17 7 NO_OFFSET
+INTERACTIONS
+
+END
+cinnabar-mansion-door-odd7 door 18 42 NO_OFFSET
+INTERACTIONS
+
+END
+cinnabar-mansion-door-odd8 door 19 42 NO_OFFSET
+INTERACTIONS
+
+END
+cinnabar-mansion-door-odd9 door2 15 77 NO_OFFSET
+INTERACTIONS
+
+END
+cinnabar-mansion-door-odd10 door2 15 78 NO_OFFSET
+INTERACTIONS
+
+END
+cinnabar-mansion-door-odd11 door 16 106 NO_OFFSET
+INTERACTIONS
+
+END
+cinnabar-mansion-door-odd12 door 17 106 NO_OFFSET
+INTERACTIONS
+
+END
+cinnabar-mansion-door-odd13 door2 9 96 NO_OFFSET
+INTERACTIONS
+
+END
+cinnabar-mansion-door-odd14 door2 9 97 NO_OFFSET
+INTERACTIONS
+
+END
+cinnabar-mansion-door-odd15 door2 7 56 NO_OFFSET
+INTERACTIONS
+
+END
+cinnabar-mansion-door-odd16 door2 7 57 NO_OFFSET
+INTERACTIONS
+
+END
+cinnabar-mansion-door-even1 door2 13 112 NO_OFFSET INACTIVE
+INTERACTIONS
+
+END
+cinnabar-mansion-door-even2 door2 13 113 NO_OFFSET INACTIVE
+INTERACTIONS
+
+END
+cinnabar-mansion-door-even3 door 26 107 NO_OFFSET INACTIVE
+INTERACTIONS
+
+END
+cinnabar-mansion-door-even4 door 27 107 NO_OFFSET INACTIVE
+INTERACTIONS
+
+END
+cinnabar-mansion-door-even5 door 24 13 NO_OFFSET INACTIVE
+INTERACTIONS
+
+END
+cinnabar-mansion-door-even6 door 25 13 NO_OFFSET INACTIVE
+INTERACTIONS
+
+END
+cinnabar-mansion-door-even7 door2 9 38 NO_OFFSET INACTIVE
+INTERACTIONS
+
+END
+cinnabar-mansion-door-even8 door2 9 39 NO_OFFSET INACTIVE
+INTERACTIONS
+
+END
+cinnabar-mansion-door-even9 door2 15 71 NO_OFFSET INACTIVE
+INTERACTIONS
+
+END
+cinnabar-mansion-door-even10 door2 15 72 NO_OFFSET INACTIVE
+INTERACTIONS
+
+END
+cinnabar-mansion-statue1 blank 2 5
+INTERACTIONS
+MENU:ALERT:A secret switch!|MENU:ALERT_YES_NO:Press it?|{MENU:ALERT:Who wouldn't?|GET:CINNABAR-SWITCH|{SET:CINNABAR-SWITCH:1|DEACTIVATE:cinnabar-mansion-door-odd1|DEACTIVATE:cinnabar-mansion-door-odd2|DEACTIVATE:cinnabar-mansion-door-odd3|DEACTIVATE:cinnabar-mansion-door-odd4|DEACTIVATE:cinnabar-mansion-door-odd5|DEACTIVATE:cinnabar-mansion-door-odd6|DEACTIVATE:cinnabar-mansion-door-odd7|DEACTIVATE:cinnabar-mansion-door-odd8|DEACTIVATE:cinnabar-mansion-door-odd9|DEACTIVATE:cinnabar-mansion-door-odd10|DEACTIVATE:cinnabar-mansion-door-odd11|DEACTIVATE:cinnabar-mansion-door-odd12|DEACTIVATE:cinnabar-mansion-door-odd13|DEACTIVATE:cinnabar-mansion-door-odd14|DEACTIVATE:cinnabar-mansion-door-odd15|DEACTIVATE:cinnabar-mansion-door-odd16|ACTIVATE:cinnabar-mansion-door-even1|ACTIVATE:cinnabar-mansion-door-even2|ACTIVATE:cinnabar-mansion-door-even3|ACTIVATE:cinnabar-mansion-door-even4|ACTIVATE:cinnabar-mansion-door-even5|ACTIVATE:cinnabar-mansion-door-even6|ACTIVATE:cinnabar-mansion-door-even7|ACTIVATE:cinnabar-mansion-door-even8|ACTIVATE:cinnabar-mansion-door-even9|ACTIVATE:cinnabar-mansion-door-even10}{SET:CINNABAR-SWITCH:0|ACTIVATE:cinnabar-mansion-door-odd1|ACTIVATE:cinnabar-mansion-door-odd2|ACTIVATE:cinnabar-mansion-door-odd3|ACTIVATE:cinnabar-mansion-door-odd4|ACTIVATE:cinnabar-mansion-door-odd5|ACTIVATE:cinnabar-mansion-door-odd6|ACTIVATE:cinnabar-mansion-door-odd7|ACTIVATE:cinnabar-mansion-door-odd8|ACTIVATE:cinnabar-mansion-door-odd9|ACTIVATE:cinnabar-mansion-door-odd10|ACTIVATE:cinnabar-mansion-door-odd11|ACTIVATE:cinnabar-mansion-door-odd12|ACTIVATE:cinnabar-mansion-door-odd13|ACTIVATE:cinnabar-mansion-door-odd14|ACTIVATE:cinnabar-mansion-door-odd15|ACTIVATE:cinnabar-mansion-door-odd16|DEACTIVATE:cinnabar-mansion-door-even1|DEACTIVATE:cinnabar-mansion-door-even2|DEACTIVATE:cinnabar-mansion-door-even3|DEACTIVATE:cinnabar-mansion-door-even4|DEACTIVATE:cinnabar-mansion-door-even5|DEACTIVATE:cinnabar-mansion-door-even6|DEACTIVATE:cinnabar-mansion-door-even7|DEACTIVATE:cinnabar-mansion-door-even8|DEACTIVATE:cinnabar-mansion-door-even9|DEACTIVATE:cinnabar-mansion-door-even10}}{MENU:ALERT:Not quite yet!}
+END
+cinnabar-mansion-statue2 blank 2 45
+INTERACTIONS
+MENU:ALERT:A secret switch!|MENU:ALERT_YES_NO:Press it?|{MENU:ALERT:Who wouldn't?|GET:CINNABAR-SWITCH|{SET:CINNABAR-SWITCH:1|DEACTIVATE:cinnabar-mansion-door-odd1|DEACTIVATE:cinnabar-mansion-door-odd2|DEACTIVATE:cinnabar-mansion-door-odd3|DEACTIVATE:cinnabar-mansion-door-odd4|DEACTIVATE:cinnabar-mansion-door-odd5|DEACTIVATE:cinnabar-mansion-door-odd6|DEACTIVATE:cinnabar-mansion-door-odd7|DEACTIVATE:cinnabar-mansion-door-odd8|DEACTIVATE:cinnabar-mansion-door-odd9|DEACTIVATE:cinnabar-mansion-door-odd10|DEACTIVATE:cinnabar-mansion-door-odd11|DEACTIVATE:cinnabar-mansion-door-odd12|DEACTIVATE:cinnabar-mansion-door-odd13|DEACTIVATE:cinnabar-mansion-door-odd14|DEACTIVATE:cinnabar-mansion-door-odd15|DEACTIVATE:cinnabar-mansion-door-odd16|ACTIVATE:cinnabar-mansion-door-even1|ACTIVATE:cinnabar-mansion-door-even2|ACTIVATE:cinnabar-mansion-door-even3|ACTIVATE:cinnabar-mansion-door-even4|ACTIVATE:cinnabar-mansion-door-even5|ACTIVATE:cinnabar-mansion-door-even6|ACTIVATE:cinnabar-mansion-door-even7|ACTIVATE:cinnabar-mansion-door-even8|ACTIVATE:cinnabar-mansion-door-even9|ACTIVATE:cinnabar-mansion-door-even10}{SET:CINNABAR-SWITCH:0|ACTIVATE:cinnabar-mansion-door-odd1|ACTIVATE:cinnabar-mansion-door-odd2|ACTIVATE:cinnabar-mansion-door-odd3|ACTIVATE:cinnabar-mansion-door-odd4|ACTIVATE:cinnabar-mansion-door-odd5|ACTIVATE:cinnabar-mansion-door-odd6|ACTIVATE:cinnabar-mansion-door-odd7|ACTIVATE:cinnabar-mansion-door-odd8|ACTIVATE:cinnabar-mansion-door-odd9|ACTIVATE:cinnabar-mansion-door-odd10|ACTIVATE:cinnabar-mansion-door-odd11|ACTIVATE:cinnabar-mansion-door-odd12|ACTIVATE:cinnabar-mansion-door-odd13|ACTIVATE:cinnabar-mansion-door-odd14|ACTIVATE:cinnabar-mansion-door-odd15|ACTIVATE:cinnabar-mansion-door-odd16|DEACTIVATE:cinnabar-mansion-door-even1|DEACTIVATE:cinnabar-mansion-door-even2|DEACTIVATE:cinnabar-mansion-door-even3|DEACTIVATE:cinnabar-mansion-door-even4|DEACTIVATE:cinnabar-mansion-door-even5|DEACTIVATE:cinnabar-mansion-door-even6|DEACTIVATE:cinnabar-mansion-door-even7|DEACTIVATE:cinnabar-mansion-door-even8|DEACTIVATE:cinnabar-mansion-door-even9|DEACTIVATE:cinnabar-mansion-door-even10}}{MENU:ALERT:Not quite yet!}
+END
+cinnabar-mansion-statue3 blank 10 72
+INTERACTIONS
+MENU:ALERT:A secret switch!|MENU:ALERT_YES_NO:Press it?|{MENU:ALERT:Who wouldn't?|GET:CINNABAR-SWITCH|{SET:CINNABAR-SWITCH:1|DEACTIVATE:cinnabar-mansion-door-odd1|DEACTIVATE:cinnabar-mansion-door-odd2|DEACTIVATE:cinnabar-mansion-door-odd3|DEACTIVATE:cinnabar-mansion-door-odd4|DEACTIVATE:cinnabar-mansion-door-odd5|DEACTIVATE:cinnabar-mansion-door-odd6|DEACTIVATE:cinnabar-mansion-door-odd7|DEACTIVATE:cinnabar-mansion-door-odd8|DEACTIVATE:cinnabar-mansion-door-odd9|DEACTIVATE:cinnabar-mansion-door-odd10|DEACTIVATE:cinnabar-mansion-door-odd11|DEACTIVATE:cinnabar-mansion-door-odd12|DEACTIVATE:cinnabar-mansion-door-odd13|DEACTIVATE:cinnabar-mansion-door-odd14|DEACTIVATE:cinnabar-mansion-door-odd15|DEACTIVATE:cinnabar-mansion-door-odd16|ACTIVATE:cinnabar-mansion-door-even1|ACTIVATE:cinnabar-mansion-door-even2|ACTIVATE:cinnabar-mansion-door-even3|ACTIVATE:cinnabar-mansion-door-even4|ACTIVATE:cinnabar-mansion-door-even5|ACTIVATE:cinnabar-mansion-door-even6|ACTIVATE:cinnabar-mansion-door-even7|ACTIVATE:cinnabar-mansion-door-even8|ACTIVATE:cinnabar-mansion-door-even9|ACTIVATE:cinnabar-mansion-door-even10}{SET:CINNABAR-SWITCH:0|ACTIVATE:cinnabar-mansion-door-odd1|ACTIVATE:cinnabar-mansion-door-odd2|ACTIVATE:cinnabar-mansion-door-odd3|ACTIVATE:cinnabar-mansion-door-odd4|ACTIVATE:cinnabar-mansion-door-odd5|ACTIVATE:cinnabar-mansion-door-odd6|ACTIVATE:cinnabar-mansion-door-odd7|ACTIVATE:cinnabar-mansion-door-odd8|ACTIVATE:cinnabar-mansion-door-odd9|ACTIVATE:cinnabar-mansion-door-odd10|ACTIVATE:cinnabar-mansion-door-odd11|ACTIVATE:cinnabar-mansion-door-odd12|ACTIVATE:cinnabar-mansion-door-odd13|ACTIVATE:cinnabar-mansion-door-odd14|ACTIVATE:cinnabar-mansion-door-odd15|ACTIVATE:cinnabar-mansion-door-odd16|DEACTIVATE:cinnabar-mansion-door-even1|DEACTIVATE:cinnabar-mansion-door-even2|DEACTIVATE:cinnabar-mansion-door-even3|DEACTIVATE:cinnabar-mansion-door-even4|DEACTIVATE:cinnabar-mansion-door-even5|DEACTIVATE:cinnabar-mansion-door-even6|DEACTIVATE:cinnabar-mansion-door-even7|DEACTIVATE:cinnabar-mansion-door-even8|DEACTIVATE:cinnabar-mansion-door-even9|DEACTIVATE:cinnabar-mansion-door-even10}}{MENU:ALERT:Not quite yet!}
+END
+cinnabar-mansion-statue4 blank 18 115
+INTERACTIONS
+MENU:ALERT:A secret switch!|MENU:ALERT_YES_NO:Press it?|{MENU:ALERT:Who wouldn't?|GET:CINNABAR-SWITCH|{SET:CINNABAR-SWITCH:1|DEACTIVATE:cinnabar-mansion-door-odd1|DEACTIVATE:cinnabar-mansion-door-odd2|DEACTIVATE:cinnabar-mansion-door-odd3|DEACTIVATE:cinnabar-mansion-door-odd4|DEACTIVATE:cinnabar-mansion-door-odd5|DEACTIVATE:cinnabar-mansion-door-odd6|DEACTIVATE:cinnabar-mansion-door-odd7|DEACTIVATE:cinnabar-mansion-door-odd8|DEACTIVATE:cinnabar-mansion-door-odd9|DEACTIVATE:cinnabar-mansion-door-odd10|DEACTIVATE:cinnabar-mansion-door-odd11|DEACTIVATE:cinnabar-mansion-door-odd12|DEACTIVATE:cinnabar-mansion-door-odd13|DEACTIVATE:cinnabar-mansion-door-odd14|DEACTIVATE:cinnabar-mansion-door-odd15|DEACTIVATE:cinnabar-mansion-door-odd16|ACTIVATE:cinnabar-mansion-door-even1|ACTIVATE:cinnabar-mansion-door-even2|ACTIVATE:cinnabar-mansion-door-even3|ACTIVATE:cinnabar-mansion-door-even4|ACTIVATE:cinnabar-mansion-door-even5|ACTIVATE:cinnabar-mansion-door-even6|ACTIVATE:cinnabar-mansion-door-even7|ACTIVATE:cinnabar-mansion-door-even8|ACTIVATE:cinnabar-mansion-door-even9|ACTIVATE:cinnabar-mansion-door-even10}{SET:CINNABAR-SWITCH:0|ACTIVATE:cinnabar-mansion-door-odd1|ACTIVATE:cinnabar-mansion-door-odd2|ACTIVATE:cinnabar-mansion-door-odd3|ACTIVATE:cinnabar-mansion-door-odd4|ACTIVATE:cinnabar-mansion-door-odd5|ACTIVATE:cinnabar-mansion-door-odd6|ACTIVATE:cinnabar-mansion-door-odd7|ACTIVATE:cinnabar-mansion-door-odd8|ACTIVATE:cinnabar-mansion-door-odd9|ACTIVATE:cinnabar-mansion-door-odd10|ACTIVATE:cinnabar-mansion-door-odd11|ACTIVATE:cinnabar-mansion-door-odd12|ACTIVATE:cinnabar-mansion-door-odd13|ACTIVATE:cinnabar-mansion-door-odd14|ACTIVATE:cinnabar-mansion-door-odd15|ACTIVATE:cinnabar-mansion-door-odd16|DEACTIVATE:cinnabar-mansion-door-even1|DEACTIVATE:cinnabar-mansion-door-even2|DEACTIVATE:cinnabar-mansion-door-even3|DEACTIVATE:cinnabar-mansion-door-even4|DEACTIVATE:cinnabar-mansion-door-even5|DEACTIVATE:cinnabar-mansion-door-even6|DEACTIVATE:cinnabar-mansion-door-even7|DEACTIVATE:cinnabar-mansion-door-even8|DEACTIVATE:cinnabar-mansion-door-even9|DEACTIVATE:cinnabar-mansion-door-even10}}{MENU:ALERT:Not quite yet!}
+END
+cinnabar-mansion-statue5 blank 20 93
+INTERACTIONS
+MENU:ALERT:A secret switch!|MENU:ALERT_YES_NO:Press it?|{MENU:ALERT:Who wouldn't?|GET:CINNABAR-SWITCH|{SET:CINNABAR-SWITCH:1|DEACTIVATE:cinnabar-mansion-door-odd1|DEACTIVATE:cinnabar-mansion-door-odd2|DEACTIVATE:cinnabar-mansion-door-odd3|DEACTIVATE:cinnabar-mansion-door-odd4|DEACTIVATE:cinnabar-mansion-door-odd5|DEACTIVATE:cinnabar-mansion-door-odd6|DEACTIVATE:cinnabar-mansion-door-odd7|DEACTIVATE:cinnabar-mansion-door-odd8|DEACTIVATE:cinnabar-mansion-door-odd9|DEACTIVATE:cinnabar-mansion-door-odd10|DEACTIVATE:cinnabar-mansion-door-odd11|DEACTIVATE:cinnabar-mansion-door-odd12|DEACTIVATE:cinnabar-mansion-door-odd13|DEACTIVATE:cinnabar-mansion-door-odd14|DEACTIVATE:cinnabar-mansion-door-odd15|DEACTIVATE:cinnabar-mansion-door-odd16|ACTIVATE:cinnabar-mansion-door-even1|ACTIVATE:cinnabar-mansion-door-even2|ACTIVATE:cinnabar-mansion-door-even3|ACTIVATE:cinnabar-mansion-door-even4|ACTIVATE:cinnabar-mansion-door-even5|ACTIVATE:cinnabar-mansion-door-even6|ACTIVATE:cinnabar-mansion-door-even7|ACTIVATE:cinnabar-mansion-door-even8|ACTIVATE:cinnabar-mansion-door-even9|ACTIVATE:cinnabar-mansion-door-even10}{SET:CINNABAR-SWITCH:0|ACTIVATE:cinnabar-mansion-door-odd1|ACTIVATE:cinnabar-mansion-door-odd2|ACTIVATE:cinnabar-mansion-door-odd3|ACTIVATE:cinnabar-mansion-door-odd4|ACTIVATE:cinnabar-mansion-door-odd5|ACTIVATE:cinnabar-mansion-door-odd6|ACTIVATE:cinnabar-mansion-door-odd7|ACTIVATE:cinnabar-mansion-door-odd8|ACTIVATE:cinnabar-mansion-door-odd9|ACTIVATE:cinnabar-mansion-door-odd10|ACTIVATE:cinnabar-mansion-door-odd11|ACTIVATE:cinnabar-mansion-door-odd12|ACTIVATE:cinnabar-mansion-door-odd13|ACTIVATE:cinnabar-mansion-door-odd14|ACTIVATE:cinnabar-mansion-door-odd15|ACTIVATE:cinnabar-mansion-door-odd16|DEACTIVATE:cinnabar-mansion-door-even1|DEACTIVATE:cinnabar-mansion-door-even2|DEACTIVATE:cinnabar-mansion-door-even3|DEACTIVATE:cinnabar-mansion-door-even4|DEACTIVATE:cinnabar-mansion-door-even5|DEACTIVATE:cinnabar-mansion-door-even6|DEACTIVATE:cinnabar-mansion-door-even7|DEACTIVATE:cinnabar-mansion-door-even8|DEACTIVATE:cinnabar-mansion-door-even9|DEACTIVATE:cinnabar-mansion-door-even10}}{MENU:ALERT:Not quite yet!}
+END
 TRAINERS
 cinnabar-mansion-man1 90 0.95 0.95 BURGLAR burglar.png {BURGLAR: Oh no! My bag of loot!}{} 6-28:57:SLASH,EARTHQUAKE,RAGE,FIRE SPIN|71-59:57:FLAMETHROWER,RAZOR LEAF,TAKE DOWN,STUN SPORE
 cinnabar-mansion-man2 90 0.95 0.95 BURGLAR burglar.png {BURGLAR: Ayah!}{} 38-38:59:FIRE SPIN,FLAMETHROWER,CONFUSE RAY,DIG
