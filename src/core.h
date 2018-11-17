@@ -19,9 +19,17 @@ extern mutex m;
 mutex transition;
 
 extern bool is_menu(string s);
+bool player_up = false;
+bool player_down = false;
+bool player_left = false;
+bool player_right = false;
+bool player_select = false;
+bool player_start = false;
+bool player_confirm = false;
+bool player_cancel = false;
 
-enum STAT{
-	HP=0,
+enum STAT {
+	HP = 0,
 	ATTACK,
 	DEFENSE,
 	SPECIAL,
@@ -71,7 +79,7 @@ public:
 	vector<string> special;
 	bool defined;
 	bool queue_only;
-	power(){ acc = 100; attack = ATTACK; defense = DEFENSE; crit_chance = 1.0f; pow = "0"; pp = 0; defined = false; queue_only = false; }
+	power() { acc = 100; attack = ATTACK; defense = DEFENSE; crit_chance = 1.0f; pow = "0"; pp = 0; defined = false; queue_only = false; }
 };
 
 class mon_template {
@@ -171,7 +179,7 @@ public:
 	std::map<string, bool> seen;
 	std::map<string, bool> caught;
 	std::map<string, bool> used_tms;
-	player() { wins = 0; losses = 0; money = 0; name = "RED"; rivalname = "BLUE"; repel = 0; selected = 0; enemy_selected = 0; box_number = 0; movement = string("player");}
+	player() { wins = 0; losses = 0; money = 0; name = "RED"; rivalname = "BLUE"; repel = 0; selected = 0; enemy_selected = 0; box_number = 0; movement = string("player"); }
 };
 
 class status_effect {
@@ -194,7 +202,7 @@ public:
 	vector<location> force_interactions;
 	location loc, origin;
 	bool wander, incorporeal, no_force, nolook, far, no_offset, pushable, teleportable;
-	character() { wander = false; dir = DOWN; incorporeal = false; no_force = false; nolook = false; far = false; no_offset = false; pushable = false; teleportable = false;}
+	character() { wander = false; dir = DOWN; incorporeal = false; no_force = false; nolook = false; far = false; no_offset = false; pushable = false; teleportable = false; }
 };
 
 class trainer {
@@ -278,7 +286,7 @@ string get_direction_string(direction dir) {
 
 class engine {
 public: // TODO:  Change back to private
-	// format is always types[ATTACKER][DEFENDER]
+		// format is always types[ATTACKER][DEFENDER]
 	std::map<string, std::map<string, float>> types;
 	std::map<string, bool> special_case;
 	std::vector<int> level_to_exp;
@@ -446,19 +454,19 @@ public:
 					out = string(" ") + out;
 				return out;
 			}
-			else if (parse == "TEAM_MON_NAME"){
+			else if (parse == "TEAM_MON_NAME") {
 				int index = stoi(temp);
 				if (!mc.team[index].defined)
 					return string("");
 				return get_nickname(mc.team[index]);
 			}
-			else if (parse == "STORAGE_MON_NAME"){
+			else if (parse == "STORAGE_MON_NAME") {
 				int index = stoi(temp);
 				if (!mc.storage[mc.box_number][index].defined)
 					return string("");
 				return get_nickname(mc.storage[mc.box_number][index]);
 			}
-			else if (parse == "STORAGE_MON_LEVEL"){
+			else if (parse == "STORAGE_MON_LEVEL") {
 				int index = stoi(temp);
 				if (!mc.storage[mc.box_number][index].defined)
 					return string("");
@@ -466,7 +474,7 @@ public:
 					return string("{LEVEL}**");
 				return string("{LEVEL}") + to_string(mc.storage[mc.box_number][index].level);
 			}
-			else if (parse == "TEAM_MON_LEVEL"){
+			else if (parse == "TEAM_MON_LEVEL") {
 				int index = stoi(temp);
 				if (!mc.team[index].defined)
 					return string("");
@@ -474,7 +482,7 @@ public:
 					return string("{LEVEL}**");
 				return string("{LEVEL}") + to_string(mc.team[index].level);
 			}
-			else if (parse == "TEAM_MON_CAN_LEARN"){
+			else if (parse == "TEAM_MON_CAN_LEARN") {
 				string temp2 = temp;
 				temp2.erase(temp2.find(":"), temp2.size());
 				temp.erase(0, temp.find(":") + 1);
@@ -496,7 +504,7 @@ public:
 				else
 					return string("ERROR");
 			}
-			else if (parse == "TEAM_MON_CAN_EVOLVE"){
+			else if (parse == "TEAM_MON_CAN_EVOLVE") {
 				string temp2 = temp;
 				temp2.erase(temp2.find(":"), temp2.size());
 				temp.erase(0, temp.find(":") + 1);
@@ -516,7 +524,7 @@ public:
 					return string("");
 				return string("ALERT:It didn't seem to have any effect.");
 			}
-			else if (parse == "TEAM_MON_CAN_LEARN_FOLLOW_UP"){
+			else if (parse == "TEAM_MON_CAN_LEARN_FOLLOW_UP") {
 				string temp2 = temp;
 				temp2.erase(temp2.find(":"), temp2.size());
 				temp.erase(0, temp.find(":") + 1);
@@ -538,37 +546,37 @@ public:
 				else
 					return string("");
 			}
-			else if (parse == "TEAM_MON_MAX_HP"){
+			else if (parse == "TEAM_MON_MAX_HP") {
 				int index = stoi(temp);
 				if (!mc.team[index].defined)
 					return string("");
 				return to_string(get_stat(mc.team[index], HP));
 			}
-			else if (parse == "TEAM_MON_NUMBER"){
+			else if (parse == "TEAM_MON_NUMBER") {
 				int index = stoi(temp);
 				if (!mc.team[index].defined)
 					return string("");
 				return string("{NO}.") + mc.team[index].number;
 			}
-			else if (parse == "STORAGE_MON_NUMBER"){
+			else if (parse == "STORAGE_MON_NUMBER") {
 				int index = stoi(temp);
 				if (!mc.storage[mc.box_number][index].defined)
 					return string("");
 				return string("{NO}.") + mc.storage[mc.box_number][index].number;
 			}
-			else if (parse == "TEAM_MON_IMAGE"){
+			else if (parse == "TEAM_MON_IMAGE") {
 				int index = stoi(temp);
 				if (!mc.team[index].defined)
 					return string("");
 				return mc.team[index].number + string(".png");
 			}
-			else if (parse == "STORAGE_MON_IMAGE"){
+			else if (parse == "STORAGE_MON_IMAGE") {
 				int index = stoi(temp);
 				if (!mc.storage[mc.box_number][index].defined)
 					return string("");
 				return mc.storage[mc.box_number][index].number + string(".png");
 			}
-			else if (parse == "TEAM_MON_CURRENT_HP"){
+			else if (parse == "TEAM_MON_CURRENT_HP") {
 				int index = stoi(temp);
 				if (!mc.team[index].defined)
 					return string("");
@@ -592,7 +600,7 @@ public:
 					o = string(" ") + o;
 				return o;
 			}
-			else if (parse == "TEAM_MON_ATTACK"){
+			else if (parse == "TEAM_MON_ATTACK") {
 				int index = stoi(temp);
 				if (!mc.team[index].defined)
 					return string("");
@@ -601,7 +609,7 @@ public:
 					o = string(" ") + o;
 				return o;
 			}
-			else if (parse == "STORAGE_MON_ATTACK"){
+			else if (parse == "STORAGE_MON_ATTACK") {
 				int index = stoi(temp);
 				if (!mc.storage[mc.box_number][index].defined)
 					return string("");
@@ -610,17 +618,17 @@ public:
 					o = string(" ") + o;
 				return o;
 			}
-			else if (parse == "MON_TEMPLATE_NAME"){
+			else if (parse == "MON_TEMPLATE_NAME") {
 				if (!all_mon[temp].defined)
 					return string("");
 				return all_mon[temp].name;
 			}
-			else if (parse == "MON_ENTRY"){
+			else if (parse == "MON_ENTRY") {
 				if (!all_mon[temp].defined)
 					return string("");
 				return all_mon[temp].dex;
 			}
-			else if (parse == "MON_WEIGHT"){
+			else if (parse == "MON_WEIGHT") {
 				if (!all_mon[temp].defined)
 					return string("");
 				string o = to_string(all_mon[temp].weight);
@@ -634,7 +642,7 @@ public:
 				}
 				return out + string("lb");
 			}
-			else if (parse == "MON_HEIGHT"){
+			else if (parse == "MON_HEIGHT") {
 				if (!all_mon[temp].defined)
 					return string("");
 				int index = all_mon[temp].height;
@@ -644,7 +652,7 @@ public:
 				o = o + to_string(index % 12) + string("{INCHES}");
 				return o;
 			}
-			else if (parse == "TEAM_MON_DEFENSE"){
+			else if (parse == "TEAM_MON_DEFENSE") {
 				int index = stoi(temp);
 				if (!mc.team[index].defined)
 					return string("");
@@ -653,7 +661,7 @@ public:
 					o = string(" ") + o;
 				return o;
 			}
-			else if (parse == "STORAGE_MON_DEFENSE"){
+			else if (parse == "STORAGE_MON_DEFENSE") {
 				int index = stoi(temp);
 				if (!mc.storage[mc.box_number][index].defined)
 					return string("");
@@ -662,7 +670,7 @@ public:
 					o = string(" ") + o;
 				return o;
 			}
-			else if (parse == "TEAM_MON_SPEED"){
+			else if (parse == "TEAM_MON_SPEED") {
 				int index = stoi(temp);
 				if (!mc.team[index].defined)
 					return string("");
@@ -671,7 +679,7 @@ public:
 					o = string(" ") + o;
 				return o;
 			}
-			else if (parse == "STORAGE_MON_SPEED"){
+			else if (parse == "STORAGE_MON_SPEED") {
 				int index = stoi(temp);
 				if (!mc.storage[mc.box_number][index].defined)
 					return string("");
@@ -680,7 +688,7 @@ public:
 					o = string(" ") + o;
 				return o;
 			}
-			else if (parse == "TEAM_MON_SPECIAL"){
+			else if (parse == "TEAM_MON_SPECIAL") {
 				int index = stoi(temp);
 				if (!mc.team[index].defined)
 					return string("");
@@ -689,7 +697,7 @@ public:
 					o = string(" ") + o;
 				return o;
 			}
-			else if (parse == "STORAGE_MON_SPECIAL"){
+			else if (parse == "STORAGE_MON_SPECIAL") {
 				int index = stoi(temp);
 				if (!mc.storage[mc.box_number][index].defined)
 					return string("");
@@ -1225,7 +1233,7 @@ public:
 		}
 		return true;
 	}
-	bool do_effect(mon& m, string effect, int extra=-1) {
+	bool do_effect(mon& m, string effect, int extra = -1) {
 		if (effect.find("|") != -1)
 			effect.erase(effect.find("|"), effect.size());
 		if (effect.find("SELF") == 0) {
@@ -1493,7 +1501,7 @@ public:
 		}
 		return true;
 	}
-	bool gain_item(string s, int count=1, bool silent=false) {
+	bool gain_item(string s, int count = 1, bool silent = false) {
 		bool found = false;
 		if (!items[s].defined) {
 			do_menu(string("ALERT"), string("Game attempted to give bad item: ") + s + string(" to player."));
@@ -1646,7 +1654,7 @@ public:
 		}
 		out.status.clear();
 	}
-	void gain_exp(mon& winner, mon& loser, int num_fighters, double scale=1.0) {
+	void gain_exp(mon& winner, mon& loser, int num_fighters, double scale = 1.0) {
 		if (winner.original) {
 			gain_exp(*winner.original, loser, num_fighters);
 			return;
@@ -1684,7 +1692,7 @@ public:
 			counter++;
 		return counter;
 	}
-	bool level_up(mon& out, bool confirm_learn=false) {
+	bool level_up(mon& out, bool confirm_learn = false) {
 		bool evolved = false;
 		if (level_to_exp[out.level + 1] > out.exp)
 			return false;
@@ -1790,7 +1798,7 @@ public:
 		}
 		return false;
 	}
-	bool create_move(mon& m, string move, int index, bool overrule=false) {
+	bool create_move(mon& m, string move, int index, bool overrule = false) {
 		if (!moves[move].defined) {
 			m.moves[index] = "";
 			return false;
@@ -1823,7 +1831,7 @@ public:
 		// min range is inclusive, max is exclusive.
 		double delta = max - min;
 		double t = double(rand() % 10000) / double(10000.0);
-		return min + t*delta;
+		return min + t * delta;
 	}
 	void heal_damage(mon& m, int heal_amount) {
 		if (heal_amount < 0) {
@@ -1901,7 +1909,7 @@ public:
 		}
 		return success;
 	}
-	bool apply_status(mon& m, string s, bool skip_chance=false, bool silent=false) {
+	bool apply_status(mon& m, string s, bool skip_chance = false, bool silent = false) {
 		string s2, s3;
 		int repeat = 1;
 		if (s.find("x2") != -1) {
@@ -2171,7 +2179,7 @@ public:
 					miss = true;
 				}
 				else {
-					attacker.last_damage = min(attacker.last_hit_physical*2, defender.curr_hp);
+					attacker.last_damage = min(attacker.last_hit_physical * 2, defender.curr_hp);
 					deal_damage(defender, attacker.last_damage);
 				}
 			}
@@ -2643,7 +2651,7 @@ public:
 		chance = chance / 256.0;
 		double low = damage(attacker, defender, move, crit, mul, non_zero, true, false, true);
 		double high = damage(attacker, defender, move, crit, mul, non_zero, false, true, true);
-		double pow = low + chance* (high - low);
+		double pow = low + chance * (high - low);
 		pow = pow * 0.85;
 		for (unsigned i = 0; i < moves[move].target.size(); ++i) {
 			if (moves[move].target[i] == "KO") {
@@ -2690,8 +2698,8 @@ public:
 				scale *= 1.5;
 			if (in_status(defender, string("CONFUSE")))
 				scale *= 1.5;
-			for (int i = 1; i <= turn_count*2; ++i) {
-				toxic_damage += scale*double(get_stat(defender, HP)*(future + defender.turn_count + i)) / 16.0;
+			for (int i = 1; i <= turn_count * 2; ++i) {
+				toxic_damage += scale * double(get_stat(defender, HP)*(future + defender.turn_count + i)) / 16.0;
 			}
 			toxic_damage /= 2.0;
 			pow += toxic_damage;
@@ -2722,7 +2730,7 @@ public:
 		chance = chance / 256.0;
 		double low = damage(attacker, defender, move, crit, mul, non_zero, true, false, true);
 		double high = damage(attacker, defender, move, crit, mul, non_zero, false, true, true);
-		double pow = low + chance* (high - low);
+		double pow = low + chance * (high - low);
 		pow = pow * 0.85;
 		if (moves[move].pow.find(string("x2-5")) != -1) {
 			if (!in_status(defender, string("RAGE")))
@@ -3446,7 +3454,7 @@ public:
 				mc.team[mc.selected].queue.push_back(string("RAGE2"));
 			if (in_status(mc.enemy_team[mc.enemy_selected], string("RAGE")) && mc.enemy_team[mc.enemy_selected].queue.size() == 0)
 				mc.enemy_team[mc.enemy_selected].queue.push_back(string("RAGE2"));
-			if (mc.team[mc.selected].queue.size() == 0) { 
+			if (mc.team[mc.selected].queue.size() == 0) {
 				bool any_valid_moves;
 				any_valid_moves = false;
 				for (unsigned i = 0; i < 4; ++i) {
@@ -3995,7 +4003,7 @@ public:
 		}
 		return all_mon[m.number].type_2;
 	}
-	int get_stat(mon& m, STAT s, bool ignore_buffs=false, bool ignore_debuffs=false) {
+	int get_stat(mon& m, STAT s, bool ignore_buffs = false, bool ignore_debuffs = false) {
 		int ret;
 		if (s == HP) {
 			ret = all_mon[m.number].stats[s] + m.IV[s];
@@ -4157,7 +4165,7 @@ public:
 					if (s.find("WANDER") != -1) {
 						levels[levelname].characters[levels[levelname].characters.size() - 1].wander = true;
 					}
- 					else {
+					else {
 						levels[levelname].characters[levels[levelname].characters.size() - 1].wander = false;
 					}
 					if (s.find("PUSHABLE") != -1) {
@@ -4284,7 +4292,7 @@ public:
 							count--;
 						++i;
 					}
-					s2.erase(i-1, s2.length());
+					s2.erase(i - 1, s2.length());
 					s2.erase(0, 1);
 					d.win_message = s2;
 					s.erase(0, i);
@@ -4811,7 +4819,7 @@ public:
 			}
 		}
 	}
-	void init_status(){
+	void init_status() {
 		string line, key;
 		ifstream f("../resources/data/status.dat");
 		char a = f.get();
@@ -4936,7 +4944,7 @@ public:
 			f.close();
 		}
 	}
-	void init_special(){
+	void init_special() {
 		string line;
 		ifstream f("../resources/data/special.dat");
 		while (f.is_open()) {
@@ -4946,11 +4954,11 @@ public:
 			f.close();
 		}
 	}
-	void init_types(){
+	void init_types() {
 		string line;
 		ifstream f("../resources/data/types.dat", ios::binary);
 		char a = 1;
-		while (f.is_open()){
+		while (f.is_open()) {
 			while (a && a != EOF) {
 				a = f.get();
 				if (a != ':')
@@ -4968,7 +4976,7 @@ public:
 		}
 
 		for (type_iter it1 = types.begin(); it1 != types.end(); it1++) {
-			for (type_iter it2 = types.begin(); it2 != types.end(); it2++){
+			for (type_iter it2 = types.begin(); it2 != types.end(); it2++) {
 				types[it1->first][it2->first] = 1.0f;
 			}
 		}
@@ -4976,7 +4984,7 @@ public:
 		ifstream f2("../resources/data/types.dat", ios::binary);
 		a = 1;
 		string attack, defense, mul;
-		while (f2.is_open()){
+		while (f2.is_open()) {
 			while (a && a != EOF) {
 				a = f2.get();
 				if (a == '\r')
@@ -4992,7 +5000,7 @@ public:
 					while (true) {
 						defense = "";
 						mul = "";
-						while (a != 'x'){
+						while (a != 'x') {
 							defense = defense + a;
 							a = f2.get();
 						}
@@ -5062,110 +5070,120 @@ public:
 	}
 	void input(bool up, bool down, bool left, bool right, bool select, bool start, bool confirm, bool cancel) {
 		if (menus.size() == 0) {
-			// TODO:  Animations
-			location l = mc.loc;
-			ahead = l;
-			ahead2 = l;
-			if (left) {
-				l.x -= 1.0;
-				mc.dir = LEFT;
-			}
-			if (right) {
-				l.x += 1.0;
-				mc.dir = RIGHT;
-			}
-			if (up) {
-				l.y -= 1.0;
-				mc.dir = UP;
-			}
-			if (down) {
-				l.y += 1.0;
-				mc.dir = DOWN;
-			}
-			switch (mc.dir) {
-			case UP:
-				ahead.y -= 1.0;
-				ahead2.y -= 2.0;
-				break;
-			case DOWN:
-				ahead.y += 1.0;
-				ahead2.y += 2.0;
-				break;
-			case LEFT:
-				ahead.x -= 1.0;
-				ahead2.x -= 2.0;
-				break;
-			case RIGHT:
-				ahead.x += 1.0;
-				ahead2.x += 2.0;
-				break;
-			}
-			if (l.y == -1.0)
+			player_up = up;
+			player_down = down;
+			player_left = left;
+			player_right = right;
+			player_select = select;
+			player_start = start;
+			player_confirm = confirm;
+			player_cancel = cancel;
+		}
+		else {
+			menus[menus.size() - 1]->input(up, down, left, right, select, start, confirm, cancel);
+		}
+	}
+	void player_input(bool up, bool down, bool left, bool right, bool select, bool start, bool confirm, bool cancel) {
+		// TODO:  Animations
+		location l = mc.loc;
+		ahead = l;
+		ahead2 = l;
+		if (left) {
+			l.x -= 1.0;
+			mc.dir = LEFT;
+		}
+		if (right) {
+			l.x += 1.0;
+			mc.dir = RIGHT;
+		}
+		if (up) {
+			l.y -= 1.0;
+			mc.dir = UP;
+		}
+		if (down) {
+			l.y += 1.0;
+			mc.dir = DOWN;
+		}
+		switch (mc.dir) {
+		case UP:
+			ahead.y -= 1.0;
+			ahead2.y -= 2.0;
+			break;
+		case DOWN:
+			ahead.y += 1.0;
+			ahead2.y += 2.0;
+			break;
+		case LEFT:
+			ahead.x -= 1.0;
+			ahead2.x -= 2.0;
+			break;
+		case RIGHT:
+			ahead.x += 1.0;
+			ahead2.x += 2.0;
+			break;
+		}
+		if (l.y == -1.0)
+			return;
+		if (l.y >= levels[mc.loc.level].data.size())
+			return;
+		if (l.x == -1.0)
+			return;
+		if (l.x >= levels[mc.loc.level].data[int(l.y)].size())
+			return;
+		if (blocking[get_tile(l.y, l.x)]) {
+			if (down && jumpdown[get_tile(l.y, l.x)]) {}
+			else if (right && jumpright[get_tile(l.y, l.x)]) {}
+			else if (left && jumpleft[get_tile(l.y, l.x)]) {}
+			else
 				return;
-			if (l.y >= levels[mc.loc.level].data.size())
-				return;
-			if (l.x == -1.0)
-				return;
-			if (l.x >= levels[mc.loc.level].data[int(l.y)].size())
-				return;
-			if (blocking[get_tile(l.y, l.x)]) {
-				if (down && jumpdown[get_tile(l.y, l.x)]) {}
-				else if (right && jumpright[get_tile(l.y, l.x)]) {}
-				else if (left && jumpleft[get_tile(l.y, l.x)]) {}
-				else
-					return;
+		}
+		if (water[get_tile(l.y, l.x)] && !has_move_in_party(string("SURF"))) {
+			return;
+		}
+		if (water[get_tile(l.y, l.x)] && has_move_in_party(string("SURF"))) {
+			if (!water[get_tile(mc.loc.y, mc.loc.x)]) {
+				mc.movement = string("seal");
 			}
-			if (water[get_tile(l.y, l.x)] && !has_move_in_party(string("SURF"))) {
-				return;
-			}
-			if (water[get_tile(l.y, l.x)] && has_move_in_party(string("SURF"))) {
-				if (!water[get_tile(mc.loc.y, mc.loc.x)]) {
-					mc.movement = string("seal");
-				}
-			}
-			if (mc.movement == string("seal") && !water[get_tile(l.y, l.x)]) {
-				mc.movement = string("player");
-			}
-			if (down && jumpdown[get_tile(l.y, l.x)])
-				l.y += 1.0;
-			if (right && jumpright[get_tile(l.y, l.x)])
-				l.x += 1.0;
-			if (left && jumpleft[get_tile(l.y, l.x)])
-				l.x -= 1.0;
-			for (unsigned i = 0; i < levels[mc.loc.level].characters.size(); ++i) {
-				if (!mc.active[levels[mc.loc.level].characters[i].name])
-					continue;
-				if (levels[mc.loc.level].characters[i].incorporeal)
-					continue;
-				if (l.x == levels[mc.loc.level].characters[i].loc.x && l.y == levels[mc.loc.level].characters[i].loc.y) {
-					if (levels[mc.loc.level].characters[i].pushable && has_move_in_party(string("STRENGTH"))) {
-						if (ahead2.x >= 0.0 && ahead2.y >= 0.0 && int(ahead2.y) < levels[mc.loc.level].data.size() && int(ahead2.x) < levels[mc.loc.level].data[int(ahead2.y)].size() && !blocking[get_tile(ahead2.y, ahead2.x)] && !npc_blocking[get_tile(ahead2.y, ahead2.x)]) {
-							bool npc_in_way = false;
-							for (unsigned j = 0; j < levels[mc.loc.level].characters.size(); ++j) {
-								if (ahead2.x == levels[mc.loc.level].characters[j].loc.x && ahead2.y == levels[mc.loc.level].characters[j].loc.y) {
-									npc_in_way = true;
-									break;
-								}
-							}
-							if (npc_in_way) {
-								return;
-							}
-							else {
-								levels[mc.loc.level].characters[i].loc.x = ahead2.x;
-								levels[mc.loc.level].characters[i].loc.y = ahead2.y;
-								if (levels[mc.loc.level].characters[i].teleportable) {
-									for (unsigned j = 0; j < levels[mc.loc.level].teleport.size(); ++j) {
-										if (levels[mc.loc.level].characters[i].loc.x == levels[mc.loc.level].teleport[j].first.x && levels[mc.loc.level].characters[i].loc.y == levels[mc.loc.level].teleport[j].first.y) {
-											mc.interaction[levels[mc.loc.level].characters[i].name] = levels[mc.loc.level].characters[i].interactions.size() - 1;
-											do_interaction(levels[mc.loc.level].characters[i]);
-											break;
-										}
-									}
-								}
-								return;
+		}
+		if (mc.movement == string("seal") && !water[get_tile(l.y, l.x)]) {
+			mc.movement = string("player");
+		}
+		if (down && jumpdown[get_tile(l.y, l.x)])
+			l.y += 1.0;
+		if (right && jumpright[get_tile(l.y, l.x)])
+			l.x += 1.0;
+		if (left && jumpleft[get_tile(l.y, l.x)])
+			l.x -= 1.0;
+		for (unsigned i = 0; i < levels[mc.loc.level].characters.size(); ++i) {
+			if (!mc.active[levels[mc.loc.level].characters[i].name])
+				continue;
+			if (levels[mc.loc.level].characters[i].incorporeal)
+				continue;
+			if (l.x == levels[mc.loc.level].characters[i].loc.x && l.y == levels[mc.loc.level].characters[i].loc.y) {
+				if (levels[mc.loc.level].characters[i].pushable && has_move_in_party(string("STRENGTH"))) {
+					if (ahead2.x >= 0.0 && ahead2.y >= 0.0 && int(ahead2.y) < levels[mc.loc.level].data.size() && int(ahead2.x) < levels[mc.loc.level].data[int(ahead2.y)].size() && !blocking[get_tile(ahead2.y, ahead2.x)] && !npc_blocking[get_tile(ahead2.y, ahead2.x)]) {
+						bool npc_in_way = false;
+						for (unsigned j = 0; j < levels[mc.loc.level].characters.size(); ++j) {
+							if (ahead2.x == levels[mc.loc.level].characters[j].loc.x && ahead2.y == levels[mc.loc.level].characters[j].loc.y) {
+								npc_in_way = true;
+								break;
 							}
 						}
+						if (npc_in_way) {
+							return;
+						}
 						else {
+							levels[mc.loc.level].characters[i].loc.x = ahead2.x;
+							levels[mc.loc.level].characters[i].loc.y = ahead2.y;
+							if (levels[mc.loc.level].characters[i].teleportable) {
+								for (unsigned j = 0; j < levels[mc.loc.level].teleport.size(); ++j) {
+									if (levels[mc.loc.level].characters[i].loc.x == levels[mc.loc.level].teleport[j].first.x && levels[mc.loc.level].characters[i].loc.y == levels[mc.loc.level].teleport[j].first.y) {
+										mc.interaction[levels[mc.loc.level].characters[i].name] = levels[mc.loc.level].characters[i].interactions.size() - 1;
+										do_interaction(levels[mc.loc.level].characters[i]);
+										break;
+									}
+								}
+							}
 							return;
 						}
 					}
@@ -5173,13 +5191,18 @@ public:
 						return;
 					}
 				}
+				else {
+					return;
+				}
 			}
-			if (confirm) {
-				interact = true;
-			}
-			if (start) {
-				open_menu = true;
-			}
+		}
+		if (confirm) {
+			interact = true;
+		}
+		if (start) {
+			open_menu = true;
+		}
+		if (mc.loc.x != l.x || mc.loc.y != l.y) {
 			mc.loc = l;
 			update_level();
 			if (encounter_tile[get_tile(mc.loc.y, mc.loc.x)]) {
@@ -5204,13 +5227,13 @@ public:
 			}
 			if (water[get_tile(mc.loc.y, mc.loc.x)]) {
 				if (levels[mc.loc.level].water_encounters_super.size() > 0) {
-					if (random(0.0, 187.5) < 8.5) {		
+					if (random(0.0, 187.5) < 8.5) {
 						bool first = int(random(0.0, 2.0)) == 1;
 						vector<int> combination;
 						vector<int> base;
 						for (unsigned i = 0; i < levels[mc.loc.level].encounters.size(); ++i) {
 							combination.push_back(levels[mc.loc.level].encounters[i]);
-						}	
+						}
 						for (unsigned i = 0; i < levels[mc.loc.level].water_encounters_super.size(); ++i) {
 							combination.push_back(levels[mc.loc.level].water_encounters_super[i]);
 							base.push_back(levels[mc.loc.level].water_encounters_super[i]);
@@ -5228,9 +5251,6 @@ public:
 					}
 				}
 			}
-		}
-		else {
-			menus[menus.size() - 1]->input(up, down, left, right, select, start, confirm, cancel);
 		}
 	}
 	void create_menu(string s, string choice = "", string text_override = "", string followup_override = "") {
@@ -6303,6 +6323,16 @@ public:
 	}
 	void main() {
 		while (true) {
+			if (player_up || player_down || player_left || player_right || player_select || player_start || player_confirm || player_cancel)
+				player_input(player_up, player_down, player_left, player_right, player_select, player_start, player_confirm, player_cancel);
+			player_up = false;
+			player_down = false;
+			player_left = false;
+			player_right = false;
+			player_select = false;
+			player_start = false;
+			player_confirm = false;
+			player_cancel = false;
 			handle_teleport();
 			transition.lock();
 			for (unsigned i = 0; i < levels[mc.loc.level].characters.size(); ++i) {
@@ -6343,7 +6373,7 @@ public:
 					}
 				}
 				if (!found)
-					offset+=2;
+					offset += 2;
 				choices = do_menu(string("MAINMENU") + to_string(offset));
 				choices = remove_cancels(choices);
 				choices[0] += offset;
@@ -6379,8 +6409,8 @@ public:
 				for (unsigned i = 0; i < levels[mc.loc.level].characters.size(); ++i) {
 					if (!mc.active[levels[mc.loc.level].characters[i].name])
 						continue;
-					if ((ahead.x == levels[mc.loc.level].characters[i].loc.x && ahead.y == levels[mc.loc.level].characters[i].loc.y) || 
-						(levels[mc.loc.level].characters[i].far && (ahead2.x == levels[mc.loc.level].characters[i].loc.x && ahead2.y == levels[mc.loc.level].characters[i].loc.y))){
+					if ((ahead.x == levels[mc.loc.level].characters[i].loc.x && ahead.y == levels[mc.loc.level].characters[i].loc.y) ||
+						(levels[mc.loc.level].characters[i].far && (ahead2.x == levels[mc.loc.level].characters[i].loc.x && ahead2.y == levels[mc.loc.level].characters[i].loc.y))) {
 						if (levels[mc.loc.level].characters[i].loc.x < mc.loc.x)
 							levels[mc.loc.level].characters[i].dir = RIGHT;
 						else if (levels[mc.loc.level].characters[i].loc.x > mc.loc.x)
