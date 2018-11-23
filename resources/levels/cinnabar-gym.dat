@@ -84,12 +84,54 @@ cinnabar-gym-quiz5 blank 9 13
 INTERACTIONS
 MENU:ALERT:POK{e-accent}MON Quiz!|MENU:ALERT:Get it right and the door opens to the next room!|MENU:ALERT:Get it wrong and face a trainer!|MENU:ALERT:If you want to conserver your POK{e-accent}MON for the GYM LEADER...|MENU:ALERT:Then get it right! Here we go!|MENU:ALERT_YES_NO:Are ELECTRIC moves effective against GROUND type POK{e-accent}MON?|{MENU:ALERT:Sorry! Bad call!|MOVE:cinnabar-gym-man5:-1,0|MENU:ALERT:I know why BLAINE became a trainer!|BATTLE:cinnabar-gym-man5|{}{ADVANCE:cinnabar-gym-man5|DEACTIVATE:cinnabar-gym-door5a|DEACTIVATE:cinnabar-gym-door5b|DEACTIVATE:cinnabar-gym-quiz5}}{MENU:ALERT:You're absolutely correct!|MENU:ALERT:Go on through!|DEACTIVATE:cinnabar-gym-door5a|DEACTIVATE:cinnabar-gym-door5b|DEACTIVATE:cinnabar-gym-quiz5}
 END
+cinnabar-gym-door6a door 4 12 NO_OFFSET
+INTERACTIONS
+
+END
+cinnabar-gym-door6b door 5 12 NO_OFFSET
+INTERACTIONS
+
+END
+cinnabar-gym-man6 man2 3 14 DOWN
+INTERACTIONS
+MENU:ALERT:I've been to many GYMs, but this is my favorite!|BATTLE:cinnabar-gym-man6|{NO_ADVANCE}{DEACTIVATE:cinnabar-gym-door6a|DEACTIVATE:cinnabar-gym-door6b|DEACTIVATE:cinnabar-gym-quiz6}
+MENU:ALERT:Us FIRE POK{e-accent}MON fans like PONYTA and NINETALES!
+END
+cinnabar-gym-quiz6 blank 1 13
+INTERACTIONS
+MENU:ALERT:POK{e-accent}MON Quiz!|MENU:ALERT:Get it right and the door opens to the next room!|MENU:ALERT:Get it wrong and face a trainer!|MENU:ALERT:If you want to conserver your POK{e-accent}MON for the GYM LEADER...|MENU:ALERT:Then get it right! Here we go!|MENU:ALERT_YES_NO:POK{e-accent}MON of the same kind and level are not identical?|{MENU:ALERT:You're absolutely correct!|MENU:ALERT:Go on through!|DEACTIVATE:cinnabar-gym-door6a|DEACTIVATE:cinnabar-gym-door6b|DEACTIVATE:cinnabar-gym-quiz6}{MENU:ALERT:Sorry! Bad call!|MOVE:cinnabar-gym-man6:-1,0|MENU:ALERT:I've been to many GYMs, but this is my favorite!|BATTLE:cinnabar-gym-man6|{}{ADVANCE:cinnabar-gym-man6|DEACTIVATE:cinnabar-gym-door6a|DEACTIVATE:cinnabar-gym-door6b|DEACTIVATE:cinnabar-gym-quiz6}}
+END
+cinnabar-gym-door7a door 4 6 NO_OFFSET
+INTERACTIONS
+
+END
+cinnabar-gym-door7b door 5 6 NO_OFFSET
+INTERACTIONS
+
+END
+cinnabar-gym-man7 man2 3 8 DOWN
+INTERACTIONS
+MENU:ALERT:FIRE is weak against H2O!|BATTLE:cinnabar-gym-man7|{NO_ADVANCE}{DEACTIVATE:cinnabar-gym-door7a|DEACTIVATE:cinnabar-gym-door7b|DEACTIVATE:cinnabar-gym-quiz7}
+MENU:ALERT:WATER beats FIRE, but FIRE melts ICE POK{e-accent}MON!
+END
+cinnabar-gym-quiz7 blank 1 7
+INTERACTIONS
+MENU:ALERT:POK{e-accent}MON Quiz!|MENU:ALERT:Get it right and the door opens to the next room!|MENU:ALERT:Get it wrong and face a trainer!|MENU:ALERT:If you want to conserver your POK{e-accent}MON for the GYM LEADER...|MENU:ALERT:Then get it right! Here we go!|MENU:ALERT_YES_NO:TM28 contains TOMBSTONER?|{MENU:ALERT:Sorry! Bad call!|MOVE:cinnabar-gym-man7:-1,0|MENU:ALERT:FIRE is weak against H2O!|BATTLE:cinnabar-gym-man7|{}{ADVANCE:cinnabar-gym-man7|DEACTIVATE:cinnabar-gym-door7a|DEACTIVATE:cinnabar-gym-door7b|DEACTIVATE:cinnabar-gym-quiz7}}{MENU:ALERT:You're absolutely correct!|MENU:ALERT:Go on through!|DEACTIVATE:cinnabar-gym-door7a|DEACTIVATE:cinnabar-gym-door7b|DEACTIVATE:cinnabar-gym-quiz7}
+END
+cinnabar-gym-blaine bald3 3 3 DOWN
+INTERACTIONS
+MENU:ALERT:Hah!|MENU:ALERT:I am BLAINE! I am the LEADER of CINNABAR GYM!|MENU:ALERT:My fiery POK{e-accent}MON will incinerate all challengers!|MENU:ALERT:Hah! You better have BURN HEALs!|BATTLE:cinnabar-gym-blaine|{NO_ADVANCE}{SET:VOLCANOBADGE:1|MENU:ALERT:Hah!|MENU:ALERT:Here, you can have this, too!|GIVE_ITEM:TM38|MENU:ALERT:TM38 contains FIRE BLAST!|MENU:ALERT:Teach it to a fire-type POK{e-accent}MON!|MENU:ALERT:CHARIZARD or ARCANINE would be good bets.}
+MENU:ALERT:FIRE BLAST is the ultimate fire technique!|MENU:ALERT:Don't waste it on a water POK{e-accent}MON!
+END
 TRAINERS
 cinnabar-gym-man1 90 0.99 0.99 BURGLAR burglar.png {BURGLAR: I surrender!}{} 58-58:36|37-37:36|38-38:36
 cinnabar-gym-man2 25 0.5 1.0 SUPER{SPACE}NERD supernerd.png {SUPER NERD: Yow! Hot, hot, hot!}{} 37-37:36|37-37:36|38-38:36
 cinnabar-gym-man3 25 0.5 1.0 SUPER{SPACE}NERD supernerd.png {SUPER NERD: Waah! My studies!}{} 77-77:34|4-4:34|37-37:34|58-58:34
 cinnabar-gym-man4 90 0.99 0.99 BURGLAR burglar.png {BURGLAR: Too hot to handle!}{} 77-77:41
 cinnabar-gym-man5 25 0.5 1.0 SUPER{SPACE}NERD supernerd.png {SUPER NERD: Ow!}{} 78-78:41
+cinnabar-gym-man6 90 0.99 0.99 BURGLAR burglar.png {BURGLAR: Yowza! Too hot!}{} 37-37:37|58-58:37
+cinnabar-gym-man7 25 0.5 1.0 SUPER{SPACE}NERD supernerd.png {SUPER NERD: Oh! Snuffed out!}{} 58-58:37|37-37:37
+cinnabar-gym-blaine 99 1.0 1.0 BLAINE blaine.png {BLAINE: I have burnt out! {NEWLINE} You have earned the VOLCANOBADGE!}{} 58-58:42|77-77:40|78-78:42|59-59:47
 END
 TELEPORT
 16 18 cinnabar-island 23 8
