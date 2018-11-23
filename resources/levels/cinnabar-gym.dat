@@ -1,0 +1,116 @@
+NAME
+Cinnabar Island Gym
+NPCS
+cinnabar-gym-board1 blank 17 13
+INTERACTIONS
+MENU:ALERT:CINNABAR ISLAND POK{e-accent}MON GYM|MENU:ALERT:LEADER: BLAINE|MENU:ALERT:WINNING TRAINERS: {RIVAL_NAME}|NO_ADVANCE
+MENU:ALERT:CINNABAR ISLAND POK{e-accent}MON GYM|MENU:ALERT:LEADER: BLAINE|MENU:ALERT:WINNING TRAINERS: {PLAYER_NAME} {NEWLINE} {RIVAL_NAME}
+END
+cinnabar-gym-clerk clerk 16 13 DOWN
+INTERACTIONS
+MENU:ALERT:Yo! Champ in making!|MENU:ALERT:The hot-headed BLAINE is a fire POK{e-accent}MON pro!|MENU:ALERT:Douse his spirits with water or ground!|MENU:ALERT:You better take some BURN HEALs!
+MENU:ALERT:It's amazing how ninja can terrify even now!
+END
+cinnabar-gym-door1a door 18 6 NO_OFFSET
+INTERACTIONS
+
+END
+cinnabar-gym-door1b door 19 6 NO_OFFSET
+INTERACTIONS
+
+END
+cinnabar-gym-man1 man2 17 8 DOWN
+INTERACTIONS
+MENU:ALERT:I was a thief, but I became straight as a trainer!|BATTLE:cinnabar-gym-man1|{NO_ADVANCE}{DEACTIVATE:cinnabar-gym-door1a|DEACTIVATE:cinnabar-gym-door1b|DEACTIVATE:cinnabar-gym-quiz1}
+MENU:ALERT:I can't help stealing other people's POK{e-accent}MON!
+END
+cinnabar-gym-quiz1 blank 15 7
+INTERACTIONS
+MENU:ALERT:POK{e-accent}MON Quiz!|MENU:ALERT:Get it right and the door opens to the next room!|MENU:ALERT:Get it wrong and face a trainer!|MENU:ALERT:If you want to conserver your POK{e-accent}MON for the GYM LEADER...|MENU:ALERT:Then get it right! Here we go!|MENU:ALERT_YES_NO:CATERPIE evolves into BUTTERFREE?|{MENU:ALERT:You're absolutely correct!|MENU:ALERT:Go on through!|DEACTIVATE:cinnabar-gym-door1a|DEACTIVATE:cinnabar-gym-door1b|DEACTIVATE:cinnabar-gym-quiz1}{MENU:ALERT:Sorry! Bad call!|MOVE:cinnabar-gym-man1:-1,0|MENU:ALERT:I was a thief, but I became straight as a trainer!|BATTLE:cinnabar-gym-man1|{}{ADVANCE:cinnabar-gym-man1|DEACTIVATE:cinnabar-gym-door1a|DEACTIVATE:cinnabar-gym-door1b|DEACTIVATE:cinnabar-gym-quiz1}}
+END
+cinnabar-gym-man2 man2 17 2 DOWN
+INTERACTIONS
+MENU:ALERT:Do you know how hot POK{e-accent}MON fire breath can get?|BATTLE:cinnabar-gym-man2|{NO_ADVANCE}{DEACTIVATE:cinnabar-gym-door1a|DEACTIVATE:cinnabar-gym-door1b|DEACTIVATE:cinnabar-gym-quiz1}
+MENU:ALERT:Fire, or to be more precise, combustion...|MENU:ALERT:Blah, blah, blah, blah...
+END
+cinnabar-gym-door3a door 12 6 NO_OFFSET
+INTERACTIONS
+
+END
+cinnabar-gym-door3b door 13 6 NO_OFFSET
+INTERACTIONS
+
+END
+cinnabar-gym-man3 man2 11 4 DOWN
+INTERACTIONS
+MENU:ALERT:You can't win! I have studied POK{e-accent}MON totally!|BATTLE:cinnabar-gym-man3|{NO_ADVANCE}{DEACTIVATE:cinnabar-gym-door3a|DEACTIVATE:cinnabar-gym-door3b|DEACTIVATE:cinnabar-gym-quiz3}
+MENU:ALERT:My theories are too complicated for you!
+END
+cinnabar-gym-quiz3 blank 10 1
+INTERACTIONS
+MENU:ALERT:POK{e-accent}MON Quiz!|MENU:ALERT:Get it right and the door opens to the next room!|MENU:ALERT:Get it wrong and face a trainer!|MENU:ALERT:If you want to conserver your POK{e-accent}MON for the GYM LEADER...|MENU:ALERT:Then get it right! Here we go!|MENU:ALERT_YES_NO:There are 9 certified POK{e-accent}MON LEAGUE BADGESs?|{MENU:ALERT:Sorry! Bad call!|MOVE:cinnabar-gym-man3:-1,0|MOVE:cinnabar-gym-man3:0,-1|MENU:ALERT:You can't win! I have studied POK{e-accent}MON totally!|BATTLE:cinnabar-gym-man3|{}{ADVANCE:cinnabar-gym-man3|DEACTIVATE:cinnabar-gym-door3a|DEACTIVATE:cinnabar-gym-door3b|DEACTIVATE:cinnabar-gym-quiz3}}{MENU:ALERT:You're absolutely correct!|MENU:ALERT:Go on through!|DEACTIVATE:cinnabar-gym-door3a|DEACTIVATE:cinnabar-gym-door3b|DEACTIVATE:cinnabar-gym-quiz3}
+END
+cinnabar-gym-door4a door 12 12 NO_OFFSET
+INTERACTIONS
+
+END
+cinnabar-gym-door4b door 13 12 NO_OFFSET
+INTERACTIONS
+
+END
+cinnabar-gym-man4 man2 11 8 DOWN
+INTERACTIONS
+MENU:ALERT:I just like using fire POK{e-accent}MON!|BATTLE:cinnabar-gym-man4|{NO_ADVANCE}{DEACTIVATE:cinnabar-gym-door4a|DEACTIVATE:cinnabar-gym-door4b|DEACTIVATE:cinnabar-gym-quiz4}
+MENU:ALERT:I wish there were a thief POK{e-accent}MON!|MENU:ALERT:I'd use that!
+END
+cinnabar-gym-quiz4 blank 9 7
+INTERACTIONS
+MENU:ALERT:POK{e-accent}MON Quiz!|MENU:ALERT:Get it right and the door opens to the next room!|MENU:ALERT:Get it wrong and face a trainer!|MENU:ALERT:If you want to conserver your POK{e-accent}MON for the GYM LEADER...|MENU:ALERT:Then get it right! Here we go!|MENU:ALERT_YES_NO:POLIWAG evolves 3 times?|{MENU:ALERT:Sorry! Bad call!|MOVE:cinnabar-gym-man4:-1,0|MENU:ALERT:I just like using fire POK{e-accent}MON!|BATTLE:cinnabar-gym-man4|{}{ADVANCE:cinnabar-gym-man4|DEACTIVATE:cinnabar-gym-door4a|DEACTIVATE:cinnabar-gym-door4b|DEACTIVATE:cinnabar-gym-quiz4}}{MENU:ALERT:You're absolutely correct!|MENU:ALERT:Go on through!|DEACTIVATE:cinnabar-gym-door4a|DEACTIVATE:cinnabar-gym-door4b|DEACTIVATE:cinnabar-gym-quiz4}
+END
+cinnabar-gym-door5a door2 7 16 NO_OFFSET
+INTERACTIONS
+
+END
+cinnabar-gym-door5b door2 7 17 NO_OFFSET
+INTERACTIONS
+
+END
+cinnabar-gym-man5 man2 11 14 DOWN
+INTERACTIONS
+MENU:ALERT:I know why BLAINE became a trainer!|BATTLE:cinnabar-gym-man5|{NO_ADVANCE}{DEACTIVATE:cinnabar-gym-door5a|DEACTIVATE:cinnabar-gym-door5b|DEACTIVATE:cinnabar-gym-quiz5}
+MENU:ALERT:BLAINE was lost in the mountains when a fiery bird POK{e-accent}MON appeared.|MENU:ALERT:Its light enabled BLAINE to find his way down!
+END
+cinnabar-gym-quiz5 blank 9 13
+INTERACTIONS
+MENU:ALERT:POK{e-accent}MON Quiz!|MENU:ALERT:Get it right and the door opens to the next room!|MENU:ALERT:Get it wrong and face a trainer!|MENU:ALERT:If you want to conserver your POK{e-accent}MON for the GYM LEADER...|MENU:ALERT:Then get it right! Here we go!|MENU:ALERT_YES_NO:Are ELECTRIC moves effective against GROUND type POK{e-accent}MON?|{MENU:ALERT:Sorry! Bad call!|MOVE:cinnabar-gym-man5:-1,0|MENU:ALERT:I know why BLAINE became a trainer!|BATTLE:cinnabar-gym-man5|{}{ADVANCE:cinnabar-gym-man5|DEACTIVATE:cinnabar-gym-door5a|DEACTIVATE:cinnabar-gym-door5b|DEACTIVATE:cinnabar-gym-quiz5}}{MENU:ALERT:You're absolutely correct!|MENU:ALERT:Go on through!|DEACTIVATE:cinnabar-gym-door5a|DEACTIVATE:cinnabar-gym-door5b|DEACTIVATE:cinnabar-gym-quiz5}
+END
+TRAINERS
+cinnabar-gym-man1 90 0.99 0.99 BURGLAR burglar.png {BURGLAR: I surrender!}{} 58-58:36|37-37:36|38-38:36
+cinnabar-gym-man2 25 0.5 1.0 SUPER{SPACE}NERD supernerd.png {SUPER NERD: Yow! Hot, hot, hot!}{} 37-37:36|37-37:36|38-38:36
+cinnabar-gym-man3 25 0.5 1.0 SUPER{SPACE}NERD supernerd.png {SUPER NERD: Waah! My studies!}{} 77-77:34|4-4:34|37-37:34|58-58:34
+cinnabar-gym-man4 90 0.99 0.99 BURGLAR burglar.png {BURGLAR: Too hot to handle!}{} 77-77:41
+cinnabar-gym-man5 25 0.5 1.0 SUPER{SPACE}NERD supernerd.png {SUPER NERD: Ow!}{} 78-78:41
+END
+TELEPORT
+16 18 cinnabar-island 23 8
+17 18 cinnabar-island 23 8
+DATA
+594 597 615 615 615 615 594 597 594 597 615 597 597 597 597 597 597 597 597 597 595
+599 600 747 747 747 747 599 600 599 600 747 600 600 600 600 600 600 600 600 600 599
+599 600 600 600 600 600 599 600 599 600 600 600 600 600 614 600 600 600 600 600 599
+599 600 600 600 600 600 599 600 599 600 600 600 600 600 599 600 600 600 600 600 599
+599 600 600 600 600 600 599 600 599 600 600 600 600 600 599 600 600 600 600 600 599
+599 600 600 600 600 600 599 600 599 600 600 600 600 600 599 600 600 600 600 600 599
+599 615 597 598 600 600 599 600 599 615 597 598 600 600 599 615 597 598 600 600 599
+599 747 600 600 600 600 599 600 599 747 600 600 600 600 599 747 600 600 600 600 599
+599 600 600 600 600 600 599 600 599 600 600 600 600 600 599 600 600 600 600 600 599
+599 600 600 600 600 600 599 600 599 600 600 600 600 600 599 600 600 600 600 600 599
+599 600 600 600 600 600 599 600 599 600 600 600 600 600 599 600 600 600 600 600 599
+599 600 600 600 600 600 599 600 599 600 600 600 600 600 599 597 597 598 600 600 599
+599 615 597 598 600 600 599 600 599 615 597 598 600 600 599 600 600 753 600 600 599
+599 747 600 600 600 600 599 600 599 747 600 600 600 600 599 600 600 754 600 600 599
+599 600 600 600 600 600 599 600 599 600 600 600 600 600 599 600 600 600 600 600 599
+599 600 600 600 600 600 596 597 598 600 600 600 600 600 599 600 600 600 600 600 599
+599 600 600 600 600 600 600 600 600 600 600 600 600 600 599 600 600 600 600 600 599
+599 600 600 600 600 600 600 600 600 600 600 600 600 600 599 600 755 757 600 600 599
+82   82  82  82  82  82  82  82  82  82  82  82  82  82  82  82 166 166
