@@ -9,7 +9,7 @@ END
 cinnabar-gym-clerk clerk 16 13 DOWN
 INTERACTIONS
 MENU:ALERT:Yo! Champ in making!|MENU:ALERT:The hot-headed BLAINE is a fire POK{e-accent}MON pro!|MENU:ALERT:Douse his spirits with water or ground!|MENU:ALERT:You better take some BURN HEALs!
-MENU:ALERT:It's amazing how ninja can terrify even now!
+MENU:ALERT:You did it!|MENU:ALERT:I knew you'd stay cool under fire!
 END
 cinnabar-gym-door1a door 18 6 NO_OFFSET
 INTERACTIONS
@@ -82,7 +82,7 @@ MENU:ALERT:BLAINE was lost in the mountains when a fiery bird POK{e-accent}MON a
 END
 cinnabar-gym-quiz5 blank 9 13
 INTERACTIONS
-MENU:ALERT:POK{e-accent}MON Quiz!|MENU:ALERT:Get it right and the door opens to the next room!|MENU:ALERT:Get it wrong and face a trainer!|MENU:ALERT:If you want to conserver your POK{e-accent}MON for the GYM LEADER...|MENU:ALERT:Then get it right! Here we go!|MENU:ALERT_YES_NO:Are ELECTRIC moves effective against GROUND type POK{e-accent}MON?|{MENU:ALERT:Sorry! Bad call!|MOVE:cinnabar-gym-man5:-1,0|MENU:ALERT:I know why BLAINE became a trainer!|BATTLE:cinnabar-gym-man5|{}{ADVANCE:cinnabar-gym-man5|DEACTIVATE:cinnabar-gym-door5a|DEACTIVATE:cinnabar-gym-door5b|DEACTIVATE:cinnabar-gym-quiz5}}{MENU:ALERT:You're absolutely correct!|MENU:ALERT:Go on through!|DEACTIVATE:cinnabar-gym-door5a|DEACTIVATE:cinnabar-gym-door5b|DEACTIVATE:cinnabar-gym-quiz5}
+MENU:ALERT:POK{e-accent}MON Quiz!|MENU:ALERT:Get it right and the door opens to the next room!|MENU:ALERT:Get it wrong and face a trainer!|MENU:ALERT:If you want to conserver your POK{e-accent}MON for the GYM LEADER...|MENU:ALERT:Then get it right! Here we go!|MENU:ALERT_YES_NO:Are electric moves effective against ground-type POK{e-accent}MON?|{MENU:ALERT:Sorry! Bad call!|MOVE:cinnabar-gym-man5:-1,0|MENU:ALERT:I know why BLAINE became a trainer!|BATTLE:cinnabar-gym-man5|{}{ADVANCE:cinnabar-gym-man5|DEACTIVATE:cinnabar-gym-door5a|DEACTIVATE:cinnabar-gym-door5b|DEACTIVATE:cinnabar-gym-quiz5}}{MENU:ALERT:You're absolutely correct!|MENU:ALERT:Go on through!|DEACTIVATE:cinnabar-gym-door5a|DEACTIVATE:cinnabar-gym-door5b|DEACTIVATE:cinnabar-gym-quiz5}
 END
 cinnabar-gym-door6a door 4 12 NO_OFFSET
 INTERACTIONS
@@ -95,7 +95,7 @@ END
 cinnabar-gym-man6 man2 3 14 DOWN
 INTERACTIONS
 MENU:ALERT:I've been to many GYMs, but this is my favorite!|BATTLE:cinnabar-gym-man6|{NO_ADVANCE}{DEACTIVATE:cinnabar-gym-door6a|DEACTIVATE:cinnabar-gym-door6b|DEACTIVATE:cinnabar-gym-quiz6}
-MENU:ALERT:Us FIRE POK{e-accent}MON fans like PONYTA and NINETALES!
+MENU:ALERT:Us fire POK{e-accent}MON fans like PONYTA and NINETALES!
 END
 cinnabar-gym-quiz6 blank 1 13
 INTERACTIONS
@@ -111,12 +111,12 @@ INTERACTIONS
 END
 cinnabar-gym-man7 man2 3 8 DOWN
 INTERACTIONS
-MENU:ALERT:FIRE is weak against H2O!|BATTLE:cinnabar-gym-man7|{NO_ADVANCE}{DEACTIVATE:cinnabar-gym-door7a|DEACTIVATE:cinnabar-gym-door7b|DEACTIVATE:cinnabar-gym-quiz7}
-MENU:ALERT:WATER beats FIRE, but FIRE melts ICE POK{e-accent}MON!
+MENU:ALERT:Fire is weak against H2O!|BATTLE:cinnabar-gym-man7|{NO_ADVANCE}{DEACTIVATE:cinnabar-gym-door7a|DEACTIVATE:cinnabar-gym-door7b|DEACTIVATE:cinnabar-gym-quiz7}
+MENU:ALERT:Water beats fire, but fire melts ice POK{e-accent}MON!
 END
 cinnabar-gym-quiz7 blank 1 7
 INTERACTIONS
-MENU:ALERT:POK{e-accent}MON Quiz!|MENU:ALERT:Get it right and the door opens to the next room!|MENU:ALERT:Get it wrong and face a trainer!|MENU:ALERT:If you want to conserver your POK{e-accent}MON for the GYM LEADER...|MENU:ALERT:Then get it right! Here we go!|MENU:ALERT_YES_NO:TM28 contains TOMBSTONER?|{MENU:ALERT:Sorry! Bad call!|MOVE:cinnabar-gym-man7:-1,0|MENU:ALERT:FIRE is weak against H2O!|BATTLE:cinnabar-gym-man7|{}{ADVANCE:cinnabar-gym-man7|DEACTIVATE:cinnabar-gym-door7a|DEACTIVATE:cinnabar-gym-door7b|DEACTIVATE:cinnabar-gym-quiz7}}{MENU:ALERT:You're absolutely correct!|MENU:ALERT:Go on through!|DEACTIVATE:cinnabar-gym-door7a|DEACTIVATE:cinnabar-gym-door7b|DEACTIVATE:cinnabar-gym-quiz7}
+MENU:ALERT:POK{e-accent}MON Quiz!|MENU:ALERT:Get it right and the door opens to the next room!|MENU:ALERT:Get it wrong and face a trainer!|MENU:ALERT:If you want to conserver your POK{e-accent}MON for the GYM LEADER...|MENU:ALERT:Then get it right! Here we go!|MENU:ALERT_YES_NO:TM28 contains TOMBSTONER?|{MENU:ALERT:Sorry! Bad call!|MOVE:cinnabar-gym-man7:-1,0|MENU:ALERT:Fire is weak against H2O!|BATTLE:cinnabar-gym-man7|{}{ADVANCE:cinnabar-gym-man7|DEACTIVATE:cinnabar-gym-door7a|DEACTIVATE:cinnabar-gym-door7b|DEACTIVATE:cinnabar-gym-quiz7}}{MENU:ALERT:You're absolutely correct!|MENU:ALERT:Go on through!|DEACTIVATE:cinnabar-gym-door7a|DEACTIVATE:cinnabar-gym-door7b|DEACTIVATE:cinnabar-gym-quiz7}
 END
 cinnabar-gym-blaine bald3 3 3 DOWN
 INTERACTIONS
@@ -124,14 +124,14 @@ MENU:ALERT:Hah!|MENU:ALERT:I am BLAINE! I am the LEADER of CINNABAR GYM!|MENU:AL
 MENU:ALERT:FIRE BLAST is the ultimate fire technique!|MENU:ALERT:Don't waste it on a water POK{e-accent}MON!
 END
 TRAINERS
-cinnabar-gym-man1 90 0.99 0.99 BURGLAR burglar.png {BURGLAR: I surrender!}{} 94-38:58:FIRE SPIN,HYPNOSIS,CONFUSE RAY,DREAM EATER|101-59:58:FLAMETHROWER,THUNDER,EXPLOSION,SCREECH|126-126:58
-cinnabar-gym-man2 25 0.5 1.0 SUPER{SPACE}NERD supernerd.png {SUPER NERD: Yow! Hot, hot, hot!}{} 119-78:58:HORN DRILL,FIRE SPIN,STOMP,SURF|38-89:58:POUND,FLAMETHROWER,SCREECH,SLUDGE|126-68:58:SUBMISSION,SMOG,FIRE PUNCH,KARATE CHOP
-cinnabar-gym-man3 25 0.5 1.0 SUPER{SPACE}NERD supernerd.png {SUPER NERD: Waah! My studies!}{} 3-78:57:SLEEP POWDER,FIRE SPIN,STOMP,RAZOR LEAF|82-126:57:FLAMETHROWER,SWIFT,CONFUSE RAY,THUNDERSHOCK|38-76:57:EXPLOSION,FLAMETHROWER,ROCK THROW,TAIL WHIP|59-15:57:PIN MISSILE,FURY ATTACK,BITE,FIRE BLAST
+cinnabar-gym-man1 90 0.99 0.99 BURGLAR burglar.png {BURGLAR: I surrender!}{} 94-38:57:FIRE SPIN,HYPNOSIS,CONFUSE RAY,DREAM EATER|101-59:57:FLAMETHROWER,THUNDER,EXPLOSION,SCREECH|126-126:57
+cinnabar-gym-man2 25 0.5 1.0 SUPER{SPACE}NERD supernerd.png {SUPER NERD: Yow! Hot, hot, hot!}{} 119-78:57:HORN DRILL,FIRE SPIN,STOMP,SURF|38-89:57:POUND,FLAMETHROWER,SCREECH,SLUDGE|126-68:57:SUBMISSION,SMOG,FIRE PUNCH,KARATE CHOP
+cinnabar-gym-man3 25 0.5 1.0 SUPER{SPACE}NERD supernerd.png {SUPER NERD: Waah! My studies!}{} 3-78:56:SLEEP POWDER,FIRE SPIN,STOMP,RAZOR LEAF|82-126:56:FLAMETHROWER,SWIFT,CONFUSE RAY,THUNDERSHOCK|38-76:56:EXPLOSION,FLAMETHROWER,ROCK THROW,TAIL WHIP|59-15:56:PIN MISSILE,FURY ATTACK,BITE,FIRE BLAST
 cinnabar-gym-man4 90 0.99 0.99 BURGLAR burglar.png {BURGLAR: Too hot to handle!}{} 59-59:61:BITE,FLAMETHROWER,AGILITY,SWIFT
-cinnabar-gym-man5 25 0.5 1.0 SUPER{SPACE}NERD supernerd.png {SUPER NERD: Ow!}{} 114-38:59:FIRE SPIN,SLEEP POWDER,POISON POWDER,CONFUSE RAY|51-78:59:EARTHQUAKE,FIRE SPIN,STOMP,SAND ATTACK
-cinnabar-gym-man6 90 0.99 0.99 BURGLAR burglar.png {BURGLAR: Yowza! Too hot!}{} 136-101:59:FLAMETHROWER,EXPLOSION,BITE,QUICK ATTACK|80-59:59:FLAMETHROWER,AMNESIA,TAKE DOWN,GROWL
-cinnabar-gym-man7 25 0.5 1.0 SUPER{SPACE}NERD supernerd.png {SUPER NERD: Oh! Snuffed out!}{} 38-114:59:SLAM,STUN SPORE,FLAMETHROWER,ABSORB|38-18:59:MIRROR MOVE,FLAMETHROWER,WING ATTACK,QUICK ATTACK
-cinnabar-gym-blaine 99 1.0 1.0 BLAINE blaine.png {BLAINE: I have burnt out! {NEWLINE} You have earned the VOLCANOBADGE!}{} 38-38:61:FIRE BLAST,CONFUSE RAY,DIG,SWIFT|38-131:61:FIRE BLAST,ICE BEAM,SURF,THUNDERBOLT|82-38:61:THUNDERBOLT,FIRE BLAST,CONFUSE RAY,SWIFT|121-59:61:SURF,PSYCHIC,FIRE BLAST,RECOVER|59-59:61:BODY SLAM,FIRE BLAST,DIG,SWIFT|6-6:61:SLASH,FIRE BLAST,EARTHQUAKE,RAGE
+cinnabar-gym-man5 25 0.5 1.0 SUPER{SPACE}NERD supernerd.png {SUPER NERD: Ow!}{} 114-38:58:FIRE SPIN,SLEEP POWDER,POISON POWDER,CONFUSE RAY|51-78:58:EARTHQUAKE,FIRE SPIN,STOMP,SAND ATTACK
+cinnabar-gym-man6 90 0.99 0.99 BURGLAR burglar.png {BURGLAR: Yowza! Too hot!}{} 136-101:58:FLAMETHROWER,EXPLOSION,BITE,QUICK ATTACK|80-59:58:FLAMETHROWER,AMNESIA,TAKE DOWN,GROWL
+cinnabar-gym-man7 25 0.5 1.0 SUPER{SPACE}NERD supernerd.png {SUPER NERD: Oh! Snuffed out!}{} 38-114:58:SLAM,STUN SPORE,FLAMETHROWER,ABSORB|38-18:58:MIRROR MOVE,FLAMETHROWER,WING ATTACK,QUICK ATTACK
+cinnabar-gym-blaine 99 1.0 1.0 BLAINE blaine.png {BLAINE: I have burnt out! {NEWLINE} You have earned the VOLCANOBADGE!}{} 38-38:66:FIRE BLAST,CONFUSE RAY,DIG,SWIFT|38-131:63:FIRE BLAST,ICE BEAM,SURF,THUNDERBOLT|82-38:64:THUNDERBOLT,FIRE BLAST,CONFUSE RAY,SWIFT|121-59:66:SURF,PSYCHIC,FIRE BLAST,RECOVER|59-59:68:BODY SLAM,FIRE BLAST,DIG,SWIFT|6-6:69:SLASH,FIRE BLAST,EARTHQUAKE,RAGE
 END
 TELEPORT
 16 18 cinnabar-island 23 8
