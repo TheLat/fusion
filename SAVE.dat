@@ -2,12 +2,12 @@ WARNING: Editing this file can easily corrupt game state.
 NAME:RED
 RIVAL_NAME:BLUE
 MOVEMENT:player
-DIRECTION:1
+DIRECTION:0
 WINS:0
 LOSSES:0
-LOCATION:cinnabar-island|23|8
+LOCATION:cinnabar-island|15|5
 LAST_CENTER:cinnabar-center|3|3
-MONEY:303474
+MONEY:331870
 COINS:50
 REPEL:0
 INTERACTIONS:
@@ -285,6 +285,34 @@ cinnabar-center-hat|0
 cinnabar-center-joy|0
 cinnabar-center-joy-desk|0
 cinnabar-center-pc|0
+cinnabar-gym-blaine|1
+cinnabar-gym-board1|1
+cinnabar-gym-clerk|0
+cinnabar-gym-door1a|0
+cinnabar-gym-door1b|0
+cinnabar-gym-door3a|0
+cinnabar-gym-door3b|0
+cinnabar-gym-door4a|0
+cinnabar-gym-door4b|0
+cinnabar-gym-door5a|0
+cinnabar-gym-door5b|0
+cinnabar-gym-door6a|0
+cinnabar-gym-door6b|0
+cinnabar-gym-door7a|0
+cinnabar-gym-door7b|0
+cinnabar-gym-man1|1
+cinnabar-gym-man2|1
+cinnabar-gym-man3|1
+cinnabar-gym-man4|1
+cinnabar-gym-man5|1
+cinnabar-gym-man6|1
+cinnabar-gym-man7|1
+cinnabar-gym-quiz1|0
+cinnabar-gym-quiz3|0
+cinnabar-gym-quiz4|0
+cinnabar-gym-quiz5|0
+cinnabar-gym-quiz6|0
+cinnabar-gym-quiz7|0
 cinnabar-island-man1|0
 cinnabar-island-sign1|0
 cinnabar-island-sign2|0
@@ -1712,6 +1740,34 @@ cinnabar-center-hat|1
 cinnabar-center-joy|1
 cinnabar-center-joy-desk|1
 cinnabar-center-pc|1
+cinnabar-gym-blaine|1
+cinnabar-gym-board1|1
+cinnabar-gym-clerk|1
+cinnabar-gym-door1a|0
+cinnabar-gym-door1b|0
+cinnabar-gym-door3a|0
+cinnabar-gym-door3b|0
+cinnabar-gym-door4a|0
+cinnabar-gym-door4b|0
+cinnabar-gym-door5a|0
+cinnabar-gym-door5b|0
+cinnabar-gym-door6a|0
+cinnabar-gym-door6b|0
+cinnabar-gym-door7a|0
+cinnabar-gym-door7b|0
+cinnabar-gym-man1|1
+cinnabar-gym-man2|1
+cinnabar-gym-man3|1
+cinnabar-gym-man4|1
+cinnabar-gym-man5|1
+cinnabar-gym-man6|1
+cinnabar-gym-man7|1
+cinnabar-gym-quiz1|0
+cinnabar-gym-quiz3|0
+cinnabar-gym-quiz4|0
+cinnabar-gym-quiz5|0
+cinnabar-gym-quiz6|0
+cinnabar-gym-quiz7|0
 cinnabar-island-man1|1
 cinnabar-island-sign1|1
 cinnabar-island-sign2|1
@@ -2886,6 +2942,7 @@ NUGGET|1
 ELIXER|1
 MAX ELIXER|1
 MAX REVIVE|1
+TM38|1
 END
 INVENTORY_STORAGE:
 TM34|1
@@ -2966,6 +3023,7 @@ SEEN:
 101-22
 101-28
 101-57
+101-59
 101-67
 101-80
 101-89
@@ -2982,6 +3040,7 @@ SEEN:
 105-110
 105-42
 105-67
+105-78
 105-97
 106-106
 107-107
@@ -3027,6 +3086,7 @@ SEEN:
 112-68
 114-114
 114-119
+114-38
 115-115
 116-116
 117-117
@@ -3049,6 +3109,7 @@ SEEN:
 119-45
 119-67
 119-73
+119-78
 119-90
 119-93
 12-12
@@ -3074,7 +3135,9 @@ SEEN:
 122-92
 124-124
 125-125
+126-126
 126-132
+126-68
 128-119
 129-129
 129-92
@@ -3093,6 +3156,7 @@ SEEN:
 133-133
 134-131
 135-135
+136-101
 138-138
 14-11
 14-13
@@ -3201,6 +3265,7 @@ SEEN:
 3-18
 3-3
 3-57
+3-78
 3-93
 30-30
 31-31
@@ -3222,9 +3287,14 @@ SEEN:
 37-58
 37-78
 37-85
+38-114
+38-131
+38-18
 38-38
 38-62
 38-67
+38-76
+38-89
 39-25
 39-39
 39-56
@@ -3316,7 +3386,9 @@ SEEN:
 58-67
 58-78
 58-89
+59-15
 59-57
+59-59
 6-28
 6-57
 6-6
@@ -3417,6 +3489,7 @@ SEEN:
 8-8
 80-38
 80-44
+80-59
 80-73
 80-80
 80-87
@@ -3427,7 +3500,9 @@ SEEN:
 82-101
 82-110
 82-119
+82-126
 82-18
+82-38
 82-80
 82-82
 82-9
@@ -3500,6 +3575,7 @@ SEEN:
 93-95
 94-105
 94-117
+94-38
 94-68
 94-94
 95-64
@@ -3561,14 +3637,15 @@ RAINBOWBADGE|1
 RIVALVALUE|0
 SOULBADGE|1
 THUNDERBADGE|1
+VOLCANOBADGE|1
 celadon-hideout-floor|1
 END
 TEAM:
-0|NUMBER:6-6|NICKNAME:|HP:172|EXP:143733|LEVEL:56|EV:18610|22255|20670|19543|22171|IV:0|13|10|10|14|MOVES:SLASH|RAGE|FLAMETHROWER|FIRE SPIN|PP:20|20|15|15|MAX_PP:20|20|15|15|STATUS:
-1|NUMBER:76-15|NICKNAME:|HP:175|EXP:168318|LEVEL:59|EV:17984|22163|20421|19773|21714|IV:2|15|9|10|11|MOVES:PIN MISSILE|EARTHQUAKE|FURY ATTACK|TWIN NEEDLE|PP:20|10|20|20|MAX_PP:20|10|20|20|STATUS:
+0|NUMBER:6-6|NICKNAME:|HP:181|EXP:168032|LEVEL:59|EV:19343|23118|21480|20422|23011|IV:0|13|10|10|14|MOVES:SLASH|RAGE|FLAMETHROWER|FIRE SPIN|PP:20|20|15|15|MAX_PP:20|20|15|15|STATUS:
+1|NUMBER:76-15|NICKNAME:|HP:182|EXP:185521|LEVEL:61|EV:18715|23041|21169|20641|22598|IV:2|15|9|10|11|MOVES:PIN MISSILE|EARTHQUAKE|FURY ATTACK|TWIN NEEDLE|PP:20|10|20|20|MAX_PP:20|10|20|20|STATUS:
 2|NUMBER:47-47|NICKNAME:|HP:156|EXP:127281|LEVEL:54|EV:9117|10748|9727|10289|11312|IV:14|4|11|6|9|MOVES:SPORE|STUN SPORE|LEECH LIFE|SLASH|PP:15|30|15|20|MAX_PP:15|30|15|20|STATUS:
-3|NUMBER:130-130|NICKNAME:|HP:202|EXP:167587|LEVEL:59|EV:21041|19307|20006|16841|17324|IV:0|13|10|10|14|MOVES:HYDROPUMP|BITE|SURF|HYPER BEAM|PP:5|25|15|5|MAX_PP:5|25|15|5|STATUS:
-4|NUMBER:135-135|NICKNAME:|HP:161|EXP:171667|LEVEL:59|EV:11160|12875|12960|13029|12849|IV:0|13|10|10|14|MOVES:PIN MISSILE|DOUBLE KICK|THUNDER|THUNDERBOLT|PP:20|30|10|15|MAX_PP:20|30|10|15|STATUS:
+3|NUMBER:130-130|NICKNAME:|HP:212|EXP:199959|LEVEL:62|EV:21655|19990|20656|17571|18079|IV:0|13|10|10|14|MOVES:HYDROPUMP|BITE|SURF|HYPER BEAM|PP:5|25|15|5|MAX_PP:5|25|15|5|STATUS:
+4|NUMBER:135-135|NICKNAME:|HP:166|EXP:182244|LEVEL:61|EV:11400|13107|13200|13321|13114|IV:0|13|10|10|14|MOVES:PIN MISSILE|DOUBLE KICK|THUNDER|THUNDERBOLT|PP:20|30|10|15|MAX_PP:20|30|10|15|STATUS:
 5|NUMBER:130-83|NICKNAME:|HP:22|EXP:100|LEVEL:5|EV:0|0|0|0|0|IV:0|13|10|10|14|MOVES:FLY|STRENGTH|CUT|SURF|PP:15|15|30|15|MAX_PP:15|15|30|15|STATUS:
 END
 STORAGE:
@@ -3887,6 +3964,36 @@ cinnabar-center
 4|0|10|5|0
 5|0|11|2|0
 6|0|13|3|0
+END
+cinnabar-gym
+0|0|17|13|0
+1|0|16|13|0
+2|0|18|6|0
+3|0|19|6|0
+4|0|17|8|0
+5|0|15|7|0
+6|0|17|2|0
+7|0|12|6|0
+8|0|13|6|0
+9|0|11|4|0
+10|0|10|1|0
+11|0|12|12|0
+12|0|13|12|0
+13|0|11|8|0
+14|0|9|7|0
+15|0|7|16|0
+16|0|7|17|0
+17|0|11|14|0
+18|0|9|13|0
+19|0|4|12|0
+20|0|5|12|0
+21|0|3|14|0
+22|0|1|13|0
+23|0|4|6|0
+24|0|5|6|0
+25|0|3|8|0
+26|0|1|7|0
+27|3|3|3|0
 END
 cinnabar-island
 0|0|18|7|0
