@@ -5303,7 +5303,7 @@ public:
 		string curr_level = mc.loc.level;
 		double curr_x = mc.loc.x;
 		double curr_y = mc.loc.y;
-		unsigned maxy = min(int(levels[curr_level].data.size()), int(curr_y + 5.0));
+		unsigned maxy = min(int(levels[curr_level].data.size()), max(int(curr_y + 5.0), 0));
 		for (unsigned y = max(0, unsigned(curr_y - 4.0)); y < maxy; ++y) {
 			unsigned maxx = min(int(levels[curr_level].data[y].size()), int(curr_x + 6.0));
 			for (unsigned x = max(0, unsigned(curr_x - 5.0)); x < maxx; ++x) {
@@ -5323,7 +5323,7 @@ public:
 			}
 		}
 		for (unsigned i = 0; i < levels[curr_level].neighbors.size(); ++i) {
-			unsigned maxy = min(int(levels[levels[curr_level].neighbors[i].level].data.size()), int(curr_y - levels[curr_level].neighbors[i].y + 5.0));
+			unsigned maxy = min(int(levels[levels[curr_level].neighbors[i].level].data.size()), max(int(curr_y - levels[curr_level].neighbors[i].y + 5.0), 0));
 			for (unsigned y = max(0, unsigned(curr_y - levels[curr_level].neighbors[i].y - 4.0)); y < maxy; ++y) {
 				unsigned maxx = min(int(levels[levels[curr_level].neighbors[i].level].data[y].size()), int(curr_x - levels[curr_level].neighbors[i].x + 6.0));
 				for (unsigned x = max(0, unsigned(curr_x - levels[curr_level].neighbors[i].x - 5.0)); x < maxx; ++x) {
