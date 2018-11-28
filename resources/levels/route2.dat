@@ -53,6 +53,9 @@ TELEPORT
 21 37 viridian-station3 5 1
 22 37 viridian-station3 5 1
 20 40 viridian-station3 4 7
+NEIGHBORS
+viridian-city -5 73
+pewter-city -5 -40
 ENCOUNTERS
 10 13 16 19 29 32
 LEVELS

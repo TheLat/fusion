@@ -33,6 +33,8 @@ TELEPORT
 43 10 viridian-city 1 15
 43 11 viridian-city 1 16
 43 12 viridian-city 1 17
+NEIGHBORS
+viridian-city 43 -5
 ENCOUNTERS
 19 21 29 32 56
 WATER_ENCOUNTERS_OLD

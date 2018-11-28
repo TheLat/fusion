@@ -64,6 +64,9 @@ TELEPORT
 39 23 route3 1 12
 14 11 pewter-museum 10 7
 19 9 pewter-museum 16 7
+NEIGHBORS
+route2 5 40
+route3 38 11
 DATA
 1     1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1
 1     1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1
