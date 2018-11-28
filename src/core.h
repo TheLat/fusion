@@ -220,11 +220,18 @@ public:
 	mon team[6];
 };
 
+class neighbor {
+public:
+	string level;
+	double x, y;
+};
+
 class level {
 public:
 	string name;
 	std::vector<std::vector<int>> data;
 	std::vector<std::pair<location, location>> teleport;
+	std::vector<neighbor> neighbors;
 	std::vector<character> characters;
 	std::vector<int> encounters, water_encounters_old, water_encounters_good, water_encounters_super, mega_encounters;
 	std::pair<int, int> level_range, mega_level_range;
@@ -4376,7 +4383,7 @@ public:
 			{
 				std::getline(f, line);
 				std::pair<location, location> temp;
-				while (line != "DATA" && line != "ENCOUNTERS" && line != "LEVELS" && line.find("WATER_ENCOUNTERS_") != 0) {
+				while (line != "NEIGHBORS" && line != "DATA" && line != "ENCOUNTERS" && line != "LEVELS" && line.find("WATER_ENCOUNTERS_") != 0) {
 					temp.first.level = levelname;
 					temp.first.x = double(stoi(line));
 					line.erase(0, line.find(" ") + 1);
@@ -4392,6 +4399,20 @@ public:
 					line.erase(0, line.find(" ") + 1);
 					temp.second.y = double(stoi(line));
 					levels[levelname].teleport.push_back(temp);
+					std::getline(f, line);
+				}
+			}
+			if (line == "NEIGHBORS") {
+				std::getline(f, line);
+				while (line.find(" ") != -1) {
+					neighbor n;
+					n.level = line;
+					n.level.erase(n.level.find(" "), n.level.size());
+					line.erase(0, line.find(" ") + 1);
+					n.x = stof(line);
+					line.erase(0, line.find(" ") + 1);
+					n.y = stof(line);
+					levels[levelname].neighbors.push_back(n);
 					std::getline(f, line);
 				}
 			}
@@ -5282,10 +5303,10 @@ public:
 		string curr_level = mc.loc.level;
 		double curr_x = mc.loc.x;
 		double curr_y = mc.loc.y;
-		unsigned maxy = levels[curr_level].data.size();
-		for (unsigned y = 0; y < maxy; ++y) {
-			unsigned maxx = levels[curr_level].data[y].size();
-			for (unsigned x = 0; x < maxx; ++x) {
+		unsigned maxy = min(int(levels[curr_level].data.size()), int(curr_y + 5.0));
+		for (unsigned y = max(0, unsigned(curr_y - 4.0)); y < maxy; ++y) {
+			unsigned maxx = min(int(levels[curr_level].data[y].size()), int(curr_x + 6.0));
+			for (unsigned x = max(0, unsigned(curr_x - 5.0)); x < maxx; ++x) {
 				xp = -1.0f + (float(x) / 5.0f) - ((curr_x - 4.5f) / 5.0f);
 				yp = (-float(y) / 4.5f) - (0.5f / 4.5f) + (curr_y / 4.5f);
 				xl = 1.0f / 5.0f;
@@ -5299,6 +5320,27 @@ public:
 				if (yp > 1.0f && yp + yl > 1.0f)
 					continue;
 				g.push_quad(xp, yp, xl, yl, g.tiles[levels[curr_level].data[y][x]]);
+			}
+		}
+		for (unsigned i = 0; i < levels[curr_level].neighbors.size(); ++i) {
+			unsigned maxy = min(int(levels[levels[curr_level].neighbors[i].level].data.size()), int(curr_y - levels[curr_level].neighbors[i].y + 5.0));
+			for (unsigned y = max(0, unsigned(curr_y - levels[curr_level].neighbors[i].y - 4.0)); y < maxy; ++y) {
+				unsigned maxx = min(int(levels[levels[curr_level].neighbors[i].level].data[y].size()), int(curr_x - levels[curr_level].neighbors[i].x + 6.0));
+				for (unsigned x = max(0, unsigned(curr_x - levels[curr_level].neighbors[i].x - 5.0)); x < maxx; ++x) {
+					xp = -1.0f + (float(x + levels[curr_level].neighbors[i].x) / 5.0f) - ((curr_x - 4.5f) / 5.0f);
+					yp = (-float(y + levels[curr_level].neighbors[i].y) / 4.5f) - (0.5f / 4.5f) + (curr_y / 4.5f);
+					xl = 1.0f / 5.0f;
+					yl = 1.0 / 4.5f;
+					if (xp < -1.0f && xp + xl < -1.0f)
+						continue;
+					if (yp < -1.0f && yp + yl < -1.0f)
+						continue;
+					if (xp > 1.0f && xp + xl > 1.0f)
+						continue;
+					if (yp > 1.0f && yp + yl > 1.0f)
+						continue;
+					g.push_quad(xp, yp, xl, yl, g.tiles[levels[levels[curr_level].neighbors[i].level].data[y][x]]);
+				}
 			}
 		}
 	}
