@@ -89,15 +89,15 @@ INTERACTIONS
 MENU:ALERT:I'm beat! {NEWLINE} But, I still have the bike race and marathon left!
 END
 TRAINERS
-route21-fisher1 35 0.65 0.65 FISHERMAN fisherman.png {FISHERMAN: Dang!}{} 119-119:29|119-119:28|119-119:28|119-119:28
+route21-fisher1 35 0.65 0.65 FISHERMAN fisherman.png {FISHERMAN: Dang!}{} 119-119:48|45-119:50:WATERFALL,PETAL DANCE,SLEEP POWDER,SUPERSONIC|112-119:50|80-119:48
 route21-fisher2 35 0.65 0.65 FISHERMAN fisherman.png {FISHERMAN: Darn MAGIKARP!}{} 129-129:19|129-129:19|129-129:19|129-129:19|129-129:19|129-129:19
-route21-swimmer1 5 0.35 0.35 SWIMMER swimmer.png {SWIMMER: Ayah!}{} 117-117:33|73-73:33
-route21-swimmer2 25 0.55 0.55 CUE{SPACE}BALL fat.png {CUE{SPACE}BALL: Cheap shot!}{} 73-73:31|73-73:31|73-73:31
-route21-fisher3 35 0.65 0.65 FISHERMAN fisherman.png {FISHERMAN: That burned some time.}{} 119-119:33|119-119:33
-route21-fisher4 35 0.65 0.65 FISHERMAN fisherman.png {FISHERMAN: Sorry! I didn't mean it!}{} 90-90:33|91-91:33
-route21-swimmer3 5 0.35 0.35 SWIMMER swimmer.png {SWIMMER: Diver!! Down!!}{} 121-121:37
-route21-swimmer4 5 0.35 0.35 SWIMMER swimmer.png {SWIMMER: Yow! {NEWLINE} I lost!}{} 61-61:32|73-73:32|117-117:32
-route21-swimmer5 5 0.35 0.35 SWIMMER swimmer.png {SWIMMER: Pant... pant...pant...}{} 120-120:33|9-9:33
+route21-swimmer1 5 0.35 0.35 SWIMMER swimmer.png {SWIMMER: Ayah!}{} 117-78:52|73-73:50
+route21-swimmer2 25 0.55 0.55 CUE{SPACE}BALL fat.png {CUE{SPACE}BALL: Cheap shot!}{} 73-73:48|82-73:51:THUNDERSHOCK,BARRIER,HYDROPUMP,SUPERSONIC|113-73:50
+route21-fisher3 35 0.65 0.65 FISHERMAN fisherman.png {FISHERMAN: That burned some time.}{} 130-119:52|38-119:50:WATERFALL,FLAMETHROWER,FURY ATTACK,SUPERSONIC
+route21-fisher4 35 0.65 0.65 FISHERMAN fisherman.png {FISHERMAN: Sorry! I didn't mean it!}{} 91-91:51:ICE BEAM,CLAMP,SUPERSONIC,LEER|122-91:51:ICE BEAM,CLAMP,SUBSTITUTE,CONFUSION
+route21-swimmer3 5 0.35 0.35 SWIMMER swimmer.png {SWIMMER: Diver!! Down!!}{} 121-121:53:HYDROPUMP,SWIFT,RECOVER,LIGHT SCREEN
+route21-swimmer4 5 0.35 0.35 SWIMMER swimmer.png {SWIMMER: Yow! {NEWLINE} I lost!}{} 62-62:51:HYDROPUMP,AMNESIA,BODY SLAM,HYPNOSIS|65-73:49|68-117:50
+route21-swimmer5 5 0.35 0.35 SWIMMER swimmer.png {SWIMMER: Pant... pant...pant...}{} 120-120:51|9-9:51
 END
 TELEPORT
 6 87 cinnabar-island 6 1
