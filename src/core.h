@@ -5356,6 +5356,16 @@ public:
 			else
 				g.push_quad((levels[curr_level].characters[i].loc.x - (curr_x + 0.5)) / 5.0, (-0.5 - levels[curr_level].characters[i].loc.y + curr_y) / 4.5f + 0.055, 1.0 / 5.0f, 1.0 / 4.5f, g.tex[levels[curr_level].characters[i].image + string("-") + get_direction_string(levels[curr_level].characters[i].dir) + string("-0.bmp")]);
 		}
+		for (unsigned j = 0; j < levels[curr_level].neighbors.size(); ++j) {
+			for (unsigned i = 0; i < levels[levels[curr_level].neighbors[j].level].characters.size(); ++i) {
+				if (!mc.active[levels[levels[curr_level].neighbors[j].level].characters[i].name])
+					continue;
+				if (levels[levels[curr_level].neighbors[j].level].characters[i].no_offset)
+					g.push_quad((levels[curr_level].neighbors[j].x + levels[levels[curr_level].neighbors[j].level].characters[i].loc.x - (curr_x + 0.5)) / 5.0, (-levels[curr_level].neighbors[j].y -0.5 - levels[levels[curr_level].neighbors[j].level].characters[i].loc.y + curr_y) / 4.5f + 0.0, 1.0 / 5.0f, 1.0 / 4.5f, g.tex[levels[levels[curr_level].neighbors[j].level].characters[i].image + string("-") + get_direction_string(levels[levels[curr_level].neighbors[j].level].characters[i].dir) + string("-0.bmp")]);
+				else
+					g.push_quad((levels[curr_level].neighbors[j].x + levels[levels[curr_level].neighbors[j].level].characters[i].loc.x - (curr_x + 0.5)) / 5.0, (-levels[curr_level].neighbors[j].y -0.5 - levels[levels[curr_level].neighbors[j].level].characters[i].loc.y + curr_y) / 4.5f + 0.055, 1.0 / 5.0f, 1.0 / 4.5f, g.tex[levels[levels[curr_level].neighbors[j].level].characters[i].image + string("-") + get_direction_string(levels[levels[curr_level].neighbors[j].level].characters[i].dir) + string("-0.bmp")]);
+			}
+		}
 		g.push_quad(-0.1, -0.5 / 4.5 + 0.055, 1.0 / 5.0, 1.0 / 4.5, g.tex[mc.movement + string("-") + get_direction_string(mc.dir) + string("-0.bmp")]);
 	}
 	void do_interaction(character& npc) {
