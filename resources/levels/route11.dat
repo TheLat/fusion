@@ -129,6 +129,8 @@ TELEPORT
 5 9 digletts-cave 6 9
 51 13 route11-checkpoint 1 5
 51 12 route11-checkpoint 1 5
+NEIGHBORS
+vermilion-city -43 -6
 ENCOUNTERS
 16 19 21 23 27 43 50 69
 WATER_ENCOUNTERS_OLD

@@ -94,6 +94,9 @@ TELEPORT
 31 23 celadon-game-corner 15 13
 15 31 celadon-gym 4 17
 0 22 route16 43 14
+NEIGHBORS
+route7 52 9
+route16 -43 8
 WATER_ENCOUNTERS_OLD
 129
 WATER_ENCOUNTERS_GOOD

@@ -26,6 +26,8 @@ TELEPORT
 21 35 route5-checkpoint 3 1
 22 35 route5-checkpoint 4 1
 29 32 route5-tunnel 3 7
+NEIGHBORS
+cerulean-city 0 -33
 ENCOUNTERS
 16 19 39 43 52 56 63 66 69
 LEVELS

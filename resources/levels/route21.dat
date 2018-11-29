@@ -120,6 +120,7 @@ TELEPORT
 12 0 pallet-town 12 17
 NEIGHBORS
 pallet-town 0 -17
+cinnabar-island 0 86
 ENCOUNTERS
 18 20 114 122
 WATER_ENCOUNTERS_OLD

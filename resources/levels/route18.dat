@@ -72,6 +72,9 @@ TELEPORT
 46 12 route18-checkpoint 8 5
 57 11 fuchsia-city 5 19
 57 12 fuchsia-city 5 20
+NEIGHBORS
+route17 0 -141
+fuchsia-city 52 -8
 ENCOUNTERS
 20 22 25 77 84 128
 WATER_ENCOUNTERS_OLD

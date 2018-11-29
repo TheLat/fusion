@@ -135,6 +135,8 @@ TELEPORT
 60 14 route14 1 33
 13 10 route15-checkpoint 8 5
 13 9 route15-checkpoint 8 4
+NEIGHBORS
+route14 59 -19
 ENCOUNTERS
 18 45 49 58 70 83 102 132
 LEVELS

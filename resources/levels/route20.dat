@@ -155,6 +155,9 @@ TELEPORT
 0 18 cinnabar-island 29 18
 0 19 cinnabar-island 29 19
 0 20 cinnabar-island 29 20
+NEIGHBORS
+route19 96 -34
+cinnabar-island -29 0
 WATER_ENCOUNTERS_OLD
 129
 WATER_ENCOUNTERS_GOOD

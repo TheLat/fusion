@@ -144,6 +144,11 @@ TELEPORT
 15 27 cerulean-bike-shop 2 7
 44 18 route9 1 10
 44 19 route9 1 11
+NEIGHBORS
+route4 -93 0
+route24 10 -38
+route9 43 8
+route5 0 33
 WATER_ENCOUNTERS_OLD
 129
 WATER_ENCOUNTERS_GOOD
