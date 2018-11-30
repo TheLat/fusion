@@ -55,6 +55,74 @@ INTERACTIONS
 MENU:ALERT:Hey, kid! What do you think you're doing here?|MENU:ALERT:You won't live long in combat! That's for sure!|MENU:ALERT:I tell you kid, electric POK{e-accent}MON saved me during the war!|MENU:ALERT:They zapped my enemies into paralysis!|MENU:ALERT:They'll do the same to you!|BATTLE:vermilion-gym-surge|{NO_ADVANCE}{SET:THUNDERBADGE:1|MENU:ALERT:You're special, kid! Take this!|GIVE_ITEM:TM24|MENU:ALERT:TM24 contains THUNDERBOLT!|MENU:ALERT:Teach it to an electric POK{e-accent}MON!|ADVANCE:vermilion-gym-board|ADVANCE:vermilion-gym-board2|ADVANCE:vermilion-gym-clerk}
 MENU:ALERT:A little word of advice, kid!|MENU:ALERT:Electricity is sure powerful!|MENU:ALERT:But it's useless against ground-type POK{e-accent}MON!
 END
+vermilion-gym-door1 door 4 4 NO_OFFSET
+INTERACTIONS
+
+END
+vermilion-gym-door2 door 5 4 NO_OFFSET
+INTERACTIONS
+
+END
+vermilion-gym-switch1 blank 5 9
+INTERACTIONS
+GET:SURGESWITCH|{MENU:ALERT:It's a secret switch! Let's press it!|SET:SURGESWITCH:1}{MENU:ALERT:Just garbage in here.}{MENU:ALERT:Just garbage in here.}
+END
+vermilion-gym-switch2 blank 3 9
+INTERACTIONS
+GET:SURGESWITCH|{MENU:ALERT:Just garbage in here.}{MENU:ALERT:It's a secret switch! Let's press it!|SET:SURGESWITCH:2|DEACTIVATE:vermilion-gym-door1|DEACTIVATE:vermilion-gym-door2}{MENU:ALERT:Just garbage in here.}
+END
+vermilion-gym-switch2 blank 7 9
+INTERACTIONS
+GET:SURGESWITCH|{MENU:ALERT:Just garbage in here.}{MENU:ALERT:It's a secret switch! Let's press it!|SET:SURGESWITCH:2|DEACTIVATE:vermilion-gym-door1|DEACTIVATE:vermilion-gym-door2}{MENU:ALERT:Just garbage in here.}
+END
+vermilion-gym-trash1 blank 1 9
+INTERACTIONS
+MENU:ALERT:Just garbage in here.
+END
+vermilion-gym-trash2 blank 9 9
+INTERACTIONS
+MENU:ALERT:Just garbage in here.
+END
+vermilion-gym-trash3 blank 1 7
+INTERACTIONS
+MENU:ALERT:Just garbage in here.
+END
+vermilion-gym-trash4 blank 3 7
+INTERACTIONS
+MENU:ALERT:Just garbage in here.
+END
+vermilion-gym-trash5 blank 5 7
+INTERACTIONS
+MENU:ALERT:Just garbage in here.
+END
+vermilion-gym-trash6 blank 7 7
+INTERACTIONS
+MENU:ALERT:Just garbage in here.
+END
+vermilion-gym-trash7 blank 9 7
+INTERACTIONS
+MENU:ALERT:Just garbage in here.
+END
+vermilion-gym-trash8 blank 1 11
+INTERACTIONS
+MENU:ALERT:Just garbage in here.
+END
+vermilion-gym-trash9 blank 3 11
+INTERACTIONS
+MENU:ALERT:Just garbage in here.
+END
+vermilion-gym-trash10 blank 5 11
+INTERACTIONS
+MENU:ALERT:Just garbage in here.
+END
+vermilion-gym-trash11 blank 7 11
+INTERACTIONS
+MENU:ALERT:Just garbage in here.
+END
+vermilion-gym-trash12 blank 9 11
+INTERACTIONS
+MENU:ALERT:Just garbage in here.
+END
 TRAINERS
 vermilion-gym-trainer1 30 0.6 0.6 SAILOR sailor.png {SAILOR: Wow! Surprised me!}{} 25-25:21|25-25:21
 vermilion-gym-trainer2 25 0.55 0.55 ROCKER rocker.png {ROCKER: Fried!}{} 100-100:20|81-81:20|100-100:20

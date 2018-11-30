@@ -142,15 +142,6 @@ ss-anne-rooms-item4 orb 2 111
 INTERACTIONS
 GIVE_ITEM:MAX POTION|DEACTIVATE:ss-anne-rooms-item4
 END
-ss-anne-rooms-cap5 cap 0 102 DOWN
-FORCE_INTERACTION
-0 1
-0 2
-END
-INTERACTIONS
-!:ss-anne-rooms-cap5|MOVE_TO_PLAYER|MENU:ALERT:You know what they say about sailors and fighting!|BATTLE:ss-anne-rooms-cap5|{NO_ADVANCE}{DISABLE_FORCE}
-MENU:ALERT:Haha! Want to be a sailor, mate?
-END
 ss-anne-rooms-hat4 hat 1 123 DOWN
 INTERACTIONS
 MENU:ALERT:In all my travels I've never seen any POK{e-accent}MON sleep like this one!|MENU:ALERT:It was something like this!|MENU:DEX_ENTRY_SEEN:143-143
