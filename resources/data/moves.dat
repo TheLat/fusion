@@ -32,9 +32,9 @@ NOTES: Gradually drains opponent's life.
 MOVE: VINE WHIP
 TYPE: GRASS
 DEFENSE: DEFENSE
-POWER: 35
+POWER: 45
 ACC: 100
-PP: 10
+PP: 25
 NOTES: Attacks opponent with vines.
 
 MOVE: POISON POWDER
