@@ -82,6 +82,7 @@ TELEPORT
 0 17 route22 42 12
 18 0 route2 13 73
 17 0 route2 12 73
+32 7 viridian-gym 16 17
 NEIGHBORS
 route1 7 36
 route22 -43 5
