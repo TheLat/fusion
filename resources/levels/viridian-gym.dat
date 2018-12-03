@@ -16,8 +16,61 @@ INTERACTIONS
 MENU:ALERT:Yo! Champ in making!|MENU:ALERT:REWRITE THIS
 MENU:ALERT:REWRITE THIS
 END
+viridian-gym-punk punk 2 16 RIGHT
+FORCE_INTERACTION
+1 0
+2 0
+3 0
+END
+INTERACTIONS
+!:viridian-gym-punk|MOVE_TO_PLAYER|MENU:ALERT:Your POK{e-accent}MON will cower at the crack of my whip!|BATTLE:viridian-gym-punk|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Wait! I was just careless!
+END
+viridian-gym-tough tough 3 7 LEFT
+FORCE_INTERACTION
+-1 0
+-2 0
+END
+INTERACTIONS
+!:viridian-gym-tough|MOVE_TO_PLAYER|MENU:ALERT:Karate is the ultimate form of martial arts!|BATTLE:viridian-gym-tough|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:If my POK{e-accent}MON were as good at Karate as I...
+END
+viridian-gym-guy guy2 6 5 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+0 3
+END
+INTERACTIONS
+!:viridian-gym-guy|MOVE_TO_PLAYER|MENU:ALERT:VIRIDIAN GYM was closed for a long time, but now our LEADER is back!|BATTLE:viridian-gym-guy|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:You can go to on to POK{e-accent}MON LEAGUE only by defeating our GYM LEADER!
+END
+viridian-gym-guy2 guy2 12 7 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+0 3
+END
+INTERACTIONS
+!:viridian-gym-guy2|MOVE_TO_PLAYER|MENU:ALERT:Heh! You must be running out of steam by now!|BATTLE:viridian-gym-guy2|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:You need power to keep up with our GYM LEADER!
+END
+viridian-gym-guy3 guy2 13 5 RIGHT
+FORCE_INTERACTION
+1 0
+2 0
+3 0
+END
+INTERACTIONS
+!:viridian-gym-guy3|MOVE_TO_PLAYER|MENU:ALERT:The truly talented win with style!|BATTLE:viridian-gym-guy3|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:The LEADER will scold me!
+END
 TRAINERS
-cinnabar-gym-man1 90 0.99 0.99 BURGLAR burglar.png {BURGLAR: I surrender!}{} 94-38:57:FIRE SPIN,HYPNOSIS,CONFUSE RAY,DREAM EATER|101-59:57:FLAMETHROWER,THUNDER,EXPLOSION,SCREECH|126-126:57
+viridian-gym-punk 40 0.95 0.95 TAMER tamer.png {TAMER: Yowch! Whiplash!}{} 24-24:39|128-128:39
+viridian-gym-tough 25 0.85 0.85 BLACKBELT blackbelt.png {BLACKBELT: Atcho!}{} 67-67:43
+viridian-gym-guy 35 0.9 0.9 COOLTRAINER{MALE} cooltrainerm.png {COOLTRAINER{MALE}: I was beaten?}{} 33-33:39|34-34:39
+viridian-gym-guy2 35 0.9 0.9 COOLTRAINER{MALE} cooltrainerm.png {COOLTRAINER{MALE}: I ran out of gas!}{} 28-28:39|51-51:39
+viridian-gym-guy3 35 0.9 0.9 COOLTRAINER{MALE} cooltrainerm.png {COOLTRAINER{MALE}: I lost my grip!}{} 111-111:43
 END
 TELEPORT
 16 18 viridian-city 32 8
