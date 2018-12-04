@@ -97,19 +97,19 @@ MENU:ALERT:POK{e-accent}MON LEAGUE? You? Don't get cocky!
 END
 viridian-gym-giovanni boss 2 1 DOWN
 INTERACTIONS
-MENU:ALERT:Fwahahaha! This is my hideout!|MENU:ALERT:I planned to resurrect TEAM ROCKET here!|MENU:ALERT:But, you have caught me again!|MENU:ALERT:So be it!|MENU:ALERT:Once more, you shall face GIOVANNI, the greatest trainer in the world!|BATTLE:viridian-gym-giovanni|{NO_ADVANCE}{SET:EARTHBADGE:1|MENU:ALERT:The EARTHBADGE is evidence of your mastery as a POK{e-accent}MON trainer!|MENU:ALERT:With it, you can enter the POK{e-accent}MON LEAGUE!|MENU:ALERT:Here is my gift for your POK{e-accent}MON LEAGUE challenge!|GIVE_ITEM:TM27|MENU:ALERT:TM27 is FISSURE! It will take out POK{e-accent}MON with just one hit!|MENU:ALERT:I made it when I ran the GYM here, too long ago...|MENU:ALERT:...|MENU:ALERT:...I hope you saved the MASTER BALL.|MENU:ALERT:Use it at the right time and you could save the world.|ACTIVATE:route22-rival2-script1|ACTIVATE:route22-rival2-script2}
+MENU:ALERT:Fwahahaha! This is my hideout!|MENU:ALERT:I planned to resurrect TEAM ROCKET here!|MENU:ALERT:But, you have caught me again!|MENU:ALERT:So be it!|MENU:ALERT:Once more, you shall face GIOVANNI, the greatest trainer in the world!|BATTLE:viridian-gym-giovanni|{NO_ADVANCE}{SET:EARTHBADGE:1|MENU:ALERT:The EARTHBADGE is evidence of your mastery as a POK{e-accent}MON trainer!|MENU:ALERT:With it, you can enter the POK{e-accent}MON LEAGUE!|MENU:ALERT:Here is my gift for your POK{e-accent}MON LEAGUE challenge!|GIVE_ITEM:TM27|MENU:ALERT:TM27 is FISSURE! It will take out POK{e-accent}MON with just one hit!|MENU:ALERT:I made it when I ran the GYM here, too long ago...|MENU:ALERT:...|MENU:ALERT:...I hope you saved the MASTER BALL.|MENU:ALERT:Use it at the right time and you could save the world.|ACTIVATE:route22-rival2-script1|ACTIVATE:route22-rival2-script2|ADVANCE:viridian-gym-board1|ADVANCE:viridian-gym-board2}
 MENU:ALERT:Having lost, I cannot face my underlings!|MENU:ALERT:TEAM ROCKET is finished forever.|MENU:ALERT:I will dedicate my life to the study of POK{e-accent}MON!|MENU:ALERT:Let us meet again some day!|MENU:ALERT:Farewell!|DEACTIVATE:viridian-gym-giovanni
 END
 TRAINERS
-viridian-gym-punk 40 0.95 0.95 TAMER tamer.png {TAMER: Yowch! Whiplash!}{} 24-24:39|128-128:39
-viridian-gym-tough 25 0.85 0.85 BLACKBELT blackbelt.png {BLACKBELT: Atcho!}{} 67-67:43
-viridian-gym-guy 35 0.9 0.9 COOLTRAINER{MALE} cooltrainerm.png {COOLTRAINER{MALE}: I was beaten?}{} 33-33:39|34-34:39
-viridian-gym-guy2 35 0.9 0.9 COOLTRAINER{MALE} cooltrainerm.png {COOLTRAINER{MALE}: I ran out of gas!}{} 28-28:39|51-51:39
-viridian-gym-guy3 35 0.9 0.9 COOLTRAINER{MALE} cooltrainerm.png {COOLTRAINER{MALE}: I lost my grip!}{} 111-111:43
-viridian-gym-tough2 25 0.85 0.85 BLACKBELT blackbelt.png {BLACKBELT: Wargh!}{} 66-66:40|67-67:40
-viridian-gym-punk2 40 0.95 0.95 TAMER tamer.png {TAMER: You are in perfect harmony!}{} 111-111:43
-viridian-gym-tough3 25 0.85 0.85 BLACKBELT blackbelt.png {BLACKBELT: Ayah!}{} 67-67:38|67-67:38|67-67:38
-viridian-gym-giovanni 99 1.0 1.0 GIOVANNI giovanni.png {GIOVANNI: Ha! That was a truly intense fight! You have won! As proof, here is your EARTHBADGE.}{} 1-1:5
+viridian-gym-punk 40 0.95 0.95 TAMER tamer.png {TAMER: Yowch! Whiplash!}{} 24-28:68|128-128:68
+viridian-gym-tough 25 0.85 0.85 BLACKBELT blackbelt.png {BLACKBELT: Atcho!}{} 24-68:66|28-68:67|76-68:68
+viridian-gym-guy 35 0.9 0.9 COOLTRAINER{MALE} cooltrainerm.png {COOLTRAINER{MALE}: I was beaten?}{} 31-31:68:DOUBLE KICK,BODY SLAM,HORN DRILL,HYPER BEAM|34-34:68:DOUBLE KICK,HORN DRILL,BODY SLAM,HYPER BEAM
+viridian-gym-guy2 35 0.9 0.9 COOLTRAINER{MALE} cooltrainerm.png {COOLTRAINER{MALE}: I ran out of gas!}{} 128-28:68|51-18:68
+viridian-gym-guy3 35 0.9 0.9 COOLTRAINER{MALE} cooltrainerm.png {COOLTRAINER{MALE}: I lost my grip!}{} 112-112:70:HORN DRILL,TAKE DOWN,SUBMISSION,EARTHQUAKE
+viridian-gym-tough2 25 0.85 0.85 BLACKBELT blackbelt.png {BLACKBELT: Wargh!}{} 68-68:70:RAGE,RAGE,RAGE,RAGE
+viridian-gym-punk2 40 0.95 0.95 TAMER tamer.png {TAMER: You are in perfect harmony!}{} 94-28:68:SLASH,HYPNOSIS,SWIFT,LICK|112-112:68
+viridian-gym-tough3 25 0.85 0.85 BLACKBELT blackbelt.png {BLACKBELT: Ayah!}{} 68-68:68|87-68:67|68-28:66:SLASH,SEISMIC TOSS,SUBMISSION,SWIFT
+viridian-gym-giovanni 99 1.0 1.0 GIOVANNI giovanni.png {GIOVANNI: Ha! That was a truly intense fight! You have won! As proof, here is your EARTHBADGE.}{} 112-112:46:BODY SLAM,HORN DRILL,ROCK SLIDE,EARTHQUAKE|115-115:44:RAGE,BODY SLAM,DIZZY PUNCH,BITE|135-28:43:SLASH,THUNDERBOLT,EARTHQUAKE,BODY SLAM|68-28:44:SLASH,SUBMISSION,FOCUS ENERGY,EARTHQUAKE|31-31:46:BODY SLAM,EARTHQUAKE,BLIZZARD,THUNDERBOLT|51-91:47:EARTHQUAKE,CLAMP,SAND ATTACK,BLIZZARD
 END
 TELEPORT
 16 18 viridian-city 32 8
