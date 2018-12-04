@@ -13,8 +13,8 @@ MENU:ALERT:VIRIDIAN CITY POK{e-accent}MON GYM|MENU:ALERT:LEADER: GIOVANNI|MENU:A
 END
 viridian-gym-clerk clerk 16 15 DOWN
 INTERACTIONS
-MENU:ALERT:Yo! Champ in making!|MENU:ALERT:REWRITE THIS
-MENU:ALERT:REWRITE THIS
+MENU:ALERT:Yo! Champ in making!|MENU:ALERT:GIOVANNI has been out for some time.|MENU:ALERT:He wouldn't abandon his responsibilities as a GYM LEADER if it weren't important.|MENU:ALERT:But, he's back now, so whatever it was, it must be finished.|MENU:ALERT:GIOVANNI's focus has always been ground types. Keep that in mind as you face him.
+MENU:ALERT:GIOVANNI retired!?|MENU:ALERT:He always took his job as GYM LEADER seriously.|MENU:ALERT:I guess he already has a replacement picked out.
 END
 viridian-gym-punk punk 2 16 RIGHT
 FORCE_INTERACTION
@@ -83,7 +83,7 @@ FORCE_INTERACTION
 END
 INTERACTIONS
 !:viridian-gym-punk2|MOVE_TO_PLAYER|MENU:ALERT:POK{e-accent}MON and I, we make wonderful music together!|BATTLE:viridian-gym-punk2|{NO_ADVANCE}{DISABLE_FORCE}
-MENU:ALERT:REWRITE THIS
+MENU:ALERT:It's great to have GIOVANNI back.|MENU:ALERT:There's so much we can learn from him.
 END
 viridian-gym-tough3 tough 10 1 DOWN
 FORCE_INTERACTION
