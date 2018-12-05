@@ -54,6 +54,7 @@ TELEPORT
 1 11 route9 57 11
 14 21 power-plant-center 3 7
 11 19 rock-tunnel 15 4
+9 41 power-plant 5 35
 NEIGHBORS
 route9 -56 0
 ENCOUNTERS
