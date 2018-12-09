@@ -54,6 +54,7 @@ TELEPORT
 43 10 viridian-city 1 15
 43 11 viridian-city 1 16
 43 12 viridian-city 1 17
+10 8 route22-checkpoint 4 8
 NEIGHBORS
 viridian-city 43 -5
 ENCOUNTERS
