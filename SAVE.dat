@@ -5,8 +5,8 @@ MOVEMENT:player
 DIRECTION:0
 WINS:0
 LOSSES:0
-LOCATION:power-plant-outside|9|42
-LAST_CENTER:power-plant-center|3|3
+LOCATION:route22|10|9
+LAST_CENTER:cerulean-center|3|3
 MONEY:373669
 COINS:50
 REPEL:0
@@ -683,12 +683,26 @@ power-plant-center-guy|0
 power-plant-center-joy|0
 power-plant-center-joy-desk|0
 power-plant-center-pc|0
+power-plant-orb1|0
+power-plant-orb10|0
+power-plant-orb11|0
+power-plant-orb12|0
+power-plant-orb13|0
+power-plant-orb2|0
+power-plant-orb3|0
+power-plant-orb4|0
+power-plant-orb5|0
+power-plant-orb6|0
+power-plant-orb7|0
+power-plant-orb8|0
+power-plant-orb9|0
 power-plant-outside-bush1|0
 power-plant-outside-bush2|0
 power-plant-outside-bush3|0
 power-plant-outside-bush4|0
 power-plant-outside-girl1|1
 power-plant-outside-guy1|1
+power-plant-zapdos|0
 rival-house-map-item|0
 rival-house-map-wall|0
 rival-sister|1
@@ -2180,12 +2194,26 @@ power-plant-center-guy|1
 power-plant-center-joy|1
 power-plant-center-joy-desk|1
 power-plant-center-pc|1
+power-plant-orb1|1
+power-plant-orb10|1
+power-plant-orb11|1
+power-plant-orb12|1
+power-plant-orb13|1
+power-plant-orb2|1
+power-plant-orb3|1
+power-plant-orb4|1
+power-plant-orb5|1
+power-plant-orb6|1
+power-plant-orb7|1
+power-plant-orb8|1
+power-plant-orb9|1
 power-plant-outside-bush1|0
 power-plant-outside-bush2|0
 power-plant-outside-bush3|0
 power-plant-outside-bush4|0
 power-plant-outside-girl1|1
 power-plant-outside-guy1|1
+power-plant-zapdos|1
 rival-house-map-item|1
 rival-house-map-wall|1
 rival-sister|1
@@ -3761,7 +3789,7 @@ VOLCANOBADGE|1
 celadon-hideout-floor|1
 END
 TEAM:
-0|NUMBER:47-47|NICKNAME:|HP:152|EXP:135749|LEVEL:55|EV:9722|11433|10368|10790|11854|IV:14|4|11|6|9|MOVES:SPORE|STUN SPORE|LEECH LIFE|SLASH|PP:15|30|15|18|MAX_PP:15|30|15|20|STATUS:
+0|NUMBER:47-47|NICKNAME:|HP:147|EXP:135750|LEVEL:55|EV:9762|11473|10403|10890|11924|IV:14|4|11|6|9|MOVES:SPORE|STUN SPORE|LEECH LIFE|SLASH|PP:15|30|15|19|MAX_PP:15|30|15|20|STATUS:
 1|NUMBER:6-6|NICKNAME:|HP:208|EXP:251669|LEVEL:68|EV:21682|26369|24520|22879|25794|IV:0|13|10|10|14|MOVES:SLASH|RAGE|FLAMETHROWER|FIRE SPIN|PP:20|20|15|15|MAX_PP:20|20|15|15|STATUS:
 2|NUMBER:130-130|NICKNAME:|HP:239|EXP:281463|LEVEL:70|EV:23132|21733|22340|18856|19297|IV:0|13|10|10|14|MOVES:HYDROPUMP|BITE|SURF|HYPER BEAM|PP:5|25|15|5|MAX_PP:5|25|15|5|STATUS:
 3|NUMBER:76-15|NICKNAME:|HP:193|EXP:228258|LEVEL:65|EV:20234|24387|22742|22304|24522|IV:2|15|9|10|11|MOVES:PIN MISSILE|EARTHQUAKE|FURY ATTACK|TWIN NEEDLE|PP:20|10|20|20|MAX_PP:20|10|20|20|STATUS:
@@ -4555,6 +4583,22 @@ pokemon-tower-lower
 8|0|12|29|0
 9|3|1|32|0
 END
+power-plant
+0|0|8|25|0
+1|0|10|20|0
+2|0|33|18|0
+3|0|26|18|0
+4|0|21|32|0
+5|0|24|34|0
+6|0|22|25|0
+7|0|27|28|0
+8|0|27|32|0
+9|0|38|32|0
+10|0|35|3|0
+11|0|29|3|0
+12|0|22|14|0
+13|0|5|9|0
+END
 power-plant-center
 0|0|0|4|0
 1|0|3|1|0
@@ -4571,7 +4615,7 @@ power-plant-outside
 3|0|12|22|0
 4|0|12|20|0
 5|0|10|21|0
-6|0|13|46|1
+6|2|13|46|1
 7|0|8|43|0
 END
 rival-home
@@ -4833,8 +4877,8 @@ route22
 1|0|25|8|0
 2|0|30|8|0
 3|0|30|7|0
-4|2|24|8|0
-5|3|30|8|0
+4|0|25|8|0
+5|0|30|8|0
 6|0|30|7|0
 END
 route24
@@ -5549,7 +5593,7 @@ viridian-house2
 END
 viridian-house3
 0|0|2|4|0
-1|0|4|1|0
+1|2|4|1|0
 2|0|0|1|0
 3|0|1|1|0
 4|0|7|1|0
