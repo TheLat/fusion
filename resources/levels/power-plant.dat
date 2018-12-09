@@ -33,6 +33,30 @@ power-plant-orb8 orb 27 28
 INTERACTIONS
 MENU:ALERT:Bzzzt!|WILD_BATTLE:101-101:65|{NO_ADVANCE}{DEACTIVATE:power-plant-orb8}
 END
+power-plant-orb9 orb 27 32
+INTERACTIONS
+GIVE_ITEM:TM25|DEACTIVATE:power-plant-orb9
+END
+power-plant-orb10 orb 38 32
+INTERACTIONS
+MENU:ALERT:Bzzzt!|WILD_BATTLE:101-101:65|{NO_ADVANCE}{DEACTIVATE:power-plant-orb10}
+END
+power-plant-orb11 orb 35 3
+INTERACTIONS
+GIVE_ITEM:RARE CANDY|DEACTIVATE:power-plant-orb11
+END
+power-plant-orb12 orb 29 3
+INTERACTIONS
+GIVE_ITEM:HP UP|DEACTIVATE:power-plant-orb12
+END
+power-plant-orb13 orb 22 14
+INTERACTIONS
+MENU:ALERT:Bzzzt!|WILD_BATTLE:101-101:65|{NO_ADVANCE}{DEACTIVATE:power-plant-orb13}
+END
+power-plant-zapdos bird 5 9 DOWN
+INTERACTIONS
+MENU:ALERT:Gyaoo!|WILD_BATTLE:145-145:50|{NO_ADVANCE}{DEACTIVATE:power-plant-zapdos}
+END
 TELEPORT
 5 36 power-plant-outside 9 42
 6 36 power-plant-outside 9 42
