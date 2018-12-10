@@ -2,10 +2,10 @@ WARNING: Editing this file can easily corrupt game state.
 NAME:RED
 RIVAL_NAME:BLUE
 MOVEMENT:player
-DIRECTION:0
+DIRECTION:2
 WINS:0
 LOSSES:0
-LOCATION:route22|10|9
+LOCATION:route23|9|32
 LAST_CENTER:cerulean-center|3|3
 MONEY:373669
 COINS:50
@@ -908,6 +908,7 @@ route21-swimmer2|1
 route21-swimmer3|1
 route21-swimmer4|1
 route21-swimmer5|1
+route22-checkpoint-guard|1
 route22-rival-script1|0
 route22-rival-script2|0
 route22-rival1|0
@@ -915,6 +916,14 @@ route22-rival2|0
 route22-rival2-script1|0
 route22-rival2-script2|0
 route22-sign1|0
+route23-checkpoint-guard1|1
+route23-checkpoint-guard2|1
+route23-checkpoint-guard3|1
+route23-checkpoint-guard4|1
+route23-checkpoint-guard5|1
+route23-checkpoint-guard6|1
+route23-checkpoint-guard7|1
+route23-sign1|0
 route24-boy1|1
 route24-boy2|1
 route24-girl1|1
@@ -2419,6 +2428,7 @@ route21-swimmer2|1
 route21-swimmer3|1
 route21-swimmer4|1
 route21-swimmer5|1
+route22-checkpoint-guard|1
 route22-rival-script1|0
 route22-rival-script2|0
 route22-rival1|0
@@ -2426,6 +2436,14 @@ route22-rival2|0
 route22-rival2-script1|0
 route22-rival2-script2|0
 route22-sign1|1
+route23-checkpoint-guard1|1
+route23-checkpoint-guard2|1
+route23-checkpoint-guard3|1
+route23-checkpoint-guard4|1
+route23-checkpoint-guard5|1
+route23-checkpoint-guard6|1
+route23-checkpoint-guard7|1
+route23-sign1|1
 route24-boy1|1
 route24-boy2|1
 route24-girl1|1
@@ -3210,6 +3228,7 @@ SEEN:
 117-120
 117-135
 117-18
+117-20
 117-35
 117-59
 117-68
@@ -3220,6 +3239,7 @@ SEEN:
 118-54
 118-58
 119-113
+119-117
 119-119
 119-120
 119-18
@@ -3526,6 +3546,7 @@ SEEN:
 60-61
 60-69
 61-116
+61-117
 61-12
 61-18
 61-19
@@ -3789,8 +3810,8 @@ VOLCANOBADGE|1
 celadon-hideout-floor|1
 END
 TEAM:
-0|NUMBER:47-47|NICKNAME:|HP:147|EXP:135750|LEVEL:55|EV:9762|11473|10403|10890|11924|IV:14|4|11|6|9|MOVES:SPORE|STUN SPORE|LEECH LIFE|SLASH|PP:15|30|15|19|MAX_PP:15|30|15|20|STATUS:
-1|NUMBER:6-6|NICKNAME:|HP:208|EXP:251669|LEVEL:68|EV:21682|26369|24520|22879|25794|IV:0|13|10|10|14|MOVES:SLASH|RAGE|FLAMETHROWER|FIRE SPIN|PP:20|20|15|15|MAX_PP:20|20|15|15|STATUS:
+0|NUMBER:47-47|NICKNAME:|HP:0|EXP:138610|LEVEL:55|EV:9822|11538|10483|10962|12011|IV:14|4|11|6|9|MOVES:SPORE|STUN SPORE|LEECH LIFE|SLASH|PP:12|27|13|12|MAX_PP:15|30|15|20|STATUS:
+1|NUMBER:6-6|NICKNAME:|HP:124|EXP:257057|LEVEL:68|EV:22113|26879|25074|23428|26375|IV:0|13|10|10|14|MOVES:SLASH|RAGE|FLAMETHROWER|FIRE SPIN|PP:5|20|15|15|MAX_PP:20|20|15|15|STATUS:
 2|NUMBER:130-130|NICKNAME:|HP:239|EXP:281463|LEVEL:70|EV:23132|21733|22340|18856|19297|IV:0|13|10|10|14|MOVES:HYDROPUMP|BITE|SURF|HYPER BEAM|PP:5|25|15|5|MAX_PP:5|25|15|5|STATUS:
 3|NUMBER:76-15|NICKNAME:|HP:193|EXP:228258|LEVEL:65|EV:20234|24387|22742|22304|24522|IV:2|15|9|10|11|MOVES:PIN MISSILE|EARTHQUAKE|FURY ATTACK|TWIN NEEDLE|PP:20|10|20|20|MAX_PP:20|10|20|20|STATUS:
 4|NUMBER:135-135|NICKNAME:|HP:166|EXP:188980|LEVEL:61|EV:11947|13781|13966|14055|13784|IV:0|13|10|10|14|MOVES:PIN MISSILE|DOUBLE KICK|THUNDER|THUNDERBOLT|PP:20|30|10|15|MAX_PP:20|30|10|15|STATUS:
@@ -4880,6 +4901,19 @@ route22
 4|0|25|8|0
 5|0|30|8|0
 6|0|30|7|0
+END
+route22-checkpoint
+0|2|6|3|1
+END
+route23
+0|0|8|33|0
+1|2|13|136|1
+2|3|13|119|1
+3|3|17|105|1
+4|2|16|96|1
+5|2|13|85|1
+6|3|15|56|1
+7|3|9|35|1
 END
 route24
 0|2|13|33|1
