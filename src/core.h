@@ -5185,9 +5185,11 @@ public:
 					if (ahead2.x >= 0.0 && ahead2.y >= 0.0 && int(ahead2.y) < levels[mc.loc.level].data.size() && int(ahead2.x) < levels[mc.loc.level].data[int(ahead2.y)].size() && !blocking[get_tile(ahead2.y, ahead2.x)] && !npc_blocking[get_tile(ahead2.y, ahead2.x)]) {
 						bool npc_in_way = false;
 						for (unsigned j = 0; j < levels[mc.loc.level].characters.size(); ++j) {
-							if (ahead2.x == levels[mc.loc.level].characters[j].loc.x && ahead2.y == levels[mc.loc.level].characters[j].loc.y) {
-								npc_in_way = true;
-								break;
+							if (mc.active[levels[mc.loc.level].characters[j].name]) {
+								if (ahead2.x == levels[mc.loc.level].characters[j].loc.x && ahead2.y == levels[mc.loc.level].characters[j].loc.y) {
+									npc_in_way = true;
+									break;
+								}
 							}
 						}
 						if (npc_in_way) {
