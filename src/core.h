@@ -49,6 +49,8 @@ public:
 	double x;
 	double y;
 	string level;
+	bool allow_npcs;
+	bool allow_player;
 };
 
 class item {
@@ -4398,6 +4400,18 @@ public:
 					temp.second.x = double(stoi(line));
 					line.erase(0, line.find(" ") + 1);
 					temp.second.y = double(stoi(line));
+					temp.first.allow_npcs = true;
+					temp.first.allow_player = true;
+					if (line.find(" ") != -1) {
+						temp.first.allow_npcs = false;
+						temp.first.allow_player = false;
+						if (line.find("PLAYER") != -1) {
+							temp.first.allow_player = true;
+						}
+						if (line.find("NPC") != -1) {
+							temp.first.allow_npcs = true;
+						}
+					}
 					levels[levelname].teleport.push_back(temp);
 					std::getline(f, line);
 				}
@@ -5072,17 +5086,19 @@ public:
 	}
 	void handle_teleport() {
 		for (unsigned i = 0; i < levels[mc.loc.level].teleport.size(); ++i) {
-			if (mc.loc.x == levels[mc.loc.level].teleport[i].first.x && mc.loc.y == levels[mc.loc.level].teleport[i].first.y) {
-				transition.lock();
-				mc.loc.x = levels[mc.loc.level].teleport[i].second.x;
-				mc.loc.y = levels[mc.loc.level].teleport[i].second.y;
-				mc.loc.level = levels[mc.loc.level].teleport[i].second.level;
-				for (unsigned j = 0; j < levels[mc.loc.level].characters.size(); ++j) {
-					levels[mc.loc.level].characters[j].dir = levels[mc.loc.level].characters[j].origin_dir;
-					levels[mc.loc.level].characters[j].loc = levels[mc.loc.level].characters[j].origin;
+			if (levels[mc.loc.level].teleport[i].first.allow_player) {
+				if (mc.loc.x == levels[mc.loc.level].teleport[i].first.x && mc.loc.y == levels[mc.loc.level].teleport[i].first.y) {
+					transition.lock();
+					mc.loc.x = levels[mc.loc.level].teleport[i].second.x;
+					mc.loc.y = levels[mc.loc.level].teleport[i].second.y;
+					mc.loc.level = levels[mc.loc.level].teleport[i].second.level;
+					for (unsigned j = 0; j < levels[mc.loc.level].characters.size(); ++j) {
+						levels[mc.loc.level].characters[j].dir = levels[mc.loc.level].characters[j].origin_dir;
+						levels[mc.loc.level].characters[j].loc = levels[mc.loc.level].characters[j].origin;
+					}
+					transition.unlock();
+					break;
 				}
-				transition.unlock();
-				break;
 			}
 		}
 	}
@@ -5200,10 +5216,12 @@ public:
 							levels[mc.loc.level].characters[i].loc.y = ahead2.y;
 							if (levels[mc.loc.level].characters[i].teleportable) {
 								for (unsigned j = 0; j < levels[mc.loc.level].teleport.size(); ++j) {
-									if (levels[mc.loc.level].characters[i].loc.x == levels[mc.loc.level].teleport[j].first.x && levels[mc.loc.level].characters[i].loc.y == levels[mc.loc.level].teleport[j].first.y) {
-										mc.interaction[levels[mc.loc.level].characters[i].name] = levels[mc.loc.level].characters[i].interactions.size() - 1;
-										do_interaction(levels[mc.loc.level].characters[i]);
-										break;
+									if (levels[mc.loc.level].teleport[j].first.allow_npcs) {
+										if (levels[mc.loc.level].characters[i].loc.x == levels[mc.loc.level].teleport[j].first.x && levels[mc.loc.level].characters[i].loc.y == levels[mc.loc.level].teleport[j].first.y) {
+											mc.interaction[levels[mc.loc.level].characters[i].name] = levels[mc.loc.level].characters[i].interactions.size() - 1;
+											do_interaction(levels[mc.loc.level].characters[i]);
+											break;
+										}
 									}
 								}
 							}
