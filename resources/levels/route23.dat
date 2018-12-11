@@ -90,6 +90,7 @@ TELEPORT
 12 140 route22-checkpoint 4 2
 13 140 route22-checkpoint 4 2
 9 31 victory-road 14 22
+19 31 victory-road 34 41
 ENCOUNTERS
 22 24 28 20 33 57 128 132
 WATER_ENCOUNTERS_OLD

@@ -14,13 +14,245 @@ victory-road-block1 block 15 17 NO_OFFSET
 INTERACTIONS
 
 END
+victory-road-stone3 boulder 8 15 PUSHABLE
+INTERACTIONS
+MENU:ALERT:This requires STRENGTH to move!
+END
+victory-road-stone4 boulder 20 7 PUSHABLE
+INTERACTIONS
+MENU:ALERT:This requires STRENGTH to move!
+END
+victory-road-item1 orb 15 7
+INTERACTIONS
+GIVE_ITEM:RARE CANDY|DEACTIVATE:victory-road-item1
+END
+victory-road-item2 orb 17 5
+INTERACTIONS
+GIVE_ITEM:TM43|DEACTIVATE:victory-road-item2
+END
+victory-road-girl1 girl 13 10 RIGHT
+FORCE_INTERACTION
+1 0
+2 0
+3 0
+END
+INTERACTIONS
+!:victory-road-girl1|MOVE_TO_PLAYER|MENU:ALERT:I wonder if you are good enough for me!|BATTLE:victory-road-girl1|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I never wanted to lose to anybody!
+END
+victory-road-guy1 guy2 9 7 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+0 3
+END
+INTERACTIONS
+!:victory-road-guy1|MOVE_TO_PLAYER|MENU:ALERT:I can see you're good! Let me see exactly how good!|BATTLE:victory-road-guy1|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I concede, you're better than me!
+END
+victory-road-stone5 boulder 10 38 PUSHABLE
+INTERACTIONS
+MENU:ALERT:This requires STRENGTH to move!
+END
+victory-road-block2 block 12 42 NO_OFFSET
+INTERACTIONS
+
+END
+victory-road-block3 block 12 41 NO_OFFSET
+INTERACTIONS
+
+END
+victory-road-stone6 boulder 6 49 INACTIVE
+INTERACTIONS
+MENU:ALERT:This requires STRENGTH to move!
+END
+victory-road-stone7 boulder 9 47 PUSHABLE TELEPORTABLE
+INTERACTIONS
+MENU:ALERT:This requires STRENGTH to move!|NO_ADVANCE
+ACTIVATE:victory-road-stone6|DEACTIVATE:victory-road-block2|DEACTIVATE:victory-road-block3|DEACTIVATE:victory-road-stone7
+END
+victory-road-tough1 tough 18 47 UP
+FORCE_INTERACTION
+0 -1
+0 -2
+0 -3
+END
+INTERACTIONS
+!:victory-road-tough1|MOVE_TO_PLAYER|MENU:ALERT:VICTORY ROAD is the final test for trainers!|BATTLE:victory-road-tough1|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:If you get stuck, try moving some boulders around!
+END
+victory-road-guy2 guy2 26 46 LEFT
+FORCE_INTERACTION
+-1 0
+-2 0
+-3 0
+END
+INTERACTIONS
+!:victory-road-guy2|MOVE_TO_PLAYER|MENU:ALERT:Ah, so you wish to challenge the ELITE FOUR?|BATTLE:victory-road-guy2|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:{RIVAL_NAME} also came through here!
+END
+victory-road-guy3 guy2 24 41 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+0 3
+END
+INTERACTIONS
+!:victory-road-guy3|MOVE_TO_PLAYER|MENU:ALERT:Come on! {NEWLINE} I'll whip you!|BATTLE:victory-road-guy3|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:You earned the right to be on VICTORY ROAD!
+END
+victory-road-item3 orb 23 42
+INTERACTIONS
+GIVE_ITEM:FULL HEAL|DEACTIVATE:victory-road-item3
+END
+victory-road-guy4 guy2 31 36 LEFT
+FORCE_INTERACTION
+-1 0
+-2 0
+-3 0
+END
+INTERACTIONS
+!:victory-road-guy4|MOVE_TO_PLAYER|MENU:ALERT:Is VICTORY ROAD too tough?|BATTLE:victory-road-guy4|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Many trainers give up the challenge here.
+END
+victory-road-item4 orb 32 38
+INTERACTIONS
+GIVE_ITEM:TM17|DEACTIVATE:victory-road-item4
+END
+victory-road-guy5 guy2 33 67 LEFT
+FORCE_INTERACTION
+-1 0
+END
+INTERACTIONS
+!:victory-road-guy5|MOVE_TO_PLAYER|MENU:ALERT:I heard rumors of a child prodigy!|BATTLE:victory-road-guy5|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:You beat GIOVANNI of TEAM ROCKET?
+END
+victory-road-item5 orb 31 67
+INTERACTIONS
+GIVE_ITEM:MAX REVIVE|DEACTIVATE:victory-road-item5
+END
+victory-road-girl2 girl 18 65 RIGHT
+FORCE_INTERACTION
+1 0
+2 0
+3 0
+END
+INTERACTIONS
+!:victory-road-girl2|MOVE_TO_PLAYER|MENU:ALERT:Trainers live to seek stronger opponents!|BATTLE:victory-road-girl2|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:By fighting tough battles, you get stronger!
+END
+victory-road-block4 block 12 72 NO_OFFSET
+INTERACTIONS
+
+END
+victory-road-stone8 boulder 27 65 PUSHABLE TELEPORTABLE
+INTERACTIONS
+MENU:ALERT:This requires STRENGTH to move!|NO_ADVANCE
+ACTIVATE:victory-road-stone9|DEACTIVATE:victory-road-block4|DEACTIVATE:victory-road-stone8
+END
+victory-road-stone9 boulder 8 67 INACTIVE
+INTERACTIONS
+MENU:ALERT:This requires STRENGTH to move!
+END
+victory-road-item6 orb 12 69
+INTERACTIONS
+GIVE_ITEM:TM47|DEACTIVATE:victory-road-item6
+END
+victory-road-guy6 guy2 9 35 DOWN
+FORCE_INTERACTION
+0 1
+END
+INTERACTIONS
+!:victory-road-guy6|MOVE_TO_PLAYER|MENU:ALERT:If you can get through here, you can go meet the ELITE FOUR!|BATTLE:victory-road-guy6|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:I can beat you when it comes to knowledge about POK{e-accent}MON!
+END
+victory-road-item7 orb 16 33
+INTERACTIONS
+GIVE_ITEM:GUARD SPEC.|DEACTIVATE:victory-road-item7
+END
+victory-road-moltres bird 16 38 DOWN
+INTERACTIONS
+MENU:ALERT:Gyaoo!|WILD_BATTLE:146-146:50|{NO_ADVANCE}{DEACTIVATE:victory-road-moltres}
+END
+victory-road-guy7 guy2 11 76 LEFT
+FORCE_INTERACTION
+-1 0
+-2 0
+-3 0
+END
+INTERACTIONS
+!:victory-road-guy7|MOVE_TO_PLAYER|MENU:ALERT:Only the chosen can pass here!|BATTLE:victory-road-guy7|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:All trainers here are headed to the POK{e-accent}MON LEAGUE!|MENU:ALERT:Be careful!
+END
+victory-road-girl3 girl 12 75 RIGHT
+FORCE_INTERACTION
+1 0
+2 0
+3 0
+END
+INTERACTIONS
+!:victory-road-girl3|MOVE_TO_PLAYER|MENU:ALERT:I'll show you just how good you are!|BATTLE:victory-road-girl3|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:You showed me just how good I was!
+END
+victory-road-stone10 boulder 18 74 PUSHABLE
+INTERACTIONS
+MENU:ALERT:This requires STRENGTH to move!
+END
+victory-road-stone11 boulder 29 72 PUSHABLE
+INTERACTIONS
+MENU:ALERT:This requires STRENGTH to move!
+END
+victory-road-stone12 boulder 27 77 PUSHABLE TELEPORTABLE
+INTERACTIONS
+MENU:ALERT:This requires STRENGTH to move!|NO_ADVANCE
+ACTIVATE:victory-road-stone13|DEACTIVATE:victory-road-stone12
+END
+victory-road-stone13 boulder 28 49 PUSHABLE TELEPORTABLE
+INTERACTIONS
+MENU:ALERT:This requires STRENGTH to move!|NO_ADVANCE
+ACTIVATE:victory-road-stone14|DEACTIVATE:victory-road-block5|DEACTIVATE:victory-road-stone13
+END
+victory-road-block5 block 28 47 NO_OFFSET
+INTERACTIONS
+
+END
+victory-road-stone14 boulder 14 49 INACTIVE
+INTERACTIONS
+MENU:ALERT:This requires STRENGTH to move!
+END
 TRAINERS
-mt-moon-boy1 10 0.1 0.1 BUG{SPACE}CATCHER bugcatcher.png {BUG CATCHER: You got me!}{} 13-13:11|14-14:11
+victory-road-girl1 35 0.75 0.75 COOLTRAINER{FEMALE} cooltrainerf.png {COOLTRAINER{FEMALE}: I lost out!}{} 53-53:44|38-38:44
+victory-road-guy1 35 0.75 0.75 COOLTRAINER{MALE} cooltrainerm.png {COOLTRAINER{MALE}: I had a chance...}{} 3-3:42|9-9:42|6-6:42|6-6:42
+victory-road-tough1 25 0.65 0.65 BLACKBELT blackbelt.png {BLACKBELT: Aiyah!}{} 67-67:43|67-67:43|67-67:43
+victory-road-guy2 {OVERSWITCH} 35 0.95 0.95 JUGGLER juggler.png {JUGGLER: You got me!}{} 96-96:41|97-97:41|64-64:41|64-64:41
+victory-road-guy3 40 0.85 0.85 TAMER tamer.png {TAMER: I got whipped!}{} 53-53:44|55-55:44
+victory-road-guy4 {OVERSWITCH} 35 0.95 0.95 JUGGLER juggler.png {JUGGLER: Well done!}{} 122-122:48
+victory-road-guy5 35 0.75 0.75 COOLTRAINER{MALE} cooltrainerm.png {COOLTRAINER{MALE}: The rumors were true!}{} 103-103:43|91-91:43|59-59:43
+victory-road-girl2 35 0.75 0.75 COOLTRAINER{FEMALE} cooltrainerf.png {COOLTRAINER{FEMALE}: Oh! So strong!}{} 47-47:43|87-87:43|113-113:43
+victory-road-guy6 50 1.0 0.75 POK{e-accent}MANIAC pokemaniac.png {POK{e-accent}MANIAC: No! Unbelievable!}{} 6-6:40|131-131:40|108-108:40
+victory-road-guy7 35 0.75 0.75 COOLTRAINER{MALE} cooltrainerm.png {COOLTRAINER{MALE}: I don't believe it!}{} 99-99:43|73-73:43|9-9:43
+victory-road-girl3 35 0.75 0.75 COOLTRAINER{FEMALE} cooltrainerf.png {COOLTRAINER{FEMALE}: I'm furious!}{} 69-69:43|70-70:43|71-71:43
 END
 TELEPORT
 14 23 route23 9 32 PLAYER
 15 23 route23 9 32 PLAYER
 23 18 victory-road 23 18 NPC
+7 6 victory-road 5 40 PLAYER
+5 41 victory-road 8 6 PLAYER
+6 49 victory-road 6 49 NPC
+28 40 victory-road 27 69 PLAYER
+28 69 victory-road 27 40 PLAYER
+8 67 victory-road 8 67 NPC
+7 62 victory-road 6 35 PLAYER
+6 34 victory-road 7 63 PLAYER
+28 77 victory-road 27 49
+14 49 victory-road 14 49 NPC
+30 47 victory-road 31 77 PLAYER
+32 77 victory-road 29 47
+31 70 victory-road 32 41
+32 40 victory-road 32 70
+35 40 route23 19 32 PLAYER
+35 41 route23 19 32 PLAYER
 ENCOUNTERS
 27 35 41 46 74
 MEGA_ENCOUNTERS
