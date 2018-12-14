@@ -73,6 +73,7 @@ List of changes:
 - Increased the status effect chances of Aurora Beam, Bubble, Confusion, and Thundershock.
 - Changed EXP.ALL to consider everything in your party that is not KO'ed to have fought in the battle, but reduces total exp by 15%.  This is in line with how the NPC that gives you EXP.ALL warns that it reduces the total amount of EXP.
 - The Bulbasaur line learns Body Slam because fuck you, Bulbasaur needs love.
+- Solar Beam and Sky Attack both go first on the turn they attack.  They are terrible moves and this doesn't make them good, but it does improve them.
 
 Concerning Fusions:
   There are 22,801 pokemon that can appear in Pokemon: Fusion.  The developer can't inspect all of them.  Some may be duds with few or no attack moves (Pikachu-Bulbasaur is quite terrible).  Some things may happen that make no sense (things fused with Gengar will learn Hypnosis from Gengar or Dream Eater from Gengar, but not both).  As a way to balance this, fusions are compatible with every TM and HM that either parent could learn.
