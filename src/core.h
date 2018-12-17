@@ -5323,9 +5323,10 @@ public:
 		string curr_level = mc.loc.level;
 		double curr_x = mc.loc.x;
 		double curr_y = mc.loc.y;
-		unsigned maxy = min(int(levels[curr_level].data.size()), max(int(curr_y + 5.0), 0));
+		level* l = &(levels[curr_level]);
+		unsigned maxy = min(int(l->data.size()), max(int(curr_y + 5.0), 0));
 		for (unsigned y = max(0, unsigned(curr_y - 4.0)); y < maxy; ++y) {
-			unsigned maxx = min(int(levels[curr_level].data[y].size()), max(int(curr_x + 6.0), 0));
+			unsigned maxx = min(int(l->data[y].size()), max(int(curr_x + 6.0), 0));
 			for (unsigned x = max(0, unsigned(curr_x - 5.0)); x < maxx; ++x) {
 				xp = -1.0f + (float(x) / 5.0f) - ((curr_x - 4.5f) / 5.0f);
 				yp = (-float(y) / 4.5f) - (0.5f / 4.5f) + (curr_y / 4.5f);
@@ -5339,13 +5340,14 @@ public:
 					continue;
 				if (yp > 1.0f && yp + yl > 1.0f)
 					continue;
-				g.push_quad(xp, yp, xl, yl, g.tiles[levels[curr_level].data[y][x]]);
+				g.push_quad(xp, yp, xl, yl, g.tiles[l->data[y][x]]);
 			}
 		}
-		for (unsigned i = 0; i < levels[curr_level].neighbors.size(); ++i) {
-			unsigned maxy = min(int(levels[levels[curr_level].neighbors[i].level].data.size()), max(int(curr_y - levels[curr_level].neighbors[i].y + 5.0), 0));
+		for (unsigned i = 0; i < l->neighbors.size(); ++i) {
+			level* n = &(levels[l->neighbors[i].level]);
+			unsigned maxy = min(int(n->data.size()), max(int(curr_y - levels[curr_level].neighbors[i].y + 5.0), 0));
 			for (unsigned y = max(0, unsigned(curr_y - levels[curr_level].neighbors[i].y - 4.0)); y < maxy; ++y) {
-				unsigned maxx = min(int(levels[levels[curr_level].neighbors[i].level].data[y].size()), max(int(curr_x - levels[curr_level].neighbors[i].x + 6.0), 0));
+				unsigned maxx = min(int(n->data[y].size()), max(int(curr_x - levels[curr_level].neighbors[i].x + 6.0), 0));
 				for (unsigned x = max(0, unsigned(curr_x - levels[curr_level].neighbors[i].x - 5.0)); x < maxx; ++x) {
 					xp = -1.0f + (float(x + levels[curr_level].neighbors[i].x) / 5.0f) - ((curr_x - 4.5f) / 5.0f);
 					yp = (-float(y + levels[curr_level].neighbors[i].y) / 4.5f) - (0.5f / 4.5f) + (curr_y / 4.5f);
@@ -5359,7 +5361,7 @@ public:
 						continue;
 					if (yp > 1.0f && yp + yl > 1.0f)
 						continue;
-					g.push_quad(xp, yp, xl, yl, g.tiles[levels[levels[curr_level].neighbors[i].level].data[y][x]]);
+					g.push_quad(xp, yp, xl, yl, g.tiles[n->data[y][x]]);
 				}
 			}
 		}
@@ -5368,22 +5370,26 @@ public:
 		string curr_level = mc.loc.level;
 		double curr_x = mc.loc.x;
 		double curr_y = mc.loc.y;
-		for (unsigned i = 0; i < levels[curr_level].characters.size(); ++i) {
-			if (!mc.active[levels[curr_level].characters[i].name])
+		level* l = &(levels[curr_level]);
+		for (unsigned i = 0; i < l->characters.size(); ++i) {
+			character* c = &(l->characters[i]);
+			if (!mc.active[c->name])
 				continue;
-			if (levels[curr_level].characters[i].no_offset)
-				g.push_quad((levels[curr_level].characters[i].loc.x - (curr_x + 0.5)) / 5.0, (-0.5 - levels[curr_level].characters[i].loc.y + curr_y) / 4.5f + 0.0, 1.0 / 5.0f, 1.0 / 4.5f, g.tex[levels[curr_level].characters[i].image + string("-") + get_direction_string(levels[curr_level].characters[i].dir) + string("-0.bmp")]);
+			if (c->no_offset)
+				g.push_quad((c->loc.x - (curr_x + 0.5)) / 5.0, (-0.5 - c->loc.y + curr_y) / 4.5f + 0.0, 1.0 / 5.0f, 1.0 / 4.5f, g.tex[c->image + string("-") + get_direction_string(c->dir) + string("-0.bmp")]);
 			else
-				g.push_quad((levels[curr_level].characters[i].loc.x - (curr_x + 0.5)) / 5.0, (-0.5 - levels[curr_level].characters[i].loc.y + curr_y) / 4.5f + 0.055, 1.0 / 5.0f, 1.0 / 4.5f, g.tex[levels[curr_level].characters[i].image + string("-") + get_direction_string(levels[curr_level].characters[i].dir) + string("-0.bmp")]);
+				g.push_quad((c->loc.x - (curr_x + 0.5)) / 5.0, (-0.5 - c->loc.y + curr_y) / 4.5f + 0.055, 1.0 / 5.0f, 1.0 / 4.5f, g.tex[c->image + string("-") + get_direction_string(c->dir) + string("-0.bmp")]);
 		}
-		for (unsigned j = 0; j < levels[curr_level].neighbors.size(); ++j) {
-			for (unsigned i = 0; i < levels[levels[curr_level].neighbors[j].level].characters.size(); ++i) {
-				if (!mc.active[levels[levels[curr_level].neighbors[j].level].characters[i].name])
+		for (unsigned j = 0; j < l->neighbors.size(); ++j) {
+			level* n = &(levels[l->neighbors[j].level]);
+			for (unsigned i = 0; i < n->characters.size(); ++i) {
+				character* c = &(n->characters[i]);
+				if (!mc.active[c->name])
 					continue;
-				if (levels[levels[curr_level].neighbors[j].level].characters[i].no_offset)
-					g.push_quad((levels[curr_level].neighbors[j].x + levels[levels[curr_level].neighbors[j].level].characters[i].loc.x - (curr_x + 0.5)) / 5.0, (-levels[curr_level].neighbors[j].y -0.5 - levels[levels[curr_level].neighbors[j].level].characters[i].loc.y + curr_y) / 4.5f + 0.0, 1.0 / 5.0f, 1.0 / 4.5f, g.tex[levels[levels[curr_level].neighbors[j].level].characters[i].image + string("-") + get_direction_string(levels[levels[curr_level].neighbors[j].level].characters[i].dir) + string("-0.bmp")]);
+				if (c->no_offset)
+					g.push_quad((levels[curr_level].neighbors[j].x + c->loc.x - (curr_x + 0.5)) / 5.0, (-levels[curr_level].neighbors[j].y -0.5 - c->loc.y + curr_y) / 4.5f + 0.0, 1.0 / 5.0f, 1.0 / 4.5f, g.tex[c->image + string("-") + get_direction_string(c->dir) + string("-0.bmp")]);
 				else
-					g.push_quad((levels[curr_level].neighbors[j].x + levels[levels[curr_level].neighbors[j].level].characters[i].loc.x - (curr_x + 0.5)) / 5.0, (-levels[curr_level].neighbors[j].y -0.5 - levels[levels[curr_level].neighbors[j].level].characters[i].loc.y + curr_y) / 4.5f + 0.055, 1.0 / 5.0f, 1.0 / 4.5f, g.tex[levels[levels[curr_level].neighbors[j].level].characters[i].image + string("-") + get_direction_string(levels[levels[curr_level].neighbors[j].level].characters[i].dir) + string("-0.bmp")]);
+					g.push_quad((levels[curr_level].neighbors[j].x + c->loc.x - (curr_x + 0.5)) / 5.0, (-levels[curr_level].neighbors[j].y -0.5 - c->loc.y + curr_y) / 4.5f + 0.055, 1.0 / 5.0f, 1.0 / 4.5f, g.tex[c->image + string("-") + get_direction_string(c->dir) + string("-0.bmp")]);
 			}
 		}
 		g.push_quad(-0.1, -0.5 / 4.5 + 0.055, 1.0 / 5.0, 1.0 / 4.5, g.tex[mc.movement + string("-") + get_direction_string(mc.dir) + string("-0.bmp")]);
