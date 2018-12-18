@@ -2344,6 +2344,15 @@ public:
 							continue;
 						if (moves[move].target[j].find("HALF_HP") == 0)
 							continue;
+						if (moves[move].target[j].find("KO") == 0 && mul == 0.0) {
+							if (defender.wild)
+								do_alert(string("It didn't have any effect on wild ") + get_nickname(defender) + string("!"));
+							else if (defender.enemy)
+								do_alert(string("It didn't have any effect on enemy ") + get_nickname(defender) + string("!"));
+							else
+								do_alert(string("It didn't have any effect on ") + get_nickname(defender) + string("!"));
+							continue;
+						}
 						success = apply_status(defender, moves[move].target[j]) || success;
 						// TODO:  Status announcement
 					}
@@ -5345,9 +5354,9 @@ public:
 		}
 		for (unsigned i = 0; i < l->neighbors.size(); ++i) {
 			level* n = &(levels[l->neighbors[i].level]);
-			unsigned maxy = min(int(n->data.size()), max(int(curr_y - levels[curr_level].neighbors[i].y + 5.0), 0));
+			unsigned maxy = min(int(levels[levels[curr_level].neighbors[i].level].data.size()), max(int(curr_y - levels[curr_level].neighbors[i].y + 5.0), 0));
 			for (unsigned y = max(0, unsigned(curr_y - levels[curr_level].neighbors[i].y - 4.0)); y < maxy; ++y) {
-				unsigned maxx = min(int(n->data[y].size()), max(int(curr_x - levels[curr_level].neighbors[i].x + 6.0), 0));
+				unsigned maxx = min(int(levels[levels[curr_level].neighbors[i].level].data[y].size()), max(int(curr_x - levels[curr_level].neighbors[i].x + 6.0), 0));
 				for (unsigned x = max(0, unsigned(curr_x - levels[curr_level].neighbors[i].x - 5.0)); x < maxx; ++x) {
 					xp = -1.0f + (float(x + levels[curr_level].neighbors[i].x) / 5.0f) - ((curr_x - 4.5f) / 5.0f);
 					yp = (-float(y + levels[curr_level].neighbors[i].y) / 4.5f) - (0.5f / 4.5f) + (curr_y / 4.5f);
@@ -5361,7 +5370,7 @@ public:
 						continue;
 					if (yp > 1.0f && yp + yl > 1.0f)
 						continue;
-					g.push_quad(xp, yp, xl, yl, g.tiles[n->data[y][x]]);
+					g.push_quad(xp, yp, xl, yl, g.tiles[levels[levels[curr_level].neighbors[i].level].data[y][x]]);
 				}
 			}
 		}
