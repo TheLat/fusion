@@ -1945,6 +1945,8 @@ public:
 			return false;
 		if (s2 == "POISON" && in_status(m, string("TOXIC")))
 			return false;
+		if (s2 == "FLEE" && in_status(m, string("TRAP")))
+			return false;
 		if (status[s2].singleton) {
 			if (in_status(m, s2)) {
 				return false;
