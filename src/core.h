@@ -1288,7 +1288,10 @@ public:
 			}
 		}
 		else if (effect.find("REVIVE") == 0) {
+			if (m.curr_hp > 0)
+				return false;
 			m.curr_hp = get_stat(m, HP) / 2;
+			m.status.clear();
 		}
 		else if (effect.find("EV_UP") == 0) {
 			STAT s;
