@@ -86,6 +86,19 @@ INTERACTIONS
 MENU:ALERT:You can only go through here if you have a EARTHBADGE.|GET:EARTHBADGE|{MOVE:PLAYER:0,1|NO_ADVANCE}{DISABLE_FORCE|MENU:ALERT:Oh! That is a EARTHBADGE!|MENU:ALERT:Go right ahead!}
 MENU:ALERT:Oh! That is a EARTHBADGE!|MENU:ALERT:Go right ahead!
 END
+route23-odd-squad guy2 23 26 DOWN
+FORCE_INTERACTION
+0 1
+0 2
+0 3
+END
+INTERACTIONS
+!:route23-odd-squad|MOVE_TO_PLAYER|MENU:ALERT:There's no escape from the Odd Squad!|BATTLE:route23-odd-squad|{NO_ADVANCE}{DISABLE_FORCE}
+MENU:ALERT:Maybe the Odd Squad needs to evolve...
+END
+TRAINERS
+route23-odd-squad 50 1.0 0.75 POK{e-accent}MANIAC pokemaniac.png {POK{e-accent}MANIAC: You even beat up their mascot!}{} 43-68:64|43-76:64|43-65:64|43-82:64|43-87:64|43-43:64
+END
 TELEPORT
 12 140 route22-checkpoint 4 2
 13 140 route22-checkpoint 4 2
