@@ -1,5 +1,34 @@
 NAME
 Indigo Pok{e-accent}center
+NPCS
+indigo-center-joy joy 7 5
+INTERACTIONS
+MENU:ALERT:ERROR
+END
+indigo-center-joy-desk blank 7 6
+INTERACTIONS
+MENU:ALERT:Welcome to our POK{e-accent}MON CENTER!|MENU:ALERT:We heal your POK{e-accent}MON back to|MENU:ALERT_YES_NO:perfect health!|{MENU:ALERT:OK, we'll need your POK{e-accent}MON.|FULL_HEAL|MENU:ALERT:Thank you!{NEWLINE}Your POK{e-accent}MON are fighting fit!}{}|MENU:ALERT:We hope to see you again!
+END
+indigo-center-cableclub woman 15 6
+INTERACTIONS
+MENU:ALERT:Welcome to the Cable Club.|MENU:ALERT:This area is reserved for 2 friends who are linked by cable.
+END
+indigo-center-pc blank 17 7
+INTERACTIONS
+MENU:ALERT:{PLAYER_NAME} turned on the PC.|GET:BILL|{MENU:PC:}{MENU:PC2:}|{GET:BILL|{MENU:ALERT:Accessed someone's PC.}{MENU:ALERT:Accessed BILL's PC.}|MENU:ALERT:Accessed POK{e-accent}MON Storage System.|MON_STORAGE}{MENU:ALERT:Accessed my PC.|MENU:ALERT:Accessed Item Storage System.|ITEM_STORAGE}{MENU:ALERT:OAK RATING GOES HERE}{}
+END
+indigo-center-clerk1 clerk 4 9 RIGHT
+INTERACTIONS
+MENU:ALERT:Yo! Champ in making!|MENU:ALERT:At POK{e-accent}MON LEAGUE, you have to face the ELITE FOUR in succession.|MENU:ALERT:If you lose, you have to start all over again!|MENU:ALERT:This is it! Go for it!
+END
+indigo-center-shop clerk2 0 5 RIGHT FARSPEAK
+INTERACTIONS
+SHOP:ULTRA BALL,FULL RESTORE,MAX POTION,FULL HEAL,REVIVE,MAX REPEL
+END
+indigo-center-girl1 girl 5 1 DOWN
+INTERACTIONS
+MENU:ALERT:From here on, you face the ELITE FOUR one by one!|MENU:ALERT:If you win, a door opens to the next trainer!|MENU:ALERT:Good luck!
+END
 TELEPORT
 8 12 indigo-plateau 5 5
 9 12 indigo-plateau 6 5
