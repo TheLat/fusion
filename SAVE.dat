@@ -5,9 +5,9 @@ MOVEMENT:player
 DIRECTION:1
 WINS:0
 LOSSES:0
-LOCATION:route23|14|2
-LAST_CENTER:cinnabar-center|3|3
-MONEY:286199
+LOCATION:indigo-center|8|1
+LAST_CENTER:indigo-center|7|7
+MONEY:89399
 COINS:50
 REPEL:0
 INTERACTIONS:
@@ -468,6 +468,13 @@ fuchsia-mart-shelf4|0
 home-bookshelf1|0
 home-bookshelf2|0
 home-pc|0
+indigo-center-cableclub|0
+indigo-center-clerk1|0
+indigo-center-girl1|0
+indigo-center-joy|0
+indigo-center-joy-desk|0
+indigo-center-pc|0
+indigo-center-shop|0
 lavender-center-cableclub|0
 lavender-center-couch|0
 lavender-center-girl|0
@@ -551,6 +558,21 @@ lavender-town-sign1|0
 lavender-town-sign2|0
 lavender-town-sign3|0
 lavender-town-sign4|0
+lavender-town-wall1|0
+lavender-town-wall10|0
+lavender-town-wall11|0
+lavender-town-wall12|0
+lavender-town-wall13|0
+lavender-town-wall14|0
+lavender-town-wall15|0
+lavender-town-wall2|0
+lavender-town-wall3|0
+lavender-town-wall4|0
+lavender-town-wall5|0
+lavender-town-wall6|0
+lavender-town-wall7|0
+lavender-town-wall8|0
+lavender-town-wall9|0
 mom|1
 mt-moon-boy1|1
 mt-moon-boy2|1
@@ -923,6 +945,7 @@ route23-checkpoint-guard4|1
 route23-checkpoint-guard5|1
 route23-checkpoint-guard6|1
 route23-checkpoint-guard7|1
+route23-odd-squad|1
 route23-sign1|0
 route24-boy1|1
 route24-boy2|1
@@ -2027,6 +2050,13 @@ fuchsia-mart-shelf4|1
 home-bookshelf1|1
 home-bookshelf2|1
 home-pc|1
+indigo-center-cableclub|1
+indigo-center-clerk1|1
+indigo-center-girl1|1
+indigo-center-joy|1
+indigo-center-joy-desk|1
+indigo-center-pc|1
+indigo-center-shop|1
 lavender-center-cableclub|1
 lavender-center-couch|1
 lavender-center-girl|1
@@ -2110,6 +2140,21 @@ lavender-town-sign1|1
 lavender-town-sign2|1
 lavender-town-sign3|1
 lavender-town-sign4|1
+lavender-town-wall1|1
+lavender-town-wall10|1
+lavender-town-wall11|1
+lavender-town-wall12|1
+lavender-town-wall13|1
+lavender-town-wall14|1
+lavender-town-wall15|1
+lavender-town-wall2|1
+lavender-town-wall3|1
+lavender-town-wall4|1
+lavender-town-wall5|1
+lavender-town-wall6|1
+lavender-town-wall7|1
+lavender-town-wall8|1
+lavender-town-wall9|1
 mom|1
 mt-moon-boy1|1
 mt-moon-boy2|1
@@ -2482,6 +2527,7 @@ route23-checkpoint-guard4|1
 route23-checkpoint-guard5|1
 route23-checkpoint-guard6|1
 route23-checkpoint-guard7|1
+route23-odd-squad|1
 route23-sign1|1
 route24-boy1|1
 route24-boy2|1
@@ -3144,7 +3190,7 @@ TM14|1
 FULL RESTORE|2
 RARE CANDY|3
 TM22|1
-MAX POTION|1
+MAX POTION|51
 MAX ETHER|1
 NUGGET|1
 ELIXER|1
@@ -3154,7 +3200,7 @@ TM38|1
 TM27|1
 ULTRA BALL|20
 HYPER POTION|11
-REVIVE|11
+REVIVE|61
 TM17|1
 TM47|1
 END
@@ -3570,7 +3616,12 @@ SEEN:
 43-27
 43-43
 43-48
+43-65
+43-68
 43-69
+43-76
+43-82
+43-87
 43-93
 44-22
 44-28
@@ -3931,12 +3982,12 @@ VOLCANOBADGE|1
 celadon-hideout-floor|1
 END
 TEAM:
-0|NUMBER:130-130|NICKNAME:|HP:0|EXP:294493|LEVEL:71|EV:24199|22748|23248|19697|20067|IV:0|13|10|10|14|MOVES:HYDROPUMP|BITE|SURF|HYPER BEAM|PP:2|17|5|5|MAX_PP:5|25|15|5|STATUS:PARALYZE
-1|NUMBER:135-135|NICKNAME:|HP:183|EXP:249801|LEVEL:67|EV:14073|16245|16353|16125|15760|IV:0|13|10|10|14|MOVES:PIN MISSILE|DOUBLE KICK|THUNDER|THUNDERBOLT|PP:13|27|1|0|MAX_PP:20|30|10|15|STATUS:
-2|NUMBER:6-6|NICKNAME:|HP:0|EXP:273168|LEVEL:69|EV:22838|27513|25647|24061|27013|IV:0|13|10|10|14|MOVES:SLASH|RAGE|FLAMETHROWER|FIRE SPIN|PP:11|20|6|15|MAX_PP:20|20|15|15|STATUS:PARALYZE
-3|NUMBER:76-15|NICKNAME:|HP:19|EXP:266525|LEVEL:69|EV:21923|26212|24589|23980|26035|IV:2|15|9|10|11|MOVES:PIN MISSILE|EARTHQUAKE|FURY ATTACK|TWIN NEEDLE|PP:3|0|19|20|MAX_PP:20|10|20|20|STATUS:PARALYZE
-4|NUMBER:144-144|NICKNAME:|HP:183|EXP:178695|LEVEL:60|EV:1595|1817|1808|1599|1600|IV:0|13|10|10|14|MOVES:PECK|ICE BEAM|BLIZZARD|AGILITY|PP:32|0|0|30|MAX_PP:35|10|5|30|STATUS:
-5|NUMBER:130-83|NICKNAME:|HP:39|EXP:18787|LEVEL:28|EV:147|172|148|140|195|IV:0|13|10|10|14|MOVES:FLY|STRENGTH|CUT|SURF|PP:15|15|30|14|MAX_PP:15|15|30|15|STATUS:PARALYZE
+0|NUMBER:6-6|NICKNAME:|HP:215|EXP:279420|LEVEL:70|EV:23176|27903|26053|24558|27297|IV:0|13|10|10|14|MOVES:SLASH|RAGE|FLAMETHROWER|FIRE SPIN|PP:20|20|15|15|MAX_PP:20|20|15|15|STATUS:
+1|NUMBER:135-135|NICKNAME:|HP:183|EXP:249801|LEVEL:67|EV:14073|16245|16353|16125|15760|IV:0|13|10|10|14|MOVES:PIN MISSILE|DOUBLE KICK|THUNDER|THUNDERBOLT|PP:20|30|10|15|MAX_PP:20|30|10|15|STATUS:
+2|NUMBER:130-130|NICKNAME:|HP:242|EXP:294493|LEVEL:71|EV:24199|22748|23248|19697|20067|IV:0|13|10|10|14|MOVES:HYDROPUMP|BITE|SURF|HYPER BEAM|PP:5|25|15|5|MAX_PP:5|25|15|5|STATUS:
+3|NUMBER:76-15|NICKNAME:|HP:206|EXP:266525|LEVEL:69|EV:21923|26212|24589|23980|26035|IV:2|15|9|10|11|MOVES:PIN MISSILE|EARTHQUAKE|FURY ATTACK|TWIN NEEDLE|PP:20|10|20|20|MAX_PP:20|10|20|20|STATUS:
+4|NUMBER:144-144|NICKNAME:|HP:183|EXP:178695|LEVEL:60|EV:1595|1817|1808|1599|1600|IV:0|13|10|10|14|MOVES:PECK|ICE BEAM|BLIZZARD|AGILITY|PP:35|10|5|30|MAX_PP:35|10|5|30|STATUS:
+5|NUMBER:130-83|NICKNAME:|HP:79|EXP:18787|LEVEL:28|EV:147|172|148|140|195|IV:0|13|10|10|14|MOVES:FLY|STRENGTH|CUT|SURF|PP:15|15|30|15|MAX_PP:15|15|30|15|STATUS:
 END
 STORAGE:
 0|0|NUMBER:56-56|NICKNAME:|HP:44|EXP:4552|LEVEL:17|EV:2585|3393|4013|2039|2355|IV:4|3|2|0|0|MOVES:SCRATCH|LEER|KARATE CHOP||PP:35|30|25||MAX_PP:35|30|25||STATUS:
@@ -4476,6 +4527,17 @@ home
 6|0|3|20|0
 7|0|0|1|0
 END
+indigo-center
+0|0|7|5|0
+1|0|7|6|0
+2|0|15|6|0
+3|0|17|7|0
+4|3|4|9|0
+5|3|0|5|0
+6|2|5|1|0
+END
+indigo-plateau
+END
 lavender-center
 0|0|0|4|0
 1|0|3|1|0
@@ -4531,6 +4593,21 @@ lavender-town
 4|0|11|14|0
 5|0|18|16|0
 6|0|15|20|0
+7|0|22|15|0
+8|0|22|16|0
+9|0|22|17|0
+10|0|23|15|0
+11|0|23|16|0
+12|0|23|17|0
+13|0|24|15|0
+14|0|24|16|0
+15|0|24|17|0
+16|0|25|15|0
+17|0|25|16|0
+18|0|25|17|0
+19|0|26|15|0
+20|0|26|16|0
+21|0|26|17|0
 END
 mt-moon
 0|0|5|32|0
@@ -5035,6 +5112,7 @@ route23
 5|0|13|85|1
 6|0|15|56|1
 7|0|9|35|1
+8|0|23|26|1
 END
 route24
 0|2|13|33|1
