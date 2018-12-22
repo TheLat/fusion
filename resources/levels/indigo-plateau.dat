@@ -3,6 +3,8 @@ Indigo Plateau
 TELEPORT
 5 18 route23 14 1
 6 18 route23 15 1
+5 4 indigo-center 8 11
+6 4 indigo-center 9 11
 NEIGHBORS
 route23 -9 17
 DATA
