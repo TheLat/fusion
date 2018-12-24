@@ -71,10 +71,24 @@ END
 INTERACTIONS
 ACTIVATE:pokemon-league-door7|ACTIVATE:pokemon-league-door8|DEACTIVATE:pokemon-league-script2
 END
+pokemon-league-door9 door3 5 52 NO_OFFSET
+INTERACTIONS
+
+END
+pokemon-league-door10 door3 6 52 NO_OFFSET
+INTERACTIONS
+
+END
+pokemon-league-lance lance 6 53 DOWN
+INTERACTIONS
+MENU:ALERT:Ah! I heard about you {PLAYER_NAME}!|MENU:ALERT:I lead the ELITE FOUR! You can call me LANCE the dragon trainer!|MENU:ALERT:You know that dragons are mythical POK{e-accent}MON!|MENU:ALERT:They're hard to catch and raise, but their powers are superior!|MENU:ALERT:They're virtually indestructible!|MENU:ALERT:Well, are you ready to lose?|MENU:ALERT:Your LEAGUE challenge ends with me, {PLAYER_NAME}!|BATTLE:pokemon-league-lance|{NO_ADVANCE}{MENU:ALERT:I still can't believe my dragons lost to you, {PLAYER_NAME}!|MENU:ALERT:You are now the POK{e-accent}MON LEAGUE champion!|MENU:ALERT:...Or, you would have been, but you have one more challenge ahead.|MENU:ALERT:You have to face another trainer! His name is...|MENU:ALERT:{RIVAL_NAME}! {NEWLINE} He beat the ELITE FOUR before you!|MENU:ALERT:He is the real POK{e-accent}MON LEAGUE champion!|DEACTIVATE:pokemon-league-door9|DEACTIVATE:pokemon-league-door10}
+MENU:ALERT:I still can't believe my dragons lost to you, {PLAYER_NAME}!|MENU:ALERT:You are now the POK{e-accent}MON LEAGUE champion!|MENU:ALERT:...Or, you would have been, but you have one more challenge ahead.|MENU:ALERT:You have to face another trainer! His name is...|MENU:ALERT:{RIVAL_NAME}! {NEWLINE} He beat the ELITE FOUR before you!|MENU:ALERT:He is the real POK{e-accent}MON LEAGUE champion!
+END
 TRAINERS
 pokemon-league-lorelei 99 1.0 1.0 LORELEI lorelei.png {LORELEI: How dare you!}{} 87-87:54|91-91:53|80-80:54|124-124:56|131-131:56
 pokemon-league-bruno 99 1.0 1.0 BRUNO bruno.png {BRUNO: Why? {NEWLINE} How could I lose?}{} 95-95:53|107-107:55|106-106:55|95-95:56|68-68:58
 pokemon-league-agatha 99 1.0 1.0 AGATHA agatha.png {AGATHA: Oh ho! You're something special, child!}{} 94-94:56|42-42:55|93-93:55|24-24:58|94-94:60
+pokemon-league-lance 99 1.0 1.0 LANCE lance.png {LANCE: That's it! {NEWLINE} I hate to admit it, but you are a POK{e-accent}MON master!}{} 130-130:58|148-148:56|148-148:56|142-142:60|149-149:62
 END
 TELEPORT
 4 1 pokemon-league 4 29
