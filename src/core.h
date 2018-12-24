@@ -5707,6 +5707,18 @@ public:
 					s = "";
 				}
 			}
+			else if (s.find("RESET") == 0) {
+				s.erase(0, string("ADVANCE:").length());
+				s2 = s;
+				if (s2.find("|") != -1) {
+					s2.erase(s2.find("|"));
+					mc.interaction[s2] = 0;
+				}
+				else {
+					mc.interaction[s2] = 0;
+					s = "";
+				}
+			}
 			else if (s.find("FUSION:") == 0) {
 				s.erase(0, s.find(":") + 1);
 				s2 = s;
