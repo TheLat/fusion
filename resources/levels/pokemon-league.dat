@@ -84,11 +84,40 @@ INTERACTIONS
 MENU:ALERT:Ah! I heard about you {PLAYER_NAME}!|MENU:ALERT:I lead the ELITE FOUR! You can call me LANCE the dragon trainer!|MENU:ALERT:You know that dragons are mythical POK{e-accent}MON!|MENU:ALERT:They're hard to catch and raise, but their powers are superior!|MENU:ALERT:They're virtually indestructible!|MENU:ALERT:Well, are you ready to lose?|MENU:ALERT:Your LEAGUE challenge ends with me, {PLAYER_NAME}!|BATTLE:pokemon-league-lance|{NO_ADVANCE}{MENU:ALERT:I still can't believe my dragons lost to you, {PLAYER_NAME}!|MENU:ALERT:You are now the POK{e-accent}MON LEAGUE champion!|MENU:ALERT:...Or, you would have been, but you have one more challenge ahead.|MENU:ALERT:You have to face another trainer! His name is...|MENU:ALERT:{RIVAL_NAME}! {NEWLINE} He beat the ELITE FOUR before you!|MENU:ALERT:He is the real POK{e-accent}MON LEAGUE champion!|DEACTIVATE:pokemon-league-door9|DEACTIVATE:pokemon-league-door10}
 MENU:ALERT:I still can't believe my dragons lost to you, {PLAYER_NAME}!|MENU:ALERT:You are now the POK{e-accent}MON LEAGUE champion!|MENU:ALERT:...Or, you would have been, but you have one more challenge ahead.|MENU:ALERT:You have to face another trainer! His name is...|MENU:ALERT:{RIVAL_NAME}! {NEWLINE} He beat the ELITE FOUR before you!|MENU:ALERT:He is the real POK{e-accent}MON LEAGUE champion!
 END
+pokemon-league-door11 door3 3 79 NO_OFFSET
+INTERACTIONS
+
+END
+pokemon-league-door12 door3 4 79 NO_OFFSET
+INTERACTIONS
+
+END
+pokemon-league-rival rival 4 81 DOWN
+FORCE_INTERACTION
+0 1
+END
+INTERACTIONS
+MENU:ALERT:{RIVAL_NAME}: Hey!|MENU:ALERT:I was looking forward to seeing you, {PLAYER_NAME}!|MENU:ALERT:My rival should be strong to keep me sharp!|MENU:ALERT:While working on the POK{e-accent}DEX, I looked all over for powerful POK{e-accent}MON!|MENU:ALERT:Not only that, I assembled teams that would beat any POK{e-accent}MON type!|MENU:ALERT:And now!|MENU:ALERT:I'm the POK{e-accent}MON LEAGUE champion!|MENU:ALERT:{PLAYER_NAME}! Do you know what means?|MENU:ALERT:I'll tell you!|MENU:ALERT:I am the most powerful trainer in the world!|GET:RIVALVALUE|{BATTLE:pokemon-league-rival0}{BATTLE:pokemon-league-rival1}{BATTLE:pokemon-league-rival2}|{NO_ADVANCE}{MENU:ALERT:Why? {NEWLINE} Why did I lose?|MENU:ALERT:I never made any mistakes raising my POK{e-accent}MON...|MENU:ALERT:Darn it! You're the new POK{e-accent}MON LEAGUE champion!|MENU:ALERT:Although I don't like to admit it.|ACTIVATE:pokemon-league-oak|MENU:ALERT:OAK: {PLAYER_NAME}!|MOVE:pokemon-league-oak:0,-1|MOVE:pokemon-league-oak:0,-1|MOVE:pokemon-league-oak:0,-1|MOVE:pokemon-league-oak:0,-1|MOVE:pokemon-league-oak:0,-1|SET_FACE:pokemon-league-oak:DOWN|MENU:ALERT:OAK: So, you won! Congratulations! You're the new POK{e-accent}MON LEAGUE champion!|GET:RIVALVALUE|{MENU:ALERT:You've grown so much since you first left with CHARMANDER!}{MENU:ALERT:You've grown so much since you first left with SQUIRTLE!}{MENU:ALERT:You've grown so much since you first left with BULBASAUR!}|MENU:ALERT:{PLAYER_NAME}, you have come of age!|SET_FACE:pokemon-league-oak:RIGHT|SET_FACE:pokemon-league-rival:LEFT|MENU:ALERT:OAK: {RIVAL_NAME}! I'm disappointed!|MENU:ALERT:I came when I heard you beat the ELITE FOUR!|MENU:ALERT:But, when I got here, you had already lost!|MENU:ALERT:{RIVAL_NAME}! Do you understand why you lost?|MENU:ALERT:You have forgotten to treat your POK{e-accent}MON with trust and love!|MENU:ALERT:Without them, you will never become a champ again!|SET_FACE:pokemon-league-oak:DOWN|MENU:ALERT:OAK: {PLAYER_NAME}!|MENU:ALERT:You understand that your victory was not just your own doing!|MENU:ALERT:The bond you share with your POK{e-accent}MON is marvelous!|MENU:ALERT:{PLAYER_NAME}! {NEWLINE} Come with me!|SET_FACE:pokemon-league-rival:RIGHT|DEACTIVATE:pokemon-league-door11|DEACTIVATE:pokemon-league-door12|MOVE:PLAYER:-1,0|MOVE:pokemon-league-oak:0,-1|MOVE:PLAYER:0,-1|MOVE:pokemon-league-oak:0,-1|MOVE:PLAYER:0,-1|DEACTIVATE:pokemon-league-oak|MOVE:PLAYER:0,-1}
+END
+pokemon-league-oak oak 3 86 INACTIVE UP
+INTERACTIONS
+MENU:ALERT:ERROR
+END
+pokemon-league-script3 blank 2 86
+FORCE_INTERACTION
+1 0
+END
+INTERACTIONS
+MOVE:PLAYER:0,-1|MOVE:PLAYER:0,-1|MOVE:PLAYER:1,0|MOVE:PLAYER:0,-1|MOVE:PLAYER:0,-1
+END
 TRAINERS
 pokemon-league-lorelei 99 1.0 1.0 LORELEI lorelei.png {LORELEI: How dare you!}{} 87-87:54|91-91:53|80-80:54|124-124:56|131-131:56
 pokemon-league-bruno 99 1.0 1.0 BRUNO bruno.png {BRUNO: Why? {NEWLINE} How could I lose?}{} 95-95:53|107-107:55|106-106:55|95-95:56|68-68:58
 pokemon-league-agatha 99 1.0 1.0 AGATHA agatha.png {AGATHA: Oh ho! You're something special, child!}{} 94-94:56|42-42:55|93-93:55|24-24:58|94-94:60
 pokemon-league-lance 99 1.0 1.0 LANCE lance.png {LANCE: That's it! {NEWLINE} I hate to admit it, but you are a POK{e-accent}MON master!}{} 130-130:58|148-148:56|148-148:56|142-142:60|149-149:62
+pokemon-league-rival0 99 1.0 1.0 {RIVAL_NAME} rival3.png {{RIVAL_NAME}: NO! {NEWLINE} That can't be! You beat my best! {NEWLINE} After all my work to become LEAGUE champ? {NEWLINE} My reign is over already? {NEWLINE} It's not fair!}{{RIVAL_NAME}: I told you! I'm the greatest trainer in the world!} 121-59:70:FLAMETHROWER,SURF,PSYCHIC,RECOVER|103-103:68:HYPNOSIS,PSYCHIC,MEGA DRAIN,EXPLOSION|82-113:69:THUNDERBOLT,BLIZZARD,SOFTBOILED,HYPER BEAM|22-28:71:SLASH,EARTHQUAKE,DRILL PECK,SWIFT|94-94:72:LICK,HYPNOSIS,CONFUSE RAY,DREAM EATER|9-9:73:HYDROPUMP,BODY SLAM,BLIZZARD,BITE
+pokemon-league-rival1 99 1.0 1.0 {RIVAL_NAME} rival3.png {{RIVAL_NAME}: }{{RIVAL_NAME}: I told you! I'm the greatest trainer in the world!} 87-18:70:FLY,SURF,BLIZZARD,BODY SLAM|65-65:68:PSYCHIC,RECOVER,PSYBEAM,REFLECT|99-68:69:CRABHAMMER,SUBMISSION,EARTHQUAKE,BLIZZARD|71-76:71:EARTHQUAKE,EXPLOSION,ROCK SLIDE,RAZOR LEAF|94-94:72:LICK,HYPNOSIS,CONFUSE RAY,DREAM EATER|3-3:73:BODY SLAM,MEGA DRAIN,RAZOR LEAF,SLEEP POWDER
+pokemon-league-rival2 99 1.0 1.0 {RIVAL_NAME} rival3.png {{RIVAL_NAME}: }{{RIVAL_NAME}: I told you! I'm the greatest trainer in the world!} 71-76:70:EARTHQUAKE,EXPLOSION,ROCK SLIDE,RAZOR LEAF|95-65:68:PSYCHIC,RECOVER,BODY SLAM,ROCK SLIDE|82-103:69:SUPERSONIC,THUNDERBOLT,PSYCHIC,EXPLOSION|99-28:71:CRABHAMMER,SLASH,EARTHQUAKE,SWIFT|94-94:72:LICK,HYPNOSIS,CONFUSE RAY,DREAM EATER|6-6:73:SLASH,FIRE BLAST,EARTHQUAKE,BODY SLAM
 END
 TELEPORT
 4 1 pokemon-league 4 29
@@ -97,6 +126,8 @@ TELEPORT
 5 18 pokemon-league 5 46
 4 35 pokemon-league 24 64
 5 35 pokemon-league 24 64
+5 52 pokemon-league 3 86
+6 52 pokemon-league 3 86
 DATA
 82   82  82  82 166 166
 83   83  83  83 260 260  83  83  83  83
@@ -172,3 +203,16 @@ DATA
 82   82 627 260 260 260 260 260 260 260 260 260 260 260 260 260 260 260 260 627
 82   82 626 260 260 260 260 260 260 260 260 260 260 260 260 260 260 260 260 626
 82   82 628 633 631 633 631 633 631 633 631 633 631 633 631 633 631 633 631 630
+82
+82
+82
+82
+82
+626  83 199 260 260 199  83 626
+627 260 200 260 260 200 260 627
+626 260 260 260 260 260 260 626
+627 260 260 260 260 260 260 627
+626 260 260 260 260 260 260 626
+627 260 260 260 260 260 260 627
+626 260 199 260 260 199 260 626
+628 633 200 260 260 200 631 630
