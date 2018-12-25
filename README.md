@@ -13,7 +13,7 @@ Bugs in Pokemon Red and Blue will be fixed, such as the fact that Focus Energy w
 The developer of this game wishes to remain anonymous and will not answer any questions.  If, for some reason, people want to contribute art assets, the developer may take them and include them in the game.  Credits to the game will be the original Pokemon Red and Blue credits.
 
 List of changes:
-- Fusion machine in Professor Oak's Lab.
+- Fusion machine in Saffron City.
 - Major status effects (Burn, Freeze, Paralyze, Poison, Sleep) are on longer mututally exclusive.
 - Toxic is now a major status effect that persists outside of combat.  Swapping out a pokemon while it has Toxic on it will reset its counter.  A pokemon that suffers from Toxic can't be poisoned.  A pokemon that is poisoned and has Toxic applied to it will no longer be poisoned.
 - Any story event that asks you to choose between pokemon that can't be found in the wild (the fossils, Hitmonlee and Hitmonchan, etc.) will grant you all the pokemon instead.  This does not apply to the starter pokemon at the beginning.
@@ -74,6 +74,7 @@ List of changes:
 - Changed EXP.ALL to consider everything in your party that is not KO'ed to have fought in the battle, but reduces total exp by 15%.  This is in line with how the NPC that gives you EXP.ALL warns that it reduces the total amount of EXP.
 - The Bulbasaur line learns Body Slam because fuck you, Bulbasaur needs love.
 - Solar Beam and Sky Attack both go first on the turn they attack.  They are terrible moves and this doesn't make them good, but it does improve them.
+- HP IV is its own random number, not the collection of the first bits of the other IVs.
 
 Concerning Fusions:
   There are 22,801 pokemon that can appear in Pokemon: Fusion.  The developer can't inspect all of them.  Some may be duds with few or no attack moves (Pikachu-Bulbasaur is quite terrible).  Some things may happen that make no sense (things fused with Gengar will learn Hypnosis from Gengar or Dream Eater from Gengar, but not both).  As a way to balance this, fusions are compatible with every TM and HM that either parent could learn.
