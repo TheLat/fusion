@@ -27,7 +27,7 @@ FORCE_INTERACTION
 1 0
 END
 INTERACTIONS
-MOVE:PLAYER:0,-1|MOVE:PLAYER:0,-1
+MOVE:PLAYER:0,-1|MOVE:PLAYER:0,-1|RESET:pokemon-league-lorelei|RESET:pokemon-league-bruno|RESET:pokemon-league-agatha|RESET:pokemon-league-lance|ACTIVATE:pokemon-league-door1|ACTIVATE:pokemon-league-door2|ACTIVATE:pokemon-league-door3|ACTIVATE:pokemon-league-door4|ACTIVATE:pokemon-league-door5|ACTIVATE:pokemon-league-door6|ACTIVATE:pokemon-league-door9|ACTIVATE:pokemon-league-door10|ACTIVATE:pokemon-league-door11|ACTIVATE:pokemon-league-door12|DEACTIVATE:pokemon-league-door7|DEACTIVATE:pokemon-league-door8|ACTIVATE:pokemon-league-script1|ACTIVATE:pokemon-league-script2|ACTIVATE:pokemon-league-script3|ACTIVATE:pokemon-league-script4
 END
 pokemon-league-door3 door3 4 18 NO_OFFSET
 INTERACTIONS
