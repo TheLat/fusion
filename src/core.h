@@ -5708,7 +5708,7 @@ public:
 				}
 			}
 			else if (s.find("RESET") == 0) {
-				s.erase(0, string("ADVANCE:").length());
+				s.erase(0, string("RESET:").length());
 				s2 = s;
 				if (s2.find("|") != -1) {
 					s2.erase(s2.find("|"));
