@@ -2,12 +2,12 @@ WARNING: Editing this file can easily corrupt game state.
 NAME:RED
 RIVAL_NAME:BLUE
 MOVEMENT:player
-DIRECTION:1
+DIRECTION:0
 WINS:0
 LOSSES:0
-LOCATION:indigo-center|8|1
-LAST_CENTER:indigo-center|7|7
-MONEY:89399
+LOCATION:cerulean-city|6|15
+LAST_CENTER:home|5|24
+MONEY:128702
 COINS:50
 REPEL:0
 INTERACTIONS:
@@ -698,6 +698,30 @@ pewter-museum-tough1|0
 pewter-station1-oldman|0
 pokedex1|0
 pokedex2|0
+pokemon-league-agatha|1
+pokemon-league-bruno|1
+pokemon-league-door1|0
+pokemon-league-door10|0
+pokemon-league-door11|0
+pokemon-league-door12|0
+pokemon-league-door2|0
+pokemon-league-door3|0
+pokemon-league-door4|0
+pokemon-league-door5|0
+pokemon-league-door6|0
+pokemon-league-door7|0
+pokemon-league-door8|0
+pokemon-league-door9|0
+pokemon-league-lance|1
+pokemon-league-lorelei|1
+pokemon-league-no-leave|0
+pokemon-league-oak|0
+pokemon-league-oak2|0
+pokemon-league-rival|0
+pokemon-league-script1|0
+pokemon-league-script2|0
+pokemon-league-script3|0
+pokemon-league-script4|0
 power-plant-center-cableclub|0
 power-plant-center-couch|0
 power-plant-center-fat|0
@@ -1807,7 +1831,7 @@ cerulean-center-joy-desk|1
 cerulean-center-man|1
 cerulean-center-pc|1
 cerulean-city-bush1|0
-cerulean-city-cave-guard|1
+cerulean-city-cave-guard|0
 cerulean-city-girl1|1
 cerulean-city-girl2|1
 cerulean-city-guard|0
@@ -2140,21 +2164,21 @@ lavender-town-sign1|1
 lavender-town-sign2|1
 lavender-town-sign3|1
 lavender-town-sign4|1
-lavender-town-wall1|1
-lavender-town-wall10|1
-lavender-town-wall11|1
-lavender-town-wall12|1
-lavender-town-wall13|1
-lavender-town-wall14|1
-lavender-town-wall15|1
-lavender-town-wall2|1
-lavender-town-wall3|1
-lavender-town-wall4|1
-lavender-town-wall5|1
-lavender-town-wall6|1
-lavender-town-wall7|1
-lavender-town-wall8|1
-lavender-town-wall9|1
+lavender-town-wall1|0
+lavender-town-wall10|0
+lavender-town-wall11|0
+lavender-town-wall12|0
+lavender-town-wall13|0
+lavender-town-wall14|0
+lavender-town-wall15|0
+lavender-town-wall2|0
+lavender-town-wall3|0
+lavender-town-wall4|0
+lavender-town-wall5|0
+lavender-town-wall6|0
+lavender-town-wall7|0
+lavender-town-wall8|0
+lavender-town-wall9|0
 mom|1
 mt-moon-boy1|1
 mt-moon-boy2|1
@@ -2280,6 +2304,30 @@ pewter-museum-tough1|1
 pewter-station1-oldman|1
 pokedex1|0
 pokedex2|0
+pokemon-league-agatha|1
+pokemon-league-bruno|1
+pokemon-league-door1|0
+pokemon-league-door10|0
+pokemon-league-door11|0
+pokemon-league-door12|0
+pokemon-league-door2|0
+pokemon-league-door3|0
+pokemon-league-door4|0
+pokemon-league-door5|0
+pokemon-league-door6|0
+pokemon-league-door7|1
+pokemon-league-door8|1
+pokemon-league-door9|0
+pokemon-league-lance|1
+pokemon-league-lorelei|1
+pokemon-league-no-leave|1
+pokemon-league-oak|0
+pokemon-league-oak2|1
+pokemon-league-rival|1
+pokemon-league-script1|1
+pokemon-league-script2|0
+pokemon-league-script3|1
+pokemon-league-script4|1
 power-plant-center-cableclub|1
 power-plant-center-couch|1
 power-plant-center-fat|1
@@ -3190,7 +3238,7 @@ TM14|1
 FULL RESTORE|2
 RARE CANDY|3
 TM22|1
-MAX POTION|51
+MAX POTION|44
 MAX ETHER|1
 NUGGET|1
 ELIXER|1
@@ -3199,8 +3247,7 @@ MAX REVIVE|2
 TM38|1
 TM27|1
 ULTRA BALL|20
-HYPER POTION|11
-REVIVE|61
+REVIVE|46
 TM17|1
 TM47|1
 END
@@ -3368,8 +3415,10 @@ SEEN:
 117-80
 117-99
 118-118
+118-48
 118-54
 118-58
+118-98
 119-113
 119-117
 119-119
@@ -3400,6 +3449,7 @@ SEEN:
 121-119
 121-121
 121-59
+121-68
 121-9
 121-93
 122-122
@@ -3407,6 +3457,7 @@ SEEN:
 122-92
 123-53
 124-124
+124-65
 125-125
 126-126
 126-132
@@ -3445,6 +3496,8 @@ SEEN:
 142-142
 143-143
 144-144
+148-148
+149-149
 15-15
 16-11
 16-13
@@ -3623,6 +3676,7 @@ SEEN:
 43-82
 43-87
 43-93
+43-98
 44-22
 44-28
 44-44
@@ -3693,6 +3747,7 @@ SEEN:
 6-57
 6-6
 6-76
+6-94
 60-60
 60-61
 60-69
@@ -3735,6 +3790,7 @@ SEEN:
 67-89
 67-95
 67-97
+68-143
 68-28
 68-65
 68-68
@@ -3794,6 +3850,7 @@ SEEN:
 76-68
 76-76
 76-89
+76-94
 77-77
 78-126
 78-20
@@ -3827,6 +3884,7 @@ SEEN:
 82-126
 82-18
 82-38
+82-68
 82-73
 82-80
 82-82
@@ -3841,7 +3899,9 @@ SEEN:
 85-85
 87-120
 87-135
+87-149
 87-26
+87-47
 87-55
 87-59
 87-68
@@ -3908,8 +3968,10 @@ SEEN:
 94-105
 94-113
 94-117
+94-131
 94-28
 94-38
+94-65
 94-68
 94-9
 94-94
@@ -3982,11 +4044,11 @@ VOLCANOBADGE|1
 celadon-hideout-floor|1
 END
 TEAM:
-0|NUMBER:6-6|NICKNAME:|HP:215|EXP:279420|LEVEL:70|EV:23176|27903|26053|24558|27297|IV:0|13|10|10|14|MOVES:SLASH|RAGE|FLAMETHROWER|FIRE SPIN|PP:20|20|15|15|MAX_PP:20|20|15|15|STATUS:
-1|NUMBER:135-135|NICKNAME:|HP:183|EXP:249801|LEVEL:67|EV:14073|16245|16353|16125|15760|IV:0|13|10|10|14|MOVES:PIN MISSILE|DOUBLE KICK|THUNDER|THUNDERBOLT|PP:20|30|10|15|MAX_PP:20|30|10|15|STATUS:
-2|NUMBER:130-130|NICKNAME:|HP:242|EXP:294493|LEVEL:71|EV:24199|22748|23248|19697|20067|IV:0|13|10|10|14|MOVES:HYDROPUMP|BITE|SURF|HYPER BEAM|PP:5|25|15|5|MAX_PP:5|25|15|5|STATUS:
-3|NUMBER:76-15|NICKNAME:|HP:206|EXP:266525|LEVEL:69|EV:21923|26212|24589|23980|26035|IV:2|15|9|10|11|MOVES:PIN MISSILE|EARTHQUAKE|FURY ATTACK|TWIN NEEDLE|PP:20|10|20|20|MAX_PP:20|10|20|20|STATUS:
-4|NUMBER:144-144|NICKNAME:|HP:183|EXP:178695|LEVEL:60|EV:1595|1817|1808|1599|1600|IV:0|13|10|10|14|MOVES:PECK|ICE BEAM|BLIZZARD|AGILITY|PP:35|10|5|30|MAX_PP:35|10|5|30|STATUS:
+0|NUMBER:76-15|NICKNAME:|HP:212|EXP:288642|LEVEL:71|EV:22335|26608|24993|24441|26438|IV:2|15|9|10|11|MOVES:PIN MISSILE|EARTHQUAKE|FURY ATTACK|TWIN NEEDLE|PP:17|10|20|20|MAX_PP:20|10|20|20|STATUS:
+1|NUMBER:6-6|NICKNAME:|HP:224|EXP:317713|LEVEL:73|EV:23746|28504|26593|25147|27840|IV:0|13|10|10|14|MOVES:SLASH|RAGE|FLAMETHROWER|FIRE SPIN|PP:20|20|15|15|MAX_PP:20|20|15|15|STATUS:
+2|NUMBER:130-130|NICKNAME:|HP:256|EXP:344101|LEVEL:75|EV:24821|23510|24039|20553|20888|IV:0|13|10|10|14|MOVES:HYDROPUMP|BITE|SURF|HYPER BEAM|PP:5|25|15|5|MAX_PP:5|25|15|5|STATUS:
+3|NUMBER:144-144|NICKNAME:|HP:199|EXP:223880|LEVEL:65|EV:2047|2377|2257|2075|2089|IV:0|13|10|10|14|MOVES:PECK|ICE BEAM|BLIZZARD|AGILITY|PP:35|10|5|30|MAX_PP:35|10|5|30|STATUS:
+4|NUMBER:135-135|NICKNAME:|HP:205|EXP:342641|LEVEL:75|EV:15313|17464|17393|17331|16680|IV:0|13|10|10|14|MOVES:PIN MISSILE|DOUBLE KICK|THUNDER|THUNDERBOLT|PP:20|30|10|15|MAX_PP:20|30|10|15|STATUS:
 5|NUMBER:130-83|NICKNAME:|HP:79|EXP:18787|LEVEL:28|EV:147|172|148|140|195|IV:0|13|10|10|14|MOVES:FLY|STRENGTH|CUT|SURF|PP:15|15|30|15|MAX_PP:15|15|30|15|STATUS:
 END
 STORAGE:
@@ -4751,6 +4813,32 @@ pewter-museum
 12|2|17|4|0
 13|0|16|2|0
 14|0|15|2|0
+END
+pokemon-league
+0|0|4|1|0
+1|0|5|1|0
+2|0|5|3|0
+3|0|3|11|0
+4|0|3|12|0
+5|0|4|18|0
+6|0|5|18|0
+7|0|5|20|0
+8|0|4|35|0
+9|0|5|35|0
+10|0|5|37|0
+11|0|5|61|0
+12|0|6|61|0
+13|0|4|60|0
+14|0|5|52|0
+15|0|6|52|0
+16|0|6|53|0
+17|0|3|79|0
+18|0|4|79|0
+19|0|4|81|0
+20|1|3|86|0
+21|0|2|86|0
+22|2|5|94|0
+23|3|3|99|0
 END
 pokemon-tower-1
 0|2|10|1|0
