@@ -144,6 +144,7 @@ TELEPORT
 15 27 cerulean-bike-shop 2 7
 44 18 route9 1 10
 44 19 route9 1 11
+6 13 unknown-dungeon 29 22
 NEIGHBORS
 route4 -93 0
 route24 10 -38
