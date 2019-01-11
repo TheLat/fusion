@@ -103,7 +103,7 @@ MENU:ALERT:I know everything about the world of POK{e-accent}MON in your GAME BO
 END
 celadon-mansion-book blank 3 81
 INTERACTIONS
-MENU:ALERT:It's a pamphlet on TMs.|MENU:ALERT:...|MENU:ALERT:There are 50 TMs in all.|MENU:ALERT:There is a person who can recharge your TMs in TODO: PICK LOCATION AND SET IT HERE.|MENU:ALERT:There are also 5 HMs that can be used repeatedly.|MENU:ALERT:SILPH CO
+MENU:ALERT:It's a pamphlet on TMs.|MENU:ALERT:...|MENU:ALERT:There are 50 TMs in all.|MENU:ALERT:There is a person who can recharge your TMs in SAFFRON CITY.|MENU:ALERT:There are also 5 HMs that can be used repeatedly.|MENU:ALERT:SILPH CO
 END
 celadon-mansion-blackboard1 blank 3 77
 INTERACTIONS
