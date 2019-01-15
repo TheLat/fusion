@@ -15,8 +15,8 @@ MENU:ALERT:Looked into the binoculars.|MENU:ALERT:There are people swimming!
 END
 route18-checkpoint-boy boy 5 16 WANDER
 INTERACTIONS
-MENU:ALERT:I'm looking for a SLOWBRO|MENU:ALERT_YES_NO:Wanna trade one for LICKITUNG?|{MENU:MON_SELECT:|TRADE_LOGIC:80-80|{MENU:ALERT:What? That's not SLOWBRO!|MENU:ALERT:If you get one, come back here!|NO_ADVANCE}{MENU:ALERT:Okay, connect the cable like so!|MENU:ALERT:ANIMATION GOES HERE|MENU:ALERT:{PLAYER_NAME} traded SLOWBRO for LICKITUNG!|GIVE_MON:5:108-108|MENU:ALERT:TODO: WHAT HE SAYS HERE}}{MENU:ALERT:Aww! {NEWLINE} Oh well...|NO_ADVANCE}
-MENU:ALERT:STUFF
+MENU:ALERT:I'm looking for a SLOWBRO|MENU:ALERT_YES_NO:Wanna trade one for LICKITUNG?|{MENU:MON_SELECT:|TRADE_LOGIC:80-80|{MENU:ALERT:What? That's not SLOWBRO!|MENU:ALERT:If you get one, come back here!|NO_ADVANCE}{MENU:ALERT:Okay, connect the cable like so!|MENU:ALERT:ANIMATION GOES HERE|MENU:ALERT:{PLAYER_NAME} traded SLOWBRO for LICKITUNG!|GIVE_MON:5:108-108|MENU:ALERT:Hey thanks!}}{MENU:ALERT:Aww! {NEWLINE} Oh well...|NO_ADVANCE}
+MENU:ALERT:Isn't my old LICKITUNG great?
 END
 TELEPORT
 7 8 route18-checkpoint 7 21
