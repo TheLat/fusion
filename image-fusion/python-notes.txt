@@ -1,6 +1,16 @@
 from PIL import Image
 
+
+
 im = Image.open(FILENAME).convert("RGBA").save(FILENAME)
+
 pixels = im.load()
+
 pixels[x,y] = (R,G,B,A)
+
 im.convert("P").save(OUTFILE)
+
+KEYWORDS:FACEBOUNDS/JAWBOUNDS/HEADBOUNDS
+determines whether it uses BOUNDS/JAW/SOCKET or not.
+
+FIX VENUSAUR DARKEST PLANT
