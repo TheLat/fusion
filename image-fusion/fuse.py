@@ -10,10 +10,13 @@ while line:
         key = int(line)
         data[key] = {}
         data[key]["MASK"] = False
+        data[key]["HFLIP"] = False
     elif line.startswith("FACE_USES:"):
         data[key]["BODY"] = line.split(":")[1] + ".png"
     elif line == "USE_MASK:YES":
         data[key]["MASK"] = True
+    elif line == "HFLIP:YES":
+        data[key]["HFLIP"] = True
     elif line.startswith("FACEBOUNDS:"):
         line = line.split(":")[1]
         line = line.replace(",", " ").replace("(", " ").replace(")", " ").replace("  ", " ").strip().split(" ")
@@ -161,4 +164,6 @@ for i in range(1, len(data) + 1):
                             else:
                                 if px1[(xtarg,ytarg)][3] == 255:
                                     px2[(x,y)] = px1[(xtarg,ytarg)]
+	if data[i]["HFLIP"]:
+            im2 = im2.transpose(Image.FLIP_LEFT_RIGHT)
         im2.convert("P").save("out/%s-%s.png" % (i, j))
