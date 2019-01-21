@@ -125,7 +125,7 @@ for i in range(1, len(data) + 1):
                         ytarg = int(((y3-y4)/(y1-y2))*float(y - y1) + (y3))
                         if xtarg > 0 and ytarg > 0 and xtarg < im1.size[1] and ytarg < im1.size[0]:
                             if data[i]["MASK"]:
-                                if px3[(x,y)] != (0, 0, 0, 0): #CHANGE TO 255
+                                if px3[(x,y)] != (0, 0, 0, 255):
                                     if px1[(xtarg,ytarg)][3] == 255:
                                         px2[(x,y)] = px1[(xtarg,ytarg)]
                             else:
