@@ -22,6 +22,14 @@ while line:
         data[key]["FACEBOUNDS"]["YMIN"] = int(line[1])
         data[key]["FACEBOUNDS"]["XMAX"] = int(line[2])
         data[key]["FACEBOUNDS"]["YMAX"] = int(line[3])
+    elif line.startswith("JAWBOUNDS:"):
+        line = line.split(":")[1]
+        line = line.replace(",", " ").replace("(", " ").replace(")", " ").replace("  ", " ").strip().split(" ")
+        data[key]["JAWBOUNDS"] = {}
+        data[key]["JAWBOUNDS"]["X1"] = int(line[0])
+        data[key]["JAWBOUNDS"]["Y1"] = int(line[1])
+        data[key]["JAWBOUNDS"]["X2"] = int(line[2])
+        data[key]["JAWBOUNDS"]["Y2"] = int(line[3])
     elif line.startswith("BOUNDS:"):
         line = line.split(":")[1]
         data[key]["BOUNDS"] = []
@@ -93,7 +101,7 @@ for i in range(1, len(data) + 1):
             Image.open("front/%s.png" % i).convert("RGBA").convert("P").save("out/%s-%s.png" % (i, j))
             continue
         im1 = Image.open("front/%s-face.png" % i).convert("RGBA")
-        im2 = Image.open("front/%s-%s" % (j, data[j]['BODY'])).convert("RGBA")
+        im2 = Image.open("front/%s-%s" % (j, data[i]['BODY'])).convert("RGBA")
         im3 = Image.open("front/%s-mask.png" % j).convert("RGBA")
         px1 = im1.load()
         px2 = im2.load()
@@ -119,6 +127,28 @@ for i in range(1, len(data) + 1):
                 y2 = float(b['YMAX'])
                 y3 = float(data[i]['FACEBOUNDS']['YMIN'])
                 y4 = float(data[i]['FACEBOUNDS']['YMAX'])
+                for x in range(0,im2.size[0]):
+                    for y in range(0,im2.size[1]):
+                        xtarg = int(((x3-x4)/(x1-x2))*float(x - x1) + (x3))
+                        ytarg = int(((y3-y4)/(y1-y2))*float(y - y1) + (y3))
+                        if xtarg > 0 and ytarg > 0 and xtarg < im1.size[1] and ytarg < im1.size[0]:
+                            if data[i]["MASK"]:
+                                if px3[(x,y)] != (0, 0, 0, 255):
+                                    if px1[(xtarg,ytarg)][3] == 255:
+                                        px2[(x,y)] = px1[(xtarg,ytarg)]
+                            else:
+                                if px1[(xtarg,ytarg)][3] == 255:
+                                    px2[(x,y)] = px1[(xtarg,ytarg)]
+        if "JAWBOUNDS" in data[i].keys():
+            for b in data[j]['JAW']:
+                x1 = float(b['X1'])
+                x2 = float(b['X2'])
+                x3 = float(data[i]['JAWBOUNDS']['X1'])
+                x4 = float(data[i]['JAWBOUNDS']['X2'])
+                y1 = float(b['Y1'])
+                y2 = float(b['Y2'])
+                y3 = float(data[i]['JAWBOUNDS']['Y1'])
+                y4 = float(data[i]['JAWBOUNDS']['Y2'])
                 for x in range(0,im2.size[0]):
                     for y in range(0,im2.size[1]):
                         xtarg = int(((x3-x4)/(x1-x2))*float(x - x1) + (x3))
