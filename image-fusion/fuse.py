@@ -1,5 +1,45 @@
 from PIL import Image
 
+def get_pixel(px, x, y):
+    x1 = int(x)
+    x2 = x1 + 1
+    xt = x - (float(int(x)))
+    y1 = int(y)
+    y2 = y1 + 1
+    yt = y - (float(int(y)))
+    try:
+        p1 = px[(x1,y1)]
+    except:
+        p1 = (0,0,0,0)
+    try:
+        p2 = px[(x2,y1)]
+    except:
+        p2 = (0,0,0,0)
+    try:
+        p3 = px[(x1,y2)]
+    except:
+        p3 = (0,0,0,0)
+    try:
+        p4 = px[(x2,y2)]
+    except:
+        p4 = (0,0,0,0)
+    if p2[3] != 255:
+        pass
+    else:
+        for i in range(0,4):
+            p1 = (int(float(p1[0]) + xt*float(p2[0] - p1[0])),int(float(p1[1]) + xt*float(p2[1] - p1[1])),int(float(p1[2]) + xt*float(p2[2] - p1[2])),255)
+    if p4[3] != 255:
+        pass
+    else:
+        for i in range(0,4):
+            p3 = (int(float(p3[0]) + xt*float(p4[0] - p3[0])),int(float(p3[1]) + xt*float(p4[1] - p3[1])),int(float(p3[2]) + xt*float(p4[2] - p3[2])),255)
+    if p3[3] != 255:
+        pass
+    else:
+        for i in range(0,4):
+            p1 = (int(float(p1[0]) + yt*float(p3[0] - p1[0])),int(float(p1[1]) + yt*float(p3[1] - p1[1])),int(float(p1[2]) + yt*float(p3[2] - p1[2])),255)
+    return p1
+
 data = {}
 key = ""
 f = open("fdata.txt")
@@ -141,16 +181,16 @@ for i in range(1, len(data) + 1):
                 y4 = float(data[i]['FACEBOUNDS']['YMAX'])
                 for x in range(0,im2.size[0]):
                     for y in range(0,im2.size[1]):
-                        xtarg = int(((x3-x4)/(x1-x2))*float(x - x1) + (x3))
-                        ytarg = int(((y3-y4)/(y1-y2))*float(y - y1) + (y3))
+                        xtarg = (((x3-x4)/(x1-x2))*float(x - x1) + (x3))
+                        ytarg = (((y3-y4)/(y1-y2))*float(y - y1) + (y3))
                         if xtarg > 0 and ytarg > 0 and xtarg < im1.size[1] and ytarg < im1.size[0]:
                             if data[i]["MASK"]:
                                 if px3[(x,y)] != (0, 0, 0, 255):
                                     if px1[(xtarg,ytarg)][3] == 255:
-                                        px2[(x,y)] = px1[(xtarg,ytarg)]
+                                        px2[(x,y)] = get_pixel(px1,xtarg,ytarg)
                             else:
                                 if px1[(xtarg,ytarg)][3] == 255:
-                                    px2[(x,y)] = px1[(xtarg,ytarg)]
+                                    px2[(x,y)] = get_pixel(px1,xtarg,ytarg)
         if "JAWBOUNDS" in data[i].keys():
             for b in data[j]['JAW']:
                 x1 = float(b['X1'])
@@ -163,16 +203,16 @@ for i in range(1, len(data) + 1):
                 y4 = float(data[i]['JAWBOUNDS']['Y2'])
                 for x in range(0,im2.size[0]):
                     for y in range(0,im2.size[1]):
-                        xtarg = int(((x3-x4)/(x1-x2))*float(x - x1) + (x3))
-                        ytarg = int(((y3-y4)/(y1-y2))*float(y - y1) + (y3))
+                        xtarg = (((x3-x4)/(x1-x2))*float(x - x1) + (x3))
+                        ytarg = (((y3-y4)/(y1-y2))*float(y - y1) + (y3))
                         if xtarg > 0 and ytarg > 0 and xtarg < im1.size[1] and ytarg < im1.size[0]:
                             if data[i]["MASK"]:
                                 if px3[(x,y)] != (0, 0, 0, 255):
                                     if px1[(xtarg,ytarg)][3] == 255:
-                                        px2[(x,y)] = px1[(xtarg,ytarg)]
+                                        px2[(x,y)] = get_pixel(px1,xtarg,ytarg)
                             else:
                                 if px1[(xtarg,ytarg)][3] == 255:
-                                    px2[(x,y)] = px1[(xtarg,ytarg)]
+                                    px2[(x,y)] = get_pixel(px1,xtarg,ytarg)
         if "HEADBOUNDS" in data[i].keys():
             for b in data[j]['SOCKET']:
                 x1 = float(b['X'])
@@ -183,16 +223,16 @@ for i in range(1, len(data) + 1):
                 w2 = float(data[i]['HEADBOUNDS']['WIDTH'])
                 for x in range(0,im2.size[0]):
                     for y in range(0,im2.size[1]):
-                        xtarg = int((w2/w1)*float(x - x1) + (x2))
-                        ytarg = int((w2/w1)*float(y - y1) + (y2))
+                        xtarg = ((w2/w1)*float(x - x1) + (x2))
+                        ytarg = ((w2/w1)*float(y - y1) + (y2))
                         if xtarg > 0 and ytarg > 0 and xtarg < im1.size[1] and ytarg < im1.size[0]:
                             if data[i]["MASK"]:
                                 if px3[(x,y)] != (0, 0, 0, 255):
                                     if px1[(xtarg,ytarg)][3] == 255:
-                                        px2[(x,y)] = px1[(xtarg,ytarg)]
+                                        px2[(x,y)] = get_pixel(px1,xtarg,ytarg)
                             else:
                                 if px1[(xtarg,ytarg)][3] == 255:
-                                    px2[(x,y)] = px1[(xtarg,ytarg)]
+                                    px2[(x,y)] = get_pixel(px1,xtarg,ytarg)
 	if data[i]["HFLIP"]:
             im2 = im2.transpose(Image.FLIP_LEFT_RIGHT)
         im2.convert("P").save("out/%s-%s.png" % (i, j))
