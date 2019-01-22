@@ -33,6 +33,13 @@ while line:
         data[key]["JAWBOUNDS"]["Y1"] = int(line[1])
         data[key]["JAWBOUNDS"]["X2"] = int(line[2])
         data[key]["JAWBOUNDS"]["Y2"] = int(line[3])
+    elif line.startswith("HEADBOUNDS:"):
+        line = line.split(":")[1]
+        line = line.replace(",", " ").replace("(", " ").replace(")", " ").replace("  ", " ").strip().split(" ")
+        data[key]["HEADBOUNDS"] = {}
+        data[key]["HEADBOUNDS"]["X"] = int(line[0])
+        data[key]["HEADBOUNDS"]["Y"] = int(line[1])
+        data[key]["HEADBOUNDS"]["WIDTH"] = int(line[2])
     elif line.startswith("BOUNDS:"):
         line = line.split(":")[1]
         data[key]["BOUNDS"] = []
@@ -158,6 +165,26 @@ for i in range(1, len(data) + 1):
                     for y in range(0,im2.size[1]):
                         xtarg = int(((x3-x4)/(x1-x2))*float(x - x1) + (x3))
                         ytarg = int(((y3-y4)/(y1-y2))*float(y - y1) + (y3))
+                        if xtarg > 0 and ytarg > 0 and xtarg < im1.size[1] and ytarg < im1.size[0]:
+                            if data[i]["MASK"]:
+                                if px3[(x,y)] != (0, 0, 0, 255):
+                                    if px1[(xtarg,ytarg)][3] == 255:
+                                        px2[(x,y)] = px1[(xtarg,ytarg)]
+                            else:
+                                if px1[(xtarg,ytarg)][3] == 255:
+                                    px2[(x,y)] = px1[(xtarg,ytarg)]
+        if "HEADBOUNDS" in data[i].keys():
+            for b in data[j]['SOCKET']:
+                x1 = float(b['X'])
+                x2 = float(data[i]['HEADBOUNDS']['X'])
+                y1 = float(b['Y'])
+                y2 = float(data[i]['HEADBOUNDS']['Y'])
+                w1 = float(b['WIDTH'])
+                w2 = float(data[i]['HEADBOUNDS']['WIDTH'])
+                for x in range(0,im2.size[0]):
+                    for y in range(0,im2.size[1]):
+                        xtarg = int((w2/w1)*float(x - x1) + (x2))
+                        ytarg = int((w2/w1)*float(y - y1) + (y2))
                         if xtarg > 0 and ytarg > 0 and xtarg < im1.size[1] and ytarg < im1.size[0]:
                             if data[i]["MASK"]:
                                 if px3[(x,y)] != (0, 0, 0, 255):
