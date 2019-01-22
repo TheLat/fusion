@@ -111,7 +111,9 @@ for i in range(1, len(data) + 1):
         px3 = im3.load()
         for x in range(0,im2.size[0]):
             for y in range(0,im2.size[1]):
-		for index in range(0, len(data[j]['PRIMARY'])):
+                r = range(0, len(data[j]['PRIMARY']))
+                r.reverse()
+		for index in r:
                     if px2[(x,y)] == data[j]['PRIMARY'][index]:
                         px2[(x,y)] = data[i]['PRIMARY'][index]
 		for index in range(0, len(data[j]['SECONDARY'])):
