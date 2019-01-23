@@ -23,16 +23,22 @@ def get_pixel(px, x, y):
         p4 = px[(x2,y2)]
     except:
         p4 = (0,0,0,0)
+    if p1[3] != 255:
+        p1 = p2
     if p2[3] != 255:
         pass
     else:
         for i in range(0,4):
             p1 = (int(float(p1[0]) + xt*float(p2[0] - p1[0])),int(float(p1[1]) + xt*float(p2[1] - p1[1])),int(float(p1[2]) + xt*float(p2[2] - p1[2])),255)
+    if p3[3] != 255:
+        p3 = p4
     if p4[3] != 255:
         pass
     else:
         for i in range(0,4):
             p3 = (int(float(p3[0]) + xt*float(p4[0] - p3[0])),int(float(p3[1]) + xt*float(p4[1] - p3[1])),int(float(p3[2]) + xt*float(p4[2] - p3[2])),255)
+    if p1[3] != 255:
+        p1 = p3
     if p3[3] != 255:
         pass
     else:
@@ -163,13 +169,13 @@ for i in range(1, len(data) + 1):
             for y in range(0,im2.size[1]):
                 r = range(0, len(data[j]['PRIMARY']))
                 r.reverse()
-		for index in r:
+                for index in r:
                     if px2[(x,y)] == data[j]['PRIMARY'][index]:
                         px2[(x,y)] = data[i]['PRIMARY'][index]
-		for index in range(0, len(data[j]['SECONDARY'])):
+                for index in range(0, len(data[j]['SECONDARY'])):
                     if px2[(x,y)] == data[j]['SECONDARY'][index]:
                         px2[(x,y)] = data[i]['SECONDARY'][index]
-		for index in range(0, len(data[j]['TERTIARY'])):
+                for index in range(0, len(data[j]['TERTIARY'])):
                     if px2[(x,y)] == data[j]['TERTIARY'][index]:
                         px2[(x,y)] = data[i]['TERTIARY'][index]
         if "FACEBOUNDS" in data[i].keys():
@@ -190,10 +196,14 @@ for i in range(1, len(data) + 1):
                             if data[i]["MASK"]:
                                 if px3[(x,y)] != (0, 0, 0, 255):
                                     if px1[(xtarg,ytarg)][3] == 255:
-                                        px2[(x,y)] = get_pixel(px1,xtarg,ytarg)
+                                        px = get_pixel(px1,xtarg,ytarg)
+                                        if px[3] == 255:
+                                            px2[(x,y)] = px
                             else:
                                 if px1[(xtarg,ytarg)][3] == 255:
-                                    px2[(x,y)] = get_pixel(px1,xtarg,ytarg)
+                                    px = get_pixel(px1,xtarg,ytarg)
+                                    if px[3] == 255:
+                                        px2[(x,y)] = px
         if "JAWBOUNDS" in data[i].keys():
             for b in data[j]['JAW']:
                 x1 = float(b['X1'])
@@ -212,10 +222,14 @@ for i in range(1, len(data) + 1):
                             if data[i]["MASK"]:
                                 if px3[(x,y)] != (0, 0, 0, 255):
                                     if px1[(xtarg,ytarg)][3] == 255:
-                                        px2[(x,y)] = get_pixel(px1,xtarg,ytarg)
+                                        px = get_pixel(px1,xtarg,ytarg)
+                                        if px[3] == 255:
+                                            px2[(x,y)] = px
                             else:
                                 if px1[(xtarg,ytarg)][3] == 255:
-                                    px2[(x,y)] = get_pixel(px1,xtarg,ytarg)
+                                    px = get_pixel(px1,xtarg,ytarg)
+                                    if px[3] == 255:
+                                        px2[(x,y)] = px
         if "HEADBOUNDS" in data[i].keys():
             for b in data[j]['SOCKET']:
                 x1 = float(b['X'])
@@ -232,10 +246,14 @@ for i in range(1, len(data) + 1):
                             if data[i]["MASK"]:
                                 if px3[(x,y)] != (0, 0, 0, 255):
                                     if px1[(xtarg,ytarg)][3] == 255:
-                                        px2[(x,y)] = get_pixel(px1,xtarg,ytarg)
+                                        px = get_pixel(px1,xtarg,ytarg)
+                                        if px[3] == 255:
+                                            px2[(x,y)] = px
                             else:
                                 if px1[(xtarg,ytarg)][3] == 255:
-                                    px2[(x,y)] = get_pixel(px1,xtarg,ytarg)
+                                    px = get_pixel(px1,xtarg,ytarg)
+                                    if px[3] == 255:
+                                        px2[(x,y)] = px
 	if data[i]["HFLIP"]:
             im2 = im2.transpose(Image.FLIP_LEFT_RIGHT)
         im2.convert("P").save("out/%s-%s.png" % (i, j))
