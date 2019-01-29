@@ -23,27 +23,70 @@ def get_pixel(px, x, y):
         p4 = px[(x2,y2)]
     except:
         p4 = (0,0,0,0)
-    if p1[3] != 255:
-        p1 = p2
-    if p2[3] != 255:
-        pass
-    else:
-        for i in range(0,4):
-            p1 = (int(float(p1[0]) + xt*float(p2[0] - p1[0])),int(float(p1[1]) + xt*float(p2[1] - p1[1])),int(float(p1[2]) + xt*float(p2[2] - p1[2])),255)
-    if p3[3] != 255:
-        p3 = p4
-    if p4[3] != 255:
-        pass
-    else:
-        for i in range(0,4):
-            p3 = (int(float(p3[0]) + xt*float(p4[0] - p3[0])),int(float(p3[1]) + xt*float(p4[1] - p3[1])),int(float(p3[2]) + xt*float(p4[2] - p3[2])),255)
-    if p1[3] != 255:
-        p1 = p3
-    if p3[3] != 255:
-        pass
-    else:
-        for i in range(0,4):
-            p1 = (int(float(p1[0]) + yt*float(p3[0] - p1[0])),int(float(p1[1]) + yt*float(p3[1] - p1[1])),int(float(p1[2]) + yt*float(p3[2] - p1[2])),255)
+    p1f = p1
+    p2f = p2
+    p3f = p3
+    p4f = p4
+    if p1[3] == 0:
+        if p2[3] == 0 and p3[3] == 0:
+            p1f = (p4[0], p4[1], p4[2], p4[3]/4)
+        elif p2[3] == 0:
+            p1f = (p3[0], p3[1], p3[2], p3[3]/2)
+        elif p3[3] == 0:
+            p1f = (p2[0], p2[1], p2[2], p2[3]/2)
+        else:
+            p1f = ((p2[0] + p3[0]) / 2,
+                  (p2[1] + p3[1]) / 2,
+                  (p2[2] + p3[2]) / 2,
+                  (p2[3] + p3[3]) / 4)
+    if p2[3] == 0:
+        if p1[3] == 0 and p4[3] == 0:
+            p2f = (p3[0], p3[1], p3[2], p3[3]/4)
+        elif p1[3] == 0:
+            p2f = (p4[0], p4[1], p4[2], p4[3]/2)
+        elif p4[3] == 0:
+            p2f = (p1[0], p1[1], p1[2], p1[3]/2)
+        else:
+            p2f = ((p1[0] + p4[0]) / 2,
+                  (p1[1] + p4[1]) / 2,
+                  (p1[2] + p4[2]) / 2,
+                  (p1[3] + p4[3]) / 4)
+    if p3[3] == 0:
+        if p1[3] == 0 and p4[3] == 0:
+            p3f = (p2[0], p2[1], p2[2], p2[3]/4)
+        elif p1[3] == 0:
+            p3f = (p4[0], p4[1], p4[2], p4[3]/2)
+        elif p4[3] == 0:
+            p3f = (p1[0], p1[1], p1[2], p1[3]/2)
+        else:
+            p3f = ((p1[0] + p4[0]) / 2,
+                  (p1[1] + p4[1]) / 2,
+                  (p1[2] + p4[2]) / 2,
+                  (p1[3] + p4[3]) / 4)
+    if p4[3] == 0:
+        if p2[3] == 0 and p3[3] == 0:
+            p4f = (p1[0], p1[1], p1[2], p1[3]/4)
+        elif p2[3] == 0:
+            p4f = (p3[0], p3[1], p3[2], p3[3]/2)
+        elif p3[3] == 0:
+            p4f = (p2[0], p2[1], p2[2], p2[3]/2)
+        else:
+            p4f = ((p2[0] + p3[0]) / 2,
+                  (p2[1] + p3[1]) / 2,
+                  (p2[2] + p3[2]) / 2,
+                  (p2[3] + p3[3]) / 4)
+    p1 = (int(float(p1f[0]) + xt*float(p2f[0] - p1f[0])),
+          int(float(p1f[1]) + xt*float(p2f[1] - p1f[1])),
+          int(float(p1f[2]) + xt*float(p2f[2] - p1f[2])),
+          int(float(p1f[3]) + xt*float(p2f[3] - p1f[3])))
+    p3 = (int(float(p3f[0]) + xt*float(p4f[0] - p3f[0])),
+          int(float(p3f[1]) + xt*float(p4f[1] - p3f[1])),
+          int(float(p3f[2]) + xt*float(p4f[2] - p3f[2])),
+          int(float(p3f[3]) + xt*float(p4f[3] - p3f[3])))
+    p1 = (int(float(p1f[0]) + yt*float(p3f[0] - p1f[0])),
+          int(float(p1f[1]) + yt*float(p3f[1] - p1f[1])),
+          int(float(p1f[2]) + yt*float(p3f[2] - p1f[2])),
+          int(float(p1f[3]) + xt*float(p3f[3] - p1f[3])))
     return p1
 
 data = {}
@@ -211,14 +254,28 @@ for i in range(1, len(data) + 1):
                                     if px4[(x,y)] != (0, 0, 0, 255):
                                         if px1[(xtarg,ytarg)][3] == 255:
                                             px = get_pixel(px1,xtarg,ytarg)
-                                            if px[3] == 255:
-                                                px2[(x,y)] = px
+                                            alpha = float(px[3])/255.0
+                                            pxb = px2[(x,y)]
+                                            if pxb[3] <= px[3]:
+                                                px2[(x, y)] = px
+                                            else:
+                                                px2[(x, y)] = (int(float(pxb[0]) + alpha*(float(px[0] - pxb[0]))),
+                                                               int(float(pxb[1]) + alpha*(float(px[1] - pxb[1]))),
+                                                               int(float(pxb[2]) + alpha*(float(px[2] - pxb[2]))),
+                                                               int(max(px[3], pxb[3])))
                             else:
                                 if px4[(x,y)] != (0, 0, 0, 255):
                                     if px1[(xtarg,ytarg)][3] == 255:
                                         px = get_pixel(px1,xtarg,ytarg)
-                                        if px[3] == 255:
-                                            px2[(x,y)] = px
+                                        alpha = float(px[3])/255.0
+                                        pxb = px2[(x,y)]
+                                        if pxb[3] <= px[3]:
+                                            px2[(x, y)] = px
+                                        else:
+                                            px2[(x, y)] = (int(float(pxb[0]) + alpha * (float(px[0] - pxb[0]))),
+                                                           int(float(pxb[1]) + alpha * (float(px[1] - pxb[1]))),
+                                                           int(float(pxb[2]) + alpha * (float(px[2] - pxb[2]))),
+                                                           int(max(px[3], pxb[3])))
         if "JAWBOUNDS" in data[i].keys():
             for b in data[j]['JAW']:
                 x1 = float(b['X1'])
@@ -239,14 +296,28 @@ for i in range(1, len(data) + 1):
                                     if px4[(x,y)] != (0, 0, 0, 255):
                                         if px1[(xtarg,ytarg)][3] == 255:
                                             px = get_pixel(px1,xtarg,ytarg)
-                                            if px[3] == 255:
-                                                px2[(x,y)] = px
+                                            alpha = float(px[3])/255.0
+                                            pxb = px2[(x,y)]
+                                            if pxb[3] <= px[3]:
+                                                px2[(x, y)] = px
+                                            else:
+                                                px2[(x, y)] = (int(float(pxb[0]) + alpha*(float(px[0] - pxb[0]))),
+                                                               int(float(pxb[1]) + alpha*(float(px[1] - pxb[1]))),
+                                                               int(float(pxb[2]) + alpha*(float(px[2] - pxb[2]))),
+                                                               int(max(px[3], pxb[3])))
                             else:
                                 if px4[(x,y)] != (0, 0, 0, 255):
                                     if px1[(xtarg,ytarg)][3] == 255:
                                         px = get_pixel(px1,xtarg,ytarg)
-                                        if px[3] == 255:
-                                            px2[(x,y)] = px
+                                        alpha = float(px[3])/255.0
+                                        pxb = px2[(x,y)]
+                                        if pxb[3] <= px[3]:
+                                            px2[(x, y)] = px
+                                        else:
+                                            px2[(x, y)] = (int(float(pxb[0]) + alpha * (float(px[0] - pxb[0]))),
+                                                           int(float(pxb[1]) + alpha * (float(px[1] - pxb[1]))),
+                                                           int(float(pxb[2]) + alpha * (float(px[2] - pxb[2]))),
+                                                           int(max(px[3], pxb[3])))
         if "HEADBOUNDS" in data[i].keys():
             for b in data[j]['SOCKET']:
                 x1 = float(b['X'])
@@ -265,14 +336,28 @@ for i in range(1, len(data) + 1):
                                     if px4[(x,y)] != (0, 0, 0, 255):
                                         if px1[(xtarg,ytarg)][3] == 255:
                                             px = get_pixel(px1,xtarg,ytarg)
-                                            if px[3] == 255:
-                                                px2[(x,y)] = px
+                                            alpha = float(px[3])/255.0
+                                            pxb = px2[(x,y)]
+                                            if pxb[3] <= px[3]:
+                                                px2[(x, y)] = px
+                                            else:
+                                                px2[(x, y)] = (int(float(pxb[0]) + alpha*(float(px[0] - pxb[0]))),
+                                                               int(float(pxb[1]) + alpha*(float(px[1] - pxb[1]))),
+                                                               int(float(pxb[2]) + alpha*(float(px[2] - pxb[2]))),
+                                                               int(max(px[3], pxb[3])))
                             else:
                                 if px4[(x,y)] != (0, 0, 0, 255):
                                     if px1[(xtarg,ytarg)][3] == 255:
                                         px = get_pixel(px1,xtarg,ytarg)
-                                        if px[3] == 255:
-                                            px2[(x,y)] = px
+                                        alpha = float(px[3])/255.0
+                                        pxb = px2[(x,y)]
+                                        if pxb[3] <= px[3]:
+                                            px2[(x, y)] = px
+                                        else:
+                                            px2[(x, y)] = (int(float(pxb[0]) + alpha * (float(px[0] - pxb[0]))),
+                                                           int(float(pxb[1]) + alpha * (float(px[1] - pxb[1]))),
+                                                           int(float(pxb[2]) + alpha * (float(px[2] - pxb[2]))),
+                                                           int(max(px[3], pxb[3])))
 	if data[i]["HFLIP"]:
             im2 = im2.transpose(Image.FLIP_LEFT_RIGHT)
         im2.convert("P").save("out/%s-%s.png" % (i, j))
