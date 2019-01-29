@@ -148,7 +148,11 @@ while line:
     line = f.readline().strip()
 
 f.close()
-print data
+
+for i in range(1, len(data) + 1):
+    for j in range(1,4):
+        if data[i]["PRIMARY"][j] == data[i]["PRIMARY"][j+1]:
+            data[i]["PRIMARY"][j+1] = (int((data[i]["PRIMARY"][j][0] + data[i]["PRIMARY"][j+2][0])/2),int((data[i]["PRIMARY"][j][1] + data[i]["PRIMARY"][j+2][1])/2),int((data[i]["PRIMARY"][j][2] + data[i]["PRIMARY"][j+2][2])/2),int((data[i]["PRIMARY"][j][3] + data[i]["PRIMARY"][j+2][3])/2))
 
 
 for i in range(1, len(data) + 1):
