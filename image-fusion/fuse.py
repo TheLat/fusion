@@ -151,7 +151,9 @@ f.close()
 
 # palette smoothing, fills in intermediate colors for low-color palettes
 for i in range(1, len(data) + 1):
-    for j in range(0,3):
+    r = range(0, len(data[i]['PRIMARY']) - 2)
+    r.reverse()
+    for j in r:
         if data[i]["PRIMARY"][j] == data[i]["PRIMARY"][j+1]:
             data[i]["PRIMARY"][j+1] = (int((data[i]["PRIMARY"][j][0] + data[i]["PRIMARY"][j+2][0])/2),int((data[i]["PRIMARY"][j][1] + data[i]["PRIMARY"][j+2][1])/2),int((data[i]["PRIMARY"][j][2] + data[i]["PRIMARY"][j+2][2])/2),int((data[i]["PRIMARY"][j][3] + data[i]["PRIMARY"][j+2][3])/2))
         if data[i]["SECONDARY"][j] == data[i]["SECONDARY"][j+1]:
