@@ -149,10 +149,15 @@ while line:
 
 f.close()
 
+# palette smoothing, fills in intermediate colors for low-color palettes
 for i in range(1, len(data) + 1):
-    for j in range(1,4):
+    for j in range(0,3):
         if data[i]["PRIMARY"][j] == data[i]["PRIMARY"][j+1]:
             data[i]["PRIMARY"][j+1] = (int((data[i]["PRIMARY"][j][0] + data[i]["PRIMARY"][j+2][0])/2),int((data[i]["PRIMARY"][j][1] + data[i]["PRIMARY"][j+2][1])/2),int((data[i]["PRIMARY"][j][2] + data[i]["PRIMARY"][j+2][2])/2),int((data[i]["PRIMARY"][j][3] + data[i]["PRIMARY"][j+2][3])/2))
+        if data[i]["SECONDARY"][j] == data[i]["SECONDARY"][j+1]:
+            data[i]["SECONDARY"][j+1] = (int((data[i]["SECONDARY"][j][0] + data[i]["SECONDARY"][j+2][0])/2),int((data[i]["SECONDARY"][j][1] + data[i]["SECONDARY"][j+2][1])/2),int((data[i]["SECONDARY"][j][2] + data[i]["SECONDARY"][j+2][2])/2),int((data[i]["SECONDARY"][j][3] + data[i]["SECONDARY"][j+2][3])/2))
+        if data[i]["TERTIARY"][j] == data[i]["TERTIARY"][j+1]:
+            data[i]["TERTIARY"][j+1] = (int((data[i]["TERTIARY"][j][0] + data[i]["TERTIARY"][j+2][0])/2),int((data[i]["TERTIARY"][j][1] + data[i]["TERTIARY"][j+2][1])/2),int((data[i]["TERTIARY"][j][2] + data[i]["TERTIARY"][j+2][2])/2),int((data[i]["TERTIARY"][j][3] + data[i]["TERTIARY"][j+2][3])/2))
 
 
 for i in range(1, len(data) + 1):
