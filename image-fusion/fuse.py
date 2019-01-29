@@ -83,10 +83,10 @@ def get_pixel(px, x, y):
           int(float(p3f[1]) + xt*float(p4f[1] - p3f[1])),
           int(float(p3f[2]) + xt*float(p4f[2] - p3f[2])),
           int(float(p3f[3]) + xt*float(p4f[3] - p3f[3])))
-    p1 = (int(float(p1f[0]) + yt*float(p3f[0] - p1f[0])),
-          int(float(p1f[1]) + yt*float(p3f[1] - p1f[1])),
-          int(float(p1f[2]) + yt*float(p3f[2] - p1f[2])),
-          int(float(p1f[3]) + xt*float(p3f[3] - p1f[3])))
+    p1 = (int(float(p1[0]) + yt*float(p3[0] - p1[0])),
+          int(float(p1[1]) + yt*float(p3[1] - p1[1])),
+          int(float(p1[2]) + yt*float(p3[2] - p1[2])),
+          int(float(p1[3]) + xt*float(p3[3] - p1[3])))
     return p1
 
 data = {}
