@@ -1,11 +1,13 @@
 from PIL import Image
+import os
 
 count = 0
 files = []
 
-for i in range(1,30):
-    for j in range(1,30):
-        files.append("out/%s-%s.png" % (i, j))
+for i in range(1,152):
+    for j in range(1,152):
+        if os.path.isfile("out/%s-%s.png" % (i, j)):
+            files.append("out/%s-%s.png" % (i, j))
 
 images = []
 for f in files:
