@@ -91,6 +91,8 @@ while x <= len(all):
             n = "MEW"
         if n == "KINGGLER":
             n = "KINGLER"
+        if n == "SANSHREW":
+            n = "SANDSHREW"
         for c in string.ascii_uppercase:
             while c + c + c in n:
                 n = n.replace(c+c+c, c+c)
