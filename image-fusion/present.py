@@ -3,8 +3,8 @@ from PIL import Image
 count = 0
 files = []
 
-for i in range(1,29):
-    for j in range(1,29):
+for i in range(1,30):
+    for j in range(1,30):
         files.append("out/%s-%s.png" % (i, j))
 
 images = []
