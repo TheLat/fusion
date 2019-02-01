@@ -1,0 +1,2 @@
+Fix Pidgey head.
+Bilinear filtering not done.  See 5-31.
