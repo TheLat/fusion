@@ -1,2 +1,3 @@
 Fix Pidgey head.
+Fix Ninetales face position on body.
 Bilinear filtering not done.  See 5-31.
