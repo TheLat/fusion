@@ -1,3 +1,4 @@
+import time
 import sys
 from PIL import Image
 
@@ -90,6 +91,8 @@ def get_pixel(px, x, y):
           int(float(p1[3]) + xt*float(p3[3] - p1[3])))
     return p1
 
+
+start_time = time.time()
 data = {}
 key = ""
 f = open("fdata.txt")
@@ -380,3 +383,5 @@ for i in range(1, len(data) + 1):
 	if data[i]["HFLIP"]:
             im2 = im2.transpose(Image.FLIP_LEFT_RIGHT)
         im2.convert("P").save("out/%s-%s.png" % (i, j))
+
+print "Fusing complete after %f seconds." % (time.time() - start_time)
