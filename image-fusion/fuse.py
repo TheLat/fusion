@@ -104,10 +104,13 @@ while line:
         data[key] = {}
         data[key]["MASK"] = False
         data[key]["HFLIP"] = False
+        data[key]["VFLIP"] = False
     elif line.startswith("FACE_USES:"):
         data[key]["BODY"] = line.split(":")[1] + ".png"
     elif line == "USE_MASK:YES":
         data[key]["MASK"] = True
+    elif line == "VFLIP:YES":
+        data[key]["VFLIP"] = True
     elif line == "HFLIP:YES":
         data[key]["HFLIP"] = True
     elif line.startswith("FACEBOUNDS:"):
@@ -382,6 +385,8 @@ for i in range(1, len(data) + 1):
                                                            int(max(px[3], pxb[3])))
 	if data[i]["HFLIP"]:
             im2 = im2.transpose(Image.FLIP_LEFT_RIGHT)
+        if data[j]["VFLIP"]:
+            im2 = im2.transpose(Image.FLIP_TOP_BOTTOM)
         im2.convert("P").save("out/%s-%s.png" % (i, j))
 
 print "Fusing complete after %f seconds." % (time.time() - start_time)
