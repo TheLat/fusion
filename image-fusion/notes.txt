@@ -1,3 +1,4 @@
 Fix Pidgey head.
 Fix Ninetales face position on body.
+Primeape-Slowpoke, Rapidash-Slowpoke
 Bilinear filtering not done.  See 5-31.
