@@ -356,7 +356,7 @@ for i in range(1, len(data) + 1):
                 for x in range(0,im2.size[0]):
                     for y in range(0,im2.size[1]):
                         xtarg = ((w2/w1)*float(x - x1) + (x2))
-                        ytarg = ((w2/w1)*float(y - y1) + (y2))
+                        ytarg = (abs((w2/w1))*float(y - y1) + (y2))
                         if xtarg > 0 and ytarg > 0 and xtarg < im1.size[1] and ytarg < im1.size[0]:
                             if data[i]["MASK"]:
                                 if px3[(x,y)] != (0, 0, 0, 255):
