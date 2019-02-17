@@ -3,4 +3,5 @@ Fix Ninetales face position on body.
 Primeape-Slowpoke, Rapidash-Slowpoke
 Fix Abra body.
 Seel-Dewgong body
+Krabby-Rapidash
 Bilinear filtering not done.  See 5-31.
