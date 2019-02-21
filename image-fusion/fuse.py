@@ -3,6 +3,30 @@ import sys
 from PIL import Image
 from multiprocessing import Process
 
+def get_subsampling_pixel(px, x1, y1, x2, y2):
+    if (abs(x2 - x1) < 1.0) and (abs(y2 - y1) < 1.0):
+        return get_pixel(px, (x1 + x2) / 2.0, (y1 + y2) / 2.0)
+    dx = 1.0 / float(int(abs(x2 - x1) + 1.0))
+    dy = 1.0 / float(int(abs(y2 - y1) + 1.0))
+    total = 0.0
+    colors = [0.0, 0.0, 0.0, 0.0]
+    xt = 0.0
+    yt = 0.0
+    while yt < 1.0:
+        xt = 0.0
+        while xt < 1.0:
+            p = px[(x1 + (xt*(x2 - x1)), y1 + (yt*(y2 - y1)))]
+            if p[3] == 255:
+                for i in range(0,4):
+                    colors[i] = colors[i] + float(p[i])
+                total = total + 1.0
+            xt += dx
+        yt += dy
+    if total > 0.0:
+        for i in range(0, 4):
+            colors[i] = colors[i]/total
+    return (int(colors[0]),int(colors[1]),int(colors[2]),int(colors[3]))
+
 def get_pixel(px, x, y):
     x1 = int(x)
     x2 = x1 + 1
@@ -135,36 +159,28 @@ def make_image(i, j):
             y4 = float(data[i]['FACEBOUNDS']['YMAX'])
             for x in range(0,im2.size[0]):
                 for y in range(0,im2.size[1]):
-                    xtarg = (((x3-x4)/(x1-x2))*float(x - x1) + (x3))
-                    ytarg = (((y3-y4)/(y1-y2))*float(y - y1) + (y3))
-                    if xtarg > 0 and ytarg > 0 and xtarg < im1.size[1] and ytarg < im1.size[0]:
+                    xtarg1 = (((x3-x4)/(x1-x2))*float((x-0.5) - x1) + (x3))
+                    xtarg2 = (((x3-x4)/(x1-x2))*float((x+0.5) - x1) + (x3))
+                    ytarg1 = (((y3-y4)/(y1-y2))*float((y-0.5) - y1) + (y3))
+                    ytarg2 = (((y3-y4)/(y1-y2))*float((y+0.5) - y1) + (y3))
+                    try:
                         if data[i]["MASK"]:
-                            if px3[(x,y)] != (0, 0, 0, 255):
-                                if px4[(x,y)] != (0, 0, 0, 255):
-                                    if px1[(xtarg,ytarg)][3] == 255:
-                                        px = get_pixel(px1,xtarg,ytarg)
-                                        alpha = float(px[3])/255.0
-                                        pxb = px2[(x,y)]
-                                        if pxb[3] <= px[3]:
-                                            px2[(x, y)] = px
-                                        else:
-                                            px2[(x, y)] = (int(float(pxb[0]) + alpha*(float(px[0] - pxb[0]))),
-                                                           int(float(pxb[1]) + alpha*(float(px[1] - pxb[1]))),
-                                                           int(float(pxb[2]) + alpha*(float(px[2] - pxb[2]))),
-                                                           int(max(px[3], pxb[3])))
+                            if px3[(x,y)] == (0, 0, 0, 255):
+                                continue
+                        if px4[(x,y)] == (0, 0, 0, 255):
+                            continue
+                        px = get_subsampling_pixel(px1, xtarg1, ytarg1, xtarg2, ytarg2)
+                        alpha = float(px[3])/255.0
+                        pxb = px2[(x,y)]
+                        if pxb[3] <= px[3]:
+                            px2[(x, y)] = px
                         else:
-                            if px4[(x,y)] != (0, 0, 0, 255):
-                                if px1[(xtarg,ytarg)][3] == 255:
-                                    px = get_pixel(px1,xtarg,ytarg)
-                                    alpha = float(px[3])/255.0
-                                    pxb = px2[(x,y)]
-                                    if pxb[3] <= px[3]:
-                                        px2[(x, y)] = px
-                                    else:
-                                        px2[(x, y)] = (int(float(pxb[0]) + alpha * (float(px[0] - pxb[0]))),
-                                                       int(float(pxb[1]) + alpha * (float(px[1] - pxb[1]))),
-                                                       int(float(pxb[2]) + alpha * (float(px[2] - pxb[2]))),
-                                                       int(max(px[3], pxb[3])))
+                            px2[(x, y)] = (int(float(pxb[0]) + alpha*(float(px[0] - pxb[0]))),
+                                           int(float(pxb[1]) + alpha*(float(px[1] - pxb[1]))),
+                                           int(float(pxb[2]) + alpha*(float(px[2] - pxb[2]))),
+                                           int(max(px[3], pxb[3])))
+                    except:
+                        pass
     if "JAWBOUNDS" in data[i].keys():
         for b in data[j]['JAW']:
             x1 = float(b['X1'])
@@ -177,36 +193,28 @@ def make_image(i, j):
             y4 = float(data[i]['JAWBOUNDS']['Y2'])
             for x in range(0,im2.size[0]):
                 for y in range(0,im2.size[1]):
-                    xtarg = (((x3-x4)/(x1-x2))*float(x - x1) + (x3))
-                    ytarg = (((y3-y4)/(y1-y2))*float(y - y1) + (y3))
-                    if xtarg > 0 and ytarg > 0 and xtarg < im1.size[1] and ytarg < im1.size[0]:
+                    xtarg1 = (((x3-x4)/(x1-x2))*float((x-0.5) - x1) + (x3))
+                    xtarg2 = (((x3-x4)/(x1-x2))*float((x+0.5) - x1) + (x3))
+                    ytarg1 = (((y3-y4)/(y1-y2))*float((y-0.5) - y1) + (y3))
+                    ytarg2 = (((y3-y4)/(y1-y2))*float((y+0.5) - y1) + (y3))
+                    try:
                         if data[i]["MASK"]:
-                            if px3[(x,y)] != (0, 0, 0, 255):
-                                if px4[(x,y)] != (0, 0, 0, 255):
-                                    if px1[(xtarg,ytarg)][3] == 255:
-                                        px = get_pixel(px1,xtarg,ytarg)
-                                        alpha = float(px[3])/255.0
-                                        pxb = px2[(x,y)]
-                                        if pxb[3] <= px[3]:
-                                            px2[(x, y)] = px
-                                        else:
-                                            px2[(x, y)] = (int(float(pxb[0]) + alpha*(float(px[0] - pxb[0]))),
-                                                           int(float(pxb[1]) + alpha*(float(px[1] - pxb[1]))),
-                                                           int(float(pxb[2]) + alpha*(float(px[2] - pxb[2]))),
-                                                           int(max(px[3], pxb[3])))
+                            if px3[(x,y)] == (0, 0, 0, 255):
+                                continue
+                        if px4[(x,y)] == (0, 0, 0, 255):
+                            continue
+                        px = get_subsampling_pixel(px1, xtarg1, ytarg1, xtarg2, ytarg2)
+                        alpha = float(px[3])/255.0
+                        pxb = px2[(x,y)]
+                        if pxb[3] <= px[3]:
+                            px2[(x, y)] = px
                         else:
-                            if px4[(x,y)] != (0, 0, 0, 255):
-                                if px1[(xtarg,ytarg)][3] == 255:
-                                    px = get_pixel(px1,xtarg,ytarg)
-                                    alpha = float(px[3])/255.0
-                                    pxb = px2[(x,y)]
-                                    if pxb[3] <= px[3]:
-                                        px2[(x, y)] = px
-                                    else:
-                                        px2[(x, y)] = (int(float(pxb[0]) + alpha * (float(px[0] - pxb[0]))),
-                                                       int(float(pxb[1]) + alpha * (float(px[1] - pxb[1]))),
-                                                       int(float(pxb[2]) + alpha * (float(px[2] - pxb[2]))),
-                                                       int(max(px[3], pxb[3])))
+                            px2[(x, y)] = (int(float(pxb[0]) + alpha*(float(px[0] - pxb[0]))),
+                                           int(float(pxb[1]) + alpha*(float(px[1] - pxb[1]))),
+                                           int(float(pxb[2]) + alpha*(float(px[2] - pxb[2]))),
+                                           int(max(px[3], pxb[3])))
+                    except:
+                        pass
     if "HEADBOUNDS" in data[i].keys():
         for b in data[j]['SOCKET']:
             x1 = float(b['X'])
@@ -217,36 +225,28 @@ def make_image(i, j):
             w2 = float(data[i]['HEADBOUNDS']['WIDTH'])
             for x in range(0,im2.size[0]):
                 for y in range(0,im2.size[1]):
-                    xtarg = ((w2/w1)*float(x - x1) + (x2))
-                    ytarg = (abs((w2/w1))*float(y - y1) + (y2))
-                    if xtarg > 0 and ytarg > 0 and xtarg < im1.size[1] and ytarg < im1.size[0]:
+                    xtarg1 = ((w2/w1)*float((x - 0.5) - x1) + (x2))
+                    xtarg2 = ((w2/w1)*float((x + 0.5) - x1) + (x2))
+                    ytarg1 = (abs((w2/w1))*float((y - 0.5) - y1) + (y2))
+                    ytarg2 = (abs((w2/w1))*float((y + 0.5) - y1) + (y2))
+                    try:
                         if data[i]["MASK"]:
-                            if px3[(x,y)] != (0, 0, 0, 255):
-                                if px4[(x,y)] != (0, 0, 0, 255):
-                                    if px1[(xtarg,ytarg)][3] == 255:
-                                        px = get_pixel(px1,xtarg,ytarg)
-                                        alpha = float(px[3])/255.0
-                                        pxb = px2[(x,y)]
-                                        if pxb[3] <= px[3]:
-                                            px2[(x, y)] = px
-                                        else:
-                                            px2[(x, y)] = (int(float(pxb[0]) + alpha*(float(px[0] - pxb[0]))),
-                                                           int(float(pxb[1]) + alpha*(float(px[1] - pxb[1]))),
-                                                           int(float(pxb[2]) + alpha*(float(px[2] - pxb[2]))),
-                                                           int(max(px[3], pxb[3])))
+                            if px3[(x,y)] == (0, 0, 0, 255):
+                                continue
+                        if px4[(x,y)] == (0, 0, 0, 255):
+                            continue
+                        px = get_subsampling_pixel(px1, xtarg1, ytarg1, xtarg2, ytarg2)
+                        alpha = float(px[3])/255.0
+                        pxb = px2[(x,y)]
+                        if pxb[3] <= px[3]:
+                            px2[(x, y)] = px
                         else:
-                            if px4[(x,y)] != (0, 0, 0, 255):
-                                if px1[(xtarg,ytarg)][3] == 255:
-                                    px = get_pixel(px1,xtarg,ytarg)
-                                    alpha = float(px[3])/255.0
-                                    pxb = px2[(x,y)]
-                                    if pxb[3] <= px[3]:
-                                        px2[(x, y)] = px
-                                    else:
-                                        px2[(x, y)] = (int(float(pxb[0]) + alpha * (float(px[0] - pxb[0]))),
-                                                       int(float(pxb[1]) + alpha * (float(px[1] - pxb[1]))),
-                                                       int(float(pxb[2]) + alpha * (float(px[2] - pxb[2]))),
-                                                       int(max(px[3], pxb[3])))
+                            px2[(x, y)] = (int(float(pxb[0]) + alpha*(float(px[0] - pxb[0]))),
+                                           int(float(pxb[1]) + alpha*(float(px[1] - pxb[1]))),
+                                           int(float(pxb[2]) + alpha*(float(px[2] - pxb[2]))),
+                                           int(max(px[3], pxb[3])))
+                    except:
+                        pass
     if data[i]["HFLIP"]:
         im2 = im2.transpose(Image.FLIP_LEFT_RIGHT)
     if data[j]["VFLIP"]:
