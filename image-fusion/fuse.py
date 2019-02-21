@@ -113,6 +113,22 @@ def make_image(i, j):
                     xtarg2 = (((x3-x4)/(x1-x2))*float((x+0.5) - x1) + (x3))
                     ytarg1 = (((y3-y4)/(y1-y2))*float((y-0.5) - y1) + (y3))
                     ytarg2 = (((y3-y4)/(y1-y2))*float((y+0.5) - y1) + (y3))
+                    if xtarg1 < 0:
+                        continue
+                    if xtarg2 < 0:
+                        continue
+                    if ytarg1 < 0:
+                        continue
+                    if ytarg2 < 0:
+                        continue
+                    if xtarg1 > im1.size[0]:
+                        continue
+                    if xtarg2 > im1.size[0]:
+                        continue
+                    if ytarg1 > im1.size[1]:
+                        continue
+                    if ytarg2 > im1.size[1]:
+                        continue
                     try:
                         if data[i]["MASK"]:
                             if px3[(x,y)] == (0, 0, 0, 255):
@@ -147,6 +163,22 @@ def make_image(i, j):
                     xtarg2 = (((x3-x4)/(x1-x2))*float((x+0.5) - x1) + (x3))
                     ytarg1 = (((y3-y4)/(y1-y2))*float((y-0.5) - y1) + (y3))
                     ytarg2 = (((y3-y4)/(y1-y2))*float((y+0.5) - y1) + (y3))
+                    if xtarg1 < 0:
+                        continue
+                    if xtarg2 < 0:
+                        continue
+                    if ytarg1 < 0:
+                        continue
+                    if ytarg2 < 0:
+                        continue
+                    if xtarg1 > im1.size[0]:
+                        continue
+                    if xtarg2 > im1.size[0]:
+                        continue
+                    if ytarg1 > im1.size[1]:
+                        continue
+                    if ytarg2 > im1.size[1]:
+                        continue
                     try:
                         if data[i]["MASK"]:
                             if px3[(x,y)] == (0, 0, 0, 255):
@@ -179,6 +211,22 @@ def make_image(i, j):
                     xtarg2 = ((w2/w1)*float((x + 0.5) - x1) + (x2))
                     ytarg1 = (abs((w2/w1))*float((y - 0.5) - y1) + (y2))
                     ytarg2 = (abs((w2/w1))*float((y + 0.5) - y1) + (y2))
+                    if xtarg1 < 0:
+                        continue
+                    if xtarg2 < 0:
+                        continue
+                    if ytarg1 < 0:
+                        continue
+                    if ytarg2 < 0:
+                        continue
+                    if xtarg1 > im1.size[0]:
+                        continue
+                    if xtarg2 > im1.size[0]:
+                        continue
+                    if ytarg1 > im1.size[1]:
+                        continue
+                    if ytarg2 > im1.size[1]:
+                        continue
                     try:
                         if data[i]["MASK"]:
                             if px3[(x,y)] == (0, 0, 0, 255):
