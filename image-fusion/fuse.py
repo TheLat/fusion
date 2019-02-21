@@ -64,7 +64,7 @@ def get_pixel(px, x, y):
         if pointmap[points[i]] > pscore:
             pout = points[i]
             pscore = pointmap[points[i]]
-    return pout
+    return p1
 
 def make_image(i, j):
     if len(sys.argv) > 1:
