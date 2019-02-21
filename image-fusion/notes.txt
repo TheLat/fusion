@@ -4,5 +4,6 @@ Primeape-Slowpoke, Rapidash-Slowpoke
 Fix Abra body.
 Seel-Dewgong body
 Krabby-Rapidash
+Weepinbell-Ninetales
 Flip Kingler and Hypno bodies?
 Bilinear filtering not done.  See 5-31.
