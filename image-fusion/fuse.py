@@ -50,71 +50,21 @@ def get_pixel(px, x, y):
         p4 = px[(x2,y2)]
     except:
         p4 = (0,0,0,0)
-    p1f = p1
-    p2f = p2
-    p3f = p3
-    p4f = p4
-    if p1[3] == 0:
-        if p2[3] == 0 and p3[3] == 0:
-            p1f = (p4[0], p4[1], p4[2], p4[3]/4)
-        elif p2[3] == 0:
-            p1f = (p3[0], p3[1], p3[2], p3[3]/2)
-        elif p3[3] == 0:
-            p1f = (p2[0], p2[1], p2[2], p2[3]/2)
+    scores = [(1.0 - xt) * (1.0 - yt), (xt)*(1.0 - yt), (1.0 - xt)*(yt), (xt)*(yt)]
+    points = [p1, p2, p3, p4]
+    pointmap = {}
+    for i in range(0,4):
+        if points[i] not in pointmap.keys():
+            pointmap[points[i]] = scores[i]
         else:
-            p1f = ((p2[0] + p3[0]) / 2,
-                  (p2[1] + p3[1]) / 2,
-                  (p2[2] + p3[2]) / 2,
-                  (p2[3] + p3[3]) / 4)
-    if p2[3] == 0:
-        if p1[3] == 0 and p4[3] == 0:
-            p2f = (p3[0], p3[1], p3[2], p3[3]/4)
-        elif p1[3] == 0:
-            p2f = (p4[0], p4[1], p4[2], p4[3]/2)
-        elif p4[3] == 0:
-            p2f = (p1[0], p1[1], p1[2], p1[3]/2)
-        else:
-            p2f = ((p1[0] + p4[0]) / 2,
-                  (p1[1] + p4[1]) / 2,
-                  (p1[2] + p4[2]) / 2,
-                  (p1[3] + p4[3]) / 4)
-    if p3[3] == 0:
-        if p1[3] == 0 and p4[3] == 0:
-            p3f = (p2[0], p2[1], p2[2], p2[3]/4)
-        elif p1[3] == 0:
-            p3f = (p4[0], p4[1], p4[2], p4[3]/2)
-        elif p4[3] == 0:
-            p3f = (p1[0], p1[1], p1[2], p1[3]/2)
-        else:
-            p3f = ((p1[0] + p4[0]) / 2,
-                  (p1[1] + p4[1]) / 2,
-                  (p1[2] + p4[2]) / 2,
-                  (p1[3] + p4[3]) / 4)
-    if p4[3] == 0:
-        if p2[3] == 0 and p3[3] == 0:
-            p4f = (p1[0], p1[1], p1[2], p1[3]/4)
-        elif p2[3] == 0:
-            p4f = (p3[0], p3[1], p3[2], p3[3]/2)
-        elif p3[3] == 0:
-            p4f = (p2[0], p2[1], p2[2], p2[3]/2)
-        else:
-            p4f = ((p2[0] + p3[0]) / 2,
-                  (p2[1] + p3[1]) / 2,
-                  (p2[2] + p3[2]) / 2,
-                  (p2[3] + p3[3]) / 4)
-    p1 = (int(float(p1f[0]) + xt*float(p2f[0] - p1f[0])),
-          int(float(p1f[1]) + xt*float(p2f[1] - p1f[1])),
-          int(float(p1f[2]) + xt*float(p2f[2] - p1f[2])),
-          int(float(p1f[3]) + xt*float(p2f[3] - p1f[3])))
-    p3 = (int(float(p3f[0]) + xt*float(p4f[0] - p3f[0])),
-          int(float(p3f[1]) + xt*float(p4f[1] - p3f[1])),
-          int(float(p3f[2]) + xt*float(p4f[2] - p3f[2])),
-          int(float(p3f[3]) + xt*float(p4f[3] - p3f[3])))
-    p1 = (int(float(p1[0]) + yt*float(p3[0] - p1[0])),
-          int(float(p1[1]) + yt*float(p3[1] - p1[1])),
-          int(float(p1[2]) + yt*float(p3[2] - p1[2])),
-          int(float(p1[3]) + xt*float(p3[3] - p1[3])))
-    return p1
+            pointmap[points[i]] += scores[i]
+    pout = points[0]
+    pscore = scores[0]
+    for i in range(1,4):
+        if pointmap[points[i]] > pscore:
+            pout = points[i]
+            pscore = pointmap[points[i]]
+    return pout
 
 def make_image(i, j):
     if len(sys.argv) > 1:
