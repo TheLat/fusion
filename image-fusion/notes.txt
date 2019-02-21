@@ -4,4 +4,5 @@ Primeape-Slowpoke, Rapidash-Slowpoke
 Fix Abra body.
 Seel-Dewgong body
 Krabby-Rapidash
+Electrode-Venusaur face
 Weepinbell-Ninetales
