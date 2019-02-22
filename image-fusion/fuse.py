@@ -4,7 +4,7 @@ from PIL import Image
 from multiprocessing import Process
 
 def get_subsampling_pixel(px, x1, y1, x2, y2):
-    if (abs(x2 - x1) < 1.0) and (abs(y2 - y1) < 1.0):
+    if (abs(x2 - x1) < 2.0) and (abs(y2 - y1) < 2.0):
         return get_pixel(px, (x1 + x2) / 2.0, (y1 + y2) / 2.0)
     dx = 1.0 / float(int(abs(x2 - x1) + 1.0))
     dy = 1.0 / float(int(abs(y2 - y1) + 1.0))
