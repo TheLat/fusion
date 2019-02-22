@@ -86,16 +86,33 @@ def make_image(i, j):
     px4 = data[j]["px4"]
     for x in range(0,im2.size[0]):
         for y in range(0,im2.size[1]):
+            offset = 0
             r = range(0, len(data[j]['PRIMARY']))
             r.reverse()
             for index in r:
+                offset = offset + 1
                 if px2[(x,y)] == data[j]['PRIMARY'][index]:
+                    px2[(x,y)] = (255,0,255 - offset,0)
+            for index in range(0, len(data[j]['SECONDARY'])):
+                offset = offset + 1
+                if px2[(x,y)] == data[j]['SECONDARY'][index]:
+                    px2[(x,y)] = (255,0,255 - offset,0)
+            for index in range(0, len(data[j]['TERTIARY'])):
+                offset = offset + 1
+                if px2[(x,y)] == data[j]['TERTIARY'][index]:
+                    px2[(x,y)] = (255,0,255 - offset,0)
+            offset = 0
+            for index in r:
+                offset = offset + 1
+                if px2[(x,y)] == (255,0,255 - offset,0):
                     px2[(x,y)] = data[i]['PRIMARY'][index]
             for index in range(0, len(data[j]['SECONDARY'])):
-                if px2[(x,y)] == data[j]['SECONDARY'][index]:
+                offset = offset + 1
+                if px2[(x,y)] == (255,0,255 - offset,0):
                     px2[(x,y)] = data[i]['SECONDARY'][index]
             for index in range(0, len(data[j]['TERTIARY'])):
-                if px2[(x,y)] == data[j]['TERTIARY'][index]:
+                offset = offset + 1
+                if px2[(x,y)] == (255,0,255 - offset,0):
                     px2[(x,y)] = data[i]['TERTIARY'][index]
     if "FACEBOUNDS" in data[i].keys():
         for b in data[j]['BOUNDS']:
