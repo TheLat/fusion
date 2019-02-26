@@ -8,4 +8,5 @@ Electrode-Venusaur face
 Review Electrode faces.
 Horsea-Electrode
 Pidgeotto-Seadra
+Seaking face.
 Dugtrio-Lickitung
