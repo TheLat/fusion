@@ -7,4 +7,5 @@ Krabby-Rapidash
 Electrode-Venusaur face
 Review Electrode faces.
 Horsea-Electrode
+Pidgeotto-Seadra
 Dugtrio-Lickitung
