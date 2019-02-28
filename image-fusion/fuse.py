@@ -50,7 +50,7 @@ def get_pixel(px, x, y):
         p4 = px[(x2,y2)]
     except:
         p4 = (0,0,0,0)
-    scores = [(1.0 - xt) * (1.0 - yt), (xt)*(1.0 - yt), (1.0 - xt)*(yt), (xt)*(yt)]
+    scores = [(1.0 - xt) + (1.0 - yt), (xt)+(1.0 - yt), (1.0 - xt)+(yt), (xt)+(yt)]
     points = [p1, p2, p3, p4]
     pointmap = {}
     for i in range(0,4):
