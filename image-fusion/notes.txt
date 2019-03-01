@@ -9,4 +9,5 @@ Electrode-Venusaur face
 Review Electrode faces.
 Horsea-Electrode
 Pidgeotto-Seadra
+Tauros-Pinsir
 Dugtrio-Lickitung
