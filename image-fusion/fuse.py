@@ -69,18 +69,127 @@ def get_pixel(px, x, y):
 def make_image(i, j):
     if i == j:
         if data[i]["HFLIP"]:
-            Image.open("front/%s.png" % i).convert("RGBA").transpose(Image.FLIP_LEFT_RIGHT).convert("P").save("out/%s-%s.png" % (i, j))
+            im = Image.open("front/%s.png" % i).convert("RGBA").transpose(Image.FLIP_LEFT_RIGHT)
+            px = im.load()
+            xmin = im.size[0]
+            ymin = im.size[1]
+            xmax = 0
+            ymax = 0
+            for x in range(0, im.size[0]):
+                for y in range(0, im.size[1]):
+                    if px[(x, y)][3] == 255:
+                        if x > xmax:
+                            xmax = x
+                        if x < xmin:
+                            xmin = x
+                        if y > ymax:
+                            ymax = y
+                        if y < ymin:
+                            ymin = y
+            flip = True
+            while xmax - xmin < 80:
+                if flip:
+                    xmin = xmin - 1
+                    flip = False
+                else:
+                    xmax = xmax + 1
+                    flip = True
+            flip = True
+            while ymax - ymin < 80:
+                if flip:
+                    ymin = ymin - 1
+                    flip = False
+                else:
+                    ymax = ymax + 1
+                    flip = True
+            im = im.crop((xmin, ymin, xmax, ymax))
+            im.convert("P").save("out/%s-%s.png" % (i, j))
         elif data[i]["VFLIP"]:
-            Image.open("front/%s.png" % i).convert("RGBA").transpose(Image.FLIP_TOP_BOTTOM).convert("P").save("out/%s-%s.png" % (i, j))
+            im = Image.open("front/%s.png" % i).convert("RGBA").transpose(Image.FLIP_TOP_BOTTOM)
+            px = im.load()
+            xmin = im.size[0]
+            ymin = im.size[1]
+            xmax = 0
+            ymax = 0
+            for x in range(0, im.size[0]):
+                for y in range(0, im.size[1]):
+                    if px[(x, y)][3] == 255:
+                        if x > xmax:
+                            xmax = x
+                        if x < xmin:
+                            xmin = x
+                        if y > ymax:
+                            ymax = y
+                        if y < ymin:
+                            ymin = y
+            flip = True
+            while xmax - xmin < 80:
+                if flip:
+                    xmin = xmin - 1
+                    flip = False
+                else:
+                    xmax = xmax + 1
+                    flip = True
+            flip = True
+            while ymax - ymin < 80:
+                if flip:
+                    ymin = ymin - 1
+                    flip = False
+                else:
+                    ymax = ymax + 1
+                    flip = True
+            im = im.crop((xmin, ymin, xmax, ymax))
+            im.convert("P").save("out/%s-%s.png" % (i, j))
         else:
-            Image.open("front/%s.png" % i).convert("RGBA").convert("P").save("out/%s-%s.png" % (i, j))
+            im = Image.open("front/%s.png" % i).convert("RGBA")
+            px = im.load()
+            xmin = im.size[0]
+            ymin = im.size[1]
+            xmax = 0
+            ymax = 0
+            for x in range(0, im.size[0]):
+                for y in range(0, im.size[1]):
+                    if px[(x, y)][3] == 255:
+                        if x > xmax:
+                            xmax = x
+                        if x < xmin:
+                            xmin = x
+                        if y > ymax:
+                            ymax = y
+                        if y < ymin:
+                            ymin = y
+            flip = True
+            while xmax - xmin < 80:
+                if flip:
+                    xmin = xmin - 1
+                    flip = False
+                else:
+                    xmax = xmax + 1
+                    flip = True
+            flip = True
+            while ymax - ymin < 80:
+                if flip:
+                    ymin = ymin - 1
+                    flip = False
+                else:
+                    ymax = ymax + 1
+                    flip = True
+            im = im.crop((xmin, ymin, xmax, ymax))
+            im.convert("P").save("out/%s-%s.png" % (i, j))
         return
     im1 = data[i]["im1"]
-    im2 = Image.open("front/%s-%s" % (j, data[i]['BODY'])).convert("RGBA")
     px1 = data[i]["px1"]
-    px2 = im2.load()
     px3 = data[j]["px3"]
     px4 = data[j]["px4"]
+    im2 = Image.new("RGBA", (160,160), (0,0,0,0))
+    px2 = im2.load()
+    im = Image.open("front/%s-%s" % (j, data[i]['BODY'])).convert("RGBA")
+    px = im.load()
+    for x in range(0,im.size[0]):
+        for y in range(0,im.size[1]):
+            px2[(x+40,y+40)] = px[(x,y)]
+
+
     for x in range(0,im2.size[0]):
         for y in range(0,im2.size[1]):
             offset = 0
@@ -113,14 +222,14 @@ def make_image(i, j):
                     px2[(x,y)] = data[i]['TERTIARY'][index]
     if "FACEBOUNDS" in data[i].keys():
         for b in data[j]['BOUNDS']:
-            x1 = float(b['XMIN'])
-            x2 = float(b['XMAX'])
-            x3 = float(data[i]['FACEBOUNDS']['XMIN'])
-            x4 = float(data[i]['FACEBOUNDS']['XMAX'])
-            y1 = float(b['YMIN'])
-            y2 = float(b['YMAX'])
-            y3 = float(data[i]['FACEBOUNDS']['YMIN'])
-            y4 = float(data[i]['FACEBOUNDS']['YMAX'])
+            x1 = float(b['XMIN']) + 40.0
+            x2 = float(b['XMAX']) + 40.0
+            x3 = float(data[i]['FACEBOUNDS']['XMIN']) + 40.0
+            x4 = float(data[i]['FACEBOUNDS']['XMAX']) + 40.0
+            y1 = float(b['YMIN']) + 40.0
+            y2 = float(b['YMAX']) + 40.0
+            y3 = float(data[i]['FACEBOUNDS']['YMIN']) + 40.0
+            y4 = float(data[i]['FACEBOUNDS']['YMAX']) + 40.0
             for x in range(0,im2.size[0]):
                 for y in range(0,im2.size[1]):
                     xtarg1 = (((x3-x4)/(x1-x2))*float((x-0.5) - x1) + (x3))
@@ -163,14 +272,14 @@ def make_image(i, j):
                         pass
     if "JAWBOUNDS" in data[i].keys():
         for b in data[j]['JAW']:
-            x1 = float(b['X1'])
-            x2 = float(b['X2'])
-            x3 = float(data[i]['JAWBOUNDS']['X1'])
-            x4 = float(data[i]['JAWBOUNDS']['X2'])
-            y1 = float(b['Y1'])
-            y2 = float(b['Y2'])
-            y3 = float(data[i]['JAWBOUNDS']['Y1'])
-            y4 = float(data[i]['JAWBOUNDS']['Y2'])
+            x1 = float(b['X1']) + 40.0
+            x2 = float(b['X2']) + 40.0
+            x3 = float(data[i]['JAWBOUNDS']['X1']) + 40.0
+            x4 = float(data[i]['JAWBOUNDS']['X2']) + 40.0
+            y1 = float(b['Y1']) + 40.0
+            y2 = float(b['Y2']) + 40.0
+            y3 = float(data[i]['JAWBOUNDS']['Y1']) + 40.0
+            y4 = float(data[i]['JAWBOUNDS']['Y2']) + 40.0
             for x in range(0,im2.size[0]):
                 for y in range(0,im2.size[1]):
                     xtarg1 = (((x3-x4)/(x1-x2))*float((x-0.5) - x1) + (x3))
@@ -213,10 +322,10 @@ def make_image(i, j):
                         pass
     if "HEADBOUNDS" in data[i].keys():
         for b in data[j]['SOCKET']:
-            x1 = float(b['X'])
-            x2 = float(data[i]['HEADBOUNDS']['X'])
-            y1 = float(b['Y'])
-            y2 = float(data[i]['HEADBOUNDS']['Y'])
+            x1 = float(b['X']) + 40.0
+            x2 = float(data[i]['HEADBOUNDS']['X']) + 40.0
+            y1 = float(b['Y']) + 40.0
+            y2 = float(data[i]['HEADBOUNDS']['Y']) + 40.0
             w1 = float(b['WIDTH'])
             w2 = float(data[i]['HEADBOUNDS']['WIDTH'])
             for x in range(0,im2.size[0]):
@@ -263,6 +372,38 @@ def make_image(i, j):
         im2 = im2.transpose(Image.FLIP_LEFT_RIGHT)
     if data[j]["VFLIP"]:
         im2 = im2.transpose(Image.FLIP_TOP_BOTTOM)
+    xmin = im2.size[0]
+    ymin = im2.size[1]
+    xmax = 0
+    ymax = 0
+    for x in range(0,im2.size[0]):
+        for y in range(0,im2.size[1]):
+            if px2[(x,y)][3] == 255:
+                if x > xmax:
+                    xmax = x
+                if x < xmin:
+                    xmin = x
+                if y > ymax:
+                    ymax = y
+                if y < ymin:
+                    ymin = y
+    flip = True
+    while xmax - xmin < 80:
+        if flip:
+            xmin = xmin - 1
+            flip = False
+        else:
+            xmax = xmax + 1
+            flip = True
+    flip = True
+    while ymax - ymin < 80:
+        if flip:
+            ymin = ymin - 1
+            flip = False
+        else:
+            ymax = ymax + 1
+            flip = True
+    im2 = im2.crop((xmin, ymin, xmax, ymax))
     im2.convert("P").save("out/%s-%s.png" % (i, j))
 
 
@@ -401,12 +542,27 @@ for i in range(1, len(data) + 1):
                                   min(254,(data[i]["TERTIARY"][0][3] + (data[i]["TERTIARY"][1][3] - data[i]["TERTIARY"][2][3]))))
 
 for i in range(1, len(data) + 1):
-    data[i]["im1"] = Image.open("front/%s-face.png" % i).convert("RGBA")
-    data[i]["im3"] = Image.open("front/%s-mask.png" % i).convert("RGBA")
-    data[i]["im4"] = Image.open("front/%s-deepmask.png" % i).convert("RGBA")
+    im = Image.open("front/%s-face.png" % i).convert("RGBA")
+    px = im.load()
+    data[i]["im1"] = Image.new("RGBA", (160,160), (0,0,0,0))
     data[i]["px1"] = data[i]["im1"].load()
+    for x in range(0,im.size[0]):
+        for y in range(0,im.size[1]):
+            data[i]["px1"][(x+40,y+40)] = px[(x,y)]
+    data[i]["im3"] = Image.new("RGBA", (160,160), (0,0,0,0))
     data[i]["px3"] = data[i]["im3"].load()
+    im = Image.open("front/%s-mask.png" % i).convert("RGBA")
+    px = im.load()
+    for x in range(0,im.size[0]):
+        for y in range(0,im.size[1]):
+            data[i]["px3"][(x+40,y+40)] = px[(x,y)]
+    data[i]["im4"] = Image.new("RGBA", (160,160), (0,0,0,0))
     data[i]["px4"] = data[i]["im4"].load()
+    im = Image.open("front/%s-deepmask.png" % i).convert("RGBA")
+    px = im.load()
+    for x in range(0,im.size[0]):
+        for y in range(0,im.size[1]):
+            data[i]["px4"][(x+40,y+40)] = px[(x,y)]
 
 
 for i in range(1, len(data) + 1):
