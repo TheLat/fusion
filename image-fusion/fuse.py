@@ -67,9 +67,6 @@ def get_pixel(px, x, y):
     return pout
 
 def make_image(i, j):
-    if len(sys.argv) > 1:
-        if not ((i == int(sys.argv[1]) or (j == int(sys.argv[1])))):
-            return
     if i == j:
         if data[i]["HFLIP"]:
             Image.open("front/%s.png" % i).convert("RGBA").transpose(Image.FLIP_LEFT_RIGHT).convert("P").save("out/%s-%s.png" % (i, j))
@@ -414,6 +411,9 @@ for i in range(1, len(data) + 1):
 
 for i in range(1, len(data) + 1):
     for j in range(1, len(data) + 1):
+        if len(sys.argv) > 1:
+            if not ((i == int(sys.argv[1]) or (j == int(sys.argv[1])))):
+                continue
         p = Process(target=make_image, args=(i,j))
         p.start()
 
