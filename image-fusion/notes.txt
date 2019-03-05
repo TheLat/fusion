@@ -10,4 +10,5 @@ Review Electrode faces.
 Horsea-Electrode
 Pidgeotto-Seadra
 Tauros-Pinsir
+Lickitung-Kangaskhan
 Dugtrio-Lickitung
