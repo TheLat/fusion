@@ -368,10 +368,6 @@ def make_image(i, j):
                                            int(max(px[3], pxb[3])))
                     except:
                         pass
-    if data[i]["HFLIP"]:
-        im2 = im2.transpose(Image.FLIP_LEFT_RIGHT)
-    if data[j]["VFLIP"]:
-        im2 = im2.transpose(Image.FLIP_TOP_BOTTOM)
     xmin = im2.size[0]
     ymin = im2.size[1]
     xmax = 0
@@ -404,6 +400,10 @@ def make_image(i, j):
             ymax = ymax + 1
             flip = True
     im2 = im2.crop((xmin, ymin, xmax, ymax))
+    if data[i]["HFLIP"]:
+        im2 = im2.transpose(Image.FLIP_LEFT_RIGHT)
+    if data[j]["VFLIP"]:
+        im2 = im2.transpose(Image.FLIP_TOP_BOTTOM)
     im2.convert("P").save("out/%s-%s.png" % (i, j))
 
 
