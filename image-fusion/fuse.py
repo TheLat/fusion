@@ -383,6 +383,8 @@ def make_image(i, j):
                     ymax = y
                 if y < ymin:
                     ymin = y
+    xmax = xmax + 1
+    ymax = ymax + 1
     flip = True
     while xmax - xmin < 80:
         if flip:
@@ -393,6 +395,22 @@ def make_image(i, j):
             flip = True
     flip = True
     while ymax - ymin < 80:
+        if flip:
+            ymin = ymin - 1
+            flip = False
+        else:
+            ymax = ymax + 1
+            flip = True
+    flip = True
+    while xmax - xmin < ymax - ymin:
+        if flip:
+            xmin = xmin - 1
+            flip = False
+        else:
+            xmax = xmax + 1
+            flip = True
+    flip = True
+    while xmax - xmin > ymax - ymin:
         if flip:
             ymin = ymin - 1
             flip = False
@@ -549,7 +567,7 @@ for i in range(1, len(data) + 1):
     for x in range(0,im.size[0]):
         for y in range(0,im.size[1]):
             data[i]["px1"][(x+40,y+40)] = px[(x,y)]
-    data[i]["im3"] = Image.new("RGBA", (160,160), (0,0,0,0))
+    data[i]["im3"] = Image.new("RGBA", (160,160), (0,0,0,255))
     data[i]["px3"] = data[i]["im3"].load()
     im = Image.open("front/%s-mask.png" % i).convert("RGBA")
     px = im.load()

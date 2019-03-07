@@ -15,24 +15,39 @@ for f in files:
 
 widths, heights = zip(*(i.size for i in images))
 
-max_height = max(heights)
-max_width = 730
-lines = 16
-new_im = Image.new('RGBA', (max_width, max_height*lines))
+max_height = 0
+max_width = 660
+lines = 19
+new_im = Image.new('RGBA', (max_width, 80*lines))
 
 xoffset = 0
 yoffset = 0
-for im in images:
-    if xoffset + im.size[0] >= max_width:
-        if yoffset + max_height >= new_im.size[1]:
+j = 0
+tempxoffset = 0
+while j < len(images) and tempxoffset < max_width:
+    if max_height < images[j].size[1]:
+        max_height = images[j].size[1]
+    tempxoffset += images[j].size[0]
+    j = j + 1
+for i in range(0, len(images)):
+    if xoffset + images[i].size[0] >= max_width:
+        j = 0
+        tempxoffset = 0
+        max_height = 0
+        while j + i < len(images) and tempxoffset < max_width:
+            if max_height < images[i + j].size[1]:
+                max_height = images[i + j].size[1]
+            tempxoffset += images[i + j].size[0]
+            j = j + 1
+        if yoffset + (2*max_height) > new_im.size[1]:
             new_im.save("out2/%s.png" % count)
             count = count + 1
-            new_im = Image.new('RGBA', (max_width, max_height*lines))
+            new_im = Image.new('RGBA', (max_width, 80*lines))
             yoffset = 0
         else:
             yoffset += max_height
         xoffset = 0
-    new_im.paste(im, (xoffset,yoffset))
-    xoffset += im.size[0]
+    new_im.paste(images[i], (xoffset,yoffset))
+    xoffset += images[i].size[0]
 
 new_im.save("out2/%s.png" % count)
