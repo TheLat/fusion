@@ -11,4 +11,5 @@ Horsea-Electrode
 Pidgeotto-Seadra
 Tauros-Pinsir
 Lickitung-Kangaskhan
+Koffing-various (pikachu, slowbro, drowzee)
 Dugtrio-Lickitung
