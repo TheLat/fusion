@@ -1,6 +1,4 @@
 Fix Pidgey head.
 Fix Ninetales face position on body.
-Fix Abra body.
-Pidgeotto-Seadra
 Tauros-Pinsir
 Dugtrio-Lickitung
