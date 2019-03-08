@@ -76,6 +76,7 @@ List of changes:
 - Solar Beam and Sky Attack both go first on the turn they attack.  They are terrible moves and this doesn't make them good, but it does improve them.
 - HP IV is its own random number, not the collection of the first bits of the other IVs.
 - Bug types are resistant to psychic moves.
+- Ghost types are resistant to psychic moves.
 
 Concerning Fusions:
   There are 22,801 pokemon that can appear in Pokemon: Fusion.  The developer can't inspect all of them.  Some may be duds with few or no attack moves (Pikachu-Bulbasaur is quite terrible).  Some things may happen that make no sense (things fused with Gengar will learn Hypnosis from Gengar or Dream Eater from Gengar, but not both).  As a way to balance this, fusions are compatible with every TM and HM that either parent could learn.
