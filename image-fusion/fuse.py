@@ -54,6 +54,8 @@ def get_pixel(px, x, y):
     points = [p1, p2, p3, p4]
     pointmap = {}
     for i in range(0,4):
+        if points[i][3] != 255:
+            scores[i] *= 0.6
         if points[i] not in pointmap.keys():
             pointmap[points[i]] = scores[i]
         else:
