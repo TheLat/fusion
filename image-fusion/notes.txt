@@ -1,4 +1,3 @@
 Fix Pidgey head.
-Fix Ninetales face position on body.
 Tauros-Pinsir
 Dugtrio-Lickitung
