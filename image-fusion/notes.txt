@@ -1,4 +1,3 @@
-Venusaur-Voltorb
 Fix Pidgey head.
 Fix Ninetales face position on body.
 Fix Abra body.
