@@ -3,13 +3,83 @@ import sys
 from PIL import Image
 from multiprocessing import Process
 
+def get_subsampling_pixel(px, x1, y1, x2, y2):
+    if (abs(x2 - x1) < 2.0) and (abs(y2 - y1) < 2.0):
+        return get_pixel(px, (x1 + x2) / 2.0, (y1 + y2) / 2.0)
+    dx = 1.0 / float(int(abs(x2 - x1) + 1.0))
+    dy = 1.0 / float(int(abs(y2 - y1) + 1.0))
+    total = 0.0
+    colors = [0.0, 0.0, 0.0, 0.0]
+    xt = 0.0
+    yt = 0.0
+    while yt < 1.0:
+        xt = 0.0
+        while xt < 1.0:
+            p = px[(x1 + (xt*(x2 - x1)), y1 + (yt*(y2 - y1)))]
+            if p[3] == 255:
+                for i in range(0,4):
+                    colors[i] = colors[i] + float(p[i])
+                total = total + 1.0
+            xt += dx
+        yt += dy
+    if total > 0.0:
+        for i in range(0, 4):
+            colors[i] = colors[i]/total
+    return (int(colors[0]),int(colors[1]),int(colors[2]),int(colors[3]))
+
+def get_pixel(px, x, y):
+    x1 = int(x)
+    x2 = x1 + 1
+    xt = x - (float(int(x)))
+    y1 = int(y)
+    y2 = y1 + 1
+    yt = y - (float(int(y)))
+    try:
+        p1 = px[(x1,y1)]
+    except:
+        p1 = (0,0,0,0)
+    try:
+        p2 = px[(x2,y1)]
+    except:
+        p2 = (0,0,0,0)
+    try:
+        p3 = px[(x1,y2)]
+    except:
+        p3 = (0,0,0,0)
+    try:
+        p4 = px[(x2,y2)]
+    except:
+        p4 = (0,0,0,0)
+    scores = [(1.0 - xt) * (1.0 - yt), (xt)*(1.0 - yt), (1.0 - xt)*(yt), (xt)*(yt)]
+    points = [p1, p2, p3, p4]
+    pointmap = {}
+    for i in range(0,4):
+        if points[i][3] != 255:
+            scores[i] *= 0.6
+        if points[i] not in pointmap.keys():
+            pointmap[points[i]] = scores[i]
+        else:
+            pointmap[points[i]] += scores[i]
+    pout = points[0]
+    pscore = scores[0]
+    for i in range(1,4):
+        if pointmap[points[i]] > pscore:
+            pout = points[i]
+            pscore = pointmap[points[i]]
+    return pout
 
 def make_image(i, j):
     if i == j:
         Image.open("back/%s-original.png" % i).convert("RGBA").convert("P").save("out/%s-%s.png" % (i, j))
         return
-    im2 = Image.open("back/%s.png" % (j)).convert("RGBA")
+    im2 = Image.open("back/%s-%s.png" % (j,data[i]["FACE_USES"])).convert("RGBA")
     px2 = im2.load()
+    im1 = Image.open("back/%s-face.png" % (i))
+    px1 = im1.load()
+    im3 = Image.open("back/%s-mask.png" % (j))
+    px3 = im3.load()
+    im4 = Image.open("back/%s-deepmask.png" % (j))
+    px4 = im4.load()
     for x in range(0,im2.size[0]):
         for y in range(0,im2.size[1]):
             offset = 0
@@ -40,6 +110,41 @@ def make_image(i, j):
                 offset = offset + 1
                 if px2[(x,y)] == (255,0,255 - offset,0):
                     px2[(x,y)] = data[i]['TERTIARY'][index]
+    if "EYEBOUNDS" in data[i].keys():
+        for e in data[j]["EYE"]:
+            xc = e["X1"] - float(data[i]["EYEBOUNDS"]["X1"])
+            yc = e["Y1"] - float(data[i]["EYEBOUNDS"]["Y1"])
+            for x in range(0,im2.size[0]):
+                for y in range(0,im2.size[1]):
+                    xtarg1 = (float(x) - xc) - 0.5
+                    xtarg2 = (float(x) - xc) + 0.5
+                    ytarg1 = (float(y) - yc) - 0.5
+                    ytarg2 = (float(y) - yc) + 0.5
+                    if xtarg1 < 0:
+                        continue
+                    if xtarg2 < 0:
+                        continue
+                    if ytarg1 < 0:
+                        continue
+                    if ytarg2 < 0:
+                        continue
+                    if xtarg1 > im1.size[0]:
+                        continue
+                    if xtarg2 > im1.size[0]:
+                        continue
+                    if ytarg1 > im1.size[1]:
+                        continue
+                    if ytarg2 > im1.size[1]:
+                        continue
+                    try:
+                        if px3[(x,y)] == (0,0,0,255):
+                            continue
+                        px = get_subsampling_pixel(px1, xtarg1, ytarg1, xtarg2, ytarg2)
+                        if px[3] == 0:
+                            continue
+                        px2[(x,y)] = px
+                    except:
+                        pass
     im2.convert("P").save("out/%s-%s.png" % (i, j))
 
 
@@ -74,6 +179,67 @@ while line:
             line[index] = eval(line[index])
             index = index + 1
         data[key]["TERTIARY"] = line
+    elif line.startswith("EYEBOUNDS:"):
+        line = line.split(":")[1]
+        data[key]["EYEBOUNDS"] = {}
+        line = line.replace(",", " ").replace("(", " ").replace(")", " ").replace("  ", " ").strip().split(" ")
+        data[key]["EYEBOUNDS"]["X1"] = int(line[0])
+        data[key]["EYEBOUNDS"]["Y1"] = int(line[1])
+        data[key]["EYEBOUNDS"]["X2"] = int(line[2])
+        data[key]["EYEBOUNDS"]["Y2"] = int(line[3])
+    elif line.startswith("EYE:"):
+        line = line.split(":")[1]
+        data[key]["EYE"] = []
+        line = line.split(" ")
+        index = 0
+        for l in line:
+            data[key]["EYE"].append({})
+            l = l.replace(",", " ").replace("(", " ").replace(")", " ").replace("  ", " ").strip().split(" ")
+            data[key]["EYE"][index]["X1"]=int(l[0])
+            data[key]["EYE"][index]["Y1"]=int(l[1])
+            data[key]["EYE"][index]["X2"]=int(l[2])
+            data[key]["EYE"][index]["Y2"]=int(l[3])
+            index = index + 1
+    elif line.startswith("JAW:"):
+        line = line.split(":")[1]
+        data[key]["JAW"] = []
+        line = line.split(" ")
+        index = 0
+        for l in line:
+            data[key]["JAW"].append({})
+            l = l.replace(",", " ").replace("(", " ").replace(")", " ").replace("  ", " ").strip().split(" ")
+            data[key]["JAW"][index]["X1"]=int(l[0])
+            data[key]["JAW"][index]["Y1"]=int(l[1])
+            data[key]["JAW"][index]["X2"]=int(l[2])
+            data[key]["JAW"][index]["Y2"]=int(l[3])
+            index = index + 1
+    elif line.startswith("SOCKET:"):
+        line = line.split(":")[1]
+        data[key]["SOCKET"] = []
+        line = line.split(" ")
+        index = 0
+        for l in line:
+            data[key]["SOCKET"].append({})
+            l = l.replace(",", " ").replace("(", " ").replace(")", " ").replace("  ", " ").strip().split(" ")
+            data[key]["SOCKET"][index]["X"]=int(l[0])
+            data[key]["SOCKET"][index]["Y"]=int(l[1])
+            data[key]["SOCKET"][index]["WIDTH"]=int(l[2])
+            index = index + 1
+    elif line.startswith("CREST:"):
+        line = line.split(":")[1]
+        data[key]["CREST"] = []
+        line = line.split(" ")
+        index = 0
+        for l in line:
+            data[key]["CREST"].append({})
+            l = l.replace(",", " ").replace("(", " ").replace(")", " ").replace("  ", " ").strip().split(" ")
+            data[key]["CREST"][index]["X"]=int(l[0])
+            data[key]["CREST"][index]["Y"]=int(l[1])
+            data[key]["CREST"][index]["WIDTH"]=int(l[2])
+            index = index + 1
+    elif line.startswith("FACE_USES:"):
+        line = line.split(":")[1]
+        data[key]["FACE_USES"] = line
     line = f.readline().strip()
 
 f.close()
@@ -118,3 +284,5 @@ for i in range(1, len(data) + 1):
 p.join()
 
 print "Fusing complete after %f seconds." % (time.time() - start_time)
+
+print data
