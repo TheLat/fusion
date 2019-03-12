@@ -4,6 +4,17 @@ import math
 from PIL import Image
 from multiprocessing import Process
 
+def transform(x11, x21, y11, y21, l1, l2, thetas, thetac, x, y):
+    xtarg = x - x21
+    ytarg = y - y21
+    xtarg *= l2 / l1
+    ytarg *= l2 / l1
+    xh = (thetac * xtarg) - (thetas * ytarg)
+    yh = (thetas * xtarg) + (thetac * ytarg)
+    xtarg = xh + x11
+    ytarg = yh + y11
+    return (xtarg, ytarg)
+
 def get_subsampling_pixel(px, x1, y1, x2, y2):
     if (abs(x2 - x1) < 2.0) and (abs(y2 - y1) < 2.0):
         return get_pixel(px, (x1 + x2) / 2.0, (y1 + y2) / 2.0)
@@ -55,8 +66,6 @@ def get_pixel(px, x, y):
     points = [p1, p2, p3, p4]
     pointmap = {}
     for i in range(0,4):
-        if points[i][3] != 255:
-            scores[i] *= 0.6
         if points[i] not in pointmap.keys():
             pointmap[points[i]] = scores[i]
         else:
@@ -132,18 +141,8 @@ def make_image(i, j):
             thetac = math.cos(theta)
             for x in range(0,im2.size[0]):
                 for y in range(0,im2.size[1]):
-                    xtarg = x - x21
-                    ytarg = y - y21
-                    xtarg *= l2/l1
-                    ytarg *= l2/l1
-                    xh = (thetac*xtarg) - (thetas*ytarg)
-                    yh = (thetas*xtarg) + (thetac*ytarg)
-                    xtarg = xh + x11
-                    ytarg = yh + y11
-                    xtarg1 = (float(xtarg)) - 0.5
-                    xtarg2 = (float(xtarg)) + 0.5
-                    ytarg1 = (float(ytarg)) - 0.5
-                    ytarg2 = (float(ytarg)) + 0.5
+                    xtarg1, ytarg1 = transform(x11, x21, y11, y21, l1, l2, thetas, thetac, float(x) - 0.5, float(y) - 0.5)
+                    xtarg2, ytarg2 = transform(x11, x21, y11, y21, l1, l2, thetas, thetac, float(x) + 0.5, float(y) + 0.5)
                     if xtarg1 < 0:
                         continue
                     if xtarg2 < 0:
