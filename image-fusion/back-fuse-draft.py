@@ -1,5 +1,6 @@
 import time
 import sys
+import math
 from PIL import Image
 from multiprocessing import Process
 
@@ -74,11 +75,11 @@ def make_image(i, j):
         return
     im2 = Image.open("back/%s-%s.png" % (j,data[i]["FACE_USES"])).convert("RGBA")
     px2 = im2.load()
-    im1 = Image.open("back/%s-face.png" % (i))
+    im1 = Image.open("back/%s-face.png" % (i)).convert("RGBA")
     px1 = im1.load()
-    im3 = Image.open("back/%s-mask.png" % (j))
+    im3 = Image.open("back/%s-mask.png" % (j)).convert("RGBA")
     px3 = im3.load()
-    im4 = Image.open("back/%s-deepmask.png" % (j))
+    im4 = Image.open("back/%s-deepmask.png" % (j)).convert("RGBA")
     px4 = im4.load()
     for x in range(0,im2.size[0]):
         for y in range(0,im2.size[1]):
@@ -112,14 +113,37 @@ def make_image(i, j):
                     px2[(x,y)] = data[i]['TERTIARY'][index]
     if "EYEBOUNDS" in data[i].keys():
         for e in data[j]["EYE"]:
-            xc = e["X1"] - float(data[i]["EYEBOUNDS"]["X1"])
-            yc = e["Y1"] - float(data[i]["EYEBOUNDS"]["Y1"])
+            x11 = float(data[i]["EYEBOUNDS"]["X1"])
+            x12 = float(data[i]["EYEBOUNDS"]["X2"])
+            dx1 = abs(x11 - x12)
+            x21 = float(e["X1"])
+            x22 = float(e["X2"])
+            dx2 = abs(x21 - x22)
+            y11 = float(data[i]["EYEBOUNDS"]["Y1"])
+            y12 = float(data[i]["EYEBOUNDS"]["Y2"])
+            dy1 = abs(y11 - y12)
+            y21 = float(e["Y1"])
+            y22 = float(e["Y2"])
+            dy2 = abs(y21 - y22)
+            l1 = math.sqrt(math.pow((x11 - x12),2.0) + math.pow((y11 - y12),2.0))
+            l2 = math.sqrt(math.pow((x21 - x22),2.0) + math.pow((y21 - y22),2.0))
+            theta = math.acos(((dx1*dx2) + (dy1*dy2))/(l1*l2))
+            thetas = math.sin(theta)
+            thetac = math.cos(theta)
             for x in range(0,im2.size[0]):
                 for y in range(0,im2.size[1]):
-                    xtarg1 = (float(x) - xc) - 0.5
-                    xtarg2 = (float(x) - xc) + 0.5
-                    ytarg1 = (float(y) - yc) - 0.5
-                    ytarg2 = (float(y) - yc) + 0.5
+                    xtarg = x - x21
+                    ytarg = y - y21
+                    xtarg *= l2/l1
+                    ytarg *= l2/l1
+                    xh = (thetac*xtarg) - (thetas*ytarg)
+                    yh = (thetas*xtarg) + (thetac*ytarg)
+                    xtarg = xh + x11
+                    ytarg = yh + y11
+                    xtarg1 = (float(xtarg)) - 0.5
+                    xtarg2 = (float(xtarg)) + 0.5
+                    ytarg1 = (float(ytarg)) - 0.5
+                    ytarg2 = (float(ytarg)) + 0.5
                     if xtarg1 < 0:
                         continue
                     if xtarg2 < 0:
@@ -284,5 +308,3 @@ for i in range(1, len(data) + 1):
 p.join()
 
 print "Fusing complete after %f seconds." % (time.time() - start_time)
-
-print data
