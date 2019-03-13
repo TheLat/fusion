@@ -7,8 +7,8 @@ from multiprocessing import Process
 def transform(x11, x21, y11, y21, l1, l2, thetas, thetac, x, y):
     xtarg = x - x21
     ytarg = y - y21
-    xtarg *= l2 / l1
-    ytarg *= l2 / l1
+    xtarg *= l1 / l2
+    ytarg *= l1 / l2
     xh = (thetac * xtarg) - (thetas * ytarg)
     yh = (thetas * xtarg) + (thetac * ytarg)
     xtarg = xh + x11
@@ -134,8 +134,8 @@ def make_image(i, j):
             y21 = float(e["Y1"])
             y22 = float(e["Y2"])
             dy2 = (y22 - y21)
-            l2 = math.sqrt(dx1*dx1 + dy1*dy1)
-            l1 = math.sqrt(dx2*dx2 + dy2*dy2)
+            l1 = math.sqrt(dx1*dx1 + dy1*dy1)
+            l2 = math.sqrt(dx2*dx2 + dy2*dy2)
             theta = math.acos(((dx1*dx2) + (dy1*dy2))/(l1*l2))
             if (dx1*dy2 - dx2*dy1) > 0:
                 theta *= -1.0
