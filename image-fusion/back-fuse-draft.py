@@ -137,6 +137,8 @@ def make_image(i, j):
             l1 = math.sqrt(math.pow((x11 - x12),2.0) + math.pow((y11 - y12),2.0))
             l2 = math.sqrt(math.pow((x21 - x22),2.0) + math.pow((y21 - y22),2.0))
             theta = math.acos(((dx1*dx2) + (dy1*dy2))/(l1*l2))
+            if (dx1*dy2 - dx2*dy1) < 0:
+                theta *= -1.0
             thetas = math.sin(theta)
             thetac = math.cos(theta)
             for x in range(0,im2.size[0]):
