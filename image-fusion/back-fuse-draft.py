@@ -170,6 +170,56 @@ def make_image(i, j):
                         px2[(x,y)] = px
                     except:
                         pass
+    if "JAWBOUNDS" in data[i].keys():
+        for e in data[j]["JAW"]:
+            x11 = float(data[i]["JAWBOUNDS"]["X1"])
+            x12 = float(data[i]["JAWBOUNDS"]["X2"])
+            dx1 = (x12 - x11)
+            x21 = float(e["X1"])
+            x22 = float(e["X2"])
+            dx2 = (x22 - x21)
+            y11 = float(data[i]["JAWBOUNDS"]["Y1"])
+            y12 = float(data[i]["JAWBOUNDS"]["Y2"])
+            dy1 = (y12 - y11)
+            y21 = float(e["Y1"])
+            y22 = float(e["Y2"])
+            dy2 = (y22 - y21)
+            l1 = math.sqrt(dx1*dx1 + dy1*dy1)
+            l2 = math.sqrt(dx2*dx2 + dy2*dy2)
+            theta = math.acos(((dx1*dx2) + (dy1*dy2))/(l1*l2))
+            if (dx1*dy2 - dx2*dy1) > 0:
+                theta *= -1.0
+            thetas = math.sin(theta)
+            thetac = math.cos(theta)
+            for x in range(0,im2.size[0]):
+                for y in range(0,im2.size[1]):
+                    if px3[(x, y)] == (0, 0, 0, 255):
+                        continue
+                    xtarg1, ytarg1 = transform(x11, x21, y11, y21, l1, l2, thetas, thetac, float(x) - 0.5, float(y) - 0.5)
+                    xtarg2, ytarg2 = transform(x11, x21, y11, y21, l1, l2, thetas, thetac, float(x) + 0.5, float(y) + 0.5)
+                    if xtarg1 < 0:
+                        continue
+                    if xtarg2 < 0:
+                        continue
+                    if ytarg1 < 0:
+                        continue
+                    if ytarg2 < 0:
+                        continue
+                    if xtarg1 > im1.size[0]:
+                        continue
+                    if xtarg2 > im1.size[0]:
+                        continue
+                    if ytarg1 > im1.size[1]:
+                        continue
+                    if ytarg2 > im1.size[1]:
+                        continue
+                    try:
+                        px = get_subsampling_pixel(px1, xtarg1, ytarg1, xtarg2, ytarg2)
+                        if px[3] == 0:
+                            continue
+                        px2[(x,y)] = px
+                    except:
+                        pass
     im2.convert("P").save("out/%s-%s.png" % (i, j))
 
 
@@ -212,6 +262,14 @@ while line:
         data[key]["EYEBOUNDS"]["Y1"] = int(line[1])
         data[key]["EYEBOUNDS"]["X2"] = int(line[2])
         data[key]["EYEBOUNDS"]["Y2"] = int(line[3])
+    elif line.startswith("JAWBOUNDS:"):
+        line = line.split(":")[1]
+        data[key]["JAWBOUNDS"] = {}
+        line = line.replace(",", " ").replace("(", " ").replace(")", " ").replace("  ", " ").strip().split(" ")
+        data[key]["JAWBOUNDS"]["X1"] = int(line[0])
+        data[key]["JAWBOUNDS"]["Y1"] = int(line[1])
+        data[key]["JAWBOUNDS"]["X2"] = int(line[2])
+        data[key]["JAWBOUNDS"]["Y2"] = int(line[3])
     elif line.startswith("EYE:"):
         line = line.split(":")[1]
         data[key]["EYE"] = []
