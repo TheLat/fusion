@@ -124,20 +124,20 @@ def make_image(i, j):
         for e in data[j]["EYE"]:
             x11 = float(data[i]["EYEBOUNDS"]["X1"])
             x12 = float(data[i]["EYEBOUNDS"]["X2"])
-            dx1 = abs(x11 - x12)
+            dx1 = (x12 - x11)
             x21 = float(e["X1"])
             x22 = float(e["X2"])
-            dx2 = abs(x21 - x22)
+            dx2 = (x22 - x21)
             y11 = float(data[i]["EYEBOUNDS"]["Y1"])
             y12 = float(data[i]["EYEBOUNDS"]["Y2"])
-            dy1 = abs(y11 - y12)
+            dy1 = (y12 - y11)
             y21 = float(e["Y1"])
             y22 = float(e["Y2"])
-            dy2 = abs(y21 - y22)
-            l1 = math.sqrt(math.pow((x11 - x12),2.0) + math.pow((y11 - y12),2.0))
-            l2 = math.sqrt(math.pow((x21 - x22),2.0) + math.pow((y21 - y22),2.0))
+            dy2 = (y22 - y21)
+            l1 = math.sqrt(math.pow(dx1,2.0) + math.pow(dy1,2.0))
+            l2 = math.sqrt(math.pow(dx2,2.0) + math.pow(dy2,2.0))
             theta = math.acos(((dx1*dx2) + (dy1*dy2))/(l1*l2))
-            if (dx1*dy2 - dx2*dy1) < 0:
+            if (dx1*dy2 - dx2*dy1) > 0:
                 theta *= -1.0
             thetas = math.sin(theta)
             thetac = math.cos(theta)
