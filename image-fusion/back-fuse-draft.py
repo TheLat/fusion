@@ -134,8 +134,8 @@ def make_image(i, j):
             y21 = float(e["Y1"])
             y22 = float(e["Y2"])
             dy2 = (y22 - y21)
-            l1 = math.sqrt(math.pow(dx1,2.0) + math.pow(dy1,2.0))
-            l2 = math.sqrt(math.pow(dx2,2.0) + math.pow(dy2,2.0))
+            l2 = math.sqrt(dx1*dx1 + dy1*dy1)
+            l1 = math.sqrt(dx2*dx2 + dy2*dy2)
             theta = math.acos(((dx1*dx2) + (dy1*dy2))/(l1*l2))
             if (dx1*dy2 - dx2*dy1) > 0:
                 theta *= -1.0
