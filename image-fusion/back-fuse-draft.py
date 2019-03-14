@@ -143,7 +143,7 @@ def make_image(i, j):
             thetac = math.cos(theta)
             for x in range(0,im2.size[0]):
                 for y in range(0,im2.size[1]):
-                    if px3[(x, y)] == (0, 0, 0, 255):
+                    if px3[(x, y)] == (0, 0, 0, 255) and px2[(x,y)][3] != 0:
                         continue
                     xtarg1, ytarg1 = transform(x11, x21, y11, y21, l1, l2, thetas, thetac, float(x) - 0.5, float(y) - 0.5)
                     xtarg2, ytarg2 = transform(x11, x21, y11, y21, l1, l2, thetas, thetac, float(x) + 0.5, float(y) + 0.5)
@@ -193,7 +193,7 @@ def make_image(i, j):
             thetac = math.cos(theta)
             for x in range(0,im2.size[0]):
                 for y in range(0,im2.size[1]):
-                    if px3[(x, y)] == (0, 0, 0, 255):
+                    if px3[(x, y)] == (0, 0, 0, 255) and px2[(x,y)][3] != 0:
                         continue
                     xtarg1, ytarg1 = transform(x11, x21, y11, y21, l1, l2, thetas, thetac, float(x) - 0.5, float(y) - 0.5)
                     xtarg2, ytarg2 = transform(x11, x21, y11, y21, l1, l2, thetas, thetac, float(x) + 0.5, float(y) + 0.5)
