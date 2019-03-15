@@ -220,6 +220,45 @@ def make_image(i, j):
                         px2[(x,y)] = px
                     except:
                         pass
+    if "CRESTBOUNDS" in data[i].keys():
+        im5 = Image.open("back/%s-crest.png" % (i)).convert("RGBA")
+        px5 = im5.load()
+        for b in data[j]['CREST']:
+            x1 = float(b['X'])
+            x2 = float(data[i]['CRESTBOUNDS']['X'])
+            y1 = float(b['Y'])
+            y2 = float(data[i]['CRESTBOUNDS']['Y'])
+            w1 = float(b['WIDTH'])
+            w2 = float(data[i]['CRESTBOUNDS']['WIDTH'])
+            for x in range(0,im2.size[0]):
+                for y in range(0,im2.size[1]):
+                    xtarg1 = ((w2/w1)*float((x - 0.5) - x1) + (x2))
+                    xtarg2 = ((w2/w1)*float((x + 0.5) - x1) + (x2))
+                    ytarg1 = (abs((w2/w1))*float((y - 0.5) - y1) + (y2))
+                    ytarg2 = (abs((w2/w1))*float((y + 0.5) - y1) + (y2))
+                    if xtarg1 < 0:
+                        continue
+                    if xtarg2 < 0:
+                        continue
+                    if ytarg1 < 0:
+                        continue
+                    if ytarg2 < 0:
+                        continue
+                    if xtarg1 > im1.size[0]:
+                        continue
+                    if xtarg2 > im1.size[0]:
+                        continue
+                    if ytarg1 > im1.size[1]:
+                        continue
+                    if ytarg2 > im1.size[1]:
+                        continue
+                    try:
+                        px = get_subsampling_pixel(px5, xtarg1, ytarg1, xtarg2, ytarg2)
+                        if px[3] == 0:
+                            continue
+                        px2[(x,y)] = px
+                    except:
+                        pass
     im2.convert("P").save("out/%s-%s.png" % (i, j))
 
 
@@ -270,6 +309,13 @@ while line:
         data[key]["JAWBOUNDS"]["Y1"] = int(line[1])
         data[key]["JAWBOUNDS"]["X2"] = int(line[2])
         data[key]["JAWBOUNDS"]["Y2"] = int(line[3])
+    elif line.startswith("CRESTBOUNDS:"):
+        line = line.split(":")[1]
+        line = line.replace(",", " ").replace("(", " ").replace(")", " ").replace("  ", " ").strip().split(" ")
+        data[key]["CRESTBOUNDS"] = {}
+        data[key]["CRESTBOUNDS"]["X"] = int(line[0])
+        data[key]["CRESTBOUNDS"]["Y"] = int(line[1])
+        data[key]["CRESTBOUNDS"]["WIDTH"] = int(line[2])
     elif line.startswith("EYE:"):
         line = line.split(":")[1]
         data[key]["EYE"] = []
