@@ -232,6 +232,8 @@ def make_image(i, j):
             w2 = float(data[i]['CRESTBOUNDS']['WIDTH'])
             for x in range(0,im2.size[0]):
                 for y in range(0,im2.size[1]):
+                    if px3[(x, y)] == (0, 0, 0, 255) and px2[(x,y)][3] != 0:
+                        continue
                     xtarg1 = ((w2/w1)*float((x - 0.5) - x1) + (x2))
                     xtarg2 = ((w2/w1)*float((x + 0.5) - x1) + (x2))
                     ytarg1 = (abs((w2/w1))*float((y - 0.5) - y1) + (y2))
