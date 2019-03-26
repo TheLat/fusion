@@ -136,7 +136,7 @@ def make_image(i, j):
             dy2 = (y22 - y21)
             l1 = math.sqrt(dx1*dx1 + dy1*dy1)
             l2 = math.sqrt(dx2*dx2 + dy2*dy2)
-            theta = math.acos(((dx1*dx2) + (dy1*dy2))/(l1*l2))
+            theta = math.acos(max(min(((dx1*dx2) + (dy1*dy2))/(l1*l2),1.0),-1.0))
             if (dx1*dy2 - dx2*dy1) > 0:
                 theta *= -1.0
             thetas = math.sin(theta)
@@ -186,7 +186,7 @@ def make_image(i, j):
             dy2 = (y22 - y21)
             l1 = math.sqrt(dx1*dx1 + dy1*dy1)
             l2 = math.sqrt(dx2*dx2 + dy2*dy2)
-            theta = math.acos(((dx1*dx2) + (dy1*dy2))/(l1*l2))
+            theta = math.acos(max(min(((dx1*dx2) + (dy1*dy2))/(l1*l2),1.0),-1.0))
             if (dx1*dy2 - dx2*dy1) > 0:
                 theta *= -1.0
             thetas = math.sin(theta)
