@@ -412,15 +412,14 @@ HM: 1
 NUMBER: 16
 NAME: PIDG
 SURNAME: EY
-TYPE1: NORMAL
-TYPE2: FLYING
+TYPE1: FLYING
+TYPE2: NORMAL
 DEX1: This Pok{e-accent}mon is very docile.
 DEX2: It will often kick up sand to protect itself, rather than fight.
 EXP_YIELD: 50
 CATCHRATE: 255
 HEIGHT: 12
 WEIGHT: 4.0
-SWITCH: YES
 HP: 40
 ATTACK: 45
 DEFENSE: 40
@@ -442,15 +441,14 @@ HM: 2
 NUMBER: 17
 NAME: PIDGE
 SURNAME: OTTO
-TYPE1: NORMAL
-TYPE2: FLYING
+TYPE1: FLYING
+TYPE2: NORMAL
 DEX1: This Pok{e-accent}mon is protective of its large territory.
 DEX2: The claws on its feet are well-developed and it can easily carry prey up to 60 miles back to its nest.
 EXP_YIELD: 122
 CATCHRATE: 120
 HEIGHT: 43
 WEIGHT: 66.1
-SWITCH: YES
 HP: 63
 ATTACK: 60
 DEFENSE: 55
@@ -472,15 +470,14 @@ HM: 2
 NUMBER: 18
 NAME: PID
 SURNAME: GEOT
-TYPE1: NORMAL
-TYPE2: FLYING
+TYPE1: FLYING
+TYPE2: NORMAL
 DEX1: Its keen eyesight allows it to see prey from up to 3,300 feet away.
 DEX2: It has glossy feathers and a top speed of mach 2.
 EXP_YIELD: 211
 CATCHRATE: 45
 HEIGHT: 59
 WEIGHT: 87.1
-SWITCH: YES
 HP: 83
 ATTACK: 80
 DEFENSE: 75
@@ -552,15 +549,14 @@ HM: 0
 NUMBER: 21
 NAME: SPE
 SURNAME: AROW
-TYPE1: NORMAL
-TYPE2: FLYING
+TYPE1: FLYING
+TYPE2: NORMAL
 DEX1: This Pok{e-accent}mon eats bugs in grassy areas.
 DEX2: It has to flap its short wings at high speed to stay airborne.
 EXP_YIELD: 52
 CATCHRATE: 255
 HEIGHT: 12
 WEIGHT: 4.4
-SWITCH: YES
 HP: 40
 ATTACK: 60
 DEFENSE: 30
@@ -582,15 +578,14 @@ HM: 2
 NUMBER: 22
 NAME: FEAR
 SURNAME: OW
-TYPE1: NORMAL
-TYPE2: FLYING
+TYPE1: FLYING
+TYPE2: NORMAL
 DEX1: Its elongated beak is ideal for catching prey in soil or water.
 DEX2: With its huge, magnificent wings, it can keep aloft without ever having to land for rest.
 EXP_YIELD: 155
 CATCHRATE: 90
 HEIGHT: 47
 WEIGHT: 83.8
-SWITCH: YES
 HP: 65
 ATTACK: 90
 DEFENSE: 65
