@@ -261,6 +261,8 @@ def make_image(i, j):
                         px2[(x,y)] = px
                     except:
                         pass
+    if data[j]["VFLIP"]:
+        im2 = im2.transpose(Image.FLIP_TOP_BOTTOM)
     im2.convert("P").save("out/%s-%s.png" % (i, j))
 
 
@@ -274,6 +276,9 @@ while line:
         line = line.split(":")[1]
         key = int(line)
         data[key] = {}
+        data[key]["VFLIP"] = False
+    elif line.startswith("VFLIP:YES"):
+        data[key]["VFLIP"] = True
     elif line.startswith("PRIMARY:"):
         line = line.split(":")[1].split(" ")
         index = 0
