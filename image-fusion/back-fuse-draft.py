@@ -170,56 +170,6 @@ def make_image(i, j):
                         px2[(x,y)] = px
                     except:
                         pass
-    if "JAWBOUNDS" in data[i].keys():
-        for e in data[j]["JAW"]:
-            x11 = float(data[i]["JAWBOUNDS"]["X1"])
-            x12 = float(data[i]["JAWBOUNDS"]["X2"])
-            dx1 = (x12 - x11)
-            x21 = float(e["X1"])
-            x22 = float(e["X2"])
-            dx2 = (x22 - x21)
-            y11 = float(data[i]["JAWBOUNDS"]["Y1"])
-            y12 = float(data[i]["JAWBOUNDS"]["Y2"])
-            dy1 = (y12 - y11)
-            y21 = float(e["Y1"])
-            y22 = float(e["Y2"])
-            dy2 = (y22 - y21)
-            l1 = math.sqrt(dx1*dx1 + dy1*dy1)
-            l2 = math.sqrt(dx2*dx2 + dy2*dy2)
-            theta = math.acos(max(min(((dx1*dx2) + (dy1*dy2))/(l1*l2),1.0),-1.0))
-            if (dx1*dy2 - dx2*dy1) > 0:
-                theta *= -1.0
-            thetas = math.sin(theta)
-            thetac = math.cos(theta)
-            for x in range(0,im2.size[0]):
-                for y in range(0,im2.size[1]):
-                    if px3[(x, y)] == (0, 0, 0, 255) and px2[(x,y)][3] != 0:
-                        continue
-                    xtarg1, ytarg1 = transform(x11, x21, y11, y21, l1, l2, thetas, thetac, float(x) - 0.5, float(y) - 0.5)
-                    xtarg2, ytarg2 = transform(x11, x21, y11, y21, l1, l2, thetas, thetac, float(x) + 0.5, float(y) + 0.5)
-                    if xtarg1 < 0:
-                        continue
-                    if xtarg2 < 0:
-                        continue
-                    if ytarg1 < 0:
-                        continue
-                    if ytarg2 < 0:
-                        continue
-                    if xtarg1 > im1.size[0]:
-                        continue
-                    if xtarg2 > im1.size[0]:
-                        continue
-                    if ytarg1 > im1.size[1]:
-                        continue
-                    if ytarg2 > im1.size[1]:
-                        continue
-                    try:
-                        px = get_subsampling_pixel(px1, xtarg1, ytarg1, xtarg2, ytarg2)
-                        if px[3] == 0:
-                            continue
-                        px2[(x,y)] = px
-                    except:
-                        pass
     if "CRESTBOUNDS" in data[i].keys():
         im5 = Image.open("back/%s-crest.png" % (i)).convert("RGBA")
         px5 = im5.load()
@@ -308,14 +258,6 @@ while line:
         data[key]["EYEBOUNDS"]["Y1"] = int(line[1])
         data[key]["EYEBOUNDS"]["X2"] = int(line[2])
         data[key]["EYEBOUNDS"]["Y2"] = int(line[3])
-    elif line.startswith("JAWBOUNDS:"):
-        line = line.split(":")[1]
-        data[key]["JAWBOUNDS"] = {}
-        line = line.replace(",", " ").replace("(", " ").replace(")", " ").replace("  ", " ").strip().split(" ")
-        data[key]["JAWBOUNDS"]["X1"] = int(line[0])
-        data[key]["JAWBOUNDS"]["Y1"] = int(line[1])
-        data[key]["JAWBOUNDS"]["X2"] = int(line[2])
-        data[key]["JAWBOUNDS"]["Y2"] = int(line[3])
     elif line.startswith("CRESTBOUNDS:"):
         line = line.split(":")[1]
         line = line.replace(",", " ").replace("(", " ").replace(")", " ").replace("  ", " ").strip().split(" ")
@@ -335,19 +277,6 @@ while line:
             data[key]["EYE"][index]["Y1"]=int(l[1])
             data[key]["EYE"][index]["X2"]=int(l[2])
             data[key]["EYE"][index]["Y2"]=int(l[3])
-            index = index + 1
-    elif line.startswith("JAW:"):
-        line = line.split(":")[1]
-        data[key]["JAW"] = []
-        line = line.split(" ")
-        index = 0
-        for l in line:
-            data[key]["JAW"].append({})
-            l = l.replace(",", " ").replace("(", " ").replace(")", " ").replace("  ", " ").strip().split(" ")
-            data[key]["JAW"][index]["X1"]=int(l[0])
-            data[key]["JAW"][index]["Y1"]=int(l[1])
-            data[key]["JAW"][index]["X2"]=int(l[2])
-            data[key]["JAW"][index]["Y2"]=int(l[3])
             index = index + 1
     elif line.startswith("SOCKET:"):
         line = line.split(":")[1]
