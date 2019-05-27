@@ -6,8 +6,8 @@ files = []
 
 for i in range(1,152):
     for j in range(1,152):
-        if os.path.isfile("out/%s-%s.png" % (i, j)):
-            files.append("out/%s-%s.png" % (i, j))
+        if os.path.isfile("out/%s-%s-back.png" % (i, j)):
+            files.append("out/%s-%s-back.png" % (i, j))
             if os.path.isfile("../resources/images/%s-%s.png" % (i, j)):
                 files.append("../resources/images/%s-%s.png" % (i, j))
 

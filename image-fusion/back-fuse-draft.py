@@ -80,7 +80,7 @@ def get_pixel(px, x, y):
 
 def make_image(i, j):
     if i == j:
-        Image.open("back/%s-original.png" % i).convert("RGBA").convert("P").save("out/%s-%s.png" % (i, j))
+        Image.open("back/%s-original.png" % i).convert("RGBA").convert("P").save("out/%s-%s-back.png" % (i, j))
         return
     im2 = Image.open("back/%s-%s.png" % (j,data[i]["FACE_USES"])).convert("RGBA")
     px2 = im2.load()
@@ -213,7 +213,7 @@ def make_image(i, j):
                         pass
     if data[j]["VFLIP"]:
         im2 = im2.transpose(Image.FLIP_TOP_BOTTOM)
-    im2.convert("P").save("out/%s-%s.png" % (i, j))
+    im2.convert("P").save("out/%s-%s-back.png" % (i, j))
 
 
 start_time = time.time()
