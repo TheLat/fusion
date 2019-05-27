@@ -252,6 +252,7 @@ def make_image(i, j):
                         pass
     if data[j]["VFLIP"]:
         im2 = im2.transpose(Image.FLIP_TOP_BOTTOM)
+        px2 = im2.load()
     xmin = 80
     ymin = 160
     for x in range(0,im2.size[0]):
