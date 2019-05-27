@@ -105,21 +105,27 @@ def make_image(i, j):
     px3 = im3.load()
     for x in range(0,imt.size[0]):
         for y in range(0,imt.size[1]):
-            px3[(x,y+80)] = pxt[(x,y)]
+            if data[j]["VFLIP"]:
+                px3[(x,y)] = pxt[(x,y)]
+            else:
+                px3[(x,y+80)] = pxt[(x,y)]
     imt = Image.open("back/%s-deepmask.png" % (j)).convert("RGBA")
     pxt = imt.load()
     im4 = Image.new("RGBA", (160,160), (0,0,0,0))
     px4 = im4.load()
     for x in range(0,imt.size[0]):
         for y in range(0,imt.size[1]):
-            px4[(x,y+80)] = pxt[(x,y)]
+            if data[j]["VFLIP"]:
+                px4[(x,y)] = pxt[(x,y)]
+            else:
+                px4[(x,y+80)] = pxt[(x,y)]
     imt = Image.open("back/%s-crest.png" % (i)).convert("RGBA")
     pxt = imt.load()
     im5 = Image.new("RGBA", (160,160), (0,0,0,0))
     px5 = im5.load()
     for x in range(0,imt.size[0]):
         for y in range(0,imt.size[1]):
-            px4[(x,y+80)] = pxt[(x,y)]
+            px5[(x,y+80)] = pxt[(x,y)]
     for x in range(0,im2.size[0]):
         for y in range(0,im2.size[1]):
             offset = 0
@@ -209,6 +215,8 @@ def make_image(i, j):
             x2 = float(data[i]['CRESTBOUNDS']['X'])
             y1 = float(b['Y'] + 80)
             y2 = float(data[i]['CRESTBOUNDS']['Y'] + 80)
+            if data[j]["VFLIP"]:
+                y1 = float(b['Y'])
             w1 = float(b['WIDTH'])
             w2 = float(data[i]['CRESTBOUNDS']['WIDTH'])
             for x in range(0,im2.size[0]):
@@ -244,8 +252,25 @@ def make_image(i, j):
                         pass
     if data[j]["VFLIP"]:
         im2 = im2.transpose(Image.FLIP_TOP_BOTTOM)
+    xmin = 80
+    ymin = 160
+    for x in range(0,im2.size[0]):
+        for y in range(0,im2.size[1]):
+            if px2[(x,y)][3] == 255:
+                if x > xmin:
+                    xmin = x
+                if y < ymin:
+                    ymin = y
+    if ymin > 80:
+        ymin = 80
+    if xmin > 160 - ymin:
+        ymin = 160 - xmin
+    if 160 - ymin > xmin:
+        xmin = 160 - ymin
+    im2 = im2.crop((0,ymin,xmin,160))
     im2.convert("P").save("out/%s-%s-back.png" % (i, j))
-    print "%s-%s" % (i,j)
+    if im2.size[0] != im2.size[1]:
+        print "%s-%s" % (i,j)
 
 
 start_time = time.time()
