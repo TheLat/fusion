@@ -2,6 +2,7 @@ Poliwhirl and Poliwrath bodies.
 Charizard face
 Golbat-Koffing
 Jolteon front-face
-Chansey color difference
+Dragonite front-face antennae
+Chansey front-face color difference
 Make Kangaskhan front view have 3 colors
 Clefairy, Clefable, Jigglypuff, Wigglytuff bodies
