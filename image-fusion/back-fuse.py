@@ -82,6 +82,13 @@ def make_image(i, j):
     if i == j:
         Image.open("back/%s-original.png" % i).convert("RGBA").convert("P").save("out/%s-%s-back.png" % (i, j))
         return
+    imt = Image.open("back/%s-face.png" % (i)).convert("RGBA")
+    pxt = imt.load()
+    im1 = Image.new("RGBA", (160,160), (0,0,0,0))
+    px1 = im1.load()
+    for x in range(0,imt.size[0]):
+        for y in range(0,imt.size[1]):
+            px1[(x,y+80)] = pxt[(x,y)]
     imt = Image.open("back/%s-%s.png" % (j,data[i]["FACE_USES"])).convert("RGBA")
     pxt = imt.load()
     im2 = Image.new("RGBA", (160,160), (0,0,0,0))
@@ -92,13 +99,6 @@ def make_image(i, j):
                 px2[(x, y)] = pxt[(x, y)]
             else:
                 px2[(x,y+80)] = pxt[(x,y)]
-    imt = Image.open("back/%s-face.png" % (i)).convert("RGBA")
-    pxt = imt.load()
-    im1 = Image.new("RGBA", (160,160), (0,0,0,0))
-    px1 = im1.load()
-    for x in range(0,imt.size[0]):
-        for y in range(0,imt.size[1]):
-            px1[(x,y+80)] = pxt[(x,y)]
     imt = Image.open("back/%s-mask.png" % (j)).convert("RGBA")
     pxt = imt.load()
     im3 = Image.new("RGBA", (160,160), (0,0,0,0))
@@ -270,8 +270,6 @@ def make_image(i, j):
         xmin = 160 - ymin
     im2 = im2.crop((0,ymin,xmin,160))
     im2.convert("P").save("out/%s-%s-back.png" % (i, j))
-    if im2.size[0] != im2.size[1]:
-        print "%s-%s" % (i,j)
 
 
 start_time = time.time()
