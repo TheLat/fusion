@@ -3026,10 +3026,7 @@ public:
 			string formatted_hp = "";
 			formatted_hp += to_string(p.curr_hp) + string("/") + to_string(get_stat(p, HP));
 			g.push_text(0.8f - (float(formatted_hp.length())*0.1f), -0.4f, 0.8f, 0.1f, 0.1f, formatted_hp);
-			string temp;
-			temp = p.number;
-			temp.erase(0, temp.find("-") + 1); // TODO:  Back views
-			g.draw_list[p.sprite_index].filename = string("../resources/images/back/") + temp + string(".png");
+			g.draw_list[p.sprite_index].filename = string("../resources/images/") + p.number + string("-back.png");
 			g.draw_list[p.sprite_index].tex = g.tex[g.draw_list[p.sprite_index].filename];
 			g.draw_list[e.sprite_index].filename = string("../resources/images/") + e.number + string(".png");
 			g.draw_list[e.sprite_index].tex = g.tex[g.draw_list[e.sprite_index].filename];
@@ -3086,9 +3083,7 @@ public:
 		do_alert(string("Go! ") + get_nickname(mc.team[mc.selected]) + string("!"));
 		mc.team[mc.selected].turn_count = 1;
 		g.draw_list[player_sprite].x = -2.0f; // TODO:  Animation
-		string temp = mc.team[mc.selected].number;
-		temp.erase(0, temp.find("-") + 1); // TODO:  Back views
-		unsigned team_sprite = g.push_quad_load(-1.0f, -0.422f, 0.9f, 0.9f, string("../resources/images/back/") + temp + string(".png"));
+		unsigned team_sprite = g.push_quad_load(-1.0f, -0.422f, 0.9f, 0.9f, string("../resources/images/") + mc.team[mc.selected].number + string("-back.png"));
 		g.push_arrow_box_left(-0.1f, -0.4f, 1.0f, 0.3f);
 		g.push_arrow_box_right(-0.9f, 0.6f, 1.0f, 0.2f);
 		unsigned team_hp_sprite = g.push_hp_bar(0.1f, -0.2f, get_hp_percent(mc.team[mc.selected]));
@@ -3445,9 +3440,7 @@ public:
 		do_alert(string("Go! ") + get_nickname(mc.team[mc.selected]) + string("!"));
 		mc.team[mc.selected].turn_count = 1;
 		g.draw_list[player_sprite].x = -2.0f; // TODO:  Animation
-		string temp = mc.team[mc.selected].number;
-		temp.erase(0, temp.find("-") + 1); // TODO:  Back views
-		unsigned team_sprite = g.push_quad_load(-1.0f, -0.422f, 0.9f, 0.9f, string("../resources/images/back/") + temp + string(".png"));
+		unsigned team_sprite = g.push_quad_load(-1.0f, -0.422f, 0.9f, 0.9f, string("../resources/images/") + mc.team[mc.selected].number + string("-back.png"));
 		g.push_arrow_box_left(-0.1f, -0.4f, 1.0f, 0.3f);
 		g.push_arrow_box_right(-0.9f, 0.6f, 1.0f, 0.2f);
 		unsigned team_hp_sprite = g.push_hp_bar(0.1f, -0.2f, get_hp_percent(mc.team[mc.selected]));
