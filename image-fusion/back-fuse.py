@@ -82,13 +82,6 @@ def make_image(i, j):
     if i == j:
         Image.open("back/%s-original.png" % i).convert("RGBA").convert("P").save("out/%s-%s-back.png" % (i, j))
         return
-    imt = Image.open("back/%s-face.png" % (i)).convert("RGBA")
-    pxt = imt.load()
-    im1 = Image.new("RGBA", (160,160), (0,0,0,0))
-    px1 = im1.load()
-    for x in range(0,imt.size[0]):
-        for y in range(0,imt.size[1]):
-            px1[(x,y+80)] = pxt[(x,y)]
     imt = Image.open("back/%s-%s.png" % (j,data[i]["FACE_USES"])).convert("RGBA")
     pxt = imt.load()
     im2 = Image.new("RGBA", (160,160), (0,0,0,0))
@@ -99,33 +92,6 @@ def make_image(i, j):
                 px2[(x, y)] = pxt[(x, y)]
             else:
                 px2[(x,y+80)] = pxt[(x,y)]
-    imt = Image.open("back/%s-mask.png" % (j)).convert("RGBA")
-    pxt = imt.load()
-    im3 = Image.new("RGBA", (160,160), (0,0,0,0))
-    px3 = im3.load()
-    for x in range(0,imt.size[0]):
-        for y in range(0,imt.size[1]):
-            if data[j]["VFLIP"]:
-                px3[(x,y)] = pxt[(x,y)]
-            else:
-                px3[(x,y+80)] = pxt[(x,y)]
-    imt = Image.open("back/%s-deepmask.png" % (j)).convert("RGBA")
-    pxt = imt.load()
-    im4 = Image.new("RGBA", (160,160), (0,0,0,0))
-    px4 = im4.load()
-    for x in range(0,imt.size[0]):
-        for y in range(0,imt.size[1]):
-            if data[j]["VFLIP"]:
-                px4[(x,y)] = pxt[(x,y)]
-            else:
-                px4[(x,y+80)] = pxt[(x,y)]
-    imt = Image.open("back/%s-crest.png" % (i)).convert("RGBA")
-    pxt = imt.load()
-    im5 = Image.new("RGBA", (160,160), (0,0,0,0))
-    px5 = im5.load()
-    for x in range(0,imt.size[0]):
-        for y in range(0,imt.size[1]):
-            px5[(x,y+80)] = pxt[(x,y)]
     for x in range(0,im2.size[0]):
         for y in range(0,im2.size[1]):
             offset = 0
@@ -182,7 +148,7 @@ def make_image(i, j):
             thetac = math.cos(theta)
             for x in range(0,im2.size[0]):
                 for y in range(0,im2.size[1]):
-                    if px3[(x, y)] == (0, 0, 0, 255) and px2[(x,y)][3] != 0:
+                    if data[j]["px3"][(x, y)] == (0, 0, 0, 255) and px2[(x,y)][3] != 0:
                         continue
                     xtarg1, ytarg1 = transform(x11, x21, y11, y21, l1, l2, thetas, thetac, float(x) - 0.5, float(y) - 0.5)
                     xtarg2, ytarg2 = transform(x11, x21, y11, y21, l1, l2, thetas, thetac, float(x) + 0.5, float(y) + 0.5)
@@ -194,16 +160,16 @@ def make_image(i, j):
                         continue
                     if ytarg2 < 0:
                         continue
-                    if xtarg1 > im1.size[0]:
+                    if xtarg1 > data[i]["im1"].size[0]:
                         continue
-                    if xtarg2 > im1.size[0]:
+                    if xtarg2 > data[i]["im1"].size[0]:
                         continue
-                    if ytarg1 > im1.size[1]:
+                    if ytarg1 > data[i]["im1"].size[1]:
                         continue
-                    if ytarg2 > im1.size[1]:
+                    if ytarg2 > data[i]["im1"].size[1]:
                         continue
                     try:
-                        px = get_subsampling_pixel(px1, xtarg1, ytarg1, xtarg2, ytarg2)
+                        px = get_subsampling_pixel(data[i]["px1"], xtarg1, ytarg1, xtarg2, ytarg2)
                         if px[3] == 0:
                             continue
                         px2[(x,y)] = px
@@ -221,7 +187,7 @@ def make_image(i, j):
             w2 = float(data[i]['CRESTBOUNDS']['WIDTH'])
             for x in range(0,im2.size[0]):
                 for y in range(0,im2.size[1]):
-                    if px4[(x, y)] == (0, 0, 0, 255) and px2[(x,y)][3] != 0:
+                    if data[j]["px4"][(x, y)] == (0, 0, 0, 255) and px2[(x,y)][3] != 0:
                         continue
                     xtarg1 = ((w2/w1)*float((x - 0.5) - x1) + (x2))
                     xtarg2 = ((w2/w1)*float((x + 0.5) - x1) + (x2))
@@ -235,16 +201,16 @@ def make_image(i, j):
                         continue
                     if ytarg2 < 0:
                         continue
-                    if xtarg1 > im1.size[0]:
+                    if xtarg1 > data[i]["im1"].size[0]:
                         continue
-                    if xtarg2 > im1.size[0]:
+                    if xtarg2 > data[i]["im1"].size[0]:
                         continue
-                    if ytarg1 > im1.size[1]:
+                    if ytarg1 > data[i]["im1"].size[1]:
                         continue
-                    if ytarg2 > im1.size[1]:
+                    if ytarg2 > data[i]["im1"].size[1]:
                         continue
                     try:
-                        px = get_subsampling_pixel(px5, xtarg1, ytarg1, xtarg2, ytarg2)
+                        px = get_subsampling_pixel(data[i]["px5"], xtarg1, ytarg1, xtarg2, ytarg2)
                         if px[3] == 0:
                             continue
                         px2[(x,y)] = px
@@ -393,6 +359,42 @@ for i in range(1, len(data) + 1):
                                   min(254,(data[i]["TERTIARY"][0][3] + (data[i]["TERTIARY"][1][3] - data[i]["TERTIARY"][2][3]))))
 
 
+
+for i in range(1, len(data) + 1):
+    imt = Image.open("back/%s-face.png" % (i)).convert("RGBA")
+    pxt = imt.load()
+    data[i]["im1"] = Image.new("RGBA", (160,160), (0,0,0,0))
+    data[i]["px1"] = data[i]["im1"].load()
+    for x in range(0,imt.size[0]):
+        for y in range(0,imt.size[1]):
+            data[i]["px1"][(x,y+80)] = pxt[(x,y)]
+    imt = Image.open("back/%s-mask.png" % (i)).convert("RGBA")
+    pxt = imt.load()
+    data[i]["im3"] = Image.new("RGBA", (160,160), (0,0,0,0))
+    data[i]["px3"] = data[i]["im3"].load()
+    for x in range(0,imt.size[0]):
+        for y in range(0,imt.size[1]):
+            if data[j]["VFLIP"]:
+                data[i]["px3"][(x,y)] = pxt[(x,y)]
+            else:
+                data[i]["px3"][(x,y+80)] = pxt[(x,y)]
+    imt = Image.open("back/%s-deepmask.png" % (i)).convert("RGBA")
+    pxt = imt.load()
+    data[i]["im4"] = Image.new("RGBA", (160,160), (0,0,0,0))
+    data[i]["px4"] = data[i]["im4"].load()
+    for x in range(0,imt.size[0]):
+        for y in range(0,imt.size[1]):
+            if data[i]["VFLIP"]:
+                data[i]["px4"][(x,y)] = pxt[(x,y)]
+            else:
+                data[i]["px4"][(x,y+80)] = pxt[(x,y)]
+    imt = Image.open("back/%s-crest.png" % (i)).convert("RGBA")
+    pxt = imt.load()
+    data[i]["im5"] = Image.new("RGBA", (160,160), (0,0,0,0))
+    data[i]["px5"] = data[i]["im5"].load()
+    for x in range(0,imt.size[0]):
+        for y in range(0,imt.size[1]):
+            data[i]["px5"][(x,y+80)] = pxt[(x,y)]
 
 for i in range(1, len(data) + 1):
     for j in range(1, len(data) + 1):
