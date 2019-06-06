@@ -4,6 +4,7 @@ sprites = []
 levels = []
 menu_sprites = []
 character_sprites = []
+sounds = []
 
 
 for filename in os.listdir("resources/levels"):
@@ -21,6 +22,22 @@ for filename in os.listdir("resources/menu_sprites"):
 for filename in os.listdir("resources/characters"):
     if filename != ".DS_Store":
         character_sprites.append(filename)
+
+for filename in os.listdir("resources/cries"):
+    if filename != ".DS_Store":
+        sounds.append("resources/cries/" + filename)
+
+for filename in os.listdir("resources/music"):
+    if filename != ".DS_Store":
+        sounds.append("resources/music/" + filename)
+
+for filename in os.listdir("resources/sound_effects/combat"):
+    if filename != ".DS_Store":
+        sounds.append("resources/sound_effects/combat/" + filename)
+
+for filename in os.listdir("resources/sound_effects/general"):
+    if filename != ".DS_Store":
+        sounds.append("resources/sound_effects/general/" + filename)
 
 f = open("resources/data/levels.dat", 'w')
 for l in levels:
@@ -48,3 +65,9 @@ for c in character_sprites:
 
 f.close()
 
+f = open("resources/data/sounds.dat", 'w')
+for s in sounds:
+    f.write(s)
+    f.write("\n")
+
+f.close()
