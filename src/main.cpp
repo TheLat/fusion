@@ -3,6 +3,7 @@
 #include "graphics.h"
 #include "core.h"
 #include "menus.h"
+#include "sound.h"
 
 
 using namespace std;
@@ -10,6 +11,7 @@ int num = 0;
 mutex m;
 engine e;
 graphics g;
+soundengine se;
 
 int get_storage_use() {
 	int ret = 0;
@@ -257,6 +259,9 @@ int main(int argc, char** argv) {
 	printf("Done!\n");
 	printf("Loading levels...");
 	e.init_levels();
+	printf("Done!\n");
+	printf("Loading sounds...");
+	se.init_sounds();
 	printf("Done!\n");
 
 	e.mc.loc.x = 3.0;
