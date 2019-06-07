@@ -1,4 +1,5 @@
 #include "core.h"
+#include "sound.h"
 
 bool player_up = false;
 bool player_down = false;
@@ -9,6 +10,8 @@ bool player_start = false;
 bool player_confirm = false;
 bool player_cancel = false;
 mutex transition;
+
+extern soundengine se;
 
 typedef std::map<string, std::map<string, float>>::iterator type_iter;
 int min(int a, int b) {
@@ -1487,6 +1490,7 @@ bool engine::level_up(mon& out, bool confirm_learn) {
 	while (out.level < 100 && level_to_exp[out.level + 1] <= out.exp) {
 		out.level++;
 		if (confirm_learn) {
+			se.play_sound(string("sound_effects/general/sfx_level_up.mp3"));
 			do_alert(get_nickname(out) + string(" grew to level ") + to_string(out.level) + "!");
 			for (unsigned x = 0; x < all_mon[out.number].evolution.size(); ++x) {
 				if (all_mon[out.number].evolution[x].second.find("LEVEL") == 0) {
