@@ -6,17 +6,4 @@ Cloyster-Dragonite that knows BODY SLAM, SUPERSONIC, ICE BEAM, and HYPER BEAM
 Jynx-Gengar that knows LOVELY KISS, DREAM EATER, BODY SLAM, and BLIZZARD
 Magmar-Golem that knows ROCK SLIDE, FIRE PUNCH, EXPLOSION, and EARTHQUAKE
 
-Put a trainer on Victory Road whose opening line is "There's no escape from the Odd Squad!"  His team is Oddish-Gengar, Oddish-Alakazam, Oddish-Machamp, Oddish-Omastar, Oddish-Dragonite, and Oddish-Oddish.  His defeat line is, "You even beat up their mascot..."
-
-Revisiting gym leaders:
-Koga will have a Koffing, Wheezing, Muk, Arbok, and Venomoth, all of which will know Toxic.
-Giovanni will have a Sandslash-Persian and a Dugtrio-Jolteon.
-Agatha gets a Parasect-Gengar, a Gengar-Dragonite, a Gengar-Rapidash.
-
-Bruno:
-Machamp: Submission, Earthquake, Rock Slide, Fire Blast
-Hitmonchan: Fire Punch, Ice Punch, Thunder Punch, Submission
-Starmie-Machamp: Recover, Submission, Psychic, Surf
-Magneton-Machamp: Thunderbolt, Submission, Fire Blast, Earthquake
-Poliwrath: Hydropump, Amnesia, Submission, Blizzard
-Machamp-Snorlax: Body Slam, Submission, Earthquake, Rock Slide
+HP bars don't display correctly in storage.
