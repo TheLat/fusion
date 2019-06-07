@@ -68,11 +68,11 @@ void soundengine::play_music(string s) {
 		music2->stop();
 		music2 = 0;
 	}
-	if (s.find("|") != -1) {
+	if (s.find(",") != -1) {
 		s1 = s;
 		s2 = s;
-		s1.erase(s1.find("|"), s1.length());
-		s2.erase(0, s2.find("|") + 1);
+		s1.erase(s1.find(","), s1.length());
+		s2.erase(0, s2.find(",") + 1);
 		if (sounds[s1] == 0) {
 			result = system->createSound((string("../resources/") + s1).c_str(), FMOD_DEFAULT, 0, &sounds[s1]);
 		}

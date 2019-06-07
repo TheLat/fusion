@@ -5320,6 +5320,42 @@ void engine::do_interaction(character& npc) {
 			choices.clear();
 			choices.push_back(e.mc.values[s2]);
 		}
+		else if (s.find("PLAY_SOUND:") == 0) {
+			s.erase(0, string("PLAY_SOUND:").length());
+			s2 = s;
+			if (s.find("|") != -1) {
+				s.erase(0, s.find("|"));
+				s2.erase(s2.find("|"), s2.length());
+			}
+			else {
+				s = "";
+			}
+			se.play_sound(s2);
+		}
+		else if (s.find("PLAY_BLOCKING_SOUND:") == 0) {
+			s.erase(0, string("PLAY_BLOCKING_SOUND:").length());
+			s2 = s;
+			if (s.find("|") != -1) {
+				s.erase(0, s.find("|"));
+				s2.erase(s2.find("|"), s2.length());
+			}
+			else {
+				s = "";
+			}
+			se.play_sound_blocking(s2);
+		}
+		else if (s.find("PLAY_MUSIC:") == 0) {
+			s.erase(0, string("PLAY_MUSIC:").length());
+			s2 = s;
+			if (s.find("|") != -1) {
+				s.erase(0, s.find("|"));
+				s2.erase(s2.find("|"), s2.length());
+			}
+			else {
+				s = "";
+			}
+			se.play_music(s2);
+		}
 		else if (s.find("IS_PLAYER:") == 0) {
 			s.erase(0, string("IS_PLAYER:").length());
 			s2 = s;
