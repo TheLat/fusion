@@ -49,12 +49,53 @@ void soundengine::play_sound_blocking(string s) {
 
 void soundengine::play_music(string s) {
 	FMOD_RESULT       result;
-	if (sounds[s] == 0) {
-		result = system->createSound((string("../resources/") + s).c_str(), FMOD_DEFAULT, 0, &sounds[s]);
+	string s1;
+	string s2;
+	unsigned long long clock_start = 0;
+	unsigned int slen = 0;
+	float freq = 0.0;
+	int outputrate = 0;
+	if (last_music == s) {
+		return;
 	}
-	if (music) {
+	if (music1) {
 		// TODO: Add fade-out.
-		music->stop();
+		music1->stop();
+		music1 = 0;
 	}
-	result = system->playSound(sounds[s], 0, false, &music);
+	if (music2) {
+		// TODO: Add fade-out.
+		music2->stop();
+		music2 = 0;
+	}
+	if (s.find("|") != -1) {
+		s1 = s;
+		s2 = s;
+		s1.erase(s1.find("|"), s1.length());
+		s2.erase(0, s2.find("|") + 1);
+		if (sounds[s1] == 0) {
+			result = system->createSound((string("../resources/") + s1).c_str(), FMOD_DEFAULT, 0, &sounds[s1]);
+		}
+		if (sounds[s2] == 0) {
+			result = system->createSound((string("../resources/") + s2).c_str(), FMOD_LOOP_NORMAL, 0, &sounds[s2]);
+		}
+		result = system->playSound(sounds[s1], 0, true, &music1);
+		result = system->playSound(sounds[s2], 0, true, &music2);
+		result = system->getSoftwareFormat(&outputrate, 0, 0);
+		result = music1->getDSPClock(0, &clock_start);
+		result = sounds[s1]->getLength(&slen, FMOD_TIMEUNIT_PCM);
+		result = sounds[s1]->getDefaults(&freq, 0);
+		slen = (unsigned int)((float)slen / freq * outputrate);
+		clock_start += slen;
+		result = music2->setDelay(clock_start, 0, false);
+		music1->setPaused(false);
+		music2->setPaused(false);
+		music2->setLoopCount(1000000);
+	}
+	else {
+		if (sounds[s] == 0) {
+			result = system->createSound((string("../resources/") + s).c_str(), FMOD_DEFAULT, 0, &sounds[s]);
+		}
+		result = system->playSound(sounds[s], 0, false, &music1);
+	}
 }

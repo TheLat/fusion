@@ -11,8 +11,8 @@ class soundengine {
 private:
 	std::map<string, FMOD::Sound*> sounds;
 	FMOD::System *system;
-	FMOD::Channel *music = 0;
-	FMOD::Sound* last_music = 0;
+	FMOD::Channel *music1 = 0, *music2 = 0;
+	string last_music;
 public:
 	bool holder;
 	void init_sounds();

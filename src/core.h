@@ -229,6 +229,7 @@ public:
 	std::vector<int> encounters, water_encounters_old, water_encounters_good, water_encounters_super, mega_encounters;
 	std::pair<int, int> level_range, mega_level_range;
 	std::map<string, trainer> trainers;
+	string music;
 };
 
 class engine {
