@@ -59,12 +59,10 @@ void soundengine::play_music(string s) {
 		return;
 	}
 	if (music1) {
-		// TODO: Add fade-out.
 		music1->stop();
 		music1 = 0;
 	}
 	if (music2) {
-		// TODO: Add fade-out.
 		music2->stop();
 		music2 = 0;
 	}

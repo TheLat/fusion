@@ -108,6 +108,7 @@ void graphics::load_tile(string filename, int index) {
 
 void graphics::initRendering() {
 	//Makes 3D drawing work when something is in front of something else
+	time_index = tim.create();
 	glDisable(GL_DEPTH_TEST);
 	glEnable(GL_TEXTURE_2D);
 	glEnable(GL_BLEND);
@@ -214,6 +215,10 @@ void graphics::draw_quad(quad &q) {
 }
 
 void graphics::drawScene() {
+	double deltat = tim.delta(time_index);
+	tim.update(time_index);
+	deltat = 1.0 / deltat;
+	//printf("%f fps\n", deltat);
 	std::vector<quad> draw_list_copy;
 	m.lock();
 	if (new_load) {

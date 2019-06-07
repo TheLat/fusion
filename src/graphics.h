@@ -12,9 +12,11 @@
 #include <iostream>
 #include <fstream>
 #include <mutex>
+#include "timer.h"
 
 using namespace std;
 extern mutex m;
+extern timer tim;
 class quad {
 public:
 	float x;
@@ -33,6 +35,8 @@ public:
 };
 
 class graphics {
+private:
+	unsigned time_index;
 public:
 	std::map<int, GLuint> tiles;
 	std::map<string, GLuint> tex;

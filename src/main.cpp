@@ -4,6 +4,7 @@
 #include "core.h"
 #include "menus.h"
 #include "sound.h"
+#include "timer.h"
 
 
 using namespace std;
@@ -12,6 +13,7 @@ mutex m;
 engine e;
 graphics g;
 soundengine se;
+timer tim;
 
 int get_storage_use() {
 	int ret = 0;
