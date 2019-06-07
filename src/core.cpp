@@ -3944,6 +3944,11 @@ void engine::init_level(string levelname) {
 			levels[levelname].name = line;
 			continue;
 		}
+		if (line == "MUSIC") {
+			std::getline(f, line);
+			levels[levelname].music = line;
+			continue;
+		}
 		if (line == "NPCS") {
 			std::getline(f, line);
 			while (line != "TELEPORT" && line != "DATA" && line != "ENCOUNTERS" && line != "LEVELS" && line != "TRAINERS" && line.find("WATER_ENCOUNTERS_") != 0) {
@@ -4944,6 +4949,7 @@ void engine::handle_teleport() {
 					levels[mc.loc.level].characters[j].loc = levels[mc.loc.level].characters[j].origin;
 				}
 				transition.unlock();
+				se.play_music(levels[mc.loc.level].music);
 				break;
 			}
 		}

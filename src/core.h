@@ -233,8 +233,7 @@ public:
 };
 
 class engine {
-public: // TODO:  Change back to private
-		// format is always types[ATTACKER][DEFENDER]
+public:
 	std::map<string, std::map<string, float>> types;
 	std::map<string, bool> special_case;
 	std::vector<int> level_to_exp;

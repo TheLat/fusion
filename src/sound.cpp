@@ -55,9 +55,13 @@ void soundengine::play_music(string s) {
 	unsigned int slen = 0;
 	float freq = 0.0;
 	int outputrate = 0;
+	if (s == "") {
+		return;
+	}
 	if (last_music == s) {
 		return;
 	}
+	last_music = s;
 	if (music1) {
 		music1->stop();
 		music1 = 0;
