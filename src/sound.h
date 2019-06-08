@@ -19,6 +19,7 @@ public:
 	void play_sound(string s);
 	void play_sound_blocking(string s);
 	void play_music(string s);
+	void play_cry(string s);
 };
 
 #endif
