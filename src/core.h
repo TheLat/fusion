@@ -81,8 +81,8 @@ public:
 	int stats[SIZE];
 	int exp_yield, catchrate, height;
 	double weight;
-	vector<pair<int, string>> learned;
-	vector<pair<string, string>> evolution;
+	vector<pair<int, string> > learned;
+	vector<pair<string, string> > evolution;
 	std::map<int, bool> TM, HM;
 	bool defined;
 	mon_template() { defined = false; }
@@ -166,8 +166,8 @@ public:
 	location loc, last_center;
 	std::map<string, bool> active;
 	std::map<string, unsigned> interaction;
-	std::vector<pair<string, int>> inventory;
-	std::vector<pair<string, int>> inventory_storage;
+	std::vector<pair<string, int> > inventory;
+	std::vector<pair<string, int> > inventory_storage;
 	std::map<string, unsigned> values;
 	std::map<string, bool> seen;
 	std::map<string, bool> caught;
@@ -222,8 +222,8 @@ public:
 class level {
 public:
 	string name;
-	std::vector<std::vector<int>> data;
-	std::vector<std::pair<location, location>> teleport;
+	std::vector<std::vector<int> > data;
+	std::vector<std::pair<location, location> > teleport;
 	std::vector<neighbor> neighbors;
 	std::vector<character> characters;
 	std::vector<int> encounters, water_encounters_old, water_encounters_good, water_encounters_super, mega_encounters;
@@ -234,7 +234,7 @@ public:
 
 class engine {
 public:
-	std::map<string, std::map<string, float>> types;
+	std::map<string, std::map<string, float> > types;
 	std::map<string, bool> special_case;
 	std::vector<int> level_to_exp;
 	std::map<string, status_effect> status;

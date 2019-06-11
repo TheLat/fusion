@@ -13,7 +13,7 @@ mutex transition;
 
 extern soundengine se;
 
-typedef std::map<string, std::map<string, float>>::iterator type_iter;
+typedef std::map<string, std::map<string, float> >::iterator type_iter;
 int min(int a, int b) {
 	if (a < b) {
 		return a;
@@ -2056,8 +2056,8 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 				attacker.exp = attacker.original->exp;
 				attacker.original->exp_bar_index = attacker.exp_bar_index;
 				for (unsigned im = 0; i < SIZE; ++i) {
-					attacker.IV[i] = attacker.original->IV[i];
-					attacker.EV[i] = attacker.original->EV[i];
+					attacker.IV[im] = attacker.original->IV[im];
+					attacker.EV[im] = attacker.original->EV[im];
 				}
 				for (unsigned i = 0; i < 4; ++i) {
 					attacker.pp[i] = 5;
