@@ -4,7 +4,8 @@ GLuint graphics::load_image(string filename) {
 	GLuint ret = 0;
 	int i;
 	unsigned char* image = 0;
-	FILE* f = fopen((filename).c_str(), "rb");
+	FILE* f;
+	fopen_s(&f, (filename).c_str(), "rb");
 	if (f == 0)
 		return 0;
 	int height = 0;
