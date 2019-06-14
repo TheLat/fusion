@@ -280,7 +280,8 @@ int main(int argc, char** argv) {
 	glutInitWindowSize(160*4, 144*4); //Set the window size
 	//Create the window
 	glutCreateWindow("Pokémon Fusion");
-	g.initRendering(); //Initialize renderingg
+	g.initRendering(); //Initialize rendering
+	e.init_characters();
 	//Set handler functions for drawing, keypresses, and window resizes
 	glutDisplayFunc(drawScene);
 	glutKeyboardFunc(handleKeypress);

@@ -10,6 +10,7 @@
 #include <iostream>
 #include <fstream>
 #include "menus.h"
+#include "anim.h"
 
 using namespace std;
 
@@ -194,8 +195,10 @@ public:
 	vector<string> interactions;
 	vector<location> force_interactions;
 	location loc, origin;
+	int frame;
+	GLuint images[16];
 	bool wander, incorporeal, no_force, nolook, far, no_offset, pushable, teleportable;
-	character() { wander = false; dir = DOWN; incorporeal = false; no_force = false; nolook = false; far = false; no_offset = false; pushable = false; teleportable = false; }
+	character() { wander = false; dir = DOWN; incorporeal = false; no_force = false; nolook = false; far = false; no_offset = false; pushable = false; teleportable = false; frame = 0; }
 };
 
 class trainer {
@@ -336,6 +339,7 @@ public:
 	string get_type_2(mon& m);
 	int get_stat(mon& m, STAT s, bool ignore_buffs = false, bool ignore_debuffs = false);
 	void init_items();
+	void init_characters();
 	void init_levels();
 	void init_level(string levelname);
 	void init_moves();

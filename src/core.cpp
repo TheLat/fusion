@@ -51,6 +51,11 @@ double max(double a, double b) {
 	return b;
 }
 
+GLuint get_character_tex(character& c) {
+	return c.images[(c.dir * 4) + c.frame];
+	//g.tex[c->image + string("-") + get_direction_string(c->dir) + string("-0.bmp")]
+}
+
 string get_direction_string(direction dir) {
 	switch (dir) {
 	case UP:
@@ -3932,6 +3937,19 @@ void engine::init_items() {
 	}
 }
 
+void engine::init_characters() {
+	map<string, level>::iterator it1;
+	for (it1 = levels.begin(); it1 != levels.end(); it1++) {
+		for (unsigned i = 0; i < levels[it1->first].characters.size(); ++i) {
+			for (unsigned j = DOWN; j <= RIGHT; j++) {
+				for (unsigned k = 0; k < 4; ++k) {
+					levels[it1->first].characters[i].images[(j * 4) + k] = g.tex[levels[it1->first].characters[i].image + string("-") + get_direction_string(direction(j)) + string("-") + to_string(k) + string(".bmp")];
+				}
+			}
+		}
+	}
+}
+
 void engine::init_levels() {
 	ifstream f("../resources/data/levels.dat");
 	string line;
@@ -5248,9 +5266,9 @@ void engine::draw_characters() {
 		if (!mc.active[c->name])
 			continue;
 		if (c->no_offset)
-			g.push_quad((c->loc.x - (curr_x + 0.5)) / 5.0, (-0.5 - c->loc.y + curr_y) / 4.5f + 0.0, 1.0 / 5.0f, 1.0 / 4.5f, g.tex[c->image + string("-") + get_direction_string(c->dir) + string("-0.bmp")]);
+			g.push_quad((c->loc.x - (curr_x + 0.5)) / 5.0, (-0.5 - c->loc.y + curr_y) / 4.5f + 0.0, 1.0 / 5.0f, 1.0 / 4.5f, get_character_tex(*c));
 		else
-			g.push_quad((c->loc.x - (curr_x + 0.5)) / 5.0, (-0.5 - c->loc.y + curr_y) / 4.5f + 0.055, 1.0 / 5.0f, 1.0 / 4.5f, g.tex[c->image + string("-") + get_direction_string(c->dir) + string("-0.bmp")]);
+			g.push_quad((c->loc.x - (curr_x + 0.5)) / 5.0, (-0.5 - c->loc.y + curr_y) / 4.5f + 0.055, 1.0 / 5.0f, 1.0 / 4.5f, get_character_tex(*c));
 	}
 	for (unsigned j = 0; j < l->neighbors.size(); ++j) {
 		level* n = &(levels[l->neighbors[j].level]);
@@ -5259,9 +5277,9 @@ void engine::draw_characters() {
 			if (!mc.active[c->name])
 				continue;
 			if (c->no_offset)
-				g.push_quad((levels[curr_level].neighbors[j].x + c->loc.x - (curr_x + 0.5)) / 5.0, (-levels[curr_level].neighbors[j].y - 0.5 - c->loc.y + curr_y) / 4.5f + 0.0, 1.0 / 5.0f, 1.0 / 4.5f, g.tex[c->image + string("-") + get_direction_string(c->dir) + string("-0.bmp")]);
+				g.push_quad((levels[curr_level].neighbors[j].x + c->loc.x - (curr_x + 0.5)) / 5.0, (-levels[curr_level].neighbors[j].y - 0.5 - c->loc.y + curr_y) / 4.5f + 0.0, 1.0 / 5.0f, 1.0 / 4.5f, get_character_tex(*c));
 			else
-				g.push_quad((levels[curr_level].neighbors[j].x + c->loc.x - (curr_x + 0.5)) / 5.0, (-levels[curr_level].neighbors[j].y - 0.5 - c->loc.y + curr_y) / 4.5f + 0.055, 1.0 / 5.0f, 1.0 / 4.5f, g.tex[c->image + string("-") + get_direction_string(c->dir) + string("-0.bmp")]);
+				g.push_quad((levels[curr_level].neighbors[j].x + c->loc.x - (curr_x + 0.5)) / 5.0, (-levels[curr_level].neighbors[j].y - 0.5 - c->loc.y + curr_y) / 4.5f + 0.055, 1.0 / 5.0f, 1.0 / 4.5f, get_character_tex(*c));
 		}
 	}
 	g.push_quad(-0.1, -0.5 / 4.5 + 0.055, 1.0 / 5.0, 1.0 / 4.5, g.tex[mc.movement + string("-") + get_direction_string(mc.dir) + string("-0.bmp")]);
