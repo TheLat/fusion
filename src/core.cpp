@@ -9,7 +9,6 @@ bool player_select = false;
 bool player_start = false;
 bool player_confirm = false;
 bool player_cancel = false;
-mutex transition;
 
 extern soundengine se;
 
@@ -4968,7 +4967,6 @@ void engine::handle_teleport() {
 	for (unsigned i = 0; i < levels[mc.loc.level].teleport.size(); ++i) {
 		if (levels[mc.loc.level].teleport[i].first.allow_player) {
 			if (mc.loc.x == levels[mc.loc.level].teleport[i].first.x && mc.loc.y == levels[mc.loc.level].teleport[i].first.y) {
-				transition.lock();
 				mc.loc.x = levels[mc.loc.level].teleport[i].second.x;
 				mc.loc.y = levels[mc.loc.level].teleport[i].second.y;
 				mc.loc.level = levels[mc.loc.level].teleport[i].second.level;
@@ -4976,7 +4974,6 @@ void engine::handle_teleport() {
 					levels[mc.loc.level].characters[j].dir = levels[mc.loc.level].characters[j].origin_dir;
 					levels[mc.loc.level].characters[j].loc = levels[mc.loc.level].characters[j].origin;
 				}
-				transition.unlock();
 				se.play_music(levels[mc.loc.level].music);
 				break;
 			}
@@ -6353,7 +6350,6 @@ void engine::main() {
 		player_confirm = false;
 		player_cancel = false;
 		handle_teleport();
-		transition.lock();
 		for (unsigned i = 0; i < levels[mc.loc.level].characters.size(); ++i) {
 			if (!mc.active[levels[mc.loc.level].characters[i].name])
 				continue;
@@ -6443,7 +6439,6 @@ void engine::main() {
 				}
 			}
 		}
-		transition.unlock();
 		if (alert != "") {
 			do_menu(string("ALERT"), alert);
 			alert = "";
