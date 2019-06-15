@@ -13,6 +13,7 @@
 #include <fstream>
 #include <mutex>
 #include "timer.h"
+#include "anim.h"
 
 using namespace std;
 extern mutex m;
@@ -38,6 +39,7 @@ class graphics {
 private:
 	unsigned time_index;
 public:
+	animation_engine ae;
 	std::map<int, GLuint> tiles;
 	std::map<string, GLuint> tex;
 	std::map<string, string_lookup_data> string_lookup;
@@ -58,6 +60,7 @@ public:
 	void draw_quad(quad &q);
 
 	//Draws the scene
+	void animate();
 	void drawScene();
 	int next_chunk(string& s, int index);
 	unsigned push_text(float x, float y, float width, float height, float size, string s);

@@ -215,10 +215,15 @@ void graphics::draw_quad(quad &q) {
 	glEnd();
 }
 
-void graphics::drawScene() {
+void graphics::animate() {
 	double deltat = tim.delta(time_index);
 	tim.update(time_index);
-	deltat = 1.0 / deltat;
+	ae.tick(deltat);
+}
+
+void graphics::drawScene() {
+	//uncomment for fps
+	//deltat = 1.0 / deltat;
 	//printf("%f fps\n", deltat);
 	std::vector<quad> draw_list_copy;
 	m.lock();

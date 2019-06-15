@@ -1,5 +1,6 @@
 #include "core.h"
 #include "sound.h"
+#include "anim.h"
 
 bool player_up = false;
 bool player_down = false;
@@ -5125,6 +5126,15 @@ void engine::player_input(bool up, bool down, bool left, bool right, bool select
 		open_menu = true;
 	}
 	if (mc.loc.x != l.x || mc.loc.y != l.y) {
+		unsigned a1, a2;
+		a1 = g.ae.create_animf(&(mc.loc.x), mc.loc.x, l.x, 0.25, false);
+		a2 = g.ae.create_animf(&(mc.loc.y), mc.loc.y, l.y, 0.25, false);
+		while (!g.ae.is_done(a1)) {
+			update_level();
+		}
+		while (!g.ae.is_done(a2)) {
+			update_level();
+		}
 		mc.loc = l;
 		update_level();
 		if (encounter_tile[get_tile(mc.loc.y, mc.loc.x)]) {
@@ -6434,6 +6444,7 @@ void engine::main() {
 						levels[mc.loc.level].characters[i].dir = UP;
 					else if (levels[mc.loc.level].characters[i].loc.y < mc.loc.y)
 						levels[mc.loc.level].characters[i].dir = DOWN;
+					update_level();
 					do_interaction(levels[mc.loc.level].characters[i]);
 					break;
 				}

@@ -217,6 +217,12 @@ void core_main() {
 	}
 }
 
+void animate() {
+	while (true) {
+		g.animate();
+	}
+}
+
 int main(int argc, char** argv) {
 	srand((unsigned)time(NULL));
 	printf("Loading types...");
@@ -287,6 +293,7 @@ int main(int argc, char** argv) {
 	glutKeyboardFunc(handleKeypress);
 	glutReshapeFunc(handleResize);
 	thread t1(core_main);
+	thread t2(animate);
 	glutMainLoop(); //Start the main loop
 
 	return 0;
