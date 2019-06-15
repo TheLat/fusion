@@ -161,6 +161,7 @@ public:
 	int enemy_selected;
 	int extra_winnings;
 	int box_number;
+	int frame;
 	mon team[6];
 	mon enemy_team[6];
 	mon storage[STORAGE_MAX][STORAGE_MAX];
@@ -173,7 +174,7 @@ public:
 	std::map<string, bool> seen;
 	std::map<string, bool> caught;
 	std::map<string, bool> used_tms;
-	player() { wins = 0; losses = 0; money = 0; name = "RED"; rivalname = "BLUE"; repel = 0; selected = 0; enemy_selected = 0; box_number = 0; movement = string("player"); }
+	player() { wins = 0; losses = 0; money = 0; name = "RED"; rivalname = "BLUE"; repel = 0; selected = 0; enemy_selected = 0; box_number = 0; movement = string("player"); frame = 0; }
 };
 
 class status_effect {

@@ -53,8 +53,7 @@ double max(double a, double b) {
 }
 
 GLuint get_character_tex(character& c) {
-	c.frame = c.frame % 4;
-	return c.images[(c.dir * 4) + c.frame];
+	return c.images[(c.dir * 4) + (c.frame % 4)];
 	//g.tex[c->image + string("-") + get_direction_string(c->dir) + string("-0.bmp")]
 }
 
@@ -5128,16 +5127,19 @@ void engine::player_input(bool up, bool down, bool left, bool right, bool select
 		open_menu = true;
 	}
 	if (mc.loc.x != l.x || mc.loc.y != l.y) {
-		unsigned a1, a2;
-		a1 = g.ae.create_animf(&(mc.loc.x), mc.loc.x, l.x, 0.25, false);
-		a2 = g.ae.create_animf(&(mc.loc.y), mc.loc.y, l.y, 0.25, false);
-		while (!g.ae.is_done(a1)) {
+		unsigned a1, a2, a3;
+		a1 = g.ae.create_animf(&(mc.loc.x), mc.loc.x, l.x, 0.25);
+		a2 = g.ae.create_animf(&(mc.loc.y), mc.loc.y, l.y, 0.25);
+		a3 = g.ae.create_animi(&(mc.frame), mc.frame, mc.frame + 2, 0.25);
+		while (!g.ae.is_donef(a1)) {
 			update_level();
 		}
-		while (!g.ae.is_done(a2)) {
+		while (!g.ae.is_donef(a2)) {
 			update_level();
 		}
-		mc.loc = l;
+		while (!g.ae.is_donef(a3)) {
+			update_level();
+		}
 		update_level();
 		if (encounter_tile[get_tile(mc.loc.y, mc.loc.x)]) {
 			if (levels[mc.loc.level].encounters.size() > 0) {
@@ -5296,7 +5298,7 @@ void engine::draw_characters() {
 				g.push_quad((levels[curr_level].neighbors[j].x + c->loc.x - (curr_x + 0.5)) / 5.0, (-levels[curr_level].neighbors[j].y - 0.5 - c->loc.y + curr_y) / 4.5f + 0.055, 1.0 / 5.0f, 1.0 / 4.5f, get_character_tex(*c));
 		}
 	}
-	g.push_quad(-0.1, -0.5 / 4.5 + 0.055, 1.0 / 5.0, 1.0 / 4.5, g.tex[mc.movement + string("-") + get_direction_string(mc.dir) + string("-0.bmp")]);
+	g.push_quad(-0.1, -0.5 / 4.5 + 0.055, 1.0 / 5.0, 1.0 / 4.5, g.tex[mc.movement + string("-") + get_direction_string(mc.dir) + string("-") + to_string(mc.frame % 4) + string(".bmp")]);
 }
 
 void engine::do_interaction(character& npc) {

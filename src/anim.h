@@ -26,10 +26,14 @@ public:
 class animation_engine {
 private:
 	vector<animation_float> animf;
+	vector<animation_int> animi;
 public:
-	unsigned create_animf(double* targ, double start, double end, double duration, bool wrap);
+	unsigned create_animf(double* targ, double start, double end, double duration);
+	unsigned create_animi(int* targ, int start, int end, double duration);
 	void tick(double delta);
-	bool is_done(unsigned index);
+	bool is_donef(unsigned index);
+	bool is_donei(unsigned index);
+	void purge();
 };
 
 #endif
