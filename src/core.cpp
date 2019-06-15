@@ -4870,7 +4870,7 @@ void engine::init_special() {
 
 void engine::init_types() {
 	string line;
-	ifstream f("../resources/data/types.dat", ios::binary);
+	ifstream f("../resources/data/types.dat");
 	char a = 1;
 	while (f.is_open()) {
 		while (a && a != EOF) {
@@ -4895,7 +4895,7 @@ void engine::init_types() {
 		}
 	}
 
-	ifstream f2("../resources/data/types.dat", ios::binary);
+	ifstream f2("../resources/data/types.dat");
 	a = 1;
 	string attack, defense, mul;
 	while (f2.is_open()) {
@@ -5042,31 +5042,39 @@ void engine::player_input(bool up, bool down, bool left, bool right, bool select
 		ahead2.x += 2.0;
 		break;
 	}
-	if (l.y == -1.0)
+	if (l.y == -1.0) {
+		se.play_sound(string("sound_effects/general/sfx_collision.mp3"));
 		return;
-	if (l.y >= levels[mc.loc.level].data.size())
+	}
+	if (l.y >= levels[mc.loc.level].data.size()) {
+		se.play_sound(string("sound_effects/general/sfx_collision.mp3"));
 		return;
-	if (l.x == -1.0)
+	}
+	if (l.x == -1.0) {
+		se.play_sound(string("sound_effects/general/sfx_collision.mp3"));
 		return;
-	if (l.x >= levels[mc.loc.level].data[int(l.y)].size())
+	}
+	if (l.x >= levels[mc.loc.level].data[int(l.y)].size()) {
+		se.play_sound(string("sound_effects/general/sfx_collision.mp3"));
 		return;
+	}
 	if (blocking[get_tile(l.y, l.x)]) {
 		if (down && jumpdown[get_tile(l.y, l.x)]) {}
 		else if (right && jumpright[get_tile(l.y, l.x)]) {}
 		else if (left && jumpleft[get_tile(l.y, l.x)]) {}
-		else
+		else {
+			se.play_sound(string("sound_effects/general/sfx_collision.mp3"));
 			return;
+		}
 	}
 	if (water[get_tile(l.y, l.x)] && !has_move_in_party(string("SURF"))) {
+		se.play_sound(string("sound_effects/general/sfx_collision.mp3"));
 		return;
 	}
 	if (water[get_tile(l.y, l.x)] && has_move_in_party(string("SURF"))) {
 		if (!water[get_tile(mc.loc.y, mc.loc.x)]) {
 			mc.movement = string("seal");
 		}
-	}
-	if (mc.movement == string("seal") && !water[get_tile(l.y, l.x)]) {
-		mc.movement = string("player");
 	}
 	if (down && jumpdown[get_tile(l.y, l.x)])
 		l.y += 1.0;
@@ -5092,6 +5100,7 @@ void engine::player_input(bool up, bool down, bool left, bool right, bool select
 						}
 					}
 					if (npc_in_way) {
+						se.play_sound(string("sound_effects/general/sfx_collision.mp3"));
 						return;
 					}
 					else {
@@ -5108,14 +5117,17 @@ void engine::player_input(bool up, bool down, bool left, bool right, bool select
 								}
 							}
 						}
+						se.play_sound(string("sound_effects/general/sfx_collision.mp3"));
 						return;
 					}
 				}
 				else {
+					se.play_sound(string("sound_effects/general/sfx_collision.mp3"));
 					return;
 				}
 			}
 			else {
+				se.play_sound(string("sound_effects/general/sfx_collision.mp3"));
 				return;
 			}
 		}
@@ -5128,9 +5140,12 @@ void engine::player_input(bool up, bool down, bool left, bool right, bool select
 	}
 	if (mc.loc.x != l.x || mc.loc.y != l.y) {
 		unsigned a1, a2, a3;
-		a1 = g.ae.create_animf(&(mc.loc.x), mc.loc.x, l.x, 0.25);
-		a2 = g.ae.create_animf(&(mc.loc.y), mc.loc.y, l.y, 0.25);
-		a3 = g.ae.create_animi(&(mc.frame), mc.frame, mc.frame + 2, 0.25);
+		a1 = g.ae.create_animf(&(mc.loc.x), mc.loc.x, l.x, 0.26666);
+		a2 = g.ae.create_animf(&(mc.loc.y), mc.loc.y, l.y, 0.26666);
+		a3 = g.ae.create_animi(&(mc.frame), mc.frame, mc.frame + 2, 0.2666);
+		if (fabs(mc.loc.x - l.x) + fabs(mc.loc.y - l.y) > 1.0) {
+			se.play_sound(string("sound_effects/general/sfx_ledge.mp3"));
+		}
 		while (!g.ae.is_donef(a1)) {
 			update_level();
 		}
@@ -5186,6 +5201,9 @@ void engine::player_input(bool up, bool down, bool left, bool right, bool select
 				}
 			}
 		}
+	}
+	if (mc.movement == string("seal") && !water[get_tile(l.y, l.x)]) {
+		mc.movement = string("player");
 	}
 }
 
