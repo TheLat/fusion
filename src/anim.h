@@ -2,6 +2,7 @@
 #define ANIM_HEADER
 
 #include <vector>
+#include <mutex>
 #include "timer.h"
 
 

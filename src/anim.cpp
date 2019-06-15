@@ -1,5 +1,7 @@
 #include "anim.h"
 
+mutex safety;
+
 unsigned animation_engine::create_animf(double* targ, double start, double end, double duration) {
 	animation_float temp;
 	temp.start = start;
@@ -10,7 +12,9 @@ unsigned animation_engine::create_animf(double* targ, double start, double end, 
 	temp.done = false;
 	if (start == end)
 		temp.done = true;
+	safety.lock();
 	animf.push_back(temp);
+	safety.unlock();
 	return animf.size() - 1;
 }
 
@@ -24,12 +28,15 @@ unsigned animation_engine::create_animi(int* targ, int start, int end, double du
 	temp.done = false;
 	if (start == end)
 		temp.done = true;
+	safety.lock();
 	animi.push_back(temp);
+	safety.unlock();
 	return animi.size() - 1;
 }
 
 void animation_engine::tick(double delta) {
 	unsigned i;
+	safety.lock();
 	for (i = 0; i < animf.size(); ++i) {
 		if (animf[i].done)
 			continue;
@@ -50,6 +57,7 @@ void animation_engine::tick(double delta) {
 		if (animi[i].time == animi[i].duration)
 			animi[i].done = true;
 	}
+	safety.unlock();
 	purge();
 }
 
@@ -70,6 +78,7 @@ bool animation_engine::is_donei(unsigned index) {
 void animation_engine::purge() {
 	bool found;
 	found = false;
+	safety.lock();
 	for (unsigned i = 0; i < animf.size(); ++i) {
 		if (!animf[i].done) {
 			found = true;
@@ -89,4 +98,5 @@ void animation_engine::purge() {
 	if (!found) {
 		animi.empty();
 	}
+	safety.unlock();
 }

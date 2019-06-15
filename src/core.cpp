@@ -5140,7 +5140,6 @@ void engine::player_input(bool up, bool down, bool left, bool right, bool select
 		while (!g.ae.is_donef(a3)) {
 			update_level();
 		}
-		update_level();
 		if (encounter_tile[get_tile(mc.loc.y, mc.loc.x)]) {
 			if (levels[mc.loc.level].encounters.size() > 0) {
 				if (random(0.0, 187.5) < 8.5) {
