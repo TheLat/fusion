@@ -16,7 +16,6 @@ unsigned animation_engine::create_animf(double* targ, double start, double end, 
 }
 
 void animation_engine::tick(double delta) {
-	printf("\nCalling anim tick with %f", delta);
 	for (unsigned i = 0; i < animf.size(); ++i) {
 		if (animf[i].done)
 			continue;

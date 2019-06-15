@@ -1,6 +1,7 @@
 #include "core.h"
 #include "sound.h"
 #include "anim.h"
+#include "timer.h"
 
 bool player_up = false;
 bool player_down = false;
@@ -10,7 +11,7 @@ bool player_select = false;
 bool player_start = false;
 bool player_confirm = false;
 bool player_cancel = false;
-
+unsigned time_index;
 extern soundengine se;
 
 typedef std::map<string, std::map<string, float> >::iterator type_iter;
@@ -52,6 +53,7 @@ double max(double a, double b) {
 }
 
 GLuint get_character_tex(character& c) {
+	c.frame = c.frame % 4;
 	return c.images[(c.dir * 4) + c.frame];
 	//g.tex[c->image + string("-") + get_direction_string(c->dir) + string("-0.bmp")]
 }
@@ -5207,11 +5209,16 @@ vector<int> engine::do_menu(string menu, string choice, string text_override, st
 }
 
 void engine::update_level() {
+	tim.update(time_index);
 	m.lock();
 	g.draw_list.clear();
 	draw_level();
 	draw_characters();
 	m.unlock();
+	double delta = tim.delta(time_index);
+	while (delta < 1.0 / 120.0) {
+		delta = tim.delta(time_index);
+	}
 }
 
 void engine::draw_level() {
@@ -6348,6 +6355,7 @@ void engine::do_interaction(character& npc) {
 }
 
 void engine::main() {
+	time_index = tim.create();
 	while (true) {
 		if (player_up || player_down || player_left || player_right || player_select || player_start || player_confirm || player_cancel)
 			player_input(player_up, player_down, player_left, player_right, player_select, player_start, player_confirm, player_cancel);
