@@ -195,11 +195,12 @@ public:
 	string name; // MUST BE UNIQUE
 	vector<string> interactions;
 	vector<location> force_interactions;
-	location loc, origin;
+	location loc, origin, anim_offset;
 	int frame;
 	GLuint images[16];
-	bool wander, incorporeal, no_force, nolook, far, no_offset, pushable, teleportable;
-	character() { wander = false; dir = DOWN; incorporeal = false; no_force = false; nolook = false; far = false; no_offset = false; pushable = false; teleportable = false; frame = 0; }
+	bool wander, incorporeal, no_force, nolook, far, no_offset, pushable, teleportable, assigned_facing;
+	double delay;
+	character() { wander = false; dir = DOWN; incorporeal = false; no_force = false; nolook = false; far = false; no_offset = false; pushable = false; teleportable = false; frame = 0; anim_offset.x = 0.0; anim_offset.y = 0.0; assigned_facing = false; delay = 0.0; }
 };
 
 class trainer {
@@ -263,6 +264,7 @@ public:
 	location ahead, ahead2;
 	bool interact, open_menu;
 public:
+	void npc_wander(double deltat);
 	void full_heal();
 	string get_item_effect(string in);
 	void push_hp_bar_if_exists(float x, float y, int index);

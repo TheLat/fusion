@@ -217,6 +217,8 @@ void graphics::draw_quad(quad &q) {
 
 void graphics::animate() {
 	double deltat = tim.delta(time_index);
+	while (deltat < 1.0/120)
+		deltat = tim.delta(time_index);
 	tim.update(time_index);
 	ae.tick(deltat);
 }

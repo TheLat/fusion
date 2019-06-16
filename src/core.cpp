@@ -3983,7 +3983,8 @@ void engine::init_level(string levelname) {
 			while (line != "TELEPORT" && line != "DATA" && line != "ENCOUNTERS" && line != "LEVELS" && line != "TRAINERS" && line.find("WATER_ENCOUNTERS_") != 0) {
 				character c;
 				string s;
-				levels[levelname].characters.push_back(c);
+				levels[levelname].characters.push_back(c); 
+				levels[levelname].characters[levels[levelname].characters.size() - 1].delay = random(0, 4.3);
 				s = line;
 				s.erase(s.find(" "), s.length());
 				line.erase(0, line.find(" ") + 1);
@@ -4054,14 +4055,23 @@ void engine::init_level(string levelname) {
 					levels[levelname].characters[levels[levelname].characters.size() - 1].teleportable = false;
 				}
 				levels[levelname].characters[levels[levelname].characters.size() - 1].dir = DOWN;
-				if (s.find("LEFT") != -1)
+				levels[levelname].characters[levels[levelname].characters.size() - 1].assigned_facing = false;
+				if (s.find("LEFT") != -1) {
 					levels[levelname].characters[levels[levelname].characters.size() - 1].dir = LEFT;
-				if (s.find("RIGHT") != -1)
+					levels[levelname].characters[levels[levelname].characters.size() - 1].assigned_facing = true;
+				}
+				if (s.find("RIGHT") != -1) {
 					levels[levelname].characters[levels[levelname].characters.size() - 1].dir = RIGHT;
-				if (s.find("UP") != -1)
+					levels[levelname].characters[levels[levelname].characters.size() - 1].assigned_facing = true;
+				}
+				if (s.find("UP") != -1) {
 					levels[levelname].characters[levels[levelname].characters.size() - 1].dir = UP;
-				if (s.find("DOWN") != -1)
+					levels[levelname].characters[levels[levelname].characters.size() - 1].assigned_facing = true;
+				}
+				if (s.find("DOWN") != -1) {
 					levels[levelname].characters[levels[levelname].characters.size() - 1].dir = DOWN;
+					levels[levelname].characters[levels[levelname].characters.size() - 1].assigned_facing = true;
+				}
 				levels[levelname].characters[levels[levelname].characters.size() - 1].origin_dir = levels[levelname].characters[levels[levelname].characters.size() - 1].dir;
 				mc.interaction[levels[levelname].characters[levels[levelname].characters.size() - 1].name] = 0;
 				std::getline(f, line);
@@ -5004,7 +5014,6 @@ void engine::input(bool up, bool down, bool left, bool right, bool select, bool 
 }
 
 void engine::player_input(bool up, bool down, bool left, bool right, bool select, bool start, bool confirm, bool cancel) {
-	// TODO:  Animations
 	location l = mc.loc;
 	ahead = l;
 	ahead2 = l;
@@ -5289,6 +5298,98 @@ void engine::draw_level() {
 	}
 }
 
+void engine::npc_wander(double deltat) {
+	string curr_level = mc.loc.level;
+	level* l = &(levels[curr_level]);
+	int temp;
+	location loc;
+	bool blocked;
+	double dur = 0.26666*2.0;
+	int tile;
+	for (unsigned i = 0; i < l->characters.size(); ++i) {
+		character* c = &(l->characters[i]);
+		if (!mc.active[c->name])
+			continue;
+		if (c->assigned_facing)
+			continue;
+		if (c->image == "blank")
+			continue;
+		c->delay -= deltat;
+		if (c->delay < 0.0) {
+			c->delay = random(0.0, 4.3);
+			if (c->delay < (0.03)) {
+				c->delay = 8.5;
+			}
+			c->delay += dur;
+			temp = int(random(0.0, 4.0));
+			loc = c->loc;
+			switch (temp) {
+			case 0:
+				c->dir = UP;
+				loc.y -= 1.0;
+				break;
+			case 1:
+				c->dir = DOWN;
+				loc.y += 1.0;
+				break;
+			case 2:
+				c->dir = LEFT;
+				loc.x -= 1.0;
+				break;
+			case 3:
+				c->dir = RIGHT;
+				loc.x += 1.0;
+				break;
+			default:
+				break;
+			}
+			if (!c->wander)
+				continue;
+			if (loc.x < 0.0)
+				continue;
+			if (loc.y < 0.0)
+				continue;
+			if (loc.y >= double(l->data.size()))
+				continue;
+			if (loc.x >= double(l->data[unsigned(loc.y)].size()))
+				continue;
+			tile = get_tile(loc.y, loc.x);
+			if (blocking[tile]) {
+				continue;
+			}
+			if (npc_blocking[tile]) {
+				continue;
+			}
+			if (npc_blocking[tile]) {
+				continue;
+			}
+			if (water[tile]) {
+				continue;
+			}
+			blocked = false;
+			for (unsigned j = 0; j < l->characters.size(); ++j) {
+				if (i == j)
+					continue;
+				character* c2 = &(l->characters[j]);
+				if ((c2->loc.x == loc.x) && (c2->loc.y == loc.y)) {
+					blocked = true;
+					break;
+				}
+			}
+			if ((mc.loc.x == loc.x) && (mc.loc.y == loc.y))
+				blocked = true;
+			if (!blocked) {
+				c->anim_offset.x = c->loc.x - loc.x;
+				c->anim_offset.y = c->loc.y - loc.y;
+				c->loc = loc;
+				g.ae.create_animf(&(c->anim_offset.x), c->anim_offset.x, 0.0, dur);
+				g.ae.create_animf(&(c->anim_offset.y), c->anim_offset.y, 0.0, dur);
+				g.ae.create_animi(&(c->frame), c->frame, c->frame + 2, dur);
+			}
+		}
+	}
+}
+
 void engine::draw_characters() {
 	string curr_level = mc.loc.level;
 	double curr_x = mc.loc.x;
@@ -5299,9 +5400,9 @@ void engine::draw_characters() {
 		if (!mc.active[c->name])
 			continue;
 		if (c->no_offset)
-			g.push_quad((c->loc.x - (curr_x + 0.5)) / 5.0, (-0.5 - c->loc.y + curr_y) / 4.5f + 0.0, 1.0 / 5.0f, 1.0 / 4.5f, get_character_tex(*c));
+			g.push_quad(((c->anim_offset.x + c->loc.x) - (curr_x + 0.5)) / 5.0, (-0.5 - (c->loc.y + c->anim_offset.y) + curr_y) / 4.5f + 0.0, 1.0 / 5.0f, 1.0 / 4.5f, get_character_tex(*c));
 		else
-			g.push_quad((c->loc.x - (curr_x + 0.5)) / 5.0, (-0.5 - c->loc.y + curr_y) / 4.5f + 0.055, 1.0 / 5.0f, 1.0 / 4.5f, get_character_tex(*c));
+			g.push_quad(((c->anim_offset.x + c->loc.x) - (curr_x + 0.5)) / 5.0, (-0.5 - (c->loc.y + c->anim_offset.y) + curr_y) / 4.5f + 0.055, 1.0 / 5.0f, 1.0 / 4.5f, get_character_tex(*c));
 	}
 	for (unsigned j = 0; j < l->neighbors.size(); ++j) {
 		level* n = &(levels[l->neighbors[j].level]);
@@ -5310,9 +5411,9 @@ void engine::draw_characters() {
 			if (!mc.active[c->name])
 				continue;
 			if (c->no_offset)
-				g.push_quad((levels[curr_level].neighbors[j].x + c->loc.x - (curr_x + 0.5)) / 5.0, (-levels[curr_level].neighbors[j].y - 0.5 - c->loc.y + curr_y) / 4.5f + 0.0, 1.0 / 5.0f, 1.0 / 4.5f, get_character_tex(*c));
+				g.push_quad((levels[curr_level].neighbors[j].x + (c->anim_offset.x + c->loc.x) - (curr_x + 0.5)) / 5.0, (-levels[curr_level].neighbors[j].y - 0.5 - (c->loc.y + c->anim_offset.y) + curr_y) / 4.5f + 0.0, 1.0 / 5.0f, 1.0 / 4.5f, get_character_tex(*c));
 			else
-				g.push_quad((levels[curr_level].neighbors[j].x + c->loc.x - (curr_x + 0.5)) / 5.0, (-levels[curr_level].neighbors[j].y - 0.5 - c->loc.y + curr_y) / 4.5f + 0.055, 1.0 / 5.0f, 1.0 / 4.5f, get_character_tex(*c));
+				g.push_quad((levels[curr_level].neighbors[j].x + (c->anim_offset.x + c->loc.x) - (curr_x + 0.5)) / 5.0, (-levels[curr_level].neighbors[j].y - 0.5 - (c->loc.y + c->anim_offset.y) + curr_y) / 4.5f + 0.055, 1.0 / 5.0f, 1.0 / 4.5f, get_character_tex(*c));
 		}
 	}
 	g.push_quad(-0.1, -0.5 / 4.5 + 0.055, 1.0 / 5.0, 1.0 / 4.5, g.tex[mc.movement + string("-") + get_direction_string(mc.dir) + string("-") + to_string(mc.frame % 4) + string(".bmp")]);
@@ -6374,8 +6475,14 @@ void engine::do_interaction(character& npc) {
 }
 
 void engine::main() {
-	time_index = tim.create();
+	unsigned time_index2 = tim.create();
+	double deltat = tim.delta(time_index);
 	while (true) {
+		deltat = tim.delta(time_index);
+		while (deltat < 1.0/120.0)
+			deltat = tim.delta(time_index);
+		tim.update(time_index2);
+		npc_wander(deltat);
 		if (player_up || player_down || player_left || player_right || player_select || player_start || player_confirm || player_cancel)
 			player_input(player_up, player_down, player_left, player_right, player_select, player_start, player_confirm, player_cancel);
 		player_up = false;
