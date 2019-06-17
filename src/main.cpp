@@ -1,4 +1,6 @@
 #include <mutex>
+#include <iostream>
+#include <fstream>
 #include <thread>
 #include "graphics.h"
 #include "core.h"
@@ -14,6 +16,15 @@ engine e;
 graphics g;
 soundengine se;
 timer tim;
+
+bool safe_getline(ifstream &f, string& s) {
+	bool ret = std::getline(f, s) ? true : false;
+	while (s.find(string("\r")) != -1)
+		s.erase(s.find(string("\r")), 1);
+	while (s.find(string("\n")) != -1)
+		s.erase(s.find(string("\n")), 1);
+	return ret;
+}
 
 int get_storage_use() {
 	int ret = 0;

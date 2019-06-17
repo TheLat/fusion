@@ -4,6 +4,7 @@
 #include <iostream>
 #include <fstream>
 
+extern bool safe_getline(ifstream &f, string& s);
 
 void soundengine::init_sounds() {
 	FMOD::Channel    *channel = 0;
@@ -17,7 +18,7 @@ void soundengine::init_sounds() {
 	ifstream f("../resources/data/sounds.dat");
 	string line;
 	while (f.is_open()) {
-		while (std::getline(f, line)) {
+		while (safe_getline(f, line)) {
 			result = system->createSound((string("../resources/") + line).c_str(), FMOD_DEFAULT, 0, &sounds[line]);
 		}
 		f.close();

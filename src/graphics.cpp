@@ -1,5 +1,7 @@
 #include "graphics.h"
 
+extern bool safe_getline(ifstream &f, string& s);
+
 GLuint graphics::load_image(string filename) {
 	GLuint ret = 0;
 	int i;
@@ -117,7 +119,7 @@ void graphics::initRendering() {
 
 	ifstream f("../resources/data/level_sprites.dat");
 	string tmp;
-	std::getline(f, tmp);
+	safe_getline(f, tmp);
 	int total = stoi(tmp);
 	f.close();
 	for (int i = 0; i < total; ++i) {
@@ -133,7 +135,7 @@ void graphics::initRendering() {
 
 	ifstream f2("../resources/data/menu_sprites.dat");
 	while (f2.is_open()) {
-		while (std::getline(f2, tmp)) {
+		while (safe_getline(f2, tmp)) {
 			tex[tmp] = load_image("../resources/menu_sprites/" + tmp);
 		}
 		f2.close();
@@ -142,7 +144,7 @@ void graphics::initRendering() {
 
 	ifstream f4("../resources/data/character_sprites.dat");
 	while (f4.is_open()) {
-		while (std::getline(f4, tmp)) {
+		while (safe_getline(f4, tmp)) {
 			tex[tmp] = load_image("../resources/characters/" + tmp);
 		}
 		f4.close();
@@ -151,7 +153,7 @@ void graphics::initRendering() {
 	ifstream f3("../resources/data/string_lookup.dat");
 	string l1, l2;
 	while (f3.is_open()) {
-		while (std::getline(f3, tmp)) {
+		while (safe_getline(f3, tmp)) {
 			bool first_char;
 			unsigned i;
 			first_char = true;

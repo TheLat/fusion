@@ -15,6 +15,8 @@ unsigned time_index;
 extern soundengine se;
 
 typedef std::map<string, std::map<string, float> >::iterator type_iter;
+extern bool safe_getline(ifstream &f, string& s);
+
 int min(int a, int b) {
 	if (a < b) {
 		return a;
@@ -3901,7 +3903,7 @@ void engine::init_items() {
 	string key;
 	string temp;
 	while (f.is_open()) {
-		while (std::getline(f, line)) {
+		while (safe_getline(f, line)) {
 			if (line.find("ITEM:") == 0) {
 				line.erase(0, string("ITEM:").length());
 				key = line;
@@ -3955,7 +3957,7 @@ void engine::init_levels() {
 	ifstream f("../resources/data/levels.dat");
 	string line;
 	while (f.is_open()) {
-		while (std::getline(f, line))
+		while (safe_getline(f, line))
 			init_level(line);
 		f.close();
 	}
@@ -3967,19 +3969,19 @@ void engine::init_level(string levelname) {
 	std::vector<int> empty;
 	unsigned count;
 	while (f.is_open()) {
-		std::getline(f, line);
+		safe_getline(f, line);
 		if (line == "NAME") {
-			std::getline(f, line);
+			safe_getline(f, line);
 			levels[levelname].name = line;
 			continue;
 		}
 		if (line == "MUSIC") {
-			std::getline(f, line);
+			safe_getline(f, line);
 			levels[levelname].music = line;
 			continue;
 		}
 		if (line == "NPCS") {
-			std::getline(f, line);
+			safe_getline(f, line);
 			while (line != "TELEPORT" && line != "DATA" && line != "ENCOUNTERS" && line != "LEVELS" && line != "TRAINERS" && line.find("WATER_ENCOUNTERS_") != 0) {
 				character c;
 				string s;
@@ -4074,9 +4076,9 @@ void engine::init_level(string levelname) {
 				}
 				levels[levelname].characters[levels[levelname].characters.size() - 1].origin_dir = levels[levelname].characters[levels[levelname].characters.size() - 1].dir;
 				mc.interaction[levels[levelname].characters[levels[levelname].characters.size() - 1].name] = 0;
-				std::getline(f, line);
+				safe_getline(f, line);
 				if (line == "FORCE_INTERACTION") {
-					std::getline(f, line);
+					safe_getline(f, line);
 					while (line != "END") {
 						location l;
 						s = line;
@@ -4085,22 +4087,22 @@ void engine::init_level(string levelname) {
 						l.x = double(stoi(s));
 						l.y = double(stoi(line));
 						levels[levelname].characters[levels[levelname].characters.size() - 1].force_interactions.push_back(l);
-						std::getline(f, line);
+						safe_getline(f, line);
 					}
-					std::getline(f, line);
+					safe_getline(f, line);
 				}
 				if (line == "INTERACTIONS") {
-					std::getline(f, line);
+					safe_getline(f, line);
 					while (line != "END") {
 						levels[levelname].characters[levels[levelname].characters.size() - 1].interactions.push_back(line);
-						std::getline(f, line);
+						safe_getline(f, line);
 					}
-					std::getline(f, line);
+					safe_getline(f, line);
 				}
 			}
 		}
 		if (line == "TRAINERS") {
-			std::getline(f, line);
+			safe_getline(f, line);
 			trainer d;
 			while (line != "DATA" && line != "ENCOUNTERS" && line != "LEVELS" && line != "TELEPORT" && line != "END" && line.find("WATER_ENCOUNTERS_") != 0) {
 				string s, s2, s3;
@@ -4251,13 +4253,13 @@ void engine::init_level(string levelname) {
 					i = i + 1;
 				}
 				levels[levelname].trainers[d.name] = d;
-				std::getline(f, line);
+				safe_getline(f, line);
 			}
-			std::getline(f, line);
+			safe_getline(f, line);
 		}
 		if (line == "TELEPORT")
 		{
-			std::getline(f, line);
+			safe_getline(f, line);
 			std::pair<location, location> temp;
 			while (line != "NEIGHBORS" && line != "DATA" && line != "ENCOUNTERS" && line != "LEVELS" && line.find("WATER_ENCOUNTERS_") != 0) {
 				temp.first.level = levelname;
@@ -4287,11 +4289,11 @@ void engine::init_level(string levelname) {
 					}
 				}
 				levels[levelname].teleport.push_back(temp);
-				std::getline(f, line);
+				safe_getline(f, line);
 			}
 		}
 		if (line == "NEIGHBORS") {
-			std::getline(f, line);
+			safe_getline(f, line);
 			while (line.find(" ") != -1) {
 				neighbor n;
 				n.level = line;
@@ -4301,11 +4303,11 @@ void engine::init_level(string levelname) {
 				line.erase(0, line.find(" ") + 1);
 				n.y = stof(line);
 				levels[levelname].neighbors.push_back(n);
-				std::getline(f, line);
+				safe_getline(f, line);
 			}
 		}
 		if (line == "ENCOUNTERS") {
-			std::getline(f, line);
+			safe_getline(f, line);
 			while (line.size() > 0) {
 				levels[levelname].encounters.push_back(stoi(line));
 				if (line.find(' ') == -1)
@@ -4314,10 +4316,10 @@ void engine::init_level(string levelname) {
 				while (line.find(' ') == 0)
 					line.erase(0, 1);
 			}
-			std::getline(f, line);
+			safe_getline(f, line);
 		}
 		if (line == "MEGA_ENCOUNTERS") {
-			std::getline(f, line);
+			safe_getline(f, line);
 			while (line.size() > 0) {
 				levels[levelname].mega_encounters.push_back(stoi(line));
 				if (line.find(' ') == -1)
@@ -4326,10 +4328,10 @@ void engine::init_level(string levelname) {
 				while (line.find(' ') == 0)
 					line.erase(0, 1);
 			}
-			std::getline(f, line);
+			safe_getline(f, line);
 		}
 		if (line == "WATER_ENCOUNTERS_OLD") {
-			std::getline(f, line);
+			safe_getline(f, line);
 			while (line.size() > 0) {
 				levels[levelname].water_encounters_old.push_back(stoi(line));
 				if (line.find(' ') == -1)
@@ -4338,10 +4340,10 @@ void engine::init_level(string levelname) {
 				while (line.find(' ') == 0)
 					line.erase(0, 1);
 			}
-			std::getline(f, line);
+			safe_getline(f, line);
 		}
 		if (line == "WATER_ENCOUNTERS_GOOD") {
-			std::getline(f, line);
+			safe_getline(f, line);
 			while (line.size() > 0) {
 				levels[levelname].water_encounters_good.push_back(stoi(line));
 				if (line.find(' ') == -1)
@@ -4350,10 +4352,10 @@ void engine::init_level(string levelname) {
 				while (line.find(' ') == 0)
 					line.erase(0, 1);
 			}
-			std::getline(f, line);
+			safe_getline(f, line);
 		}
 		if (line == "WATER_ENCOUNTERS_SUPER") {
-			std::getline(f, line);
+			safe_getline(f, line);
 			while (line.size() > 0) {
 				levels[levelname].water_encounters_super.push_back(stoi(line));
 				if (line.find(' ') == -1)
@@ -4362,24 +4364,24 @@ void engine::init_level(string levelname) {
 				while (line.find(' ') == 0)
 					line.erase(0, 1);
 			}
-			std::getline(f, line);
+			safe_getline(f, line);
 		}
 		if (line == "LEVELS") {
-			std::getline(f, line);
+			safe_getline(f, line);
 			levels[levelname].level_range.first = stoi(line);
 			line.erase(0, line.find('-') + 1);
 			levels[levelname].level_range.second = stoi(line);
-			std::getline(f, line);
+			safe_getline(f, line);
 		}
 		if (line == "MEGA_LEVELS") {
-			std::getline(f, line);
+			safe_getline(f, line);
 			levels[levelname].mega_level_range.first = stoi(line);
 			line.erase(0, line.find('-') + 1);
 			levels[levelname].mega_level_range.second = stoi(line);
-			std::getline(f, line);
+			safe_getline(f, line);
 		}
 		if (line == "DATA") {
-			while (std::getline(f, line)) {
+			while (safe_getline(f, line)) {
 				levels[levelname].data.push_back(empty);
 				while (line.length() > 0) {
 					levels[levelname].data[levels[levelname].data.size() - 1].push_back(stoi(line));
@@ -4578,7 +4580,7 @@ void engine::init_moves() {
 void engine::init_tm() {
 	string line, index;
 	ifstream f("../resources/data/TM.dat");
-	while (std::getline(f, line)) {
+	while (safe_getline(f, line)) {
 		index = line;
 		index.erase(index.find(":"), index.size());
 		line.erase(0, line.find(":") + 1);
@@ -4590,7 +4592,7 @@ void engine::init_tm() {
 void engine::init_hm() {
 	string line, index;
 	ifstream f("../resources/data/HM.dat");
-	while (std::getline(f, line)) {
+	while (safe_getline(f, line)) {
 		index = line;
 		index.erase(index.find(":"), index.size());
 		line.erase(0, line.find(":") + 1);
@@ -4606,7 +4608,7 @@ void engine::init_mon() {
 	int level = 0;
 	while (f.is_open() && !f.eof()) {
 		line = "";
-		std::getline(f, temp);
+		safe_getline(f, temp);
 		if (temp.find(":") != -1) {
 			line = temp;
 			line.erase(line.find(":"), line.length());
@@ -4671,7 +4673,7 @@ void engine::init_mon() {
 		}
 		else if (line == "MOVES") {
 			pair<int, string> tempmove;
-			std::getline(f, temp);
+			safe_getline(f, temp);
 			while (temp.find(":") == -1) {
 				line = temp;
 				line.erase(line.find(" "), line.length());
@@ -4679,7 +4681,7 @@ void engine::init_mon() {
 				tempmove.first = stoi(line);
 				tempmove.second = temp;
 				all_mon[key].learned.push_back(tempmove);
-				std::getline(f, temp);
+				safe_getline(f, temp);
 			}
 			line = temp;
 			line.erase(line.find(":"), line.length());
@@ -4687,7 +4689,7 @@ void engine::init_mon() {
 		}
 		if (line == "EVOLUTION") {
 			pair<string, string> tempev;
-			std::getline(f, temp);
+			safe_getline(f, temp);
 			while (temp.find("TM") != 0) {
 				pair<string, string> tempev;
 				line = temp;
@@ -4696,7 +4698,7 @@ void engine::init_mon() {
 				tempev.first = line;
 				tempev.second = temp;
 				all_mon[key].evolution.push_back(tempev);
-				std::getline(f, temp);
+				safe_getline(f, temp);
 			}
 			line = temp;
 			line.erase(line.find(":"), line.length());
@@ -4783,7 +4785,7 @@ void engine::init_blocking() {
 	string line;
 	ifstream f("../resources/data/blocking-tiles.dat");
 	while (f.is_open()) {
-		while (std::getline(f, line)) {
+		while (safe_getline(f, line)) {
 			blocking[stoi(line)] = true;
 		}
 		f.close();
@@ -4794,7 +4796,7 @@ void engine::init_npc_blocking() {
 	string line;
 	ifstream f("../resources/data/npc-blocking-tiles.dat");
 	while (f.is_open()) {
-		while (std::getline(f, line)) {
+		while (safe_getline(f, line)) {
 			npc_blocking[stoi(line)] = true;
 		}
 		f.close();
@@ -4805,7 +4807,7 @@ void engine::init_jumpdown() {
 	string line;
 	ifstream f("../resources/data/jumpdown-tiles.dat");
 	while (f.is_open()) {
-		while (std::getline(f, line)) {
+		while (safe_getline(f, line)) {
 			jumpdown[stoi(line)] = true;
 		}
 		f.close();
@@ -4816,7 +4818,7 @@ void engine::init_jumpright() {
 	string line;
 	ifstream f("../resources/data/jumpright-tiles.dat");
 	while (f.is_open()) {
-		while (std::getline(f, line)) {
+		while (safe_getline(f, line)) {
 			jumpright[stoi(line)] = true;
 		}
 		f.close();
@@ -4827,7 +4829,7 @@ void engine::init_jumpleft() {
 	string line;
 	ifstream f("../resources/data/jumpleft-tiles.dat");
 	while (f.is_open()) {
-		while (std::getline(f, line)) {
+		while (safe_getline(f, line)) {
 			jumpleft[stoi(line)] = true;
 		}
 		f.close();
@@ -4838,7 +4840,7 @@ void engine::init_encounter_tiles() {
 	string line;
 	ifstream f("../resources/data/encounter-tiles.dat");
 	while (f.is_open()) {
-		while (std::getline(f, line)) {
+		while (safe_getline(f, line)) {
 			encounter_tile[stoi(line)] = true;
 		}
 		f.close();
@@ -4849,7 +4851,7 @@ void engine::init_swimming() {
 	string line;
 	ifstream f("../resources/data/water-tiles.dat");
 	while (f.is_open()) {
-		while (std::getline(f, line)) {
+		while (safe_getline(f, line)) {
 			water[stoi(line)] = true;
 		}
 		f.close();
@@ -4860,7 +4862,7 @@ void engine::init_exp() {
 	string line;
 	ifstream f("../resources/data/exp.dat");
 	while (f.is_open()) {
-		while (std::getline(f, line)) {
+		while (safe_getline(f, line)) {
 			level_to_exp.push_back(stoi(line));
 		}
 		f.close();
@@ -4871,7 +4873,7 @@ void engine::init_special() {
 	string line;
 	ifstream f("../resources/data/special.dat");
 	while (f.is_open()) {
-		while (std::getline(f, line)) {
+		while (safe_getline(f, line)) {
 			special_case[line] = true;
 		}
 		f.close();
@@ -6844,7 +6846,7 @@ void engine::load_game() {
 	if (!f.is_open()) {
 		return;
 	}
-	while (std::getline(f, line)) {
+	while (safe_getline(f, line)) {
 		if (line.find("NAME:") == 0) {
 			line.erase(0, line.find(":") + 1);
 			mc.name = line;
@@ -6908,27 +6910,27 @@ void engine::load_game() {
 			mc.repel = stoi(line);
 		}
 		else if (line.find("INTERACTIONS:") == 0) {
-			std::getline(f, line);
+			safe_getline(f, line);
 			while (line != "END") {
 				temp = line;
 				temp.erase(temp.find("|"), temp.length());
 				line.erase(0, line.find("|") + 1);
 				mc.interaction[temp] = stoi(line);
-				std::getline(f, line);
+				safe_getline(f, line);
 			}
 		}
 		else if (line.find("ACTIVE:") == 0) {
-			std::getline(f, line);
+			safe_getline(f, line);
 			while (line != "END") {
 				temp = line;
 				temp.erase(temp.find("|"), temp.length());
 				line.erase(0, line.find("|") + 1);
 				mc.active[temp] = stoi(line) == 0 ? false : true;
-				std::getline(f, line);
+				safe_getline(f, line);
 			}
 		}
 		else if (line.find("INVENTORY:") == 0) {
-			std::getline(f, line);
+			safe_getline(f, line);
 			while (line != "END") {
 				pair<string, int> p;
 				temp = line;
@@ -6937,11 +6939,11 @@ void engine::load_game() {
 				p.first = temp;
 				p.second = stoi(line);
 				mc.inventory.push_back(p);
-				std::getline(f, line);
+				safe_getline(f, line);
 			}
 		}
 		else if (line.find("INVENTORY_STORAGE:") == 0) {
-			std::getline(f, line);
+			safe_getline(f, line);
 			while (line != "END") {
 				pair<string, int> p;
 				temp = line;
@@ -6950,52 +6952,52 @@ void engine::load_game() {
 				p.first = temp;
 				p.second = stoi(line);
 				mc.inventory_storage.push_back(p);
-				std::getline(f, line);
+				safe_getline(f, line);
 			}
 		}
 		else if (line.find("SEEN:") == 0) {
-			std::getline(f, line);
+			safe_getline(f, line);
 			while (line != "END") {
 				mc.seen[line] = true;
-				std::getline(f, line);
+				safe_getline(f, line);
 			}
 		}
 		else if (line.find("CAUGHT:") == 0) {
-			std::getline(f, line);
+			safe_getline(f, line);
 			while (line != "END") {
 				mc.caught[line] = true;
-				std::getline(f, line);
+				safe_getline(f, line);
 			}
 		}
 		else if (line.find("USED_TMS:") == 0) {
-			std::getline(f, line);
+			safe_getline(f, line);
 			while (line != "END") {
 				mc.used_tms[line] = true;
-				std::getline(f, line);
+				safe_getline(f, line);
 			}
 		}
 		else if (line.find("VALUES:") == 0) {
-			std::getline(f, line);
+			safe_getline(f, line);
 			while (line != "END") {
 				temp = line;
 				temp.erase(temp.find("|"), temp.length());
 				line.erase(0, line.find("|") + 1);
 				mc.values[temp] = stoi(line);
-				std::getline(f, line);
+				safe_getline(f, line);
 			}
 		}
 		else if (line.find("TEAM:") == 0) {
-			std::getline(f, line);
+			safe_getline(f, line);
 			while (line != "END") {
 				temp = line;
 				temp.erase(temp.find("|"), temp.length());
 				line.erase(0, line.find("|") + 1);
 				load_mon(line, mc.team[stoi(temp)]);
-				std::getline(f, line);
+				safe_getline(f, line);
 			}
 		}
 		else if (line.find("STORAGE:") == 0) {
-			std::getline(f, line);
+			safe_getline(f, line);
 			while (line != "END") {
 				int i, j;
 				temp = line;
@@ -7007,15 +7009,15 @@ void engine::load_game() {
 				line.erase(0, line.find("|") + 1);
 				j = stoi(temp);
 				load_mon(line, mc.storage[i][j]);
-				std::getline(f, line);
+				safe_getline(f, line);
 			}
 		}
 		else if (line.find("LEVEL:") == 0) {
-			std::getline(f, line);
+			safe_getline(f, line);
 			while (line != "END_LEVELS") {
 				string key;
 				key = line;
-				std::getline(f, line);
+				safe_getline(f, line);
 				while (line != "END") {
 					int i, dir, x, y;
 					temp = line;
@@ -7038,9 +7040,9 @@ void engine::load_game() {
 					levels[key].characters[i].loc.x = x;
 					levels[key].characters[i].loc.y = y;
 					levels[key].characters[i].no_force = stoi(line) == 1;
-					std::getline(f, line);
+					safe_getline(f, line);
 				}
-				std::getline(f, line);
+				safe_getline(f, line);
 			}
 		}
 	}

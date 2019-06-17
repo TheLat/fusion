@@ -1,5 +1,7 @@
 #include "menus.h"
 
+extern bool safe_getline(ifstream &f, string& s);
+
 mutex mutex2;
 
 void menu::create_menu(string file, string choice, string text_override, string followup_override) {
@@ -14,7 +16,7 @@ void menu::create_menu(string file, string choice, string text_override, string 
 	ifstream f(string("../resources/menus/") + file + string(".dat"));
 	string line, temp1, temp2;
 	while (f.is_open()) {
-		while (std::getline(f, line)) {
+		while (safe_getline(f, line)) {
 			while (line.find("{NEWLINE}") != -1) {
 				int i;
 				i = line.find("{NEWLINE}");
@@ -81,7 +83,7 @@ void menu::create_menu(string file, string choice, string text_override, string 
 						selection_cap = stoi(temp2);
 				}
 				else if (temp1 == "HP_BARS") {
-					std::getline(f, line);
+					safe_getline(f, line);
 					while (line != "END") {
 						while (line.find("{CHOICE}") != -1) {
 							line.insert(line.find("{CHOICE}"), choice);
@@ -98,11 +100,11 @@ void menu::create_menu(string file, string choice, string text_override, string 
 						temp1 = line;
 						t.s = to_string(stoi(line));
 						hp_bars.push_back(t);
-						std::getline(f, line);
+						safe_getline(f, line);
 					}
 				}
 				else if (temp1 == "BOXES") {
-					std::getline(f, line);
+					safe_getline(f, line);
 					while (line != "END") {
 						temp1 = line;
 						temp1.erase(temp1.find(" "), temp1.length());
@@ -119,11 +121,11 @@ void menu::create_menu(string file, string choice, string text_override, string 
 						temp1 = line;
 						b.height = stof(temp1);
 						boxes.push_back(b);
-						std::getline(f, line);
+						safe_getline(f, line);
 					}
 				}
 				else if (temp1 == "IMAGES") {
-					std::getline(f, line);
+					safe_getline(f, line);
 					while (line != "END") {
 						while (line.find("{CHOICE}") != -1) {
 							line.insert(line.find("{CHOICE}"), choice);
@@ -147,11 +149,11 @@ void menu::create_menu(string file, string choice, string text_override, string 
 						im.height = stof(temp1);
 						im.filename = get_special_string(line);
 						images.push_back(im);
-						std::getline(f, line);
+						safe_getline(f, line);
 					}
 				}
 				else if (temp1 == "ARROWBOXES") {
-					std::getline(f, line);
+					safe_getline(f, line);
 					while (line != "END") {
 						temp1 = line;
 						temp1.erase(temp1.find(" "), temp1.length());
@@ -168,12 +170,12 @@ void menu::create_menu(string file, string choice, string text_override, string 
 						temp1 = line;
 						b.height = stof(temp1);
 						arrowboxes.push_back(b);
-						std::getline(f, line);
+						safe_getline(f, line);
 					}
 				}
 				else if (temp1.find("DEX") == 0) {
 					int count = 0;
-					std::getline(f, line);
+					safe_getline(f, line);
 					temp2 = line;
 					temp2.erase(temp2.find(" "), temp2.length());
 					line.erase(0, line.find(" ") + 1);
@@ -188,7 +190,7 @@ void menu::create_menu(string file, string choice, string text_override, string 
 					b.length = stof(temp2);
 					temp2 = line;
 					b.height = stof(temp2);
-					std::getline(f, line);
+					safe_getline(f, line);
 					float x = b.xmin + 0.2;
 					float y = b.ymin + b.height - 0.5f;
 					std::map<string, bool> seen_map = get_seen_table();
@@ -252,7 +254,7 @@ void menu::create_menu(string file, string choice, string text_override, string 
 				}
 				else if (temp1.find("INVENTORY_") == 0) {
 					int count = 0;
-					std::getline(f, line);
+					safe_getline(f, line);
 					temp1.erase(0, temp1.find("_") + 1);
 					temp2 = line;
 					temp2.erase(temp2.find(" "), temp2.length());
@@ -269,7 +271,7 @@ void menu::create_menu(string file, string choice, string text_override, string 
 					temp2 = line;
 					b.height = stof(temp2);
 					boxes.push_back(b);
-					std::getline(f, line);
+					safe_getline(f, line);
 					float x = b.xmin + 0.2;
 					float y = b.ymin + b.height - 0.4f;
 					selection_cap = ((b.height + 0.0001) - 0.3) / 0.2;
@@ -325,7 +327,7 @@ void menu::create_menu(string file, string choice, string text_override, string 
 				}
 				else if (temp1.find("WITHDRAW_ITEM") == 0) {
 					int count = 0;
-					std::getline(f, line);
+					safe_getline(f, line);
 					temp1 = "ALL";
 					temp2 = line;
 					temp2.erase(temp2.find(" "), temp2.length());
@@ -342,7 +344,7 @@ void menu::create_menu(string file, string choice, string text_override, string 
 					temp2 = line;
 					b.height = stof(temp2);
 					boxes.push_back(b);
-					std::getline(f, line);
+					safe_getline(f, line);
 					float x = b.xmin + 0.2;
 					float y = b.ymin + b.height - 0.4f;
 					selection_cap = ((b.height + 0.0001) - 0.3) / 0.2;
@@ -392,7 +394,7 @@ void menu::create_menu(string file, string choice, string text_override, string 
 				}
 				else if (temp1.find("RELEASE_PKMN") == 0) {
 					int count = 0;
-					std::getline(f, line);
+					safe_getline(f, line);
 					temp1 = "ALL";
 					temp2 = line;
 					temp2.erase(temp2.find(" "), temp2.length());
@@ -409,7 +411,7 @@ void menu::create_menu(string file, string choice, string text_override, string 
 					temp2 = line;
 					b.height = stof(temp2);
 					boxes.push_back(b);
-					std::getline(f, line);
+					safe_getline(f, line);
 					float x = b.xmin + 0.2;
 					float y = b.ymin + b.height - 0.4f;
 					selection_cap = ((b.height + 0.0001) - 0.3) / 0.2;
@@ -459,7 +461,7 @@ void menu::create_menu(string file, string choice, string text_override, string 
 				}
 				else if (temp1.find("WITHDRAW_PKMN") == 0) {
 					int count = 0;
-					std::getline(f, line);
+					safe_getline(f, line);
 					temp1 = "ALL";
 					temp2 = line;
 					temp2.erase(temp2.find(" "), temp2.length());
@@ -476,7 +478,7 @@ void menu::create_menu(string file, string choice, string text_override, string 
 					temp2 = line;
 					b.height = stof(temp2);
 					boxes.push_back(b);
-					std::getline(f, line);
+					safe_getline(f, line);
 					float x = b.xmin + 0.2;
 					float y = b.ymin + b.height - 0.4f;
 					selection_cap = ((b.height + 0.0001) - 0.3) / 0.2;
@@ -526,7 +528,7 @@ void menu::create_menu(string file, string choice, string text_override, string 
 				}
 				else if (temp1.find("DEPOSIT_PKMN") == 0) {
 					int count = 0;
-					std::getline(f, line);
+					safe_getline(f, line);
 					temp1 = "ALL";
 					temp2 = line;
 					temp2.erase(temp2.find(" "), temp2.length());
@@ -543,7 +545,7 @@ void menu::create_menu(string file, string choice, string text_override, string 
 					temp2 = line;
 					b.height = stof(temp2);
 					boxes.push_back(b);
-					std::getline(f, line);
+					safe_getline(f, line);
 					float x = b.xmin + 0.2;
 					float y = b.ymin + b.height - 0.4f;
 					selection_cap = ((b.height + 0.0001) - 0.3) / 0.2;
@@ -593,7 +595,7 @@ void menu::create_menu(string file, string choice, string text_override, string 
 				}
 				else if (temp1.find("DEPOSIT_ITEM") == 0) {
 					int count = 0;
-					std::getline(f, line);
+					safe_getline(f, line);
 					temp1 = "ALL";
 					temp2 = line;
 					temp2.erase(temp2.find(" "), temp2.length());
@@ -610,7 +612,7 @@ void menu::create_menu(string file, string choice, string text_override, string 
 					temp2 = line;
 					b.height = stof(temp2);
 					boxes.push_back(b);
-					std::getline(f, line);
+					safe_getline(f, line);
 					float x = b.xmin + 0.2;
 					float y = b.ymin + b.height - 0.4f;
 					selection_cap = ((b.height + 0.0001) - 0.3) / 0.2;
@@ -660,7 +662,7 @@ void menu::create_menu(string file, string choice, string text_override, string 
 				}
 				else if (temp1.find("SELL") == 0) {
 					int count = 0;
-					std::getline(f, line);
+					safe_getline(f, line);
 					temp1 = "ALL";
 					temp2 = line;
 					temp2.erase(temp2.find(" "), temp2.length());
@@ -677,7 +679,7 @@ void menu::create_menu(string file, string choice, string text_override, string 
 					temp2 = line;
 					b.height = stof(temp2);
 					boxes.push_back(b);
-					std::getline(f, line);
+					safe_getline(f, line);
 					float x = b.xmin + 0.2;
 					float y = b.ymin + b.height - 0.4f;
 					selection_cap = ((b.height + 0.0001) - 0.3) / 0.2;
@@ -730,7 +732,7 @@ void menu::create_menu(string file, string choice, string text_override, string 
 				}
 				else if (temp1.find("BUY") == 0) {
 					int count = 0;
-					std::getline(f, line);
+					safe_getline(f, line);
 					temp1 = "ALL";
 					temp2 = line;
 					temp2.erase(temp2.find(" "), temp2.length());
@@ -747,7 +749,7 @@ void menu::create_menu(string file, string choice, string text_override, string 
 					temp2 = line;
 					b.height = stof(temp2);
 					boxes.push_back(b);
-					std::getline(f, line);
+					safe_getline(f, line);
 					float x = b.xmin + 0.2;
 					float y = b.ymin + b.height - 0.4f;
 					selection_cap = ((b.height + 0.0001) - 0.3) / 0.2;
@@ -825,7 +827,7 @@ void menu::create_menu(string file, string choice, string text_override, string 
 					else {
 						limit = STORAGE_MAX;
 					}
-					std::getline(f, line);
+					safe_getline(f, line);
 					temp2 = line;
 					temp2.erase(temp2.find(" "), temp2.length());
 					line.erase(0, line.find(" ") + 1);
@@ -841,7 +843,7 @@ void menu::create_menu(string file, string choice, string text_override, string 
 					temp2 = line;
 					b.height = stof(temp2);
 					boxes.push_back(b);
-					std::getline(f, line);
+					safe_getline(f, line);
 					float x = b.xmin + 0.2;
 					float y = b.ymin + b.height - 0.3f;
 					selection_cap = ((b.height + 0.0001) - 0.3) / 0.2;
@@ -898,7 +900,7 @@ void menu::create_menu(string file, string choice, string text_override, string 
 					update_reserves();
 				}
 				else if (temp1 == "TEXT") {
-					std::getline(f, line);
+					safe_getline(f, line);
 					while (line != "END") {
 						while (line.find("{NEWLINE}") != -1) {
 							int i;
@@ -958,11 +960,11 @@ void menu::create_menu(string file, string choice, string text_override, string 
 							t.s.insert(i, get_special_string(string("{CAUGHT}")));
 						}
 						raw.push_back(t);
-						std::getline(f, line);
+						safe_getline(f, line);
 					}
 				}
 				else if (temp1 == "FOLLOW_UP") {
-					std::getline(f, line);
+					safe_getline(f, line);
 					while (line != "END") {
 						while (line.find("{NEWLINE}") != -1) {
 							int i;
@@ -984,7 +986,7 @@ void menu::create_menu(string file, string choice, string text_override, string 
 						}
 						line = get_special_string(line);
 						followup.push_back(line);
-						std::getline(f, line);
+						safe_getline(f, line);
 					}
 					break;
 				}
