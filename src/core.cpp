@@ -5255,9 +5255,9 @@ void engine::draw_level() {
 	double curr_x = mc.loc.x;
 	double curr_y = mc.loc.y;
 	level* l = &(levels[curr_level]);
-	unsigned maxy = min(int(l->data.size()), max(int(curr_y + 5.0), 0));
+	unsigned maxy = min(int(l->data.size()), max(int(curr_y + 6.0), 0));
 	for (unsigned y = max(0, unsigned(curr_y - 4.0)); y < maxy; ++y) {
-		unsigned maxx = min(int(l->data[y].size()), max(int(curr_x + 6.0), 0));
+		unsigned maxx = min(int(l->data[y].size()), max(int(curr_x + 7.0), 0));
 		for (unsigned x = max(0, unsigned(curr_x - 5.0)); x < maxx; ++x) {
 			xp = -1.0f + (float(x) / 5.0f) - ((curr_x - 4.5f) / 5.0f);
 			yp = (-float(y) / 4.5f) - (0.5f / 4.5f) + (curr_y / 4.5f);
@@ -5276,9 +5276,9 @@ void engine::draw_level() {
 	}
 	for (unsigned i = 0; i < l->neighbors.size(); ++i) {
 		level* n = &(levels[l->neighbors[i].level]);
-		unsigned maxy = min(int(levels[levels[curr_level].neighbors[i].level].data.size()), max(int(curr_y - levels[curr_level].neighbors[i].y + 5.0), 0));
+		unsigned maxy = min(int(levels[levels[curr_level].neighbors[i].level].data.size()), max(int(curr_y - levels[curr_level].neighbors[i].y + 6.0), 0));
 		for (unsigned y = max(0, unsigned(curr_y - levels[curr_level].neighbors[i].y - 4.0)); y < maxy; ++y) {
-			unsigned maxx = min(int(levels[levels[curr_level].neighbors[i].level].data[y].size()), max(int(curr_x - levels[curr_level].neighbors[i].x + 6.0), 0));
+			unsigned maxx = min(int(levels[levels[curr_level].neighbors[i].level].data[y].size()), max(int(curr_x - levels[curr_level].neighbors[i].x + 7.0), 0));
 			for (unsigned x = max(0, unsigned(curr_x - levels[curr_level].neighbors[i].x - 5.0)); x < maxx; ++x) {
 				xp = -1.0f + (float(x + levels[curr_level].neighbors[i].x) / 5.0f) - ((curr_x - 4.5f) / 5.0f);
 				yp = (-float(y + levels[curr_level].neighbors[i].y) / 4.5f) - (0.5f / 4.5f) + (curr_y / 4.5f);
