@@ -1,6 +1,6 @@
 #include "anim.h"
 
-mutex safety;
+mutex safetyi, safetyf;
 
 unsigned animation_engine::create_animf(double* targ, double start, double end, double duration) {
 	animation_float temp;
@@ -12,9 +12,9 @@ unsigned animation_engine::create_animf(double* targ, double start, double end, 
 	temp.done = false;
 	if (start == end)
 		temp.done = true;
-	safety.lock();
+	safetyf.lock();
 	animf.push_back(temp);
-	safety.unlock();
+	safetyf.unlock();
 	return animf.size() - 1;
 }
 
@@ -28,15 +28,15 @@ unsigned animation_engine::create_animi(int* targ, int start, int end, double du
 	temp.done = false;
 	if (start == end)
 		temp.done = true;
-	safety.lock();
+	safetyi.lock();
 	animi.push_back(temp);
-	safety.unlock();
+	safetyi.unlock();
 	return animi.size() - 1;
 }
 
 void animation_engine::tick(double delta) {
 	unsigned i;
-	safety.lock();
+	safetyf.lock();
 	for (i = 0; i < animf.size(); ++i) {
 		if (animf[i].done)
 			continue;
@@ -47,6 +47,8 @@ void animation_engine::tick(double delta) {
 		if (animf[i].time == animf[i].duration)
 			animf[i].done = true;
 	}
+	safetyf.unlock();
+	safetyi.lock();
 	for (i = 0; i < animi.size(); ++i) {
 		if (animi[i].done)
 			continue;
@@ -57,7 +59,7 @@ void animation_engine::tick(double delta) {
 		if (animi[i].time == animi[i].duration)
 			animi[i].done = true;
 	}
-	safety.unlock();
+	safetyi.unlock();
 	purge();
 }
 
@@ -78,7 +80,7 @@ bool animation_engine::is_donei(unsigned index) {
 void animation_engine::purge() {
 	bool found;
 	found = false;
-	safety.lock();
+	safetyf.lock();
 	for (unsigned i = 0; i < animf.size(); ++i) {
 		if (!animf[i].done) {
 			found = true;
@@ -88,6 +90,8 @@ void animation_engine::purge() {
 	if (!found) {
 		animf.empty();
 	}
+	safetyf.unlock();
+	safetyi.lock();
 	found = false;
 	for (unsigned i = 0; i < animi.size(); ++i) {
 		if (!animi[i].done) {
@@ -98,5 +102,5 @@ void animation_engine::purge() {
 	if (!found) {
 		animi.empty();
 	}
-	safety.unlock();
+	safetyi.unlock();
 }
