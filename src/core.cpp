@@ -11,6 +11,7 @@ bool player_select = false;
 bool player_start = false;
 bool player_confirm = false;
 bool player_cancel = false;
+double move_time = 0.26666;
 unsigned time_index;
 extern soundengine se;
 
@@ -5151,19 +5152,14 @@ void engine::player_input(bool up, bool down, bool left, bool right, bool select
 	}
 	if (mc.loc.x != l.x || mc.loc.y != l.y) {
 		unsigned a1, a2, a3;
-		a1 = g.ae.create_animf(&(mc.loc.x), mc.loc.x, l.x, 0.26666);
-		a2 = g.ae.create_animf(&(mc.loc.y), mc.loc.y, l.y, 0.26666);
-		a3 = g.ae.create_animi(&(mc.frame), mc.frame, mc.frame + 2, 0.2666);
+		a1 = g.ae.create_animf(&(mc.loc.x), mc.loc.x, double(int(l.x)), move_time);
+		a2 = g.ae.create_animf(&(mc.loc.y), mc.loc.y, double(int(l.y)), move_time);
+		a3 = g.ae.create_animi(&(mc.frame), mc.frame, mc.frame + 2, move_time);
 		if (fabs(mc.loc.x - l.x) + fabs(mc.loc.y - l.y) > 1.0) {
+			// TODO: Lift in jump
 			se.play_sound(string("sound_effects/general/sfx_ledge.mp3"));
 		}
-		while (!g.ae.is_donef(a1)) {
-			update_level();
-		}
-		while (!g.ae.is_donef(a2)) {
-			update_level();
-		}
-		while (!g.ae.is_donef(a3)) {
+		while (!g.ae.is_donef(a1) || !g.ae.is_donef(a2) || !g.ae.is_donei(a3)) {
 			update_level();
 		}
 		if (encounter_tile[get_tile(mc.loc.y, mc.loc.x)]) {
@@ -5306,7 +5302,7 @@ void engine::npc_wander(double deltat) {
 	int temp;
 	location loc;
 	bool blocked;
-	double dur = 0.26666*2.0;
+	double dur = move_time*2.0;
 	int tile;
 	for (unsigned i = 0; i < l->characters.size(); ++i) {
 		character* c = &(l->characters[i]);
@@ -5425,6 +5421,7 @@ void engine::do_interaction(character& npc) {
 	vector<int> choices;
 	string s = npc.interactions[mc.interaction[npc.name]];
 	string s2, s3;
+	unsigned a1, a2, a3;
 	choices.clear();
 	bool advance;
 	advance = true;
@@ -6250,18 +6247,29 @@ void engine::do_interaction(character& npc) {
 			else
 				dir = UP;
 			if (s2.find("PLAYER") == 0) {
-				mc.loc.x += double(deltax);
-				mc.loc.y += double(deltay);
 				mc.dir = dir;
+				a1 = g.ae.create_animf(&(mc.loc.x), mc.loc.x, double(int(mc.loc.x + double(deltax))), move_time);
+				a2 = g.ae.create_animf(&(mc.loc.y), mc.loc.y, double(int(mc.loc.y + double(deltay))), move_time);
+				a3 = g.ae.create_animi(&(mc.frame), mc.frame, mc.frame + 2, move_time);
+				while (!g.ae.is_donef(a1) || !g.ae.is_donef(a2) || !g.ae.is_donei(a3)) {
+					update_level();
+				}
 			}
 			else {
 				map<string, level>::iterator it;
 				for (it = levels.begin(); it != levels.end(); it++) {
 					for (unsigned k = 0; k < it->second.characters.size(); ++k) {
 						if (it->second.characters[k].name == s2) {
-							it->second.characters[k].loc.x += double(deltax);
-							it->second.characters[k].loc.y += double(deltay);
 							it->second.characters[k].dir = dir;
+							a1 = g.ae.create_animf(&(it->second.characters[k].loc.x), it->second.characters[k].loc.x, double(int(it->second.characters[k].loc.x + double(deltax))), move_time);
+							a2 = g.ae.create_animf(&(it->second.characters[k].loc.y), it->second.characters[k].loc.y, double(int(it->second.characters[k].loc.y + double(deltay))), move_time);
+							a3 = g.ae.create_animi(&(it->second.characters[k].frame), it->second.characters[k].frame, it->second.characters[k].frame + 2, move_time);
+							if (!(s.find("MOVE:PLAYER") != -1 && s.find("MOVE:PLAYER") == 1)) {
+								while (!g.ae.is_donef(a1) || !g.ae.is_donef(a2) || !g.ae.is_donei(a3)) {
+									update_level();
+								}
+							}
+							update_level();
 						}
 					}
 				}
