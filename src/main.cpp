@@ -296,7 +296,11 @@ int main(int argc, char** argv) {
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
 	glutInitWindowSize(160*4, 144*4); //Set the window size
 	//Create the window
+	#ifdef __APPLE__
+	glutCreateWindow("Pokemon Fusion");
+	#else
 	glutCreateWindow("Pokémon Fusion");
+	#endif
 	g.initRendering(); //Initialize rendering
 	e.init_characters();
 	//Set handler functions for drawing, keypresses, and window resizes

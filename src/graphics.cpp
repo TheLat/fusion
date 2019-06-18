@@ -7,7 +7,11 @@ GLuint graphics::load_image(string filename) {
 	int i;
 	unsigned char* image = 0;
 	FILE* f;
+	#ifdef __APPLE__
+    f = fopen((filename).c_str(), "rb");
+    #else
 	fopen_s(&f, (filename).c_str(), "rb");
+	#endif
 	if (f == 0)
 		return 0;
 	int height = 0;
