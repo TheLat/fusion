@@ -6369,7 +6369,9 @@ void engine::do_interaction(character& npc) {
 					}
 				}
 			}
-			do_menu("BLANK", "BLANK");
+			double waiter1 = 0.0;
+			unsigned waiter2 = g.ae.create_animf(&waiter1, 0.0, 1.0, 8.0/30.0);
+			while (!g.ae.is_donef(waiter2)) {}
 			g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
 		}
 		else if (s.find("SOUND:") == 0) {
@@ -6397,17 +6399,27 @@ void engine::do_interaction(character& npc) {
 			npc.no_force = true;
 		}
 		else if (s.find("MOVE_TO_PLAYER") == 0) {
+		    location new_location = npc.loc;
+		    double multiplier = 0.0;
 			if (s.find("|") == -1) {
 				s = "";
 			}
 			if (npc.loc.x < mc.loc.x)
-				npc.loc.x = mc.loc.x - 1.0;
+				new_location.x = mc.loc.x - 1.0;
 			if (npc.loc.x > mc.loc.x)
-				npc.loc.x = mc.loc.x + 1.0;
+				new_location.x = mc.loc.x + 1.0;
 			if (npc.loc.y < mc.loc.y)
-				npc.loc.y = mc.loc.y - 1.0;
+				new_location.y = mc.loc.y - 1.0;
 			if (npc.loc.y > mc.loc.y)
-				npc.loc.y = mc.loc.y + 1.0;
+				new_location.y = mc.loc.y + 1.0;
+			multiplier = fabs(new_location.x - npc.loc.x) + fabs(new_location.y - npc.loc.y);
+			unsigned anim1 = g.ae.create_animf(&(npc.loc.x), npc.loc.x, new_location.x, move_time*multiplier);
+			unsigned anim2 = g.ae.create_animf(&(npc.loc.y), npc.loc.y, new_location.y, move_time*multiplier);
+			unsigned anim3 = g.ae.create_animi(&(npc.frame), npc.frame, npc.frame + int(2.0 * multiplier), move_time*multiplier);
+			while (!g.ae.is_donef(anim1) || !g.ae.is_donef(anim2) || !g.ae.is_donei(anim3)) {
+			    update_level();
+			}
+			update_level();
 		}
 		else if (s.find("WILD_BATTLE") == 0) {
 			s2 = s;
