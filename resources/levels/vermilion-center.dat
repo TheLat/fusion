@@ -5,7 +5,7 @@ vermilion-center-couch blank 0 4
 INTERACTIONS
 MENU:ALERT:It is true that a higher level POK{e-accent}MON will be more powerful...|MENU:ALERT:But, all POK{e-accent}MON will have weak points against specific types.|MENU:ALERT:So, there is no universally strong POK{e-accent}MON.
 END
-vermilion-center-joy joy 3 1
+vermilion-center-joy joy 3 1 DOWN
 INTERACTIONS
 MENU:ALERT:ERROR
 END

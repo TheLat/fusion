@@ -5,7 +5,7 @@ lavender-center-couch blank 0 4
 INTERACTIONS
 MENU:ALERT:CU- POK{e-accent}MON wear skulls, right?|MENU:ALERT:People will pay a lot for one!
 END
-lavender-center-joy joy 3 1
+lavender-center-joy joy 3 1 DOWN
 INTERACTIONS
 MENU:ALERT:ERROR
 END

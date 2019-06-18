@@ -6,7 +6,7 @@ INTERACTIONS
 MENU:ALERT:It would be great if the ELITE FOUR came and stomped TEAM ROCKET!|NO_ADVANCE
 MENU:ALERT:TEAM ROCKET took off! We can go out safely again! That's great!
 END
-saffron-center-joy joy 3 1
+saffron-center-joy joy 3 1 DOWN
 INTERACTIONS
 MENU:ALERT:ERROR
 END

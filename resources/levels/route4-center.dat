@@ -5,7 +5,7 @@ route4-center-couch blank 0 4
 INTERACTIONS
 MENU:ALERT:If you have too many POK{e-accent}MON, you should store them via PC!
 END
-route4-center-joy joy 3 1
+route4-center-joy joy 3 1 DOWN
 INTERACTIONS
 MENU:ALERT:ERROR
 END

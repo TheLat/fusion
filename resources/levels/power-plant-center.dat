@@ -5,7 +5,7 @@ power-plant-center-couch blank 0 4
 INTERACTIONS
 MENU:ALERT:I heard that GHOSTs haunt LAVENDER TOWN!
 END
-power-plant-center-joy joy 3 1
+power-plant-center-joy joy 3 1 DOWN
 INTERACTIONS
 MENU:ALERT:ERROR
 END

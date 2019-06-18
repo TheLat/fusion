@@ -5,7 +5,7 @@ cinnabar-center-couch blank 0 4
 INTERACTIONS
 MENU:ALERT:POK{e-accent}MON can still learn techniques after cancelling evolution.|MENU:ALERT:Evolution can wait until new moves have been learned.
 END
-cinnabar-center-joy joy 3 1
+cinnabar-center-joy joy 3 1 DOWN
 INTERACTIONS
 MENU:ALERT:ERROR
 END

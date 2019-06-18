@@ -1,7 +1,7 @@
 NAME
 Indigo Pok{e-accent}center
 NPCS
-indigo-center-joy joy 7 5
+indigo-center-joy joy 7 5 DOWN
 INTERACTIONS
 MENU:ALERT:ERROR
 END

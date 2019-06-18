@@ -5,7 +5,7 @@ viridian-center-couch blank 0 4
 INTERACTIONS
 MENU:ALERT:POK{e-accent}MON CENTERs heal your tired, hurt, or fainted POK{e-accent}MON!
 END
-viridian-center-joy joy 3 1
+viridian-center-joy joy 3 1 DOWN
 INTERACTIONS
 MENU:ALERT:ERROR
 END

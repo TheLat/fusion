@@ -5,7 +5,7 @@ fuchsia-center-couch blank 0 4
 INTERACTIONS
 MENU:ALERT:If you're studying POK{e-accent}MON, visit the SAFARI ZONE.|MENU:ALERT:It has all sorts of rare POK{e-accent}MON.
 END
-fuchsia-center-joy joy 3 1
+fuchsia-center-joy joy 3 1 DOWN
 INTERACTIONS
 MENU:ALERT:ERROR
 END
