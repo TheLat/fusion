@@ -374,7 +374,11 @@ unsigned graphics::push_hp_bar(float xmin, float ymin, float hp) {
 
 unsigned graphics::push_quad_load(float x, float y, float width, float height, string filename) {
 	if (!tex[filename]) {
+#ifdef __APPLE__
+        tex[filename] = 0;
+#else
 		tex[filename] = load_image(filename);
+#endif
 		new_load = true;
 	}
 	return push_quad(x, y, width, height, tex[filename], filename);
