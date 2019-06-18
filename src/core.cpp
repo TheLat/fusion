@@ -6468,6 +6468,7 @@ void engine::do_interaction(character& npc) {
 			}
 			if (battle(levels[mc.loc.level].trainers[s2])) {
 				choices.push_back(1);
+				npc.assigned_facing = false;
 			}
 			else {
 				choices.push_back(0);
