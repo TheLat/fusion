@@ -6276,6 +6276,17 @@ void engine::do_interaction(character& npc) {
 			}
 			update_level();
 		}
+		else if (s.find("ANIMATION:") == 0) {
+		    s2 = s;
+		    s2.erase(0, s2.find(":") + 1);
+		    if (s2.find("|") != -1) {
+		        s2.erase(s2.find("|"), s2.length());
+		    }
+		    unsigned anim = g.ae.create_anim_scene(s2);
+		    while (!g.ae.is_dones(anim)) {
+		        update_level();
+		    }
+		}
 		else if (s.find("{") == 0) {
 			int counter;
 			vector<string> options;

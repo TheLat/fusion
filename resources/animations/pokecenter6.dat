@@ -1,5 +1,5 @@
-MUTE_MUSIC
-CREATE_SPRITE images/heal00.png 0.0 0.0 0.0 0.1 0.2
+MUTE_MUSIC 0.0
+CREATE_SPRITE images/heal00.png 1.0 2.0 3.0 0.1 0.2
 CREATE_SPRITE images/heal10.png +0.5 0.0 0.0 0.1 0.2
 CREATE_SPRITE images/heal20.png +0.5 0.0 0.0 0.1 0.2
 CREATE_SPRITE images/heal30.png +0.5 0.0 0.0 0.1 0.2
@@ -14,11 +14,11 @@ CREATE_SPRITE images/heal61.png +0.25 0.0 0.0 0.1 0.2
 CREATE_SPRITE images/heal60.png +0.25 0.0 0.0 0.1 0.2
 CREATE_SPRITE images/heal61.png +0.25 0.0 0.0 0.1 0.2
 CREATE_SPRITE images/heal60.png +0.25 0.0 0.0 0.1 0.2
-PLAY_SOUND sound_effects/general/sfx_healing_machine.mp3 0.0
+PLAY_SOUND sound_effects/general/sfx_healing_machine.mp3 0.5
 PLAY_SOUND sound_effects/general/sfx_healing_machine.mp3 +0.5
 PLAY_SOUND sound_effects/general/sfx_healing_machine.mp3 +0.5
 PLAY_SOUND sound_effects/general/sfx_healing_machine.mp3 +0.5
 PLAY_SOUND sound_effects/general/sfx_healing_machine.mp3 +0.5
 PLAY_SOUND sound_effects/general/sfx_healing_machine.mp3 +0.5
-PLAY_SOUND
-RESUME_MUSIC
+PLAY_SOUND music/11-recovery.mp3 +0.5
+RESUME_MUSIC 5.5
