@@ -1,0 +1,18 @@
+MUTE_MUSIC 0.0
+CREATE_SPRITE images/heal00.png 0.0 -0.4 0.3333333 0.2 0.44444444
+CREATE_SPRITE images/heal10.png +0.5 -0.4 0.3333333 0.2 0.44444444
+CREATE_SPRITE images/heal20.png +0.5 -0.4 0.3333333 0.2 0.44444444
+CREATE_SPRITE images/heal30.png +0.5 -0.4 0.3333333 0.2 0.44444444
+CREATE_SPRITE images/heal31.png +0.5 -0.4 0.3333333 0.2 0.44444444
+CREATE_SPRITE images/heal30.png +0.25 -0.4 0.3333333 0.2 0.44444444
+CREATE_SPRITE images/heal31.png +0.25 -0.4 0.3333333 0.2 0.44444444
+CREATE_SPRITE images/heal30.png +0.25 -0.4 0.3333333 0.2 0.44444444
+CREATE_SPRITE images/heal31.png +0.25 -0.4 0.3333333 0.2 0.44444444
+CREATE_SPRITE images/heal30.png +0.25 -0.4 0.3333333 0.2 0.44444444
+CREATE_SPRITE images/heal31.png +0.25 -0.4 0.3333333 0.2 0.44444444
+CREATE_SPRITE images/heal30.png +0.25 -0.4 0.3333333 0.2 0.44444444
+PLAY_SOUND sound_effects/general/sfx_healing_machine.mp3 0.5
+PLAY_SOUND sound_effects/general/sfx_healing_machine.mp3 +0.5
+PLAY_SOUND sound_effects/general/sfx_healing_machine.mp3 +0.5
+PLAY_SOUND music/11-recovery.mp3 +0.5
+UNMUTE_MUSIC 4.5

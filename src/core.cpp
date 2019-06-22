@@ -6287,6 +6287,20 @@ void engine::do_interaction(character& npc) {
 		    }
 		    update_level();
 		}
+		else if (s.find("GET_TEAM_SIZE:") == 0) {
+		    int team_size = 0;
+		    s2 = s;
+		    s2.erase(0, s2.find(":") + 1);
+		    if (s2.find("|") != -1) {
+		        s2.erase(s2.find("|"), s2.length());
+		    }
+		    for (unsigned k = 0; k < 6; ++k) {
+		        if (mc.team[k].defined)
+		        team_size++;
+		    }
+			choices.clear();
+			choices.push_back(team_size);
+		}
 		else if (s.find("{") == 0) {
 			int counter;
 			vector<string> options;
