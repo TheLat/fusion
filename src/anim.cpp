@@ -1,8 +1,12 @@
 #include "anim.h"
+#include "sound.h"
+#include "graphics.h"
 
 mutex safetyi, safetyf, safetys;
 
 extern bool safe_getline(ifstream &f, string& s);
+extern soundengine se;
+extern graphics g;
 
 unsigned animation_engine::create_animf(double* targ, double start, double end, double duration) {
 	animation_float temp;
@@ -46,6 +50,7 @@ unsigned animation_engine::create_anim_scene(string scene, unsigned sprite1, uns
     ifstream f((string("../resources/animations/") + scene + string(".dat")).c_str());
     while (f.is_open()) {
         while (safe_getline(f, line)) {
+            printf("\n%f", t);
             printf("\nGetting line: %s", line.c_str());
             s = line;
             s.erase(s.find(" "), s.length());
@@ -171,19 +176,33 @@ void animation_engine::tick(double delta) {
 	for (i = 0; i < anims.size(); ++i) {
 	    if (anims[i].done)
 	        continue;
+	    done = true;
 	    for (unsigned j = 0; j < anims[i].elements.size(); ++j) {
-	        done = true;
-	        printf("\nCURRENT TIME: %f", anims[i].current_time);
 	        if ((anims[i].elements[j].start < anims[i].current_time + delta) && (anims[i].elements[j].start >= anims[i].current_time)) {
-	            // TODO: ANIMATE
-	            printf("\nELEMENT: %f", anims[i].elements[j].start);
+	            switch (anims[i].elements[j].type) {
+	            case MUTE_MUSIC:
+	                // TODO
+	                break;
+	            case UNMUTE_MUSIC:
+	                // TODO
+	                break;
+	            case CREATE_SPRITE:
+	                g.push_quad_load(anims[i].elements[j].x1, anims[i].elements[j].y1, anims[i].elements[j].x2, anims[i].elements[j].y2, string("../resources/") + anims[i].elements[j].resource);
+	                break;
+	            case PLAY_SOUND:
+	                se.play_sound(string("../resources/") + anims[i].elements[j].resource);
+	                break;
+	            default:
+	                break;
+	            }
+	            continue;
 	        }
-	        else if (anims[i].elements[j].start < anims[i].current_time) {
+	        if (anims[i].elements[j].start > anims[i].current_time) {
 	            done = false;
 	        }
-	        anims[i].done = done;
-	        anims[i].current_time += delta;
 	    }
+	    anims[i].done = done;
+	    anims[i].current_time += delta;
 	}
 	safetys.unlock();
 	purge();

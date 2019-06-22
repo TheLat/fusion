@@ -6284,8 +6284,8 @@ void engine::do_interaction(character& npc) {
 		    }
 		    unsigned anim = g.ae.create_anim_scene(s2);
 		    while (!g.ae.is_dones(anim)) {
-		        update_level();
 		    }
+		    update_level();
 		}
 		else if (s.find("{") == 0) {
 			int counter;

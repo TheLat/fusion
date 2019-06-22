@@ -5,13 +5,9 @@ viridian-center-couch blank 0 4
 INTERACTIONS
 MENU:ALERT:POK{e-accent}MON CENTERs heal your tired, hurt, or fainted POK{e-accent}MON!
 END
-viridian-center-joy joy 3 1 DOWN
+viridian-center-joy joy 3 1 DOWN FARSPEAK
 INTERACTIONS
-MENU:ALERT:ERROR
-END
-viridian-center-joy-desk blank 3 2
-INTERACTIONS
-MENU:ALERT:Welcome to our POK{e-accent}MON CENTER!|MENU:ALERT:We heal your POK{e-accent}MON back to|MENU:ALERT_YES_NO:perfect health!|{MENU:ALERT:OK, we'll need your POK{e-accent}MON.|ANIMATION:pokecenter6|FULL_HEAL|MENU:ALERT:Thank you!{NEWLINE}Your POK{e-accent}MON are fighting fit!}{}|MENU:ALERT:We hope to see you again!
+MENU:ALERT:Welcome to our POK{e-accent}MON CENTER!|MENU:ALERT:We heal your POK{e-accent}MON back to|MENU:ALERT_YES_NO:perfect health!|{MENU:ALERT:OK, we'll need your POK{e-accent}MON.|FACE:LEFT|ANIMATION:pokecenter6|FULL_HEAL|FACE:DOWN|MENU:ALERT:Thank you!{NEWLINE}Your POK{e-accent}MON are fighting fit!}{}|MENU:ALERT:We hope to see you again!
 END
 viridian-center-guy guy2 4 3 UP
 INTERACTIONS
