@@ -61,6 +61,7 @@ public:
 	string type;
 	string pow;
 	string notes;
+	string animation;
 	STAT attack, defense;
 	int acc;
 	int pp;
@@ -73,7 +74,7 @@ public:
 	vector<string> special;
 	bool defined;
 	bool queue_only;
-	power() { acc = 100; attack = ATTACK; defense = DEFENSE; crit_chance = 1.0f; pow = "0"; pp = 0; defined = false; queue_only = false; }
+	power() { acc = 100; attack = ATTACK; defense = DEFENSE; crit_chance = 1.0f; pow = "0"; pp = 0; defined = false; queue_only = false; animation = "";}
 };
 
 class mon_template {

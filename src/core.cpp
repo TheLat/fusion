@@ -2114,6 +2114,16 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 			double mul;
 			bool non_zero;
 			int dam = min(damage(attacker, defender, move, crit, mul, non_zero), defender.curr_hp);
+			if (moves[move].animation != "") {
+			    unsigned anim_holder = 0;
+			    unsigned clear_point = g.draw_list.size();
+			    anim_holder = g.ae.create_anim_scene(moves[move].animation);
+			    while (!g.ae.is_dones(anim_holder)) {
+			    }
+			    m.lock();
+			    g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
+			    m.unlock();
+			}
 			deal_damage(defender, dam);
 			if (moves[move].defense == SPECIAL) {
 				defender.last_hit_special = dam;
@@ -4428,6 +4438,14 @@ void engine::init_moves() {
 				a = f.get();
 			}
 			moves[key].type = line;
+		}
+		else if (line == "ANIMATION") {
+			line = "";
+			while (a != '\r' && a != '\n') {
+				line = line + a;
+				a = f.get();
+			}
+			moves[key].animation = line;
 		}
 		else if (line == "POWER") {
 			line = "";

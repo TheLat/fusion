@@ -25,6 +25,7 @@ class animation_scene {
 public:
     double current_time;
     vector<scene_element> elements;
+    vector<unsigned> sprites;
     bool done;
 };
 

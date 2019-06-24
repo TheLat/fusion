@@ -187,7 +187,7 @@ void animation_engine::tick(double delta) {
 	                // TODO
 	                break;
 	            case CREATE_SPRITE:
-	                g.push_quad_load(anims[i].elements[j].x1, anims[i].elements[j].y1, anims[i].elements[j].x2, anims[i].elements[j].y2, string("../resources/") + anims[i].elements[j].resource);
+	                anims[i].sprites.push_back(g.push_quad_load(anims[i].elements[j].x1, anims[i].elements[j].y1, anims[i].elements[j].x2, anims[i].elements[j].y2, string("../resources/") + anims[i].elements[j].resource));
 	                break;
 	            case PLAY_SOUND:
 	                se.play_sound(string("../resources/") + anims[i].elements[j].resource);
