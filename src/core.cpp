@@ -6287,6 +6287,23 @@ void engine::do_interaction(character& npc) {
 		    }
 		    update_level();
 		}
+		else if (s.find("BOW:") == 0) {
+		    s2 = s;
+		    s2.erase(0, s2.find(":") + 1);
+		    if (s2.find("|") != -1) {
+		        s2.erase(s2.find("|"), s2.length());
+		    }
+		    npc.frame = 0;
+		    a1 = g.ae.create_animi(&(npc.frame), 0, 1, 0.25);
+		    while (!g.ae.is_donei(a1)) {
+		        update_level();
+		    }
+		    a1 = g.ae.create_animi(&(npc.frame), 1, 2, 0.5);
+		    while (!g.ae.is_donei(a1)) {
+		        update_level();
+		    }
+		    update_level();
+		}
 		else if (s.find("GET_TEAM_SIZE:") == 0) {
 		    int team_size = 0;
 		    s2 = s;
