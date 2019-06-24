@@ -1,7 +1,7 @@
 NAME
 Pewter City Gym
 NPCS
-pewter-gym-clerk clerk 7 10
+pewter-gym-clerk clerk 7 10 DOWN
 INTERACTIONS
 MENU:ALERT:Hiya! I can tell you have what it takes to become a POK{e-accent}MON champ!|MENU:ALERT:I'm no trainer, but I can tell you know how to win!|MENU:ALERT_YES_NO:Let me take you to the top!|{MENU:ALERT:All right! Let's get happening!|MENU:ALERT:The 1st POK{e-accent}MON out in a match is at the top of the POK{e-accent}MON LIST!|MENU:ALERT:By changing the order of POK{e-accent}MON, matches could be made easier!}{MENU:ALERT:It's a free service! Let's get happening!}|NO_ADVANCE
 MENU:ALERT:Just as I thought! You're POK{e-accent}MON champ material!
@@ -26,9 +26,9 @@ INTERACTIONS
 !:pewter-gym-trainer1|MENU:ALERT:Stop right there, kid!|MENU:ALERT:You're still light years away from facing BROCK!|BATTLE:pewter-gym-trainer|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:You're pretty hot, but not as hot as BROCK!
 END
-pewter-gym-brock guy2 4 1
+pewter-gym-brock guy2 4 1 DOWN
 INTERACTIONS
-MENU:ALERT:I'm BROCK!{NEWLINE}I'm PEWTER's GYM LEADER|MENU:ALERT:I believe in rock hard defense and determination!|MENU:ALERT:That's why my POK{e-accent}MON are all the rock-type!|MENU:ALERT:Do you still want to challenge me?{NEWLINE}Fine then! Show me your best!|BATTLE:brock|{NO_ADVANCE}{SET:BOULDERBADGE:1|MENU:ALERT:Wait! Take this with you!|GIVE_ITEM:TM34|MENU:ALERT:A TM contains a technique that can be taught to POK{e-accent}MON!|MENU:ALERT:A TM only has one use before it has to be recharged, so when you use one to teach a new technique, pick the POK{e-accent}MON carefully!|MENU:ALERT:TM34 contains BIDE!|MENU:ALERT:Your POK{e-accent}MON will absorb damage in battle, then pay it back double!|ADVANCE:pewter-gym-board2|ADVANCE:pewter-gym-board|DEACTIVATE:pewter-city-blocker}
+MENU:ALERT:I'm BROCK!{NEWLINE}I'm PEWTER's GYM LEADER!|MENU:ALERT:I believe in rock hard defense and determination!|MENU:ALERT:That's why my POK{e-accent}MON are all the rock-type!|MENU:ALERT:Do you still want to challenge me?|MENU:ALERT:Fine then! Show me your best!|BATTLE:brock|{NO_ADVANCE}{SET:BOULDERBADGE:1|MENU:ALERT:Wait! Take this with you!|GIVE_ITEM:TM34|MENU:ALERT:A TM contains a technique that can be taught to POK{e-accent}MON!|MENU:ALERT:A TM only has one use before it has to be recharged, so when you use one to teach a new technique, pick the POK{e-accent}MON carefully!|MENU:ALERT:TM34 contains BIDE!|MENU:ALERT:Your POK{e-accent}MON will absorb damage in battle, then pay it back double!|ADVANCE:pewter-gym-board2|ADVANCE:pewter-gym-board|DEACTIVATE:pewter-city-blocker}
 MENU:ALERT:There are all kinds of trainers in the world!|MENU:ALERT:You appear to be very gifted as a POK{e-accent}MON trainer!|MENU:ALERT:Go to the GYM in CERULEAN and test your abilities!
 END
 TRAINERS
