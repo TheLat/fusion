@@ -11,14 +11,23 @@ enum SCENE_TYPE {
     MUTE_MUSIC = 0,
     UNMUTE_MUSIC,
     CREATE_SPRITE,
-    PLAY_SOUND
+    PLAY_SOUND,
+    SPLINE_TRANSFORM
+};
+
+class frame {
+public:
+    double x1, x2, y1, y2;
 };
 
 class scene_element {
 public:
     SCENE_TYPE type;
     string resource;
-    double start, x1, y1, x2, y2;
+    vector<frame> frames;
+    bool done;
+    unsigned index;
+    double start, end, x1, y1, x2, y2;
 };
 
 class animation_scene {

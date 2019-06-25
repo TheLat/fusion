@@ -46,12 +46,9 @@ unsigned animation_engine::create_anim_scene(string scene, unsigned sprite1, uns
     string line, s;
     double t = 0.0;
     temp.current_time = 0.0;
-    printf("\nCreating animation %s", scene.c_str());
     ifstream f((string("../resources/animations/") + scene + string(".dat")).c_str());
     while (f.is_open()) {
         while (safe_getline(f, line)) {
-            printf("\n%f", t);
-            printf("\nGetting line: %s", line.c_str());
             s = line;
             s.erase(s.find(" "), s.length());
             line.erase(0, line.find(" ") + 1);
@@ -65,6 +62,7 @@ unsigned animation_engine::create_anim_scene(string scene, unsigned sprite1, uns
                     elem.start = stof(line);
                 }
                 t = elem.start;
+                elem.end = elem.start;
                 temp.elements.push_back(elem);
                 continue;
             }
@@ -78,6 +76,7 @@ unsigned animation_engine::create_anim_scene(string scene, unsigned sprite1, uns
                     elem.start = stof(line);
                 }
                 t = elem.start;
+                elem.end = elem.start;
                 temp.elements.push_back(elem);
                 continue;
             }
@@ -112,6 +111,7 @@ unsigned animation_engine::create_anim_scene(string scene, unsigned sprite1, uns
                 elem.x2 = stof(s);
                 s = line;
                 elem.y2 = stof(s);
+                elem.end = elem.start;
                 temp.elements.push_back(elem);
                 continue;
             }
@@ -130,17 +130,56 @@ unsigned animation_engine::create_anim_scene(string scene, unsigned sprite1, uns
                     elem.start = stof(s);
                 }
                 t = elem.start;
+                elem.end = elem.start;
                 temp.elements.push_back(elem);
                 continue;
+            }
+            if (s == "SPLINE_TRANSFORM") {
+                elem.type = SPLINE_TRANSFORM;
+                s = line;
+                s.erase(s.find(" "), s.length());
+                line.erase(0, line.find(" ") + 1);
+                elem.index = stoi(s); // handle attacker, defender, and screen
+                s = line;
+                s.erase(s.find(" "), s.length());
+                line.erase(0, line.find(" ") + 1);
+                elem.start = stof(s);
+                s = line;
+                s.erase(s.find(" "), s.length());
+                line.erase(0, line.find(" ") + 1);
+                elem.end = stof(s);
+                while (line.find(" ") != -1) {
+                    frame temp_frame;
+                    s = line;
+                    s.erase(s.find(" "), s.length());
+                    line.erase(0, line.find(" ") + 1);
+                    temp_frame.x1 = stof(s);
+                    s = line;
+                    s.erase(s.find(" "), s.length());
+                    line.erase(0, line.find(" ") + 1);
+                    temp_frame.y1 = stof(s);
+                    s = line;
+                    s.erase(s.find(" "), s.length());
+                    line.erase(0, line.find(" ") + 1);
+                    temp_frame.x2 = stof(s);
+                    s = line;
+                    if (s.find(" ") != -1) {
+                        s.erase(s.find(" "), s.length());
+                        line.erase(0, line.find(" ") + 1);
+                    }
+                    temp_frame.y2 = stof(s);
+                    elem.frames.push_back(temp_frame);
+                    elem.frames.empty();
+                }
+                elem.done = false;
+                temp.elements.push_back(elem);
             }
         }
         f.close();
     }
     temp.done = false;
     safetys.lock();
-	printf("\nAnimating scenes: %i.", anims.size());
     anims.push_back(temp);
-	printf("\nAnimating scenes: %i.", anims.size());
     safetys.unlock();
     return anims.size() - 1;
 }
@@ -178,7 +217,7 @@ void animation_engine::tick(double delta) {
 	        continue;
 	    done = true;
 	    for (unsigned j = 0; j < anims[i].elements.size(); ++j) {
-	        if ((anims[i].elements[j].start < anims[i].current_time + delta) && (anims[i].elements[j].start >= anims[i].current_time)) {
+	        if ((anims[i].elements[j].start <= anims[i].current_time + delta) && (anims[i].elements[j].end >= anims[i].current_time)) {
 	            switch (anims[i].elements[j].type) {
 	            case MUTE_MUSIC:
 	                // TODO
@@ -192,12 +231,28 @@ void animation_engine::tick(double delta) {
 	            case PLAY_SOUND:
 	                se.play_sound(string("../resources/") + anims[i].elements[j].resource);
 	                break;
-	            default:
+	            case SPLINE_TRANSFORM:
+	                if (anims[i].elements[j].done)
+	                    continue;
+	                quad* q = &(g.draw_list[anims[i].sprites[anims[i].elements[j].index]]);
+	                double t = (anims[i].current_time + delta - anims[i].elements[j].start);
+	                double t2 = (anims[i].elements[j].end - anims[i].elements[j].start);
+	                t /= t2;
+	                if (t < 0.0)
+	                    t = 0.0;
+	                if (t > 1.0)
+	                    t = 1.0;
+	                q->x = anims[i].elements[j].frames[0].x1 + (t*(anims[i].elements[j].frames[1].x1 - anims[i].elements[j].frames[0].x1));
+	                q->y = anims[i].elements[j].frames[0].y1 + (t*(anims[i].elements[j].frames[1].y1 - anims[i].elements[j].frames[0].y1));
+	                q->width = anims[i].elements[j].frames[0].x2 + (t*(anims[i].elements[j].frames[1].x2 - anims[i].elements[j].frames[0].x2));
+	                q->height = anims[i].elements[j].frames[0].y2 + (t*(anims[i].elements[j].frames[1].y2 - anims[i].elements[j].frames[0].y2));
+	                if (t == 1.0)
+	                    anims[i].elements[j].done = true;
 	                break;
 	            }
 	            continue;
 	        }
-	        if (anims[i].elements[j].start > anims[i].current_time) {
+	        if (anims[i].elements[j].end > anims[i].current_time) {
 	            done = false;
 	        }
 	    }
