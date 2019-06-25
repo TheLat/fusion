@@ -8,6 +8,23 @@ extern bool safe_getline(ifstream &f, string& s);
 extern soundengine se;
 extern graphics g;
 
+
+frame animation_engine::spline_frame(double t, vector<frame> &frames) {
+	frame temp;
+	vector<frame> new_frames;
+	if (frames.size() > 1) {
+		for (unsigned i = 0; i < frames.size() - 1; ++i) {
+			temp.x1 = frames[i].x1 + (t*(frames[i + 1].x1 - frames[i].x1));
+			temp.x2 = frames[i].x2 + (t*(frames[i + 1].x2 - frames[i].x2));
+			temp.y1 = frames[i].y1 + (t*(frames[i + 1].y1 - frames[i].y1));
+			temp.y2 = frames[i].y2 + (t*(frames[i + 1].y2 - frames[i].y2));
+			new_frames.push_back(temp);
+		}
+		return spline_frame(t, new_frames);
+	}
+	return frames[0];
+}
+
 unsigned animation_engine::create_animf(double* targ, double start, double end, double duration) {
 	animation_float temp;
 	temp.start = start;
@@ -135,6 +152,25 @@ unsigned animation_engine::create_anim_scene(string scene, unsigned sprite1, uns
                 temp.elements.push_back(elem);
                 continue;
             }
+			if (s == "HIDE_SPRITE") {
+				elem.type = HIDE_SPRITE;
+				s = line;
+				s.erase(s.find(" "), s.length());
+				line.erase(0, line.find(" ") + 1);
+				elem.index = stoi(s);
+				s = line;
+				if (s.find("+") != -1) {
+					s.erase(s.find("+"), 1);
+					elem.start = stof(s) + t;
+				}
+				else {
+					elem.start = stof(s);
+				}
+				t = elem.start;
+				elem.end = elem.start;
+				temp.elements.push_back(elem);
+				continue;
+			}
             if (s == "SPLINE_TRANSFORM") {
                 elem.type = SPLINE_TRANSFORM;
                 s = line;
@@ -145,6 +181,7 @@ unsigned animation_engine::create_anim_scene(string scene, unsigned sprite1, uns
                 s.erase(s.find(" "), s.length());
                 line.erase(0, line.find(" ") + 1);
                 elem.start = stof(s);
+				t = elem.start;
                 s = line;
                 s.erase(s.find(" "), s.length());
                 line.erase(0, line.find(" ") + 1);
@@ -173,7 +210,7 @@ unsigned animation_engine::create_anim_scene(string scene, unsigned sprite1, uns
                 }
                 elem.done = false;
                 temp.elements.push_back(elem);
-                elem.frames.empty();
+                elem.frames.clear();
                 continue;
             }
         }
@@ -189,6 +226,7 @@ unsigned animation_engine::create_anim_scene(string scene, unsigned sprite1, uns
 void animation_engine::tick(double delta) {
 	unsigned i;
 	bool done;
+	quad* q = 0;
 	safetyf.lock();
 	for (i = 0; i < animf.size(); ++i) {
 		if (animf[i].done)
@@ -230,14 +268,20 @@ void animation_engine::tick(double delta) {
 	            case CREATE_SPRITE:
 	                anims[i].sprites.push_back(g.push_quad_load(anims[i].elements[j].x1, anims[i].elements[j].y1, anims[i].elements[j].x2, anims[i].elements[j].y2, string("../resources/") + anims[i].elements[j].resource));
 	                break;
+				case HIDE_SPRITE:
+					q = &(g.draw_list[anims[i].sprites[anims[i].elements[j].index]]);
+					q->height = 0.0;
+					q->width = 0.0;
+					q->x = -1.0;
+					q->y = -1.0;
+					break;
 	            case PLAY_SOUND:
 	                se.play_sound(string("../resources/") + anims[i].elements[j].resource);
 	                break;
 	            case SPLINE_TRANSFORM:
 	                if (anims[i].elements[j].done)
 	                    continue;
-	                quad* q = 0;
-	                printf("\nCOMPONENTS: %f %f %f %f", anims[i].elements[j].x1, anims[i].elements[j].y1, anims[i].elements[j].x2, anims[i].elements[j].y2);
+					frame temp_frame;
 	                q = &(g.draw_list[anims[i].sprites[anims[i].elements[j].index]]);
 	                double t = (anims[i].current_time + delta - anims[i].elements[j].start);
 	                double t2 = (anims[i].elements[j].end - anims[i].elements[j].start);
@@ -246,10 +290,11 @@ void animation_engine::tick(double delta) {
 	                    t = 0.0;
 	                if (t > 1.0)
 	                    t = 1.0;
-	                q->x = anims[i].elements[j].frames[0].x1 + (t*(anims[i].elements[j].frames[1].x1 - anims[i].elements[j].frames[0].x1));
-	                q->y = anims[i].elements[j].frames[0].y1 + (t*(anims[i].elements[j].frames[1].y1 - anims[i].elements[j].frames[0].y1));
-	                q->width = anims[i].elements[j].frames[0].x2 + (t*(anims[i].elements[j].frames[1].x2 - anims[i].elements[j].frames[0].x2));
-	                q->height = anims[i].elements[j].frames[0].y2 + (t*(anims[i].elements[j].frames[1].y2 - anims[i].elements[j].frames[0].y2));
+					temp_frame = spline_frame(t, anims[i].elements[j].frames);
+					q->x = temp_frame.x1;
+					q->y = temp_frame.y1;
+					q->width = temp_frame.x2;
+					q->height = temp_frame.y2;
 	                if (t == 1.0)
 	                    anims[i].elements[j].done = true;
 	                break;
@@ -299,7 +344,7 @@ void animation_engine::purge() {
 		}
 	}
 	if (!found) {
-		animf.empty();
+		animf.clear();
 	}
 	safetyf.unlock();
 	safetyi.lock();
@@ -311,7 +356,7 @@ void animation_engine::purge() {
 		}
 	}
 	if (!found) {
-		animi.empty();
+		animi.clear();
 	}
 	safetyi.unlock();
 	safetys.lock();
@@ -323,7 +368,7 @@ void animation_engine::purge() {
 		}
 	}
 	if (!found) {
-		anims.empty();
+		anims.clear();
 	}
 	safetys.unlock();
 }

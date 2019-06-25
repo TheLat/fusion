@@ -12,7 +12,8 @@ enum SCENE_TYPE {
     UNMUTE_MUSIC,
     CREATE_SPRITE,
     PLAY_SOUND,
-    SPLINE_TRANSFORM
+    SPLINE_TRANSFORM,
+	HIDE_SPRITE
 };
 
 class frame {
@@ -62,6 +63,7 @@ private:
 	vector<animation_int> animi;
 	vector<animation_scene> anims;
 public:
+	frame spline_frame(double t, vector<frame> &frames);
 	unsigned create_animf(double* targ, double start, double end, double duration);
 	unsigned create_animi(int* targ, int start, int end, double duration);
 	unsigned create_anim_scene(string scene, unsigned sprite1 = 0, unsigned sprite2 = 0);
