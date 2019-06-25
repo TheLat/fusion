@@ -49,6 +49,7 @@ unsigned animation_engine::create_anim_scene(string scene, unsigned sprite1, uns
     ifstream f((string("../resources/animations/") + scene + string(".dat")).c_str());
     while (f.is_open()) {
         while (safe_getline(f, line)) {
+            printf("\n%s", line.c_str());
             s = line;
             s.erase(s.find(" "), s.length());
             line.erase(0, line.find(" ") + 1);
@@ -169,10 +170,11 @@ unsigned animation_engine::create_anim_scene(string scene, unsigned sprite1, uns
                     }
                     temp_frame.y2 = stof(s);
                     elem.frames.push_back(temp_frame);
-                    elem.frames.empty();
                 }
                 elem.done = false;
                 temp.elements.push_back(elem);
+                elem.frames.empty();
+                continue;
             }
         }
         f.close();
@@ -234,7 +236,9 @@ void animation_engine::tick(double delta) {
 	            case SPLINE_TRANSFORM:
 	                if (anims[i].elements[j].done)
 	                    continue;
-	                quad* q = &(g.draw_list[anims[i].sprites[anims[i].elements[j].index]]);
+	                quad* q = 0;
+	                printf("\nCOMPONENTS: %f %f %f %f", anims[i].elements[j].x1, anims[i].elements[j].y1, anims[i].elements[j].x2, anims[i].elements[j].y2);
+	                q = &(g.draw_list[anims[i].sprites[anims[i].elements[j].index]]);
 	                double t = (anims[i].current_time + delta - anims[i].elements[j].start);
 	                double t2 = (anims[i].elements[j].end - anims[i].elements[j].start);
 	                t /= t2;
