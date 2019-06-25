@@ -57,7 +57,7 @@ unsigned animation_engine::create_animi(int* targ, int start, int end, double du
 	return animi.size() - 1;
 }
 
-unsigned animation_engine::create_anim_scene(string scene, unsigned sprite1, unsigned sprite2) {
+unsigned animation_engine::create_anim_scene(string scene, unsigned attacker, unsigned defender) {
     animation_scene temp;
     scene_element elem;
     string line, s;
@@ -66,7 +66,6 @@ unsigned animation_engine::create_anim_scene(string scene, unsigned sprite1, uns
     ifstream f((string("../resources/animations/") + scene + string(".dat")).c_str());
     while (f.is_open()) {
         while (safe_getline(f, line)) {
-            printf("\n%s", line.c_str());
             s = line;
             s.erase(s.find(" "), s.length());
             line.erase(0, line.find(" ") + 1);
@@ -180,12 +179,25 @@ unsigned animation_engine::create_anim_scene(string scene, unsigned sprite1, uns
                 s = line;
                 s.erase(s.find(" "), s.length());
                 line.erase(0, line.find(" ") + 1);
-                elem.start = stof(s);
+				if (s.find("+") != -1) {
+					s.erase(s.find("+"), 1);
+					elem.start = stof(s) + t;
+				}
+				else {
+					elem.start = stof(s);
+				}
 				t = elem.start;
                 s = line;
                 s.erase(s.find(" "), s.length());
                 line.erase(0, line.find(" ") + 1);
-                elem.end = stof(s);
+				if (s.find("+") != -1) {
+					s.erase(s.find("+"), 1);
+					elem.end = stof(s) + t;
+				}
+				else {
+					elem.end = stof(s);
+				}
+				t = elem.end;
                 while (line.find(" ") != -1) {
                     frame temp_frame;
                     s = line;
@@ -281,6 +293,7 @@ void animation_engine::tick(double delta) {
 	            case SPLINE_TRANSFORM:
 	                if (anims[i].elements[j].done)
 	                    continue;
+	                done = false;
 					frame temp_frame;
 	                q = &(g.draw_list[anims[i].sprites[anims[i].elements[j].index]]);
 	                double t = (anims[i].current_time + delta - anims[i].elements[j].start);
