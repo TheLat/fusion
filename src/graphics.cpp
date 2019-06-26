@@ -1,5 +1,12 @@
-#include "graphics.h"
 
+#ifdef __APPLE__
+#else
+#include <Windows.h>
+#include "GL/glew.h"
+#include <gl/GL.h>
+#include <gl/GLU.h>
+#endif
+#include "graphics.h"
 extern bool safe_getline(ifstream &f, string& s);
 
 GLuint graphics::load_image(string filename) {
@@ -183,15 +190,26 @@ void graphics::initRendering() {
 	chunk['-'] = true;
 	chunk['\n'] = true;
 	// create frame buffer texture
+#ifdef __APPLE__
 	glGenFramebuffers(1, &fbo);
 	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
+#else
+	glewInit();
+	glGenFramebuffersEXT(1, &fbo);
+	glBindFramebufferEXT(GL_FRAMEBUFFER, fbo);
+#endif
 	glGenTextures(1, &r_tex);
     glBindTexture(GL_TEXTURE_2D, r_tex);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 160*4,144*4, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+#ifdef __APPLE__
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, r_tex, 0);
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
+#else
+	glFramebufferTexture2DEXT(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, r_tex, 0);
+	glBindFramebufferEXT(GL_FRAMEBUFFER, 0);
+#endif
 
     r_quad.x = -1.0;
     r_quad.y = -1.0;
@@ -266,7 +284,11 @@ void graphics::drawScene() {
 	draw_list_copy = draw_list;
 	m.unlock();
 	//Clear information from last draw
+#ifdef __APPLE__
 	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
+#else
+	glBindFramebufferEXT(GL_FRAMEBUFFER, fbo);
+#endif
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glMatrixMode(GL_MODELVIEW); //Switch to the drawing perspective
 	glLoadIdentity(); //Reset the drawing perspective
@@ -275,11 +297,15 @@ void graphics::drawScene() {
 	for (unsigned i = 0; i < draw_list_copy.size(); i++) {
 		draw_quad(draw_list_copy[i]);
 	}
-	glutSwapBuffers(); //Send the 3D scene to the screen
-	glutPostRedisplay();
+	//glutSwapBuffers(); //Send the 3D scene to the screen
+	//glutPostRedisplay();
 
+#ifdef __APPLE__
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+#else
+	glBindFramebufferEXT(GL_FRAMEBUFFER, 0);
+#endif
+	glClear(GL_COLOR_BUFFER_BIT);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	draw_quad(r_quad); // render screen texture to screen
