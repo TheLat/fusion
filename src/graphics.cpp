@@ -264,9 +264,14 @@ void graphics::animate() {
 }
 
 void graphics::drawScene() {
+	/*
 	//uncomment for fps
-	//deltat = 1.0 / deltat;
-	//printf("%f fps\n", deltat);
+	static unsigned index2 = tim.create();
+	double deltat = tim.delta(index2);
+	tim.update(index2);
+	deltat = 1.0 / deltat;
+	printf("%f fps\n", deltat);
+	//*/
 	std::vector<quad> draw_list_copy;
 	m.lock();
 	if (new_load) {
