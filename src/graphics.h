@@ -38,6 +38,8 @@ public:
 class graphics {
 private:
 	unsigned time_index;
+	GLuint fbo;
+	GLuint r_tex;
 public:
 	animation_engine ae;
 	std::map<int, GLuint> tiles;

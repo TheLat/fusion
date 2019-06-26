@@ -182,6 +182,16 @@ void graphics::initRendering() {
 	chunk[' '] = true;
 	chunk['-'] = true;
 	chunk['\n'] = true;
+	// create frame buffer texture
+	glGenFramebuffers(1, &fbo);
+	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
+	glGenTextures(1, &r_tex);
+    glBindTexture(GL_TEXTURE_2D, r_tex);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 160*4,144*4, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, r_tex, 0);
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
 void graphics::handleResize(int w, int h) {
@@ -250,13 +260,34 @@ void graphics::drawScene() {
 	draw_list_copy = draw_list;
 	m.unlock();
 	//Clear information from last draw
+	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glMatrixMode(GL_MODELVIEW); //Switch to the drawing perspective
 	glLoadIdentity(); //Reset the drawing perspective
+	glViewport(0,0,160*4,144*4);
 	glColor3f(1.0f, 1.0f, 1.0f);
 	for (unsigned i = 0; i < draw_list_copy.size(); i++) {
 		draw_quad(draw_list_copy[i]);
 	}
+	glutSwapBuffers(); //Send the 3D scene to the screen
+	glutPostRedisplay();
+
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glMatrixMode(GL_MODELVIEW); //Switch to the drawing perspective
+	glLoadIdentity(); //Reset the drawing perspective
+
+	glBindTexture(GL_TEXTURE_2D, r_tex);
+	glBegin(GL_QUADS);
+	glTexCoord2f(0.0f, 0.0f);
+	glVertex3f(-1.0, -1.0, 0.0f);
+	glTexCoord2f(1.0f, 0.0f);
+	glVertex3f(1.0, -1.0, 0.0f);
+	glTexCoord2f(1.0f, 1.0f);
+	glVertex3f(1.0, 1.0, 0.0f);
+	glTexCoord2f(0.0f, 1.0f);
+	glVertex3f(-1.0, 1.0, 0.0f);
+	glEnd();
 	glutSwapBuffers(); //Send the 3D scene to the screen
 	glutPostRedisplay();
 }
