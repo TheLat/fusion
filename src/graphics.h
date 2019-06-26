@@ -40,6 +40,7 @@ private:
 	unsigned time_index;
 	GLuint fbo;
 	GLuint r_tex;
+	quad r_quad;
 public:
 	animation_engine ae;
 	std::map<int, GLuint> tiles;

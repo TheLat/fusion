@@ -192,6 +192,12 @@ void graphics::initRendering() {
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, r_tex, 0);
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+    r_quad.x = -1.0;
+    r_quad.y = -1.0;
+    r_quad.width = 2.0;
+    r_quad.height = 2.0;
+    r_quad.tex = r_tex;
 }
 
 void graphics::handleResize(int w, int h) {
@@ -274,21 +280,10 @@ void graphics::drawScene() {
 
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glMatrixMode(GL_MODELVIEW); //Switch to the drawing perspective
-	glLoadIdentity(); //Reset the drawing perspective
-
-	glBindTexture(GL_TEXTURE_2D, r_tex);
-	glBegin(GL_QUADS);
-	glTexCoord2f(0.0f, 0.0f);
-	glVertex3f(-1.0, -1.0, 0.0f);
-	glTexCoord2f(1.0f, 0.0f);
-	glVertex3f(1.0, -1.0, 0.0f);
-	glTexCoord2f(1.0f, 1.0f);
-	glVertex3f(1.0, 1.0, 0.0f);
-	glTexCoord2f(0.0f, 1.0f);
-	glVertex3f(-1.0, 1.0, 0.0f);
-	glEnd();
-	glutSwapBuffers(); //Send the 3D scene to the screen
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+	draw_quad(r_quad); // render screen texture to screen
+	glutSwapBuffers();
 	glutPostRedisplay();
 }
 
