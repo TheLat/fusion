@@ -2125,6 +2125,88 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 			    m.unlock();
 			}
 			deal_damage(defender, dam);
+			if (non_zero) {
+			    double anim_flip = 1.0;
+			    unsigned anim_holder = 0;
+			    double irrelevant = 0.0;
+			    if (attacker.enemy)
+			        anim_flip = -1.0;
+				if (mul == 4.0) {
+				    se.play_sound(string("sound_effects/combat/imhitsuper.mp3"));
+				    g.r_quad.x = -1.0 + anim_flip*4.5/160.0;
+				    anim_holder = g.ae.create_animf(&(irrelevant), 0.0, 1.0, 1.0/16.0);
+				    while (!g.ae.is_donef(anim_holder)) {}
+				    g.r_quad.x = -1.0 + anim_flip*-3.0/160.0;
+				    anim_holder = g.ae.create_animf(&(irrelevant), 0.0, 1.0, 1.0/16.0);
+				    while (!g.ae.is_donef(anim_holder)) {}
+				    g.r_quad.x = -1.0 + anim_flip*1.5/160.0;
+				    anim_holder = g.ae.create_animf(&(irrelevant), 0.0, 1.0, 1.0/16.0);
+				    while (!g.ae.is_donef(anim_holder)) {}
+				    g.r_quad.x = -1.0;
+					do_alert("It's extremely effective!");
+				}
+				else if (mul == 2.0) {
+				    se.play_sound(string("sound_effects/combat/imhitsuper.mp3"));
+				    g.r_quad.x = -1.0 + anim_flip*4.5/160.0;
+				    anim_holder = g.ae.create_animf(&(irrelevant), 0.0, 1.0, 1.0/16.0);
+				    while (!g.ae.is_donef(anim_holder)) {}
+				    g.r_quad.x = -1.0 + anim_flip*-3.0/160.0;
+				    anim_holder = g.ae.create_animf(&(irrelevant), 0.0, 1.0, 1.0/16.0);
+				    while (!g.ae.is_donef(anim_holder)) {}
+				    g.r_quad.x = -1.0 + anim_flip*1.5/160.0;
+				    anim_holder = g.ae.create_animf(&(irrelevant), 0.0, 1.0, 1.0/16.0);
+				    while (!g.ae.is_donef(anim_holder)) {}
+				    g.r_quad.x = -1.0;
+					do_alert("It's super effective!");
+				}
+				else if (mul == 0.0) {
+					do_alert(string("It doesn't affect ") + get_nickname(defender) + string("!"));
+				}
+				else if (mul == 0.5) {
+				    se.play_sound(string("sound_effects/combat/imhitweak.mp3"));
+				    g.r_quad.x = -1.0 + anim_flip*2.0/160.0;
+				    anim_holder = g.ae.create_animf(&(irrelevant), 0.0, 1.0, 1.0/16.0);
+				    while (!g.ae.is_donef(anim_holder)) {}
+				    g.r_quad.x = -1.0 + anim_flip*-1.0/160.0;
+				    anim_holder = g.ae.create_animf(&(irrelevant), 0.0, 1.0, 1.0/16.0);
+				    while (!g.ae.is_donef(anim_holder)) {}
+				    g.r_quad.x = -1.0 + anim_flip*0.5/160.0;
+				    anim_holder = g.ae.create_animf(&(irrelevant), 0.0, 1.0, 1.0/16.0);
+				    while (!g.ae.is_donef(anim_holder)) {}
+				    g.r_quad.x = -1.0;
+					do_alert("It's not very effective...");
+				}
+				else if (mul == 0.25) {
+				    se.play_sound(string("sound_effects/combat/imhitweak.mp3"));
+				    g.r_quad.x = -1.0 + anim_flip*2.0/160.0;
+				    anim_holder = g.ae.create_animf(&(irrelevant), 0.0, 1.0, 1.0/16.0);
+				    while (!g.ae.is_donef(anim_holder)) {}
+				    g.r_quad.x = -1.0 + anim_flip*-1.0/160.0;
+				    anim_holder = g.ae.create_animf(&(irrelevant), 0.0, 1.0, 1.0/16.0);
+				    while (!g.ae.is_donef(anim_holder)) {}
+				    g.r_quad.x = -1.0 + anim_flip*0.5/160.0;
+				    anim_holder = g.ae.create_animf(&(irrelevant), 0.0, 1.0, 1.0/16.0);
+				    while (!g.ae.is_donef(anim_holder)) {}
+				    g.r_quad.x = -1.0;
+					do_alert("It barely had an effect...");
+				}
+				else {
+				    se.play_sound(string("sound_effects/combat/imhit.mp3"));
+				    g.r_quad.x = -1.0 + anim_flip*3.0/160.0;
+				    anim_holder = g.ae.create_animf(&(irrelevant), 0.0, 1.0, 1.0/16.0);
+				    while (!g.ae.is_donef(anim_holder)) {}
+				    g.r_quad.x = -1.0 + anim_flip*-2.0/160.0;
+				    anim_holder = g.ae.create_animf(&(irrelevant), 0.0, 1.0, 1.0/16.0);
+				    while (!g.ae.is_donef(anim_holder)) {}
+				    g.r_quad.x = -1.0 + anim_flip*1.0/160.0;
+				    anim_holder = g.ae.create_animf(&(irrelevant), 0.0, 1.0, 1.0/16.0);
+				    while (!g.ae.is_donef(anim_holder)) {}
+				    g.r_quad.x = -1.0;
+				}
+				if (dam > 0 && crit) {
+					do_alert(string("A critical hit!"));
+				}
+			}
 			if (moves[move].defense == SPECIAL) {
 				defender.last_hit_special = dam;
 				defender.last_hit_physical = 0;
@@ -2138,20 +2220,6 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 				apply_status(defender, string("ATTACK_UPx2"));
 				apply_status(defender, string("DEFENSE_UPx2"));
 				apply_status(defender, string("SPECIAL_UPx2"));
-			}
-			if (non_zero) {
-				if (mul == 4.0)
-					do_alert("It's extremely effective!");
-				else if (mul == 2.0)
-					do_alert("It's super effective!");
-				else if (mul == 0.0)
-					do_alert(string("It doesn't affect ") + get_nickname(defender) + string("!"));
-				else if (mul == 0.5)
-					do_alert("It's not very effective...");
-				else if (mul == 0.25)
-					do_alert("It barely had an effect...");
-				if (dam > 0 && crit)
-					do_alert(string("A critical hit!"));
 			}
 			if (!status_immunity(defender, move)) {
 				for (unsigned j = 0; j < moves[move].target.size(); ++j) {
