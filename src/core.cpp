@@ -2146,13 +2146,38 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 			    unsigned anim_holder = 0;
 			    unsigned clear_point = g.draw_list.size();
 			    if (attacker.enemy)
-			        anim_holder = g.ae.create_anim_scene(moves[move].animation + string("-enemy"));
+			        anim_holder = g.ae.create_anim_scene(moves[move].animation + string("-enemy"), attacker.sprite_index, defender.sprite_index);
 			    else
-    			    anim_holder = g.ae.create_anim_scene(moves[move].animation);
+    			    anim_holder = g.ae.create_anim_scene(moves[move].animation, attacker.sprite_index, defender.sprite_index);
 			    while (!g.ae.is_dones(anim_holder)) {
 			    }
 			    m.lock();
+			    // reset screen
 			    g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
+			    g.r_quad.x = -1.0;
+			    g.r_quad.y = -1.0;
+			    g.r_quad.height = 2.0;
+			    g.r_quad.width = 2.0;
+			    if (attacker.enemy) {
+			        g.draw_list[attacker.sprite_index].x = 0.1;
+			        g.draw_list[attacker.sprite_index].y = 0.1;
+			        g.draw_list[attacker.sprite_index].height = 0.9;
+			        g.draw_list[attacker.sprite_index].width = 0.9;
+			        g.draw_list[defender.sprite_index].x = -1.0;
+			        g.draw_list[defender.sprite_index].y = -0.422;
+			        g.draw_list[defender.sprite_index].height = 0.9;
+			        g.draw_list[defender.sprite_index].width = 0.9;
+			    }
+			    else {
+			        g.draw_list[defender.sprite_index].x = 0.1;
+			        g.draw_list[defender.sprite_index].y = 0.1;
+			        g.draw_list[defender.sprite_index].height = 0.9;
+			        g.draw_list[defender.sprite_index].width = 0.9;
+			        g.draw_list[attacker.sprite_index].x = -1.0;
+			        g.draw_list[attacker.sprite_index].y = -0.422;
+			        g.draw_list[attacker.sprite_index].height = 0.9;
+			        g.draw_list[attacker.sprite_index].width = 0.9;
+			    }
 			    m.unlock();
 			}
 			if (non_zero) {

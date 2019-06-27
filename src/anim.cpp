@@ -175,7 +175,14 @@ unsigned animation_engine::create_anim_scene(string scene, unsigned attacker, un
                 s = line;
                 s.erase(s.find(" "), s.length());
                 line.erase(0, line.find(" ") + 1);
-                elem.index = stoi(s); // handle attacker, defender, and screen
+                if (s == "ATTACKER")
+                    elem.index = -attacker;
+                else if (s == "DEFENDER")
+                    elem.index = -defender;
+                else if (s == "SCREEN")
+                    elem.index = -1;
+                else
+                    elem.index = stoi(s);
                 s = line;
                 s.erase(s.find(" "), s.length());
                 line.erase(0, line.find(" ") + 1);
@@ -295,7 +302,13 @@ void animation_engine::tick(double delta) {
 	                    continue;
 	                done = false;
 					frame temp_frame;
-	                q = &(g.draw_list[anims[i].sprites[anims[i].elements[j].index]]);
+					if (anims[i].elements[j].index >= 0)
+	                    q = &(g.draw_list[anims[i].sprites[anims[i].elements[j].index]]);
+	                else if (anims[i].elements[j].index == -1)
+	                    q = &(g.r_quad);
+	                else {
+	                    q = &(g.draw_list[-anims[i].elements[j].index]); // hack to allow access to the draw list
+	                }
 	                double t = (anims[i].current_time + delta - anims[i].elements[j].start);
 	                double t2 = (anims[i].elements[j].end - anims[i].elements[j].start);
 	                t /= t2;

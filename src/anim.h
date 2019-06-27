@@ -27,7 +27,7 @@ public:
     string resource;
     vector<frame> frames;
     bool done;
-    unsigned index;
+    int index;
     double start, end, x1, y1, x2, y2;
 };
 
