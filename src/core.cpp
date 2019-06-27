@@ -2153,13 +2153,13 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 			        anim_flip = -1.0;
 				if (mul == 4.0) {
 				    se.play_sound(string("sound_effects/combat/imhitsuper.mp3"));
-				    g.r_quad.x = -1.0 + anim_flip*4.5/160.0;
+				    g.r_quad.x = -1.0 + anim_flip*6.0/160.0;
 				    anim_holder = g.ae.create_animf(&(irrelevant), 0.0, 1.0, 1.0/16.0);
 				    while (!g.ae.is_donef(anim_holder)) {}
-				    g.r_quad.x = -1.0 + anim_flip*-3.0/160.0;
+				    g.r_quad.x = -1.0 + anim_flip*-4.0/160.0;
 				    anim_holder = g.ae.create_animf(&(irrelevant), 0.0, 1.0, 1.0/16.0);
 				    while (!g.ae.is_donef(anim_holder)) {}
-				    g.r_quad.x = -1.0 + anim_flip*1.5/160.0;
+				    g.r_quad.x = -1.0 + anim_flip*2.0/160.0;
 				    anim_holder = g.ae.create_animf(&(irrelevant), 0.0, 1.0, 1.0/16.0);
 				    while (!g.ae.is_donef(anim_holder)) {}
 				    g.r_quad.x = -1.0;
@@ -2198,13 +2198,13 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 				}
 				else if (mul == 0.25) {
 				    se.play_sound(string("sound_effects/combat/imhitweak.mp3"));
-				    g.r_quad.x = -1.0 + anim_flip*2.0/160.0;
+				    g.r_quad.x = -1.0 + anim_flip*1.5/160.0;
 				    anim_holder = g.ae.create_animf(&(irrelevant), 0.0, 1.0, 1.0/16.0);
 				    while (!g.ae.is_donef(anim_holder)) {}
-				    g.r_quad.x = -1.0 + anim_flip*-1.0/160.0;
+				    g.r_quad.x = -1.0 + anim_flip*-0.75/160.0;
 				    anim_holder = g.ae.create_animf(&(irrelevant), 0.0, 1.0, 1.0/16.0);
 				    while (!g.ae.is_donef(anim_holder)) {}
-				    g.r_quad.x = -1.0 + anim_flip*0.5/160.0;
+				    g.r_quad.x = -1.0 + anim_flip*0.25/160.0;
 				    anim_holder = g.ae.create_animf(&(irrelevant), 0.0, 1.0, 1.0/16.0);
 				    while (!g.ae.is_donef(anim_holder)) {}
 				    g.r_quad.x = -1.0;
