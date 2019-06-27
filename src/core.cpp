@@ -1660,12 +1660,15 @@ void engine::heal_damage(mon& m, int heal_amount) {
 		// TODO:  Error logic here
 		return;
 	}
-	m.curr_hp = m.curr_hp + heal_amount;
-	if (m.curr_hp > get_stat(m, HP))
-		m.curr_hp = get_stat(m, HP);
-	resize_hp_bars(m);
-	if (m.hud_index)
-		rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
+	if (heal_amount + m.curr_hp > get_stat(m, HP))
+	    heal_amount = get_stat(m, HP) - m.curr_hp;
+    unsigned anim_holder = 0;
+    anim_holder = g.ae.create_animi(&(m.curr_hp), m.curr_hp, m.curr_hp + heal_amount, 0.25);
+    while (!g.ae.is_donei(anim_holder)) {
+	    resize_hp_bars(m);
+	    if (m.hud_index)
+	    	rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
+	}
 }
 
 void engine::deal_damage(mon& m, int damage_amount) {
@@ -1673,12 +1676,17 @@ void engine::deal_damage(mon& m, int damage_amount) {
 		// TODO:  Error logic here
 		return;
 	}
-	m.curr_hp = m.curr_hp - damage_amount;
-	if (m.curr_hp < 0)
-		m.curr_hp = 0;
-	resize_hp_bars(m);
-	if (m.hud_index)
-		rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
+	if (damage_amount > m.curr_hp)
+	    damage_amount = m.curr_hp;
+	unsigned anim_holder = 0;
+	anim_holder = g.ae.create_animi(&(m.curr_hp), m.curr_hp, m.curr_hp - damage_amount, 0.25);
+	while (!g.ae.is_donei(anim_holder)) {
+        if (m.curr_hp < 0)
+            m.curr_hp = 0;
+        resize_hp_bars(m);
+        if (m.hud_index)
+            rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
+	}
 }
 
 bool engine::status_immunity(mon& m, string move) {
@@ -1867,6 +1875,7 @@ bool engine::apply_status(mon& m, string s, bool skip_chance, bool silent) {
 		}
 		else if (s2 == "VAMPIRE") {
 			heal_damage(m, max(int(double(m.last_damage) * (double(value) / 100.0)), 1));
+			do_alert(string("Stole the opponent's health!"));
 		}
 		else if (s2 == "SELF_LEVEL") {
 		}
@@ -2144,7 +2153,6 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 			    g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
 			    m.unlock();
 			}
-			deal_damage(defender, dam);
 			if (non_zero) {
 			    double anim_flip = 1.0;
 			    unsigned anim_holder = 0;
@@ -2163,6 +2171,7 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 				    anim_holder = g.ae.create_animf(&(irrelevant), 0.0, 1.0, 1.0/16.0);
 				    while (!g.ae.is_donef(anim_holder)) {}
 				    g.r_quad.x = -1.0;
+			        deal_damage(defender, dam);
 					do_alert("It's extremely effective!");
 				}
 				else if (mul == 2.0) {
@@ -2177,6 +2186,7 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 				    anim_holder = g.ae.create_animf(&(irrelevant), 0.0, 1.0, 1.0/16.0);
 				    while (!g.ae.is_donef(anim_holder)) {}
 				    g.r_quad.x = -1.0;
+			        deal_damage(defender, dam);
 					do_alert("It's super effective!");
 				}
 				else if (mul == 0.0) {
@@ -2194,6 +2204,7 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 				    anim_holder = g.ae.create_animf(&(irrelevant), 0.0, 1.0, 1.0/16.0);
 				    while (!g.ae.is_donef(anim_holder)) {}
 				    g.r_quad.x = -1.0;
+			        deal_damage(defender, dam);
 					do_alert("It's not very effective...");
 				}
 				else if (mul == 0.25) {
@@ -2208,6 +2219,7 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 				    anim_holder = g.ae.create_animf(&(irrelevant), 0.0, 1.0, 1.0/16.0);
 				    while (!g.ae.is_donef(anim_holder)) {}
 				    g.r_quad.x = -1.0;
+			        deal_damage(defender, dam);
 					do_alert("It barely had an effect...");
 				}
 				else {
@@ -2222,6 +2234,7 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 				    anim_holder = g.ae.create_animf(&(irrelevant), 0.0, 1.0, 1.0/16.0);
 				    while (!g.ae.is_donef(anim_holder)) {}
 				    g.r_quad.x = -1.0;
+			        deal_damage(defender, dam);
 				}
 				if (dam > 0 && crit) {
 					do_alert(string("A critical hit!"));
