@@ -2117,7 +2117,10 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 			if (moves[move].animation != "") {
 			    unsigned anim_holder = 0;
 			    unsigned clear_point = g.draw_list.size();
-			    anim_holder = g.ae.create_anim_scene(moves[move].animation);
+			    if (attacker.enemy)
+			        anim_holder = g.ae.create_anim_scene(moves[move].animation + string("-enemy"));
+			    else
+    			    anim_holder = g.ae.create_anim_scene(moves[move].animation);
 			    while (!g.ae.is_dones(anim_holder)) {
 			    }
 			    m.lock();
