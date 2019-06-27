@@ -1474,14 +1474,31 @@ void engine::gain_exp(mon& winner, mon& loser, int num_fighters, double scale) {
 	double diff = double(max(min(winner.level - loser.level, 5), -10)) / 10.0;
 	exp *= (1.0 - diff);
 	exp = max(int(exp), 1);
-	winner.exp += int(exp);
 	for (unsigned i = 0; i < SIZE; ++i) {
 		winner.EV[i] += all_mon[loser.number].stats[i];
 	}
 	resize_exp_bar(winner);
-	do_alert(get_nickname(winner) + string(" gained ") + to_string(int(exp)) + string(" EXP. Points!"));
-	level_up(winner, true);
-	resize_exp_bar(winner);
+	if (winner.level < 100) {
+	    do_alert(get_nickname(winner) + string(" gained ") + to_string(int(exp)) + string(" EXP. Points!"));
+	    int delta;
+	    unsigned anim_holder = 0;
+	    while (level_to_exp[winner.level + 1] <= winner.exp + exp) {
+	        delta = level_to_exp[winner.level + 1] - winner.exp;
+	        exp -= delta;
+	        anim_holder = g.ae.create_animi(&(winner.exp), winner.exp, winner.exp + delta, 0.25);
+	        se.play_sound(string("sound_effects/general/sfx_arrow_tiles.mp3"));
+	        while (!g.ae.is_donei(anim_holder)) {
+	            resize_exp_bar(winner);
+	        }
+	        level_up(winner, true);
+	    }
+	    anim_holder = g.ae.create_animi(&(winner.exp), winner.exp, winner.exp + int(exp), 0.25);
+	    se.play_sound(string("sound_effects/general/sfx_arrow_tiles.mp3"));
+	    while (!g.ae.is_donei(anim_holder)) {
+	        resize_exp_bar(winner);
+	    }
+
+	}
 }
 
 int engine::get_move_count(mon& m) {
