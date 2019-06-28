@@ -1842,12 +1842,36 @@ bool engine::apply_status(mon& m, string s, bool skip_chance, bool silent) {
 					return false;
 				}
 				else {
-					if (!silent)
-						do_alert(s4);
+				    vector<double> before;
+				    vector<double> after;
+				    before.push_back(get_stat(m, ATTACK));
+				    before.push_back(get_stat(m, DEFENSE));
+				    before.push_back(get_stat(m, SPECIAL));
+				    before.push_back(get_stat(m, SPEED));
+				    before.push_back(get_accuracy_modifier(m));
+				    before.push_back(get_evasion_modifier(m));
+                    for (int i = 0; i < repeat; ++i) {
+                        m.status.push_back(s2);
+                    }
+				    after.push_back(get_stat(m, ATTACK));
+				    after.push_back(get_stat(m, DEFENSE));
+				    after.push_back(get_stat(m, SPECIAL));
+				    after.push_back(get_stat(m, SPEED));
+				    after.push_back(get_accuracy_modifier(m));
+				    after.push_back(get_evasion_modifier(m));
+					if (!silent) {
+					    bool different = false;
+					    for (unsigned diff_checker = 0; diff_checker < before.size(); ++diff_checker) {
+					        if (before[diff_checker] != after[diff_checker]) {
+					            different = true;
+					        }
+					    }
+					    if (different) {
+						    do_alert(s4);
+						}
+					}
 				}
 			}
-			for (int i = 0; i < repeat; ++i)
-				m.status.push_back(s2);
 		}
 		if (s2 == "TOXIC") {
 			remove_status(m, string("POISON"), true);
