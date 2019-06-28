@@ -2231,7 +2231,8 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 				    while (!g.ae.is_donef(anim_holder)) {}
 				    g.r_quad.x = -1.0;
 			        deal_damage(defender, dam);
-					do_alert("It's extremely effective!");
+			        if (i == repeat - 1)
+					    do_alert("It's extremely effective!");
 				}
 				else if (mul == 2.0) {
 				    se.play_sound(string("sound_effects/combat/imhitsuper.mp3"));
@@ -2246,10 +2247,12 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 				    while (!g.ae.is_donef(anim_holder)) {}
 				    g.r_quad.x = -1.0;
 			        deal_damage(defender, dam);
-					do_alert("It's super effective!");
+					if (i == repeat - 1)
+					    do_alert("It's super effective!");
 				}
 				else if (mul == 0.0) {
-					do_alert(string("It doesn't affect ") + get_nickname(defender) + string("!"));
+					if (i == repeat - 1)
+					    do_alert(string("It doesn't affect ") + get_nickname(defender) + string("!"));
 				}
 				else if (mul == 0.5) {
 				    se.play_sound(string("sound_effects/combat/imhitweak.mp3"));
@@ -2264,7 +2267,8 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 				    while (!g.ae.is_donef(anim_holder)) {}
 				    g.r_quad.x = -1.0;
 			        deal_damage(defender, dam);
-					do_alert("It's not very effective...");
+					if (i == repeat - 1)
+					    do_alert("It's not very effective...");
 				}
 				else if (mul == 0.25) {
 				    se.play_sound(string("sound_effects/combat/imhitweak.mp3"));
@@ -2279,7 +2283,8 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 				    while (!g.ae.is_donef(anim_holder)) {}
 				    g.r_quad.x = -1.0;
 			        deal_damage(defender, dam);
-					do_alert("It barely had an effect...");
+					if (i == repeat - 1)
+					    do_alert("It barely had an effect...");
 				}
 				else {
 				    se.play_sound(string("sound_effects/combat/imhit.mp3"));
