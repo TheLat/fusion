@@ -1490,6 +1490,7 @@ void engine::gain_exp(mon& winner, mon& loser, int num_fighters, double scale) {
 	        while (!g.ae.is_donei(anim_holder)) {
 	            resize_exp_bar(winner);
 	        }
+			resize_exp_bar(winner);
 	        level_up(winner, true);
 	    }
 	    anim_holder = g.ae.create_animi(&(winner.exp), winner.exp, winner.exp + int(exp), 0.25);
@@ -1497,6 +1498,7 @@ void engine::gain_exp(mon& winner, mon& loser, int num_fighters, double scale) {
 	    while (!g.ae.is_donei(anim_holder)) {
 	        resize_exp_bar(winner);
 	    }
+		resize_exp_bar(winner);
 
 	}
 }
@@ -1669,6 +1671,9 @@ void engine::heal_damage(mon& m, int heal_amount) {
 	    if (m.hud_index)
 	    	rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
 	}
+	resize_hp_bars(m);
+	if (m.hud_index)
+		rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
 }
 
 void engine::deal_damage(mon& m, int damage_amount) {
@@ -1687,6 +1692,9 @@ void engine::deal_damage(mon& m, int damage_amount) {
         if (m.hud_index)
             rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
 	}
+	resize_hp_bars(m);
+	if (m.hud_index)
+		rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
 }
 
 bool engine::status_immunity(mon& m, string move) {
