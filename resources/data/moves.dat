@@ -1160,6 +1160,7 @@ CRITICAL: HIGH
 NOTES: A high critical hit chance.
 
 MOVE: BARRAGE
+ANIMATION: barrage
 TYPE: NORMAL
 ACC: 85
 POWER: 15x2-5
