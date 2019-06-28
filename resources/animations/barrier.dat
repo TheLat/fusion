@@ -1,0 +1,13 @@
+PLAY_SOUND sound_effects/combat/barrier.mp3 0.0
+CREATE_SPRITE images/barrier.png 0.0 -0.1 -0.422 0.8 0.8
+HIDE_SPRITE 0 +0.125
+CREATE_SPRITE images/barrier.png +0.125 -0.1 -0.422 0.8 0.8
+HIDE_SPRITE 1 +0.125
+CREATE_SPRITE images/barrier.png +0.125 -0.1 -0.422 0.8 0.8
+HIDE_SPRITE 2 +0.125
+CREATE_SPRITE images/barrier.png +0.375 -0.1 -0.422 0.8 0.8
+HIDE_SPRITE 3 +0.125
+CREATE_SPRITE images/barrier.png +0.125 -0.1 -0.422 0.8 0.8
+HIDE_SPRITE 4 +0.125
+CREATE_SPRITE images/barrier.png +0.125 -0.1 -0.422 0.8 0.8
+HIDE_SPRITE 5 +0.125

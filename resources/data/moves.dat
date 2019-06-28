@@ -890,6 +890,7 @@ TARGET: SPEED_DOWN:10
 NOTES: 1 in 10 chance to reduce opponent's speed.
 
 MOVE: BARRIER
+ANIMATION: barrier
 TYPE: PSYCHIC
 ACC: 100
 PP: 30
