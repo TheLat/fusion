@@ -66,7 +66,7 @@ public:
 	frame spline_frame(double t, vector<frame> &frames);
 	unsigned create_animf(double* targ, double start, double end, double duration);
 	unsigned create_animi(int* targ, int start, int end, double duration);
-	unsigned create_anim_scene(string scene, unsigned attacker = 0, unsigned defender = 0);
+	unsigned create_anim_scene(string scene, int attacker = 0, int defender = 0);
 	void tick(double delta);
 	bool is_donef(unsigned index);
 	bool is_donei(unsigned index);

@@ -57,7 +57,7 @@ unsigned animation_engine::create_animi(int* targ, int start, int end, double du
 	return animi.size() - 1;
 }
 
-unsigned animation_engine::create_anim_scene(string scene, unsigned attacker, unsigned defender) {
+unsigned animation_engine::create_anim_scene(string scene, int attacker, int defender) {
     animation_scene temp;
     scene_element elem;
     string line, s;
