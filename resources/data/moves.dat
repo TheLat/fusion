@@ -493,6 +493,7 @@ TARGET: DEFENSE_DOWNx2
 NOTES: Greatly reduces opponent's defense.
 
 MOVE: ACID
+ANIMATION: acid
 TYPE: POISON
 ACC: 100
 POWER: 40
