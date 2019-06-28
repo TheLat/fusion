@@ -829,6 +829,7 @@ TARGET: SLEEP
 NOTES: Makes opponent fall asleep.
 
 MOVE: AMNESIA
+ANIMATION: amnesia
 TYPE: PSYCHIC
 ACC: 100
 PP: 20
