@@ -1,0 +1,13 @@
+PLAY_SOUND sound_effects/combat/aurorabeam.mp3 0.0
+CREATE_SPRITE images/aurora-beam1.png 0.0 0.55 0.55 -1.0 -1.0
+CREATE_SPRITE images/aurora-beam2.png +0.08 0.55 0.55 -1.0 -1.0
+CREATE_SPRITE images/aurora-beam3.png +0.08 0.55 0.55 -1.0 -1.0
+CREATE_SPRITE images/aurora-beam4.png +0.08 0.55 0.55 -1.0 -1.0
+CREATE_SPRITE images/aurora-beam5.png +0.08 0.55 0.55 -1.0 -1.0
+CREATE_SPRITE images/aurora-beam6.png +0.08 0.55 0.55 -1.0 -1.0
+HIDE_SPRITE 0 0.08
+HIDE_SPRITE 1 +0.08
+HIDE_SPRITE 2 +0.08
+HIDE_SPRITE 3 +0.08
+HIDE_SPRITE 4 +0.08
+HIDE_SPRITE 5 +0.08
