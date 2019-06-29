@@ -294,6 +294,7 @@ void graphics::drawScene() {
 #else
 	glBindFramebufferEXT(GL_FRAMEBUFFER, fbo);
 #endif
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glMatrixMode(GL_MODELVIEW); //Switch to the drawing perspective
 	glLoadIdentity(); //Reset the drawing perspective
@@ -310,6 +311,7 @@ void graphics::drawScene() {
 #else
 	glBindFramebufferEXT(GL_FRAMEBUFFER, 0);
 #endif
+    glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
