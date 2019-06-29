@@ -311,6 +311,12 @@ void graphics::drawScene() {
 #else
 	glBindFramebufferEXT(GL_FRAMEBUFFER, 0);
 #endif
+    // example non-shader color invert
+    // glLogicOp (GL_COPY_INVERTED);
+    // glEnable (GL_COLOR_LOGIC_OP);
+    // DRAWING STUFF
+    // glLogicOp (GL_COPY);
+    // glDisable (GL_COLOR_LOGIC_OP);
     glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
 	glMatrixMode(GL_MODELVIEW);
