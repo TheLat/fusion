@@ -179,6 +179,8 @@ unsigned animation_engine::create_anim_scene(string scene, int attacker, int def
                     elem.index = -attacker;
                 else if (s == "DEFENDER")
                     elem.index = -defender;
+                else if (s == "SCREEN_EFFECTS")
+                    elem.index = -2;
                 else if (s == "SCREEN")
                     elem.index = -1;
                 else
@@ -306,6 +308,8 @@ void animation_engine::tick(double delta) {
 	                    q = &(g.draw_list[anims[i].sprites[anims[i].elements[j].index]]);
 	                else if (anims[i].elements[j].index == -1)
 	                    q = &(g.r_quad);
+	                else if (anims[i].elements[j].index == -2)
+	                    q = &(g.r_effects);
 	                else {
 	                    q = &(g.draw_list[-anims[i].elements[j].index]); // hack to allow access to the draw list
 	                }

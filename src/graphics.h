@@ -40,8 +40,12 @@ private:
 	unsigned time_index;
 	GLuint fbo;
 	GLuint r_tex;
+	GLuint VertexArrayID;
+	GLuint FragmentShaderID;
+	GLuint ProgramID;
 public:
 	quad r_quad;
+	quad r_effects;
 	animation_engine ae;
 	std::map<int, GLuint> tiles;
 	std::map<string, GLuint> tex;

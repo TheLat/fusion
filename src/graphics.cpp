@@ -1,4 +1,3 @@
-
 #ifdef __APPLE__
 #else
 #include <Windows.h>
@@ -6,6 +5,7 @@
 #include <gl/GL.h>
 #include <gl/GLU.h>
 #endif
+#include <sstream>
 #include "graphics.h"
 extern bool safe_getline(ifstream &f, string& s);
 
@@ -216,6 +216,47 @@ void graphics::initRendering() {
     r_quad.width = 2.0;
     r_quad.height = 2.0;
     r_quad.tex = r_tex;
+
+	GLint Result = GL_FALSE;
+	int InfoLogLength;
+    FragmentShaderID = glCreateShader(GL_FRAGMENT_SHADER);
+    string FragmentShaderCode;
+	ifstream FragmentShaderStream("../shaders/post.shader", std::ios::in);
+	if(FragmentShaderStream.is_open()){
+		stringstream sstr;
+		sstr << FragmentShaderStream.rdbuf();
+		FragmentShaderCode = sstr.str();
+		FragmentShaderStream.close();
+	}
+	printf("Compiling shader : %s\n", "../shaders/post.shader");
+	char const * FragmentSourcePointer = FragmentShaderCode.c_str();
+	glShaderSource(FragmentShaderID, 1, &FragmentSourcePointer , NULL);
+	glCompileShader(FragmentShaderID);
+
+	// Check Fragment Shader
+	glGetShaderiv(FragmentShaderID, GL_COMPILE_STATUS, &Result);
+	glGetShaderiv(FragmentShaderID, GL_INFO_LOG_LENGTH, &InfoLogLength);
+	if ( InfoLogLength > 0 ){
+		std::vector<char> FragmentShaderErrorMessage(InfoLogLength+1);
+		glGetShaderInfoLog(FragmentShaderID, InfoLogLength, NULL, &FragmentShaderErrorMessage[0]);
+		printf("%s\n", &FragmentShaderErrorMessage[0]);
+	}
+
+	printf("Linking program\n");
+	ProgramID = glCreateProgram();
+	glAttachShader(ProgramID, FragmentShaderID);
+	glLinkProgram(ProgramID);
+
+	// Check the program
+	glGetProgramiv(ProgramID, GL_LINK_STATUS, &Result);
+	glGetProgramiv(ProgramID, GL_INFO_LOG_LENGTH, &InfoLogLength);
+	if ( InfoLogLength > 0 ){
+		std::vector<char> ProgramErrorMessage(InfoLogLength+1);
+		glGetProgramInfoLog(ProgramID, InfoLogLength, NULL, &ProgramErrorMessage[0]);
+		printf("%s\n", &ProgramErrorMessage[0]);
+	}
+	glDetachShader(ProgramID, FragmentShaderID);
+	glDeleteShader(FragmentShaderID);
 }
 
 void graphics::handleResize(int w, int h) {
@@ -317,6 +358,9 @@ void graphics::drawScene() {
     // DRAWING STUFF
     // glLogicOp (GL_COPY);
     // glDisable (GL_COLOR_LOGIC_OP);
+    glUseProgram(ProgramID);
+    GLuint invert_loc = glGetUniformLocation(ProgramID, "invert");
+    glUniform1f(invert_loc, r_effects.x);
     glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
 	glMatrixMode(GL_MODELVIEW);
@@ -324,6 +368,7 @@ void graphics::drawScene() {
 	draw_quad(r_quad); // render screen texture to screen
 	glutSwapBuffers();
 	glutPostRedisplay();
+    glUseProgram(0);
 }
 
 int graphics::next_chunk(string& s, int index) {
