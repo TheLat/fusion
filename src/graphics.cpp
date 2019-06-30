@@ -361,7 +361,10 @@ void graphics::drawScene() {
     glUseProgram(ProgramID);
     GLuint invert_loc = glGetUniformLocation(ProgramID, "invert");
     glUniform1f(invert_loc, r_effects.x);
-    glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+	if (r_effects.x > 0.5)
+		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	else
+		glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
