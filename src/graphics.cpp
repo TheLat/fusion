@@ -352,12 +352,6 @@ void graphics::drawScene() {
 #else
 	glBindFramebufferEXT(GL_FRAMEBUFFER, 0);
 #endif
-    // example non-shader color invert
-    // glLogicOp (GL_COPY_INVERTED);
-    // glEnable (GL_COLOR_LOGIC_OP);
-    // DRAWING STUFF
-    // glLogicOp (GL_COPY);
-    // glDisable (GL_COLOR_LOGIC_OP);
     glUseProgram(ProgramID);
     GLuint invert_loc = glGetUniformLocation(ProgramID, "invert");
     glUniform1f(invert_loc, r_effects.x);
