@@ -44,7 +44,7 @@ END
 TRAINERS
 cerulean-gym-trainer1 5 0.5 0.5 SWIMMER swimmer.png {SWIMMER: That can't be!}{} 116-116:16|90-90:16
 cerulean-gym-trainer2 20 0.5 0.5 JR.TRAINER{FEMALE} jrtrainerf.png {JR.TRAINER{FEMALE}: You overwhelmed me!}{} 118-118:19
-cerulean-gym-misty 99 1.0 1.0 MISTY misty.png {MISTY: Wow! You're too much!{NEWLINE}Alright!{NEWLINE}You can have the CASCADEBADGE to show you beat me!{NEWLINE}{PLAYER_NAME} received CASCADEBADGE!}{} 120-120:18|121-121:21:TACKLE,WATER GUN,BUBBLEBEAM,SPLASH
+cerulean-gym-misty {NO_SWITCH:1} 99 1.0 1.0 MISTY misty.png {MISTY: Wow! You're too much!{NEWLINE}Alright!{NEWLINE}You can have the CASCADEBADGE to show you beat me!{NEWLINE}{PLAYER_NAME} received CASCADEBADGE!}{} 120-120:18|121-121:21:TACKLE,WATER GUN,BUBBLEBEAM,SPLASH
 END
 TELEPORT
 4 14 cerulean-city 32 22
