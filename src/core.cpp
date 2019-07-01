@@ -2193,6 +2193,10 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 			    g.r_quad.y = -1.0;
 			    g.r_quad.height = 2.0;
 			    g.r_quad.width = 2.0;
+			    g.r_effects.x = 0.0;
+			    g.r_effects.y = 0.0;
+			    g.r_effects.height = 0.0;
+			    g.r_effects.width = 0.0;
 			    if (attacker.enemy) {
 			        g.draw_list[attacker.sprite_index].x = 0.1;
 			        g.draw_list[attacker.sprite_index].y = 0.1;
