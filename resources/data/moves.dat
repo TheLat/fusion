@@ -110,6 +110,7 @@ PP: 25
 NOTES: Attacks with water jets.
 
 MOVE: BITE
+ANIMATION: bite
 TYPE: NORMAL
 DEFENSE: DEFENSE
 ACC: 100
@@ -1333,6 +1334,7 @@ TARGET: SLEEP
 NOTES: Puts opponent to sleep.
 
 MOVE: BLIZZARD
+ANIMATION: blizzard
 TYPE: ICE
 ACC: 90
 POWER: 120
