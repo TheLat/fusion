@@ -1485,6 +1485,7 @@ PP: 10
 NOTES: Deals increasing damage over time.
 
 MOVE: BUBBLEBEAM
+ANIMATION: bubblebeam
 TYPE: WATER
 ACC: 100
 POWER: 65
