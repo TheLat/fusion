@@ -1,0 +1,3 @@
+CREATE_SPRITE images/bubble.png 0.0 0.25 0.35 0.2 0.2
+PLAY_SOUND sound_effects/combat/bubble.mp3 0.0
+SPLINE_TRANSFORM 0 0.0 1.0 0.25 0.35 0.15 0.25 0.25 0.35 0.25 0.15 -0.1 0.4 0.15 0.25 -0.65 -0.05 0.22 0.18

@@ -93,6 +93,7 @@ PP: 30
 NOTES: Decreases opponent's defense.
 
 MOVE: BUBBLE
+ANIMATION: bubble
 TYPE: WATER
 DEFENSE: SPECIAL
 ACC: 100
