@@ -1235,6 +1235,7 @@ DEFENSE: DEFENSE
 NOTES: A powerful kicking attack.
 
 MOVE: COMET PUNCH
+ANIMATION: cometpunch
 TYPE: NORMAL
 ACC: 85
 POWER: 18x2-5
