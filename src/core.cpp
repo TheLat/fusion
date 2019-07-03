@@ -2011,6 +2011,13 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 			do_alert(get_nickname(attacker) + string(" is no longer confused!"));
 		}
 		else if (has_move(attacker, attacker.queue[0])) {
+		    unsigned confuse_anim = 0;
+		    if (attacker.enemy)
+                confuse_anim = g.ae.create_anim_scene(string("confused-enemy"), attacker.sprite_index, defender.sprite_index);
+            else
+                confuse_anim = g.ae.create_anim_scene(string("confused"), attacker.sprite_index, defender.sprite_index);
+            while(!g.ae.is_dones(confuse_anim)) {
+            }
 			do_alert(get_nickname(attacker) + string(" is confused!"));
 			if (int(random(0.0, 100.0)) > 50) {
 				attacker.queue.clear();
