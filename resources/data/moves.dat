@@ -660,6 +660,7 @@ SELF: LIGHTSCREEN
 NOTES: Reduces special damage received by half.
 
 MOVE: CONFUSE RAY
+ANIMATION: confuseray
 TYPE: GHOST
 ACC: 100
 PP: 10
