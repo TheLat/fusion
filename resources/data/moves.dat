@@ -892,8 +892,8 @@ ACC: 100
 POWER: 10
 PP: 35
 DEFENSE: DEFENSE
-TARGET: SPEED_DOWN:10
-NOTES: 1 in 10 chance to reduce opponent's speed.
+TARGET: SPEED_DOWN:33
+NOTES: 1 in 3 chance to reduce opponent's speed.
 
 MOVE: BARRIER
 ANIMATION: barrier
