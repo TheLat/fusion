@@ -1277,10 +1277,12 @@ SPECIAL: STATUS_IMMUNITY:ELECTRIC
 NOTES: 1 in 10 chance to paralyze opponent.
 
 MOVE: COUNTER
+ANIMATION: counter
 TYPE: FIGHTING
 ACC: 100
 PP: 20
 SPECIAL: COUNTER
+DEFENSE: DEFENSE
 NOTES: Deals twice damage received if it was from a physical attack.
 
 MOVE: MEGA PUNCH

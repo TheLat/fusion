@@ -2062,10 +2062,6 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 			if (attacker.last_hit_physical == 0) {
 				miss = true;
 			}
-			else {
-				attacker.last_damage = min(attacker.last_hit_physical * 2, defender.curr_hp);
-				deal_damage(defender, attacker.last_damage);
-			}
 		}
 		else if (moves[move].special[i] == "SELF_ON_MISS_ONLY") {
 			self_on_miss_only = true;
@@ -2159,6 +2155,7 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 	}
 	if (miss || (!skip_accuracy_check && ((moves[move].acc < int(random(0.0, 100.0) * get_evasion_modifier(defender) / get_accuracy_modifier(attacker)))) || in_status(defender, string("UNTARGETABLE")))) {
 		miss = true;
+		defender.last_hit_physical = 0;
 		if (pow == 0) {
 			do_alert(string("But, it failed!"));
 		}
@@ -3856,9 +3853,6 @@ int engine::damage(mon& attacker, mon& defender, string move, bool& crit, double
 			mul = 1.0;
 		}
 	}
-	if (damage > 0.0) {
-		non_zero = true;
-	}
 	if (get_type_1(defender) != "") {
 		mul *= types[moves[move].type][get_type_1(defender)];
 		damage *= types[moves[move].type][get_type_1(defender)];
@@ -3866,6 +3860,14 @@ int engine::damage(mon& attacker, mon& defender, string move, bool& crit, double
 	if (get_type_2(defender) != "") {
 		mul *= types[moves[move].type][get_type_2(defender)];
 		damage *= types[moves[move].type][get_type_2(defender)];
+	}
+	if (in_special(move, string("COUNTER"))) {
+        damage = min(attacker.last_hit_physical * 2, defender.curr_hp);
+        mul = 1.0;
+        crit = false;
+	}
+	if (damage > 0.0) {
+		non_zero = true;
 	}
 	return int(damage);
 }
