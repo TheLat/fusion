@@ -355,6 +355,10 @@ void graphics::drawScene() {
     glUseProgram(ProgramID);
     GLuint invert_loc = glGetUniformLocation(ProgramID, "invert");
     glUniform1f(invert_loc, r_effects.x);
+    GLuint contrast_loc = glGetUniformLocation(ProgramID, "contrast");
+    glUniform1f(contrast_loc, r_effects.y+1.0);
+    GLuint brightness_loc = glGetUniformLocation(ProgramID, "brightness");
+    glUniform1f(brightness_loc, r_effects.width);
 	if (r_effects.x > 0.5)
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	else

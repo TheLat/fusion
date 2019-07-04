@@ -290,6 +290,7 @@ DESC: {NAME} hurt itself in confusion!
 NOTES: Hurt itself in confusion.
 
 MOVE: CONFUSION
+ANIMATION: confusion
 TYPE: PSYCHIC
 ACC: 100
 POWER: 50
