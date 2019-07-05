@@ -1,0 +1,18 @@
+PLAY_SOUND sound_effects/combat/defensecurl.mp3 0.0
+CREATE_SPRITE images/defensecurl-ul.png 0.0 0.4 0.6 0.1 0.1
+CREATE_SPRITE images/defensecurl-u.png 0.0 0.5 0.6 0.1 0.1
+CREATE_SPRITE images/defensecurl-ur.png 0.0 0.6 0.6 0.1 0.1
+CREATE_SPRITE images/defensecurl-l.png 0.0 0.4 0.5 0.1 0.1
+CREATE_SPRITE images/defensecurl-r.png 0.0 0.6 0.5 0.1 0.1
+CREATE_SPRITE images/defensecurl-bl.png 0.0 0.4 0.4 0.1 0.1
+CREATE_SPRITE images/defensecurl-b.png 0.0 0.5 0.4 0.1 0.1
+CREATE_SPRITE images/defensecurl-br.png 0.0 0.6 0.4 0.1 0.1
+SPLINE_TRANSFORM 0 0.0 0.3 0.0 1.0 0.1 0.1 0.0 1.0 0.1 0.1 0.4 0.6 0.1 0.1
+SPLINE_TRANSFORM 1 0.0 0.3 0.5 1.0 0.1 0.1 0.5 1.0 0.1 0.1 0.5 0.6 0.1 0.1
+SPLINE_TRANSFORM 2 0.0 0.3 1.0 1.0 0.1 0.1 1.0 1.0 0.1 0.1 0.6 0.6 0.1 0.1
+SPLINE_TRANSFORM 3 0.0 0.3 0.0 0.5 0.1 0.1 0.0 0.5 0.1 0.1 0.4 0.5 0.1 0.1
+SPLINE_TRANSFORM 4 0.0 0.3 1.0 0.5 0.1 0.1 1.0 0.5 0.1 0.1 0.6 0.5 0.1 0.1
+SPLINE_TRANSFORM 5 0.0 0.3 0.0 0.0 0.1 0.1 0.0 0.0 0.1 0.1 0.4 0.4 0.1 0.1
+SPLINE_TRANSFORM 6 0.0 0.3 0.5 0.0 0.1 0.1 0.5 0.0 0.1 0.1 0.5 0.4 0.1 0.1
+SPLINE_TRANSFORM 7 0.0 0.3 1.0 0.0 0.1 0.1 1.0 0.0 0.1 0.1 0.6 0.4 0.1 0.1
+HIDE_SPRITE 0 0.5
