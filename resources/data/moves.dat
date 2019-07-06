@@ -770,6 +770,7 @@ TARGET: SPECIAL_DOWN:33
 NOTES: 1 in 3 chance to reduce opponent's special.
 
 MOVE: DIG
+ANIMATION: dig
 TYPE: GROUND
 QUEUE: DIG2
 PP: 10
@@ -778,6 +779,7 @@ DESC: {NAME} dug a hole!
 NOTES: Hides underground for a turn, then attacks. Can be used outside of combat.
 
 MOVE: DIG2
+ANIMATION: dig2
 TYPE: GROUND
 ACC: 100
 POWER: 100

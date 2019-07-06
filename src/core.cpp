@@ -2153,8 +2153,13 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 			}
 		}
 	}
-	if (miss || (!skip_accuracy_check && ((moves[move].acc < int(random(0.0, 100.0) * get_evasion_modifier(defender) / get_accuracy_modifier(attacker)))) || in_status(defender, string("UNTARGETABLE")))) {
-		miss = true;
+	if (moves[move].acc < int(random(0.0, 100.0) * get_evasion_modifier(defender) / get_accuracy_modifier(attacker)))
+	    miss = false;
+	if (in_status(defender, string("UNTARGETABLE")))
+	    miss = true;
+	if (skip_accuracy_check)
+	    miss = false;
+	if (miss) {
 		defender.last_hit_physical = 0;
 		if (pow == 0) {
 			do_alert(string("But, it failed!"));
@@ -2201,26 +2206,6 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 			    g.r_effects.y = 0.0;
 			    g.r_effects.height = 0.0;
 			    g.r_effects.width = 0.0;
-			    if (attacker.enemy) {
-			        g.draw_list[attacker.sprite_index].x = 0.1;
-			        g.draw_list[attacker.sprite_index].y = 0.1;
-			        g.draw_list[attacker.sprite_index].height = 0.9;
-			        g.draw_list[attacker.sprite_index].width = 0.9;
-			        g.draw_list[defender.sprite_index].x = -1.0;
-			        g.draw_list[defender.sprite_index].y = -0.422;
-			        g.draw_list[defender.sprite_index].height = 0.9;
-			        g.draw_list[defender.sprite_index].width = 0.9;
-			    }
-			    else {
-			        g.draw_list[defender.sprite_index].x = 0.1;
-			        g.draw_list[defender.sprite_index].y = 0.1;
-			        g.draw_list[defender.sprite_index].height = 0.9;
-			        g.draw_list[defender.sprite_index].width = 0.9;
-			        g.draw_list[attacker.sprite_index].x = -1.0;
-			        g.draw_list[attacker.sprite_index].y = -0.422;
-			        g.draw_list[attacker.sprite_index].height = 0.9;
-			        g.draw_list[attacker.sprite_index].width = 0.9;
-			    }
 			    m.unlock();
 			}
 			if (non_zero) {
@@ -3049,8 +3034,6 @@ bool engine::battle(trainer& t) { // trainer battle
 	double count;
 	int clear_point = g.draw_list.size();
 	int old_team_selected;
-	g.push_box(-1.1f, -1.1f, 2.2f, 2.2f);
-	g.push_box(-1.0f, -1.0f, 2.0f, 0.6f);
 	mc.selected = -1;
 	mc.extra_winnings = 0;
 	mc.enemy_selected = 0;
@@ -3070,17 +3053,23 @@ bool engine::battle(trainer& t) { // trainer battle
 			mc.enemy_team[i].fought[j] = false;
 		}
 	}
+	g.push_box(-1.1f, -1.1f, 2.2f, 2.2f);
+	unsigned enemy_trainer_sprite = g.push_quad_load(2.1f, 0.1f, 0.9f, 0.9f, string("../resources/images/") + t.image);
+	unsigned player_sprite = g.push_quad_load(-10.0f, -0.422f, 0.9f, 0.9f, string("../resources/images/player-back.png"));
+	unsigned enemy_sprite = g.push_quad_load(2.1f, 0.1f, 0.9f, 0.9f, string("../resources/images/") + mc.enemy_team[mc.enemy_selected].number + string(".png"));
+	unsigned team_sprite = g.push_quad_load(-10.0f, -0.422f, 0.9f, 0.9f, string("../resources/images/") + mc.team[mc.selected].number + string("-back.png"));
+	g.push_box(-1.0f, -1.0f, 2.0f, 0.6f);
 	mc.team[mc.selected].queue.clear();
 	mc.team[mc.selected].last_move = "";
 	mc.enemy_team[mc.enemy_selected].queue.clear();
 	mc.enemy_team[mc.enemy_selected].last_move = "";
-	unsigned enemy_trainer_sprite = g.push_quad_load(0.1f, 0.1f, 0.9f, 0.9f, string("../resources/images/") + t.image);
+	g.draw_list[enemy_trainer_sprite].x = 0.1;
 	mc.enemy_team[mc.enemy_selected].hp_bar_index = g.push_hp_bar(-0.7f, 0.7f, get_hp_percent(mc.enemy_team[mc.enemy_selected]));
 	mc.enemy_team[mc.enemy_selected].hud_index = 0;
-	unsigned player_sprite = g.push_quad_load(-1.0f, -0.422f, 0.9f, 0.9f, string("../resources/images/player-back.png"));
+	g.draw_list[player_sprite].x = -1.0;
 	do_alert(t.display_name + string(" wants to fight!"));
 	g.draw_list[enemy_trainer_sprite].x = 2.0f; // TODO:  Animation
-	unsigned enemy_sprite = g.push_quad_load(0.1f, 0.1f, 0.9f, 0.9f, string("../resources/images/") + mc.enemy_team[mc.enemy_selected].number + string(".png"));
+	g.draw_list[enemy_sprite].x = 0.1;
 	se.play_cry(mc.enemy_team[mc.enemy_selected].number);
 	do_alert(t.display_name + string(" sent out ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string("!"));
 	mc.enemy_team[mc.enemy_selected].turn_count = 1;
@@ -3089,7 +3078,7 @@ bool engine::battle(trainer& t) { // trainer battle
 	se.play_cry(mc.team[mc.selected].number);
 	mc.team[mc.selected].turn_count = 1;
 	g.draw_list[player_sprite].x = -2.0f; // TODO:  Animation
-	unsigned team_sprite = g.push_quad_load(-1.0f, -0.422f, 0.9f, 0.9f, string("../resources/images/") + mc.team[mc.selected].number + string("-back.png"));
+	g.draw_list[team_sprite].x = -1.0;
 	g.push_arrow_box_left(-0.1f, -0.4f, 1.0f, 0.3f);
 	g.push_arrow_box_right(-0.9f, 0.6f, 1.0f, 0.2f);
 	unsigned team_hp_sprite = g.push_hp_bar(0.1f, -0.2f, get_hp_percent(mc.team[mc.selected]));
@@ -3164,6 +3153,10 @@ bool engine::battle(trainer& t) { // trainer battle
 				mc.selected = choices[1];
 				mc.team[mc.selected].exp_bar_index = exp_bar_index;
 				rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
+				g.draw_list[team_sprite].x = -1.0;
+				g.draw_list[team_sprite].y = -0.422;
+				g.draw_list[team_sprite].width = 0.9;
+				g.draw_list[team_sprite].height = 0.9;
 				mc.enemy_team[mc.enemy_selected].fought[mc.selected] = true;
 				se.play_cry(mc.team[mc.selected].number);
 				do_alert(string("Go, ") + get_nickname(mc.team[mc.selected]) + string("!"));
@@ -3246,6 +3239,10 @@ bool engine::battle(trainer& t) { // trainer battle
 				mc.seen[mc.enemy_team[mc.enemy_selected].number] = true;
 				mc.enemy_team[mc.enemy_selected].fought[mc.selected] = true;
 				rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
+				g.draw_list[enemy_sprite].x = 0.1;
+				g.draw_list[enemy_sprite].y = 0.1;
+				g.draw_list[enemy_sprite].width = 0.9;
+				g.draw_list[enemy_sprite].height = 0.9;
 				mc.enemy_team[mc.enemy_selected].queue.push_back(string(""));
 				mc.enemy_team[mc.enemy_selected].turn_count = 1;
 			}
@@ -3338,6 +3335,10 @@ bool engine::battle(trainer& t) { // trainer battle
 			if (!is_KO(mc.enemy_team[mc.enemy_selected]))
 				mc.enemy_team[mc.enemy_selected].fought[mc.selected] = true;
 			rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
+			g.draw_list[team_sprite].x = -1.0;
+			g.draw_list[team_sprite].y = -0.422;
+			g.draw_list[team_sprite].width = 0.9;
+			g.draw_list[team_sprite].height = 0.9;
 			se.play_cry(mc.team[mc.selected].number);
 		}
 		if (is_KO(mc.enemy_team[mc.enemy_selected])) {
@@ -3391,6 +3392,10 @@ bool engine::battle(trainer& t) { // trainer battle
 				mc.seen[mc.enemy_team[mc.enemy_selected].number] = true;
 				mc.enemy_team[mc.enemy_selected].fought[mc.selected] = true;
 				rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
+				g.draw_list[enemy_sprite].x = 0.1;
+				g.draw_list[enemy_sprite].y = 0.1;
+				g.draw_list[enemy_sprite].width = 0.9;
+				g.draw_list[enemy_sprite].height = 0.9;
 				mc.enemy_team[mc.enemy_selected].turn_count = 1;
 			}
 			if (!found)
@@ -3426,7 +3431,6 @@ bool engine::battle() { // wild pokemon
 	double count;
 	int clear_point = g.draw_list.size();
 	g.push_box(-1.1f, -1.1f, 2.2f, 2.2f);
-	g.push_box(-1.0f, -1.0f, 2.0f, 0.6f);
 	mc.selected = -1;
 	mc.extra_winnings = 0;
 	for (i = 0; i < 6; ++i) {
@@ -3437,14 +3441,16 @@ bool engine::battle() { // wild pokemon
 			}
 		}
 	}
+	unsigned enemy_sprite = g.push_quad_load(0.1f, 0.1f, 0.9f, 0.9f, string("../resources/images/") + mc.enemy_team[mc.enemy_selected].number + string(".png"));
+	unsigned player_sprite = g.push_quad_load(-1.0f, -0.422f, 0.9f, 0.9f, string("../resources/images/player-back.png"));
+	unsigned team_sprite = g.push_quad_load(-10.0f, -0.422f, 0.9f, 0.9f, string("../resources/images/") + mc.team[mc.selected].number + string("-back.png"));
+	g.push_box(-1.0f, -1.0f, 2.0f, 0.6f);
 	mc.team[mc.selected].queue.clear();
 	mc.team[mc.selected].last_move = "";
 	mc.enemy_team[mc.enemy_selected].queue.clear();
 	mc.enemy_team[mc.enemy_selected].last_move = "";
-	unsigned enemy_sprite = g.push_quad_load(0.1f, 0.1f, 0.9f, 0.9f, string("../resources/images/") + mc.enemy_team[mc.enemy_selected].number + string(".png"));
 	mc.enemy_team[mc.enemy_selected].hp_bar_index = g.push_hp_bar(-0.7f, 0.7f, get_hp_percent(mc.enemy_team[mc.enemy_selected]));
 	mc.enemy_team[mc.enemy_selected].hud_index = 0;
-	unsigned player_sprite = g.push_quad_load(-1.0f, -0.422f, 0.9f, 0.9f, string("../resources/images/player-back.png"));
 	se.play_cry(mc.enemy_team[mc.enemy_selected].number);
 	do_alert(string("Wild ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string(" appeared!"));
 	mc.enemy_team[mc.enemy_selected].turn_count = 0;
@@ -3453,7 +3459,7 @@ bool engine::battle() { // wild pokemon
 	se.play_cry(mc.team[mc.selected].number);
 	mc.team[mc.selected].turn_count = 1;
 	g.draw_list[player_sprite].x = -2.0f; // TODO:  Animation
-	unsigned team_sprite = g.push_quad_load(-1.0f, -0.422f, 0.9f, 0.9f, string("../resources/images/") + mc.team[mc.selected].number + string("-back.png"));
+	g.draw_list[team_sprite].x = -1.0;
 	g.push_arrow_box_left(-0.1f, -0.4f, 1.0f, 0.3f);
 	g.push_arrow_box_right(-0.9f, 0.6f, 1.0f, 0.2f);
 	unsigned team_hp_sprite = g.push_hp_bar(0.1f, -0.2f, get_hp_percent(mc.team[mc.selected]));
@@ -3527,6 +3533,10 @@ bool engine::battle() { // wild pokemon
 				mc.selected = choices[1];
 				mc.team[mc.selected].exp_bar_index = exp_bar_index;
 				rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
+				g.draw_list[team_sprite].x = -1.0;
+				g.draw_list[team_sprite].y = -0.422;
+				g.draw_list[team_sprite].width = 0.9;
+				g.draw_list[team_sprite].height = 0.9;
 				mc.enemy_team[mc.enemy_selected].fought[mc.selected] = true;
 				se.play_cry(mc.team[mc.selected].number);
 				do_alert(string("Go, ") + get_nickname(mc.team[mc.selected]) + string("!"));
@@ -3725,6 +3735,10 @@ bool engine::battle() { // wild pokemon
 			if (!is_KO(mc.enemy_team[mc.enemy_selected]))
 				mc.enemy_team[mc.enemy_selected].fought[mc.selected] = true;
 			rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
+			g.draw_list[team_sprite].x = -1.0;
+			g.draw_list[team_sprite].y = -0.422;
+			g.draw_list[team_sprite].width = 0.9;
+			g.draw_list[team_sprite].height = 0.9;
 			se.play_cry(mc.team[mc.selected].number);
 			mc.team[mc.selected].turn_count = 1;
 		}

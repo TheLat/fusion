@@ -1,0 +1,2 @@
+PLAY_SOUND sound_effects/combat/dig.mp3 0.0
+SPLINE_TRANSFORM ATTACKER 0.0 0.25 0.1 0.1 0.9 0.9 0.1 -2.1 0.9 0.9
