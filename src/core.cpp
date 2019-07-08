@@ -2157,7 +2157,7 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 		}
 	}
 	if (moves[move].acc < int(random(0.0, 100.0) * get_evasion_modifier(defender) / get_accuracy_modifier(attacker)))
-	    miss = false;
+	    miss = true;
 	if (in_status(defender, string("UNTARGETABLE")) && moves[move].self.size() == 0)
 	    miss = true;
 	if (skip_accuracy_check)
