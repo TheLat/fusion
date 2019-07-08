@@ -1316,6 +1316,7 @@ TARGET: ACCURACY_DOWN
 NOTES: Reduces opponent's accuracy.
 
 MOVE: DIZZY PUNCH
+ANIMATION: dizzypunch
 TYPE: NORMAL
 ACC: 100
 POWER: 70
