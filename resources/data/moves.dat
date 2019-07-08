@@ -677,6 +677,7 @@ TARGET: FLEE
 NOTES: Forces opponent to flee.
 
 MOVE: DISABLE
+ANIMATION: disable
 TYPE: NORMAL
 ACC: 55
 PP: 20
