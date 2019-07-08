@@ -1755,6 +1755,8 @@ bool engine::remove_status(mon& m, string s, bool all) {
 bool engine::apply_status(mon& m, string s, bool skip_chance, bool silent) {
 	string s2, s3;
 	int repeat = 1;
+	if (in_status(m, string("UNTARGETABLE")))
+	    return false;
 	if (s.find("x2") != -1) {
 		s.erase(s.find("x2"), string("x2").length());
 		repeat = 2;
@@ -2155,12 +2157,24 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 	}
 	if (moves[move].acc < int(random(0.0, 100.0) * get_evasion_modifier(defender) / get_accuracy_modifier(attacker)))
 	    miss = false;
-	if (in_status(defender, string("UNTARGETABLE")))
+	if (in_status(defender, string("UNTARGETABLE")) && moves[move].self.size() == 0)
 	    miss = true;
 	if (skip_accuracy_check)
 	    miss = false;
 	if (miss) {
 		defender.last_hit_physical = 0;
+		if (attacker.enemy) {
+		    g.draw_list[attacker.sprite_index].x = 0.1;
+		    g.draw_list[attacker.sprite_index].y = 0.1;
+		    g.draw_list[attacker.sprite_index].height = 0.9;
+		    g.draw_list[attacker.sprite_index].width = 0.9;
+		}
+		else {
+		    g.draw_list[attacker.sprite_index].x = -1.0;
+		    g.draw_list[attacker.sprite_index].y = -0.422;
+		    g.draw_list[attacker.sprite_index].height = 0.9;
+		    g.draw_list[attacker.sprite_index].width = 0.9;
+		}
 		if (pow == 0) {
 			do_alert(string("But, it failed!"));
 		}
