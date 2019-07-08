@@ -2393,6 +2393,7 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 	if (!at_start_confused && in_status(defender, string("CONFUSE"))) {
 	    do_alert(get_nickname(defender) + string(" became confused!"));
 	}
+	// TODO: Paralyze, poison, burn, freeze, and sleep notification.
 	return success;
 }
 
