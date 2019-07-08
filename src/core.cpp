@@ -1994,6 +1994,7 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 	bool success = false;
 	bool miss = false;
 	bool self_on_miss_only = false;
+	bool at_start_confused = in_status(defender, string("CONFUSE"));
 	string s2, s3;
 	if (in_status(attacker, string("FLEE")) || in_status(defender, string("FLEE")))
 		return false;
@@ -2094,7 +2095,7 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 			while (it->second.queue_only) {
 				it--;
 			}
-			use_move(attacker, defender, it->second.name);
+			return use_move(attacker, defender, it->second.name);
 		}
 		else if (moves[move].special[i] == "PAYDAY") {
 			mc.extra_winnings += 5 * attacker.level;
@@ -2263,6 +2264,7 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 				else if (mul == 0.0) {
 					if (i == repeat - 1)
 					    do_alert(string("It doesn't affect ") + get_nickname(defender) + string("!"));
+					// TODO: Body slam should not be able to paralyze ghosts
 				}
 				else if (mul == 0.5) {
 				    se.play_sound(string("sound_effects/combat/imhitweak.mp3"));
@@ -2387,6 +2389,9 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 	}
 	if (miss && in_special(move, string("CLEAR_QUEUE_ON_FAIL"))) {
 		clear_queue(attacker);
+	}
+	if (!at_start_confused && in_status(defender, string("CONFUSE"))) {
+	    do_alert(get_nickname(defender) + string(" became confused!"));
 	}
 	return success;
 }
