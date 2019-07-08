@@ -2264,7 +2264,6 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 				else if (mul == 0.0) {
 					if (i == repeat - 1)
 					    do_alert(string("It doesn't affect ") + get_nickname(defender) + string("!"));
-					// TODO: Body slam should not be able to paralyze ghosts
 				}
 				else if (mul == 0.5) {
 				    se.play_sound(string("sound_effects/combat/imhitweak.mp3"));
