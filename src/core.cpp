@@ -2960,6 +2960,8 @@ int engine::get_smart_move(mon& attacker, mon& defender, trainer& t, bool skip_r
 			dam = (-double(defender.curr_hp) / max(self_damage - enemy_heal, 1.0)) + (double(attacker.curr_hp - hp_offset) / max(enemy_damage - self_heal, 1.0));
 			if (delay)
 				dam -= 1.0;
+		    if (in_move_special(attacker.moves[i], string("SLEEPING_TARGET_ONLY")) && !in_status(defender, string("SLEEP")))
+		        dam = -9999999.0;
 			if (dam > magnitude) {
 				magnitude = dam;
 				ret = i;
