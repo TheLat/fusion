@@ -1574,6 +1574,7 @@ DEFENSE: SPECIAL
 NOTES: 1 in 10 chance to burn opponent.
 
 MOVE: EGG BOMB
+ANIMATION: eggbomb
 TYPE: NORMAL
 ACC: 75
 POWER: 100
