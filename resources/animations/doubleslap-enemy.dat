@@ -1,0 +1,9 @@
+PLAY_SOUND sound_effects/combat/doubleslap.mp3 0.0
+CREATE_SPRITE images/impact-small-white.png 0.05 -0.8 -0.1 0.2 0.2
+CREATE_SPRITE images/impact-small-white.png 0.2 -0.6 -0.3 0.2 0.2
+HIDE_SPRITE 0 0.2
+HIDE_SPRITE 1 0.35
+CREATE_SPRITE images/impact-small-white.png 0.42 -0.8 -0.1 0.2 0.2
+CREATE_SPRITE images/impact-small-white.png 0.56 -0.6 -0.3 0.2 0.2
+HIDE_SPRITE 2 0.56
+HIDE_SPRITE 3 0.7

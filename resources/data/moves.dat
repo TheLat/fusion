@@ -630,6 +630,7 @@ PP: 15
 NOTES: Makes opponent fall asleep.
 
 MOVE: DOUBLESLAP
+ANIMATION: doubleslap
 TYPE: NORMAL
 ACC: 85
 POWER: 15x2-5
