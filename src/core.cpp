@@ -1840,40 +1840,39 @@ bool engine::apply_status(mon& m, string s, bool skip_chance, bool silent) {
 				s4 = s4 + "rose!";
 			if (s.find("DOWN") != -1)
 				s4 = s4 + "fell!";
-			if (s4.find("rose") != -1 || s4.find("fell") != -1) {
-				if (in_status(m, string("LOCK_STATS"))) {
-					if (!silent)
-						do_alert(string("But, it failed!"));
-					return false;
-				}
-				else {
-                    vector<double> before;
-                    vector<double> after;
-                    before.push_back(get_stat(m, ATTACK));
-                    before.push_back(get_stat(m, DEFENSE));
-                    before.push_back(get_stat(m, SPECIAL));
-                    before.push_back(get_stat(m, SPEED));
-                    before.push_back(get_accuracy_modifier(m));
-                    before.push_back(get_evasion_modifier(m));
-                    for (int i = 0; i < repeat; ++i) {
-                        m.status.push_back(s2);
-                    }
-                    after.push_back(get_stat(m, ATTACK));
-                    after.push_back(get_stat(m, DEFENSE));
-                    after.push_back(get_stat(m, SPECIAL));
-                    after.push_back(get_stat(m, SPEED));
-                    after.push_back(get_accuracy_modifier(m));
-                    after.push_back(get_evasion_modifier(m));
-					if (!silent) {
-					    bool different = false;
-					    for (unsigned diff_checker = 0; diff_checker < before.size(); ++diff_checker) {
-					        if (before[diff_checker] != after[diff_checker]) {
-					            different = true;
-					        }
-					    }
-					    if (different) {
-						    do_alert(s4);
-						}
+			if (in_status(m, string("LOCK_STATS"))) {
+				if (!silent)
+					do_alert(string("But, it failed!"));
+				return false;
+			}
+			else {
+                vector<double> before;
+                vector<double> after;
+                before.push_back(get_stat(m, ATTACK));
+                before.push_back(get_stat(m, DEFENSE));
+                before.push_back(get_stat(m, SPECIAL));
+                before.push_back(get_stat(m, SPEED));
+                before.push_back(get_accuracy_modifier(m));
+                before.push_back(get_evasion_modifier(m));
+                for (int i = 0; i < repeat; ++i) {
+                    m.status.push_back(s2);
+                }
+                after.push_back(get_stat(m, ATTACK));
+                after.push_back(get_stat(m, DEFENSE));
+                after.push_back(get_stat(m, SPECIAL));
+                after.push_back(get_stat(m, SPEED));
+                after.push_back(get_accuracy_modifier(m));
+                after.push_back(get_evasion_modifier(m));
+            	if (!silent) {
+					bool different = false;
+				    for (unsigned diff_checker = 0; diff_checker < before.size(); ++diff_checker) {
+				        if (before[diff_checker] != after[diff_checker]) {
+				            different = true;
+				        }
+				    }
+					if (different) {
+				        if (s4.find("rose") != -1 || s4.find("fell") != -1)
+					        do_alert(s4);
 					}
 				}
 			}
@@ -1995,6 +1994,7 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 	bool miss = false;
 	bool self_on_miss_only = false;
 	bool at_start_confused = in_status(defender, string("CONFUSE"));
+	bool at_start_burned = in_status(defender, string("BURN"));
 	string s2, s3;
 	if (in_status(attacker, string("FLEE")) || in_status(defender, string("FLEE")))
 		return false;
@@ -2389,8 +2389,21 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 	if (miss && in_special(move, string("CLEAR_QUEUE_ON_FAIL"))) {
 		clear_queue(attacker);
 	}
-	if (!at_start_confused && in_status(defender, string("CONFUSE"))) {
-	    do_alert(get_nickname(defender) + string(" became confused!"));
+	if (!skip_accuracy_check) {
+        if (!at_start_confused && in_status(defender, string("CONFUSE"))) {
+            do_alert(get_nickname(defender) + string(" became confused!"));
+        }
+        if (!at_start_burned && in_status(defender, string("BURN"))) {
+            if (attacker.enemy) {
+                unsigned anim_holder = g.ae.create_anim_scene(string("statusshake-enemy"), attacker.sprite_index, defender.sprite_index);
+                while (!g.ae.is_dones(anim_holder)) {}
+            }
+            else {
+                unsigned anim_holder = g.ae.create_anim_scene(string("statusshake"), attacker.sprite_index, defender.sprite_index);
+                while (!g.ae.is_dones(anim_holder)) {}
+            }
+            do_alert(get_nickname(defender) + string(" was badly burned!"));
+        }
 	}
 	// TODO: Paralyze, poison, burn, freeze, and sleep notification.
 	return success;
