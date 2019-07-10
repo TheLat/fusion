@@ -1959,7 +1959,16 @@ void engine::use_status(mon& self, mon& other) {
 			deal_damage(self, int(max(double(get_stat(self, HP)) / 16.0, 1.0)));
 		}
 		else if (self.status[i] == "BURN") {
-			// TODO: Animation goes here
+			unsigned anim_holder = 0;
+            unsigned clear_point = g.draw_list.size();
+            if (self.enemy) {
+                anim_holder = g.ae.create_anim_scene(string("burned-enemy"), self.sprite_index, other.sprite_index);
+            }
+            else {
+                anim_holder = g.ae.create_anim_scene(string("burned"), self.sprite_index, other.sprite_index);
+            }
+            while (!g.ae.is_dones(anim_holder)) {}
+            g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
 			if (self.wild)
 				do_alert(string("The wild ") + get_nickname(self) + string(" is hurt by its burn!"));
 			else
@@ -2394,14 +2403,16 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
             do_alert(get_nickname(defender) + string(" became confused!"));
         }
         if (!at_start_burned && in_status(defender, string("BURN"))) {
+            unsigned anim_holder = 0;
+            unsigned clear_point = g.draw_list.size();
             if (attacker.enemy) {
-                unsigned anim_holder = g.ae.create_anim_scene(string("statusshake-enemy"), attacker.sprite_index, defender.sprite_index);
-                while (!g.ae.is_dones(anim_holder)) {}
+                anim_holder = g.ae.create_anim_scene(string("statusshake-enemy"), attacker.sprite_index, defender.sprite_index);
             }
             else {
-                unsigned anim_holder = g.ae.create_anim_scene(string("statusshake"), attacker.sprite_index, defender.sprite_index);
-                while (!g.ae.is_dones(anim_holder)) {}
+                anim_holder = g.ae.create_anim_scene(string("statusshake"), attacker.sprite_index, defender.sprite_index);
             }
+            while (!g.ae.is_dones(anim_holder)) {}
+            g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
             do_alert(get_nickname(defender) + string(" was badly burned!"));
         }
 	}
