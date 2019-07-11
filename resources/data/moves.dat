@@ -928,6 +928,7 @@ PP: 5
 POWER: 260
 SELF: KO
 DEFENSE: DEFENSE
+SPECIAL: ANIMATE_ON_MISS
 NOTES: A powerful attack that destroys the user.
 
 MOVE: EXPLOSION
@@ -1567,6 +1568,7 @@ SPECIAL: ENEMY_LAST
 NOTES: Copies opponent's last move.
 
 MOVE: FIRE BLAST
+ANIMATION: fireblast
 TYPE: FIRE
 ACC: 85
 POWER: 120
