@@ -160,6 +160,7 @@ DEFENSE: DEFENSE
 NOTES: Attacks with claws.
 
 MOVE: EMBER
+ANIMATION: ember
 TYPE: FIRE
 ACC: 100
 PP: 25
