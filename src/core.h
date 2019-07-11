@@ -369,6 +369,7 @@ public:
 	void create_menu(string s, string choice = "", string text_override = "", string followup_override = "");
 	vector<int> do_alert(string s);
 	vector<int> do_menu(string menu, string choice = "", string text_override = "", string followup_override = "");
+	void do_move_animation(mon& attacker, mon& defender, string move);
 	void update_level();
 	void draw_level();
 	void draw_characters();

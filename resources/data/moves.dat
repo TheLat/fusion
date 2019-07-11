@@ -938,6 +938,7 @@ ACC: 100
 PP: 5
 SELF: KO
 DEFENSE: DEFENSE
+SPECIAL: ANIMATE_ON_MISS
 NOTES: A powerful attack that destroys the user.
 
 MOVE: ROCK THROW

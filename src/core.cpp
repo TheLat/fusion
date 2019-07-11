@@ -1995,6 +1995,31 @@ void engine::use_status(mon& self, mon& other) {
 	}
 }
 
+void engine::do_move_animation(mon& attacker, mon& defender, string move) {
+    if (moves[move].animation != "") {
+		unsigned anim_holder = 0;
+	    unsigned clear_point = g.draw_list.size();
+		if (attacker.enemy)
+		    anim_holder = g.ae.create_anim_scene(moves[move].animation + string("-enemy"), attacker.sprite_index, defender.sprite_index);
+		else
+    		anim_holder = g.ae.create_anim_scene(moves[move].animation, attacker.sprite_index, defender.sprite_index);
+        while (!g.ae.is_dones(anim_holder)) {
+		}
+		m.lock();
+		// reset screen
+        g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
+        g.r_quad.x = -1.0;
+        g.r_quad.y = -1.0;
+        g.r_quad.height = 2.0;
+        g.r_quad.width = 2.0;
+        g.r_effects.x = 0.0;
+        g.r_effects.y = 0.0;
+        g.r_effects.height = 0.0;
+        g.r_effects.width = 0.0;
+        m.unlock();
+    }
+}
+
 bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accuracy_check) {
 	double pow = stoi(moves[move].pow);
 	bool crit;
@@ -2172,6 +2197,9 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 	if (skip_accuracy_check)
 	    miss = false;
 	if (miss) {
+	    if (in_special(move, string("ANIMATE_ON_MISS"))) {
+	    	do_move_animation(attacker, defender, move);
+	    }
 		defender.last_hit_physical = 0;
 		if (attacker.enemy) {
 		    g.draw_list[attacker.sprite_index].x = 0.1;
@@ -2210,28 +2238,7 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 			double mul;
 			bool non_zero;
 			int dam = min(damage(attacker, defender, move, crit, mul, non_zero), defender.curr_hp);
-			if (moves[move].animation != "") {
-			    unsigned anim_holder = 0;
-			    unsigned clear_point = g.draw_list.size();
-			    if (attacker.enemy)
-			        anim_holder = g.ae.create_anim_scene(moves[move].animation + string("-enemy"), attacker.sprite_index, defender.sprite_index);
-			    else
-    			    anim_holder = g.ae.create_anim_scene(moves[move].animation, attacker.sprite_index, defender.sprite_index);
-			    while (!g.ae.is_dones(anim_holder)) {
-			    }
-			    m.lock();
-			    // reset screen
-			    g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
-			    g.r_quad.x = -1.0;
-			    g.r_quad.y = -1.0;
-			    g.r_quad.height = 2.0;
-			    g.r_quad.width = 2.0;
-			    g.r_effects.x = 0.0;
-			    g.r_effects.y = 0.0;
-			    g.r_effects.height = 0.0;
-			    g.r_effects.width = 0.0;
-			    m.unlock();
-			}
+			do_move_animation(attacker, defender, move);
 			if (non_zero) {
 			    double anim_flip = 1.0;
 			    unsigned anim_holder = 0;
@@ -2366,9 +2373,6 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 						s3.erase(0, s3.find(":") + 1);
 						deal_damage(attacker, int(max(double(dam)*(double(stoi(s3)) / 100.0), 1.0)));
 					}
-					else {
-						success = apply_status(attacker, moves[move].self[j]) || success;
-					}
 				}
 			}
 		}
@@ -2385,6 +2389,13 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 			int r = weightedrand();
 			for (int j = 0; j < r; ++j)
 				attacker.queue.push_back(temp);
+		}
+	}
+	if (!self_on_miss_only || (self_on_miss_only && miss)) {
+	    for (unsigned j = 0; j < moves[move].self.size(); ++j) {
+			if (moves[move].self[j].find("RECOIL") == -1) {
+				success = apply_status(attacker, moves[move].self[j]) || success;
+			}
 		}
 	}
 	if (!miss && repeat != 1) {
