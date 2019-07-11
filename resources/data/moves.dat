@@ -931,6 +931,7 @@ DEFENSE: DEFENSE
 NOTES: A powerful attack that destroys the user.
 
 MOVE: EXPLOSION
+ANIMATION: explosion
 TYPE: NORMAL
 POWER: 340
 ACC: 100
