@@ -355,6 +355,7 @@ PP: 20
 NOTES: Attacks 2-5 times.
 
 MOVE: FOCUS ENERGY
+ANIMATION: focusenergy
 TYPE: NORMAL
 PP: 30
 SELF: FOCUS
