@@ -1467,6 +1467,7 @@ DEFENSE: DEFENSE
 NOTES: Can be used out of combat.
 
 MOVE: FLY
+ANIMATION: fly
 PP: 15
 TYPE: FLYING
 QUEUE: FLY2
@@ -1475,6 +1476,7 @@ DESC: {NAME} flew up high.
 NOTES: Flies out of reach, then attacks on the next turn. Can be used out of combat.
 
 MOVE: FLY2
+ANIMATION: fly2
 TYPE: FLYING
 ACC: 95
 POWER: 90
