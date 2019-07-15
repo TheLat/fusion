@@ -1558,6 +1558,7 @@ DEFENSE: SPECIAL
 NOTES: 1 in 10 chance to paralyze opponent.
 
 MOVE: FISSURE
+ANIMATION: fissure
 TYPE: GROUND
 ACC: 25
 PP: 5
