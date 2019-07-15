@@ -208,6 +208,7 @@ DEFENSE: DEFENSE
 NOTES: High critical hit chance.
 
 MOVE: FLAMETHROWER
+ANIMATION: flamethrower
 TYPE: FIRE
 ACC: 100
 POWER: 95
