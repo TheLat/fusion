@@ -16,6 +16,7 @@ PP: 35
 NOTES: Tackles opponent.
 
 MOVE: GROWL
+ANIMATION: growl
 TYPE: NORMAL
 ACC: 100
 PP: 40

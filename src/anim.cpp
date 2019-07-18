@@ -138,6 +138,28 @@ unsigned animation_engine::create_anim_scene(string scene, int attacker, int def
                 s.erase(s.find(" "), s.length());
                 line.erase(0, line.find(" ") + 1);
                 elem.resource = s;
+                if (elem.resource == "ATTACKER_CRY") {
+                    string holder;
+                    holder = g.draw_list[attacker].filename;
+                    while (holder.find("/") != -1)
+                        holder.erase(0, holder.find("/") + 1);
+                    if (holder.find(".") != -1)
+                        holder.erase(holder.find("."), holder.size());
+                    if (holder.find("-back") != -1)
+                        holder.erase(holder.find("-back"), holder.size());
+                    elem.resource = holder;
+                }
+                if (elem.resource == "DEFENDER_CRY") {
+                    string holder;
+                    holder = g.draw_list[defender].filename;
+                    while (holder.find("/") != -1)
+                        holder.erase(0, holder.find("/") + 1);
+                    if (holder.find(".") != -1)
+                        holder.erase(holder.find("."), holder.size());
+                    if (holder.find("-back") != -1)
+                        holder.erase(holder.find("-back"), holder.size());
+                    elem.resource = holder;
+                }
                 s = line;
                 if (s.find("+") != -1) {
                     s.erase(s.find("+"), 1);
@@ -297,7 +319,10 @@ void animation_engine::tick(double delta) {
 					q->y = -1.0;
 					break;
 	            case PLAY_SOUND:
-	                se.play_sound(string("../resources/") + anims[i].elements[j].resource);
+	                if (anims[i].elements[j].resource.find("/") != -1)
+    	                se.play_sound(string("../resources/") + anims[i].elements[j].resource);
+    	            else
+    	                se.play_cry(anims[i].elements[j].resource);
 	                break;
 	            case SPLINE_TRANSFORM:
 	                if (anims[i].elements[j].done)

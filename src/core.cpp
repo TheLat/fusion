@@ -2430,7 +2430,7 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
             do_alert(get_nickname(defender) + string(" was badly burned!"));
         }
         if (!at_start_paralyzed && in_status(defender, string("PARALYZE"))) {
-            do_alert(get_nickname(defender) + string(" was paralyzed!"));
+            do_alert(get_nickname(defender) + string(" was paralyzed! It might not attack!"));
         }
 	}
 	// TODO: Paralyze, poison, burn, freeze, and sleep notification.
