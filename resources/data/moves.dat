@@ -56,6 +56,7 @@ PP: 25
 NOTES: High critical hit chance.
 
 MOVE: GROWTH
+ANIMATION: growth
 TYPE: NORMAL
 ACC: 100
 PP: 40
