@@ -2029,6 +2029,7 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 	bool self_on_miss_only = false;
 	bool at_start_confused = in_status(defender, string("CONFUSE"));
 	bool at_start_burned = in_status(defender, string("BURN"));
+	bool at_start_paralyzed = in_status(defender, string("PARALYZE"));
 	string s2, s3;
 	if (in_status(attacker, string("FLEE")) || in_status(defender, string("FLEE")))
 		return false;
@@ -2413,7 +2414,7 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
         if (!at_start_confused && in_status(defender, string("CONFUSE"))) {
             do_alert(get_nickname(defender) + string(" became confused!"));
         }
-        if (!at_start_burned && in_status(defender, string("BURN"))) {
+        if ((!at_start_burned && in_status(defender, string("BURN"))) || (!at_start_paralyzed && in_status(defender, string("PARALYZE")))) {
             unsigned anim_holder = 0;
             unsigned clear_point = g.draw_list.size();
             if (attacker.enemy) {
@@ -2424,7 +2425,12 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
             }
             while (!g.ae.is_dones(anim_holder)) {}
             g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
+        }
+        if (!at_start_burned && in_status(defender, string("BURN"))) {
             do_alert(get_nickname(defender) + string(" was badly burned!"));
+        }
+        if (!at_start_paralyzed && in_status(defender, string("PARALYZE"))) {
+            do_alert(get_nickname(defender) + string(" was paralyzed!"));
         }
 	}
 	// TODO: Paralyze, poison, burn, freeze, and sleep notification.
