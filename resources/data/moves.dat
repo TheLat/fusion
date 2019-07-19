@@ -1190,6 +1190,7 @@ DEFENSE: DEFENSE
 NOTES: A moderate pincer attack.
 
 MOVE: GUILLOTINE
+ANIMATION: guillotine
 TYPE: NORMAL
 ACC: 25
 PP: 5

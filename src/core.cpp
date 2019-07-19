@@ -1890,9 +1890,41 @@ bool engine::apply_status(mon& m, string s, bool skip_chance, bool silent) {
 			remove_status(m, s3, true);
 		}
 		else if (s2 == "HALF_HP") {
+		    unsigned anim_holder;
+			double irrelevant = 0.0;
+		    double anim_flip = 1.0;
+			if (!m.enemy)
+			    anim_flip = -1.0;
+		    se.play_sound(string("sound_effects/combat/imhit.mp3"));
+			g.r_quad.x = -1.0 + anim_flip*3.0/160.0;
+			anim_holder = g.ae.create_animf(&(irrelevant), 0.0, 1.0, 1.0/16.0);
+			while (!g.ae.is_donef(anim_holder)) {}
+			g.r_quad.x = -1.0 + anim_flip*-2.0/160.0;
+			anim_holder = g.ae.create_animf(&(irrelevant), 0.0, 1.0, 1.0/16.0);
+			while (!g.ae.is_donef(anim_holder)) {}
+			g.r_quad.x = -1.0 + anim_flip*1.0/160.0;
+			anim_holder = g.ae.create_animf(&(irrelevant), 0.0, 1.0, 1.0/16.0);
+			while (!g.ae.is_donef(anim_holder)) {}
+			g.r_quad.x = -1.0;
 			deal_damage(m, m.curr_hp / 2);
 		}
 		else if (s2 == "KO") {
+		    unsigned anim_holder;
+			double irrelevant = 0.0;
+		    double anim_flip = 1.0;
+			if (!m.enemy)
+			    anim_flip = -1.0;
+		    se.play_sound(string("sound_effects/combat/imhitsuper.mp3"));
+			g.r_quad.x = -1.0 + anim_flip*4.5/160.0;
+			anim_holder = g.ae.create_animf(&(irrelevant), 0.0, 1.0, 1.0/16.0);
+			while (!g.ae.is_donef(anim_holder)) {}
+			g.r_quad.x = -1.0 + anim_flip*-3.0/160.0;
+			anim_holder = g.ae.create_animf(&(irrelevant), 0.0, 1.0, 1.0/16.0);
+			while (!g.ae.is_donef(anim_holder)) {}
+			g.r_quad.x = -1.0 + anim_flip*1.5/160.0;
+			anim_holder = g.ae.create_animf(&(irrelevant), 0.0, 1.0, 1.0/16.0);
+			while (!g.ae.is_donef(anim_holder)) {}
+			g.r_quad.x = -1.0;
 			deal_damage(m, m.curr_hp);
 		}
 		else if (s2 == "DISABLE") {
