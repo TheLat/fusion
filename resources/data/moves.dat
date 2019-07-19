@@ -730,6 +730,7 @@ DEFENSE: DEFENSE
 NOTES: Heals half the amount of the damage dealt.
 
 MOVE: HAZE
+ANIMATION: haze
 TYPE: ICE
 ACC: 100
 PP: 30

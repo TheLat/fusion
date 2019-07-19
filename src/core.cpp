@@ -1734,7 +1734,6 @@ bool engine::remove_status(mon& m, string s, bool all) {
 	bool success = false;
 	if (s.find("*") != -1)
 		return remove_status_wildcard(m, s, all);
-	printf("\ns = '%s'", s.c_str());
 	if (s == "") {
 	    m.status.clear();
 	}
