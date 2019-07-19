@@ -392,6 +392,7 @@ SPECIAL: UNAVOIDABLE
 NOTES: Greatly increases speed.  Cures paralysis.
 
 MOVE: GUST
+ANIMATION: gust
 TYPE: FLYING
 ACC: 100
 POWER: 30
