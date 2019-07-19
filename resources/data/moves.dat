@@ -281,6 +281,7 @@ TARGET: SPEED_DOWN
 NOTES: Decreases opponent's speed.
 
 MOVE: HARDEN
+ANIMATION: harden
 TYPE: NORMAL
 ACC: 100
 PP: 30
