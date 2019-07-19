@@ -369,7 +369,7 @@ string engine::get_special_string(string in) {
 			int index = stoi(temp);
 			if (!mc.team[index].defined)
 				return string("");
-			string o = to_string(get_stat(mc.team[index], ATTACK, true, true));
+			string o = to_string(get_stat(mc.team[index], ATTACK, false, false));
 			while (o.length() < 8)
 				o = string(" ") + o;
 			return o;
@@ -378,7 +378,7 @@ string engine::get_special_string(string in) {
 			int index = stoi(temp);
 			if (!mc.storage[mc.box_number][index].defined)
 				return string("");
-			string o = to_string(get_stat(mc.storage[mc.box_number][index], ATTACK, true, true));
+			string o = to_string(get_stat(mc.storage[mc.box_number][index], ATTACK, false, false));
 			while (o.length() < 8)
 				o = string(" ") + o;
 			return o;
@@ -421,7 +421,7 @@ string engine::get_special_string(string in) {
 			int index = stoi(temp);
 			if (!mc.team[index].defined)
 				return string("");
-			string o = to_string(get_stat(mc.team[index], DEFENSE, true, true));
+			string o = to_string(get_stat(mc.team[index], DEFENSE, false, false));
 			while (o.length() < 8)
 				o = string(" ") + o;
 			return o;
@@ -430,7 +430,7 @@ string engine::get_special_string(string in) {
 			int index = stoi(temp);
 			if (!mc.storage[mc.box_number][index].defined)
 				return string("");
-			string o = to_string(get_stat(mc.storage[mc.box_number][index], DEFENSE, true, true));
+			string o = to_string(get_stat(mc.storage[mc.box_number][index], DEFENSE, false, false));
 			while (o.length() < 8)
 				o = string(" ") + o;
 			return o;
@@ -439,7 +439,7 @@ string engine::get_special_string(string in) {
 			int index = stoi(temp);
 			if (!mc.team[index].defined)
 				return string("");
-			string o = to_string(get_stat(mc.team[index], SPEED, true, true));
+			string o = to_string(get_stat(mc.team[index], SPEED, false, false));
 			while (o.length() < 8)
 				o = string(" ") + o;
 			return o;
@@ -448,7 +448,7 @@ string engine::get_special_string(string in) {
 			int index = stoi(temp);
 			if (!mc.storage[mc.box_number][index].defined)
 				return string("");
-			string o = to_string(get_stat(mc.storage[mc.box_number][index], SPEED, true, true));
+			string o = to_string(get_stat(mc.storage[mc.box_number][index], SPEED, false, false));
 			while (o.length() < 8)
 				o = string(" ") + o;
 			return o;
@@ -457,7 +457,7 @@ string engine::get_special_string(string in) {
 			int index = stoi(temp);
 			if (!mc.team[index].defined)
 				return string("");
-			string o = to_string(get_stat(mc.team[index], SPECIAL, true, true));
+			string o = to_string(get_stat(mc.team[index], SPECIAL, false, false));
 			while (o.length() < 8)
 				o = string(" ") + o;
 			return o;
@@ -466,7 +466,7 @@ string engine::get_special_string(string in) {
 			int index = stoi(temp);
 			if (!mc.storage[mc.box_number][index].defined)
 				return string("");
-			string o = to_string(get_stat(mc.storage[mc.box_number][index], SPECIAL, true, true));
+			string o = to_string(get_stat(mc.storage[mc.box_number][index], SPECIAL, false, false));
 			while (o.length() < 8)
 				o = string(" ") + o;
 			return o;
@@ -1734,6 +1734,10 @@ bool engine::remove_status(mon& m, string s, bool all) {
 	bool success = false;
 	if (s.find("*") != -1)
 		return remove_status_wildcard(m, s, all);
+	printf("\ns = '%s'", s.c_str());
+	if (s == "") {
+	    m.status.clear();
+	}
 	while (m.status.size() > 0 && m.status[0] == s) {
 		m.status.erase(m.status.begin());
 		if (!all)
