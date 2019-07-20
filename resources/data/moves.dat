@@ -973,6 +973,7 @@ DEFENSE: DEFENSE
 NOTES: 3 in 10 chance to make opponent flinch.
 
 MOVE: HEADBUTT
+ANIMATION: headbutt
 TYPE: NORMAL
 ACC: 100
 POWER: 70
