@@ -597,6 +597,7 @@ DEFENSE: DEFENSE
 NOTES: Powerful horn attack.
 
 MOVE: HORN DRILL
+ANIMATION: horndrill
 TYPE: NORMAL
 ACC: 25
 PP: 5
