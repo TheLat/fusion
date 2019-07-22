@@ -434,6 +434,7 @@ TARGET: ACCURACY_DOWN
 NOTES: Decreases opponent's accuracy.
 
 MOVE: HYPER FANG
+ANIMATION: hyperfang
 TYPE: NORMAL
 ACC: 90
 POWER: 80
