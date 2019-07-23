@@ -2561,7 +2561,6 @@ void engine::do_turn_inner(mon& m1, mon& m2) {
 			do_alert(get_nickname(m1) + string(" is fast asleep."));
 			if (has_move(m1, m1.queue[0]) || m1.queue[0] == "")
 				m1.queue.clear();
-			// TODO:  Sleep animation.
 		}
 		else {
 			do_alert(get_nickname(m1) + string(" woke up!"));
@@ -2587,7 +2586,6 @@ void engine::do_turn_inner(mon& m1, mon& m2) {
 		do_alert(get_nickname(m1) + string(" is paralyzed! It can't move!"));
 		if (has_move(m1, m1.queue[0]) || m1.queue[0] == "")
 			m1.queue.clear();
-		// TODO:  Paralyze animation
 	}
 	else if (m1.queue[0] != "") {
 		if (in_status(m1, string("UNTARGETABLE")))
@@ -2598,14 +2596,11 @@ void engine::do_turn_inner(mon& m1, mon& m2) {
 		if (is_KO(m2)) {
 			KO_move_clear(m1);
 			KO_move_clear(m2);
-			// TODO:  Return value
 			return;
 		}
-		use_status(m1, m2);
 		if (is_KO(m1)) {
 			KO_move_clear(m1);
 			KO_move_clear(m2);
-			// TODO:  Return value
 			return;
 		}
 		if (in_status(m1, string("DISABLE"))) {
@@ -2624,6 +2619,7 @@ void engine::do_turn_inner(mon& m1, mon& m2) {
 	else {
 		m1.queue.erase(m1.queue.begin());
 	}
+	use_status(m1, m2);
 	if (in_status(m2, string("SLEEP"))) {
 		remove_status(m2, string("SLEEP"));
 		if (in_status(m2, string("SLEEP"))) {
@@ -2640,7 +2636,6 @@ void engine::do_turn_inner(mon& m1, mon& m2) {
 			do_alert(get_nickname(m2) + string(" is fast asleep."));
 			if (has_move(m2, m2.queue[0]) || m2.queue[0] == "")
 				m2.queue.clear();
-			// TODO:  Sleep animation
 		}
 		else {
 			do_alert(get_nickname(m2) + string(" woke up!"));
@@ -2666,7 +2661,6 @@ void engine::do_turn_inner(mon& m1, mon& m2) {
 		do_alert(get_nickname(m2) + string(" is paralyzed! It can't move!"));
 		if (has_move(m2, m2.queue[0]) || m2.queue[0] == "")
 			m2.queue.clear();
-		// TODO:  Paralyze animation
 	}
 	else if (m2.queue[0] != "") {
 		if (in_status(m2, string("UNTARGETABLE")))
@@ -2677,14 +2671,11 @@ void engine::do_turn_inner(mon& m1, mon& m2) {
 		if (is_KO(m1)) {
 			KO_move_clear(m1);
 			KO_move_clear(m2);
-			// TODO:  Return value
 			return;
 		}
-		use_status(m2, m1);
 		if (is_KO(m2)) {
 			KO_move_clear(m1);
 			KO_move_clear(m2);
-			// TODO:  Return value
 			return;
 		}
 		if (in_status(m2, string("DISABLE"))) {
@@ -2703,6 +2694,7 @@ void engine::do_turn_inner(mon& m1, mon& m2) {
 	else {
 		m2.queue.erase(m2.queue.begin());
 	}
+	use_status(m2, m1);
 }
 
 void engine::clear_volatile(mon& m) {
