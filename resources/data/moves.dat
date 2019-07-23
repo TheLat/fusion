@@ -1045,6 +1045,7 @@ DEFENSE: SPECIAL
 NOTES: 1 in 3 chance to reduce opponent's attack.
 
 MOVE: ICE BEAM
+ANIMATION: icebeam
 TYPE: ICE
 ACC: 100
 POWER: 95
