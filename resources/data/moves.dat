@@ -1255,6 +1255,7 @@ TARGET: FLINCH:30
 NOTES: 3 in 10 chance to make opponent flinch.
 
 MOVE: JUMP KICK
+ANIMATION: jumpkick
 TYPE: FIGHTING
 ACC: 95
 POWER: 60
