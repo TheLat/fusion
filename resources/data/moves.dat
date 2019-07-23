@@ -859,6 +859,7 @@ TARGET: SELF_LEVEL
 NOTES: Deals damage to the opponent equal to the user's level.
 
 MOVE: HYPNOSIS
+ANIMATION: hypnosis
 TYPE: PSYCHIC
 ACC: 60
 PP: 20
