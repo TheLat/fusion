@@ -2066,6 +2066,7 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 	bool at_start_burned = in_status(defender, string("BURN"));
 	bool at_start_paralyzed = in_status(defender, string("PARALYZE"));
 	bool at_start_asleep = in_status(defender, string("SLEEP"));
+	bool at_start_frozen = in_status(defender, string("FREEZE"));
 	string s2, s3;
 	if (in_status(attacker, string("FLEE")) || in_status(defender, string("FLEE")))
 		return false;
@@ -2450,10 +2451,10 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
         if (!at_start_confused && in_status(defender, string("CONFUSE"))) {
             do_alert(get_nickname(defender) + string(" became confused!"));
         }
-
         if ((!at_start_burned && in_status(defender, string("BURN"))) ||
             (!at_start_paralyzed && in_status(defender, string("PARALYZE"))) ||
-            (!at_start_asleep && in_status(defender, string("SLEEP")))) {
+            (!at_start_asleep && in_status(defender, string("SLEEP"))) ||
+            (!at_start_frozen && in_status(defender, string("FREEZE")))) {
             unsigned anim_holder = 0;
             unsigned clear_point = g.draw_list.size();
             if (attacker.enemy) {
@@ -2473,6 +2474,9 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
         }
         if (!at_start_asleep && in_status(defender, string("SLEEP"))) {
             do_alert(get_nickname(defender) + string(" fell asleep!"));
+        }
+        if (!at_start_frozen && in_status(defender, string("FREEZE"))) {
+            do_alert(get_nickname(defender) + string(" was frozen solid!"));
         }
 	}
 	// TODO: Paralyze, poison, burn, freeze, and sleep notification.
@@ -2551,10 +2555,10 @@ void engine::do_turn_inner(mon& m1, mon& m2) {
 			unsigned anim_holder = 0;
             unsigned clear_point = g.draw_list.size();
             if (m1.enemy) {
-                anim_holder = g.ae.create_anim_scene(string("asleep"), m1.sprite_index, m2.sprite_index);
+                anim_holder = g.ae.create_anim_scene(string("asleep-enemy"), m1.sprite_index, m2.sprite_index);
             }
             else {
-                anim_holder = g.ae.create_anim_scene(string("asleep-enemy"), m1.sprite_index, m2.sprite_index);
+                anim_holder = g.ae.create_anim_scene(string("asleep"), m1.sprite_index, m2.sprite_index);
             }
             while (!g.ae.is_dones(anim_holder)) {}
             g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
@@ -2576,10 +2580,19 @@ void engine::do_turn_inner(mon& m1, mon& m2) {
 				m1.queue.clear();
 		}
 		else {
-			do_alert(get_nickname(m1) + string(" is frozen solid!"));
 			if (has_move(m1, m1.queue[0]) || m1.queue[0] == "")
 				m1.queue.clear();
-			// TODO:  Freeze animation
+			unsigned anim_holder = 0;
+            unsigned clear_point = g.draw_list.size();
+            if (m1.enemy) {
+                anim_holder = g.ae.create_anim_scene(string("frozen-enemy"), m1.sprite_index, m2.sprite_index);
+            }
+            else {
+                anim_holder = g.ae.create_anim_scene(string("frozen"), m1.sprite_index, m2.sprite_index);
+            }
+            while (!g.ae.is_dones(anim_holder)) {}
+            g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
+			do_alert(get_nickname(m1) + string(" is frozen solid!"));
 		}
 	}
 	else if (in_status(m1, string("PARALYZE")) && (0.25 > random(0.0, 1.0))) {
@@ -2626,10 +2639,10 @@ void engine::do_turn_inner(mon& m1, mon& m2) {
 		    unsigned anim_holder = 0;
             unsigned clear_point = g.draw_list.size();
             if (m2.enemy) {
-                anim_holder = g.ae.create_anim_scene(string("asleep"), m2.sprite_index, m1.sprite_index);
+                anim_holder = g.ae.create_anim_scene(string("asleep-enemy"), m2.sprite_index, m1.sprite_index);
             }
             else {
-                anim_holder = g.ae.create_anim_scene(string("asleep-enemy"), m2.sprite_index, m1.sprite_index);
+                anim_holder = g.ae.create_anim_scene(string("asleep"), m2.sprite_index, m1.sprite_index);
             }
             while (!g.ae.is_dones(anim_holder)) {}
             g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
@@ -2651,10 +2664,19 @@ void engine::do_turn_inner(mon& m1, mon& m2) {
 				m2.queue.clear();
 		}
 		else {
-			do_alert(get_nickname(m2) + string(" is frozen solid!"));
 			if (has_move(m2, m2.queue[0]) || m2.queue[0] == "")
 				m2.queue.clear();
-			// TODO:  Freeze animation
+		    unsigned anim_holder = 0;
+            unsigned clear_point = g.draw_list.size();
+            if (m2.enemy) {
+                anim_holder = g.ae.create_anim_scene(string("frozen-enemy"), m2.sprite_index, m1.sprite_index);
+            }
+            else {
+                anim_holder = g.ae.create_anim_scene(string("frozen"), m2.sprite_index, m1.sprite_index);
+            }
+            while (!g.ae.is_dones(anim_holder)) {}
+            g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
+			do_alert(get_nickname(m2) + string(" is frozen solid!"));
 		}
 	}
 	else if (in_status(m2, string("PARALYZE")) && (0.25 > random(0.0, 1.0))) {
