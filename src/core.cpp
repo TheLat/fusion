@@ -2548,6 +2548,16 @@ void engine::do_turn_inner(mon& m1, mon& m2) {
 	if (in_status(m1, string("SLEEP"))) {
 		remove_status(m1, string("SLEEP"));
 		if (in_status(m1, string("SLEEP"))) {
+			unsigned anim_holder = 0;
+            unsigned clear_point = g.draw_list.size();
+            if (m1.enemy) {
+                anim_holder = g.ae.create_anim_scene(string("asleep"), m1.sprite_index, m2.sprite_index);
+            }
+            else {
+                anim_holder = g.ae.create_anim_scene(string("asleep-enemy"), m1.sprite_index, m2.sprite_index);
+            }
+            while (!g.ae.is_dones(anim_holder)) {}
+            g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
 			do_alert(get_nickname(m1) + string(" is fast asleep."));
 			if (has_move(m1, m1.queue[0]) || m1.queue[0] == "")
 				m1.queue.clear();
@@ -2617,6 +2627,16 @@ void engine::do_turn_inner(mon& m1, mon& m2) {
 	if (in_status(m2, string("SLEEP"))) {
 		remove_status(m2, string("SLEEP"));
 		if (in_status(m2, string("SLEEP"))) {
+		    unsigned anim_holder = 0;
+            unsigned clear_point = g.draw_list.size();
+            if (m2.enemy) {
+                anim_holder = g.ae.create_anim_scene(string("asleep"), m2.sprite_index, m1.sprite_index);
+            }
+            else {
+                anim_holder = g.ae.create_anim_scene(string("asleep-enemy"), m2.sprite_index, m1.sprite_index);
+            }
+            while (!g.ae.is_dones(anim_holder)) {}
+            g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
 			do_alert(get_nickname(m2) + string(" is fast asleep."));
 			if (has_move(m2, m2.queue[0]) || m2.queue[0] == "")
 				m2.queue.clear();
