@@ -843,6 +843,7 @@ DEFENSE: DEFENSE
 NOTES: A powerful attack, but take one quarter of the damage dealt in backlash.
 
 MOVE: KARATE CHOP
+ANIMATION: karatechop
 TYPE: FIGHTING
 ACC: 100
 POWER: 50
