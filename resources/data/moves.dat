@@ -725,6 +725,7 @@ SELF: RECOIL:25
 NOTES: A powerful attack, but take a quarter of damage dealt as backlash.
 
 MOVE: LEECH LIFE
+ANIMATION: leechlife
 TYPE: BUG
 ACC: 100
 POWER: 20
