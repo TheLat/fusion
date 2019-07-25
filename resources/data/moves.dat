@@ -175,6 +175,7 @@ ADDITIONAL: APPLYBURN30
 NOTES: 3 in 10 chance to burn opponent.
 
 MOVE: LEER
+ANIMATION: leer
 TYPE: NORMAL
 ACC: 100
 PP: 30
