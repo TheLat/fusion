@@ -24,6 +24,7 @@ TARGET: ATTACK_DOWN
 NOTES: Lowers opponent's attack.
 
 MOVE: LEECH SEED
+ANIMATION: leechseed
 TYPE: GRASS
 ACC: 90
 PP: 10

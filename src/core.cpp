@@ -2011,13 +2011,22 @@ void engine::use_status(mon& self, mon& other) {
 			deal_damage(self, int(max(double(get_stat(self, HP)) / 16.0, 1.0)));
 		}
 		else if (self.status[i] == "SEED") {
-			// TODO: Animation goes here
+			unsigned anim_holder = 0;
+            unsigned clear_point = g.draw_list.size();
+            if (self.enemy) {
+                anim_holder = g.ae.create_anim_scene(string("absorb"), self.sprite_index, other.sprite_index);
+            }
+            else {
+                anim_holder = g.ae.create_anim_scene(string("absorb-enemy"), self.sprite_index, other.sprite_index);
+            }
+            while (!g.ae.is_dones(anim_holder)) {}
+            g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
+			deal_damage(self, int(max(double(get_stat(self, HP)) / 16.0, 1.0)));
+			heal_damage(other, int(max(double(get_stat(self, HP)) / 16.0, 1.0)));
 			if (self.wild)
 				do_alert(string("The wild ") + get_nickname(self) + string("'s health was sapped by Leech Seed!"));
 			else
 				do_alert(get_nickname(self) + string("'s health was sapped by Leech Seed!"));
-			deal_damage(self, int(max(double(get_stat(self, HP)) / 16.0, 1.0)));
-			heal_damage(other, int(max(double(get_stat(self, HP)) / 16.0, 1.0)));
 		}
 		else if (self.status[i] == "TOXIC") {
 			// TODO: Animation goes here
@@ -2067,6 +2076,7 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 	bool at_start_paralyzed = in_status(defender, string("PARALYZE"));
 	bool at_start_asleep = in_status(defender, string("SLEEP"));
 	bool at_start_frozen = in_status(defender, string("FREEZE"));
+	bool at_start_seed = in_status(defender, string("SEED"));
 	string s2, s3;
 	if (in_status(attacker, string("FLEE")) || in_status(defender, string("FLEE")))
 		return false;
@@ -2454,7 +2464,8 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
         if ((!at_start_burned && in_status(defender, string("BURN"))) ||
             (!at_start_paralyzed && in_status(defender, string("PARALYZE"))) ||
             (!at_start_asleep && in_status(defender, string("SLEEP"))) ||
-            (!at_start_frozen && in_status(defender, string("FREEZE")))) {
+            (!at_start_frozen && in_status(defender, string("FREEZE"))) ||
+            (!at_start_seed && in_status(defender, string("SEED")))) {
             unsigned anim_holder = 0;
             unsigned clear_point = g.draw_list.size();
             if (attacker.enemy) {
@@ -2477,6 +2488,9 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
         }
         if (!at_start_frozen && in_status(defender, string("FREEZE"))) {
             do_alert(get_nickname(defender) + string(" was frozen solid!"));
+        }
+        if (!at_start_seed && in_status(defender, string("SEED"))) {
+            do_alert(get_nickname(defender) + string(" was seeded!"));
         }
 	}
 	// TODO: Paralyze, poison, burn, freeze, and sleep notification.
