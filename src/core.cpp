@@ -2072,11 +2072,14 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 	bool miss = false;
 	bool self_on_miss_only = false;
 	bool at_start_confused = in_status(defender, string("CONFUSE"));
+	bool at_start_confused_self = in_status(attacker, string("CONFUSE"));
 	bool at_start_burned = in_status(defender, string("BURN"));
 	bool at_start_paralyzed = in_status(defender, string("PARALYZE"));
 	bool at_start_asleep = in_status(defender, string("SLEEP"));
 	bool at_start_frozen = in_status(defender, string("FREEZE"));
 	bool at_start_seed = in_status(defender, string("SEED"));
+	bool at_start_lightscreen = in_status(attacker, string("LIGHTSCREEN"));
+	bool at_start_reflect = in_status(attacker, string("REFLECT"));
 	string s2, s3;
 	if (in_status(attacker, string("FLEE")) || in_status(defender, string("FLEE")))
 		return false;
@@ -2461,6 +2464,9 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
         if (!at_start_confused && in_status(defender, string("CONFUSE"))) {
             do_alert(get_nickname(defender) + string(" became confused!"));
         }
+        if (!at_start_confused_self && in_status(attacker, string("CONFUSE"))) {
+            do_alert(get_nickname(attacker) + string(" became confused!"));
+        }
         if ((!at_start_burned && in_status(defender, string("BURN"))) ||
             (!at_start_paralyzed && in_status(defender, string("PARALYZE"))) ||
             (!at_start_asleep && in_status(defender, string("SLEEP"))) ||
@@ -2491,6 +2497,12 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
         }
         if (!at_start_seed && in_status(defender, string("SEED"))) {
             do_alert(get_nickname(defender) + string(" was seeded!"));
+        }
+        if (!at_start_lightscreen && in_status(attacker, string("LIGHTSCREEN"))) {
+            do_alert(get_nickname(defender) + string(" is protected from SPECIAL attacks!"));
+        }
+        if (!at_start_reflect && in_status(attacker, string("REFLECT"))) {
+            do_alert(get_nickname(defender) + string(" is protected from PHYSICAL attacks!"));
         }
 	}
 	// TODO: Paralyze, poison, burn, freeze, and sleep notification.
