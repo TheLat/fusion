@@ -2080,6 +2080,7 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 	bool at_start_seed = in_status(defender, string("SEED"));
 	bool at_start_lightscreen = in_status(attacker, string("LIGHTSCREEN"));
 	bool at_start_reflect = in_status(attacker, string("REFLECT"));
+	bool at_start_locked_stats = in_status(attacker, string("LOCK_STATS"));
 	string s2, s3;
 	if (in_status(attacker, string("FLEE")) || in_status(defender, string("FLEE")))
 		return false;
@@ -2501,13 +2502,16 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
         if (!at_start_seed && in_status(defender, string("SEED"))) {
             do_alert(get_nickname(defender) + string(" was seeded!"));
         }
-        if (!at_start_lightscreen && in_status(attacker, string("LIGHTSCREEN"))) {
-            do_alert(get_nickname(defender) + string(" is protected from SPECIAL attacks!"));
-        }
-        if (!at_start_reflect && in_status(attacker, string("REFLECT"))) {
-            do_alert(get_nickname(defender) + string(" is protected from PHYSICAL attacks!"));
-        }
-	}
+    }
+    if (!at_start_lightscreen && in_status(attacker, string("LIGHTSCREEN"))) {
+        do_alert(get_nickname(defender) + string(" is protected from SPECIAL attacks!"));
+    }
+    if (!at_start_reflect && in_status(attacker, string("REFLECT"))) {
+        do_alert(get_nickname(defender) + string(" is protected from PHYSICAL attacks!"));
+    }
+    if (!at_start_locked_stats && in_status(attacker, string("LOCK_STATS"))) {
+        do_alert(string("STATS are now locked against buffs and debuffs!"));
+    }
 	// TODO: Paralyze, poison, burn, freeze, and sleep notification.
 	return success;
 }

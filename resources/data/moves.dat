@@ -1459,6 +1459,7 @@ DESC: {NAME} used SPLASH!{BREAK}But nothing happened.
 NOTES: It does nothing.
 
 MOVE: MIST
+ANIMATION: mist
 TYPE: ICE
 ACC: 100
 PP: 30
