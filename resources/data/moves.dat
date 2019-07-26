@@ -289,6 +289,7 @@ TYPE: NORMAL
 ACC: 100
 PP: 30
 SELF: DEFENSE_UP
+SPECIAL: UNAVOIDABLE
 NOTES: Increases defense.
 
 MOVE: CONFUSED
@@ -366,6 +367,7 @@ ANIMATION: focusenergy
 TYPE: NORMAL
 PP: 30
 SELF: FOCUS
+SPECIAL: UNAVOIDABLE
 NOTES: Increases critical hit chance.
 
 MOVE: TWIN NEEDLE
@@ -686,6 +688,7 @@ TYPE: PSYCHIC
 ACC: 100
 PP: 30
 SELF: LIGHTSCREEN
+SPECIAL: UNAVOIDABLE
 NOTES: Reduces special damage received by half.
 
 MOVE: CONFUSE RAY
@@ -1432,6 +1435,7 @@ NOTES: A powerful attack, but must rest for a turn after use.
 MOVE: HYPERBEAM2
 TYPE: NORMAL
 DESC: {NAME} needed to recharge.
+SPECIAL: UNAVOIDABLE
 QUEUE_ONLY: YES
 
 MOVE: DRAGON RAGE
@@ -1502,6 +1506,7 @@ PP: 15
 TYPE: FLYING
 QUEUE: FLY2
 SELF: UNTARGETABLE
+SPECIAL: UNAVOIDABLE
 DESC: {NAME} flew up high.
 NOTES: Flies out of reach, then attacks on the next turn. Can be used out of combat.
 
