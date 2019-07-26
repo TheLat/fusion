@@ -1154,11 +1154,12 @@ SPECIAL: STATUS_IMMUNITY:GHOST
 NOTES: 3 in 10 chance to paralyze target.
 
 MOVE: NIGHT SHADE
+ANIMATION: nightshade
 TYPE: GHOST
 ACC: 100
 PP: 15
-TARGET: EXACT_DAMAGE:20
-NOTES: Deals exactly 20 damage.
+TARGET: SELF_LEVEL
+NOTES: Deals damage to the opponent equal to the user's level.
 
 MOVE: DREAM EATER
 ANIMATION: dreameater
