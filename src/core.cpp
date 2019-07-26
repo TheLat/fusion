@@ -2157,6 +2157,7 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 		else if (moves[move].special[i] == "ENEMY_LAST") {
 			if (defender.last_move != "" && !moves[defender.last_move].queue_only) {
 				attacker.queue.erase(attacker.queue.begin());
+			    do_move_animation(attacker, defender, move);
 				return use_move(attacker, defender, defender.last_move, skip_accuracy_check);
 			}
 			else {
