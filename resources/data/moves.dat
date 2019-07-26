@@ -1348,6 +1348,7 @@ SPECIAL: UNAVOIDABLE
 NOTES: Deals twice damage received if it was from a physical attack.
 
 MOVE: MEGA PUNCH
+ANIMATION: megapunch
 TYPE: NORMAL
 ACC: 85
 POWER: 80

@@ -1,0 +1,13 @@
+PLAY_SOUND sound_effects/combat/megapunch.mp3 0.0
+SPLINE_TRANSFORM ATTACKER 0.0 0.05 0.1 0.1 0.9 0.9 0.1 0.1 0.9 0.9 0.0 0.1 0.9 0.9
+CREATE_SPRITE images/opaque-white.png 0.1 -1.0 -1.0 2.0 2.0
+HIDE_SPRITE 1 0.15
+CREATE_SPRITE images/opaque-white.png 0.2 -1.0 -1.0 2.0 2.0
+HIDE_SPRITE 3 0.25
+SPLINE_TRANSFORM ATTACKER 0.25 0.3 0.0 0.1 0.9 0.9 0.1 0.1 0.9 0.9
+CREATE_SPRITE images/impact-big.png 0.05 -0.4 -0.4 0.4 0.4
+CREATE_SPRITE images/impact-big.png 0.13 -0.6 -0.2 0.4 0.4
+CREATE_SPRITE images/impact-big.png 0.255 -0.7 0.0 0.4 0.4
+HIDE_SPRITE 0 0.13
+HIDE_SPRITE 2 0.255
+HIDE_SPRITE 4 0.38
