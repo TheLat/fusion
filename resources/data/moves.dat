@@ -899,6 +899,7 @@ SELF: REFLECT
 NOTES: Reduces physical damage received by half.
 
 MOVE: LOW KICK
+ANIMATION: lowkick
 TYPE: FIGHTING
 ACC: 90
 POWER: 50
