@@ -1,0 +1,4 @@
+PLAY_SOUND sound_effects/combat/lovelykiss.mp3 0.0
+CREATE_SPRITE images/lovelykiss.png 0.0 0.55 0.55 0.0 0.0
+SPLINE_TRANSFORM 0 0.05 0.25 0.55 0.55 0.0 0.0 0.45 0.45 0.2 0.2 0.45 0.45 0.2 0.2
+SPLINE_TRANSFORM 0 0.25 0.45 0.45 0.45 0.2 0.2 0.45 0.45 0.2 0.2 0.55 0.55 0.0 0.0
