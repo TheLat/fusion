@@ -1578,6 +1578,7 @@ PP: 20
 NOTES: 1 in 10 chance to reduce opponent's speed.
 
 MOVE: MEGA DRAIN
+ANIMATION: megadrain
 TYPE: GRASS
 ACC: 100
 POWER: 40
