@@ -2181,6 +2181,7 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 				it--;
 			}
 			do_move_animation(attacker, defender, move);
+			attacker.queue.erase(attacker.queue.begin());
 			return use_move(attacker, defender, it->second.name);
 		}
 		else if (moves[move].special[i] == "PAYDAY") {
