@@ -16,6 +16,7 @@ engine e;
 graphics g;
 soundengine se;
 timer tim;
+extern string safepath;
 
 bool safe_getline(ifstream &f, string& s) {
 	bool ret = std::getline(f, s) ? true : false;
@@ -102,7 +103,7 @@ string get_menu(string r) {
 		}
 		if (s.find(":") != -1)
 			s.erase(s.find(":"), s.size());
-		ifstream f(string("../resources/menus/") + s + string(".dat"));
+		ifstream f(safepath + string("menus/") + s + string(".dat"));
 		if (f.is_open()) {
 			f.close();
 			return s;
@@ -171,7 +172,7 @@ vector<int> do_menu(string menu) {
 		menu = menu.erase(menu.find(string(":")), menu.length());
 		temp = temp.erase(0, temp.find(":") + 1);
 	}
-	ifstream f(string("../resources/menus/") + menu + string(".dat"));
+	ifstream f(safepath + string("menus/") + menu + string(".dat"));
 	if (!f.good())
 		return def;
 	f.close();
@@ -299,7 +300,7 @@ int main(int argc, char** argv) {
 	#ifdef __APPLE__
 	glutCreateWindow("Pokemon Fusion");
 	#else
-	glutCreateWindow("Pokémon Fusion");
+	glutCreateWindow("Pokï¿½mon Fusion");
 	#endif
 	g.initRendering(); //Initialize rendering
 	e.init_characters();

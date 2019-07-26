@@ -1,6 +1,7 @@
 #include "menus.h"
 
 extern bool safe_getline(ifstream &f, string& s);
+extern string safepath;
 
 mutex mutex2;
 
@@ -13,7 +14,7 @@ void menu::create_menu(string file, string choice, string text_override, string 
 	images.clear();
 	raw.clear();
 	followup.clear();
-	ifstream f(string("../resources/menus/") + file + string(".dat"));
+	ifstream f(safepath + string("menus/") + file + string(".dat"));
 	string line, temp1, temp2;
 	while (f.is_open()) {
 		while (safe_getline(f, line)) {
@@ -1054,7 +1055,7 @@ void menu::push_menu() {
 		push_hp_bar_if_exists(hp_bars[i].xmin, hp_bars[i].ymin, stoi(hp_bars[i].s));
 	}
 	for (unsigned i = 0; i < images.size(); ++i) {
-		g.push_quad_load(images[i].xmin, images[i].ymin, images[i].length, images[i].height, string("../resources/images/") + images[i].filename);
+		g.push_quad_load(images[i].xmin, images[i].ymin, images[i].length, images[i].height, safepath + string("images/") + images[i].filename);
 	}
 	for (unsigned i = 0; i < display.size(); ++i) {
 		int temp;

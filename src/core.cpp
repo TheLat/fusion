@@ -18,6 +18,10 @@ extern soundengine se;
 typedef std::map<string, std::map<string, float> >::iterator type_iter;
 extern bool safe_getline(ifstream &f, string& s);
 
+
+
+string safepath = string("../resources/");
+
 int min(int a, int b) {
 	if (a < b) {
 		return a;
@@ -3144,18 +3148,18 @@ void engine::resize_hp_bars(mon& m) {
 		float f = get_hp_percent(m);
 		g.draw_list[m.hp_bar_index].width = 0.6f * f;
 		if (f > 0.66f) {
-			g.draw_list[m.hp_bar_index].filename = string("../resources/images/hp-good.bmp");
-			g.draw_list[m.hp_bar_index].tex = g.tex[string("../resources/images/hp-good.bmp")];
+			g.draw_list[m.hp_bar_index].filename = safepath + string("images/hp-good.bmp");
+			g.draw_list[m.hp_bar_index].tex = g.tex[safepath + string("images/hp-good.bmp")];
 			g.new_load = true;
 		}
 		else if (f > 0.33f) {
-			g.draw_list[m.hp_bar_index].filename = string("../resources/images/hp-medium.bmp");
-			g.draw_list[m.hp_bar_index].tex = g.tex[string("../resources/images/hp-medium.bmp")];
+			g.draw_list[m.hp_bar_index].filename = safepath + string("images/hp-medium.bmp");
+			g.draw_list[m.hp_bar_index].tex = g.tex[safepath + string("images/hp-medium.bmp")];
 			g.new_load = true;
 		}
 		else {
-			g.draw_list[m.hp_bar_index].filename = string("../resources/images/hp-bad.bmp");
-			g.draw_list[m.hp_bar_index].tex = g.tex[string("../resources/images/hp-bad.bmp")];
+			g.draw_list[m.hp_bar_index].filename = safepath + string("images/hp-bad.bmp");
+			g.draw_list[m.hp_bar_index].tex = g.tex[safepath + string("images/hp-bad.bmp")];
 			g.new_load = true;
 		}
 	}
@@ -3185,9 +3189,9 @@ void engine::rebuild_battle_hud(mon& p, mon& e) {
 		string formatted_hp = "";
 		formatted_hp += to_string(p.curr_hp) + string("/") + to_string(get_stat(p, HP));
 		g.push_text(0.8f - (float(formatted_hp.length())*0.1f), -0.4f, 0.8f, 0.1f, 0.1f, formatted_hp);
-		g.draw_list[p.sprite_index].filename = string("../resources/images/") + p.number + string("-back.png");
+		g.draw_list[p.sprite_index].filename = safepath + string("images/") + p.number + string("-back.png");
 		g.draw_list[p.sprite_index].tex = g.tex[g.draw_list[p.sprite_index].filename];
-		g.draw_list[e.sprite_index].filename = string("../resources/images/") + e.number + string(".png");
+		g.draw_list[e.sprite_index].filename = safepath + string("images/") + e.number + string(".png");
 		g.draw_list[e.sprite_index].tex = g.tex[g.draw_list[e.sprite_index].filename];
 		resize_exp_bar(p);
 		resize_hp_bars(p);
@@ -3225,10 +3229,10 @@ bool engine::battle(trainer& t) { // trainer battle
 		}
 	}
 	g.push_box(-1.1f, -1.1f, 2.2f, 2.2f);
-	unsigned enemy_trainer_sprite = g.push_quad_load(2.1f, 0.1f, 0.9f, 0.9f, string("../resources/images/") + t.image);
-	unsigned player_sprite = g.push_quad_load(-10.0f, -0.422f, 0.9f, 0.9f, string("../resources/images/player-back.png"));
-	unsigned enemy_sprite = g.push_quad_load(2.1f, 0.1f, 0.9f, 0.9f, string("../resources/images/") + mc.enemy_team[mc.enemy_selected].number + string(".png"));
-	unsigned team_sprite = g.push_quad_load(-10.0f, -0.422f, 0.9f, 0.9f, string("../resources/images/") + mc.team[mc.selected].number + string("-back.png"));
+	unsigned enemy_trainer_sprite = g.push_quad_load(2.1f, 0.1f, 0.9f, 0.9f, safepath + string("images/") + t.image);
+	unsigned player_sprite = g.push_quad_load(-10.0f, -0.422f, 0.9f, 0.9f, safepath + string("images/player-back.png"));
+	unsigned enemy_sprite = g.push_quad_load(2.1f, 0.1f, 0.9f, 0.9f, safepath + string("images/") + mc.enemy_team[mc.enemy_selected].number + string(".png"));
+	unsigned team_sprite = g.push_quad_load(-10.0f, -0.422f, 0.9f, 0.9f, safepath + string("images/") + mc.team[mc.selected].number + string("-back.png"));
 	g.push_box(-1.0f, -1.0f, 2.0f, 0.6f);
 	mc.team[mc.selected].queue.clear();
 	mc.team[mc.selected].last_move = "";
@@ -3253,7 +3257,7 @@ bool engine::battle(trainer& t) { // trainer battle
 	g.push_arrow_box_left(-0.1f, -0.4f, 1.0f, 0.3f);
 	g.push_arrow_box_right(-0.9f, 0.6f, 1.0f, 0.2f);
 	unsigned team_hp_sprite = g.push_hp_bar(0.1f, -0.2f, get_hp_percent(mc.team[mc.selected]));
-	unsigned exp_bar_index = g.push_quad_load(0.0f, -0.35f, 0.0f, 0.025f, string("../resources/images/exp.bmp"));
+	unsigned exp_bar_index = g.push_quad_load(0.0f, -0.35f, 0.0f, 0.025f, safepath + string("images/exp.bmp"));
 	unsigned hud_index = g.draw_list.size();
 	mc.enemy_team[mc.enemy_selected].hud_index = hud_index;
 	mc.enemy_team[mc.enemy_selected].last_hit_physical = 0;
@@ -3612,9 +3616,9 @@ bool engine::battle() { // wild pokemon
 			}
 		}
 	}
-	unsigned enemy_sprite = g.push_quad_load(0.1f, 0.1f, 0.9f, 0.9f, string("../resources/images/") + mc.enemy_team[mc.enemy_selected].number + string(".png"));
-	unsigned player_sprite = g.push_quad_load(-1.0f, -0.422f, 0.9f, 0.9f, string("../resources/images/player-back.png"));
-	unsigned team_sprite = g.push_quad_load(-10.0f, -0.422f, 0.9f, 0.9f, string("../resources/images/") + mc.team[mc.selected].number + string("-back.png"));
+	unsigned enemy_sprite = g.push_quad_load(0.1f, 0.1f, 0.9f, 0.9f, safepath + string("images/") + mc.enemy_team[mc.enemy_selected].number + string(".png"));
+	unsigned player_sprite = g.push_quad_load(-1.0f, -0.422f, 0.9f, 0.9f, safepath + string("images/player-back.png"));
+	unsigned team_sprite = g.push_quad_load(-10.0f, -0.422f, 0.9f, 0.9f, safepath + string("images/") + mc.team[mc.selected].number + string("-back.png"));
 	g.push_box(-1.0f, -1.0f, 2.0f, 0.6f);
 	mc.team[mc.selected].queue.clear();
 	mc.team[mc.selected].last_move = "";
@@ -3634,7 +3638,7 @@ bool engine::battle() { // wild pokemon
 	g.push_arrow_box_left(-0.1f, -0.4f, 1.0f, 0.3f);
 	g.push_arrow_box_right(-0.9f, 0.6f, 1.0f, 0.2f);
 	unsigned team_hp_sprite = g.push_hp_bar(0.1f, -0.2f, get_hp_percent(mc.team[mc.selected]));
-	unsigned exp_bar_index = g.push_quad_load(0.0f, -0.35f, 0.0f, 0.025f, string("../resources/images/exp.bmp"));
+	unsigned exp_bar_index = g.push_quad_load(0.0f, -0.35f, 0.0f, 0.025f, safepath + string("images/exp.bmp"));
 	unsigned hud_index = g.draw_list.size();
 	mc.enemy_team[mc.enemy_selected].hud_index = hud_index;
 	mc.enemy_team[mc.enemy_selected].last_hit_physical = 0;
@@ -6783,14 +6787,14 @@ void engine::do_interaction(character& npc) {
 			else
 				s = "";
 			if (s2 == "PLAYER") {
-				g.push_quad_load(-0.1f, (0.5f / 4.5f) + 0.0416f, 0.2f, 1.0f / 4.5f, string("../resources/images/speechbubble.png"));
+				g.push_quad_load(-0.1f, (0.5f / 4.5f) + 0.0416f, 0.2f, 1.0f / 4.5f, safepath + string("images/speechbubble.png"));
 			}
 			else {
 				map<string, level>::iterator it;
 				for (it = levels.begin(); it != levels.end(); it++) {
 					for (unsigned k = 0; k < it->second.characters.size(); ++k) {
 						if (it->second.characters[k].name == s2) {
-							g.push_quad_load((it->second.characters[k].loc.x - (mc.loc.x + 0.5)) / 5.0f, (0.5 - it->second.characters[k].loc.y + mc.loc.y) / 4.5f + 0.0416f, 0.2f, 1.0f / 4.5f, string("../resources/images/speechbubble.png"));
+							g.push_quad_load((it->second.characters[k].loc.x - (mc.loc.x + 0.5)) / 5.0f, (0.5 - it->second.characters[k].loc.y + mc.loc.y) / 4.5f + 0.0416f, 0.2f, 1.0f / 4.5f, safepath + string("images/speechbubble.png"));
 						}
 					}
 				}

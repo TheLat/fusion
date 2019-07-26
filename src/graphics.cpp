@@ -9,6 +9,8 @@
 #include "graphics.h"
 extern bool safe_getline(ifstream &f, string& s);
 
+extern string safepath;
+
 GLuint graphics::load_image(string filename) {
 	GLuint ret = 0;
 	int i;
@@ -471,15 +473,15 @@ void graphics::push_arrow_box_right(float xmin, float ymin, float length, float 
 unsigned graphics::push_hp_bar(float xmin, float ymin, float hp) {
 	unsigned ret;
 	if (hp > 0.66f)
-		ret = push_quad_load(xmin + 0.1f, ymin + 0.025f, 0.6f * hp, 0.05f, string("../resources/images/hp-good.bmp"));
+		ret = push_quad_load(xmin + 0.1f, ymin + 0.025f, 0.6f * hp, 0.05f, safepath + string("images/hp-good.bmp"));
 	else if (hp > 0.33f)
-		ret = push_quad_load(xmin + 0.1f, ymin + 0.025f, 0.6f * hp, 0.05f, string("../resources/images/hp-medium.bmp"));
+		ret = push_quad_load(xmin + 0.1f, ymin + 0.025f, 0.6f * hp, 0.05f, safepath + string("images/hp-medium.bmp"));
 	else
-		ret = push_quad_load(xmin + 0.1f, ymin + 0.025f, 0.6f * hp, 0.05f, string("../resources/images/hp-bad.bmp"));
-	push_quad_load(xmin - 0.1f, ymin, 0.2f, 0.1f, string("../resources/images/hp.png"));
-	push_quad_load(xmin + 0.1f, ymin, 0.6f, 0.1f, string("../resources/images/hpbar-middle.png"));
-	push_quad_load(xmin, ymin, 0.1f, 0.1f, string("../resources/images/hpbar-left.png"));
-	push_quad_load(xmin + 0.7f, ymin, 0.1f, 0.1f, string("../resources/images/hpbar-right.png"));
+		ret = push_quad_load(xmin + 0.1f, ymin + 0.025f, 0.6f * hp, 0.05f, safepath + string("images/hp-bad.bmp"));
+	push_quad_load(xmin - 0.1f, ymin, 0.2f, 0.1f, safepath + string("images/hp.png"));
+	push_quad_load(xmin + 0.1f, ymin, 0.6f, 0.1f, safepath + string("images/hpbar-middle.png"));
+	push_quad_load(xmin, ymin, 0.1f, 0.1f, safepath + string("images/hpbar-left.png"));
+	push_quad_load(xmin + 0.7f, ymin, 0.1f, 0.1f, safepath + string("images/hpbar-right.png"));
 	return ret;
 }
 

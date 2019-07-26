@@ -5,6 +5,7 @@
 #include <fstream>
 
 extern bool safe_getline(ifstream &f, string& s);
+extern string safepath;
 
 void soundengine::init_sounds() {
 	FMOD::Channel    *channel = 0;
@@ -19,7 +20,7 @@ void soundengine::init_sounds() {
 	string line;
 	while (f.is_open()) {
 		while (safe_getline(f, line)) {
-			result = system->createSound((string("../resources/") + line).c_str(), FMOD_DEFAULT, 0, &sounds[line]);
+			result = system->createSound((safepath + line).c_str(), FMOD_DEFAULT, 0, &sounds[line]);
 		}
 		f.close();
 	}
@@ -29,7 +30,7 @@ void soundengine::play_sound(string s) {
 	FMOD::Channel    *channel = 0;
 	FMOD_RESULT       result;
 	if (sounds[s] == 0) {
-		result = system->createSound((string("../resources/") + s).c_str(), FMOD_DEFAULT, 0, &sounds[s]);
+		result = system->createSound((safepath + s).c_str(), FMOD_DEFAULT, 0, &sounds[s]);
 	}
 	result = system->playSound(sounds[s], 0, false, &channel);
 }
@@ -39,7 +40,7 @@ void soundengine::play_sound_blocking(string s) {
 	FMOD_RESULT       result;
 	bool playing = false;
 	if (sounds[s] == 0) {
-		result = system->createSound((string("../resources/") + s).c_str(), FMOD_DEFAULT, 0, &sounds[s]);
+		result = system->createSound((safepath + s).c_str(), FMOD_DEFAULT, 0, &sounds[s]);
 	}
 	result = system->playSound(sounds[s], 0, false, &channel);
 	result = channel->isPlaying(&playing);
@@ -77,10 +78,10 @@ void soundengine::play_music(string s) {
 		s1.erase(s1.find(","), s1.length());
 		s2.erase(0, s2.find(",") + 1);
 		if (sounds[s1] == 0) {
-			result = system->createSound((string("../resources/") + s1).c_str(), FMOD_DEFAULT, 0, &sounds[s1]);
+			result = system->createSound((safepath + s1).c_str(), FMOD_DEFAULT, 0, &sounds[s1]);
 		}
 		if (sounds[s2] == 0) {
-			result = system->createSound((string("../resources/") + s2).c_str(), FMOD_LOOP_NORMAL, 0, &sounds[s2]);
+			result = system->createSound((safepath + s2).c_str(), FMOD_LOOP_NORMAL, 0, &sounds[s2]);
 		}
 		result = system->playSound(sounds[s1], 0, true, &music1);
 		result = system->playSound(sounds[s2], 0, true, &music2);
@@ -97,7 +98,7 @@ void soundengine::play_music(string s) {
 	}
 	else {
 		if (sounds[s] == 0) {
-			result = system->createSound((string("../resources/") + s).c_str(), FMOD_DEFAULT, 0, &sounds[s]);
+			result = system->createSound((safepath + s).c_str(), FMOD_DEFAULT, 0, &sounds[s]);
 		}
 		result = system->playSound(sounds[s], 0, false, &music1);
 	}
