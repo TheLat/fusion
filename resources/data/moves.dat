@@ -838,6 +838,7 @@ PP: 10
 NOTES: A powerful ground-type move.
 
 MOVE: PAY DAY
+ANIMATION: payday
 TYPE: NORMAL
 ACC: 100
 POWER: 40
