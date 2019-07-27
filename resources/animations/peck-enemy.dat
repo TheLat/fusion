@@ -1,0 +1,3 @@
+PLAY_SOUND sound_effects/combat/peck.mp3 0.0
+CREATE_SPRITE images/impact-small-white.png 0.05 -0.55 -0.15 0.2 0.2
+HIDE_SPRITE 0 0.2
