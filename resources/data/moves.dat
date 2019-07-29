@@ -383,6 +383,7 @@ SPECIAL: STATUS_IMMUNITY:POISON
 NOTES: Attacks twice. 1 in 5 chance to poison opponent per attack.
 
 MOVE: PIN MISSILE
+ANIMATION: pinmissile
 TYPE: BUG
 ACC: 85
 POWER: 25x2-5
