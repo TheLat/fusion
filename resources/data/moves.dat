@@ -40,6 +40,7 @@ PP: 25
 NOTES: Attacks opponent with vines.
 
 MOVE: POISON POWDER
+ANIMATION: poisonpowder
 TYPE: POISON
 ACC: 75
 PP: 35
