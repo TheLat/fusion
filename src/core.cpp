@@ -1990,7 +1990,16 @@ bool engine::apply_status(mon& m, string s, bool skip_chance, bool silent) {
 void engine::use_status(mon& self, mon& other) {
 	for (unsigned i = 0; i < self.status.size(); ++i) {
 		if (self.status[i] == "POISON") {
-			// TODO: Animation goes here
+			unsigned anim_holder = 0;
+            unsigned clear_point = g.draw_list.size();
+            if (self.enemy) {
+                anim_holder = g.ae.create_anim_scene(string("poisoned-enemy"), self.sprite_index, other.sprite_index);
+            }
+            else {
+                anim_holder = g.ae.create_anim_scene(string("poisoned"), self.sprite_index, other.sprite_index);
+            }
+            while (!g.ae.is_dones(anim_holder)) {}
+            g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
 			if (self.wild)
 				do_alert(string("The wild ") + get_nickname(self) + string(" is hurt by the poison!"));
 			else
@@ -2085,6 +2094,7 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 	bool at_start_lightscreen = in_status(attacker, string("LIGHTSCREEN"));
 	bool at_start_reflect = in_status(attacker, string("REFLECT"));
 	bool at_start_locked_stats = in_status(attacker, string("LOCK_STATS"));
+	bool at_start_poisoned = in_status(defender, string("POISON"));
 	string s2, s3;
 	if (in_status(attacker, string("FLEE")) || in_status(defender, string("FLEE")))
 		return false;
@@ -2479,7 +2489,8 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
             (!at_start_paralyzed && in_status(defender, string("PARALYZE"))) ||
             (!at_start_asleep && in_status(defender, string("SLEEP"))) ||
             (!at_start_frozen && in_status(defender, string("FREEZE"))) ||
-            (!at_start_seed && in_status(defender, string("SEED")))) {
+            (!at_start_seed && in_status(defender, string("SEED"))) ||
+            (!at_start_poisoned && in_status(defender, string("POISON")))) {
             unsigned anim_holder = 0;
             unsigned clear_point = g.draw_list.size();
             if (attacker.enemy) {
@@ -2493,6 +2504,9 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
         }
         if (!at_start_burned && in_status(defender, string("BURN"))) {
             do_alert(get_nickname(defender) + string(" was badly burned!"));
+        }
+        if (!at_start_poisoned && in_status(defender, string("POISON"))) {
+            do_alert(get_nickname(defender) + string(" was poisoned!"));
         }
         if (!at_start_paralyzed && in_status(defender, string("PARALYZE"))) {
             do_alert(get_nickname(defender) + string(" was paralyzed! It might not attack!"));
