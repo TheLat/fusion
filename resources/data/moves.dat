@@ -912,6 +912,7 @@ SELF: FLEE
 NOTES: Flees from combat. Can be used outside of combat.
 
 MOVE: RECOVER
+ANIMATION: recover
 TYPE: NORMAL
 PP: 20
 SELF: HEAL:50
