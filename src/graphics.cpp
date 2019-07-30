@@ -259,6 +259,8 @@ void graphics::initRendering() {
 	}
 	glDetachShader(ProgramID, FragmentShaderID);
 	glDeleteShader(FragmentShaderID);
+
+	wobble_index = tim.create();
 }
 
 void graphics::handleResize(int w, int h) {
@@ -315,6 +317,10 @@ void graphics::drawScene() {
 	deltat = 1.0 / deltat;
 	printf("%f fps\n", deltat);
 	//*/
+	tim.update(wobble_index);
+	while  (tim.delta(wobble_index) < 1.0/120.0) {
+	}
+	wobble_counter += tim.delta(wobble_index);
 	std::vector<quad> draw_list_copy;
 	m.lock();
 	if (new_load) {
@@ -361,6 +367,12 @@ void graphics::drawScene() {
     glUniform1f(contrast_loc, r_effects.y+1.0);
     GLuint brightness_loc = glGetUniformLocation(ProgramID, "brightness");
     glUniform1f(brightness_loc, r_effects.width);
+    GLuint offset_loc = glGetUniformLocation(ProgramID, "offset");
+    glUniform1f(offset_loc, wobble_counter*20.0);
+    GLuint wobble_loc = glGetUniformLocation(ProgramID, "wobble");
+    glUniform1f(wobble_loc, 0.025 * r_effects.height);
+    if (r_effects.height == 0.0)
+        wobble_counter = 0.0;
 	if (r_effects.x > 0.5)
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	else

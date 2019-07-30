@@ -38,6 +38,8 @@ public:
 class graphics {
 private:
 	unsigned time_index;
+	unsigned wobble_index;
+	double wobble_counter;
 	GLuint fbo;
 	GLuint r_tex;
 	GLuint VertexArrayID;
