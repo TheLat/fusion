@@ -368,7 +368,7 @@ void graphics::drawScene() {
     GLuint brightness_loc = glGetUniformLocation(ProgramID, "brightness");
     glUniform1f(brightness_loc, r_effects.width);
     GLuint offset_loc = glGetUniformLocation(ProgramID, "offset");
-    glUniform1f(offset_loc, wobble_counter*20.0);
+    glUniform1f(offset_loc, wobble_counter*50.0);
     GLuint wobble_loc = glGetUniformLocation(ProgramID, "wobble");
     glUniform1f(wobble_loc, 0.025 * r_effects.height);
     if (r_effects.height == 0.0)
