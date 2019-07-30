@@ -413,6 +413,7 @@ DEFENSE: SPECIAL
 NOTES: Attacks with a gust of wind.
 
 MOVE: QUICK ATTACK
+ANIMATION: quickattack
 TYPE: NORMAL
 ACC: 100
 POWER: 40
