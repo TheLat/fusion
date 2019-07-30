@@ -1670,6 +1670,7 @@ PP: 10
 NOTES: Heals self. Can be used outside of combat.
 
 MOVE: PSYWAVE
+ANIMATION: psywave
 TYPE: PSYCHIC
 PP: 15
 ACC: 100
