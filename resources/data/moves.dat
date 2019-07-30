@@ -1577,6 +1577,7 @@ PP: 20
 NOTES: Decreases opponent's accuracy. Can be used outside of combat.
 
 MOVE: RAZOR WIND
+ANIMATION: razorwind1
 TYPE: NORMAL
 QUEUE: RAZORWIND2
 PP: 10
@@ -1584,6 +1585,7 @@ DESC: {NAME} made a whirlwind.
 NOTES: A powerful move that must charge up for a turn before use.
 
 MOVE: RAZORWIND2
+ANIMATION: razorwind2
 TYPE: NORMAL
 DESC: {NAME} used RAZOR WIND!
 ACC: 100
