@@ -338,6 +338,7 @@ TARGET: FLEE
 NOTES: Forces opponent to retreat from combat.
 
 MOVE: PSYBEAM
+ANIMATION: psybeam
 TYPE: PSYCHIC
 ACC: 100
 POWER: 65
