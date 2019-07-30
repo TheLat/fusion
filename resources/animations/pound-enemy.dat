@@ -1,0 +1,3 @@
+PLAY_SOUND sound_effects/combat/pound.mp3 0.0
+CREATE_SPRITE images/impact-medium.png 0.05 -0.75 -0.25 0.4 0.4
+HIDE_SPRITE 0 0.2
