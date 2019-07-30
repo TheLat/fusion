@@ -347,6 +347,7 @@ TARGET: CONFUSE:10
 NOTES: 1 in 10 chance to confuse opponent.
 
 MOVE: POISON STING
+ANIMATION: poisonsting
 TYPE: POISON
 ACC: 100
 POWER: 15
