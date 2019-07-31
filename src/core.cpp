@@ -2089,6 +2089,7 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 	bool at_start_burned = in_status(defender, string("BURN"));
 	bool at_start_paralyzed = in_status(defender, string("PARALYZE"));
 	bool at_start_asleep = in_status(defender, string("SLEEP"));
+	bool at_start_asleep_self = in_status(attacker, string("SLEEP"));
 	bool at_start_frozen = in_status(defender, string("FREEZE"));
 	bool at_start_seed = in_status(defender, string("SEED"));
 	bool at_start_lightscreen = in_status(attacker, string("LIGHTSCREEN"));
@@ -2511,15 +2512,18 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
         if (!at_start_paralyzed && in_status(defender, string("PARALYZE"))) {
             do_alert(get_nickname(defender) + string(" was paralyzed! It might not attack!"));
         }
-        if (!at_start_asleep && in_status(defender, string("SLEEP"))) {
-            do_alert(get_nickname(defender) + string(" fell asleep!"));
-        }
         if (!at_start_frozen && in_status(defender, string("FREEZE"))) {
             do_alert(get_nickname(defender) + string(" was frozen solid!"));
         }
         if (!at_start_seed && in_status(defender, string("SEED"))) {
             do_alert(get_nickname(defender) + string(" was seeded!"));
         }
+    }
+    if (!at_start_asleep && in_status(defender, string("SLEEP"))) {
+        do_alert(get_nickname(defender) + string(" fell asleep!"));
+    }
+    if (!at_start_asleep_self && in_status(attacker, string("SLEEP"))) {
+        do_alert(get_nickname(attacker) + string(" fell asleep!"));
     }
     if (!at_start_lightscreen && in_status(attacker, string("LIGHTSCREEN"))) {
         do_alert(get_nickname(attacker) + string(" is protected from SPECIAL attacks!"));
