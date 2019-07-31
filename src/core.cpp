@@ -2522,10 +2522,10 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
         }
     }
     if (!at_start_lightscreen && in_status(attacker, string("LIGHTSCREEN"))) {
-        do_alert(get_nickname(defender) + string(" is protected from SPECIAL attacks!"));
+        do_alert(get_nickname(attacker) + string(" is protected from SPECIAL attacks!"));
     }
     if (!at_start_reflect && in_status(attacker, string("REFLECT"))) {
-        do_alert(get_nickname(defender) + string(" is protected from PHYSICAL attacks!"));
+        do_alert(get_nickname(attacker) + string(" is protected from PHYSICAL attacks!"));
     }
     if (!at_start_locked_stats && in_status(attacker, string("LOCK_STATS"))) {
         do_alert(string("STATS are now locked against buffs and debuffs!"));

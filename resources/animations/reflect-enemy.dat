@@ -1,0 +1,14 @@
+PLAY_SOUND sound_effects/combat/reflect.mp3 0.0
+CREATE_SPRITE images/transparent-50.png 0.0 -1.0 -1.0 2.0 2.0
+CREATE_SPRITE images/reflect.png 0.0 0.2 0.2 -0.8 0.8
+HIDE_SPRITE 1 +0.125
+CREATE_SPRITE images/reflect.png +0.125 0.2 0.2 -0.8 0.8
+HIDE_SPRITE 2 +0.125
+CREATE_SPRITE images/reflect.png +0.125 0.2 0.2 -0.8 0.8
+HIDE_SPRITE 3 +0.125
+CREATE_SPRITE images/reflect.png +0.625 0.2 0.2 -0.8 0.8
+HIDE_SPRITE 4 +0.125
+CREATE_SPRITE images/reflect.png +0.125 0.2 0.2 -0.8 0.8
+HIDE_SPRITE 5 +0.125
+CREATE_SPRITE images/reflect.png +0.125 0.2 0.2 -0.8 0.8
+HIDE_SPRITE 6 +0.125
