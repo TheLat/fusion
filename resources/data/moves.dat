@@ -160,6 +160,7 @@ DEFENSE: SPECIAL
 NOTES: Attacks with water jets.
 
 MOVE: SCRATCH
+ANIMATION: scratch
 TYPE: NORMAL
 ACC: 100
 POWER: 40
