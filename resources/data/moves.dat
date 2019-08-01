@@ -997,6 +997,7 @@ SPECIAL: ANIMATE_ON_MISS
 NOTES: A powerful attack that destroys the user.
 
 MOVE: ROCK THROW
+ANIMATION: rockthrow
 TYPE: ROCK
 ACC: 65
 POWER: 50
