@@ -3479,7 +3479,45 @@ bool engine::battle(trainer& t) { // trainer battle
 		}
 		if (in_status(mc.team[mc.selected], string("FLEE"))) {
 			if (!in_status(mc.team[mc.selected], string("TRAP"))) {
-				do_alert(string("PLAYER FLEE STATUS")); // TODO:  Swap logic
+				int num_alive_in_team = 0;
+				for (i = 0; i < 6; ++i) {
+				    if (!mc.team[i].defined)
+				        continue;
+				    if (!is_KO(mc.team[i])) {
+				        num_alive_in_team++;
+				    }
+				}
+				if (num_alive_in_team == 1) {
+				    do_alert(get_nickname(mc.team[mc.selected]) + string(" is too scared to move!"));
+				}
+				else {
+				    choices = do_menu(string("COMBAT_MON"));
+                    choices = remove_cancels(choices);
+                    while (choices.size() == 0 || mc.team[choices[0]].curr_hp <= 0 || choices[0] == mc.selected) {
+                        if (choices.size() == 0)
+                            do_alert(string("It's too scared to fight!"));
+                        else if (choices[0] == mc.selected)
+                            do_alert(string("It's too scared to fight!"));
+                        else if (mc.team[choices[0]].curr_hp <= 0)
+                            do_alert(string("There's no will to fight!"));
+                        choices = do_menu(string("COMBAT_MON"));
+                        choices = remove_cancels(choices);
+                    }
+                    clear_volatile(mc.team[mc.selected]);
+                    mc.team[mc.selected].exp_bar_index = 0;
+                    mc.team[mc.selected].damage_dealt.clear();
+                    mc.selected = choices[0];
+                    mc.team[mc.selected].exp_bar_index = exp_bar_index;
+                    mc.team[mc.selected].sprite_index = team_sprite;
+                    if (!is_KO(mc.enemy_team[mc.enemy_selected]))
+                        mc.enemy_team[mc.enemy_selected].fought[mc.selected] = true;
+                    rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
+                    g.draw_list[team_sprite].x = -1.0;
+                    g.draw_list[team_sprite].y = -0.422;
+                    g.draw_list[team_sprite].width = 0.9;
+                    g.draw_list[team_sprite].height = 0.9;
+                    se.play_cry(mc.team[mc.selected].number);
+				}
 				remove_status(mc.team[mc.selected], string("FLEE"), true);
 			}
 			else {
