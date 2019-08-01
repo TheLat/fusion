@@ -885,6 +885,7 @@ CRITICAL: HIGH
 NOTES: A high critical hit chance.
 
 MOVE: SEISMIC TOSS
+ANIMATION: seismictoss
 TYPE: FIGHTING
 ACC: 100
 PP: 20
