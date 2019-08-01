@@ -1,0 +1,7 @@
+PLAY_SOUND sound_effects/combat/sandattack.mp3 0.0
+CREATE_SPRITE images/sandattack1.png 0.05 -0.1 0.3 0.8 0.8
+CREATE_SPRITE images/sandattack2.png 0.15 -0.1 0.3 0.8 0.8
+CREATE_SPRITE images/sandattack3.png 0.25 -0.1 0.3 0.8 0.8
+HIDE_SPRITE 0 0.15
+HIDE_SPRITE 1 0.25
+HIDE_SPRITE 2 0.35
