@@ -1687,6 +1687,7 @@ TARGET: SELF_LEVEL
 NOTES: Deals damage to the opponent equal to the user's level.
 
 MOVE: ROCK SLIDE
+ANIMATION: rockslide
 TYPE: ROCK
 ACC: 90
 POWER: 75
