@@ -980,6 +980,7 @@ SPECIAL: UNAVOIDABLE
 NOTES: Greatly increases defense.
 
 MOVE: SELFDESTRUCT
+ANIMATION: selfdestruct
 TYPE: NORMAL
 ACC: 100
 PP: 5
