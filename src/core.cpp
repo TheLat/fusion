@@ -3471,10 +3471,45 @@ bool engine::battle(trainer& t) { // trainer battle
 		do_turn(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
 		if (in_status(mc.enemy_team[mc.enemy_selected], string("FLEE"))) {
 			if (!in_status(mc.enemy_team[mc.enemy_selected], string("TRAP"))) {
-				do_alert(string("ENEMY FLEE STATUS")); // TODO:  Swap logic
+				int num_alive_in_team = 0;
+				for (i = 0; i < 6; ++i) {
+				    if (!mc.enemy_team[i].defined)
+				        continue;
+				    if (!is_KO(mc.enemy_team[i])) {
+				        num_alive_in_team++;
+				    }
+				}
+				if (num_alive_in_team == 1) {
+				    do_alert(get_nickname(mc.enemy_team[mc.enemy_selected]) + string(" is too scared to move!"));
+				}
+				else {
+				    index = int(random(0.0, num_alive_in_team));
+				    while (index == mc.enemy_selected || is_KO(mc.enemy_team[index])) {
+                        index = int(random(0.0, num_alive_in_team));
+                    }
+                    clear_queue(mc.enemy_team[mc.enemy_selected]);
+                    clear_volatile(mc.enemy_team[mc.enemy_selected]);
+                    string old_name = get_nickname(mc.enemy_team[mc.enemy_selected]);
+                    mc.enemy_team[index].sprite_index = enemy_sprite;
+                    mc.enemy_team[index].hp_bar_index = mc.enemy_team[mc.enemy_selected].hp_bar_index;
+                    mc.enemy_selected = index;
+                    do_alert(t.display_name + string(" withdrew ") + old_name + string(" and sent out ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string("!"));
+                    mc.seen[mc.enemy_team[mc.enemy_selected].number] = true;
+                    mc.enemy_team[mc.enemy_selected].fought[mc.selected] = true;
+                    rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
+                    g.draw_list[enemy_sprite].x = 0.1;
+                    g.draw_list[enemy_sprite].y = 0.1;
+                    g.draw_list[enemy_sprite].width = 0.9;
+                    g.draw_list[enemy_sprite].height = 0.9;
+                    mc.enemy_team[mc.enemy_selected].queue.push_back(string(""));
+                    mc.enemy_team[mc.enemy_selected].turn_count = 1;
+                    se.play_cry(mc.enemy_team[mc.enemy_selected].number);
+				}
 				remove_status(mc.enemy_team[mc.enemy_selected], string("FLEE"), true);
 			}
 			else {
+			    do_alert("Enemy couldn't get away!");
+				remove_status(mc.enemy_team[mc.enemy_selected], string("FLEE"), true);
 			}
 		}
 		if (in_status(mc.team[mc.selected], string("FLEE"))) {
@@ -3522,6 +3557,7 @@ bool engine::battle(trainer& t) { // trainer battle
 			}
 			else {
 				do_alert("Couldn't get away!");
+				remove_status(mc.team[mc.selected], string("FLEE"), true);
 			}
 		}
 		remove_status(mc.team[mc.selected], string("FLINCH"), true);
