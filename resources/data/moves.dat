@@ -136,6 +136,7 @@ SPECIAL: UNAVOIDABLE
 NOTES: Increases defense.
 
 MOVE: SKULL BASH
+ANIMATION: skullbash1
 TYPE: NORMAL
 QUEUE: SKULLBASH2
 PP: 15
@@ -143,6 +144,7 @@ DESC: {NAME} lowered its head...
 NOTES: Waits for a turn, then attacks.
 
 MOVE: SKULLBASH2
+ANIMATION: skullbash2
 DESC: {NAME} used SKULL BASH!
 TYPE: NORMAL
 ACC: 100
