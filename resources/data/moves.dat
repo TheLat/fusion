@@ -955,6 +955,7 @@ SELF: RECOIL:25
 NOTES: A powerful attack, but take one quarter the damage dealt in backlash damage.
 
 MOVE: SLAM
+ANIMATION: slam
 TYPE: NORMAL
 ACC: 75
 POWER: 80
