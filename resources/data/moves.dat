@@ -213,6 +213,7 @@ NOTES: Attacks continuously. Attack, defense, and special increase when damaged.
 DESC: {NAME} used RAGE!
 
 MOVE: SLASH
+ANIMATION: slash
 TYPE: NORMAL
 ACC: 100
 POWER: 70
