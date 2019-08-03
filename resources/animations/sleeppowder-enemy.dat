@@ -1,0 +1,3 @@
+PLAY_SOUND sound_effects/combat/sleeppowder.mp3 0.0
+CREATE_SPRITE images/sleeppowder.png 0.0 -0.95 1.0 0.8 0.8
+SPLINE_TRANSFORM 0 0.0 0.8 -0.95 1.0 0.8 0.8 -0.95 -0.4 0.8 0.8 -0.95 -0.4 0.8 0.8
