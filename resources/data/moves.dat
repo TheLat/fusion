@@ -1402,6 +1402,7 @@ DEFENSE: DEFENSE
 NOTES: A powerful punching attack.
 
 MOVE: SMOG
+ANIMATION: smog
 TYPE: POISON
 ACC: 70
 POWER: 20
