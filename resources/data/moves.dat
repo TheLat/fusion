@@ -1039,6 +1039,7 @@ SPECIAL: STATUS_IMMUNITY:GHOST
 NOTES: 3 in 10 chance to make opponent flinch.
 
 MOVE: SONICBOOM
+ANIMATION: sonicboom
 TYPE: NORMAL
 ACC: 90
 PP: 20
