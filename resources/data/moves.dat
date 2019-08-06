@@ -817,6 +817,7 @@ SELF: VAMPIRE:50
 NOTES: Heals half the amount of the damage dealt.
 
 MOVE: SPORE
+ANIMATION: spore
 TYPE: GRASS
 ACC: 100
 PP: 15
