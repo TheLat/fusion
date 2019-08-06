@@ -2260,6 +2260,15 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 			}
 		}
 	}
+	if (in_status(attacker, string("SUBSTITUTE"))) {
+	    for (int i = 0; i < moves[move].self.size(); ++i) {
+	        if (moves[move].self[i].find("SUBSTITUTE") != -1) {
+				do_alert("But, it failed!");
+				attacker.queue.erase(attacker.queue.begin());
+				return false;
+	        }
+	    }
+	}
 	if (moves[move].acc < int(random(0.0, 100.0) * get_evasion_modifier(defender) / get_accuracy_modifier(attacker)))
 	    miss = true;
 	if (in_status(defender, string("UNTARGETABLE")) && moves[move].self.size() == 0)
@@ -2464,6 +2473,9 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 	if (!self_on_miss_only || (self_on_miss_only && miss)) {
 	    for (unsigned j = 0; j < moves[move].self.size(); ++j) {
 			if (moves[move].self[j].find("RECOIL") == -1) {
+			    if (in_status(attacker, string("SUBSTITUTE")) && moves[move].self[j].find("KO") != -1) {
+			        remove_status(attacker, string("SUBSTITUTE"));
+			    }
 				success = apply_status(attacker, moves[move].self[j]) || success;
 			}
 		}
@@ -2549,6 +2561,16 @@ bool engine::can_evolve(string& ID, string& effect) {
 bool engine::is_KO(mon& m) {
 	if (m.curr_hp <= 0) {
 		if (in_status(m, "SUBSTITUTE")) {
+			unsigned anim_holder = 0;
+            unsigned clear_point = g.draw_list.size();
+            if (m.enemy) {
+                anim_holder = g.ae.create_anim_scene(string("substitute2-enemy"), m.sprite_index, m.sprite_index);
+            }
+            else {
+                anim_holder = g.ae.create_anim_scene(string("substitute2"), m.sprite_index, m.sprite_index);
+            }
+            while (!g.ae.is_dones(anim_holder)) {}
+            g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
 			m.curr_hp = 0;
 			do_alert("The SUBSTITUTE broke!");
 			heal_damage(m, m.stored_hp);
