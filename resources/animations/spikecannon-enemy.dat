@@ -1,0 +1,3 @@
+PLAY_SOUND sound_effects/combat/spikecannon.mp3 0.0
+CREATE_SPRITE images/fury-attack-enemy.png 0.0 0.2 0.1 0.4 0.4
+SPLINE_TRANSFORM 0 0.0 0.4 0.2 0.1 0.4 0.4 0.2 0.1 0.4 0.4 0.2 0.1 0.4 0.4 -1.2 -0.8 0.4 0.4
