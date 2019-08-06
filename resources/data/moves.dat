@@ -469,6 +469,7 @@ TARGET: FLINCH:10
 NOTES: 1 in 10 chance to make opponent flinch.
 
 MOVE: SUPER FANG
+ANIMATION: superfang
 TYPE: NORMAL
 ACC: 90
 PP: 10
