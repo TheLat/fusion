@@ -1591,6 +1591,7 @@ PP: 15
 NOTES: Can be used outside of combat.
 
 MOVE: STRENGTH
+ANIMATION: strength
 TYPE: NORMAL
 ACC: 100
 POWER: 80
