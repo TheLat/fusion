@@ -328,6 +328,7 @@ TARGET: CONFUSE:20
 NOTES: 1 in 5 chance to confuse opponent.
 
 MOVE: STUN SPORE
+ANIMATION: stunspore
 TYPE: GRASS
 ACC: 75
 PP: 30
