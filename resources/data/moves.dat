@@ -77,6 +77,7 @@ SPECIAL: STATUS_IMMUNITY:GRASS
 NOTES: Puts opponent to sleep.
 
 MOVE: SOLAR BEAM
+ANIMATION: solarbeam1
 TYPE: GRASS
 QUEUE: SOLARBEAM2
 PP: 10
@@ -84,6 +85,7 @@ DESC: {NAME} gathered sunlight...
 NOTES: Charges up for one turn, then attacks.
 
 MOVE: SOLARBEAM2
+ANIMATION: solarbeam2
 DESC: {NAME} used SOLAR BEAM!
 TYPE: GRASS
 ACC: 100
