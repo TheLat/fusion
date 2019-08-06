@@ -954,6 +954,7 @@ TARGET: FLINCH:30
 NOTES: 3 in 10 chance of making opponent flinch.
 
 MOVE: SUBMISSION
+ANIMATION: submission
 TYPE: FIGHTING
 ACC: 80
 POWER: 80
