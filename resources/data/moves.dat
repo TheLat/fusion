@@ -556,6 +556,7 @@ TARGET: DEFENSE_DOWN:10
 NOTES: 1 in 10 chance to reduce opponent's defense.
 
 MOVE: THUNDERSHOCK
+ANIMATION: thundershock
 TYPE: ELECTRIC
 ACC: 100
 POWER: 40
