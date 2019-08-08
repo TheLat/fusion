@@ -83,6 +83,7 @@ ANIMATION: solarbeam1
 TYPE: GRASS
 QUEUE: SOLARBEAM2
 PP: 10
+SPECIAL: UNAVOIDABLE
 DESC: {NAME} gathered sunlight...
 NOTES: Charges up for one turn, then attacks.
 
@@ -639,6 +640,7 @@ TARGET: KO
 NOTES: Instant KO.
 
 MOVE: THRASH
+ANIMATION: thrash
 TYPE: NORMAL
 PP: 20
 QUEUE: THRASH1 THRASH2
@@ -648,6 +650,7 @@ DEFENSE: DEFENSE
 NOTES: Attacks 3 times, then becomes confused.
 
 MOVE: THRASH1
+ANIMATION: thrash
 TYPE: NORMAL
 ACC: 100
 POWER: 90
@@ -656,6 +659,7 @@ QUEUE_ONLY: YES
 DESC: {NAME} used THRASH!
 
 MOVE: THRASH2
+ANIMATION: thrash
 TYPE: NORMAL
 ACC: 100
 POWER: 90
@@ -1554,6 +1558,7 @@ ANIMATION: skyattack1
 TYPE: FLYING
 PP: 5
 QUEUE: SKYATTACK2
+SPECIAL: UNAVOIDABLE
 DESC: {NAME} started glowing.
 NOTES: A powerful attack, but requires a turn to charge up.
 
@@ -1627,6 +1632,7 @@ TYPE: NORMAL
 QUEUE: RAZORWIND2
 PP: 10
 DESC: {NAME} made a whirlwind.
+SPECIAL: UNAVOIDABLE
 NOTES: A powerful move that must charge up for a turn before use.
 
 MOVE: RAZORWIND2
