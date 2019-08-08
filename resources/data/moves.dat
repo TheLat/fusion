@@ -936,6 +936,7 @@ TYPE: PSYCHIC
 ACC: 95
 PP: 20
 SELF: FLEE
+SPECIAL: FIRST
 NOTES: Flees from combat. Can be used outside of combat.
 
 MOVE: RECOVER
