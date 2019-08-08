@@ -927,6 +927,7 @@ SPECIAL: UNAVOIDABLE
 NOTES: Greatly increases special.
 
 MOVE: TELEPORT
+ANIMATION: teleport
 TYPE: PSYCHIC
 ACC: 95
 PP: 20

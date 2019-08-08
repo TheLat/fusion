@@ -3552,9 +3552,9 @@ bool engine::battle(trainer& t) { // trainer battle
                     choices = remove_cancels(choices);
                     while (choices.size() == 0 || mc.team[choices[0]].curr_hp <= 0 || choices[0] == mc.selected) {
                         if (choices.size() == 0)
-                            do_alert(string("It's too scared to fight!"));
+                            do_alert(string("It can't be sent out!"));
                         else if (choices[0] == mc.selected)
-                            do_alert(string("It's too scared to fight!"));
+                            do_alert(string("It can't be sent out!"));
                         else if (mc.team[choices[0]].curr_hp <= 0)
                             do_alert(string("There's no will to fight!"));
                         choices = do_menu(string("COMBAT_MON"));
