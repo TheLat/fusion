@@ -4156,6 +4156,9 @@ int engine::damage(mon& attacker, mon& defender, string move, bool& crit, double
 			mul = 1.0;
 		}
 	}
+	if (damage > 0.0) {
+		non_zero = true;
+	}
 	if (get_type_1(defender) != "") {
 		mul *= types[moves[move].type][get_type_1(defender)];
 		damage *= types[moves[move].type][get_type_1(defender)];
