@@ -1,0 +1,65 @@
+PLAY_SOUND sound_effects/combat/thunderwave.mp3 0.0
+CREATE_SPRITE images/thunderwave1.png 0.0 -0.9 -0.422 0.8 0.8
+CREATE_SPRITE images/thunderwave2.png +0.075 -0.9 -0.422 0.8 0.8
+CREATE_SPRITE images/thunderwave3.png +0.075 -0.9 -0.422 0.8 0.8
+CREATE_SPRITE images/thunderwave4.png +0.075 -0.9 -0.422 0.8 0.8
+CREATE_SPRITE images/thunderwave1.png +0.075 -0.9 -0.422 0.8 0.8
+CREATE_SPRITE images/thunderwave2.png +0.075 -0.9 -0.422 0.8 0.8
+CREATE_SPRITE images/thunderwave3.png +0.075 -0.9 -0.422 0.8 0.8
+CREATE_SPRITE images/thunderwave4.png +0.075 -0.9 -0.422 0.8 0.8
+CREATE_SPRITE images/thunderwave1.png +0.075 -0.9 -0.422 0.8 0.8
+CREATE_SPRITE images/thunderwave2.png +0.075 -0.9 -0.422 0.8 0.8
+CREATE_SPRITE images/thunderwave3.png +0.075 -0.9 -0.422 0.8 0.8
+CREATE_SPRITE images/thunderwave4.png +0.075 -0.9 -0.422 0.8 0.8
+CREATE_SPRITE images/thunderwave1.png +0.075 -0.9 -0.422 0.8 0.8
+CREATE_SPRITE images/thunderwave2.png +0.075 -0.9 -0.422 0.8 0.8
+CREATE_SPRITE images/thunderwave3.png +0.075 -0.9 -0.422 0.8 0.8
+CREATE_SPRITE images/thunderwave4.png +0.075 -0.9 -0.422 0.8 0.8
+CREATE_SPRITE images/thunderwave1.png +0.075 -0.9 -0.422 0.8 0.8
+CREATE_SPRITE images/thunderwave2.png +0.075 -0.9 -0.422 0.8 0.8
+CREATE_SPRITE images/thunderwave3.png +0.075 -0.9 -0.422 0.8 0.8
+CREATE_SPRITE images/thunderwave4.png +0.075 -0.9 -0.422 0.8 0.8
+CREATE_SPRITE images/thunderwave1.png +0.075 -0.9 -0.422 0.8 0.8
+CREATE_SPRITE images/thunderwave2.png +0.075 -0.9 -0.422 0.8 0.8
+CREATE_SPRITE images/thunderwave3.png +0.075 -0.9 -0.422 0.8 0.8
+CREATE_SPRITE images/thunderwave4.png +0.075 -0.9 -0.422 0.8 0.8
+CREATE_SPRITE images/thunderwave1.png +0.075 -0.9 -0.422 0.8 0.8
+CREATE_SPRITE images/thunderwave2.png +0.075 -0.9 -0.422 0.8 0.8
+CREATE_SPRITE images/thunderwave3.png +0.075 -0.9 -0.422 0.8 0.8
+CREATE_SPRITE images/thunderwave4.png +0.075 -0.9 -0.422 0.8 0.8
+CREATE_SPRITE images/thunderwave1.png +0.075 -0.9 -0.422 0.8 0.8
+CREATE_SPRITE images/thunderwave2.png +0.075 -0.9 -0.422 0.8 0.8
+CREATE_SPRITE images/thunderwave3.png +0.075 -0.9 -0.422 0.8 0.8
+CREATE_SPRITE images/thunderwave4.png +0.075 -0.9 -0.422 0.8 0.8
+HIDE_SPRITE 0 0.075
+HIDE_SPRITE 1 +0.075
+HIDE_SPRITE 2 +0.075
+HIDE_SPRITE 3 +0.075
+HIDE_SPRITE 4 +0.075
+HIDE_SPRITE 5 +0.075
+HIDE_SPRITE 6 +0.075
+HIDE_SPRITE 7 +0.075
+HIDE_SPRITE 8 +0.075
+HIDE_SPRITE 9 +0.075
+HIDE_SPRITE 10 +0.075
+HIDE_SPRITE 11 +0.075
+HIDE_SPRITE 12 +0.075
+HIDE_SPRITE 13 +0.075
+HIDE_SPRITE 14 +0.075
+HIDE_SPRITE 15 +0.075
+HIDE_SPRITE 16 +0.075
+HIDE_SPRITE 17 +0.075
+HIDE_SPRITE 18 +0.075
+HIDE_SPRITE 19 +0.075
+HIDE_SPRITE 20 +0.075
+HIDE_SPRITE 21 +0.075
+HIDE_SPRITE 22 +0.075
+HIDE_SPRITE 23 +0.075
+HIDE_SPRITE 24 +0.075
+HIDE_SPRITE 25 +0.075
+HIDE_SPRITE 26 +0.075
+HIDE_SPRITE 27 +0.075
+HIDE_SPRITE 28 +0.075
+HIDE_SPRITE 29 +0.075
+HIDE_SPRITE 30 +0.075
+HIDE_SPRITE 31 +0.075
