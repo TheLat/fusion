@@ -882,6 +882,7 @@ SPECIAL: PAYDAY
 NOTES: Gain money as a result of using this move.
 
 MOVE: TAKE DOWN
+ANIMATION: takedown
 TYPE: NORMAL
 ACC: 85
 POWER: 90
