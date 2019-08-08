@@ -1,0 +1,23 @@
+PLAY_SOUND sound_effects/combat/thunderpunch.mp3 0.0
+CREATE_SPRITE images/impact-small-thunder.png 0.0 0.4 0.4 0.2 0.2
+CREATE_SPRITE images/impact-medium-thunder.png 0.1 0.3 0.3 0.4 0.4
+CREATE_SPRITE images/impact-big-thunder.png 0.2 0.3 0.3 0.4 0.4
+HIDE_SPRITE 0 0.3
+HIDE_SPRITE 1 0.3
+HIDE_SPRITE 2 0.3
+CREATE_SPRITE images/shock1.png 0.3 0.1 0.1 0.8 0.8
+CREATE_SPRITE images/shock2.png +0.075 0.1 0.1 0.8 0.8
+CREATE_SPRITE images/shock3.png +0.075 0.1 0.1 0.8 0.8
+CREATE_SPRITE images/shock4.png +0.075 0.1 0.1 0.8 0.8
+CREATE_SPRITE images/shock1.png +0.075 0.1 0.1 0.8 0.8
+CREATE_SPRITE images/shock2.png +0.075 0.1 0.1 0.8 0.8
+CREATE_SPRITE images/shock3.png +0.075 0.1 0.1 0.8 0.8
+CREATE_SPRITE images/shock4.png +0.075 0.1 0.1 0.8 0.8
+HIDE_SPRITE 3 0.375
+HIDE_SPRITE 4 +0.075
+HIDE_SPRITE 5 +0.075
+HIDE_SPRITE 6 +0.075
+HIDE_SPRITE 7 +0.075
+HIDE_SPRITE 8 +0.075
+HIDE_SPRITE 9 +0.075
+HIDE_SPRITE 10 +0.075
