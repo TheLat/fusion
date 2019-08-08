@@ -1675,6 +1675,7 @@ DEFENSE: SPECIAL
 NOTES: Heals half the amount of the damage dealt.
 
 MOVE: THUNDERBOLT
+ANIMATION: thunderbolt
 TYPE: ELECTRIC
 ACC: 100
 POWER: 90
