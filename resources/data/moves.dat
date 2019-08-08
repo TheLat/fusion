@@ -9,6 +9,7 @@ QUEUE_ONLY: YES
 NOTES: Struggles against opponent. Takes half damaged back.
 
 MOVE: TACKLE
+ANIMATION: tackle
 TYPE: NORMAL
 DEFENSE: DEFENSE
 POWER: 35
