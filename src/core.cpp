@@ -2270,6 +2270,7 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 				else {
 					rebuild_battle_hud(attacker, defender);
 				}
+				do_alert(get_nickname(attacker) + string("turned into ") + get_nickname(defender) + string("!"));
 				return true;
 			}
 			else {
