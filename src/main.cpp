@@ -9,8 +9,8 @@
 #include "timer.h"
 
 
+
 using namespace std;
-int num = 0;
 mutex m;
 engine e;
 graphics g;
@@ -181,8 +181,6 @@ vector<int> do_menu(string menu) {
 
 // Called when a key is pressed
 void handleKeypress(unsigned char key, int x, int y) {
-	printf("%i\n", int(key));
-	num++;
 	switch (key) {
 	case 'a':
 		e.input(false, false, true, false, false, false, false, false);
