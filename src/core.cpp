@@ -2000,11 +2000,11 @@ void engine::use_status(mon& self, mon& other) {
             }
             while (!g.ae.is_dones(anim_holder)) {}
             g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
+			deal_damage(self, int(max(double(get_stat(self, HP)) / 16.0, 1.0)));
 			if (self.wild)
 				do_alert(string("The wild ") + get_nickname(self) + string(" is hurt by the poison!"));
 			else
 				do_alert(get_nickname(self) + string(" is hurt by the poison!"));
-			deal_damage(self, int(max(double(get_stat(self, HP)) / 16.0, 1.0)));
 		}
 		else if (self.status[i] == "BURN") {
 			unsigned anim_holder = 0;
@@ -2017,11 +2017,11 @@ void engine::use_status(mon& self, mon& other) {
             }
             while (!g.ae.is_dones(anim_holder)) {}
             g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
+			deal_damage(self, int(max(double(get_stat(self, HP)) / 16.0, 1.0)));
 			if (self.wild)
 				do_alert(string("The wild ") + get_nickname(self) + string(" is hurt by its burn!"));
 			else
 				do_alert(get_nickname(self) + string(" is hurt by its burn!"));
-			deal_damage(self, int(max(double(get_stat(self, HP)) / 16.0, 1.0)));
 		}
 		else if (self.status[i] == "SEED") {
 			unsigned anim_holder = 0;
@@ -2042,12 +2042,21 @@ void engine::use_status(mon& self, mon& other) {
 				do_alert(get_nickname(self) + string("'s health was sapped by Leech Seed!"));
 		}
 		else if (self.status[i] == "TOXIC") {
-			// TODO: Animation goes here
+			unsigned anim_holder = 0;
+            unsigned clear_point = g.draw_list.size();
+            if (self.enemy) {
+                anim_holder = g.ae.create_anim_scene(string("toxiced-enemy"), self.sprite_index, other.sprite_index);
+            }
+            else {
+                anim_holder = g.ae.create_anim_scene(string("toxiced"), self.sprite_index, other.sprite_index);
+            }
+            while (!g.ae.is_dones(anim_holder)) {}
+            g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
+			deal_damage(self, int(self.turn_count * max(double(get_stat(self, HP)) / 16.0, 1.0)));
 			if (self.wild)
 				do_alert(string("The wild ") + get_nickname(self) + string(" is hurt by the poison!"));
 			else
 				do_alert(get_nickname(self) + string(" is hurt by the poison!"));
-			deal_damage(self, int(self.turn_count * max(double(get_stat(self, HP)) / 16.0, 1.0)));
 		}
 	}
 }
@@ -2096,6 +2105,7 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 	bool at_start_reflect = in_status(attacker, string("REFLECT"));
 	bool at_start_locked_stats = in_status(attacker, string("LOCK_STATS"));
 	bool at_start_poisoned = in_status(defender, string("POISON"));
+	bool at_start_toxic = in_status(defender, string("TOXIC"));
 	string s2, s3;
 	if (in_status(attacker, string("FLEE")) || in_status(defender, string("FLEE")))
 		return false;
@@ -2503,7 +2513,8 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
             (!at_start_asleep && in_status(defender, string("SLEEP"))) ||
             (!at_start_frozen && in_status(defender, string("FREEZE"))) ||
             (!at_start_seed && in_status(defender, string("SEED"))) ||
-            (!at_start_poisoned && in_status(defender, string("POISON")))) {
+            (!at_start_poisoned && in_status(defender, string("POISON"))) ||
+            (!at_start_toxic && in_status(defender, string("TOXIC")))) {
             unsigned anim_holder = 0;
             unsigned clear_point = g.draw_list.size();
             if (attacker.enemy) {
@@ -2520,6 +2531,9 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
         }
         if (!at_start_poisoned && in_status(defender, string("POISON"))) {
             do_alert(get_nickname(defender) + string(" was poisoned!"));
+        }
+        if (!at_start_toxic && in_status(defender, string("TOXIC"))) {
+            do_alert(get_nickname(defender) + string(" was badly poisoned!"));
         }
         if (!at_start_paralyzed && in_status(defender, string("PARALYZE"))) {
             do_alert(get_nickname(defender) + string(" was paralyzed! It might not attack!"));
