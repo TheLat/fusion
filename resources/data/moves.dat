@@ -1462,6 +1462,7 @@ TARGET: CONFUSE:20
 NOTES: 1 in 5 chance to confuse opponent.
 
 MOVE: WATERFALL
+ANIMATION: waterfall
 TYPE: WATER
 ACC: 100
 POWER: 80
