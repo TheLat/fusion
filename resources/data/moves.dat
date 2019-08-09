@@ -137,6 +137,7 @@ SPECIAL: STATUS_IMMUNITY:GHOST
 NOTES: 3 in 10 chance to cause opponent to flinch.
 
 MOVE: WITHDRAW
+ANIMATION: withdraw
 TYPE: WATER
 ACC: 100
 PP: 40
