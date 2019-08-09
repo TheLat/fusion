@@ -1275,6 +1275,7 @@ PP: 40
 NOTES: Increases attack.
 
 MOVE: VICE GRIP
+ANIMATION: vicegrip
 TYPE: NORMAL
 ACC: 100
 POWER: 55
