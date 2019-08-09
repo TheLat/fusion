@@ -3524,6 +3524,10 @@ bool engine::battle(trainer& t) { // trainer battle
 				    }
 				}
 				if (num_alive_in_team == 1) {
+                    g.draw_list[enemy_sprite].x = 0.1;
+                    g.draw_list[enemy_sprite].y = 0.1;
+                    g.draw_list[enemy_sprite].width = 0.9;
+                    g.draw_list[enemy_sprite].height = 0.9;
 				    do_alert(get_nickname(mc.enemy_team[mc.enemy_selected]) + string(" is too scared to move!"));
 				}
 				else {
@@ -3567,6 +3571,10 @@ bool engine::battle(trainer& t) { // trainer battle
 				    }
 				}
 				if (num_alive_in_team == 1) {
+                    g.draw_list[team_sprite].x = -1.0;
+                    g.draw_list[team_sprite].y = -0.422;
+                    g.draw_list[team_sprite].width = 0.9;
+                    g.draw_list[team_sprite].height = 0.9;
 				    do_alert(get_nickname(mc.team[mc.selected]) + string(" is too scared to move!"));
 				}
 				else {
