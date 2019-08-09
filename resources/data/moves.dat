@@ -444,6 +444,7 @@ SPECIAL: FIRST
 NOTES: Always attacks first.
 
 MOVE: WING ATTACK
+ANIMATION: wingattack
 TYPE: FLYING
 ACC: 100
 POWER: 55
