@@ -34,6 +34,7 @@ TARGET: SEED
 NOTES: Gradually drains opponent's life.
 
 MOVE: VINE WHIP
+ANIMATION: vinewhip
 TYPE: GRASS
 DEFENSE: DEFENSE
 POWER: 45
