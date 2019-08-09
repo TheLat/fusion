@@ -2160,7 +2160,6 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 	for (unsigned i = 0; i < 4; ++i) {
 		if (attacker.moves[i] == move) {
 			attacker.pp[i]--;
-			// TODO: Fix bug where Mirror Move consumes PP when copying a known move.
 		}
 	}
 	if (in_status(attacker, string("DISABLE")) && attacker.moves[attacker.disabled_move] == move) {
@@ -2225,6 +2224,7 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 		}
 		else if (moves[move].special[i] == "TRANSFORM") {
 			bool has_nontransform_move = false;
+			clear_queue(attacker);
 			for (unsigned j = 0; j < 4; ++j) {
 				if (moves[defender.moves[j]].defined) {
 					bool is_transform = false;
@@ -2237,6 +2237,7 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 				}
 			}
 			if (has_nontransform_move) {
+			    do_move_animation(attacker, defender, move);
 				mon* temp = new mon;
 				temp->original = attacker.original;
 				attacker.original = temp;
@@ -2258,15 +2259,22 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 				attacker.queue.clear();
 				attacker.enemy = attacker.original->enemy;
 				attacker.wild = attacker.original->wild;
+				for (unsigned i = 0; i < 4; ++i) {
+				    if (attacker.original->moves[i] == move) {
+				        attacker.original->pp[i]--;
+				    }
+				}
 				if (attacker.enemy) {
 					rebuild_battle_hud(defender, attacker);
 				}
 				else {
 					rebuild_battle_hud(attacker, defender);
 				}
+				return true;
 			}
 			else {
 				do_alert("But, it failed!");
+				return false;
 			}
 		}
 	}
@@ -2450,7 +2458,6 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 						continue;
 					}
 					success = apply_status(defender, moves[move].target[j]) || success;
-					// TODO:  Status announcement
 				}
 			}
 			if (!self_on_miss_only) {
