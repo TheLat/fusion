@@ -117,6 +117,7 @@ TARGET: SPEED_DOWN:30
 NOTES: 3 in 10 chance to decrease opponent's speed.
 
 MOVE: WATER GUN
+ANIMATION: watergun
 TYPE: WATER
 DEFENSE: SPECIAL
 ACC: 100
