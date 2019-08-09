@@ -393,6 +393,7 @@ SPECIAL: UNAVOIDABLE
 NOTES: Increases critical hit chance.
 
 MOVE: TWIN NEEDLE
+ANIMATION: twinneedle
 TYPE: BUG
 ACC: 100
 POWER: 25x2
