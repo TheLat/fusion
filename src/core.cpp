@@ -5568,6 +5568,79 @@ void engine::input() {
 }
 
 void engine::player_input(bool up, bool down, bool left, bool right, bool select, bool start, bool confirm, bool cancel) {
+	// only handle one input at a time
+	if (confirm) {
+		up = false;
+		down = false;
+		left = false;
+		right = false;
+		select = false;
+		start = false;
+		cancel = false;
+	}
+	else if (cancel) {
+		up = false;
+		down = false;
+		left = false;
+		right = false;
+		select = false;
+		start = false;
+		confirm = false;
+	}
+	else if (start) {
+		up = false;
+		down = false;
+		left = false;
+		right = false;
+		select = false;
+		confirm = false;
+		cancel = false;
+	}
+	else if (select) {
+		up = false;
+		down = false;
+		left = false;
+		right = false;
+		start = false;
+		confirm = false;
+		cancel = false;
+	}
+	else if (up) {
+		down = false;
+		left = false;
+		right = false;
+		select = false;
+		start = false;
+		confirm = false;
+		cancel = false;
+	}
+	else if (down) {
+		up = false;
+		left = false;
+		right = false;
+		select = false;
+		start = false;
+		confirm = false;
+		cancel = false;
+	}
+	else if (left) {
+		up = false;
+		down = false;
+		right = false;
+		select = false;
+		start = false;
+		confirm = false;
+		cancel = false;
+	}
+	else if (right) {
+		up = false;
+		down = false;
+		left = false;
+		select = false;
+		start = false;
+		confirm = false;
+		cancel = false;
+	}
 	location l = mc.loc;
 	ahead = l;
 	ahead2 = l;
