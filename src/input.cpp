@@ -1,11 +1,16 @@
 #include "input.h"
 #include "timer.h"
 #include <stdio.h>
+#include <iostream>
+#include <fstream>
+#include <string>
 #ifdef __APPLE__
 #include <Carbon/Carbon.h>
 #else
 #include <Windows.h>
 #endif
+
+extern bool safe_getline(ifstream &f, string& s);
 timer tim2;
 
 input::input() {
@@ -24,6 +29,7 @@ input::input() {
     i_cancel = 1;
     i_start = 6;
     i_select = 7;
+	ifstream f("../osx_keybinds.dat");
 #else
 	i_up = 38;
 	i_down = 40;
@@ -33,7 +39,30 @@ input::input() {
 	i_cancel = 83;
 	i_start = 90;
 	i_select = 88;
+	ifstream f("../windows_keybinds.dat");
 #endif
+	string line;
+	if (!f.is_open()) {
+		f.close();
+		return;
+	}
+	safe_getline(f, line);
+	i_up = stoi(line);
+	safe_getline(f, line);
+	i_down = stoi(line);
+	safe_getline(f, line);
+	i_left = stoi(line);
+	safe_getline(f, line);
+	i_right = stoi(line);
+	safe_getline(f, line);
+	i_confirm = stoi(line);
+	safe_getline(f, line);
+	i_cancel = stoi(line);
+	safe_getline(f, line);
+	i_start = stoi(line);
+	safe_getline(f, line);
+	i_select = stoi(line);
+	f.close();
 }
 
 void input::tick() {
