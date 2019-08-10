@@ -1,9 +1,10 @@
 #include "input.h"
 #include "timer.h"
+#include <stdio.h>
 #ifdef __APPLE__
 #include <Carbon/Carbon.h>
 #else
-// SOMETHING
+#include <Windows.h>
 #endif
 timer tim2;
 
@@ -14,6 +15,7 @@ input::input() {
         key_down[i] = false;
         key_press[i] = false;
     }
+#ifdef __APPLE__
     i_up = 246;
     i_down = 245;
     i_left = 243;
@@ -22,6 +24,16 @@ input::input() {
     i_cancel = 1;
     i_start = 6;
     i_select = 7;
+#else
+	i_up = 38;
+	i_down = 40;
+	i_left = 37;
+	i_right = 39;
+	i_confirm = 65;
+	i_cancel = 83;
+	i_start = 90;
+	i_select = 88;
+#endif
 }
 
 void input::tick() {
@@ -29,6 +41,7 @@ void input::tick() {
 	while (deltat < 1.0/120.0)
 		deltat = tim2.delta(time_index);
 	tim2.update(time_index);
+#ifdef __APPLE__
     GetKeys((BigEndianUInt32*) &keyMap);
     for (unsigned i = 0; i < 16; ++i)  {
         if (!key_down[(i*16) + 0] && (keyMap[i] & 1) != 0)
@@ -56,6 +69,13 @@ void input::tick() {
             key_press[(i*16) + 7] = true;
         key_down[(i*16) + 7] = (keyMap[i] & 128) != 0;
     }
+#else
+	for (unsigned i = 0; i < 16 * 16; ++i) {
+		if (!key_down[i] && GetAsyncKeyState(i) != 0)
+			key_press[i] = true;
+		key_down[i] = GetAsyncKeyState(i) != 0;
+	}
+#endif
 }
 
 void input::keydown(bool &up, bool &down, bool &left, bool &right, bool &confirm, bool &cancel, bool &start, bool &select) {
