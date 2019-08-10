@@ -2,6 +2,7 @@
 #include "sound.h"
 #include "anim.h"
 #include "timer.h"
+#include "input.h"
 
 bool player_up = false;
 bool player_down = false;
@@ -19,7 +20,7 @@ typedef std::map<string, std::map<string, float> >::iterator type_iter;
 extern bool safe_getline(ifstream &f, string& s);
 
 
-
+input ie;
 string safepath = string("../resources/");
 
 int min(int a, int b) {
@@ -5535,19 +5536,34 @@ int engine::get_tile(double y, double x) {
 	return levels[mc.loc.level].data[int(y)][int(x)];
 }
 
-void engine::input(bool up, bool down, bool left, bool right, bool select, bool start, bool confirm, bool cancel) {
+void engine::input() {
+    ie.tick();
+    bool iconfirm, icancel, istart, iselect;
+    bool fake;
 	if (menus.size() == 0) {
-		player_up = up;
-		player_down = down;
-		player_left = left;
-		player_right = right;
-		player_select = select;
-		player_start = start;
-		player_confirm = confirm;
-		player_cancel = cancel;
+	    ie.keypress(fake, fake, fake, fake, iconfirm, icancel, istart, iselect);
+	    if (!player_confirm)
+	        player_confirm = iconfirm;
+	    if (!player_cancel)
+	        player_cancel = icancel;
+	    if (!player_start)
+	        player_start = istart;
+	    if (!player_select)
+	        player_select = iselect;
+	    ie.keydown(player_up, player_down, player_left, player_right, fake, fake, fake, fake);
 	}
 	else {
-		menus[menus.size() - 1]->input(up, down, left, right, select, start, confirm, cancel);
+	    ie.keypress(player_up, player_down, player_left, player_right, player_confirm, player_cancel, player_start, player_select);
+	    if (player_up || player_down || player_left || player_right || player_confirm || player_cancel || player_start || player_select)
+		    menus[menus.size() - 1]->input(player_up, player_down, player_left, player_right, player_select, player_start, player_confirm, player_cancel);
+		player_up = false;
+		player_down = false;
+		player_left = false;
+		player_right = false;
+		player_select = false;
+		player_start = false;
+		player_confirm = false;
+		player_cancel = false;
 	}
 }
 

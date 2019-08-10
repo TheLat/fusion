@@ -179,40 +179,6 @@ vector<int> do_menu(string menu) {
 	return e.do_menu(menu, temp);
 }
 
-// Called when a key is pressed
-void handleKeypress(unsigned char key, int x, int y) {
-	switch (key) {
-	case 'a':
-		e.input(false, false, true, false, false, false, false, false);
-		break;
-	case 'd':
-		e.input(false, false, false, true, false, false, false, false);
-		break;
-	case 's':
-		e.input(false, true, false, false, false, false, false, false);
-		break;
-	case 'w':
-		e.input(true, false, false, false, false, false, false, false);
-		break;
-	case 'j':
-		e.input(false, false, false, false, false, false, true, false);
-		break;
-	case 'k':
-		e.input(false, false, false, false, false, false, false, true);
-		break;
-	case 'm':
-		e.input(false, false, false, false, false, true, false, false);
-		break;
-	case ',':
-		e.input(false, false, false, false, true, false, false, false);
-		break;
-	default:
-		break;
-	}
-}
-
-
-
 void handleResize(int w, int h) {
 	g.handleResize(w, h);
 }
@@ -231,6 +197,12 @@ void animate() {
 	while (true) {
 		g.animate();
 	}
+}
+
+void input() {
+    while (true) {
+        e.input();
+    }
 }
 
 int main(int argc, char** argv) {
@@ -304,10 +276,10 @@ int main(int argc, char** argv) {
 	e.init_characters();
 	//Set handler functions for drawing, keypresses, and window resizes
 	glutDisplayFunc(drawScene);
-	glutKeyboardFunc(handleKeypress);
 	glutReshapeFunc(handleResize);
 	thread t1(core_main);
 	thread t2(animate);
+	thread t3(input);
 	glutMainLoop(); //Start the main loop
 
 	return 0;
