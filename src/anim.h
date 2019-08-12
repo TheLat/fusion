@@ -71,6 +71,9 @@ public:
 	bool is_donef(unsigned index);
 	bool is_donei(unsigned index);
 	bool is_dones(unsigned index);
+	void finishf(unsigned index);
+	void finishi(unsigned index);
+	void finishs(unsigned index);
 	void purge();
 };
 

@@ -388,6 +388,29 @@ bool animation_engine::is_dones(unsigned index) {
 	return anims[index].done;
 }
 
+
+void animation_engine::finishf(unsigned index){
+    if (index >= animf.size())
+        return;
+    animf[index].time = animf[index].duration;
+    *(animf[index].ftarg) = animf[index].end;
+    animf[index].done = true;
+}
+
+void animation_engine::finishi(unsigned index){
+    if (index >= animi.size())
+        return;
+    animi[index].time = animi[index].duration;
+    *(animi[index].itarg) = animi[index].end;
+    animi[index].done = true;
+}
+
+void animation_engine::finishs(unsigned index){
+    if (index >= anims.size())
+        return;
+    anims[index].done = true;
+}
+
 void animation_engine::purge() {
 	bool found;
 	found = false;
