@@ -110,28 +110,37 @@ void soundengine::play_cry(string s) {
 	string s1, s2;
 	unsigned long long clock_start;
 	unsigned int slen1 = 0, slen2 = 0;
+	float flen1 = 0, flen2 = 0;
 	float freq1 = 0.0, freq2 = 0.0;
 	int outputrate = 0;
 	s1 = s;
 	s2 = s;
 	s1.erase(s1.find("-"), s1.length());
 	s2.erase(0, s2.find("-") + 1);
-	s1 = string("cries/") + s1 + string("-out.mp3");
-	s2 = string("cries/") + s2 + string("-in.mp3");
+	s1 = string("cries/") + s1 + string(".mp3");
+	s2 = string("cries/") + s2 + string(".mp3");
+	if (s1 == s2) {
+	    result = system->playSound(sounds[s1], 0, false, &channel1);
+	    return;
+	}
 	result = system->playSound(sounds[s1], 0, true, &channel1);
 	result = system->playSound(sounds[s2], 0, true, &channel2);
 	result = system->getSoftwareFormat(&outputrate, 0, 0);
 	result = channel1->getDSPClock(0, &clock_start);
 	result = sounds[s1]->getLength(&slen1, FMOD_TIMEUNIT_PCM);
 	result = sounds[s1]->getDefaults(&freq1, 0);
-	slen1 = (unsigned int)((float)slen1 / freq1 * outputrate);
+	flen1 = ((float)slen1 / freq1 * outputrate);
 	result = sounds[s2]->getLength(&slen2, FMOD_TIMEUNIT_PCM);
 	result = sounds[s2]->getDefaults(&freq2, 0);
-	slen2 = (unsigned int)((float)slen2 / freq2 * outputrate);
-	if (slen1 > slen2) {
-		clock_start += (slen1 - slen2);
+	flen2 = ((float)slen2 / freq2 * outputrate);
+	result = channel1->addFadePoint(clock_start, 1.0);
+	result = channel1->addFadePoint(clock_start + flen1, 0.0);
+	if (flen1 > flen2) {
+		clock_start += (flen1 - flen2);
 		result = channel2->setDelay(clock_start, 0, false);
 	}
+	result = channel2->addFadePoint(clock_start, 0.0);
+	result = channel2->addFadePoint(clock_start + flen2, 1.0);
 	channel1->setPaused(false);
 	channel2->setPaused(false);
 }
