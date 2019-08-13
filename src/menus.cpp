@@ -1238,6 +1238,9 @@ vector<int> menu::main() {
 	vector<int> choice;
 	while (!done || (done && (selection >= 0) && (selection < (int)followup.size()) && (followup[selection] != ""))) {
 		mutex2.lock();
+		if (etype == ALERT && followup.size() > 0 && followup[0] == string("YES_NO") && anim_index >= 0) {
+		    done = g.ae.is_donei(anim_index);
+		}
 		if ((etype == SELECT || etype == SCROLL) && cursor == -1) {
 			cursor = g.draw_list.size();
 			g.push_quad(display[0].xmin - 0.1f + cursor_offset_x, display[0].ymin - 0.1f + cursor_offset_y, 0.1f, 0.1f, g.tex[string("cursor-2.bmp")]);
