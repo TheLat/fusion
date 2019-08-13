@@ -61,6 +61,10 @@ public:
 class menu{
 private:
     string menuname;
+    int anim_index;
+    unsigned string_start, string_end;
+    int string_stage;
+    std::vector<quad> draw_list_copy;
 public:
 	string type;
 	MENUTYPE etype;
@@ -71,7 +75,7 @@ public:
 	int index, step, selection, columns, cursor, selection_cap, offset, cancel_option, scroll, max, replace_cancel;
 	float cursor_offset_x, cursor_offset_y;
 	bool done, always_cancel, initialized;
-	menu() { step = 0; index = 0; done = false; selection = 0; selection_cap = 0; columns = 1; cursor = -1; offset = 0; cancel_option = -1; cursor_offset_x = 0.0f; cursor_offset_y = 0.0; scroll = 0; max = 0; replace_cancel = -1; always_cancel = false; initialized = false; etype = NONE; }
+	menu() { step = 0; index = 0; done = false; selection = 0; selection_cap = 0; columns = 1; cursor = -1; offset = 0; cancel_option = -1; cursor_offset_x = 0.0f; cursor_offset_y = 0.0; scroll = 0; max = 0; replace_cancel = -1; always_cancel = false; initialized = false; etype = NONE; anim_index = -1;}
 	void create_menu(string file, string choice = "", string text_override = "", string followup_override = "");
 	void update_reserves();
 	void push_menu();

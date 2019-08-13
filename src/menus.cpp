@@ -1065,6 +1065,12 @@ void menu::push_menu() {
 	}
 	for (unsigned i = 0; i < display.size(); ++i) {
 		int temp;
+		if (i == 0) {
+		    if (etype == ALERT) {
+    		    string_start = g.draw_list.size();
+    		    string_stage = string_start;
+    		}
+    	}
 		temp = g.push_text(display[i].xmin, display[i].ymin, display[i].length, display[i].height, display[i].size, display[i].s);
 		if (i == 0) {
 			step = temp;
@@ -1077,6 +1083,14 @@ void menu::push_menu() {
 			    holder.erase(0, step);
 			    raw[0].s.erase(step, raw[0].s.size());
 			    followup[0] = menuname + string(":") + holder;
+			}
+            if (etype == ALERT) {
+                draw_list_copy = g.draw_list;
+                string_end = g.draw_list.size();
+                for (unsigned j = string_start; j < string_end; ++j) {
+                    g.draw_list[j].tex = g.tex[string("space.bmp")];
+                }
+                anim_index = g.ae.create_animi(&(string_stage), string_start, string_end, 0.01*double(string_end - string_start));
 			}
 		}
 	}
@@ -1112,7 +1126,10 @@ void menu::input(bool up, bool down, bool left, bool right, bool select, bool st
 		start = false;
 		confirm = true;
 	}
-	if (etype == ALERT) {
+	if (etype == ALERT && anim_index != -1 && !g.ae.is_donei(anim_index)) {
+	    g.ae.finishi(anim_index);
+	}
+	else if (etype == ALERT) {
 		if (start | select | confirm | cancel) {
 			if (step >= int(raw[0].s.size())) {
 				done = true;
@@ -1228,6 +1245,11 @@ vector<int> menu::main() {
 		if ((cursor > 0) && (selection != -1)) {
 			g.draw_list[cursor].x = display[selection].xmin - 0.1f + cursor_offset_x;
 			g.draw_list[cursor].y = display[selection].ymin + 0.1f + cursor_offset_y;
+		}
+		if (etype == ALERT) {
+		    for (unsigned i = string_start; i < string_stage; ++i) {
+		        g.draw_list[i].tex = draw_list_copy[i].tex;
+		    }
 		}
 		mutex2.unlock();
 		if (etype == AUTO_FOLLOWUP) {

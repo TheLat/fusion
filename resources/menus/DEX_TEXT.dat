@@ -1,6 +1,6 @@
 TYPE:ALERT
 IMAGES:
--1.0 -1.0 2.0 0.8 images/opaque-white.png
+-1.0 -1.0 2.0 0.8 offwhite.png
 END
 BOXES:
 END
