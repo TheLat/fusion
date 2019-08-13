@@ -14,6 +14,7 @@ void menu::create_menu(string file, string choice, string text_override, string 
 	images.clear();
 	raw.clear();
 	followup.clear();
+	menuname = file;
 	ifstream f(safepath + string("menus/") + file + string(".dat"));
 	string line, temp1, temp2;
 	while (f.is_open()) {
@@ -1060,8 +1061,19 @@ void menu::push_menu() {
 	for (unsigned i = 0; i < display.size(); ++i) {
 		int temp;
 		temp = g.push_text(display[i].xmin, display[i].ymin, display[i].length, display[i].height, display[i].size, display[i].s);
-		if (i == 0)
+		if (i == 0) {
 			step = temp;
+			if (etype == ALERT && step < int(raw[0].s.size())) {
+			    if (followup.size() == 0) {
+			        followup.push_back(string(""));
+			    }
+			    string holder;
+			    holder = raw[0].s;
+			    holder.erase(0, step);
+			    raw[0].s.erase(step, raw[0].s.size());
+			    followup[0] = menuname + string(":") + holder;
+			}
+		}
 	}
 	m.unlock();
 }

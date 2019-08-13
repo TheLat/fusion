@@ -59,6 +59,8 @@ public:
 };
 
 class menu{
+private:
+    string menuname;
 public:
 	string type;
 	MENUTYPE etype;
