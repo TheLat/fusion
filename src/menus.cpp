@@ -701,7 +701,7 @@ void menu::create_menu(string file, string choice, string text_override, string 
 						if (get_item_cost(get_special_string(string("ITEM:") + temp1 + string(":") + to_string(i))) > 0)
 							reserve_followup.push_back("EXCHANGE_SELL:" + to_string(get_item_cost(get_special_string(string("ITEM:") + temp1 + string(":") + to_string(i))) / 2) + string("_") + to_string(get_item_count(get_special_string(string("ITEM:") + temp1 + string(":") + to_string(i)))));
 						else
-							reserve_followup.push_back("ALERT:I can't buy that.");
+							reserve_followup.push_back("ALERT_CANCEL:I can't buy that.");
 					}
 					t.xmin = x;
 					t.ymin = y;
