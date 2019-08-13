@@ -962,6 +962,11 @@ void menu::create_menu(string file, string choice, string text_override, string 
 							t.s.insert(i, get_special_string(string("{CAUGHT}")));
 						}
 						raw.push_back(t);
+						if (raw.size() == 1 && etype == ALERT) {
+						    while (raw[0].s.size() > 0 && raw[0].s[0] == ' ') {
+						        raw[0].s.erase(0, 1);
+						    }
+						}
 						safe_getline(f, line);
 					}
 				}
