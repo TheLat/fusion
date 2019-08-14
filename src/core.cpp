@@ -111,6 +111,14 @@ void engine::push_hp_bar_if_exists(float x, float y, int index) {
 		g.push_hp_bar(x, y, get_hp_percent(mc.team[index]));
 }
 
+void engine::collision() {
+	se.play_sound(string("sound_effects/general/sfx_collision.mp3"));
+	update_level();
+	double nothing = 0;
+	unsigned nothing_holder = g.ae.create_animf(&nothing, 0.0, 1.0, 0.25);
+	while (!g.ae.is_donef(nothing_holder)) {}
+}
+
 string engine::get_special_string(string in) {
 	string parse;
 	string out;
@@ -4514,7 +4522,7 @@ void engine::init_level(string levelname) {
 			while (line != "TELEPORT" && line != "DATA" && line != "ENCOUNTERS" && line != "LEVELS" && line != "TRAINERS" && line.find("WATER_ENCOUNTERS_") != 0) {
 				character c;
 				string s;
-				levels[levelname].characters.push_back(c); 
+				levels[levelname].characters.push_back(c);
 				levels[levelname].characters[levels[levelname].characters.size() - 1].delay = random(0, 4.3);
 				s = line;
 				s.erase(s.find(" "), s.length());
@@ -5679,19 +5687,19 @@ void engine::player_input(bool up, bool down, bool left, bool right, bool select
 		break;
 	}
 	if (l.y == -1.0) {
-		se.play_sound(string("sound_effects/general/sfx_collision.mp3"));
+		collision();
 		return;
 	}
 	if (l.y >= levels[mc.loc.level].data.size()) {
-		se.play_sound(string("sound_effects/general/sfx_collision.mp3"));
+		collision();
 		return;
 	}
 	if (l.x == -1.0) {
-		se.play_sound(string("sound_effects/general/sfx_collision.mp3"));
+		collision();
 		return;
 	}
 	if (l.x >= levels[mc.loc.level].data[int(l.y)].size()) {
-		se.play_sound(string("sound_effects/general/sfx_collision.mp3"));
+		collision();
 		return;
 	}
 	if (blocking[get_tile(l.y, l.x)]) {
@@ -5699,12 +5707,12 @@ void engine::player_input(bool up, bool down, bool left, bool right, bool select
 		else if (right && jumpright[get_tile(l.y, l.x)]) {}
 		else if (left && jumpleft[get_tile(l.y, l.x)]) {}
 		else {
-			se.play_sound(string("sound_effects/general/sfx_collision.mp3"));
+			collision();
 			return;
 		}
 	}
 	if (water[get_tile(l.y, l.x)] && !has_move_in_party(string("SURF"))) {
-		se.play_sound(string("sound_effects/general/sfx_collision.mp3"));
+		collision();
 		return;
 	}
 	if (water[get_tile(l.y, l.x)] && has_move_in_party(string("SURF"))) {
@@ -5736,7 +5744,7 @@ void engine::player_input(bool up, bool down, bool left, bool right, bool select
 						}
 					}
 					if (npc_in_way) {
-						se.play_sound(string("sound_effects/general/sfx_collision.mp3"));
+						collision();
 						return;
 					}
 					else {
@@ -5753,17 +5761,17 @@ void engine::player_input(bool up, bool down, bool left, bool right, bool select
 								}
 							}
 						}
-						se.play_sound(string("sound_effects/general/sfx_collision.mp3"));
+						collision();
 						return;
 					}
 				}
 				else {
-					se.play_sound(string("sound_effects/general/sfx_collision.mp3"));
+					collision();
 					return;
 				}
 			}
 			else {
-				se.play_sound(string("sound_effects/general/sfx_collision.mp3"));
+				collision();
 				return;
 			}
 		}

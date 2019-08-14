@@ -365,6 +365,7 @@ public:
 	void handle_teleport();
 	int get_tile(double y, double x);
 	void input();
+	void collision();
 	void player_input(bool up, bool down, bool left, bool right, bool select, bool start, bool confirm, bool cancel);
 	void create_menu(string s, string choice = "", string text_override = "", string followup_override = "");
 	vector<int> do_alert(string s);
