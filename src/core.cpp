@@ -65,6 +65,10 @@ GLuint get_character_tex(character& c) {
 	//g.tex[c->image + string("-") + get_direction_string(c->dir) + string("-0.bmp")]
 }
 
+void input_tick() {
+    e.input();
+}
+
 string get_direction_string(direction dir) {
 	switch (dir) {
 	case UP:

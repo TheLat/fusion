@@ -10,6 +10,7 @@
 extern bool safe_getline(ifstream &f, string& s);
 
 extern string safepath;
+extern void input_tick();
 
 GLuint graphics::load_image(string filename) {
 	GLuint ret = 0;
@@ -306,6 +307,7 @@ void graphics::animate() {
 		deltat = tim.delta(time_index);
 	tim.update(time_index);
 	ae.tick(deltat);
+	input_tick();
 }
 
 void graphics::drawScene() {

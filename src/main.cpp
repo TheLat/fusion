@@ -199,12 +199,6 @@ void animate() {
 	}
 }
 
-void input() {
-    while (true) {
-        e.input();
-    }
-}
-
 int main(int argc, char** argv) {
 	srand((unsigned)time(NULL));
 	printf("Loading types...");
@@ -279,7 +273,6 @@ int main(int argc, char** argv) {
 	glutReshapeFunc(handleResize);
 	thread t1(core_main);
 	thread t2(animate);
-	thread t3(input);
 	glutMainLoop(); //Start the main loop
 
 	return 0;

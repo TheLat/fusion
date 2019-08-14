@@ -66,10 +66,6 @@ input::input() {
 }
 
 void input::tick() {
-    double deltat = tim2.delta(time_index);
-	while (deltat < 1.0/120.0)
-		deltat = tim2.delta(time_index);
-	tim2.update(time_index);
 #ifdef __APPLE__
     GetKeys((BigEndianUInt32*) &keyMap);
     for (unsigned i = 0; i < 16; ++i)  {
