@@ -32,6 +32,10 @@ void menu::create_menu(string file, string choice, string text_override, string 
 				temp2.erase(0, temp2.find(":") + 1);
 				if (temp1 == "TYPE") {
 					type = temp2;
+					if (type == "ALERT_AUTOCLOSE") {
+						etype = ALERT;
+						autoclose = true;
+					}
 					if (type == "ALERT")
 						etype = ALERT;
 					if (type == "SELECT")
@@ -1083,6 +1087,7 @@ void menu::push_menu() {
 			    holder.erase(0, step);
 			    raw[0].s.erase(step, raw[0].s.size());
 			    followup[0] = menuname + string(":") + holder;
+			    autoclose = false;
 			}
             if (etype == ALERT) {
                 draw_list_copy = g.draw_list;
@@ -1238,9 +1243,9 @@ vector<int> menu::main() {
 	vector<int> choice;
 	while (!done || (done && (selection >= 0) && (selection < (int)followup.size()) && (followup[selection] != ""))) {
 		mutex2.lock();
-		if (etype == ALERT && followup.size() > 0 && followup[0] == string("YES_NO") && anim_index >= 0) {
-		    done = g.ae.is_donei(anim_index);
-		}
+		//if (etype == ALERT && followup.size() > 0 && followup[0] == string("YES_NO") && anim_index >= 0) {
+		//    done = g.ae.is_donei(anim_index);
+		//}
 		if ((etype == SELECT || etype == SCROLL) && cursor == -1) {
 			cursor = g.draw_list.size();
 			g.push_quad(display[0].xmin - 0.1f + cursor_offset_x, display[0].ymin - 0.1f + cursor_offset_y, 0.1f, 0.1f, g.tex[string("cursor-2.bmp")]);
@@ -1253,6 +1258,9 @@ vector<int> menu::main() {
 		    for (unsigned i = string_start; i < string_stage; ++i) {
 		        g.draw_list[i].tex = draw_list_copy[i].tex;
 		    }
+		}
+		if (autoclose && etype == ALERT) {
+		    done = g.ae.is_donei(anim_index);
 		}
 		mutex2.unlock();
 		if (etype == AUTO_FOLLOWUP) {
