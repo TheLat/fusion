@@ -1074,8 +1074,13 @@ bool engine::do_effect(mon& m, string effect, int extra) {
 	}
 	else if (effect.find("FILL_HP") == 0) {
 		effect.erase(0, effect.find(":") + 1);
-		if (!is_KO(m)) {
+		if (!is_KO(m) && m.curr_hp < get_stat(m, HP)) {
+		    se.play_sound(string("sound_effects/general/sfx_heal_up.mp3"));
 			heal_damage(m, stoi(effect));
+		}
+		else if (m.curr_hp == get_stat(m, HP)) {
+		    do_alert(string("It's already at max HP!"));
+		    return false;
 		}
 		else {
 			do_alert(string("It's knocked out cold!"));
@@ -1097,6 +1102,7 @@ bool engine::do_effect(mon& m, string effect, int extra) {
 	else if (effect.find("REVIVE") == 0) {
 		if (m.curr_hp > 0)
 			return false;
+		se.play_sound(string("sound_effects/general/sfx_heal_up.mp3"));
 		m.curr_hp = get_stat(m, HP) / 2;
 		m.status.clear();
 	}
@@ -1723,7 +1729,7 @@ void engine::heal_damage(mon& m, int heal_amount) {
 	if (heal_amount + m.curr_hp > get_stat(m, HP))
 	    heal_amount = get_stat(m, HP) - m.curr_hp;
     unsigned anim_holder = 0;
-    anim_holder = g.ae.create_animi(&(m.curr_hp), m.curr_hp, m.curr_hp + heal_amount, 0.25);
+    anim_holder = g.ae.create_animi(&(m.curr_hp), m.curr_hp, m.curr_hp + heal_amount, 0.5);
     while (!g.ae.is_donei(anim_holder)) {
 	    resize_hp_bars(m);
 	    if (m.hud_index)
@@ -7294,8 +7300,7 @@ void engine::main() {
 			}
 			if (choices[0] == 2) { // INVENTORY
 				string o;
-				if (!can_use_item(string("NONCOMBAT"), get_item_name(string("ALL"), choices[1])) || !use_item(string("ALL"), choices, o)) { // TODO: Correct message for Oak's parcel
-					do_alert("OAK: This isn't the time to use that!");
+				if (!can_use_item(string("NONCOMBAT"), get_item_name(string("ALL"), choices[1])) || !use_item(string("ALL"), choices, o)) { // TODO: Failure messages for item use.
 				}
 			}
 			if (choices[0] == 4) { // SAVING
