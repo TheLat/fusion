@@ -5849,6 +5849,22 @@ void engine::player_input(bool up, bool down, bool left, bool right, bool select
 		while (!g.ae.is_donef(a1) || !g.ae.is_donef(a2) || !g.ae.is_donei(a3)) {
 			update_level();
 		}
+		mc.frame = mc.frame%8;
+		if (mc.frame%8 == 0 || mc.frame%8 == 1) {
+		    bool poison_found = false;
+			for (unsigned k = 0; k < 6; ++k) {
+			    if (mc.team[k].defined) {
+				    if (in_status(mc.team[k], string("POISON")) || in_status(mc.team[k], string("TOXIC"))) {
+				        poison_found = true;
+				        if (mc.team[k].curr_hp > 1)
+				            mc.team[k].curr_hp--;
+				    }
+				}
+            }
+		    if (poison_found) {
+			    g.ae.create_anim_scene(string("overworldpoison"));
+			}
+		}
 		if (encounter_tile[get_tile(mc.loc.y, mc.loc.x)]) {
 			if (levels[mc.loc.level].encounters.size() > 0) {
 				if (random(0.0, 187.5) < 8.5) {
