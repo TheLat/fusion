@@ -767,6 +767,37 @@ string engine::get_special_string(string in) {
 			int index = stoi(temp);
 			return get_item_storage_count(type, index);
 		}
+		else if (parse == "BADGE") {
+		    if (e.mc.values[temp+parse]) {
+		        if (temp == "BOULDER") {
+		            return string("badge11.png");
+		        }
+		        if (temp == "CASCADE") {
+		            return string("badge21.png");
+		        }
+		        if (temp == "THUNDER") {
+		            return string("badge31.png");
+		        }
+		        if (temp == "RAINBOW") {
+		            return string("badge41.png");
+		        }
+		        if (temp == "MARSH") {
+		            return string("badge51.png");
+		        }
+		        if (temp == "SOUL") {
+		            return string("badge61.png");
+		        }
+		        if (temp == "VOLCANO") {
+		            return string("badge71.png");
+		        }
+		        if (temp == "EARTH") {
+		            return string("badge81.png");
+		        }
+		    }
+		    else {
+		        return string("badge10.png");
+		    }
+		}
 	}
 	if (in == "{RIVAL_NAME}") {
 		return mc.rivalname;
