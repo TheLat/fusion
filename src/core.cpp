@@ -1352,8 +1352,18 @@ bool engine::gain_item(string s, int count, bool silent) {
 		item.second = count;
 		mc.inventory.push_back(item);
 	}
-	if (!silent)
+	if (!silent) {
+		if (items[s].price == 0) {
+		    se.play_sound(string("sound_effects/general/sfx_get_key_item.mp3"));
+		}
+		else if (items[s].price < 2000) {
+		    se.play_sound(string("sound_effects/general/sfx_get_item_1.mp3"));
+		}
+		else {
+		    se.play_sound(string("sound_effects/general/sfx_get_item_2.mp3"));
+		}
 		do_menu(string("ALERT"), string("{PLAYER_NAME} got ") + s + string("!"));
+	}
 	return true;
 }
 
