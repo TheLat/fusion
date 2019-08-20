@@ -1062,6 +1062,7 @@ bool engine::do_effect(mon& m, string effect, int extra) {
 		effect.erase(0, effect.find(":") + 1);
 	}
 	if (effect.find("CLEAR_STATUS") == 0) {
+	    unsigned holder = m.status.size();
 		if (effect.find(":") != -1) {
 			effect.erase(0, effect.find(":") + 1);
 			remove_status(m, effect, true);
@@ -1070,6 +1071,9 @@ bool engine::do_effect(mon& m, string effect, int extra) {
 			while (m.status.size() > 0) {
 				remove_status(m, m.status[0], true);
 			}
+		}
+		if (holder != m.status.size()) {
+		    se.play_sound(string("sound_effects/general/sfx_heal_ailment.mp3"));
 		}
 	}
 	else if (effect.find("FILL_HP") == 0) {
