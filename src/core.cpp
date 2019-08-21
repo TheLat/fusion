@@ -6661,6 +6661,7 @@ void engine::do_interaction(character& npc) {
 								holder.erase(0, holder.find("}") + 1);
 							}
 							int num = stoi(holder) - choices[2];
+							// TODO: Selling a TM puts it in the USED_TMS shop
 							mc.money += num * items[get_item_name(string("ALL"), choices[1])].price / 2;
 							remove_item(get_item_name(string("ALL"), choices[1]), num);
 						}
