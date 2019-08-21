@@ -1,7 +1,9 @@
 #include "menus.h"
+#include "sound.h"
 
 extern bool safe_getline(ifstream &f, string& s);
 extern string safepath;
+extern soundengine se;
 
 mutex mutex2;
 
@@ -1130,6 +1132,9 @@ void menu::input(bool up, bool down, bool left, bool right, bool select, bool st
 	if (start) {
 		start = false;
 		confirm = true;
+	}
+	if ((etype == ALERT || etype == SELECT || etype == SCROLL) && confirm) {
+	    se.play_sound(string("sound_effects/general/sfx_press_ab.mp3"));
 	}
 	if (etype == ALERT && anim_index != -1 && !g.ae.is_donei(anim_index)) {
 	    g.ae.finishi(anim_index);
