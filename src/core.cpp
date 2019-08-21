@@ -6692,6 +6692,7 @@ void engine::do_interaction(character& npc) {
 								do_alert(string("There's no room in your team!"));
 							}
 							else {
+					            se.play_sound(string("sound_effects/general/sfx_withdraw_deposit.mp3"));
 								unsigned holder = get_team_size();
 								mc.team[holder] = mc.storage[mc.box_number][choices[1]];
 								mc.team[holder].wild = false;
@@ -6715,6 +6716,7 @@ void engine::do_interaction(character& npc) {
 								do_alert(string("No room left in that box!")); // TODO: Test this
 							}
 							else {
+					            se.play_sound(string("sound_effects/general/sfx_withdraw_deposit.mp3"));
 								mc.storage[mc.box_number][count] = mc.team[choices[1]];
 								mc.storage[mc.box_number][count].wild = false;
 								mc.storage[mc.box_number][count].enemy = false;
@@ -6789,6 +6791,7 @@ void engine::do_interaction(character& npc) {
 				choices = remove_cancels(choices);
 				if (choices.size() > 0) {
 					if (choices[0] == 0) { // withdraw
+					    se.play_sound(string("sound_effects/general/sfx_withdraw_deposit.mp3"));
 						string dep = get_item_storage_name(string("ALL"), choices[1]);
 						string holder = get_item_storage_count(string("ALL"), choices[1]);
 						holder.erase(0, holder.find("}") + 1);
@@ -6797,6 +6800,7 @@ void engine::do_interaction(character& npc) {
 						withdraw_item(dep, diff);
 					}
 					else if (choices[0] == 1) { // deposit
+					    se.play_sound(string("sound_effects/general/sfx_withdraw_deposit.mp3"));
 						string dep = get_item_name(string("ALL"), choices[1]);
 						string holder = get_item_count(string("ALL"), choices[1]);
 						holder.erase(0, holder.find("}") + 1);
