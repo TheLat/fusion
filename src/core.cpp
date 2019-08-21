@@ -6641,7 +6641,9 @@ void engine::do_interaction(character& npc) {
 				item_holder.push_back(holder2);
 			}
 			item_holder.push_back(holder);
+			int money_holder = mc.money;
 			while (choices.size() == 0 || choices[0] != 2) {
+			    money_holder = mc.money;
 				choices = do_menu(string("SHOP_FRAME"), s2); // TODO: Reopen on anything except cancel.
 				choices = remove_cancels(choices);
 				if (choices.size() > 1) {
@@ -6664,6 +6666,9 @@ void engine::do_interaction(character& npc) {
 						}
 					}
 				}
+                if (money_holder != mc.money) {
+                    se.play_sound(string("sound_effects/general/sfx_purchase.mp3"));
+                }
 			}
 		}
 		else if (s.find("MON_STORAGE") == 0) {
