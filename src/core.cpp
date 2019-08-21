@@ -7326,6 +7326,7 @@ void engine::main() {
 			if (choices[0] == 4) { // SAVING
 				if (choices[choices.size() - 1] == 0) {
 					save_game();
+					se.play_sound(string("sound_effects/general/sfx_save.mp3"));
 					do_alert("{PLAYER_NAME} saved the game!");
 				}
 			}
