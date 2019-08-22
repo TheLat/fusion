@@ -1133,13 +1133,16 @@ void menu::input(bool up, bool down, bool left, bool right, bool select, bool st
 		start = false;
 		confirm = true;
 	}
-	if ((etype == ALERT || etype == SELECT || etype == SCROLL) && confirm) {
+	if ((etype == SELECT || etype == SCROLL) && confirm) {
 	    se.play_sound(string("sound_effects/general/sfx_press_ab.mp3"));
 	}
 	if (etype == ALERT && anim_index != -1 && !g.ae.is_donei(anim_index)) {
 	    g.ae.finishi(anim_index);
 	}
 	else if (etype == ALERT) {
+	    if (confirm) {
+	        se.play_sound(string("sound_effects/general/sfx_press_ab.mp3"));
+	    }
 		if (start | select | confirm | cancel) {
 			if (step >= int(raw[0].s.size())) {
 				done = true;
