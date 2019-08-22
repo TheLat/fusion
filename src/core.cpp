@@ -7106,10 +7106,12 @@ void engine::do_interaction(character& npc) {
 		    if (s2.find("|") != -1) {
 		        s2.erase(s2.find("|"), s2.length());
 		    }
+		    unsigned clear_point = g.draw_list.size();
 		    unsigned anim = g.ae.create_anim_scene(s2);
 		    while (!g.ae.is_dones(anim)) {
 		    }
 		    update_level();
+		    g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
 		}
 		else if (s.find("BOW:") == 0) {
 		    s2 = s;
