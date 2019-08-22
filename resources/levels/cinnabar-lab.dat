@@ -27,11 +27,11 @@ MENU:ALERT:Hiya!|MENU:ALERT:I am important doctor!|MENU:ALERT:I study here rare 
 END
 cinnabar-lab-pc1 blank 0 47
 INTERACTIONS
-MENU:ALERT:{PLAYER_NAME} turned on the PC.|GET:BILL|{MENU:PC:}{MENU:PC2:}|{GET:BILL|{MENU:ALERT:Accessed someone's PC.}{MENU:ALERT:Accessed BILL's PC.}|MENU:ALERT:Accessed POK{e-accent}MON Storage System.|MON_STORAGE}{MENU:ALERT:Accessed my PC.|MENU:ALERT:Accessed Item Storage System.|ITEM_STORAGE}{MENU:ALERT:OAK RATING GOES HERE}{}
+PLAY_SOUND:sound_effects/general/sfx_turn_on_pc.mp3|MENU:ALERT:{PLAYER_NAME} turned on the PC.|GET:BILL|{MENU:PC:}{MENU:PC2:}|{GET:BILL|{MENU:ALERT:Accessed someone's PC.}{MENU:ALERT:Accessed BILL's PC.}|MENU:ALERT:Accessed POK{e-accent}MON Storage System.|MON_STORAGE}{MENU:ALERT:Accessed my PC.|MENU:ALERT:Accessed Item Storage System.|ITEM_STORAGE}{OAK_RATING:}{}|PLAY_SOUND:sound_effects/general/sfx_turn_off_pc.mp3
 END
 cinnabar-lab-pc2 blank 2 47
 INTERACTIONS
-MENU:ALERT:{PLAYER_NAME} turned on the PC.|GET:BILL|{MENU:PC:}{MENU:PC2:}|{GET:BILL|{MENU:ALERT:Accessed someone's PC.}{MENU:ALERT:Accessed BILL's PC.}|MENU:ALERT:Accessed POK{e-accent}MON Storage System.|MON_STORAGE}{MENU:ALERT:Accessed my PC.|MENU:ALERT:Accessed Item Storage System.|ITEM_STORAGE}{MENU:ALERT:OAK RATING GOES HERE}{}
+PLAY_SOUND:sound_effects/general/sfx_turn_on_pc.mp3|MENU:ALERT:{PLAYER_NAME} turned on the PC.|GET:BILL|{MENU:PC:}{MENU:PC2:}|{GET:BILL|{MENU:ALERT:Accessed someone's PC.}{MENU:ALERT:Accessed BILL's PC.}|MENU:ALERT:Accessed POK{e-accent}MON Storage System.|MON_STORAGE}{MENU:ALERT:Accessed my PC.|MENU:ALERT:Accessed Item Storage System.|ITEM_STORAGE}{OAK_RATING:}{}|PLAY_SOUND:sound_effects/general/sfx_turn_off_pc.mp3
 END
 cinnabar-lab-doctor2 doctor 7 49 UP
 INTERACTIONS

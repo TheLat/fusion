@@ -59,7 +59,7 @@ MENU:ALERT:GAME FREAK Meeting Room
 END
 celadon-mansion-pc1 blank 0 23
 INTERACTIONS
-MENU:ALERT:{PLAYER_NAME} turned on the PC.|GET:BILL|{MENU:PC:}{MENU:PC2:}|{GET:BILL|{MENU:ALERT:Accessed someone's PC.}{MENU:ALERT:Accessed BILL's PC.}|MENU:ALERT:Accessed POK{e-accent}MON Storage System.|MON_STORAGE}{MENU:ALERT:Accessed my PC.|MENU:ALERT:Accessed Item Storage System.|ITEM_STORAGE}{MENU:ALERT:OAK RATING GOES HERE}{}
+PLAY_SOUND:sound_effects/general/sfx_turn_on_pc.mp3|MENU:ALERT:{PLAYER_NAME} turned on the PC.|GET:BILL|{MENU:PC:}{MENU:PC2:}|{GET:BILL|{MENU:ALERT:Accessed someone's PC.}{MENU:ALERT:Accessed BILL's PC.}|MENU:ALERT:Accessed POK{e-accent}MON Storage System.|MON_STORAGE}{MENU:ALERT:Accessed my PC.|MENU:ALERT:Accessed Item Storage System.|ITEM_STORAGE}{OAK_RATING:}{}|PLAY_SOUND:sound_effects/general/sfx_turn_off_pc.mp3
 END
 celadon-mansion-sign3 blank 4 44
 INTERACTIONS

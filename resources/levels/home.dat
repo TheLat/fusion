@@ -32,7 +32,7 @@ MENU:ALERT:There's a movie on TV. Four boys are walking on railroad tracks.|MENU
 END
 home-pc blank 0 1
 INTERACTIONS
-MENU:ALERT:{PLAYER_NAME} turned on the PC.|ITEM_STORAGE
+PLAY_SOUND:sound_effects/general/sfx_turn_on_pc.mp3|MENU:ALERT:{PLAYER_NAME} turned on the PC.|ITEM_STORAGE|PLAY_SOUND:sound_effects/general/sfx_turn_off_pc.mp3
 END
 TELEPORT
 7 1 home 6 20

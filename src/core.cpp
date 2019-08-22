@@ -6600,6 +6600,117 @@ void engine::do_interaction(character& npc) {
 				do_alert(string("SCRIPT ERROR: Called FUSION with parameter: ") + s2);
 			}
 		}
+		else if (s.find("PLAY_SOUND:") == 0) {
+			s.erase(0, s.find(":") + 1);
+			s2 = s;
+			if (s2.find("|") != -1) {
+				s.erase(0, s.find("|"));
+				s2.erase(s2.find("|"), s2.length());
+			}
+			else {
+				s = "";
+			}
+		    se.play_sound(s2);
+		}
+		else if (s.find("OAK_RATING:") == 0) {
+			s.erase(0, s.find(":") + 1);
+			s2 = s;
+			if (s2.find("|") != -1) {
+				s.erase(0, s.find("|"));
+				s2.erase(s2.find("|"), s2.length());
+			}
+			else {
+				s = "";
+			}
+            do_alert(string("POK{e-accent}DEX completion is:"));
+            do_alert(string("{SEEN} POK{e-accent}MON seen and {CAUGHT} POK{e-accent}MON owned."));
+            do_alert(string("PROF.OAK's Rating:"));
+
+            std::map<string, bool>::iterator it = mc.caught.begin();
+            int caught = 0;
+            while (it != mc.caught.end()) {
+                if (it->second)
+                    caught++;
+                it++;
+            }
+            se.play_sound(string("sound_effects/general/sfx_pokedex_rating.mp3"));
+            if (caught < 10) {
+                do_alert(string("You still have a lot of work to do."));
+                do_alert(string("Look for POK{e-accent}MON in grassy areas!"));
+            }
+            else if (caught < 20) {
+                do_alert(string("You're on the right track! Get the FLASH HM from my aide!"));
+            }
+            else if (caught < 30) {
+                do_alert(string("You still need more POK{e-accent}MON! Try catching more species!"));
+            }
+            else if (caught < 40) {
+                do_alert(string("Good, you're trying hard! Get an ITEMFINDER from my aide."));
+            }
+            else if (caught < 50) {
+                do_alert(string("Looking good! Go find my aide when you get to 50!"));
+            }
+            else if (caught < 70) {
+                do_alert(string("You finally got at least 50 species! Be sure to get EXP.ALL from my aide."));
+            }
+            else if (caught < 100) {
+                do_alert(string("Ho! This is getting even better!"));
+            }
+            else if (caught < 130) {
+                do_alert(string("You finally got at least 100 species! I can't believe how good you are!"));
+            }
+            else if (caught < 170) {
+                do_alert(string("Very good! Go fish for marine POK{e-accent}MON"));
+            }
+            else if (caught < 200) {
+                do_alert(string("Wonderful! Do you like collecting things?"));
+            }
+            else if (caught < 230) {
+                do_alert(string("You finally got at least 200 species! This is coming along quite nicely."));
+            }
+            else if (caught < 270) {
+                do_alert(string("I'm impressed! It must have been difficult to do!"));
+            }
+            else if (caught < 300) {
+                do_alert(string("You even have evolved forms POK{e-accent}MON! Super!"));
+            }
+            else if (caught < 330) {
+                do_alert(string("You finally got at least 300 species! This is amazing!"));
+            }
+            else if (caught < 370) {
+                do_alert(string("Excellent! Don't forget about evolution stones!"));
+            }
+            else if (caught < 400) {
+                do_alert(string("Outstanding! You've become a real pro at this!"));
+            }
+            else if (caught < 430) {
+                do_alert(string("You finally got at least 400 species! This is fantastic!"));
+            }
+            else if (caught < 500) {
+                do_alert(string("You're quite the authority on POK{e-accent}MON now!"));
+            }
+            else if (caught < 600) {
+                do_alert(string("You finally got at least 500 species! This is superb!"));
+            }
+            else if (caught < 700) {
+                do_alert(string("You finally got at least 600 species! I can't wait to tell everyone!"));
+            }
+            else if (caught < 800) {
+                do_alert(string("You finally got at least 700 species! This is amazing!"));
+            }
+            else if (caught < 900) {
+                do_alert(string("You finally got at least 800 species! This is glorious!"));
+            }
+            else if (caught < 1000) {
+                do_alert(string("You finally got at least 900 species! This is majestic!"));
+            }
+            else if (caught < all_mon.size()) {
+                do_alert(string("You've caught over 1000 species! I didn't know that there were this many!"));
+            }
+            else {
+                do_alert(string("Your POK{e-accent}DEX is entirely complete! Congratulations!"));
+            }
+		}
 		else if (s.find("SHOP:") == 0) {
 			s.erase(0, s.find(":") + 1);
 			s2 = s;
