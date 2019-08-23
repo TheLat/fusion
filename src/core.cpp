@@ -4010,7 +4010,11 @@ bool engine::battle() { // wild pokemon
 							do_alert(string("There's no room in storage!"));
 							do_alert(string("You have no choice but to let it go."));
 						}
-						mc.caught[mc.enemy_team[mc.enemy_selected].number] = true;
+						if (!mc.caught[mc.enemy_team[mc.enemy_selected].number]) {
+						    mc.caught[mc.enemy_team[mc.enemy_selected].number] = true;
+						    se.play_sound(string("sound_effects/general/sfx_dex_page_added.mp3"));
+						    do_alert(get_nickname(mc.enemy_team[mc.enemy_selected]) + string(" was added to the POK{e-accent}DEX!"));
+						}
 						count = 0;
 						for (unsigned i = 0; i < 6; ++i) {
 							if ((mc.enemy_team[mc.enemy_selected].fought[i] || in_inventory(string("EXP.ALL"))) && mc.team[i].defined && !is_KO(mc.team[i])) {
