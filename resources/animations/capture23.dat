@@ -1,0 +1,55 @@
+CREATE_SPRITE images/ball21.png 0.0 -0.35 -0.05 0.2 0.2
+PLAY_SOUND sound_effects/general/sfx_ball_toss.mp3 0.0
+SPLINE_TRANSFORM 0 0.0 0.6 -0.35 -0.05 0.2 0.2 -0.1 0.9 0.2 0.2 0.45 0.3 0.2 0.2
+PLAY_SOUND sound_effects/general/sfx_ball_poof.mp3 0.6
+CREATE_SPRITE images/capture-poof-ul.png 0.6 0.55 0.2 0.0 0.0
+CREATE_SPRITE images/capture-poof-ur.png 0.6 0.55 0.2 0.0 0.0
+CREATE_SPRITE images/capture-poof-bl.png 0.6 0.55 0.2 0.0 0.0
+CREATE_SPRITE images/capture-poof-br.png 0.6 0.55 0.2 0.0 0.0
+SPLINE_TRANSFORM 1 0.6 1.1 0.55 0.4 0.0 0.0 0.35 0.4 0.2 0.2 0.35 0.4 0.2 0.2
+SPLINE_TRANSFORM 2 0.6 1.1 0.55 0.4 0.0 0.0 0.55 0.4 0.2 0.2 0.55 0.4 0.2 0.2
+SPLINE_TRANSFORM 3 0.6 1.1 0.55 0.4 0.0 0.0 0.35 0.2 0.2 0.2 0.35 0.2 0.2 0.2
+SPLINE_TRANSFORM 4 0.6 1.1 0.55 0.4 0.0 0.0 0.55 0.2 0.2 0.2 0.55 0.2 0.2 0.2
+SPLINE_TRANSFORM DEFENDER 0.6 0.9 0.1 0.1 0.9 0.9 0.1 0.1 0.9 0.9 0.55 0.4 0.0 0.0
+HIDE_SPRITE 1 1.1
+HIDE_SPRITE 2 1.1
+HIDE_SPRITE 3 1.1
+HIDE_SPRITE 4 1.1
+PLAY_SOUND sound_effects/general/sfx_healing_machine.mp3 1.5
+CREATE_SPRITE images/ball22.png 1.6 0.45 0.3 0.2 0.2
+CREATE_SPRITE images/ball23.png 1.7 0.45 0.3 0.2 0.2
+CREATE_SPRITE images/ball22.png 1.8 0.45 0.3 0.2 0.2
+CREATE_SPRITE images/ball21.png 1.9 0.45 0.3 0.2 0.2
+PLAY_SOUND sound_effects/general/sfx_healing_machine.mp3 2.4
+CREATE_SPRITE images/ball22.png 2.5 0.45 0.3 0.2 0.2
+CREATE_SPRITE images/ball23.png 2.6 0.45 0.3 0.2 0.2
+CREATE_SPRITE images/ball22.png 2.7 0.45 0.3 0.2 0.2
+CREATE_SPRITE images/ball21.png 2.8 0.45 0.3 0.2 0.2
+PLAY_SOUND sound_effects/general/sfx_healing_machine.mp3 3.3
+CREATE_SPRITE images/ball22.png 3.4 0.45 0.3 0.2 0.2
+CREATE_SPRITE images/ball23.png 3.5 0.45 0.3 0.2 0.2
+CREATE_SPRITE images/ball22.png 3.6 0.45 0.3 0.2 0.2
+CREATE_SPRITE images/ball21.png 3.7 0.45 0.3 0.2 0.2
+HIDE_SPRITE 0 4.2
+HIDE_SPRITE 1 4.7
+HIDE_SPRITE 2 4.7
+HIDE_SPRITE 3 4.7
+HIDE_SPRITE 4 4.7
+HIDE_SPRITE 5 4.2
+HIDE_SPRITE 6 4.2
+HIDE_SPRITE 7 4.2
+HIDE_SPRITE 8 4.2
+HIDE_SPRITE 9 4.2
+HIDE_SPRITE 10 4.2
+HIDE_SPRITE 11 4.2
+HIDE_SPRITE 12 4.2
+HIDE_SPRITE 13 4.2
+HIDE_SPRITE 14 4.2
+HIDE_SPRITE 15 4.2
+HIDE_SPRITE 16 4.2
+PLAY_SOUND sound_effects/general/sfx_ball_poof.mp3 4.2
+SPLINE_TRANSFORM 1 4.2 4.7 0.55 0.4 0.0 0.0 0.35 0.4 0.2 0.2 0.35 0.4 0.2 0.2
+SPLINE_TRANSFORM 2 4.2 4.7 0.55 0.4 0.0 0.0 0.55 0.4 0.2 0.2 0.55 0.4 0.2 0.2
+SPLINE_TRANSFORM 3 4.2 4.7 0.55 0.4 0.0 0.0 0.35 0.2 0.2 0.2 0.35 0.2 0.2 0.2
+SPLINE_TRANSFORM 4 4.2 4.7 0.55 0.4 0.0 0.0 0.55 0.2 0.2 0.2 0.55 0.2 0.2 0.2
+SPLINE_TRANSFORM DEFENDER 4.2 4.5 0.55 0.4 0.0 0.0 0.55 0.4 0.0 0.0 0.1 0.1 0.9 0.9
