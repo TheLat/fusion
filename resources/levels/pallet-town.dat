@@ -1,5 +1,7 @@
 NAME
 Pallet Town
+LEAVESOUND
+sound_effects/general/sfx_go_inside.mp3
 NPCS
 pallet-town-woman woman3 8 8 WANDER
 INTERACTIONS

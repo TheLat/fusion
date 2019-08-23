@@ -4592,6 +4592,11 @@ void engine::init_level(string levelname) {
 			levels[levelname].music = line;
 			continue;
 		}
+		if (line == "LEAVESOUND") {
+			safe_getline(f, line);
+			levels[levelname].leavesound = line;
+			continue;
+		}
 		if (line == "NPCS") {
 			safe_getline(f, line);
 			while (line != "TELEPORT" && line != "DATA" && line != "ENCOUNTERS" && line != "LEVELS" && line != "TRAINERS" && line.find("WATER_ENCOUNTERS_") != 0) {
@@ -5598,9 +5603,19 @@ int engine::weightedrand() {
 }
 
 void engine::handle_teleport() {
+    bool found;
 	for (unsigned i = 0; i < levels[mc.loc.level].teleport.size(); ++i) {
 		if (levels[mc.loc.level].teleport[i].first.allow_player) {
 			if (mc.loc.x == levels[mc.loc.level].teleport[i].first.x && mc.loc.y == levels[mc.loc.level].teleport[i].first.y) {
+			    found = false;
+			    for (unsigned j = 0; j < levels[mc.loc.level].neighbors.size(); ++j) {
+			        if (levels[mc.loc.level].neighbors[j].level == levels[mc.loc.level].teleport[i].second.level) {
+			            found = true;
+			        }
+			    }
+			    if (!found) {
+			        se.play_sound(levels[mc.loc.level].leavesound);
+			    }
 				mc.loc.x = levels[mc.loc.level].teleport[i].second.x;
 				mc.loc.y = levels[mc.loc.level].teleport[i].second.y;
 				mc.loc.level = levels[mc.loc.level].teleport[i].second.level;
