@@ -5614,6 +5614,7 @@ void engine::handle_teleport() {
 			        }
 			    }
 			    if (!found) {
+			        // TODO: force off bike
 			        se.play_sound(levels[mc.loc.level].leavesound);
 			    }
 				mc.loc.x = levels[mc.loc.level].teleport[i].second.x;
