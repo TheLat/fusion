@@ -1,5 +1,7 @@
 NAME
 Viridian City Gym
+LEAVESOUND
+sound_effects/general/sfx_go_outside.mp3
 NPCS
 viridian-gym-board1 blank 15 15
 INTERACTIONS

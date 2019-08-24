@@ -1,5 +1,7 @@
 NAME
 Route 5 Tunnel
+LEAVESOUND
+sound_effects/general/sfx_go_outside.mp3
 NPCS
 route5-tunnel-woman woman3 2 3
 INTERACTIONS

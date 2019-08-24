@@ -1,5 +1,7 @@
 NAME
 Safari Rest House 3
+LEAVESOUND
+sound_effects/general/sfx_go_outside.mp3
 NPCS
 safari-house3-hat hat 1 4 WANDER
 INTERACTIONS

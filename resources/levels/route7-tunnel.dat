@@ -1,5 +1,7 @@
 NAME
 Route 7 Tunnel
+LEAVESOUND
+sound_effects/general/sfx_go_outside.mp3
 NPCS
 route7-tunnel-bald bald3 2 4
 INTERACTIONS

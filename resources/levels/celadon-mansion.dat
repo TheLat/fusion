@@ -1,5 +1,7 @@
 NAME
 Celadon Mansion
+LEAVESOUND
+sound_effects/general/sfx_go_outside.mp3
 NPCS
 celadon-mansion-bookcase1 blank 1 3
 INTERACTIONS

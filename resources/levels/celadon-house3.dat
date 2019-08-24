@@ -1,5 +1,7 @@
 NAME
 Celadon House 3
+LEAVESOUND
+sound_effects/general/sfx_go_outside.mp3
 NPCS
 celadon-house3-clerk clerk 0 1 DOWN
 INTERACTIONS

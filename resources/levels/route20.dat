@@ -1,5 +1,7 @@
 NAME
 Route 20
+LEAVESOUND
+sound_effects/general/sfx_go_inside.mp3
 NPCS
 route20-swimmer1 manswim 88 12 UP
 FORCE_INTERACTION

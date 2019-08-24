@@ -1,5 +1,7 @@
 NAME
 Viridian Station 3
+LEAVESOUND
+sound_effects/general/sfx_go_outside.mp3
 NPCS
 viridian-station3-boy boy 6 4 WANDER
 INTERACTIONS

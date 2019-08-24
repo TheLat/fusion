@@ -1,5 +1,7 @@
 NAME
 Celadon City Gym
+LEAVESOUND
+sound_effects/general/sfx_go_outside.mp3
 NPCS
 celadon-gym-bush1 bush 2 4
 INTERACTIONS

@@ -1,5 +1,7 @@
 NAME
 Pok{e-accent}mon Tower Base
+LEAVESOUND
+sound_effects/general/sfx_go_outside.mp3
 NPCS
 lavender-tower-lower-desk blank 13 12
 INTERACTIONS

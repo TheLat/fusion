@@ -1,5 +1,7 @@
 NAME
 Route 8 Checkpoint
+LEAVESOUND
+sound_effects/general/sfx_go_outside.mp3
 NPCS
 route8-checkpoint-guard guard3 3 1 DOWN
 FORCE_INTERACTION

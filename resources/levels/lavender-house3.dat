@@ -1,5 +1,7 @@
 NAME
 Lavender City House 3
+LEAVESOUND
+sound_effects/general/sfx_go_outside.mp3
 NPCS
 lavender-house3-bookshelf1 blank 0 1
 INTERACTIONS

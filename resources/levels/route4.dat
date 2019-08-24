@@ -1,5 +1,7 @@
 NAME
 Route 4
+LEAVESOUND
+sound_effects/general/sfx_go_inside.mp3
 NPCS
 route4-girl girl 10 18
 INTERACTIONS

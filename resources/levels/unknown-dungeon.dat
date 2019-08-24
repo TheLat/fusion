@@ -1,5 +1,7 @@
 NAME
 Unknown Dungeon
+LEAVESOUND
+sound_effects/general/sfx_go_outside.mp3
 NPCS
 unknown-dungeon-item1 orb 24 8
 INTERACTIONS

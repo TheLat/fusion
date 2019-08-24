@@ -1,5 +1,7 @@
 NAME
 Cerulean City Gym
+LEAVESOUND
+sound_effects/general/sfx_go_outside.mp3
 NPCS
 cerulean-gym-clerk clerk 7 10
 INTERACTIONS

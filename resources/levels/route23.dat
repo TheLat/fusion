@@ -1,5 +1,7 @@
 NAME
 Route 23
+LEAVESOUND
+sound_effects/general/sfx_go_inside.mp3
 NPCS
 route23-sign1 blank 8 33
 INTERACTIONS

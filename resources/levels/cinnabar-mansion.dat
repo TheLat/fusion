@@ -1,5 +1,7 @@
 NAME
 Pok{e-accent}mon Mansion
+LEAVESOUND
+sound_effects/general/sfx_go_outside.mp3
 NPCS
 cinnabar-mansion-item1 orb 14 3
 INTERACTIONS

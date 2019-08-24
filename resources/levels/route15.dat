@@ -1,5 +1,7 @@
 NAME
 Route 15
+LEAVESOUND
+sound_effects/general/sfx_go_inside.mp3
 NPCS
 route15-item1 orb 18 6
 INTERACTIONS

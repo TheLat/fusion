@@ -1,5 +1,7 @@
 NAME
 Vermilion City Mart
+LEAVESOUND
+sound_effects/general/sfx_go_outside.mp3
 NPCS
 vermilion-mart-shelf1 blank 4 4
 INTERACTIONS

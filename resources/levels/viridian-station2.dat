@@ -1,5 +1,7 @@
 NAME
 Viridian Station 2
+LEAVESOUND
+sound_effects/general/sfx_go_outside.mp3
 NPCS
 viridian-station2-oldman oldman 2 5
 INTERACTIONS

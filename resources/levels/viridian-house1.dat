@@ -1,5 +1,7 @@
 NAME
 Viridian City House 1
+LEAVESOUND
+sound_effects/general/sfx_go_outside.mp3
 NPCS
 viridian-house1-girl girl2 1 2 WANDER
 INTERACTIONS

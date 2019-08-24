@@ -1,5 +1,7 @@
 NAME
 Cerulean House 2
+LEAVESOUND
+sound_effects/general/sfx_go_outside.mp3
 NPCS
 cerulean-house2-man bald3 5 3 RIGHT
 INTERACTIONS

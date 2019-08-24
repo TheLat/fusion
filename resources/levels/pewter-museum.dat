@@ -1,5 +1,7 @@
 NAME
 Pewter City Museum
+LEAVESOUND
+sound_effects/general/sfx_go_outside.mp3
 NPCS
 pewter-museum-entrance blank 11 4
 FORCE_INTERACTION

@@ -1,5 +1,7 @@
 NAME
 Route 21
+LEAVESOUND
+sound_effects/general/sfx_go_inside.mp3
 NPCS
 route21-fisher1 fat 9 25 LEFT
 FORCE_INTERACTION

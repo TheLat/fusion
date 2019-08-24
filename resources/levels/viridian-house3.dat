@@ -1,5 +1,7 @@
 NAME
 Viridian City House 3
+LEAVESOUND
+sound_effects/general/sfx_go_outside.mp3
 NPCS
 viridian-house3-doctor doctor 2 4 RIGHT
 INTERACTIONS

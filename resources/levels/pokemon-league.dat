@@ -1,5 +1,7 @@
 NAME
 Pok{e-accent}mon League
+LEAVESOUND
+sound_effects/general/sfx_go_outside.mp3
 NPCS
 pokemon-league-door1 door3 4 1 NO_OFFSET
 INTERACTIONS

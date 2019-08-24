@@ -1,5 +1,7 @@
 NAME
 Route 8
+LEAVESOUND
+sound_effects/general/sfx_go_inside.mp3
 NPCS
 route8-girl1 girl 51 15 LEFT
 FORCE_INTERACTION

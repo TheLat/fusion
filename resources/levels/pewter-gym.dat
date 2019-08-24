@@ -1,5 +1,7 @@
 NAME
 Pewter City Gym
+LEAVESOUND
+sound_effects/general/sfx_go_outside.mp3
 NPCS
 pewter-gym-clerk clerk 7 10 DOWN
 INTERACTIONS

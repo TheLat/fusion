@@ -1,5 +1,7 @@
 NAME
 Diglett's Cave
+LEAVESOUND
+sound_effects/general/sfx_go_outside.mp3
 NPCS
 diglett-cave-bald1 bald4 6 5
 INTERACTIONS

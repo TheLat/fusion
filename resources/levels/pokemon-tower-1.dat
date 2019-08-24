@@ -1,5 +1,7 @@
 NAME
 Pok{e-accent}mon Tower Floor 3
+LEAVESOUND
+sound_effects/general/sfx_go_outside.mp3
 NPCS
 lavender-tower-1-item1 orb 10 1
 INTERACTIONS

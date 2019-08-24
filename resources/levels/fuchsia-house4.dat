@@ -1,5 +1,7 @@
 NAME
 Fuchsia House 4
+LEAVESOUND
+sound_effects/general/sfx_go_outside.mp3
 NPCS
 fuchsia-house4-guy1 guard 0 2 UP
 INTERACTIONS

@@ -1,5 +1,7 @@
 NAME
 Route 15 Checkpoint
+LEAVESOUND
+sound_effects/general/sfx_go_outside.mp3
 NPCS
 route15-checkpoint-guard guard3 5 1 FARSPEAK
 INTERACTIONS

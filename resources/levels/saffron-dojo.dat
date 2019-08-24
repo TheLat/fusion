@@ -1,5 +1,7 @@
 NAME
 Saffron City Fighting Dojo
+LEAVESOUND
+sound_effects/general/sfx_go_outside.mp3
 NPCS
 saffron-dojo-board1 blank 3 9
 INTERACTIONS

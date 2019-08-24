@@ -1,5 +1,7 @@
 NAME
 Viridian Forest
+LEAVESOUND
+sound_effects/general/sfx_go_outside.mp3
 NPCS
 viridian-forest-sign1 blank 18 46
 INTERACTIONS

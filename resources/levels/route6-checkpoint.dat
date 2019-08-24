@@ -1,5 +1,7 @@
 NAME
 Route 6 Checkpoint
+LEAVESOUND
+sound_effects/general/sfx_go_outside.mp3
 NPCS
 route6-checkpoint-guard guard3 6 3 LEFT
 FORCE_INTERACTION

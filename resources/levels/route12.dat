@@ -1,5 +1,7 @@
 NAME
 Route 12
+LEAVESOUND
+sound_effects/general/sfx_go_inside.mp3
 NPCS
 route12-sign1 blank 17 15
 INTERACTIONS

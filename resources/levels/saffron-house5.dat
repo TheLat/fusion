@@ -1,5 +1,7 @@
 NAME
 Saffron House 5
+LEAVESOUND
+sound_effects/general/sfx_go_outside.mp3
 NPCS
 saffron-house5-snes blank 3 5
 INTERACTIONS

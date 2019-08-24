@@ -1,5 +1,7 @@
 NAME
 Power Plant
+LEAVESOUND
+sound_effects/general/sfx_go_outside.mp3
 NPCS
 power-plant-orb1 orb 8 25
 INTERACTIONS

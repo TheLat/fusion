@@ -1,5 +1,7 @@
 NAME
 Vermilion City Gym
+LEAVESOUND
+sound_effects/general/sfx_go_outside.mp3
 NPCS
 vermilion-gym-clerk clerk 4 14 DOWN
 INTERACTIONS

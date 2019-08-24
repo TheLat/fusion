@@ -1,5 +1,7 @@
 NAME
 Saffron City Gym
+LEAVESOUND
+sound_effects/general/sfx_go_outside.mp3
 NPCS
 saffron-gym-board blank 9 15
 INTERACTIONS

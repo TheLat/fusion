@@ -1,5 +1,7 @@
 NAME
 Vermilion House 3
+LEAVESOUND
+sound_effects/general/sfx_go_outside.mp3
 NPCS
 vermilion-house3-bookshelf3 blank 0 1
 INTERACTIONS

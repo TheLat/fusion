@@ -1,5 +1,7 @@
 NAME
 POK{e-accent}MON DAYCARE
+LEAVESOUND
+sound_effects/general/sfx_go_outside.mp3
 NPCS
 daycare-bookshelf1 blank 0 1
 INTERACTIONS

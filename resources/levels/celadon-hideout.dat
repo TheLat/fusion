@@ -1,5 +1,7 @@
 NAME
 Rocket Hideout
+LEAVESOUND
+sound_effects/general/sfx_go_outside.mp3
 NPCS
 celadon-hideout-rocket1 rocket 4 6 RIGHT
 FORCE_INTERACTION

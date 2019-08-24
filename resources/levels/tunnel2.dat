@@ -1,5 +1,7 @@
 NAME
 Underground Path 2
+LEAVESOUND
+sound_effects/general/sfx_go_outside.mp3
 NPCS
 tunnel2-item1 blank 20 5 INCORPOREAL
 INTERACTIONS

@@ -1,5 +1,7 @@
 NAME
 Saffron City House 2
+LEAVESOUND
+sound_effects/general/sfx_go_outside.mp3
 NPCS
 saffron-house2-boy boy 4 1 DOWN
 INTERACTIONS

@@ -1,5 +1,7 @@
 NAME
 Game Corner
+LEAVESOUND
+sound_effects/general/sfx_go_outside.mp3
 NPCS
 celadon-game-corner-woman woman4 2 2 DOWN FARSPEAK
 INTERACTIONS

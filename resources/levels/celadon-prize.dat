@@ -1,5 +1,7 @@
 NAME
 Prize Redemption
+LEAVESOUND
+sound_effects/general/sfx_go_outside.mp3
 NPCS
 celadon-prize-man man 1 4
 INTERACTIONS

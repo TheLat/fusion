@@ -1,5 +1,7 @@
 NAME
 Route 17
+LEAVESOUND
+sound_effects/general/sfx_go_inside.mp3
 NPCS
 route17-guy1 biker 17 16 RIGHT
 FORCE_INTERACTION

@@ -1,5 +1,7 @@
 NAME
 Route 4 Pok{e-accent}center
+LEAVESOUND
+sound_effects/general/sfx_go_outside.mp3
 NPCS
 route4-center-couch blank 0 4
 INTERACTIONS

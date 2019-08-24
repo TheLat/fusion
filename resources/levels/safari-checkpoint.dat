@@ -1,5 +1,7 @@
 NAME
 Safari Zone Checkpoint
+LEAVESOUND
+sound_effects/general/sfx_go_outside.mp3
 NPCS
 safari-zone-checkpoint-guard1 guard 6 3 LEFT
 FORCE_INTERACTION

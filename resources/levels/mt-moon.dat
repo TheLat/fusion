@@ -1,5 +1,7 @@
 NAME
 Mt. Moon
+LEAVESOUND
+sound_effects/general/sfx_go_outside.mp3
 NPCS
 mt-moon-item1 orb 5 32
 INTERACTIONS

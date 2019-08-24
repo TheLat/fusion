@@ -1,5 +1,7 @@
 NAME
 Route 19
+LEAVESOUND
+sound_effects/general/sfx_go_inside.mp3
 NPCS
 route19-guy1 guy2 13 9 LEFT
 FORCE_INTERACTION

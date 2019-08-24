@@ -1,5 +1,7 @@
 NAME
 Viridian City Mart
+LEAVESOUND
+sound_effects/general/sfx_go_outside.mp3
 NPCS
 viridian-mart-shelf1 blank 4 4
 INTERACTIONS

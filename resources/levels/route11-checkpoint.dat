@@ -1,5 +1,7 @@
 NAME
 Route 11 Checkpoint
+LEAVESOUND
+sound_effects/general/sfx_go_outside.mp3
 NPCS
 route11-checkpoint-guard guard3 5 1 FARSPEAK
 INTERACTIONS

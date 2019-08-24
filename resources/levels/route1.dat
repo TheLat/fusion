@@ -1,5 +1,7 @@
 NAME
 Route 1
+LEAVESOUND
+sound_effects/general/sfx_go_inside.mp3
 NPCS
 route1-boy1 boy 8 24 WANDER
 INTERACTIONS

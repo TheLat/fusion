@@ -1,5 +1,7 @@
 NAME
 Fuchsia House 2
+LEAVESOUND
+sound_effects/general/sfx_go_outside.mp3
 NPCS
 fuchsia-house2-man safari 5 3 RIGHT
 INTERACTIONS

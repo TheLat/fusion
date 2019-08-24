@@ -1,5 +1,7 @@
 NAME
 Route 8 Tunnel
+LEAVESOUND
+sound_effects/general/sfx_go_outside.mp3
 NPCS
 route8-tunnel-woman woman3 3 4
 INTERACTIONS

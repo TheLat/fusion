@@ -1,5 +1,7 @@
 NAME
 Silph Co.
+LEAVESOUND
+sound_effects/general/sfx_go_outside.mp3
 NPCS
 silph-co-floor2-door1a door 4 28 NO_OFFSET
 INTERACTIONS

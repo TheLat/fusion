@@ -1,5 +1,7 @@
 NAME
 S.S. Anne Rooms
+LEAVESOUND
+sound_effects/general/sfx_go_outside.mp3
 NPCS
 ss-anne-rooms-hat1 hat 2 3 WANDER
 INTERACTIONS

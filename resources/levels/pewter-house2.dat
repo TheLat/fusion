@@ -1,5 +1,7 @@
 NAME
 Pewter City House 2
+LEAVESOUND
+sound_effects/general/sfx_go_outside.mp3
 NPCS
 pewter-house2-bald bald3 1 2
 INTERACTIONS
