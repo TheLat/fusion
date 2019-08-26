@@ -5616,6 +5616,9 @@ void engine::handle_teleport() {
 			    if (!found) {
 			        // TODO: force off bike
 			        se.play_sound(levels[mc.loc.level].leavesound);
+			        unsigned anim_holder = g.ae.create_anim_scene(string("screendark"));
+			        while (!g.ae.is_dones(anim_holder)) {}
+			        g.ae.create_anim_scene(string("screenlight"));
 			    }
 				mc.loc.x = levels[mc.loc.level].teleport[i].second.x;
 				mc.loc.y = levels[mc.loc.level].teleport[i].second.y;
