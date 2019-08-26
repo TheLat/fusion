@@ -1363,6 +1363,7 @@ bool engine::gain_item(string s, int count, bool silent) {
 		mc.inventory.push_back(item);
 	}
 	if (!silent) {
+		// TODO: mute music, play blocking sound, unmute music
 		if (items[s].price == 0) {
 		    se.play_sound(string("sound_effects/general/sfx_get_key_item.mp3"));
 		}

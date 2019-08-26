@@ -1,4 +1,5 @@
 TYPE:SELECT
+SOUND:sound_effects/general/sfx_start_menu.mp3
 COLUMNS:1
 SELECTION_CAP:7
 REPLACE_CANCEL:6

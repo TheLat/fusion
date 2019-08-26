@@ -68,6 +68,14 @@ void menu::create_menu(string file, string choice, string text_override, string 
 				else if (temp1 == "REPLACE_CANCEL") {
 					replace_cancel = stof(temp2);
 				}
+				else if (temp1 == "SOUND") {
+					se.play_sound(temp2);
+				}
+				else if (temp1 == "CRY") {
+				    if (temp2.find("{CHOICE}") != -1)
+				        temp2 = choice;
+					se.play_cry(temp2);
+				}
 				else if (temp1 == "SELECTION_CAP") {
 					if (temp2.find("{CHOICE}") != -1) {
 						temp2.insert(temp2.find("{CHOICE}"), choice);
