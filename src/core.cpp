@@ -3703,6 +3703,8 @@ bool engine::battle(trainer& t) { // trainer battle
 					g.draw_list[enemy_sprite].x = 2.0f;
 					do_alert(t.lose_message);
 				}
+                unsigned anim_holder = g.ae.create_anim_scene(string("screendark"));
+                while (!g.ae.is_dones(anim_holder)) {}
 				g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
 				team_clear_volatile();
 				return false;
@@ -4112,6 +4114,8 @@ bool engine::battle() { // wild pokemon
 				// TODO:  Handle defeat
 				do_alert(string("{PLAYER_NAME} is out of useable POK{e-accent}MON!"));
 				do_alert(string("{PLAYER_NAME} blacked out!"));
+                unsigned anim_holder = g.ae.create_anim_scene(string("screendark"));
+                while (!g.ae.is_dones(anim_holder)) {}
 				g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
 				team_clear_volatile();
 				return false;
@@ -5623,7 +5627,6 @@ void engine::handle_teleport() {
 			        se.play_sound(levels[mc.loc.level].leavesound);
 			        unsigned anim_holder = g.ae.create_anim_scene(string("screendark"));
 			        while (!g.ae.is_dones(anim_holder)) {}
-			        g.ae.create_anim_scene(string("screenlight"));
 			    }
 				mc.loc.x = levels[mc.loc.level].teleport[i].second.x;
 				mc.loc.y = levels[mc.loc.level].teleport[i].second.y;
@@ -5633,6 +5636,10 @@ void engine::handle_teleport() {
 					levels[mc.loc.level].characters[j].loc = levels[mc.loc.level].characters[j].origin;
 				}
 				se.play_music(levels[mc.loc.level].music);
+			    if (!found) {
+				    update_level();
+			        g.ae.create_anim_scene(string("screenlight"));
+			    }
 				break;
 			}
 		}
@@ -7358,8 +7365,12 @@ void engine::do_interaction(character& npc) {
 				mc.loc.level = mc.last_center.level;
 				mc.loc.x = mc.last_center.x;
 				mc.loc.y = mc.last_center.y;
-				mc.money /= 2;
+				update_level();
+			    g.ae.create_anim_scene(string("screenlight"));
+				do_alert(string("{PLAYER_NAME} lost $") + to_string(mc.money/2) + string("!"));
+				mc.money = mc.money - (mc.money/2);
 			}
+			se.play_music(levels[mc.loc.level].music);
 		}
 		else if (s.find("BATTLE") == 0) {
 			s2 = s;
@@ -7383,6 +7394,7 @@ void engine::do_interaction(character& npc) {
 				mc.team[i].hp_bar_index = 0;
 				mc.team[i].exp_bar_index = 0;
 			}
+			se.play_music(levels[mc.loc.level].music);
 		}
 		if (s.find("|") != -1)
 			s.erase(0, s.find("|") + 1);
@@ -7399,7 +7411,10 @@ void engine::do_interaction(character& npc) {
 		mc.loc.level = mc.last_center.level;
 		mc.loc.x = mc.last_center.x;
 		mc.loc.y = mc.last_center.y;
-		mc.money /= 2;
+		update_level();
+	    g.ae.create_anim_scene(string("screenlight"));
+		do_alert(string("{PLAYER_NAME} lost $") + to_string(mc.money/2) + string("!"));
+		mc.money = mc.money - (mc.money/2);
 	}
 }
 
@@ -7535,8 +7550,12 @@ void engine::main() {
 				mc.loc.level = mc.last_center.level;
 				mc.loc.x = mc.last_center.x;
 				mc.loc.y = mc.last_center.y;
-				mc.money /= 2;
+				update_level();
+			    g.ae.create_anim_scene(string("screenlight"));
+				do_alert(string("{PLAYER_NAME} lost $") + to_string(mc.money/2) + string("!"));
+				mc.money = mc.money - (mc.money/2);
 			}
+			se.play_music(levels[mc.loc.level].music);
 		}
 		if (menus.size() > 0) {
 			menus[0]->main();
