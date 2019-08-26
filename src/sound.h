@@ -20,6 +20,8 @@ public:
 	void play_sound_blocking(string s);
 	void play_music(string s);
 	void play_cry(string s);
+	void mute_music(bool partial);
+	void unmute_music();
 };
 
 #endif

@@ -1363,7 +1363,7 @@ bool engine::gain_item(string s, int count, bool silent) {
 		mc.inventory.push_back(item);
 	}
 	if (!silent) {
-		// TODO: mute music, play blocking sound, unmute music
+		se.mute_music(false);
 		if (items[s].price == 0) {
 		    se.play_sound(string("sound_effects/general/sfx_get_key_item.mp3"));
 		}
@@ -1374,6 +1374,7 @@ bool engine::gain_item(string s, int count, bool silent) {
 		    se.play_sound(string("sound_effects/general/sfx_get_item_2.mp3"));
 		}
 		do_menu(string("ALERT"), string("{PLAYER_NAME} got ") + s + string("!"));
+		se.unmute_music();
 	}
 	return true;
 }
@@ -2633,7 +2634,6 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
     if (!at_start_locked_stats && in_status(attacker, string("LOCK_STATS"))) {
         do_alert(string("STATS are now locked against buffs and debuffs!"));
     }
-	// TODO: Paralyze, poison, burn, freeze, and sleep notification.
 	return success;
 }
 
@@ -3372,14 +3372,18 @@ bool engine::battle(trainer& t) { // trainer battle
 	do_alert(t.display_name + string(" wants to fight!"));
 	g.draw_list[enemy_trainer_sprite].x = 2.0f; // TODO:  Animation
 	g.draw_list[enemy_sprite].x = 0.1;
+	se.mute_music(true);
 	se.play_cry(mc.enemy_team[mc.enemy_selected].number);
 	do_alert(t.display_name + string(" sent out ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string("!"));
+	se.unmute_music();
 	mc.enemy_team[mc.enemy_selected].turn_count = 1;
 	mc.seen[mc.enemy_team[mc.enemy_selected].number] = true;
 	do_alert(string("Go! ") + get_nickname(mc.team[mc.selected]) + string("!"));
-	se.play_cry(mc.team[mc.selected].number);
+	se.mute_music(true);
+	se.play_cry(mc.team[mc.selected].number); // TODO: Animation
+	se.unmute_music();
 	mc.team[mc.selected].turn_count = 1;
-	g.draw_list[player_sprite].x = -2.0f; // TODO:  Animation
+	g.draw_list[player_sprite].x = -2.0f;
 	g.draw_list[team_sprite].x = -1.0;
 	g.push_arrow_box_left(-0.1f, -0.4f, 1.0f, 0.3f);
 	g.push_arrow_box_right(-0.9f, 0.6f, 1.0f, 0.2f);
@@ -6976,6 +6980,8 @@ void engine::do_interaction(character& npc) {
 				s = "";
 			}
 			bool mon_created = false;
+			se.mute_music(false);
+			se.play_sound(string("sound_effects/general/sfx_get_key_item.mp3"));
 			for (unsigned i = 0; i < 6; ++i) {
 				if (!mc.team[i].defined) {
 					make_mon(s2, l, mc.team[i]);
@@ -7008,8 +7014,7 @@ void engine::do_interaction(character& npc) {
 				}
 				// TODO: Storage full
 			}
-			// TODO: mute music, play sound, unmute music.
-			se.play_sound(string("sound_effects/general/sfx_get_key_item.mp3"));
+			se.unmute_music();
 		}
 		else if (s.find("SET_FACE:") == 0) {
 			s.erase(0, s.find(":") + 1);
@@ -7283,15 +7288,6 @@ void engine::do_interaction(character& npc) {
 			unsigned waiter2 = g.ae.create_animf(&waiter1, 0.0, 1.0, 8.0/30.0);
 			while (!g.ae.is_donef(waiter2)) {}
 			g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
-		}
-		else if (s.find("SOUND:") == 0) {
-			// TODO: Implement sound playing
-			if (s.find("|") != -1) {
-				s.erase(0, s.find("|") + 1);
-			}
-			else {
-				s = "";
-			}
 		}
 		else if (s.find("MAP") == 0) {
 			// TODO: Implement MAP

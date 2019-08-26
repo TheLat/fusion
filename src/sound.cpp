@@ -147,3 +147,33 @@ void soundengine::play_cry(string s) {
 	channel1->setPaused(false);
 	channel2->setPaused(false);
 }
+
+void soundengine::mute_music(bool partial) {
+    double volume = 0.0;
+    if (partial)
+        volume = 0.5;
+    if (music1) {
+        music1->setPaused(true);
+        music1->setVolume(volume);
+        music1->setPaused(false);
+    }
+    if (music2) {
+        music2->setPaused(true);
+        music2->setVolume(volume);
+        music2->setPaused(false);
+    }
+}
+
+void soundengine::unmute_music() {
+    double volume = 1.0;
+    if (music1) {
+        music1->setPaused(true);
+        music1->setVolume(volume);
+        music1->setPaused(false);
+    }
+    if (music2) {
+        music2->setPaused(true);
+        music2->setVolume(volume);
+        music2->setPaused(false);
+    }
+}
