@@ -64,6 +64,7 @@ void soundengine::play_music(string s) {
 		return;
 	}
 	last_music = s;
+	// TODO: Fade-out for playing music.
 	if (music1) {
 		music1->stop();
 		music1 = 0;
@@ -98,9 +99,11 @@ void soundengine::play_music(string s) {
 	}
 	else {
 		if (sounds[s] == 0) {
-			result = system->createSound((safepath + s).c_str(), FMOD_DEFAULT, 0, &sounds[s]);
+			result = system->createSound((safepath + s).c_str(), FMOD_LOOP_NORMAL, 0, &sounds[s]);
 		}
-		result = system->playSound(sounds[s], 0, false, &music1);
+		result = system->playSound(sounds[s], 0, true, &music1);
+		music1->setPaused(false);
+		music1->setLoopCount(1000000);
 	}
 }
 
