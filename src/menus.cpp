@@ -1304,7 +1304,7 @@ vector<int> menu::main() {
 		int a = 0;
 	}
 	pop_menu();
-	if (etype != AUTO_FOLLOWUP && !discard_choice) {
+	if (etype != AUTO_FOLLOWUP) {
 		choice.insert(choice.begin(), selection != -1 ? selection + scroll : selection);
 		if ((choice.size() > 0) && (choice[0] == offset + cancel_option))
 			choice[0] = -1;

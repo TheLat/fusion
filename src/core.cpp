@@ -7008,6 +7008,8 @@ void engine::do_interaction(character& npc) {
 				}
 				// TODO: Storage full
 			}
+			// TODO: mute music, play sound, unmute music.
+			se.play_sound(string("sound_effects/general/sfx_get_key_item.mp3"));
 		}
 		else if (s.find("SET_FACE:") == 0) {
 			s.erase(0, s.find(":") + 1);
