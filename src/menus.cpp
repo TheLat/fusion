@@ -1098,6 +1098,7 @@ void menu::push_menu() {
 			    raw[0].s.erase(step, raw[0].s.size());
 			    followup[0] = menuname + string(":") + holder;
 			    autoclose = false;
+			    discard_choice = true;
 			}
             if (etype == ALERT) {
                 draw_list_copy = g.draw_list;
@@ -1288,7 +1289,11 @@ vector<int> menu::main() {
 			if (followup[selection] == "")
 				break;
 			out = do_menu(followup[selection]);
-			if ((etype != AUTO_FOLLOWUP) && ((out.size() == 0) || (out[out.size() - 1] == -1))) {
+			if (discard_choice) {
+			    done = true;
+			    break;
+			}
+			else if ((etype != AUTO_FOLLOWUP) && ((out.size() == 0) || (out[out.size() - 1] == -1))) {
 				done = false;
 			}
 			else {
@@ -1299,7 +1304,7 @@ vector<int> menu::main() {
 		int a = 0;
 	}
 	pop_menu();
-	if (etype != AUTO_FOLLOWUP) {
+	if (etype != AUTO_FOLLOWUP && !discard_choice) {
 		choice.insert(choice.begin(), selection != -1 ? selection + scroll : selection);
 		if ((choice.size() > 0) && (choice[0] == offset + cancel_option))
 			choice[0] = -1;
