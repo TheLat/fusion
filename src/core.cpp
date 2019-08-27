@@ -3245,6 +3245,8 @@ int engine::get_smart_move(mon& attacker, mon& defender, trainer& t, bool skip_r
 				dam -= 1.0;
 		    if (in_move_special(attacker.moves[i], string("SLEEPING_TARGET_ONLY")) && !in_status(defender, string("SLEEP")))
 		        dam = -9999999.0;
+		    if (t.tutorial && (defender.curr_hp < (get_stat(defender, HP)/2)))
+		        dam = -dam;
 			if (dam > magnitude) {
 				magnitude = dam;
 				ret = i;
@@ -3705,15 +3707,17 @@ bool engine::battle(trainer& t) { // trainer battle
 			}
 			if (i == 6) {
 				// TODO:  Handle defeat
-				do_alert(string("{PLAYER_NAME} is out of useable POK{e-accent}MON!"));
-				do_alert(string("{PLAYER_NAME} blacked out!"));
 				if (t.lose_message != "") {
 					g.draw_list[enemy_trainer_sprite].x = 0.1f;
 					g.draw_list[enemy_sprite].x = 2.0f;
 					do_alert(t.lose_message);
 				}
-                unsigned anim_holder = g.ae.create_anim_scene(string("screendark"));
-                while (!g.ae.is_dones(anim_holder)) {}
+				if (!t.tutorial) {
+				    do_alert(string("{PLAYER_NAME} is out of useable POK{e-accent}MON!"));
+				    do_alert(string("{PLAYER_NAME} blacked out!"));
+                    unsigned anim_holder = g.ae.create_anim_scene(string("screendark"));
+                    while (!g.ae.is_dones(anim_holder)) {}
+                }
 				g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
 				team_clear_volatile();
 				return false;
@@ -4760,6 +4764,7 @@ void engine::init_level(string levelname) {
 				d.name = s2;
 				d.skip_accuracy_check = false;
 				d.overswitch = false;
+				d.tutorial = false;
 				d.no_switch = 0;
 				d.bossfight = false;
 				d.finalboss = false;
@@ -4800,6 +4805,9 @@ void engine::init_level(string levelname) {
 					}
 					if (s2.find("FINALBOSS") != -1) {
 						d.finalboss = true;
+					}
+					if (s2.find("TUTORIAL") != -1) {
+						d.tutorial = true;
 					}
 				}
 				s2 = s;

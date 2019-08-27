@@ -215,6 +215,7 @@ public:
 	string win_message;
 	bool skip_accuracy_check;
 	bool overswitch;
+	bool tutorial;
 	int no_switch;
 	bool bossfight;
 	bool finalboss;
