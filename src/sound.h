@@ -6,12 +6,15 @@
 #include <string>
 
 using namespace std;
+#define SOUND_CHANNELS 8
 
 class soundengine {
 private:
 	std::map<string, FMOD::Sound*> sounds;
 	FMOD::System *system;
-	FMOD::Channel *music1 = 0, *music2 = 0;
+	FMOD::Channel *music1, *music2;
+	FMOD::Channel *channels[8];
+	int channel_index;
 	string last_music;
 public:
 	bool holder;

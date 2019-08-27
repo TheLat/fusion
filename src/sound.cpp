@@ -24,29 +24,40 @@ void soundengine::init_sounds() {
 		}
 		f.close();
 	}
+	channel_index = 0;
+	for (unsigned i = 0; i < SOUND_CHANNELS; ++i) {
+	    channels[i] = 0;
+	}
+	music1 = 0;
+	music2 = 0;
 }
 
 void soundengine::play_sound(string s) {
-	FMOD::Channel    *channel = 0;
 	FMOD_RESULT       result;
 	if (sounds[s] == 0) {
 		result = system->createSound((safepath + s).c_str(), FMOD_DEFAULT, 0, &sounds[s]);
 	}
-	result = system->playSound(sounds[s], 0, false, &channel);
+	if (channels[channel_index])
+	    channels[channel_index]->stop();
+	result = system->playSound(sounds[s], 0, false, &(channels[channel_index]));
+	channel_index = (channel_index+1) % SOUND_CHANNELS;
 }
 
 void soundengine::play_sound_blocking(string s) {
-	FMOD::Channel    *channel = 0;
 	FMOD_RESULT       result;
 	bool playing = false;
 	if (sounds[s] == 0) {
 		result = system->createSound((safepath + s).c_str(), FMOD_DEFAULT, 0, &sounds[s]);
 	}
-	result = system->playSound(sounds[s], 0, false, &channel);
-	result = channel->isPlaying(&playing);
+	if (channels[channel_index])
+	    channels[channel_index]->stop();
+	result = system->playSound(sounds[s], 0, false, &(channels[channel_index]));
+	channel_index = (channel_index+1) % SOUND_CHANNELS;
+	result = (channels[channel_index])->isPlaying(&playing);
 	while (playing) {
-		result = channel->isPlaying(&playing);
+		result = (channels[channel_index])->isPlaying(&playing);
 	}
+	channel_index = (channel_index+1) % SOUND_CHANNELS;
 }
 
 void soundengine::play_music(string s) {
@@ -108,7 +119,6 @@ void soundengine::play_music(string s) {
 }
 
 void soundengine::play_cry(string s) {
-	FMOD::Channel    *channel1 = 0, *channel2 = 0;
 	FMOD_RESULT       result;
 	string s1, s2;
 	unsigned long long clock_start;
@@ -123,29 +133,36 @@ void soundengine::play_cry(string s) {
 	s1 = string("cries/") + s1 + string(".mp3");
 	s2 = string("cries/") + s2 + string(".mp3");
 	if (s1 == s2) {
-	    result = system->playSound(sounds[s1], 0, false, &channel1);
+	    if (channels[channel_index])
+	        channels[channel_index]->stop();
+	    result = system->playSound(sounds[s1], 0, false, &(channels[channel_index]));
 	    return;
 	}
-	result = system->playSound(sounds[s1], 0, true, &channel1);
-	result = system->playSound(sounds[s2], 0, true, &channel2);
+	if (channels[channel_index])
+        channels[channel_index]->stop();
+	if (channels[(channel_index + 1) % SOUND_CHANNELS])
+        channels[channel_index]->stop();
+	result = system->playSound(sounds[s1], 0, true, &(channels[channel_index]));
+	result = system->playSound(sounds[s2], 0, true, &(channels[(channel_index + 1) % SOUND_CHANNELS]));
 	result = system->getSoftwareFormat(&outputrate, 0, 0);
-	result = channel1->getDSPClock(0, &clock_start);
+	result = (channels[channel_index])->getDSPClock(0, &clock_start);
 	result = sounds[s1]->getLength(&slen1, FMOD_TIMEUNIT_PCM);
 	result = sounds[s1]->getDefaults(&freq1, 0);
 	flen1 = ((float)slen1 / freq1 * outputrate);
 	result = sounds[s2]->getLength(&slen2, FMOD_TIMEUNIT_PCM);
 	result = sounds[s2]->getDefaults(&freq2, 0);
 	flen2 = ((float)slen2 / freq2 * outputrate);
-	result = channel1->addFadePoint(clock_start, 1.0);
-	result = channel1->addFadePoint(clock_start + flen1, 0.0);
+	result = (channels[channel_index])->addFadePoint(clock_start, 1.0);
+	result = (channels[channel_index])->addFadePoint(clock_start + flen1, 0.0);
 	if (flen1 > flen2) {
 		clock_start += (flen1 - flen2);
-		result = channel2->setDelay(clock_start, 0, false);
+		result = (channels[(channel_index + 1) % SOUND_CHANNELS])->setDelay(clock_start, 0, false);
 	}
-	result = channel2->addFadePoint(clock_start, 0.0);
-	result = channel2->addFadePoint(clock_start + flen2, 1.0);
-	channel1->setPaused(false);
-	channel2->setPaused(false);
+	result = (channels[(channel_index + 1) % SOUND_CHANNELS])->addFadePoint(clock_start, 0.0);
+	result = (channels[(channel_index + 1) % SOUND_CHANNELS])->addFadePoint(clock_start + flen2, 1.0);
+	(channels[channel_index])->setPaused(false);
+	(channels[(channel_index + 1) % SOUND_CHANNELS])->setPaused(false);
+	channel_index = (channel_index+2) % SOUND_CHANNELS;
 }
 
 void soundengine::mute_music(bool partial) {
