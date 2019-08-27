@@ -216,6 +216,8 @@ public:
 	bool skip_accuracy_check;
 	bool overswitch;
 	int no_switch;
+	bool bossfight;
+	bool finalboss;
 	mon team[6];
 };
 

@@ -1588,8 +1588,10 @@ bool engine::level_up(mon& out, bool confirm_learn) {
 	while (out.level < 100 && level_to_exp[out.level + 1] <= out.exp) {
 		out.level++;
 		if (confirm_learn) {
+		    se.mute_music(false);
 			se.play_sound(string("sound_effects/general/sfx_level_up.mp3"));
 			do_alert(get_nickname(out) + string(" grew to level ") + to_string(out.level) + "!");
+			se.unmute_music();
 			for (unsigned x = 0; x < all_mon[out.number].evolution.size(); ++x) {
 				if (all_mon[out.number].evolution[x].second.find("LEVEL") == 0) {
 					string temp;
@@ -3355,6 +3357,13 @@ bool engine::battle(trainer& t) { // trainer battle
 			mc.enemy_team[i].fought[j] = false;
 		}
 	}
+	// TODO: combat intro animation
+	if (t.finalboss)
+	    se.play_music(string("music/43-rival-final-battle-intro.mp3,music/43-rival-final-battle-loop.mp3"));
+	else if (t.bossfight)
+	    se.play_music(string("music/28-gym-battle-intro.mp3,music/28-gym-battle-loop.mp3"));
+	else
+	    se.play_music(string("music/15-trainer-battle-intro.mp3,music/15-trainer-battle-loop.mp3"));
 	g.push_box(-1.1f, -1.1f, 2.2f, 2.2f);
 	unsigned enemy_trainer_sprite = g.push_quad_load(2.1f, 0.1f, 0.9f, 0.9f, safepath + string("images/") + t.image);
 	unsigned player_sprite = g.push_quad_load(-10.0f, -0.422f, 0.9f, 0.9f, safepath + string("images/player-back.png"));
@@ -3792,6 +3801,13 @@ bool engine::battle(trainer& t) { // trainer battle
 				break;
 		}
 	}
+
+	if (t.finalboss)
+	    se.play_music(string("music/44-into-the-palace-intro.mp3,music/44-into-the-palace-loop.mp3"));
+	else if (t.bossfight)
+	    se.play_music(string("music/29-victory-gym-intro.mp3,music/29-victory-gym-loop.mp3"));
+	else
+	    se.play_music(string("music/16-victory-trainer-intro.mp3,music/16-victory-trainer-loop.mp3"));
 	team_clear_volatile();
 	g.draw_list[enemy_trainer_sprite].x = 0.1f;
 	g.draw_list[enemy_sprite].x = 2.0f;
@@ -3831,6 +3847,8 @@ bool engine::battle() { // wild pokemon
 			}
 		}
 	}
+	// TODO: Combat intro animation
+	se.play_music(string("music/07-wild-battle-intro.mp3,music/07-wild-battle-loop.mp3"));
 	unsigned enemy_sprite = g.push_quad_load(0.1f, 0.1f, 0.9f, 0.9f, safepath + string("images/") + mc.enemy_team[mc.enemy_selected].number + string(".png"));
 	unsigned player_sprite = g.push_quad_load(-1.0f, -0.422f, 0.9f, 0.9f, safepath + string("images/player-back.png"));
 	unsigned team_sprite = g.push_quad_load(-10.0f, -0.422f, 0.9f, 0.9f, safepath + string("images/") + mc.team[mc.selected].number + string("-back.png"));
@@ -4155,6 +4173,7 @@ bool engine::battle() { // wild pokemon
 			mc.team[mc.selected].turn_count = 1;
 		}
 		if (is_KO(mc.enemy_team[mc.enemy_selected])) {
+		    se.play_music(string("music/08-wild-victory-intro.mp3,music/08-wild-victory-loop.mp3"));
 			do_alert(string("Enemy ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string(" fainted!"));
 			int count = 0;
 			for (unsigned i = 0; i < 6; ++i) {
@@ -4742,6 +4761,8 @@ void engine::init_level(string levelname) {
 				d.skip_accuracy_check = false;
 				d.overswitch = false;
 				d.no_switch = 0;
+				d.bossfight = false;
+				d.finalboss = false;
 				if (s.find("{") == 0) {
 					// Special modifiers here
 					s2 = s;
@@ -4773,6 +4794,12 @@ void engine::init_level(string levelname) {
 					}
 					if (s2.find("OVERSWITCH") != -1) {
 						d.overswitch = true;
+					}
+					if (s2.find("BOSSFIGHT") != -1) {
+						d.bossfight = true;
+					}
+					if (s2.find("FINALBOSS") != -1) {
+						d.finalboss = true;
 					}
 				}
 				s2 = s;
@@ -6276,6 +6303,30 @@ void engine::do_interaction(character& npc) {
 				s = "";
 			}
 			se.play_music(s2);
+		}
+		else if (s.find("MUTE_MUSIC:") == 0) {
+			s.erase(0, string("MUTE_MUSIC:").length());
+			s2 = s;
+			if (s.find("|") != -1) {
+				s.erase(0, s.find("|"));
+				s2.erase(s2.find("|"), s2.length());
+			}
+			else {
+				s = "";
+			}
+			se.mute_music(false);
+		}
+		else if (s.find("UNMUTE_MUSIC:") == 0) {
+			s.erase(0, string("UNMUTE_MUSIC:").length());
+			s2 = s;
+			if (s.find("|") != -1) {
+				s.erase(0, s.find("|"));
+				s2.erase(s2.find("|"), s2.length());
+			}
+			else {
+				s = "";
+			}
+			se.unmute_music();
 		}
 		else if (s.find("IS_PLAYER:") == 0) {
 			s.erase(0, string("IS_PLAYER:").length());
