@@ -3376,11 +3376,14 @@ bool engine::battle(trainer& t) { // trainer battle
 	mc.team[mc.selected].last_move = "";
 	mc.enemy_team[mc.enemy_selected].queue.clear();
 	mc.enemy_team[mc.enemy_selected].last_move = "";
-	g.draw_list[enemy_trainer_sprite].x = 0.1;
+	unsigned anim_holder1, anim_holder2;
+	anim_holder1 = g.ae.create_animf(&(g.draw_list[enemy_trainer_sprite].x), -1.9, 0.1, 2.0);
+	anim_holder2 = g.ae.create_animf(&(g.draw_list[player_sprite].x), 1.0, -1.0, 2.0);
+	while (!g.ae.is_donef(anim_holder1) && !g.ae.is_donef(anim_holder2)) {}
+	// TODO: show team status
+	do_alert(t.display_name + string(" wants to fight!"));
 	mc.enemy_team[mc.enemy_selected].hp_bar_index = g.push_hp_bar(-0.7f, 0.7f, get_hp_percent(mc.enemy_team[mc.enemy_selected]));
 	mc.enemy_team[mc.enemy_selected].hud_index = 0;
-	g.draw_list[player_sprite].x = -1.0;
-	do_alert(t.display_name + string(" wants to fight!"));
 	g.draw_list[enemy_trainer_sprite].x = 2.0f; // TODO:  Animation
 	g.draw_list[enemy_sprite].x = 0.1;
 	se.mute_music(true);

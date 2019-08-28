@@ -20,10 +20,10 @@ extern mutex m;
 extern timer tim;
 class quad {
 public:
-	float x;
-	float y;
-	float width;
-	float height;
+	double x;
+	double y;
+	double width;
+	double height;
 	GLuint tex;
 	string filename;
 };
