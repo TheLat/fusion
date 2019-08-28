@@ -1291,6 +1291,7 @@ vector<int> menu::main() {
 			out = do_menu(followup[selection]);
 			if (discard_choice) {
 			    done = true;
+			    choice = out;
 			    break;
 			}
 			else if ((etype != AUTO_FOLLOWUP) && ((out.size() == 0) || (out[out.size() - 1] == -1))) {
