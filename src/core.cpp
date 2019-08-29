@@ -1373,8 +1373,8 @@ bool engine::gain_item(string s, int count, bool silent) {
 		else {
 		    se.play_sound_blocking(string("sound_effects/general/sfx_get_item_2.mp3"));
 		}
-		do_menu(string("ALERT"), string("{PLAYER_NAME} got ") + s + string("!"));
 		se.unmute_music();
+		do_menu(string("ALERT"), string("{PLAYER_NAME} got ") + s + string("!"));
 	}
 	return true;
 }
@@ -3396,13 +3396,18 @@ bool engine::battle(trainer& t) { // trainer battle
 	mc.enemy_team[mc.enemy_selected].hud_index = 0;
 	mc.enemy_team[mc.enemy_selected].turn_count = 1;
 	mc.seen[mc.enemy_team[mc.enemy_selected].number] = true;
-	do_alert(string("Go! ") + get_nickname(mc.team[mc.selected]) + string("!"));
+	anim_holder1 = g.ae.create_animf(&(g.draw_list[player_sprite].x), -1.0, -1.9, 0.5);
+	while (!g.ae.is_donef(anim_holder1)) {}
+	cp = g.draw_list.size();
+	anim_holder1 = g.ae.create_anim_scene(string("sendout"), team_sprite, enemy_sprite);
+	while (!g.ae.is_dones(anim_holder1)) {}
+	g.draw_list.erase(g.draw_list.begin() + cp, g.draw_list.end());
 	se.mute_music(true);
-	se.play_cry(mc.team[mc.selected].number); // TODO: Animation
+	se.play_cry(mc.team[mc.selected].number, true);
 	se.unmute_music();
+	//g.draw_list[team_sprite].x = -1.0;
+	do_alert(string("Go! ") + get_nickname(mc.team[mc.selected]) + string("!"));
 	mc.team[mc.selected].turn_count = 1;
-	g.draw_list[player_sprite].x = -2.0f;
-	g.draw_list[team_sprite].x = -1.0;
 	g.push_arrow_box_left(-0.1f, -0.4f, 1.0f, 0.3f);
 	g.push_arrow_box_right(-0.9f, 0.6f, 1.0f, 0.2f);
 	unsigned team_hp_sprite = g.push_hp_bar(0.1f, -0.2f, get_hp_percent(mc.team[mc.selected]));
@@ -7055,6 +7060,7 @@ void engine::do_interaction(character& npc) {
 			bool mon_created = false;
 			se.mute_music(false);
 			se.play_sound_blocking(string("sound_effects/general/sfx_get_key_item.mp3"));
+			se.unmute_music();
 			for (unsigned i = 0; i < 6; ++i) {
 				if (!mc.team[i].defined) {
 					make_mon(s2, l, mc.team[i]);
@@ -7087,7 +7093,6 @@ void engine::do_interaction(character& npc) {
 				}
 				// TODO: Storage full
 			}
-			se.unmute_music();
 		}
 		else if (s.find("SET_FACE:") == 0) {
 			s.erase(0, s.find(":") + 1);
