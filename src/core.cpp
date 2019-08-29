@@ -3708,6 +3708,10 @@ bool engine::battle(trainer& t) { // trainer battle
 		remove_status(mc.enemy_team[mc.enemy_selected], string("FLINCH"), true);
 
 		if (is_KO(mc.team[mc.selected])) {
+		    cp = g.draw_list.size();
+            anim_holder1 = g.ae.create_anim_scene(string("fainted"), team_sprite, enemy_sprite);
+            while (!g.ae.is_dones(anim_holder1)) {}
+            g.draw_list.erase(g.draw_list.begin() + cp, g.draw_list.end());
 			do_alert(get_nickname(mc.team[mc.selected]) + string(" fainted!"));
 			team_clear_volatile();
 			for (i = 0; i < 6; ++i) {
@@ -3720,8 +3724,9 @@ bool engine::battle(trainer& t) { // trainer battle
 			if (i == 6) {
 				// TODO:  Handle defeat
 				if (t.lose_message != "") {
-					g.draw_list[enemy_trainer_sprite].x = 0.1f;
-					g.draw_list[enemy_sprite].x = 2.0f;
+				    anim_holder1 = g.ae.create_animf(&(g.draw_list[enemy_trainer_sprite].x), 1.0, 0.1, 0.5);
+				    anim_holder2 = g.ae.create_animf(&(g.draw_list[player_sprite].x), -1.9, -1.0, 0.5);
+				    while (!g.ae.is_donef(anim_holder1) && !g.ae.is_donef(anim_holder2)) {}
 					do_alert(t.lose_message);
 				}
 				if (!t.tutorial) {
@@ -3750,13 +3755,19 @@ bool engine::battle(trainer& t) { // trainer battle
 			if (!is_KO(mc.enemy_team[mc.enemy_selected]))
 				mc.enemy_team[mc.enemy_selected].fought[mc.selected] = true;
 			rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
-			g.draw_list[team_sprite].x = -1.0;
-			g.draw_list[team_sprite].y = -0.422;
-			g.draw_list[team_sprite].width = 0.9;
-			g.draw_list[team_sprite].height = 0.9;
-			se.play_cry(mc.team[mc.selected].number);
+			cp = g.draw_list.size();
+        	anim_holder1 = g.ae.create_anim_scene(string("sendout"), team_sprite, enemy_sprite);
+        	while (!g.ae.is_dones(anim_holder1)) {}
+	        g.draw_list.erase(g.draw_list.begin() + cp, g.draw_list.end());
+			se.mute_music(true);
+			se.play_cry(mc.team[mc.selected].number, true);
+			se.unmute_music();
 		}
 		if (is_KO(mc.enemy_team[mc.enemy_selected])) {
+		    cp = g.draw_list.size();
+            anim_holder1 = g.ae.create_anim_scene(string("fainted-enemy"), team_sprite, enemy_sprite);
+            while (!g.ae.is_dones(anim_holder1)) {}
+            g.draw_list.erase(g.draw_list.begin() + cp, g.draw_list.end());
 			do_alert(string("Enemy ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string(" fainted!"));
 			int count = 0;
 			for (unsigned i = 0; i < 6; ++i) {
@@ -3807,17 +3818,16 @@ bool engine::battle(trainer& t) { // trainer battle
 				mc.seen[mc.enemy_team[mc.enemy_selected].number] = true;
 				mc.enemy_team[mc.enemy_selected].fought[mc.selected] = true;
 				rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
-				g.draw_list[enemy_sprite].x = 0.1;
-				g.draw_list[enemy_sprite].y = 0.1;
-				g.draw_list[enemy_sprite].width = 0.9;
-				g.draw_list[enemy_sprite].height = 0.9;
+                cp = g.draw_list.size();
+                anim_holder1 = g.ae.create_anim_scene(string("sendout-enemy"), team_sprite, enemy_sprite);
+                while (!g.ae.is_dones(anim_holder1)) {}
+                g.draw_list.erase(g.draw_list.begin() + cp, g.draw_list.end());
 				mc.enemy_team[mc.enemy_selected].turn_count = 1;
 			}
 			if (!found)
 				break;
 		}
 	}
-
 	if (t.finalboss)
 	    se.play_music(string("music/44-into-the-palace-intro.mp3,music/44-into-the-palace-loop.mp3"));
 	else if (t.bossfight)
@@ -3825,8 +3835,10 @@ bool engine::battle(trainer& t) { // trainer battle
 	else
 	    se.play_music(string("music/16-victory-trainer-intro.mp3,music/16-victory-trainer-loop.mp3"));
 	team_clear_volatile();
-	g.draw_list[enemy_trainer_sprite].x = 0.1f;
-	g.draw_list[enemy_sprite].x = 2.0f;
+    anim_holder1 = g.ae.create_animf(&(g.draw_list[team_sprite].x), -1.0, -1.9, 0.5);
+    anim_holder1 = g.ae.create_animf(&(g.draw_list[enemy_trainer_sprite].x), 1.0, 0.1, 0.5);
+    anim_holder2 = g.ae.create_animf(&(g.draw_list[player_sprite].x), -1.9, -1.0, 0.5);
+    while (!g.ae.is_donef(anim_holder1) && !g.ae.is_donef(anim_holder2)) {}
 	do_alert(string("{PLAYER_NAME} defeated ") + t.display_name + string("!"));
 	if (t.win_message != "")
 		do_alert(t.win_message);
