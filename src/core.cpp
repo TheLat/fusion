@@ -1365,13 +1365,13 @@ bool engine::gain_item(string s, int count, bool silent) {
 	if (!silent) {
 		se.mute_music(false);
 		if (items[s].price == 0) {
-		    se.play_sound(string("sound_effects/general/sfx_get_key_item.mp3"));
+		    se.play_sound_blocking(string("sound_effects/general/sfx_get_key_item.mp3"));
 		}
 		else if (items[s].price < 2000) {
-		    se.play_sound(string("sound_effects/general/sfx_get_item_1.mp3"));
+		    se.play_sound_blocking(string("sound_effects/general/sfx_get_item_1.mp3"));
 		}
 		else {
-		    se.play_sound(string("sound_effects/general/sfx_get_item_2.mp3"));
+		    se.play_sound_blocking(string("sound_effects/general/sfx_get_item_2.mp3"));
 		}
 		do_menu(string("ALERT"), string("{PLAYER_NAME} got ") + s + string("!"));
 		se.unmute_music();
@@ -3377,19 +3377,23 @@ bool engine::battle(trainer& t) { // trainer battle
 	mc.enemy_team[mc.enemy_selected].queue.clear();
 	mc.enemy_team[mc.enemy_selected].last_move = "";
 	unsigned anim_holder1, anim_holder2;
-	anim_holder1 = g.ae.create_animf(&(g.draw_list[enemy_trainer_sprite].x), -1.9, 0.1, 2.0);
-	anim_holder2 = g.ae.create_animf(&(g.draw_list[player_sprite].x), 1.0, -1.0, 2.0);
+	anim_holder1 = g.ae.create_animf(&(g.draw_list[enemy_trainer_sprite].x), -1.9, 0.1, 1.5);
+	anim_holder2 = g.ae.create_animf(&(g.draw_list[player_sprite].x), 1.0, -1.0, 1.5);
 	while (!g.ae.is_donef(anim_holder1) && !g.ae.is_donef(anim_holder2)) {}
 	// TODO: show team status
 	do_alert(t.display_name + string(" wants to fight!"));
+	anim_holder1 = g.ae.create_animf(&(g.draw_list[enemy_trainer_sprite].x), 0.1, 1.0, 0.5);
+	while (!g.ae.is_donef(anim_holder1)) {}
+	unsigned cp = g.draw_list.size();
+	anim_holder1 = g.ae.create_anim_scene(string("sendout-enemy"), team_sprite, enemy_sprite);
+	while (!g.ae.is_dones(anim_holder1)) {}
+	g.draw_list.erase(g.draw_list.begin() + cp, g.draw_list.end());
+	se.mute_music(true);
+	se.play_cry(mc.enemy_team[mc.enemy_selected].number, true);
+	se.unmute_music();
+	do_alert(t.display_name + string(" sent out ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string("!"));
 	mc.enemy_team[mc.enemy_selected].hp_bar_index = g.push_hp_bar(-0.7f, 0.7f, get_hp_percent(mc.enemy_team[mc.enemy_selected]));
 	mc.enemy_team[mc.enemy_selected].hud_index = 0;
-	g.draw_list[enemy_trainer_sprite].x = 2.0f; // TODO:  Animation
-	g.draw_list[enemy_sprite].x = 0.1;
-	se.mute_music(true);
-	se.play_cry(mc.enemy_team[mc.enemy_selected].number);
-	do_alert(t.display_name + string(" sent out ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string("!"));
-	se.unmute_music();
 	mc.enemy_team[mc.enemy_selected].turn_count = 1;
 	mc.seen[mc.enemy_team[mc.enemy_selected].number] = true;
 	do_alert(string("Go! ") + get_nickname(mc.team[mc.selected]) + string("!"));
@@ -7050,7 +7054,7 @@ void engine::do_interaction(character& npc) {
 			}
 			bool mon_created = false;
 			se.mute_music(false);
-			se.play_sound(string("sound_effects/general/sfx_get_key_item.mp3"));
+			se.play_sound_blocking(string("sound_effects/general/sfx_get_key_item.mp3"));
 			for (unsigned i = 0; i < 6; ++i) {
 				if (!mc.team[i].defined) {
 					make_mon(s2, l, mc.team[i]);

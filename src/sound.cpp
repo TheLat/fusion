@@ -52,12 +52,12 @@ void soundengine::play_sound_blocking(string s) {
 	if (channels[channel_index])
 	    channels[channel_index]->stop();
 	result = system->playSound(sounds[s], 0, false, &(channels[channel_index]));
-	channel_index = (channel_index+1) % SOUND_CHANNELS;
 	result = (channels[channel_index])->isPlaying(&playing);
 	while (playing) {
 		result = (channels[channel_index])->isPlaying(&playing);
 	}
 	channel_index = (channel_index+1) % SOUND_CHANNELS;
+	// TODO: seems to block for a second longer than it should
 }
 
 void soundengine::play_music(string s) {
@@ -118,9 +118,10 @@ void soundengine::play_music(string s) {
 	}
 }
 
-void soundengine::play_cry(string s) {
+void soundengine::play_cry(string s, bool blocking) {
 	FMOD_RESULT       result;
 	string s1, s2;
+	bool playing = false;
 	unsigned long long clock_start;
 	unsigned int slen1 = 0, slen2 = 0;
 	float flen1 = 0, flen2 = 0;
@@ -136,6 +137,12 @@ void soundengine::play_cry(string s) {
 	    if (channels[channel_index])
 	        channels[channel_index]->stop();
 	    result = system->playSound(sounds[s1], 0, false, &(channels[channel_index]));
+	    if (blocking) {
+	        result = (channels[channel_index])->isPlaying(&playing);
+            while (playing) {
+                result = (channels[channel_index])->isPlaying(&playing);
+            }
+	    }
 	    return;
 	}
 	if (channels[channel_index])
@@ -162,6 +169,16 @@ void soundengine::play_cry(string s) {
 	result = (channels[(channel_index + 1) % SOUND_CHANNELS])->addFadePoint(clock_start + flen2, 1.0);
 	(channels[channel_index])->setPaused(false);
 	(channels[(channel_index + 1) % SOUND_CHANNELS])->setPaused(false);
+	if (blocking) {
+        result = (channels[channel_index])->isPlaying(&playing);
+        while (playing) {
+            result = (channels[channel_index])->isPlaying(&playing);
+        }
+        result = (channels[(channel_index + 1) % SOUND_CHANNELS])->isPlaying(&playing);
+        while (playing) {
+            result = (channels[(channel_index + 1) % SOUND_CHANNELS])->isPlaying(&playing);
+        }
+    }
 	channel_index = (channel_index+2) % SOUND_CHANNELS;
 }
 

@@ -109,19 +109,19 @@ END
 oak-lab-ball1 orb 6 3
 INTERACTIONS
 MENU:ALERT:Those are POK{e-accent} BALLs. They contain POK{e-accent}MON!|NO_ADVANCE
-MENU:DEX_ENTRY:4-4|MENU:ALERT_YES_NO:So! You want the fire POK{e-accent}MON, CHARMANDER?|{ADVANCE:oak|DEACTIVATE:oak-lab-ball1|GIVE_MON:5:4-4|ADVANCE:oak-lab-ball1|ADVANCE:oak-lab-ball2|ADVANCE:oak-lab-ball3|ADVANCE:oak-lab-rival1|MOVE:oak-lab-rival1:0,1|MOVE:oak-lab-rival1:0,1|MOVE:oak-lab-rival1:1,0|MOVE:oak-lab-rival1:1,0|MOVE:oak-lab-rival1:1,0|MOVE:oak-lab-rival1:0,-1|MENU:ALERT:{RIVAL_NAME}: I'll take this one, then!|MUTE_MUSIC:|PLAY_SOUND:sound_effects/general/sfx_get_key_item.mp3|DEACTIVATE:oak-lab-ball2|MENU:ALERT:{RIVAL_NAME} received a SQUIRTLE!|UNMUTE_MUSIC:|SET:RIVALVALUE:0|ADVANCE:oak-lab-script2|ADVANCE:oak-lab-script3}{NO_ADVANCE}
+MENU:DEX_ENTRY:4-4|MENU:ALERT_YES_NO:So! You want the fire POK{e-accent}MON, CHARMANDER?|{ADVANCE:oak|DEACTIVATE:oak-lab-ball1|GIVE_MON:5:4-4|ADVANCE:oak-lab-ball1|ADVANCE:oak-lab-ball2|ADVANCE:oak-lab-ball3|ADVANCE:oak-lab-rival1|MOVE:oak-lab-rival1:0,1|MOVE:oak-lab-rival1:0,1|MOVE:oak-lab-rival1:1,0|MOVE:oak-lab-rival1:1,0|MOVE:oak-lab-rival1:1,0|MOVE:oak-lab-rival1:0,-1|MENU:ALERT:{RIVAL_NAME}: I'll take this one, then!|MUTE_MUSIC:|DEACTIVATE:oak-lab-ball2|PLAY_BLOCKING_SOUND:sound_effects/general/sfx_get_key_item.mp3|UNMUTE_MUSIC:|MENU:ALERT:{RIVAL_NAME} received a SQUIRTLE!|SET:RIVALVALUE:0|ADVANCE:oak-lab-script2|ADVANCE:oak-lab-script3}{NO_ADVANCE}
 MENU:ALERT:That's PROF.OAK's last POK{e-accent}MON!
 END
 oak-lab-ball2 orb 7 3
 INTERACTIONS
 MENU:ALERT:Those are POK{e-accent} BALLs. They contain POK{e-accent}MON!|NO_ADVANCE
-MENU:DEX_ENTRY:7-7|MENU:ALERT_YES_NO:So! You want the water POK{e-accent}MON, SQUIRTLE?|{ADVANCE:oak|DEACTIVATE:oak-lab-ball2|GIVE_MON:5:7-7|ADVANCE:oak-lab-ball1|ADVANCE:oak-lab-ball2|ADVANCE:oak-lab-ball3|ADVANCE:oak-lab-rival1|MOVE:oak-lab-rival1:0,1|MOVE:oak-lab-rival1:0,1|MOVE:oak-lab-rival1:1,0|MOVE:oak-lab-rival1:1,0|MOVE:oak-lab-rival1:1,0|MOVE:oak-lab-rival1:1,0|MOVE:oak-lab-rival1:0,-1|MENU:ALERT:{RIVAL_NAME}: I'll take this one, then!|MUTE_MUSIC:|PLAY_SOUND:sound_effects/general/sfx_get_key_item.mp3|DEACTIVATE:oak-lab-ball3|MENU:ALERT:{RIVAL_NAME} received a BULBASAUR!|UNMUTE_MUSIC:|SET:RIVALVALUE:1|ADVANCE:oak-lab-script2|ADVANCE:oak-lab-script3}{NO_ADVANCE}
+MENU:DEX_ENTRY:7-7|MENU:ALERT_YES_NO:So! You want the water POK{e-accent}MON, SQUIRTLE?|{ADVANCE:oak|DEACTIVATE:oak-lab-ball2|GIVE_MON:5:7-7|ADVANCE:oak-lab-ball1|ADVANCE:oak-lab-ball2|ADVANCE:oak-lab-ball3|ADVANCE:oak-lab-rival1|MOVE:oak-lab-rival1:0,1|MOVE:oak-lab-rival1:0,1|MOVE:oak-lab-rival1:1,0|MOVE:oak-lab-rival1:1,0|MOVE:oak-lab-rival1:1,0|MOVE:oak-lab-rival1:1,0|MOVE:oak-lab-rival1:0,-1|MENU:ALERT:{RIVAL_NAME}: I'll take this one, then!|MUTE_MUSIC:|DEACTIVATE:oak-lab-ball3|PLAY_BLOCKING_SOUND:sound_effects/general/sfx_get_key_item.mp3|UNMUTE_MUSIC:|MENU:ALERT:{RIVAL_NAME} received a BULBASAUR!|SET:RIVALVALUE:1|ADVANCE:oak-lab-script2|ADVANCE:oak-lab-script3}{NO_ADVANCE}
 MENU:ALERT:That's PROF.OAK's last POK{e-accent}MON!
 END
 oak-lab-ball3 orb 8 3
 INTERACTIONS
 MENU:ALERT:Those are POK{e-accent} BALLs. They contain POK{e-accent}MON!|NO_ADVANCE
-MENU:DEX_ENTRY:1-1|MENU:ALERT_YES_NO:So! You want the plant POK{e-accent}MON, BULBASAUR?|{ADVANCE:oak|DEACTIVATE:oak-lab-ball3|GIVE_MON:5:1-1|ADVANCE:oak-lab-ball1|ADVANCE:oak-lab-ball2|ADVANCE:oak-lab-ball3|ADVANCE:oak-lab-rival1|MOVE:oak-lab-rival1:0,1|MOVE:oak-lab-rival1:0,1|MOVE:oak-lab-rival1:1,0|MOVE:oak-lab-rival1:1,0||MOVE:oak-lab-rival1:0,-1|MENU:ALERT:{RIVAL_NAME}: I'll take this one, then!|MUTE_MUSIC:|PLAY_SOUND:sound_effects/general/sfx_get_key_item.mp3|DEACTIVATE:oak-lab-ball1|MENU:ALERT:{RIVAL_NAME} received a CHARMANDER!|UNMUTE_MUSIC:|SET:RIVALVALUE:2|ADVANCE:oak-lab-script2|ADVANCE:oak-lab-script3}{NO_ADVANCE}
+MENU:DEX_ENTRY:1-1|MENU:ALERT_YES_NO:So! You want the plant POK{e-accent}MON, BULBASAUR?|{ADVANCE:oak|DEACTIVATE:oak-lab-ball3|GIVE_MON:5:1-1|ADVANCE:oak-lab-ball1|ADVANCE:oak-lab-ball2|ADVANCE:oak-lab-ball3|ADVANCE:oak-lab-rival1|MOVE:oak-lab-rival1:0,1|MOVE:oak-lab-rival1:0,1|MOVE:oak-lab-rival1:1,0|MOVE:oak-lab-rival1:1,0||MOVE:oak-lab-rival1:0,-1|MENU:ALERT:{RIVAL_NAME}: I'll take this one, then!|MUTE_MUSIC:|DEACTIVATE:oak-lab-ball1|PLAY_BLOCKING_SOUND:sound_effects/general/sfx_get_key_item.mp3|UNMUTE_MUSIC:|MENU:ALERT:{RIVAL_NAME} received a CHARMANDER!|SET:RIVALVALUE:2|ADVANCE:oak-lab-script2|ADVANCE:oak-lab-script3}{NO_ADVANCE}
 MENU:ALERT:That's PROF.OAK's last POK{e-accent}MON!
 END
 oak oak 5 2 DOWN INACTIVE
