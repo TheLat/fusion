@@ -143,6 +143,7 @@ void soundengine::play_cry(string s, bool blocking) {
                 result = (channels[channel_index])->isPlaying(&playing);
             }
 	    }
+	    channel_index = (channel_index+1) % SOUND_CHANNELS;
 	    return;
 	}
 	if (channels[channel_index])
