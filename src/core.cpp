@@ -3708,11 +3708,16 @@ bool engine::battle(trainer& t) { // trainer battle
 		remove_status(mc.enemy_team[mc.enemy_selected], string("FLINCH"), true);
 
 		if (is_KO(mc.team[mc.selected])) {
-		    // TODO: No faint animation for selfdestruct moves
-		    cp = g.draw_list.size();
-            anim_holder1 = g.ae.create_anim_scene(string("fainted"), team_sprite, enemy_sprite);
-            while (!g.ae.is_dones(anim_holder1)) {}
-            g.draw_list.erase(g.draw_list.begin() + cp, g.draw_list.end());
+		    if ((moves[mc.team[mc.selected].last_move].defined)
+		     && (moves[mc.team[mc.selected].last_move].self.size() > 0)
+		     && (moves[mc.team[mc.selected].last_move].self[0] == string("KO"))) {
+		    }
+		    else {
+                cp = g.draw_list.size();
+                anim_holder1 = g.ae.create_anim_scene(string("fainted"), team_sprite, enemy_sprite);
+                while (!g.ae.is_dones(anim_holder1)) {}
+                g.draw_list.erase(g.draw_list.begin() + cp, g.draw_list.end());
+            }
 			do_alert(get_nickname(mc.team[mc.selected]) + string(" fainted!"));
 			team_clear_volatile();
 			for (i = 0; i < 6; ++i) {
@@ -3723,16 +3728,15 @@ bool engine::battle(trainer& t) { // trainer battle
 				}
 			}
 			if (i == 6) {
-				// TODO:  Handle defeat
+				anim_holder1 = g.ae.create_animf(&(g.draw_list[enemy_sprite].x), 0.1, 1.0, 0.5);
+				anim_holder1 = g.ae.create_animf(&(g.draw_list[enemy_trainer_sprite].x), 1.0, 0.1, 0.5);
+				anim_holder2 = g.ae.create_animf(&(g.draw_list[player_sprite].x), -1.9, -1.0, 0.5);
+				do_alert(string("{PLAYER_NAME} is out of useable POK{e-accent}MON!"));
+				while (!g.ae.is_donef(anim_holder1) && !g.ae.is_donef(anim_holder2)) {}
 				if (t.lose_message != "") {
-				    anim_holder1 = g.ae.create_animf(&(g.draw_list[enemy_sprite].x), -1.0, -1.9, 0.5);
-				    anim_holder1 = g.ae.create_animf(&(g.draw_list[enemy_trainer_sprite].x), 1.0, 0.1, 0.5);
-				    anim_holder2 = g.ae.create_animf(&(g.draw_list[player_sprite].x), -1.9, -1.0, 0.5);
-				    while (!g.ae.is_donef(anim_holder1) && !g.ae.is_donef(anim_holder2)) {}
 					do_alert(t.lose_message);
 				}
 				if (!t.tutorial) {
-				    do_alert(string("{PLAYER_NAME} is out of useable POK{e-accent}MON!"));
 				    do_alert(string("{PLAYER_NAME} blacked out!"));
                     unsigned anim_holder = g.ae.create_anim_scene(string("screendark"));
                     while (!g.ae.is_dones(anim_holder)) {}
@@ -3766,10 +3770,16 @@ bool engine::battle(trainer& t) { // trainer battle
 			se.unmute_music();
 		}
 		if (is_KO(mc.enemy_team[mc.enemy_selected])) {
-		    cp = g.draw_list.size();
-            anim_holder1 = g.ae.create_anim_scene(string("fainted-enemy"), team_sprite, enemy_sprite);
-            while (!g.ae.is_dones(anim_holder1)) {}
-            g.draw_list.erase(g.draw_list.begin() + cp, g.draw_list.end());
+		    if ((moves[mc.enemy_team[mc.enemy_selected].last_move].defined)
+		     && (moves[mc.enemy_team[mc.enemy_selected].last_move].self.size() > 0)
+		     && (moves[mc.enemy_team[mc.enemy_selected].last_move].self[0] == string("KO"))) {
+		    }
+		    else {
+                cp = g.draw_list.size();
+                anim_holder1 = g.ae.create_anim_scene(string("fainted-enemy"), team_sprite, enemy_sprite);
+                while (!g.ae.is_dones(anim_holder1)) {}
+                g.draw_list.erase(g.draw_list.begin() + cp, g.draw_list.end());
+            }
 			do_alert(string("Enemy ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string(" fainted!"));
 			int count = 0;
 			for (unsigned i = 0; i < 6; ++i) {
