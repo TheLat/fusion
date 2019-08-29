@@ -3708,6 +3708,7 @@ bool engine::battle(trainer& t) { // trainer battle
 		remove_status(mc.enemy_team[mc.enemy_selected], string("FLINCH"), true);
 
 		if (is_KO(mc.team[mc.selected])) {
+		    // TODO: No faint animation for selfdestruct moves
 		    cp = g.draw_list.size();
             anim_holder1 = g.ae.create_anim_scene(string("fainted"), team_sprite, enemy_sprite);
             while (!g.ae.is_dones(anim_holder1)) {}
@@ -3724,6 +3725,7 @@ bool engine::battle(trainer& t) { // trainer battle
 			if (i == 6) {
 				// TODO:  Handle defeat
 				if (t.lose_message != "") {
+				    anim_holder1 = g.ae.create_animf(&(g.draw_list[enemy_sprite].x), -1.0, -1.9, 0.5);
 				    anim_holder1 = g.ae.create_animf(&(g.draw_list[enemy_trainer_sprite].x), 1.0, 0.1, 0.5);
 				    anim_holder2 = g.ae.create_animf(&(g.draw_list[player_sprite].x), -1.9, -1.0, 0.5);
 				    while (!g.ae.is_donef(anim_holder1) && !g.ae.is_donef(anim_holder2)) {}
