@@ -17,15 +17,15 @@ MENU:ALERT:ERROR
 END
 oak-lab-woman woman3 1 9 WANDER
 INTERACTIONS
-MENU:ALERT:PROF.OAK is the authority on POK{e-accent}MON!|MENU:ALERT:Many POK{e-accent}MON trainers hold him in high regard!
+MENU:ALERT:POK{e-accent}MON have types and, believe it or not, they do more than just control what a POK{e-accent}MON is resistant and vulnerable to!|MENU:ALERT:If a POK{e-accent}MON has the same type as the attack it uses, it will deal 1.5 times more damage!
 END
 oak-lab-aide1 doctor 2 10
 INTERACTIONS
-MENU:ALERT:I study POK{e-accent}MON as PROF.OAK's aide.
+MENU:ALERT:PROF.OAK is the authority on POK{e-accent}MON!|MENU:ALERT:Many POK{e-accent}MON trainers hold him in high regard!
 END
 oak-lab-aide2 doctor 8 10
 INTERACTIONS
-MENU:ALERT:I study POK{e-accent}MON as PROF.OAK's aide.
+MENU:ALERT:You can capture POK{e-accent}MON with POK{e-accent} BALLs.|MENU:ALERT:Putting status effects, like POISON or BURN, make POK{e-accent}MON easier to capture.|MENU:ALERT:The more effects, the easier they are to capture.|MENU:ALERT:Damage also makes them easier to capture.
 END
 oak-pc1 blank 0 1
 INTERACTIONS
