@@ -5,7 +5,7 @@ sound_effects/general/sfx_go_outside.mp3
 NPCS
 indigo-center-joy joy 7 5 DOWN FARSPEAK
 INTERACTIONS
-MENU:ALERT:Welcome to our POK{e-accent}MON CENTER!|MENU:ALERT:We heal your POK{e-accent}MON back to|MENU:ALERT_YES_NO:perfect health!|{MENU:ALERT:OK, we'll need your POK{e-accent}MON.|FACE:LEFT|GET_TEAM_SIZE:|{ANIMATION:ERROR}{ANIMATION:pokecenter1}{ANIMATION:pokecenter2}{ANIMATION:pokecenter3}{ANIMATION:pokecenter4}{ANIMATION:pokecenter5}{ANIMATION:pokecenter6}|FULL_HEAL|FACE:DOWN|MENU:ALERT:Thank you!{NEWLINE}Your POK{e-accent}MON are fighting fit!|BOW:}{}|MENU:ALERT:We hope to see you again!
+MENU:ALERT:Welcome to our POK{e-accent}MON CENTER!|MENU:ALERT:We heal your POK{e-accent}MON back to|MENU:ALERT_YES_NO:perfect health!|{MENU:ALERT:OK, we'll need your POK{e-accent}MON.|MUTE_MUSIC:|FACE:LEFT|GET_TEAM_SIZE:|{ANIMATION:ERROR}{ANIMATION:pokecenter1}{ANIMATION:pokecenter2}{ANIMATION:pokecenter3}{ANIMATION:pokecenter4}{ANIMATION:pokecenter5}{ANIMATION:pokecenter6}|FULL_HEAL|FACE:DOWN|UNMUTE_MUSIC:|MENU:ALERT:Thank you!{NEWLINE}Your POK{e-accent}MON are fighting fit!|BOW:}{}|MENU:ALERT:We hope to see you again!
 END
 indigo-center-cableclub woman 15 6
 INTERACTIONS

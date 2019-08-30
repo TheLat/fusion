@@ -3388,7 +3388,7 @@ bool engine::battle(trainer& t) { // trainer battle
 	anim_holder1 = g.ae.create_anim_scene(string("sendout-enemy"), team_sprite, enemy_sprite);
 	while (!g.ae.is_dones(anim_holder1)) {}
 	g.draw_list.erase(g.draw_list.begin() + cp, g.draw_list.end());
-	se.mute_music(true);
+	se.mute_music(false);
 	se.play_cry(mc.enemy_team[mc.enemy_selected].number, true);
 	se.unmute_music();
 	do_alert(t.display_name + string(" sent out ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string("!"));
@@ -3402,7 +3402,7 @@ bool engine::battle(trainer& t) { // trainer battle
 	anim_holder1 = g.ae.create_anim_scene(string("sendout"), team_sprite, enemy_sprite);
 	while (!g.ae.is_dones(anim_holder1)) {}
 	g.draw_list.erase(g.draw_list.begin() + cp, g.draw_list.end());
-	se.mute_music(true);
+	se.mute_music(false);
 	se.play_cry(mc.team[mc.selected].number, true);
 	se.unmute_music();
 	//g.draw_list[team_sprite].x = -1.0;
@@ -3765,7 +3765,7 @@ bool engine::battle(trainer& t) { // trainer battle
         	anim_holder1 = g.ae.create_anim_scene(string("sendout"), team_sprite, enemy_sprite);
         	while (!g.ae.is_dones(anim_holder1)) {}
 	        g.draw_list.erase(g.draw_list.begin() + cp, g.draw_list.end());
-			se.mute_music(true);
+			se.mute_music(false);
 			se.play_cry(mc.team[mc.selected].number, true);
 			se.unmute_music();
 		}
@@ -6779,7 +6779,6 @@ void engine::do_interaction(character& npc) {
                     caught++;
                 it++;
             }
-            se.play_sound(string("sound_effects/general/sfx_pokedex_rating.mp3"));
             if (caught < 10) {
                 do_alert(string("You still have a lot of work to do."));
                 do_alert(string("Look for POK{e-accent}MON in grassy areas!"));
@@ -6856,6 +6855,9 @@ void engine::do_interaction(character& npc) {
             else {
                 do_alert(string("Your POK{e-accent}DEX is entirely complete! Congratulations!"));
             }
+            se.mute_music(false);
+            se.play_sound_blocking(string("sound_effects/general/sfx_pokedex_rating.mp3"));
+            se.unmute_music();
 		}
 		else if (s.find("SHOP:") == 0) {
 			s.erase(0, s.find(":") + 1);
@@ -7461,6 +7463,7 @@ void engine::do_interaction(character& npc) {
 				mc.loc.x = mc.last_center.x;
 				mc.loc.y = mc.last_center.y;
 				update_level();
+			    se.play_music(levels[mc.loc.level].music);
 			    g.ae.create_anim_scene(string("screenlight"));
 				do_alert(string("{PLAYER_NAME} lost $") + to_string(mc.money/2) + string("!"));
 				mc.money = mc.money - (mc.money/2);
@@ -7507,6 +7510,7 @@ void engine::do_interaction(character& npc) {
 		mc.loc.x = mc.last_center.x;
 		mc.loc.y = mc.last_center.y;
 		update_level();
+		se.play_music(levels[mc.loc.level].music);
 	    g.ae.create_anim_scene(string("screenlight"));
 		do_alert(string("{PLAYER_NAME} lost $") + to_string(mc.money/2) + string("!"));
 		mc.money = mc.money - (mc.money/2);
@@ -7646,6 +7650,7 @@ void engine::main() {
 				mc.loc.x = mc.last_center.x;
 				mc.loc.y = mc.last_center.y;
 				update_level();
+				se.play_music(levels[mc.loc.level].music);
 			    g.ae.create_anim_scene(string("screenlight"));
 				do_alert(string("{PLAYER_NAME} lost $") + to_string(mc.money/2) + string("!"));
 				mc.money = mc.money - (mc.money/2);
