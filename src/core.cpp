@@ -3487,7 +3487,7 @@ bool engine::battle(trainer& t) { // trainer battle
 				g.draw_list[team_sprite].width = 0.9;
 				g.draw_list[team_sprite].height = 0.9;
 				mc.enemy_team[mc.enemy_selected].fought[mc.selected] = true;
-				se.play_cry(mc.team[mc.selected].number);
+				se.play_cry(mc.team[mc.selected].number, true);
 				do_alert(string("Go, ") + get_nickname(mc.team[mc.selected]) + string("!"));
 				mc.team[mc.selected].queue.clear();
 				mc.team[mc.selected].last_move = "";
@@ -3563,7 +3563,7 @@ bool engine::battle(trainer& t) { // trainer battle
 				mc.enemy_team[best_fitness_index].sprite_index = enemy_sprite;
 				mc.enemy_team[best_fitness_index].hp_bar_index = mc.enemy_team[mc.enemy_selected].hp_bar_index;
 				mc.enemy_selected = best_fitness_index;
-				se.play_cry(mc.enemy_team[mc.enemy_selected].number);
+				se.play_cry(mc.enemy_team[mc.enemy_selected].number, true);
 				do_alert(t.display_name + string(" withdrew ") + old_name + string(" and sent out ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string("!"));
 				mc.seen[mc.enemy_team[mc.enemy_selected].number] = true;
 				mc.enemy_team[mc.enemy_selected].fought[mc.selected] = true;
@@ -3643,7 +3643,7 @@ bool engine::battle(trainer& t) { // trainer battle
                     g.draw_list[enemy_sprite].height = 0.9;
                     mc.enemy_team[mc.enemy_selected].queue.push_back(string(""));
                     mc.enemy_team[mc.enemy_selected].turn_count = 1;
-                    se.play_cry(mc.enemy_team[mc.enemy_selected].number);
+                    se.play_cry(mc.enemy_team[mc.enemy_selected].number, true);
 				}
 				remove_status(mc.enemy_team[mc.enemy_selected], string("FLEE"), true);
 			}
@@ -3695,7 +3695,11 @@ bool engine::battle(trainer& t) { // trainer battle
                     g.draw_list[team_sprite].y = -0.422;
                     g.draw_list[team_sprite].width = 0.9;
                     g.draw_list[team_sprite].height = 0.9;
-                    se.play_cry(mc.team[mc.selected].number);
+                    se.mute_music(false);
+                    se.play_cry(mc.team[mc.selected].number, true);
+                    se.unmute_music();
+                    do_alert(string("Go! ") + get_nickname(mc.team[mc.selected]) + string("!"));
+			        mc.team[mc.selected].turn_count = 1;
 				}
 				remove_status(mc.team[mc.selected], string("FLEE"), true);
 			}
@@ -3768,6 +3772,8 @@ bool engine::battle(trainer& t) { // trainer battle
 			se.mute_music(false);
 			se.play_cry(mc.team[mc.selected].number, true);
 			se.unmute_music();
+			do_alert(string("Go! ") + get_nickname(mc.team[mc.selected]) + string("!"));
+			mc.team[mc.selected].turn_count = 1;
 		}
 		if (is_KO(mc.enemy_team[mc.enemy_selected])) {
 		    if ((moves[mc.enemy_team[mc.enemy_selected].last_move].defined)
@@ -3826,7 +3832,7 @@ bool engine::battle(trainer& t) { // trainer battle
 				mc.enemy_team[best_fitness_index].hp_bar_index = mc.enemy_team[mc.enemy_selected].hp_bar_index;
 				mc.enemy_selected = best_fitness_index;
 				do_alert(t.display_name + string(" sent out ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string("!"));
-				se.play_cry(mc.enemy_team[mc.enemy_selected].number);
+				se.play_cry(mc.enemy_team[mc.enemy_selected].number, true);
 				mc.seen[mc.enemy_team[mc.enemy_selected].number] = true;
 				mc.enemy_team[mc.enemy_selected].fought[mc.selected] = true;
 				rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
@@ -3889,25 +3895,37 @@ bool engine::battle() { // wild pokemon
 	}
 	// TODO: Combat intro animation
 	se.play_music(string("music/07-wild-battle-intro.mp3,music/07-wild-battle-loop.mp3"));
-	unsigned enemy_sprite = g.push_quad_load(0.1f, 0.1f, 0.9f, 0.9f, safepath + string("images/") + mc.enemy_team[mc.enemy_selected].number + string(".png"));
-	unsigned player_sprite = g.push_quad_load(-1.0f, -0.422f, 0.9f, 0.9f, safepath + string("images/player-back.png"));
+	unsigned enemy_sprite = g.push_quad_load(-1.9f, 0.1f, 0.9f, 0.9f, safepath + string("images/") + mc.enemy_team[mc.enemy_selected].number + string(".png"));
+	unsigned player_sprite = g.push_quad_load(1.0f, -0.422f, 0.9f, 0.9f, safepath + string("images/player-back.png"));
 	unsigned team_sprite = g.push_quad_load(-10.0f, -0.422f, 0.9f, 0.9f, safepath + string("images/") + mc.team[mc.selected].number + string("-back.png"));
 	g.push_box(-1.0f, -1.0f, 2.0f, 0.6f);
 	mc.team[mc.selected].queue.clear();
 	mc.team[mc.selected].last_move = "";
 	mc.enemy_team[mc.enemy_selected].queue.clear();
 	mc.enemy_team[mc.enemy_selected].last_move = "";
+	unsigned anim_holder1, anim_holder2;
+	anim_holder1 = g.ae.create_animf(&(g.draw_list[enemy_sprite].x), -1.9, 0.1, 1.5);
+	anim_holder2 = g.ae.create_animf(&(g.draw_list[player_sprite].x), 1.0, -1.0, 1.5);
+	while (!g.ae.is_donef(anim_holder1) && !g.ae.is_donef(anim_holder2)) {}
 	mc.enemy_team[mc.enemy_selected].hp_bar_index = g.push_hp_bar(-0.7f, 0.7f, get_hp_percent(mc.enemy_team[mc.enemy_selected]));
 	mc.enemy_team[mc.enemy_selected].hud_index = 0;
-	se.play_cry(mc.enemy_team[mc.enemy_selected].number);
+	se.mute_music(false);
+	se.play_cry(mc.enemy_team[mc.enemy_selected].number, true);
+	se.unmute_music();
 	do_alert(string("Wild ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string(" appeared!"));
 	mc.enemy_team[mc.enemy_selected].turn_count = 0;
 	mc.seen[mc.enemy_team[mc.enemy_selected].number] = true;
+	anim_holder1 = g.ae.create_animf(&(g.draw_list[player_sprite].x), -1.0, -1.9, 0.5);
+	while (!g.ae.is_donef(anim_holder1)) {}
+	unsigned cp = g.draw_list.size();
+	anim_holder1 = g.ae.create_anim_scene(string("sendout"), team_sprite, enemy_sprite);
+	while (!g.ae.is_dones(anim_holder1)) {}
+	g.draw_list.erase(g.draw_list.begin() + cp, g.draw_list.end());
+	se.mute_music(false);
+	se.play_cry(mc.team[mc.selected].number, true);
+	se.unmute_music();
 	do_alert(string("Go! ") + get_nickname(mc.team[mc.selected]) + string("!"));
-	se.play_cry(mc.team[mc.selected].number);
 	mc.team[mc.selected].turn_count = 1;
-	g.draw_list[player_sprite].x = -2.0f; // TODO:  Animation
-	g.draw_list[team_sprite].x = -1.0;
 	g.push_arrow_box_left(-0.1f, -0.4f, 1.0f, 0.3f);
 	g.push_arrow_box_right(-0.9f, 0.6f, 1.0f, 0.2f);
 	unsigned team_hp_sprite = g.push_hp_bar(0.1f, -0.2f, get_hp_percent(mc.team[mc.selected]));
@@ -3975,18 +3993,24 @@ bool engine::battle() { // wild pokemon
 				mc.team[mc.selected].queue.clear();
 				mc.team[mc.selected].last_move = "";
 				do_alert(get_nickname(mc.team[mc.selected]) + string("! That's enough!"));
+                cp = g.draw_list.size();
+                anim_holder1 = g.ae.create_anim_scene(string("runaway"), team_sprite, enemy_sprite);
+                while (!g.ae.is_dones(anim_holder1)) {}
+                g.draw_list.erase(g.draw_list.begin() + cp, g.draw_list.end());
 				clear_volatile(mc.team[mc.selected]);
 				mc.team[mc.selected].exp_bar_index = 0;
 				mc.team[mc.selected].damage_dealt.clear();
 				mc.selected = choices[1];
 				mc.team[mc.selected].exp_bar_index = exp_bar_index;
 				rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
-				g.draw_list[team_sprite].x = -1.0;
-				g.draw_list[team_sprite].y = -0.422;
-				g.draw_list[team_sprite].width = 0.9;
-				g.draw_list[team_sprite].height = 0.9;
+                cp = g.draw_list.size();
+                anim_holder1 = g.ae.create_anim_scene(string("sendout"), team_sprite, enemy_sprite);
+                while (!g.ae.is_dones(anim_holder1)) {}
+                g.draw_list.erase(g.draw_list.begin() + cp, g.draw_list.end());
 				mc.enemy_team[mc.enemy_selected].fought[mc.selected] = true;
-				se.play_cry(mc.team[mc.selected].number);
+				se.mute_music(false);
+				se.play_cry(mc.team[mc.selected].number, true);
+				se.unmute_music();
 				do_alert(string("Go, ") + get_nickname(mc.team[mc.selected]) + string("!"));
 				mc.team[mc.selected].queue.clear();
 				mc.team[mc.selected].last_move = "";
@@ -4103,6 +4127,10 @@ bool engine::battle() { // wild pokemon
 				mc.team[mc.selected].queue.clear();
 				mc.team[mc.selected].last_move = "";
 				if (!in_status(mc.team[mc.selected], string("TRAP")) && run_away(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected], escape_attempts)) {
+                    cp = g.draw_list.size();
+                    anim_holder1 = g.ae.create_anim_scene(string("runaway"), team_sprite, enemy_sprite);
+                    while (!g.ae.is_dones(anim_holder1)) {}
+                    g.draw_list.erase(g.draw_list.begin() + cp, g.draw_list.end());
 					do_alert(string("Got away safely!"));
 					g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
 					team_clear_volatile();
@@ -4140,6 +4168,10 @@ bool engine::battle() { // wild pokemon
 		do_turn(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
 		if (in_status(mc.enemy_team[mc.enemy_selected], string("FLEE"))) {
 			if (!in_status(mc.enemy_team[mc.enemy_selected], string("TRAP"))) {
+                cp = g.draw_list.size();
+                anim_holder1 = g.ae.create_anim_scene(string("runaway-enemy"), team_sprite, enemy_sprite);
+                while (!g.ae.is_dones(anim_holder1)) {}
+                g.draw_list.erase(g.draw_list.begin() + cp, g.draw_list.end());
 				do_alert(get_nickname(mc.enemy_team[mc.enemy_selected]) + string(" got away!"));
 				break;
 			}
@@ -4149,6 +4181,10 @@ bool engine::battle() { // wild pokemon
 		}
 		if (in_status(mc.team[mc.selected], string("FLEE"))) {
 			if (!in_status(mc.team[mc.selected], string("TRAP"))) {
+                cp = g.draw_list.size();
+                anim_holder1 = g.ae.create_anim_scene(string("runaway"), team_sprite, enemy_sprite);
+                while (!g.ae.is_dones(anim_holder1)) {}
+                g.draw_list.erase(g.draw_list.begin() + cp, g.draw_list.end());
 				do_alert("Got away safely!");
 				break;
 			}
@@ -4159,6 +4195,10 @@ bool engine::battle() { // wild pokemon
 		remove_status(mc.team[mc.selected], string("FLINCH"), true);
 		remove_status(mc.enemy_team[mc.enemy_selected], string("FLINCH"), true);
 		if (is_KO(mc.team[mc.selected])) {
+            cp = g.draw_list.size();
+            anim_holder1 = g.ae.create_anim_scene(string("fainted"), team_sprite, enemy_sprite);
+            while (!g.ae.is_dones(anim_holder1)) {}
+            g.draw_list.erase(g.draw_list.begin() + cp, g.draw_list.end());
 			do_alert(get_nickname(mc.team[mc.selected]) + string(" fainted!"));
 			team_clear_volatile();
 			for (i = 0; i < 6; ++i) {
@@ -4181,6 +4221,10 @@ bool engine::battle() { // wild pokemon
 			choices = do_menu(string("ALERT_YES_NO"), string("Use next POK{e-accent}MON?"));
 			if (choices[choices.size() - 1] == 1) {
 				if (run_away(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected], escape_attempts)) {
+                    cp = g.draw_list.size();
+                    anim_holder1 = g.ae.create_anim_scene(string("runaway"), team_sprite, enemy_sprite);
+                    while (!g.ae.is_dones(anim_holder1)) {}
+                    g.draw_list.erase(g.draw_list.begin() + cp, g.draw_list.end());
 					do_alert(string("Got away safely!"));
 					g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
 					team_clear_volatile();
@@ -4205,14 +4249,25 @@ bool engine::battle() { // wild pokemon
 			if (!is_KO(mc.enemy_team[mc.enemy_selected]))
 				mc.enemy_team[mc.enemy_selected].fought[mc.selected] = true;
 			rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
-			g.draw_list[team_sprite].x = -1.0;
+			g.draw_list[team_sprite].x = -2.0;
 			g.draw_list[team_sprite].y = -0.422;
 			g.draw_list[team_sprite].width = 0.9;
 			g.draw_list[team_sprite].height = 0.9;
-			se.play_cry(mc.team[mc.selected].number);
+            cp = g.draw_list.size();
+            anim_holder1 = g.ae.create_anim_scene(string("sendout"), team_sprite, enemy_sprite);
+            while (!g.ae.is_dones(anim_holder1)) {}
+            g.draw_list.erase(g.draw_list.begin() + cp, g.draw_list.end());
+            se.mute_music(false);
+			se.play_cry(mc.team[mc.selected].number, true);
+			se.unmute_music();
+			do_alert(string("Go! ") + get_nickname(mc.team[mc.selected]) + string("!"));
 			mc.team[mc.selected].turn_count = 1;
 		}
 		if (is_KO(mc.enemy_team[mc.enemy_selected])) {
+            cp = g.draw_list.size();
+            anim_holder1 = g.ae.create_anim_scene(string("fainted-enemy"), team_sprite, enemy_sprite);
+            while (!g.ae.is_dones(anim_holder1)) {}
+            g.draw_list.erase(g.draw_list.begin() + cp, g.draw_list.end());
 		    se.play_music(string("music/08-wild-victory-intro.mp3,music/08-wild-victory-loop.mp3"));
 			do_alert(string("Enemy ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string(" fainted!"));
 			int count = 0;
