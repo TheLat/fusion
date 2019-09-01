@@ -3476,18 +3476,26 @@ bool engine::battle(trainer& t) { // trainer battle
 				mc.team[mc.selected].queue.clear();
 				mc.team[mc.selected].last_move = "";
 				do_alert(get_nickname(mc.team[mc.selected]) + string("! That's enough!"));
+				cp = g.draw_list.size();
+                anim_holder1 = g.ae.create_anim_scene(string("runaway"), team_sprite, enemy_sprite);
+                while (!g.ae.is_dones(anim_holder1)) {}
+                g.draw_list.erase(g.draw_list.begin() + cp, g.draw_list.end());
+				mc.enemy_team[mc.enemy_selected].fought[mc.selected] = true;
 				clear_volatile(mc.team[mc.selected]);
 				mc.team[mc.selected].exp_bar_index = 0;
 				mc.team[mc.selected].damage_dealt.clear();
 				mc.selected = choices[1];
 				mc.team[mc.selected].exp_bar_index = exp_bar_index;
 				rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
-				g.draw_list[team_sprite].x = -1.0;
-				g.draw_list[team_sprite].y = -0.422;
-				g.draw_list[team_sprite].width = 0.9;
-				g.draw_list[team_sprite].height = 0.9;
+                cp = g.draw_list.size();
+                anim_holder1 = g.ae.create_anim_scene(string("sendout"), team_sprite, enemy_sprite);
+                while (!g.ae.is_dones(anim_holder1)) {}
+                g.draw_list.erase(g.draw_list.begin() + cp, g.draw_list.end());
 				mc.enemy_team[mc.enemy_selected].fought[mc.selected] = true;
+				mc.enemy_team[mc.enemy_selected].fought[mc.selected] = true;
+				se.mute_music(false);
 				se.play_cry(mc.team[mc.selected].number, true);
+				se.unmute_music();
 				do_alert(string("Go, ") + get_nickname(mc.team[mc.selected]) + string("!"));
 				mc.team[mc.selected].queue.clear();
 				mc.team[mc.selected].last_move = "";
@@ -3563,15 +3571,22 @@ bool engine::battle(trainer& t) { // trainer battle
 				mc.enemy_team[best_fitness_index].sprite_index = enemy_sprite;
 				mc.enemy_team[best_fitness_index].hp_bar_index = mc.enemy_team[mc.enemy_selected].hp_bar_index;
 				mc.enemy_selected = best_fitness_index;
-				se.play_cry(mc.enemy_team[mc.enemy_selected].number, true);
+                cp = g.draw_list.size();
+                anim_holder1 = g.ae.create_anim_scene(string("runaway-enemy"), team_sprite, enemy_sprite);
+                while (!g.ae.is_dones(anim_holder1)) {}
+                g.draw_list.erase(g.draw_list.begin() + cp, g.draw_list.end());
+				mc.enemy_team[mc.enemy_selected].fought[mc.selected] = true;
 				do_alert(t.display_name + string(" withdrew ") + old_name + string(" and sent out ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string("!"));
 				mc.seen[mc.enemy_team[mc.enemy_selected].number] = true;
 				mc.enemy_team[mc.enemy_selected].fought[mc.selected] = true;
 				rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
-				g.draw_list[enemy_sprite].x = 0.1;
-				g.draw_list[enemy_sprite].y = 0.1;
-				g.draw_list[enemy_sprite].width = 0.9;
-				g.draw_list[enemy_sprite].height = 0.9;
+                cp = g.draw_list.size();
+                anim_holder1 = g.ae.create_anim_scene(string("sendout-enemy"), team_sprite, enemy_sprite);
+                while (!g.ae.is_dones(anim_holder1)) {}
+                g.draw_list.erase(g.draw_list.begin() + cp, g.draw_list.end());
+                se.mute_music(false);
+				se.play_cry(mc.enemy_team[mc.enemy_selected].number, true);
+				se.unmute_music();
 				mc.enemy_team[mc.enemy_selected].queue.push_back(string(""));
 				mc.enemy_team[mc.enemy_selected].turn_count = 1;
 			}
@@ -3633,17 +3648,23 @@ bool engine::battle(trainer& t) { // trainer battle
                     mc.enemy_team[index].sprite_index = enemy_sprite;
                     mc.enemy_team[index].hp_bar_index = mc.enemy_team[mc.enemy_selected].hp_bar_index;
                     mc.enemy_selected = index;
+                    cp = g.draw_list.size();
+                    anim_holder1 = g.ae.create_anim_scene(string("runaway-enemy"), team_sprite, enemy_sprite);
+                    while (!g.ae.is_dones(anim_holder1)) {}
+                    g.draw_list.erase(g.draw_list.begin() + cp, g.draw_list.end());
                     do_alert(t.display_name + string(" withdrew ") + old_name + string(" and sent out ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string("!"));
                     mc.seen[mc.enemy_team[mc.enemy_selected].number] = true;
                     mc.enemy_team[mc.enemy_selected].fought[mc.selected] = true;
                     rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
-                    g.draw_list[enemy_sprite].x = 0.1;
-                    g.draw_list[enemy_sprite].y = 0.1;
-                    g.draw_list[enemy_sprite].width = 0.9;
-                    g.draw_list[enemy_sprite].height = 0.9;
+                    cp = g.draw_list.size();
+                    anim_holder1 = g.ae.create_anim_scene(string("sendout-enemy"), team_sprite, enemy_sprite);
+                    while (!g.ae.is_dones(anim_holder1)) {}
+                    g.draw_list.erase(g.draw_list.begin() + cp, g.draw_list.end());
                     mc.enemy_team[mc.enemy_selected].queue.push_back(string(""));
                     mc.enemy_team[mc.enemy_selected].turn_count = 1;
+                    se.mute_music(false);
                     se.play_cry(mc.enemy_team[mc.enemy_selected].number, true);
+                    se.unmute_music();
 				}
 				remove_status(mc.enemy_team[mc.enemy_selected], string("FLEE"), true);
 			}
@@ -3682,6 +3703,10 @@ bool engine::battle(trainer& t) { // trainer battle
                         choices = do_menu(string("COMBAT_MON"));
                         choices = remove_cancels(choices);
                     }
+                    cp = g.draw_list.size();
+                    anim_holder1 = g.ae.create_anim_scene(string("runaway"), team_sprite, enemy_sprite);
+                    while (!g.ae.is_dones(anim_holder1)) {}
+                    g.draw_list.erase(g.draw_list.begin() + cp, g.draw_list.end());
                     clear_volatile(mc.team[mc.selected]);
                     mc.team[mc.selected].exp_bar_index = 0;
                     mc.team[mc.selected].damage_dealt.clear();
@@ -3691,10 +3716,10 @@ bool engine::battle(trainer& t) { // trainer battle
                     if (!is_KO(mc.enemy_team[mc.enemy_selected]))
                         mc.enemy_team[mc.enemy_selected].fought[mc.selected] = true;
                     rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
-                    g.draw_list[team_sprite].x = -1.0;
-                    g.draw_list[team_sprite].y = -0.422;
-                    g.draw_list[team_sprite].width = 0.9;
-                    g.draw_list[team_sprite].height = 0.9;
+                    cp = g.draw_list.size();
+                    anim_holder1 = g.ae.create_anim_scene(string("sendout"), team_sprite, enemy_sprite);
+                    while (!g.ae.is_dones(anim_holder1)) {}
+                    g.draw_list.erase(g.draw_list.begin() + cp, g.draw_list.end());
                     se.mute_music(false);
                     se.play_cry(mc.team[mc.selected].number, true);
                     se.unmute_music();
@@ -3832,7 +3857,6 @@ bool engine::battle(trainer& t) { // trainer battle
 				mc.enemy_team[best_fitness_index].hp_bar_index = mc.enemy_team[mc.enemy_selected].hp_bar_index;
 				mc.enemy_selected = best_fitness_index;
 				do_alert(t.display_name + string(" sent out ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string("!"));
-				se.play_cry(mc.enemy_team[mc.enemy_selected].number, true);
 				mc.seen[mc.enemy_team[mc.enemy_selected].number] = true;
 				mc.enemy_team[mc.enemy_selected].fought[mc.selected] = true;
 				rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
@@ -3840,6 +3864,9 @@ bool engine::battle(trainer& t) { // trainer battle
                 anim_holder1 = g.ae.create_anim_scene(string("sendout-enemy"), team_sprite, enemy_sprite);
                 while (!g.ae.is_dones(anim_holder1)) {}
                 g.draw_list.erase(g.draw_list.begin() + cp, g.draw_list.end());
+				se.mute_music(false);
+				se.play_cry(mc.enemy_team[mc.enemy_selected].number, true);
+				se.unmute_music();
 				mc.enemy_team[mc.enemy_selected].turn_count = 1;
 			}
 			if (!found)
