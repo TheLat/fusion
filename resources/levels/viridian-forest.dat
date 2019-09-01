@@ -1,5 +1,7 @@
 NAME
 Viridian Forest
+MUSIC
+music/12-viridian-forest-intro.mp3,music/12-viridian-forest-loop.mp3
 LEAVESOUND
 sound_effects/general/sfx_go_outside.mp3
 NPCS
@@ -79,6 +81,10 @@ END
 viridian-forest-sign6 blank 2 2
 INTERACTIONS
 MENU:ALERT:LEAVING VIRIDIAN FOREST{NEWLINE}PEWTER CITY AHEAD
+END
+viridian-forest-hidden1 blank 16 43 INCORPOREAL
+INTERACTIONS
+GIVE_ITEM:ANTIDOTE|DEACTIVATE:viridian-forest-hidden1
 END
 TRAINERS
 viridian-forest-bugcatcher-1 10 0.0 0.0 BUG{SPACE}CATCHER bugcatcher.png {BUG CATCHER: No! Caterpie can't cut it!}{} 13-13:6|10-10:6
