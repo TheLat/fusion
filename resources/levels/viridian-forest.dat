@@ -30,7 +30,7 @@ FORCE_INTERACTION
 -4 0
 END
 INTERACTIONS
-!:viridian-forest-boy3|MOVE_TO_PLAYER|MENU:ALERT:Hey! You have POK{e-accent}MON! Come one! Let's battle 'em!|BATTLE:viridian-forest-bugcatcher-1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:viridian-forest-boy3|MOVE_TO_PLAYER|MENU:ALERT:Hey! You have POK{e-accent}MON! Come one! Let's battle 'em!|BATTLE:viridian-forest-bugcatcher-1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Ssh! You'll scare the bugs away!
 END
 viridian-forest-item1 orb 1 32
@@ -45,7 +45,7 @@ FORCE_INTERACTION
 -4 0
 END
 INTERACTIONS
-!:viridian-forest-boy4|MOVE_TO_PLAYER|MENU:ALERT:Yo! You can't jam out if you're a POK{e-accent}MON trainer!|BATTLE:viridian-forest-bugcatcher-2|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:viridian-forest-boy4|MOVE_TO_PLAYER|MENU:ALERT:Yo! You can't jam out if you're a POK{e-accent}MON trainer!|BATTLE:viridian-forest-bugcatcher-2|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Darn! I'm going to catch some stronger ones!
 END
 viridian-forest-sign3 blank 26 18
@@ -76,7 +76,7 @@ FORCE_INTERACTION
 -4 0
 END
 INTERACTIONS
-!:viridian-forest-boy5|MOVE_TO_PLAYER|MENU:ALERT:Hey, wait up! What's the hurry?|BATTLE:viridian-forest-bugcatcher-3|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:viridian-forest-boy5|MOVE_TO_PLAYER|MENU:ALERT:Hey, wait up! What's the hurry?|BATTLE:viridian-forest-bugcatcher-3|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Sometimes, you can find stuff on the ground!|MENU:ALERT:I'm looking for the stuff I dropped!
 END
 viridian-forest-sign6 blank 2 2
@@ -86,6 +86,10 @@ END
 viridian-forest-hidden1 blank 16 43 INCORPOREAL
 INTERACTIONS
 GIVE_ITEM:ANTIDOTE|DEACTIVATE:viridian-forest-hidden1
+END
+viridian-forest-hidden2 blank 1 19 INCORPOREAL
+INTERACTIONS
+GIVE_ITEM:POTION|DEACTIVATE:viridian-forest-hidden2
 END
 TRAINERS
 viridian-forest-bugcatcher-1 10 0.0 0.0 BUG{SPACE}CATCHER bugcatcher.png {BUG CATCHER: No! Caterpie can't cut it!}{} 13-13:6|10-10:6

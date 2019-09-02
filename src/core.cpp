@@ -3386,6 +3386,10 @@ bool engine::battle(trainer& t) { // trainer battle
 	while (!g.ae.is_dones(anim_holder1)) {}
 	g.draw_list.erase(g.draw_list.begin() + cp, g.draw_list.end());
 	g.push_box(-1.1f, -1.1f, 2.2f, 2.2f);
+	g.r_quad.x = -1.0;
+	g.r_quad.y = -1.0;
+	g.r_quad.height = 2.0;
+	g.r_quad.width = 2.0;
 	unsigned enemy_trainer_sprite = g.push_quad_load(2.1f, 0.1f, 0.9f, 0.9f, safepath + string("images/") + t.image);
 	unsigned player_sprite = g.push_quad_load(-10.0f, -0.422f, 0.9f, 0.9f, safepath + string("images/player-back.png"));
 	unsigned enemy_sprite = g.push_quad_load(2.1f, 0.1f, 0.9f, 0.9f, safepath + string("images/") + mc.enemy_team[mc.enemy_selected].number + string(".png"));
