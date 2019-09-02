@@ -3359,13 +3359,32 @@ bool engine::battle(trainer& t) { // trainer battle
 			mc.enemy_team[i].fought[j] = false;
 		}
 	}
-	// TODO: combat intro animation
 	if (t.finalboss)
 	    se.play_music(string("music/43-rival-final-battle-intro.mp3,music/43-rival-final-battle-loop.mp3"));
 	else if (t.bossfight)
 	    se.play_music(string("music/28-gym-battle-intro.mp3,music/28-gym-battle-loop.mp3"));
 	else
 	    se.play_music(string("music/15-trainer-battle-intro.mp3,music/15-trainer-battle-loop.mp3"));
+	unsigned cp = g.draw_list.size();
+	unsigned anim_holder1, anim_holder2;
+	if (levels[mc.loc.level].dungeon) {
+	    if (mc.team[mc.selected].level > mc.enemy_team[0].level + 3) {
+	        anim_holder1 = g.ae.create_anim_scene(string("fight-trainer-dungeon-easy"));
+	    }
+	    else {
+	        anim_holder1 = g.ae.create_anim_scene(string("fight-trainer-dungeon-hard"));
+	    }
+	}
+	else {
+	    if (mc.team[mc.selected].level > mc.enemy_team[0].level + 3) {
+	        anim_holder1 = g.ae.create_anim_scene(string("fight-trainer-nondungeon-easy"));
+	    }
+	    else {
+	        anim_holder1 = g.ae.create_anim_scene(string("fight-trainer-nondungeon-hard"));
+	    }
+	}
+	while (!g.ae.is_dones(anim_holder1)) {}
+	g.draw_list.erase(g.draw_list.begin() + cp, g.draw_list.end());
 	g.push_box(-1.1f, -1.1f, 2.2f, 2.2f);
 	unsigned enemy_trainer_sprite = g.push_quad_load(2.1f, 0.1f, 0.9f, 0.9f, safepath + string("images/") + t.image);
 	unsigned player_sprite = g.push_quad_load(-10.0f, -0.422f, 0.9f, 0.9f, safepath + string("images/player-back.png"));
@@ -3376,7 +3395,6 @@ bool engine::battle(trainer& t) { // trainer battle
 	mc.team[mc.selected].last_move = "";
 	mc.enemy_team[mc.enemy_selected].queue.clear();
 	mc.enemy_team[mc.enemy_selected].last_move = "";
-	unsigned anim_holder1, anim_holder2;
 	anim_holder1 = g.ae.create_animf(&(g.draw_list[enemy_trainer_sprite].x), -1.9, 0.1, 1.5);
 	anim_holder2 = g.ae.create_animf(&(g.draw_list[player_sprite].x), 1.0, -1.0, 1.5);
 	while (!g.ae.is_donef(anim_holder1) && !g.ae.is_donef(anim_holder2)) {}
@@ -3384,7 +3402,7 @@ bool engine::battle(trainer& t) { // trainer battle
 	do_alert(t.display_name + string(" wants to fight!"));
 	anim_holder1 = g.ae.create_animf(&(g.draw_list[enemy_trainer_sprite].x), 0.1, 1.0, 0.5);
 	while (!g.ae.is_donef(anim_holder1)) {}
-	unsigned cp = g.draw_list.size();
+	cp = g.draw_list.size();
 	anim_holder1 = g.ae.create_anim_scene(string("sendout-enemy"), team_sprite, enemy_sprite);
 	while (!g.ae.is_dones(anim_holder1)) {}
 	g.draw_list.erase(g.draw_list.begin() + cp, g.draw_list.end());
@@ -3909,6 +3927,27 @@ bool engine::battle() { // wild pokemon
 	vector<int> choices;
 	double count;
 	int clear_point = g.draw_list.size();
+	unsigned cp = g.draw_list.size();
+	unsigned anim_holder1, anim_holder2;
+	se.play_music(string("music/07-wild-battle-intro.mp3,music/07-wild-battle-loop.mp3"));
+	if (levels[mc.loc.level].dungeon) {
+	    if (mc.team[mc.selected].level > mc.enemy_team[0].level + 3) {
+	        anim_holder1 = g.ae.create_anim_scene(string("fight-wild-dungeon-easy"));
+	    }
+	    else {
+	        anim_holder1 = g.ae.create_anim_scene(string("fight-wild-dungeon-hard"));
+	    }
+	}
+	else {
+	    if (mc.team[mc.selected].level > mc.enemy_team[0].level + 3) {
+	        anim_holder1 = g.ae.create_anim_scene(string("fight-wild-nondungeon-easy"));
+	    }
+	    else {
+	        anim_holder1 = g.ae.create_anim_scene(string("fight-wild-nondungeon-hard"));
+	    }
+	}
+	while (!g.ae.is_dones(anim_holder1)) {}
+	g.draw_list.erase(g.draw_list.begin() + cp, g.draw_list.end());
 	g.push_box(-1.1f, -1.1f, 2.2f, 2.2f);
 	mc.selected = -1;
 	mc.extra_winnings = 0;
@@ -3920,8 +3959,6 @@ bool engine::battle() { // wild pokemon
 			}
 		}
 	}
-	// TODO: Combat intro animation
-	se.play_music(string("music/07-wild-battle-intro.mp3,music/07-wild-battle-loop.mp3"));
 	unsigned enemy_sprite = g.push_quad_load(-1.9f, 0.1f, 0.9f, 0.9f, safepath + string("images/") + mc.enemy_team[mc.enemy_selected].number + string(".png"));
 	unsigned player_sprite = g.push_quad_load(1.0f, -0.422f, 0.9f, 0.9f, safepath + string("images/player-back.png"));
 	unsigned team_sprite = g.push_quad_load(-10.0f, -0.422f, 0.9f, 0.9f, safepath + string("images/") + mc.team[mc.selected].number + string("-back.png"));
@@ -3930,7 +3967,6 @@ bool engine::battle() { // wild pokemon
 	mc.team[mc.selected].last_move = "";
 	mc.enemy_team[mc.enemy_selected].queue.clear();
 	mc.enemy_team[mc.enemy_selected].last_move = "";
-	unsigned anim_holder1, anim_holder2;
 	anim_holder1 = g.ae.create_animf(&(g.draw_list[enemy_sprite].x), -1.9, 0.1, 1.5);
 	anim_holder2 = g.ae.create_animf(&(g.draw_list[player_sprite].x), 1.0, -1.0, 1.5);
 	while (!g.ae.is_donef(anim_holder1) && !g.ae.is_donef(anim_holder2)) {}
@@ -3944,7 +3980,7 @@ bool engine::battle() { // wild pokemon
 	mc.seen[mc.enemy_team[mc.enemy_selected].number] = true;
 	anim_holder1 = g.ae.create_animf(&(g.draw_list[player_sprite].x), -1.0, -1.9, 0.5);
 	while (!g.ae.is_donef(anim_holder1)) {}
-	unsigned cp = g.draw_list.size();
+	cp = g.draw_list.size();
 	anim_holder1 = g.ae.create_anim_scene(string("sendout"), team_sprite, enemy_sprite);
 	while (!g.ae.is_dones(anim_holder1)) {}
 	g.draw_list.erase(g.draw_list.begin() + cp, g.draw_list.end());
@@ -4248,10 +4284,7 @@ bool engine::battle() { // wild pokemon
 			choices = do_menu(string("ALERT_YES_NO"), string("Use next POK{e-accent}MON?"));
 			if (choices[choices.size() - 1] == 1) {
 				if (run_away(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected], escape_attempts)) {
-                    cp = g.draw_list.size();
-                    anim_holder1 = g.ae.create_anim_scene(string("runaway"), team_sprite, enemy_sprite);
-                    while (!g.ae.is_dones(anim_holder1)) {}
-                    g.draw_list.erase(g.draw_list.begin() + cp, g.draw_list.end());
+				    se.play_sound_blocking(string("sound_effects/general/sfx_fly.mp3"))
 					do_alert(string("Got away safely!"));
 					g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
 					team_clear_volatile();
@@ -4719,8 +4752,9 @@ void engine::init_levels() {
 	ifstream f("../resources/data/levels.dat");
 	string line;
 	while (f.is_open()) {
-		while (safe_getline(f, line))
+		while (safe_getline(f, line)) {
 			init_level(line);
+		}
 		f.close();
 	}
 }
@@ -4746,6 +4780,10 @@ void engine::init_level(string levelname) {
 			safe_getline(f, line);
 			levels[levelname].leavesound = line;
 			continue;
+		}
+		if (line == "DUNGEON") {
+		    levels[levelname].dungeon = true;
+		    continue;
 		}
 		if (line == "NPCS") {
 			safe_getline(f, line);

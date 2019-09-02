@@ -1,0 +1,43 @@
+SPLINE_TRANSFORM SCREEN_EFFECTS 0.0 0.1 0.0 0.0 0.0 0.0 0.0 0.0 1.0 0.0
+SPLINE_TRANSFORM SCREEN_EFFECTS 0.1 0.2 0.0 0.0 1.0 0.0 0.0 0.0 0.0 0.0
+SPLINE_TRANSFORM SCREEN_EFFECTS 0.2 0.3 0.0 0.0 0.0 0.0 0.0 0.0 1.0 0.0
+SPLINE_TRANSFORM SCREEN_EFFECTS 0.3 0.4 0.0 0.0 1.0 0.0 0.0 0.0 0.0 0.0
+SPLINE_TRANSFORM SCREEN_EFFECTS 0.4 0.5 0.0 0.0 0.0 0.0 0.0 0.0 1.0 0.0
+SPLINE_TRANSFORM SCREEN_EFFECTS 0.5 0.6 0.0 0.0 1.0 0.0 0.0 0.0 0.0 0.0
+SPLINE_TRANSFORM SCREEN_EFFECTS 0.6 0.7 0.0 0.0 0.0 0.0 0.0 0.0 1.0 0.0
+SPLINE_TRANSFORM SCREEN_EFFECTS 0.7 0.8 0.0 0.0 1.0 0.0 0.0 0.0 0.0 0.0
+SPLINE_TRANSFORM SCREEN_EFFECTS 0.8 0.9 0.0 0.0 0.0 0.0 0.0 0.0 1.0 0.0
+SPLINE_TRANSFORM SCREEN_EFFECTS 0.9 1.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0 0.0
+CREATE_SPRITE images/spiral01.png 1.0 -1.0 -1.0 2.0 2.0
+CREATE_SPRITE images/spiral01.png 1.0 1.0 1.0 -2.0 -2.0
+CREATE_SPRITE images/spiral02.png 1.1 -1.0 -1.0 2.0 2.0
+CREATE_SPRITE images/spiral02.png 1.1 1.0 1.0 -2.0 -2.0
+CREATE_SPRITE images/spiral03.png 1.2 -1.0 -1.0 2.0 2.0
+CREATE_SPRITE images/spiral03.png 1.2 1.0 1.0 -2.0 -2.0
+CREATE_SPRITE images/spiral04.png 1.3 -1.0 -1.0 2.0 2.0
+CREATE_SPRITE images/spiral04.png 1.3 1.0 1.0 -2.0 -2.0
+CREATE_SPRITE images/spiral05.png 1.4 -1.0 -1.0 2.0 2.0
+CREATE_SPRITE images/spiral05.png 1.4 1.0 1.0 -2.0 -2.0
+CREATE_SPRITE images/spiral06.png 1.5 -1.0 -1.0 2.0 2.0
+CREATE_SPRITE images/spiral06.png 1.5 1.0 1.0 -2.0 -2.0
+CREATE_SPRITE images/spiral07.png 1.6 -1.0 -1.0 2.0 2.0
+CREATE_SPRITE images/spiral07.png 1.6 1.0 1.0 -2.0 -2.0
+CREATE_SPRITE images/spiral08.png 1.7 -1.0 -1.0 2.0 2.0
+CREATE_SPRITE images/spiral08.png 1.7 1.0 1.0 -2.0 -2.0
+CREATE_SPRITE images/spiral09.png 1.8 -1.0 -1.0 2.0 2.0
+CREATE_SPRITE images/spiral09.png 1.8 1.0 1.0 -2.0 -2.0
+CREATE_SPRITE images/spiral10.png 1.9 -1.0 -1.0 2.0 2.0
+CREATE_SPRITE images/spiral10.png 1.9 1.0 1.0 -2.0 -2.0
+CREATE_SPRITE images/spiral11.png 2.0 -1.0 -1.0 2.0 2.0
+CREATE_SPRITE images/spiral11.png 2.0 1.0 1.0 -2.0 -2.0
+CREATE_SPRITE images/spiral12.png 2.1 -1.0 -1.0 2.0 2.0
+CREATE_SPRITE images/spiral12.png 2.1 1.0 1.0 -2.0 -2.0
+CREATE_SPRITE images/spiral13.png 2.2 -1.0 -1.0 2.0 2.0
+CREATE_SPRITE images/spiral13.png 2.2 1.0 1.0 -2.0 -2.0
+CREATE_SPRITE images/spiral14.png 2.3 -1.0 -1.0 2.0 2.0
+CREATE_SPRITE images/spiral14.png 2.3 1.0 1.0 -2.0 -2.0
+CREATE_SPRITE images/spiral15.png 2.4 -1.0 -1.0 2.0 2.0
+CREATE_SPRITE images/spiral15.png 2.4 1.0 1.0 -2.0 -2.0
+CREATE_SPRITE images/spiral16.png 2.5 -1.0 -1.0 2.0 2.0
+CREATE_SPRITE images/spiral16.png 2.5 1.0 1.0 -2.0 -2.0
+CREATE_SPRITE images/spiral16.png 3.5 1.0 1.0 -2.0 -2.0
