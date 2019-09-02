@@ -4284,7 +4284,7 @@ bool engine::battle() { // wild pokemon
 			choices = do_menu(string("ALERT_YES_NO"), string("Use next POK{e-accent}MON?"));
 			if (choices[choices.size() - 1] == 1) {
 				if (run_away(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected], escape_attempts)) {
-				    se.play_sound_blocking(string("sound_effects/general/sfx_fly.mp3"))
+				    se.play_sound_blocking(string("sound_effects/general/sfx_fly.mp3"));
 					do_alert(string("Got away safely!"));
 					g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
 					team_clear_volatile();
