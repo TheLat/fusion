@@ -38,7 +38,7 @@ mt-moon-item8 orb 29 49
 INTERACTIONS
 GIVE_ITEM:TM01|DEACTIVATE:mt-moon-item8
 END
-mt-moon-item9 blank 33 53
+mt-moon-item9 blank 33 53 INCORPOREAL
 INTERACTIONS
 GIVE_ITEM:ETHER|DEACTIVATE:mt-moon-item9
 END
@@ -169,6 +169,10 @@ END
 mt-moon-fossil2 fossil 13 50
 INTERACTIONS
 MENU:ALERT:ERROR
+END
+mt-moon-item10 blank 18 56 INCORPOREAL
+INTERACTIONS
+GIVE_ITEM:MOON STONE|DEACTIVATE:mt-moon-item10
 END
 TRAINERS
 mt-moon-boy1 10 0.1 0.1 BUG{SPACE}CATCHER bugcatcher.png {BUG CATCHER: You got me!}{} 13-13:11|14-14:11
