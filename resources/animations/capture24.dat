@@ -30,4 +30,4 @@ CREATE_SPRITE images/ball22.png 3.4 0.45 0.3 0.2 0.2
 CREATE_SPRITE images/ball23.png 3.5 0.45 0.3 0.2 0.2
 CREATE_SPRITE images/ball22.png 3.6 0.45 0.3 0.2 0.2
 CREATE_SPRITE images/ball21.png 3.7 0.45 0.3 0.2 0.2
-PLAY_SOUND sound_effects/general/sfx_caught_mon.mp3 4.2
+CREATE_SPRITE images/ball21.png 4.2 0.45 0.3 0.2 0.2

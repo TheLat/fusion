@@ -4130,6 +4130,9 @@ bool engine::battle() { // wild pokemon
 						clear_volatile(mc.enemy_team[mc.enemy_selected]);
 						mc.enemy_team[mc.enemy_selected].wild = false;
 						mc.enemy_team[mc.enemy_selected].enemy = false;
+						se.mute_music(false);
+		                se.play_sound_blocking(string("sound_effects/general/sfx_caught_mon.mp3"));
+						se.unmute_music();
 						// TODO:  Nickname menu
 						int count = 0;
 						for (unsigned i = 0; i < 6; ++i) {
@@ -4168,7 +4171,9 @@ bool engine::battle() { // wild pokemon
 						}
 						if (!mc.caught[mc.enemy_team[mc.enemy_selected].number]) {
 						    mc.caught[mc.enemy_team[mc.enemy_selected].number] = true;
-						    se.play_sound(string("sound_effects/general/sfx_dex_page_added.mp3"));
+						    se.mute_music(false);
+						    se.play_sound_blocking(string("sound_effects/general/sfx_dex_page_added.mp3"));
+						    se.unmute_music();
 						    do_alert(get_nickname(mc.enemy_team[mc.enemy_selected]) + string(" was added to the POK{e-accent}DEX!"));
 						}
 						count = 0;
