@@ -1,5 +1,8 @@
 NAME
 Mt. Moon
+DUNGEON
+MUSIC
+music/17-mt-moon-intro.mp3,music/17-mt-moon-loop.mp3
 LEAVESOUND
 sound_effects/general/sfx_go_outside.mp3
 NPCS
@@ -46,7 +49,7 @@ FORCE_INTERACTION
 0 3
 END
 INTERACTIONS
-!:mt-moon-boy1|MOVE_TO_PLAYER|MENU:ALERT:Suspicious men are in the cave. What about you?|BATTLE:mt-moon-boy1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:mt-moon-boy1|MOVE_TO_PLAYER|MENU:ALERT:Suspicious men are in the cave. What about you?|BATTLE:mt-moon-boy1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I saw them! I'm sure they're from TEAM ROCKET!
 END
 mt-moon-sign1 blank 15 23
@@ -60,7 +63,7 @@ FORCE_INTERACTION
 0 3
 END
 INTERACTIONS
-!:mt-moon-girl1|MOVE_TO_PLAYER|MENU:ALERT:What? I'm waiting for my friends to find me here.|BATTLE:mt-moon-girl1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:mt-moon-girl1|MOVE_TO_PLAYER|MENU:ALERT:What? I'm waiting for my friends to find me here.|BATTLE:mt-moon-girl1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I heard there are some very rare fossils here.
 END
 mt-moon-rocket1 rocket 15 66 DOWN
@@ -70,7 +73,7 @@ FORCE_INTERACTION
 0 3
 END
 INTERACTIONS
-!:mt-moon-rocket1|MOVE_TO_PLAYER|MENU:ALERT:We, TEAM ROCKET, are POK{e-accent}MON gangsters!|BATTLE:mt-moon-rocket1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:mt-moon-rocket1|MOVE_TO_PLAYER|MENU:ALERT:We, TEAM ROCKET, are POK{e-accent}MON gangsters!|BATTLE:mt-moon-rocket1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Darn it all! My associates won't stand for this!
 END
 mt-moon-man1 man2 24 31 UP
@@ -80,7 +83,7 @@ FORCE_INTERACTION
 0 -3
 END
 INTERACTIONS
-!:mt-moon-man1|MOVE_TO_PLAYER|MENU:ALERT:What! Don't sneak up on me!|BATTLE:mt-moon-man1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:mt-moon-man1|MOVE_TO_PLAYER|MENU:ALERT:What! Don't sneak up on me!|BATTLE:mt-moon-man1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I have to find stronger POK{e-accent}MON.
 END
 mt-moon-boy2 boy 30 27 RIGHT
@@ -88,7 +91,7 @@ FORCE_INTERACTION
 1 0
 END
 INTERACTIONS
-!:mt-moon-boy2|MOVE_TO_PLAYER|MENU:ALERT:Go through this cave to get to CERULEAN CITY!|BATTLE:mt-moon-boy2|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:mt-moon-boy2|MOVE_TO_PLAYER|MENU:ALERT:Go through this cave to get to CERULEAN CITY!|BATTLE:mt-moon-boy2|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:ZUBAT is tough! But it can be useful if you catch one.
 END
 mt-moon-girl2 girl 30 4 DOWN
@@ -98,7 +101,7 @@ FORCE_INTERACTION
 0 3
 END
 INTERACTIONS
-!:mt-moon-girl2|MOVE_TO_PLAYER|MENU:ALERT:Wow! It's way bigger in here than I thought!|BATTLE:mt-moon-girl2|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:mt-moon-girl2|MOVE_TO_PLAYER|MENU:ALERT:Wow! It's way bigger in here than I thought!|BATTLE:mt-moon-girl2|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:How do you get out of here?
 END
 mt-moon-rocket2 rocket 29 55 UP
@@ -108,7 +111,7 @@ FORCE_INTERACTION
 0 -3
 END
 INTERACTIONS
-!:mt-moon-rocket2|MOVE_TO_PLAYER|MENU:ALERT:We're pulling a big job here!{NEWLINE}Get lost, kid!|BATTLE:mt-moon-rocket2|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:mt-moon-rocket2|MOVE_TO_PLAYER|MENU:ALERT:We're pulling a big job here!{NEWLINE}Get lost, kid!|BATTLE:mt-moon-rocket2|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:If you find a fossil, give it to me and scram!
 END
 mt-moon-boy3 boy 12 16 RIGHT
@@ -118,7 +121,7 @@ FORCE_INTERACTION
 3 0
 END
 INTERACTIONS
-!:mt-moon-boy3|MOVE_TO_PLAYER|MENU:ALERT:Did you come to explore, too?|BATTLE:mt-moon-boy3|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:mt-moon-boy3|MOVE_TO_PLAYER|MENU:ALERT:Did you come to explore, too?|BATTLE:mt-moon-boy3|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I came down here to show off to girls.
 END
 mt-moon-hiker1 tough 5 6 DOWN
@@ -128,7 +131,7 @@ FORCE_INTERACTION
 0 3
 END
 INTERACTIONS
-!:mt-moon-hiker1|MOVE_TO_PLAYER|MENU:ALERT:WHOA! You shocked me! Oh, you're just a kid!|BATTLE:mt-moon-hiker1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:mt-moon-hiker1|MOVE_TO_PLAYER|MENU:ALERT:WHOA! You shocked me! Oh, you're just a kid!|BATTLE:mt-moon-hiker1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Kids like you shouldn't be here!
 END
 mt-moon-rocket3 rocket 29 61 LEFT
@@ -138,7 +141,7 @@ FORCE_INTERACTION
 -3 0
 END
 INTERACTIONS
-!:mt-moon-rocket3|MOVE_TO_PLAYER|MENU:ALERT:Little kids should leave grown-ups alone!|BATTLE:mt-moon-rocket3|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:mt-moon-rocket3|MOVE_TO_PLAYER|MENU:ALERT:Little kids should leave grown-ups alone!|BATTLE:mt-moon-rocket3|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:POK{e-accent}MON lived here long before people came.
 END
 mt-moon-rocket4 rocket 11 60 DOWN
@@ -148,7 +151,7 @@ FORCE_INTERACTION
 0 3
 END
 INTERACTIONS
-!:mt-moon-rocket4|MOVE_TO_PLAYER|MENU:ALERT:TEAM ROCKET will find the fossils and revive them!|BATTLE:mt-moon-rocket4|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:mt-moon-rocket4|MOVE_TO_PLAYER|MENU:ALERT:TEAM ROCKET will find the fossils and revive them!|BATTLE:mt-moon-rocket4|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:You made me mad! TEAM ROCKET will blacklist you!
 END
 mt-moon-man2 man2 12 52 RIGHT
@@ -156,7 +159,7 @@ FORCE_INTERACTION
 1 0
 END
 INTERACTIONS
-!:mt-moon-man2|MOVE_TO_PLAYER|MENU:ALERT:Hey, stop!|MENU:ALERT:I found these fossils! They're both mine!|BATTLE:mt-moon-man2|{NO_ADVANCE}{DEACTIVATE:mt-moon-fossil1|GIVE_ITEM:DOME FOSSIL|DEACTIVATE:mt-moon-fossil2|GIVE_ITEM:HELIX FOSSIL|DISABLE_FORCE}
+PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:mt-moon-man2|MOVE_TO_PLAYER|MENU:ALERT:Hey, stop!|MENU:ALERT:I found these fossils! They're both mine!|BATTLE:mt-moon-man2|{NO_ADVANCE}{DEACTIVATE:mt-moon-fossil1|GIVE_ITEM:DOME FOSSIL|DEACTIVATE:mt-moon-fossil2|GIVE_ITEM:HELIX FOSSIL|DISABLE_FORCE}
 MENU:ALERT:Far away, on CINNABAR ISLAND, there's a POK{e-accent}MON LAB.|MENU:ALERT:They do research on regenerating fossils.
 END
 mt-moon-fossil1 fossil 12 50
