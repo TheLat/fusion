@@ -1,5 +1,7 @@
 NAME
 Route 3
+MUSIC
+music/18-road-to-cerulean-intro.mp3,music/18-road-to-cerulean-loop.mp3
 LEAVESOUND
 sound_effects/general/sfx_go_inside.mp3
 NPCS
@@ -9,7 +11,7 @@ FORCE_INTERACTION
 -2 0
 END
 INTERACTIONS
-!:route3-girl|MOVE_TO_PLAYER|MENU:ALERT:You looked at me, didn't you?|BATTLE:route3-girl-1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:route3-girl|MOVE_TO_PLAYER|MENU:ALERT:You looked at me, didn't you?|BATTLE:route3-girl-1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Quit staring if you don't want to fight!
 END
 route3-boy boy 10 7 RIGHT
@@ -17,7 +19,7 @@ FORCE_INTERACTION
 1 0
 END
 INTERACTIONS
-!:route3-boy|MOVE_TO_PLAYER|MENU:ALERT:Hey! I met you in VIRIDIAN FOREST!|BATTLE:route3-boy-1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route3-boy|MOVE_TO_PLAYER|MENU:ALERT:Hey! I met you in VIRIDIAN FOREST!|BATTLE:route3-boy-1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:There are other kinds of POK{e-accent}MON than those found in the forest!
 END
 route3-boy2 boy 14 5 DOWN
@@ -26,7 +28,7 @@ FORCE_INTERACTION
 0 2
 END
 INTERACTIONS
-!:route3-boy2|MOVE_TO_PLAYER|MENU:ALERT:Hi! I like shorts! They're comfy and easy to wear!|BATTLE:route3-boy-2|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route3-boy2|MOVE_TO_PLAYER|MENU:ALERT:Hi! I like shorts! They're comfy and easy to wear!|BATTLE:route3-boy-2|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Are you storing your POK{e-accent}MON on PC? Each box can hold 20 POK{e-accent}MON!
 END
 route3-girl2 girl 23 5 LEFT
@@ -37,7 +39,7 @@ FORCE_INTERACTION
 -4 0
 END
 INTERACTIONS
-!:route3-girl2|MOVE_TO_PLAYER|MENU:ALERT:That look you gave me, it's so intriguing!|BATTLE:route3-girl-2|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:route3-girl2|MOVE_TO_PLAYER|MENU:ALERT:That look you gave me, it's so intriguing!|BATTLE:route3-girl-2|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Avoid fights by not letting people see you!
 END
 route3-boy3 boy 19 6 DOWN
@@ -45,7 +47,7 @@ FORCE_INTERACTION
 0 1
 END
 INTERACTIONS
-!:route3-boy3|MOVE_TO_PLAYER|MENU:ALERT:Are you a trainer? Let's fight!|BATTLE:route3-boy-3|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route3-boy3|MOVE_TO_PLAYER|MENU:ALERT:Are you a trainer? Let's fight!|BATTLE:route3-boy-3|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:If a POK{e-accent}MON BOX on the PC gets full, just switch to another BOX!
 END
 route3-boy4 boy 22 10 LEFT
@@ -55,7 +57,7 @@ FORCE_INTERACTION
 -3 0
 END
 INTERACTIONS
-!:route3-boy4|MOVE_TO_PLAYER|MENU:ALERT:Hey! You're not wearing shorts!|BATTLE:route3-boy-4|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route3-boy4|MOVE_TO_PLAYER|MENU:ALERT:Hey! You're not wearing shorts!|BATTLE:route3-boy-4|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I always wear shorts, even in winter!
 END
 route3-boy5 boy 24 7 RIGHT
@@ -65,7 +67,7 @@ FORCE_INTERACTION
 3 0
 END
 INTERACTIONS
-!:route3-boy5|MOVE_TO_PLAYER|MENU:ALERT:You can fight my new POK{e-accent}MON!|BATTLE:route3-boy-5|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route3-boy5|MOVE_TO_PLAYER|MENU:ALERT:You can fight my new POK{e-accent}MON!|BATTLE:route3-boy-5|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Trained POK{e-accent}MON are stronger than the wild ones.
 END
 route3-girl3 girl 33 11 UP
@@ -74,7 +76,7 @@ FORCE_INTERACTION
 0 -2
 END
 INTERACTIONS
-!:route3-girl3|MOVE_TO_PLAYER|MENU:ALERT:Eek! Did you touch me?|BATTLE:route3-girl-3|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:route3-girl3|MOVE_TO_PLAYER|MENU:ALERT:Eek! Did you touch me?|BATTLE:route3-girl-3|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:ROUTE 4 is at the foot of MT. MOON.
 END
 route3-man man2 57 12

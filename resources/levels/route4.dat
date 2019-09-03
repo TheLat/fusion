@@ -1,5 +1,7 @@
 NAME
 Route 4
+MUSIC
+music/18-road-to-cerulean-intro.mp3,music/18-road-to-cerulean-loop.mp3
 LEAVESOUND
 sound_effects/general/sfx_go_inside.mp3
 NPCS
@@ -26,7 +28,7 @@ FORCE_INTERACTION
 3 0
 END
 INTERACTIONS
-!:route4-girl2|MOVE_TO_PLAYER|MENU:ALERT:I came to get my mushroom POK{e-accent}MON!|BATTLE:route4-girl2|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:route4-girl2|MOVE_TO_PLAYER|MENU:ALERT:I came to get my mushroom POK{e-accent}MON!|BATTLE:route4-girl2|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:There might not be any more mushrooms here.|MENU:ALERT:I think I got them all.
 END
 TRAINERS
