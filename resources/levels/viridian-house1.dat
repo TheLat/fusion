@@ -11,7 +11,7 @@ MENU:ALERT:My Daddy loves POK{e-accent}MON too.
 END
 viridian-house1-bird bird 3 5 WANDER
 INTERACTIONS
-MENU:ALERT:SPEARY: Tetweet!
+PLAY_CRY:21-21|MENU:ALERT:SPEARY: Tetweet!
 END
 viridian-house1-man man 5 3 LEFT
 INTERACTIONS

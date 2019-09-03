@@ -6460,6 +6460,18 @@ void engine::do_interaction(character& npc) {
 			}
 			se.play_sound_blocking(s2);
 		}
+		else if (s.find("PLAY_CRY:") == 0) {
+			s.erase(0, string("PLAY_CRY:").length());
+			s2 = s;
+			if (s.find("|") != -1) {
+				s.erase(0, s.find("|"));
+				s2.erase(s2.find("|"), s2.length());
+			}
+			else {
+				s = "";
+			}
+			se.play_cry(s2);
+		}
 		else if (s.find("PLAY_MUSIC:") == 0) {
 			s.erase(0, string("PLAY_MUSIC:").length());
 			s2 = s;
