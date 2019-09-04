@@ -31,7 +31,7 @@ PLAY_SOUND:sound_effects/general/sfx_turn_on_pc.mp3|MENU:ALERT:{PLAYER_NAME} tur
 END
 route4-center-bald bald3 10 6
 INTERACTIONS
-MENU:ALERT:MAN: Hello, there! Have I got a deal just for you!|MENU:ALERT:I'll let you have a swell MAGIKARP for just $500!|MENU:ALERT_YES_NO_MONEY:What do you say?|{HAS_MONEY:500|{MENU:ALERT:You'll need more money than that!|NO_ADVANCE}{REMOVE_MONEY:500|GIVE_MON:5:129-129}}{MENU:ALERT:No? I'm only doing this as a favor to you!|NO_ADVANCE}
+MENU:ALERT:MAN: Hello, there! Have I got a deal just for you!|MENU:ALERT:I'll let you have a swell MAGIKARP for just $500!|MENU:ALERT_YES_NO_MONEY:What do you say?|{HAS_MONEY:500|{PLAY_SOUND:sound_effects/general/sfx_denied.mp3|MENU:ALERT:You'll need more money than that!|NO_ADVANCE}{REMOVE_MONEY:500|GIVE_MON:5:129-129}}{MENU:ALERT:No? I'm only doing this as a favor to you!|NO_ADVANCE}
 MENU:ALERT:MAN: Well, I don't give refunds!
 END
 route4-center-paper clipboard 7 2

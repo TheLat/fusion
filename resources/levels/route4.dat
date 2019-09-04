@@ -31,6 +31,10 @@ INTERACTIONS
 PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:route4-girl2|MOVE_TO_PLAYER|MENU:ALERT:I came to get my mushroom POK{e-accent}MON!|BATTLE:route4-girl2|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:There might not be any more mushrooms here.|MENU:ALERT:I think I got them all.
 END
+route4-item2 blank 45 13 INCORPOREAL
+INTERACTIONS
+GIVE_ITEM:GREAT BALL|DEACTIVATE:route4-item2
+END
 TRAINERS
 route4-girl2 15 0.5 0.5 LASS lass.png {LASS: Oh! My cute mushroom POK{e-accent}MON!}{} 47-47:52:SPORE,STUN SPORE,LEECH LIFE,SLASH|76-47:51:SPORE,EARTHQUAKE,SLASH,SELFDESTRUCT|9-47:53:SPORE,SLASH,SURF,STRENGTH
 END

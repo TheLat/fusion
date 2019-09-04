@@ -11,7 +11,7 @@ FORCE_INTERACTION
 -2 0
 END
 INTERACTIONS
-MENU:ALERT:It's $50 for a child's ticket.|MENU:ALERT_YES_NO_MONEY:Would you like to come in?|{HAS_MONEY:50|{MENU:ALERT:You don't have enough money.|MENU:ALERT:Come again!|MOVE:PLAYER:0,1|NO_ADVANCE}{MENU:ALERT:Right, $50! {NEWLINE} Thank you!|REMOVE_MONEY:50|DISABLE_FORCE}}{MENU:ALERT:Come again!|MOVE:PLAYER:0,1|NO_ADVANCE}
+MENU:ALERT:It's $50 for a child's ticket.|MENU:ALERT_YES_NO_MONEY:Would you like to come in?|{HAS_MONEY:50|{PLAY_SOUND:sound_effects/general/sfx_denied.mp3|MENU:ALERT:You don't have enough money.|MENU:ALERT:Come again!|MOVE:PLAYER:0,1|NO_ADVANCE}{MENU:ALERT:Right, $50! {NEWLINE} Thank you!|REMOVE_MONEY:50|DISABLE_FORCE}}{MENU:ALERT:Come again!|MOVE:PLAYER:0,1|NO_ADVANCE}
 SET_FACE:pewter-museum-doctor2:LEFT|MENU:ALERT:Take plenty of time to look!
 END
 pewter-museum-bald1 bald4 1 4

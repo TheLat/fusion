@@ -1,5 +1,7 @@
 NAME
 Cerulean Bike Shop
+MUSIC
+music/19-cerulean-city-intro.mp3,music/19-cerulean-city-loop.mp3
 LEAVESOUND
 sound_effects/general/sfx_go_outside.mp3
 NPCS
@@ -9,12 +11,12 @@ MENU:ALERT:Fuck this guy. --the developer
 END
 cerulean-bike-desk1 blank 5 2
 INTERACTIONS
-IN_INVENTORY:BIKE VOUCHER|{SET_FACE:cerulean-bike-clerk:LEFT|MENU:ALERT:Hi! Welcome to our BIKE SHOP.|MENU:ALERT:Have we got just the BIKE for you!|MENU:ALERT_YES_NO:It's a cool BIKE! Only $1000000!|{MENU:ALERT:Sorry! You can't afford it!}{MENU:ALERT:Come back again some time!}|NO_ADVANCE}{SET_FACE:cerulean-bike-clerk:LEFT|MENU:ALERT:Oh, that's...|MENU:ALERT:A BIKE VOUCHER!|MENU:ALERT:OK! Here you go!|REMOVE_ITEM:BIKE VOUCHER|GIVE_ITEM:BICYCLE|ADVANCE:cerulean-bike-desk2}
+IN_INVENTORY:BIKE VOUCHER|{SET_FACE:cerulean-bike-clerk:LEFT|MENU:ALERT:Hi! Welcome to our BIKE SHOP.|MENU:ALERT:Have we got just the BIKE for you!|MENU:ALERT_YES_NO:It's a cool BIKE! Only $1000000!|{PLAY_SOUND:sound_effects/general/sfx_denied.mp3|MENU:ALERT:Sorry! You can't afford it!}{MENU:ALERT:Come back again some time!}|NO_ADVANCE}{SET_FACE:cerulean-bike-clerk:LEFT|MENU:ALERT:Oh, that's...|MENU:ALERT:A BIKE VOUCHER!|MENU:ALERT:OK! Here you go!|REMOVE_ITEM:BIKE VOUCHER|GIVE_ITEM:BICYCLE|ADVANCE:cerulean-bike-desk2}
 SET_FACE:cerulean-bike-clerk:LEFT|MENU:ALERT:How do you like your new BICYCLE?|MENU:ALERT:You can take it on CYCLING ROAD and in caves!
 END
 cerulean-bike-desk2 blank 6 3
 INTERACTIONS
-IN_INVENTORY:BIKE VOUCHER|{SET_FACE:cerulean-bike-clerk:DOWN|MENU:ALERT:Hi! Welcome to our BIKE SHOP.|MENU:ALERT:Have we got just the BIKE for you!|MENU:ALERT_YES_NO:It's a cool BIKE! Only $1000000!|{MENU:ALERT:Sorry! You can't afford it!}{MENU:ALERT:Come back again some time!}|NO_ADVANCE}{SET_FACE:cerulean-bike-clerk:DOWN|MENU:ALERT:Oh, that's...|MENU:ALERT:A BIKE VOUCHER!|MENU:ALERT:OK! Here you go!|REMOVE_ITEM:BIKE VOUCHER|GIVE_ITEM:BICYCLE|ADVANCE:cerulean-bike-desk1}
+IN_INVENTORY:BIKE VOUCHER|{SET_FACE:cerulean-bike-clerk:DOWN|MENU:ALERT:Hi! Welcome to our BIKE SHOP.|MENU:ALERT:Have we got just the BIKE for you!|MENU:ALERT_YES_NO:It's a cool BIKE! Only $1000000!|{PLAY_SOUND:sound_effects/general/sfx_denied.mp3|MENU:ALERT:Sorry! You can't afford it!}{MENU:ALERT:Come back again some time!}|NO_ADVANCE}{SET_FACE:cerulean-bike-clerk:DOWN|MENU:ALERT:Oh, that's...|MENU:ALERT:A BIKE VOUCHER!|MENU:ALERT:OK! Here you go!|REMOVE_ITEM:BIKE VOUCHER|GIVE_ITEM:BICYCLE|ADVANCE:cerulean-bike-desk1}
 SET_FACE:cerulean-bike-clerk:DOWN|MENU:ALERT:How do you like your new BICYCLE?|MENU:ALERT:You can take it on CYCLING ROAD and in caves!
 END
 cerulean-bike-boy boy 1 3 UP

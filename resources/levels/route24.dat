@@ -1,5 +1,7 @@
 NAME
 Route 24
+MUSIC
+music/21-to-bills-loop.mp3
 LEAVESOUND
 sound_effects/general/sfx_go_inside.mp3
 NPCS
@@ -8,7 +10,7 @@ FORCE_INTERACTION
 -1 0
 END
 INTERACTIONS
-!:route24-boy1|MENU:ALERT:This is NUGGET BRIDGE! Beat us 5 trainers and win a fabulous prize!|MENU:ALERT:Think you got what it takes?|BATTLE:route24-boy1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route24-boy1|MENU:ALERT:This is NUGGET BRIDGE! Beat us 5 trainers and win a fabulous prize!|MENU:ALERT:Think you got what it takes?|BATTLE:route24-boy1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I did my best. I have no regrets!
 END
 route24-girl1 girl 12 30 RIGHT
@@ -16,7 +18,7 @@ FORCE_INTERACTION
 1 0
 END
 INTERACTIONS
-!:route24-girl1|MENU:ALERT:I'm second!{NEWLINE}Now it's serious!|BATTLE:route24-girl1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:route24-girl1|MENU:ALERT:I'm second!{NEWLINE}Now it's serious!|BATTLE:route24-girl1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I did my best. I have no regrets!
 END
 route24-boy2 boy 13 27 LEFT
@@ -24,7 +26,7 @@ FORCE_INTERACTION
 -1 0
 END
 INTERACTIONS
-!:route24-boy2|MENU:ALERT:Here's No. 3! I won't be easy!|BATTLE:route24-boy2|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route24-boy2|MENU:ALERT:Here's No. 3! I won't be easy!|BATTLE:route24-boy2|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I did my best. I have no regrets!
 END
 route24-girl2 girl 12 24 RIGHT
@@ -32,7 +34,7 @@ FORCE_INTERACTION
 1 0
 END
 INTERACTIONS
-!:route24-girl2|MENU:ALERT:I'm No. 4! Getting tired?|BATTLE:route24-girl2|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:route24-girl2|MENU:ALERT:I'm No. 4! Getting tired?|BATTLE:route24-girl2|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I did my best. I have no regrets!
 END
 route24-guy1 guy2 13 21 LEFT
@@ -40,7 +42,7 @@ FORCE_INTERACTION
 -1 0
 END
 INTERACTIONS
-!:route24-guy1|MENU:ALERT:OK! I'm No. 5! I'll stomp you!|BATTLE:route24-guy1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route24-guy1|MENU:ALERT:OK! I'm No. 5! I'll stomp you!|BATTLE:route24-guy1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I did my best. I have no regrets!
 END
 route24-guy2 guy2 13 17 LEFT
@@ -49,7 +51,7 @@ FORCE_INTERACTION
 END
 INTERACTIONS
 MENU:ALERT:Congratulations! You beat our 5 contest trainers!|MENU:ALERT:You just earned a fabulous prize!|GIVE_ITEM:NUGGET
-MENU:ALERT:By the way, would you like to join TEAM ROCKET?|MENU:ALERT:We're a group dedicated to evil using POK{e-accent}MON.|MENU:ALERT:Want to join?|MENU:ALERT:Are you sure?|MENU:ALERT:Come on, join us!|MENU:ALERT:I'm telling you to join!|MENU:ALERT:OK, you need convincing!|I'll make you an offer you can't refuse!|BATTLE:route24-guy2|{NO_ADVANCE}{MENU:ALERT:With your ability, you could become a top leader in TEAM ROCKET!|DISABLE_FORCE}
+MENU:ALERT:By the way, would you like to join TEAM ROCKET?|MENU:ALERT:We're a group dedicated to evil using POK{e-accent}MON.|MENU:ALERT:Want to join?|MENU:ALERT:Are you sure?|MENU:ALERT:Come on, join us!|MENU:ALERT:I'm telling you to join!|MENU:ALERT:OK, you need convincing!|MENU:ALERT:I'll make you an offer you can't refuse!|BATTLE:route24-guy2|{NO_ADVANCE}{MENU:ALERT:With your ability, you could become a top leader in TEAM ROCKET!|DISABLE_FORCE}
 MENU:ALERT:With your ability, you could become a top leader in TEAM ROCKET!
 END
 route24-guy3 guy2 7 22 UP

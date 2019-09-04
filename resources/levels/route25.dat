@@ -1,5 +1,7 @@
 NAME
 Route 25
+MUSIC
+music/21-to-bills-loop.mp3
 LEAVESOUND
 sound_effects/general/sfx_go_inside.mp3
 NPCS
@@ -10,7 +12,7 @@ FORCE_INTERACTION
 3 0
 END
 INTERACTIONS
-!:route25-hiker1|MOVE_TO_PLAYER|MENU:ALERT:I just got down from MT. MOON, but I'm ready!|BATTLE:route25-hiker1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route25-hiker1|MOVE_TO_PLAYER|MENU:ALERT:I just got down from MT. MOON, but I'm ready!|BATTLE:route25-hiker1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Drat!{NEWLINE}A ZUBAT bit me back there.
 END
 route25-hiker2 tough 13 11 RIGHT
@@ -20,7 +22,7 @@ FORCE_INTERACTION
 3 0
 END
 INTERACTIONS
-!:route25-hiker2|MOVE_TO_PLAYER|MENU:ALERT:You're going to see BILL? First, let's fight!|BATTLE:route25-hiker2|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route25-hiker2|MOVE_TO_PLAYER|MENU:ALERT:You're going to see BILL? First, let's fight!|BATTLE:route25-hiker2|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:The trail below is a shortcut to CERULEAN CITY.
 END
 route25-boy1 boy 14 6 DOWN
@@ -29,7 +31,7 @@ FORCE_INTERACTION
 0 2
 END
 INTERACTIONS
-!:route25-boy1|MOVE_TO_PLAYER|MENU:ALERT:Local trainers come here to practice!|BATTLE:route25-boy1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route25-boy1|MOVE_TO_PLAYER|MENU:ALERT:Local trainers come here to practice!|BATTLE:route25-boy1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:All POK{e-accent}MON have weaknesses.  It's best to raise different kinds.
 END
 route25-boy2 boy 18 9 UP
@@ -39,7 +41,7 @@ FORCE_INTERACTION
 0 -3
 END
 INTERACTIONS
-!:route25-boy2|MOVE_TO_PLAYER|MENU:ALERT:Dad took me to a great party on the S.S. Anne at VERMILLION CITY!|BATTLE:route25-boy2|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route25-boy2|MOVE_TO_PLAYER|MENU:ALERT:Dad took me to a great party on the S.S. Anne at VERMILLION CITY!|BATTLE:route25-boy2|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:On the S.S. Anne, I saw trainers from around the world.
 END
 route25-girl1 girl 18 12 RIGHT
@@ -49,7 +51,7 @@ FORCE_INTERACTION
 3 0
 END
 INTERACTIONS
-!:route25-girl1|MOVE_TO_PLAYER|MENU:ALERT:Hi! My boyfriend is cool!|BATTLE:route25-girl1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:route25-girl1|MOVE_TO_PLAYER|MENU:ALERT:Hi! My boyfriend is cool!|BATTLE:route25-girl1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I wish my guy was as good as you!
 END
 route25-hiker3 tough 23 13 UP
@@ -59,7 +61,7 @@ FORCE_INTERACTION
 0 -3
 END
 INTERACTIONS
-!:route25-hiker3|MOVE_TO_PLAYER|MENU:ALERT:I'm off to see a POK{e-accent}MON collector at the cape!|BATTLE:route25-hiker3|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route25-hiker3|MOVE_TO_PLAYER|MENU:ALERT:I'm off to see a POK{e-accent}MON collector at the cape!|BATTLE:route25-hiker3|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:The collector has many rare kinds of POK{e-accent}MON.
 END
 route25-guy1 guy2 24 8 DOWN
@@ -69,7 +71,7 @@ FORCE_INTERACTION
 0 3
 END
 INTERACTIONS
-!:route25-guy1|MOVE_TO_PLAYER|MENU:ALERT:I'm a cool guy. I've got a girlfriend!|BATTLE:route25-guy1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route25-guy1|MOVE_TO_PLAYER|MENU:ALERT:I'm a cool guy. I've got a girlfriend!|BATTLE:route25-guy1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Oh, well. My girl will cheer me up.
 END
 route25-item1 orb 22 6
@@ -88,7 +90,7 @@ FORCE_INTERACTION
 -4 0
 END
 INTERACTIONS
-!:route25-boy3|MOVE_TO_PLAYER|MENU:ALERT:I knew I had to fight you!|BATTLE:route25-boy3|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route25-boy3|MOVE_TO_PLAYER|MENU:ALERT:I knew I had to fight you!|BATTLE:route25-boy3|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:If your POK{e-accent}MON gets confused or falls asleep, switch it!
 END
 route25-girl2 girl 37 8 DOWN
@@ -98,7 +100,7 @@ FORCE_INTERACTION
 0 3
 END
 INTERACTIONS
-!:route25-girl2|MOVE_TO_PLAYER|MENU:ALERT:My friend has a cute POK{e-accent}MON. I'm so jealous!|BATTLE:route25-girl2|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:route25-girl2|MOVE_TO_PLAYER|MENU:ALERT:My friend has a cute POK{e-accent}MON. I'm so jealous!|BATTLE:route25-girl2|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:You came from MT. MOON? May I have a CLEFAIRY?
 END
 route25-item2 blank 10 5

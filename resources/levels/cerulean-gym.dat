@@ -1,5 +1,7 @@
 NAME
 Cerulean City Gym
+MUSIC
+music/20-pokemon-gym-intro.mp3,music/20-pokemon-gym-loop.mp3
 LEAVESOUND
 sound_effects/general/sfx_go_outside.mp3
 NPCS
@@ -25,7 +27,7 @@ FORCE_INTERACTION
 -3 0
 END
 INTERACTIONS
-!:cerulean-gym-trainer1|MOVE_TO_PLAYER|MENU:ALERT:Splash!|MENU:ALERT:I'm first up!{NEWLINE}Let's do this!|BATTLE:cerulean-gym-trainer1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:cerulean-gym-trainer1|MOVE_TO_PLAYER|MENU:ALERT:Splash!|MENU:ALERT:I'm first up!{NEWLINE}Let's do this!|BATTLE:cerulean-gym-trainer1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:MISTY is going to keep improving!|MENU:ALERT:She won't lose to someone like you!
 END
 cerulean-gym-trainer2 girl 2 3 RIGHT
@@ -35,10 +37,10 @@ FORCE_INTERACTION
 3 0
 END
 INTERACTIONS
-!:cerulean-gym-trainer2|MOVE_TO_PLAYER|MENU:ALERT:I'm more than good enough for you!|MENU:ALERT:MISTY can wait!|BATTLE:cerulean-gym-trainer2|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:cerulean-gym-trainer2|MOVE_TO_PLAYER|MENU:ALERT:I'm more than good enough for you!|MENU:ALERT:MISTY can wait!|BATTLE:cerulean-gym-trainer2|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:You have to face other trainers to find out how good you really are.
 END
-cerulean-gym-misty girl5 4 2
+cerulean-gym-misty girl5 4 2 DOWN
 INTERACTIONS
 MENU:ALERT:Hi, you're a new face!|MENU:ALERT:Trainers who want to turn pro have to have a policy about POK{e-accent}MON!|MENU:ALERT:What is your approach when you catch POK{e-accent}MON?|MENU:ALERT:My policy is an all-out offensive with water-type POK{e-accent}MON!|BATTLE:cerulean-gym-misty|{NO_ADVANCE}{SET:CASCADEBADGE:1|MENU:ALERT:You can also have my favorite TM!|GIVE_ITEM:TM11|ADVANCE:cerulean-gym-board|ADVANCE:cerulean-gym-board2|ADVANCE:cerulean-gym-clerk}
 MENU:ALERT:TM11 teaches BUBBLEBEAM!|MENU:ALERT:Use it on aquatic POK{e-accent}MON!
@@ -46,7 +48,7 @@ END
 TRAINERS
 cerulean-gym-trainer1 5 0.5 0.5 SWIMMER swimmer.png {SWIMMER: That can't be!}{} 116-116:16|90-90:16
 cerulean-gym-trainer2 20 0.5 0.5 JR.TRAINER{FEMALE} jrtrainerf.png {JR.TRAINER{FEMALE}: You overwhelmed me!}{} 118-118:19
-cerulean-gym-misty {NO_SWITCH:1} 99 1.0 1.0 MISTY misty.png {MISTY: Wow! You're too much!{NEWLINE}Alright!{NEWLINE}You can have the CASCADEBADGE to show you beat me!{NEWLINE}{PLAYER_NAME} received CASCADEBADGE!}{} 120-120:18|121-121:21:TACKLE,WATER GUN,BUBBLEBEAM,SPLASH
+cerulean-gym-misty {NO_SWITCH:1 BOSSFIGHT} 99 1.0 1.0 MISTY misty.png {MISTY: Wow! You're too much! Alright!{NEWLINE}You can have the CASCADEBADGE to show you beat me!{NEWLINE}{PLAYER_NAME} received CASCADEBADGE!}{} 120-120:18|121-121:21:TACKLE,WATER GUN,BUBBLEBEAM,SPLASH
 END
 TELEPORT
 4 14 cerulean-city 32 22
