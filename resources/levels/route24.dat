@@ -62,7 +62,7 @@ FORCE_INTERACTION
 0 -4
 END
 INTERACTIONS
-!:route24-guy3|MOVE_TO_PLAYER|MENU:ALERT:I saw your feat from the grass!|BATTLE:route24-guy3|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route24-guy3|MOVE_TO_PLAYER|MENU:ALERT:I saw your feat from the grass!|BATTLE:route24-guy3|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I hid because people on the bridge scare me!
 END
 route24-item1 orb 12 7
