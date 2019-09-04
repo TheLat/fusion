@@ -1,12 +1,14 @@
 NAME
 Bill's House
+MUSIC
+music/19-cerulean-city-intro.mp3,music/19-cerulean-city-loop.mp3
 LEAVESOUND
 sound_effects/general/sfx_go_outside.mp3
 NPCS
 bill-house-computer blank 1 4
 INTERACTIONS
 MENU:ALERT:TELEPORTER is displayed on the PC monitor.|NO_ADVANCE
-MENU:ALERT:{PLAYER_NAME} initiated TELEPORTER's Cell Separator!|ACTIVATE:bill-house-bill|MOVE:bill-house-bill:0,1|MOVE:bill-house-bill:1,0|MOVE:bill-house-bill:1,0|MOVE:bill-house-bill:1,0|MOVE:bill-house-bill:0,1
+MENU:ALERT:{PLAYER_NAME} initiated TELEPORTER's Cell Separator!|MUTE_MUSIC:|PLAY_BLOCKING_SOUND:sound_effects/general/sfx_turn_on_pc.mp3|PLAY_BLOCKING_SOUND:sound_effects/general/sfx_healing_machine.mp3|PLAY_BLOCKING_SOUND:sound_effects/general/sfx_teleport_exit_1.mp3|PLAY_BLOCKING_SOUND:sound_effects/general/sfx_healing_machine.mp3|UNMUTE_MUSIC:|ACTIVATE:bill-house-bill|MOVE:bill-house-bill:0,1|MOVE:bill-house-bill:1,0|MOVE:bill-house-bill:1,0|MOVE:bill-house-bill:1,0|MOVE:bill-house-bill:0,1
 MENU:ALERT:TELEPORTER is displayed on the PC monitor.
 END
 bill-house-mon mon 6 5
