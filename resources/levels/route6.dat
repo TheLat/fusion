@@ -1,5 +1,7 @@
 NAME
 Route 6
+MUSIC
+music/18-road-to-cerulean-intro.mp3,music/18-road-to-cerulean-loop.mp3
 LEAVESOUND
 sound_effects/general/sfx_go_inside.mp3
 NPCS
@@ -15,7 +17,7 @@ FORCE_INTERACTION
 4 0
 END
 INTERACTIONS
-!:route6-boy1|MOVE_TO_PLAYER|MENU:ALERT:There aren't many bugs out here.|BATTLE:route6-boy1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route6-boy1|MOVE_TO_PLAYER|MENU:ALERT:There aren't many bugs out here.|BATTLE:route6-boy1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I like bugs, so I'm going back to VIRIDIAN FOREST.
 END
 route6-guy1 guy2 15 22 RIGHT
@@ -35,7 +37,7 @@ FORCE_INTERACTION
 -3 0
 END
 INTERACTIONS
-!:route6-boy2|MOVE_TO_PLAYER|MENU:ALERT:I've never seen you around!|MENU:ALERT:Are you good?|BATTLE:route6-boy2|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route6-boy2|MOVE_TO_PLAYER|MENU:ALERT:I've never seen you around!|MENU:ALERT:Are you good?|BATTLE:route6-boy2|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Are my POK{e-accent}MON weak? Or, am I just bad?
 END
 route6-girl2 girl 16 31 LEFT
@@ -45,7 +47,7 @@ FORCE_INTERACTION
 -3 0
 END
 INTERACTIONS
-!:route6-girl2|MOVE_TO_PLAYER|MENU:ALERT:Me? Well, OK.  I'll play!|BATTLE:route6-girl2|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:route6-girl2|MOVE_TO_PLAYER|MENU:ALERT:Me? Well, OK.  I'll play!|BATTLE:route6-girl2|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I want to get stronger! What's your secret?
 END
 route6-guy2 guy2 16 32 LEFT
@@ -55,7 +57,7 @@ FORCE_INTERACTION
 -3 0
 END
 INTERACTIONS
-!:route6-guy2|MOVE_TO_PLAYER|MENU:ALERT:Huh? You want to talk to me?|BATTLE:route6-guy2|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route6-guy2|MOVE_TO_PLAYER|MENU:ALERT:Huh? You want to talk to me?|BATTLE:route6-guy2|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I should carry more POK{e-accent}MON with me for safety.
 END
 TRAINERS
