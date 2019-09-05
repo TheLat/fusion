@@ -69,15 +69,11 @@ INTERACTIONS
 END
 vermilion-gym-switch1 blank 5 9
 INTERACTIONS
-GET:SURGESWITCH|{MENU:ALERT:It's a secret switch! Let's press it!|SET:SURGESWITCH:1}{MENU:ALERT:Just garbage in here.}{MENU:ALERT:Just garbage in here.}
+GET:SURGESWITCH|{MENU:ALERT:It's a secret switch! Let's press it!|PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|SET:SURGESWITCH:1}{MENU:ALERT:Just garbage in here.}{MENU:ALERT:Just garbage in here.}
 END
 vermilion-gym-switch2 blank 3 9
 INTERACTIONS
-GET:SURGESWITCH|{MENU:ALERT:Just garbage in here.}{MENU:ALERT:It's a secret switch! Let's press it!|SET:SURGESWITCH:2|DEACTIVATE:vermilion-gym-door1|DEACTIVATE:vermilion-gym-door2}{MENU:ALERT:Just garbage in here.}
-END
-vermilion-gym-switch2 blank 7 9
-INTERACTIONS
-GET:SURGESWITCH|{MENU:ALERT:Just garbage in here.}{MENU:ALERT:It's a secret switch! Let's press it!|SET:SURGESWITCH:2|DEACTIVATE:vermilion-gym-door1|DEACTIVATE:vermilion-gym-door2}{MENU:ALERT:Just garbage in here.}
+GET:SURGESWITCH|{MENU:ALERT:Just garbage in here.}{MENU:ALERT:It's a secret switch! Let's press it!|PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|SET:SURGESWITCH:2|DEACTIVATE:vermilion-gym-door1|DEACTIVATE:vermilion-gym-door2}{MENU:ALERT:Just garbage in here.}
 END
 vermilion-gym-trash1 blank 1 9
 INTERACTIONS
@@ -131,7 +127,7 @@ TRAINERS
 vermilion-gym-trainer1 30 0.6 0.6 SAILOR sailor.png {SAILOR: Wow! Surprised me!}{} 25-25:21|25-25:21
 vermilion-gym-trainer2 25 0.55 0.55 ROCKER rocker.png {ROCKER: Fried!}{} 100-100:20|81-81:20|100-100:20
 vermilion-gym-trainer3 70 0.7 0.7 GENTLEMAN gentleman.png {GENTLEMAN: Stop! You're very good!}{} 25-25:23:THUNDER,BODY SLAM,SUBMISSION,SWIFT
-vermilion-gym-surge {NO_SWITCH:4 BOSSFIGHT} 99 1.0 1.0 LT.SURGE surge.png {LT.SURGE: Whoa! {NEWLINE} {NEWLINE} You're the real deal, kid! {NEWLNE} Fine then, take the THUNDERBADGE!}{} 100-100:22|100-100:22|125-125:24:LEER,THUNDERSHOCK,RAGE,GROWL|1-25:27:RAZOR LEAF,SWIFT,THUNDERSHOCK,THUNDER WAVE|26-26:28:SWIFT,BODY SLAM,THUNDERBOLT,SUBMISSION
+vermilion-gym-surge {NO_SWITCH:4 BOSSFIGHT} 99 1.0 1.0 LT.SURGE surge.png {LT.SURGE: Whoa! {NEWLINE} {NEWLINE} You're the real deal, kid! {NEWLNE} Fine then, take the THUNDERBADGE!}{} 100-100:22|100-100:22|125-125:24:LEER,THUNDERSHOCK,RAGE,GROWL|2-25:27:RAZOR LEAF,SWIFT,THUNDERSHOCK,THUNDER WAVE|26-26:28:SWIFT,BODY SLAM,THUNDERBOLT,SUBMISSION
 END
 TELEPORT
 4 18 vermilion-city 17 22

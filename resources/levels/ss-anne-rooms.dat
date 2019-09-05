@@ -15,7 +15,7 @@ FORCE_INTERACTION
 -2 0
 END
 INTERACTIONS
-!:ss-anne-rooms-girl1|MOVE_TO_PLAYER|MENU:ALERT:I collected these POK{e-accent}MON from all around the world!|BATTLE:ss-anne-rooms-girl1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:ss-anne-rooms-girl1|MOVE_TO_PLAYER|MENU:ALERT:I collected these POK{e-accent}MON from all around the world!|BATTLE:ss-anne-rooms-girl1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:You hurt my poor worldly POK{e-accent}MON!|MENU:ALERT:I demand that you heal them at a POK{e-accent}MON CENTER!
 END
 ss-anne-rooms-boy1 boy 1 15 UP
@@ -24,7 +24,7 @@ FORCE_INTERACTION
 0 -2
 END
 INTERACTIONS
-!:ss-anne-rooms-boy1|MOVE_TO_PLAYER|MENU:ALERT:I love POK{e-accent}MON! Do you?|BATTLE:ss-anne-rooms-boy1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:ss-anne-rooms-boy1|MOVE_TO_PLAYER|MENU:ALERT:I love POK{e-accent}MON! Do you?|BATTLE:ss-anne-rooms-boy1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Let me be your friend, OK?|MENU:ALERT:Then we can trade POK{e-accent}MON!
 END
 ss-anne-rooms-woman1 woman3 0 14 RIGHT
@@ -41,7 +41,7 @@ MENU:ALERT:I always travel with my WIGGLYTUFF!
 END
 ss-anne-rooms-mon1 clefairy 3 23 DOWN
 INTERACTIONS
-MENU:ALERT:WIGGLYTUFF: Puup pu puu!
+PLAY_CRY:40-40|MENU:ALERT:WIGGLYTUFF: Puup pu puu!
 END
 ss-anne-rooms-bald1 bald3 0 26 RIGHT
 INTERACTIONS
@@ -58,7 +58,7 @@ FORCE_INTERACTION
 0 -3
 END
 INTERACTIONS
-!:ss-anne-rooms-hat2|MOVE_TO_PLAYER|MENU:ALERT:You pup! How dare you barge in!|BATTLE:ss-anne-rooms-hat2|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:ss-anne-rooms-hat2|MOVE_TO_PLAYER|MENU:ALERT:You pup! How dare you barge in!|BATTLE:ss-anne-rooms-hat2|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I wish to be left alone! Get out!
 END
 ss-anne-rooms-hat3 hat 2 58 LEFT
@@ -67,7 +67,7 @@ FORCE_INTERACTION
 -2 0
 END
 INTERACTIONS
-!:ss-anne-rooms-hat3|MOVE_TO_PLAYER|MENU:ALERT:I travel alone on my journeys!|MENU:ALERT:My POK{e-accent}MON are my only friends!|BATTLE:ss-anne-rooms-hat3|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:ss-anne-rooms-hat3|MOVE_TO_PLAYER|MENU:ALERT:I travel alone on my journeys!|MENU:ALERT:My POK{e-accent}MON are my only friends!|BATTLE:ss-anne-rooms-hat3|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:You should be nice to friends!
 END
 ss-anne-rooms-fat1 fat 0 70 RIGHT
@@ -77,7 +77,7 @@ FORCE_INTERACTION
 3 0
 END
 INTERACTIONS
-!:ss-anne-rooms-fat1|MOVE_TO_PLAYER|MENU:ALERT:Hello stranger! Stop and chat!|MENU:ALERT:All my POK{e-accent}MON are from the sea!|BATTLE:ss-anne-rooms-fat1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:ss-anne-rooms-fat1|MOVE_TO_PLAYER|MENU:ALERT:Hello stranger! Stop and chat!|MENU:ALERT:All my POK{e-accent}MON are from the sea!|BATTLE:ss-anne-rooms-fat1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I was going to make you my assistant, too!
 END
 ss-anne-rooms-cap1 cap 0 68 RIGHT
@@ -86,7 +86,7 @@ FORCE_INTERACTION
 2 0
 END
 INTERACTIONS
-!:ss-anne-rooms-cap1|MOVE_TO_PLAYER|MENU:ALERT:Matey, you're walking the plank if you lose!|BATTLE:ss-anne-rooms-cap1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:ss-anne-rooms-cap1|MOVE_TO_PLAYER|MENU:ALERT:Matey, you're walking the plank if you lose!|BATTLE:ss-anne-rooms-cap1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Jellyfish sometimes drift into the ship.
 END
 ss-anne-rooms-cap2 cap 2 80 LEFT
@@ -95,7 +95,7 @@ FORCE_INTERACTION
 -2 0
 END
 INTERACTIONS
-!:ss-anne-rooms-cap2|MOVE_TO_PLAYER|MENU:ALERT:Us sailors have POK{e-accent}MON too!|BATTLE:ss-anne-rooms-cap2|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:ss-anne-rooms-cap2|MOVE_TO_PLAYER|MENU:ALERT:Us sailors have POK{e-accent}MON too!|BATTLE:ss-anne-rooms-cap2|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:We caught all our POK{e-accent}MON while out at sea!
 END
 ss-anne-rooms-item2 orb 0 79
@@ -108,7 +108,7 @@ FORCE_INTERACTION
 0 2
 END
 INTERACTIONS
-!:ss-anne-rooms-cap3|MOVE_TO_PLAYER|MENU:ALERT:I like feisty kids like you!|BATTLE:ss-anne-rooms-cap3|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:ss-anne-rooms-cap3|MOVE_TO_PLAYER|MENU:ALERT:I like feisty kids like you!|BATTLE:ss-anne-rooms-cap3|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Sea POK{e-accent}MON live in deep water. You'll need a ROD!
 END
 ss-anne-rooms-item3 orb 0 90
@@ -122,7 +122,7 @@ FORCE_INTERACTION
 0 3
 END
 INTERACTIONS
-!:ss-anne-rooms-cap4|MOVE_TO_PLAYER|MENU:ALERT:My sailor's pride is at stake!|BATTLE:ss-anne-rooms-cap4|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:ss-anne-rooms-cap4|MOVE_TO_PLAYER|MENU:ALERT:My sailor's pride is at stake!|BATTLE:ss-anne-rooms-cap4|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Did you see the FISHING GURU in VERMILION CITY?
 END
 ss-anne-rooms-cap5 cap 0 102 DOWN
@@ -131,7 +131,7 @@ FORCE_INTERACTION
 0 2
 END
 INTERACTIONS
-!:ss-anne-rooms-cap5|MOVE_TO_PLAYER|MENU:ALERT:You know what they say about sailors and fighting!|BATTLE:ss-anne-rooms-cap5|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:ss-anne-rooms-cap5|MOVE_TO_PLAYER|MENU:ALERT:You know what they say about sailors and fighting!|BATTLE:ss-anne-rooms-cap5|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Haha! Want to be a sailor, mate?
 END
 ss-anne-rooms-guy1 man2 0 113
@@ -140,7 +140,7 @@ MENU:ALERT:My buddy, MACHOKE, is super strong!|MENU:ALERT:He has the STRENGTH to
 END
 ss-anne-rooms-machoke mon 1 112 WANDER
 INTERACTIONS
-MENU:ALERT:MACHOKE: Gwoh! Goggoh!
+PLAY_CRY:67-67|MENU:ALERT:MACHOKE: Gwoh! Goggoh!
 END
 ss-anne-rooms-item4 orb 2 111
 INTERACTIONS
@@ -156,7 +156,7 @@ FORCE_INTERACTION
 2 0
 END
 INTERACTIONS
-!:ss-anne-rooms-hat5|MOVE_TO_PLAYER|MENU:ALERT:Competing against the young keeps me youthful.|BATTLE:ss-anne-rooms-hat5|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:ss-anne-rooms-hat5|MOVE_TO_PLAYER|MENU:ALERT:Competing against the young keeps me youthful.|BATTLE:ss-anne-rooms-hat5|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:15 years ago, I would have won!
 END
 ss-anne-rooms-fat2 fat 3 136 LEFT
@@ -166,7 +166,7 @@ FORCE_INTERACTION
 -3 0
 END
 INTERACTIONS
-!:ss-anne-rooms-fat2|MOVE_TO_PLAYER|MENU:ALERT:Check out what I fished up!|BATTLE:ss-anne-rooms-fat2|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:ss-anne-rooms-fat2|MOVE_TO_PLAYER|MENU:ALERT:Check out what I fished up!|BATTLE:ss-anne-rooms-fat2|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Party?|MENU:ALERT:The cruise ship's party should be over by now.
 END
 ss-anne-rooms-item5 orb 2 133
@@ -188,7 +188,7 @@ FORCE_INTERACTION
 3 0
 END
 INTERACTIONS
-!:ss-anne-rooms-hat7|MOVE_TO_PLAYER|MENU:ALERT:Which do you like, a strong or a rare POK{e-accent}MON?|BATTLE:ss-anne-rooms-hat7|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:ss-anne-rooms-hat7|MOVE_TO_PLAYER|MENU:ALERT:Which do you like, a strong or a rare POK{e-accent}MON?|BATTLE:ss-anne-rooms-hat7|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I prefer strong and rare POK{e-accent}MON.
 END
 ss-anne-rooms-girl3 girl 2 155 DOWN
@@ -197,7 +197,7 @@ FORCE_INTERACTION
 0 2
 END
 INTERACTIONS
-!:ss-anne-rooms-girl3|MOVE_TO_PLAYER|MENU:ALERT:I never saw you at the party.|BATTLE:ss-anne-rooms-girl3|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:ss-anne-rooms-girl3|MOVE_TO_PLAYER|MENU:ALERT:I never saw you at the party.|BATTLE:ss-anne-rooms-girl3|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Oh, I adore your strong POK{e-accent}MON!
 END
 ss-anne-rooms-item6 orb 0 156
@@ -210,7 +210,7 @@ MENU:ALERT:Have you gone to the SAFARI ZONE in FUCHSIA CITY?|MENU:ALERT:It had m
 END
 ss-anne-rooms-girl4 girl2 1 169
 INTERACTIONS
-MENU:ALERT:Me and my Daddy think the SAFARI zone is awesome!
+MENU:ALERT:Me and my Daddy think the SAFARI ZONE is awesome!
 END
 ss-anne-rooms-girl5 woman4 0 178 RIGHT
 INTERACTIONS
@@ -219,6 +219,10 @@ END
 ss-anne-rooms-girl6 girl4 2 178 LEFT
 INTERACTIONS
 MENU:ALERT:The CAPTAIN looked really sick and pale!
+END
+ss-anne-rooms-hidden1 blank 3 67 INCORPOREAL
+INTERACTIONS
+GIVE_ITEM:HYPER POTION|DEACTIVATE:ss-anne-rooms-hidden1
 END
 TRAINERS
 ss-anne-rooms-girl1 15 0.2 0.2 LASS lass.png {LASS: Oh no! I went around the world for these!}{} 16-16:18|29-29:18

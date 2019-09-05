@@ -1,5 +1,7 @@
 NAME
 Route 12
+MUSIC
+music/25-road-to-lavender-intro.mp3,music/25-road-to-lavender-loop.mp3
 LEAVESOUND
 sound_effects/general/sfx_go_inside.mp3
 NPCS
@@ -103,6 +105,10 @@ END
 route12-bush2 bush 13 101
 INTERACTIONS
 HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:route12-bush2}
+END
+route12-item3 blank 6 65 INCORPOREAL
+INTERACTIONS
+GIVE_ITEM:HYPER POTION|DEACTIVATE:route12-item3
 END
 TRAINERS
 route12-fat1 35 0.35 0.35 FISHERMAN fisherman.png {FISHERMAN: Tch! Just a small fy!}{} 43-118:25|61-66:25|22-118:25

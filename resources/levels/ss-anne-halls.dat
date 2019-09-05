@@ -62,10 +62,6 @@ ss-anne-halls-guy4 cap 10 80 WANDER
 INTERACTIONS
 MENU:ALERT:Our CAPTAIN is a sword master!|MENU:ALERT:He even teaches CUT to POK{e-accent}MON!
 END
-ss-anne-halls-guy4 cap 10 80 WANDER
-INTERACTIONS
-MENU:ALERT:Our CAPTAIN is a sword master!|MENU:ALERT:He even teaches CUT to POK{e-accent}MON!
-END
 ss-anne-halls-guy5 cap 13 100 UP
 FORCE_INTERACTION
 0 -1
@@ -73,7 +69,7 @@ FORCE_INTERACTION
 0 -3
 END
 INTERACTIONS
-!:ss-anne-halls-guy5|MOVE_TO_PLAYER|MENU:ALERT:Ahoy there!{NEWLINE}Are you seasick?|BATTLE:ss-anne-halls-guy5|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:ss-anne-halls-guy5|MOVE_TO_PLAYER|MENU:ALERT:Ahoy there!{NEWLINE}Are you seasick?|BATTLE:ss-anne-halls-guy5|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:My Pa said there are 1000 kinds of POK{e-accent}MON. I think there are more.
 END
 ss-anne-halls-guy6 cap 7 96 DOWN
@@ -83,7 +79,7 @@ FORCE_INTERACTION
 0 3
 END
 INTERACTIONS
-!:ss-anne-halls-guy6|MOVE_TO_PLAYER|MENU:ALERT:Hey matey!|MENU:ALERT:Let's do a little jig!|BATTLE:ss-anne-halls-guy6|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:ss-anne-halls-guy6|MOVE_TO_PLAYER|MENU:ALERT:Hey matey!|MENU:ALERT:Let's do a little jig!|BATTLE:ss-anne-halls-guy6|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:How many kinds of POK{e-accent}MON do you think there are?
 END
 ss-anne-halls-guy7 man2 8 94
@@ -107,14 +103,14 @@ FORCE_INTERACTION
 0 1
 END
 INTERACTIONS
-MOVE:ss-anne-halls-rival1:0,1|MOVE:ss-anne-halls-rival1:0,1|MOVE:ss-anne-halls-rival1:0,1|MENU:ALERT:{RIVAL_NAME}: Bonjour! {NEWLINE} {PLAYER_NAME}!|MENU:ALERT:Imagine seeing you here!|MENU:ALERT:{PLAYER_NAME}, were you really invited?|MENU:ALERT:So, how's your POK{e-accent}DEX coming?|MENU:ALERT:I already caught 40 kinds, pal!|MENU:ALERT:Different kinds are everywhere!|MENU:ALERT:Crawl around in grassy areas!|GET:RIVALVALUE|{BATTLE:rival-ss-anne-halls-0}{BATTLE:rival-ss-anne-halls-1}{BATTLE:rival-ss-anne-halls-2}|{NO_ADVANCE}{}|MENU:ALERT:{RIVAL_NAME}: I heard there was a CUT master on board.|MENU:ALERT:But, he was just a seasick, old man!|MENU:ALERT:But, CUT itself is really useful!|MENU:ALERT:You should go see him! Smell ya!|MOVE:ss-anne-halls-rival1:1,0|MOVE:ss-anne-halls-rival1:0,1|MOVE:ss-anne-halls-rival1:0,1|MOVE:ss-anne-halls-rival1:0,1|MOVE:ss-anne-halls-rival1:0,1|MOVE:ss-anne-halls-rival1:0,1|DEACTIVATE:ss-anne-halls-rivalscript1|DEACTIVATE:ss-anne-halls-rivalscript2|DEACTIVATE:ss-anne-halls-rival1
+PLAY_MUSIC:music/05-rival-appears-intro.mp3,music/05-rival-appears-loop.mp3|MOVE:ss-anne-halls-rival1:0,1|MOVE:ss-anne-halls-rival1:0,1|MOVE:ss-anne-halls-rival1:0,1|MENU:ALERT:{RIVAL_NAME}: Bonjour! {NEWLINE} {PLAYER_NAME}!|MENU:ALERT:Imagine seeing you here!|MENU:ALERT:{PLAYER_NAME}, were you really invited?|MENU:ALERT:So, how's your POK{e-accent}DEX coming?|MENU:ALERT:I already caught 40 kinds, pal!|MENU:ALERT:Different kinds are everywhere!|MENU:ALERT:Crawl around in grassy areas!|GET:RIVALVALUE|{BATTLE:rival-ss-anne-halls-0}{BATTLE:rival-ss-anne-halls-1}{BATTLE:rival-ss-anne-halls-2}|{NO_ADVANCE}{}|MENU:ALERT:{RIVAL_NAME}: I heard there was a CUT master on board.|MENU:ALERT:But, he was just a seasick, old man!|MENU:ALERT:But, CUT itself is really useful!|MENU:ALERT:You should go see him! Smell ya!|MOVE:ss-anne-halls-rival1:1,0|MOVE:ss-anne-halls-rival1:0,1|MOVE:ss-anne-halls-rival1:0,1|MOVE:ss-anne-halls-rival1:0,1|MOVE:ss-anne-halls-rival1:0,1|MOVE:ss-anne-halls-rival1:0,1|DEACTIVATE:ss-anne-halls-rivalscript1|DEACTIVATE:ss-anne-halls-rivalscript2|DEACTIVATE:ss-anne-halls-rival1
 END
 ss-anne-halls-rivalscript2 blank 35 64 INCORPOREAL
 FORCE_INTERACTION
 1 0
 END
 INTERACTIONS
-MOVE:ss-anne-halls-rival1:0,1|MOVE:ss-anne-halls-rival1:0,1|MOVE:ss-anne-halls-rival1:0,1|MOVE:ss-anne-halls-rival1:0,1|SET_FACE:ss-anne-halls-rival1:RIGHT|MENU:ALERT:{RIVAL_NAME}: Bonjour! {NEWLINE} {PLAYER_NAME}!|MENU:ALERT:Imagine seeing you here!|MENU:ALERT:{PLAYER_NAME}, were you really invited?|MENU:ALERT:So, how's your POK{e-accent}DEX coming?|MENU:ALERT:I already caught 40 kinds, pal!|MENU:ALERT:Different kinds are everywhere!|MENU:ALERT:Crawl around in grassy areas!|GET:RIVALVALUE|{BATTLE:rival-ss-anne-halls-0}{BATTLE:rival-ss-anne-halls-1}{BATTLE:rival-ss-anne-halls-2}|{NO_ADVANCE}{}|MENU:ALERT:{RIVAL_NAME}: I heard there was a CUT master on board.|MENU:ALERT:But, he was just a seasick, old man!|MENU:ALERT:But, CUT itself is really useful!|MENU:ALERT:You should go see him! Smell ya!|MOVE:ss-anne-halls-rival1:0,1|MOVE:ss-anne-halls-rival1:0,1|MOVE:ss-anne-halls-rival1:0,1|MOVE:ss-anne-halls-rival1:0,1|MOVE:ss-anne-halls-rival1:0,1|DEACTIVATE:ss-anne-halls-rivalscript1|DEACTIVATE:ss-anne-halls-rivalscript2|DEACTIVATE:ss-anne-halls-rival1
+PLAY_MUSIC:music/05-rival-appears-intro.mp3,music/05-rival-appears-loop.mp3|MOVE:ss-anne-halls-rival1:0,1|MOVE:ss-anne-halls-rival1:0,1|MOVE:ss-anne-halls-rival1:0,1|MOVE:ss-anne-halls-rival1:0,1|SET_FACE:ss-anne-halls-rival1:RIGHT|MENU:ALERT:{RIVAL_NAME}: Bonjour! {NEWLINE} {PLAYER_NAME}!|MENU:ALERT:Imagine seeing you here!|MENU:ALERT:{PLAYER_NAME}, were you really invited?|MENU:ALERT:So, how's your POK{e-accent}DEX coming?|MENU:ALERT:I already caught 40 kinds, pal!|MENU:ALERT:Different kinds are everywhere!|MENU:ALERT:Crawl around in grassy areas!|GET:RIVALVALUE|{BATTLE:rival-ss-anne-halls-0}{BATTLE:rival-ss-anne-halls-1}{BATTLE:rival-ss-anne-halls-2}|{NO_ADVANCE}{}|MENU:ALERT:{RIVAL_NAME}: I heard there was a CUT master on board.|MENU:ALERT:But, he was just a seasick, old man!|MENU:ALERT:But, CUT itself is really useful!|MENU:ALERT:You should go see him! Smell ya!|MOVE:ss-anne-halls-rival1:0,1|MOVE:ss-anne-halls-rival1:0,1|MOVE:ss-anne-halls-rival1:0,1|MOVE:ss-anne-halls-rival1:0,1|MOVE:ss-anne-halls-rival1:0,1|DEACTIVATE:ss-anne-halls-rivalscript1|DEACTIVATE:ss-anne-halls-rivalscript2|DEACTIVATE:ss-anne-halls-rival1
 END
 ss-anne-halls-book blank 1 118
 INTERACTIONS
