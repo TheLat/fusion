@@ -1,5 +1,7 @@
 NAME
 Vermilion City
+MUSIC
+music/23-vermillion-city-loop.mp3
 LEAVESOUND
 sound_effects/general/sfx_go_inside.mp3
 NPCS
@@ -37,7 +39,7 @@ MENU:ALERT:I'm putting up a building on this plot of land.|MENU:ALERT:My POK{e-a
 END
 vermilion-city-mon1 mon 33 10 WANDER
 INTERACTIONS
-MENU:ALERT:MACHOP: Guoh! Gogogoh!|MENU:ALERT:A MACHOP is stomping the land flat.
+PLAY_CRY:66-66|MENU:ALERT:MACHOP: Guoh! Gogogoh!|MENU:ALERT:A MACHOP is stomping the land flat.
 END
 vermilion-city-worker1 cap 32 29 WANDER
 INTERACTIONS

@@ -1,5 +1,7 @@
 NAME
 Vermilion City Gym
+MUSIC
+music/20-pokemon-gym-intro.mp3,music/20-pokemon-gym-loop.mp3
 LEAVESOUND
 sound_effects/general/sfx_go_outside.mp3
 NPCS
@@ -25,7 +27,7 @@ FORCE_INTERACTION
 3 0
 END
 INTERACTIONS
-!:vermilion-gym-trainer1|MOVE_TO_PLAYER|MENU:ALERT:This is no place for kids!|BATTLE:vermilion-gym-trainer1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:vermilion-gym-trainer1|MOVE_TO_PLAYER|MENU:ALERT:This is no place for kids!|BATTLE:vermilion-gym-trainer1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:LT.SURGE has set up double locks! Here's a hint!|MENU:ALERT:When you open the 1st lock, the 2nd lock is right next to it!
 END
 vermilion-gym-trainer2 guy2 3 8 LEFT
@@ -35,7 +37,7 @@ FORCE_INTERACTION
 -3 0
 END
 INTERACTIONS
-!:vermilion-gym-trainer2|MOVE_TO_PLAYER|MENU:ALERT:I'm a lightweight, but I'm good with electricity!|BATTLE:vermilion-gym-trainer2|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:vermilion-gym-trainer2|MOVE_TO_PLAYER|MENU:ALERT:I'm a lightweight, but I'm good with electricity!|BATTLE:vermilion-gym-trainer2|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:OK, I'll talk!|MENU:ALERT:LT.SURGE said he hid door switches inside something!
 END
 vermilion-gym-trainer3 hat 9 6 LEFT
@@ -45,7 +47,7 @@ FORCE_INTERACTION
 -3 0
 END
 INTERACTIONS
-!:vermilion-gym-trainer3|MOVE_TO_PLAYER|MENU:ALERT:When I was in the Army, LT.SURGE was my strict CO!|BATTLE:vermilion-gym-trainer3|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:vermilion-gym-trainer3|MOVE_TO_PLAYER|MENU:ALERT:When I was in the Army, LT.SURGE was my strict CO!|BATTLE:vermilion-gym-trainer3|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:The door won't open?|MENU:ALERT:LT.SURGE always was cautious!
 END
 vermilion-gym-bookcase blank 7 1
@@ -129,7 +131,7 @@ TRAINERS
 vermilion-gym-trainer1 30 0.6 0.6 SAILOR sailor.png {SAILOR: Wow! Surprised me!}{} 25-25:21|25-25:21
 vermilion-gym-trainer2 25 0.55 0.55 ROCKER rocker.png {ROCKER: Fried!}{} 100-100:20|81-81:20|100-100:20
 vermilion-gym-trainer3 70 0.7 0.7 GENTLEMAN gentleman.png {GENTLEMAN: Stop! You're very good!}{} 25-25:23:THUNDER,BODY SLAM,SUBMISSION,SWIFT
-vermilion-gym-surge {NO_SWITCH:4} 99 1.0 1.0 LT.SURGE surge.png {LT.SURGE: Whoa! {NEWLINE} {NEWLINE} You're the real deal, kid! {NEWLNE} Fine then, take the THUNDERBADGE!}{} 100-100:22|100-100:22|125-125:24:LEER,THUNDERSHOCK,RAGE,GROWL|1-25:27:RAZOR LEAF,SWIFT,THUNDERSHOCK,THUNDER WAVE|26-26:28:SWIFT,BODY SLAM,THUNDERBOLT,SUBMISSION
+vermilion-gym-surge {NO_SWITCH:4 BOSSFIGHT} 99 1.0 1.0 LT.SURGE surge.png {LT.SURGE: Whoa! {NEWLINE} {NEWLINE} You're the real deal, kid! {NEWLNE} Fine then, take the THUNDERBADGE!}{} 100-100:22|100-100:22|125-125:24:LEER,THUNDERSHOCK,RAGE,GROWL|1-25:27:RAZOR LEAF,SWIFT,THUNDERSHOCK,THUNDER WAVE|26-26:28:SWIFT,BODY SLAM,THUNDERBOLT,SUBMISSION
 END
 TELEPORT
 4 18 vermilion-city 17 22

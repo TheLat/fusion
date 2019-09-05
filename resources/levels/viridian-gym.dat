@@ -1,5 +1,7 @@
 NAME
 Viridian City Gym
+MUSIC
+music/20-pokemon-gym-intro.mp3,music/20-pokemon-gym-loop.mp3
 LEAVESOUND
 sound_effects/general/sfx_go_outside.mp3
 NPCS

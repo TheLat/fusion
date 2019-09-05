@@ -1,5 +1,7 @@
 NAME
 Vermilion House 3
+MUSIC
+music/23-vermillion-city-loop.mp3
 LEAVESOUND
 sound_effects/general/sfx_go_outside.mp3
 NPCS
@@ -29,7 +31,7 @@ MENU:ALERT:Dear PIPPI, I hope to see you soon.|MENU:ALERT:I heard SAFFRON has pr
 END
 vermilion-house3-pidgey bird 4 5
 INTERACTIONS
-MENU:ALERT:PIDGEY: Kurukkoo!
+PLAY_CRY:16-16|MENU:ALERT:PIDGEY: Kurukkoo!
 END
 TELEPORT
 2 8 vermilion-city 28 22

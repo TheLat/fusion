@@ -1,5 +1,7 @@
 NAME
 Vermilion House 4
+MUSIC
+music/23-vermillion-city-loop.mp3
 LEAVESOUND
 sound_effects/general/sfx_go_outside.mp3
 NPCS
@@ -9,7 +11,7 @@ MENU:ALERT:I just love my SEEL!|MENU:ALERT:It squeals when I hug it!|FACE:RIGHT
 END
 vermilion-house4-seal seal 1 4 RIGHT
 INTERACTIONS
-MENU:ALERT:SEEL: Kyuoo!|FACE:RIGHT
+PLAY_CRY:86-86|MENU:ALERT:SEEL: Kyuoo!|FACE:RIGHT
 END
 vermilion-house4-fat fat 6 3 LEFT
 INTERACTIONS
@@ -17,7 +19,7 @@ MENU:ALERT:Humph! My PIKACHU is twice as cute as that one!|FACE:LEFT
 END
 vermilion-house4-pikachu pikachu 6 4 LEFT
 INTERACTIONS
-MENU:ALERT:Chu! Pikachu!|FACE:LEFT
+PLAY_CRY:25-25|MENU:ALERT:Chu! Pikachu!|FACE:LEFT
 END
 vermilion-house4-plaque1 blank 1 0
 INTERACTIONS
