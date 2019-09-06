@@ -16,7 +16,7 @@ FORCE_INTERACTION
 -3 0
 END
 INTERACTIONS
-!:route9-girl1|MOVE_TO_PLAYER|MENU:ALERT:You have POK{e-accent}MON with you! {NEWLINE} You're mine!|BATTLE:route9-girl1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:route9-girl1|MOVE_TO_PLAYER|MENU:ALERT:You have POK{e-accent}MON with you! {NEWLINE} You're mine!|BATTLE:route9-girl1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:You need light to get through that dark tunnel ahead.
 END
 route9-tough1 tough 14 17 LEFT
@@ -25,7 +25,7 @@ FORCE_INTERACTION
 -2 0
 END
 INTERACTIONS
-!:route9-tough1|MOVE_TO_PLAYER|MENU:ALERT:Bwahaha! {NEWLINE} Great! I was bored, eh!|BATTLE:route9-tough1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route9-tough1|MOVE_TO_PLAYER|MENU:ALERT:Bwahaha! {NEWLINE} Great! I was bored, eh!|BATTLE:route9-tough1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:You sure had guts standing up to me there, eh?
 END
 route9-item1 orb 9 17
@@ -42,7 +42,7 @@ FORCE_INTERACTION
 -2 0
 END
 INTERACTIONS
-!:route9-guy1|MOVE_TO_PLAYER|MENU:ALERT:Who's that walking with those good look POK{e-accent}MON?|BATTLE:route9-guy1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route9-guy1|MOVE_TO_PLAYER|MENU:ALERT:Who's that walking with those good look POK{e-accent}MON?|BATTLE:route9-guy1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Keep walking!
 END
 route9-boy1 boy 22 4 DOWN
@@ -51,10 +51,10 @@ FORCE_INTERACTION
 0 2
 END
 INTERACTIONS
-!:route9-boy1|MOVE_TO_PLAYER|MENU:ALERT:I got up early every day to raise my POK{e-accent}MON from cocoons!|BATTLE:route9-boy1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route9-boy1|MOVE_TO_PLAYER|MENU:ALERT:I got up early every day to raise my POK{e-accent}MON from cocoons!|BATTLE:route9-boy1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I have to collect than bugs to get stronger...
 END
-route9-item2 blank 13 9
+route9-item2 blank 13 9 INCORPOREAL
 INTERACTIONS
 GIVE_ITEM:ETHER|DEACTIVATE:route9-item2
 END
@@ -64,7 +64,7 @@ FORCE_INTERACTION
 2 0
 END
 INTERACTIONS
-!:route9-tough2|MOVE_TO_PLAYER|MENU:ALERT:Hahahaha! {NEWLINE} Come on, dude!|BATTLE:route9-tough2|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route9-tough2|MOVE_TO_PLAYER|MENU:ALERT:Hahahaha! {NEWLINE} Come on, dude!|BATTLE:route9-tough2|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Hahahaha! {NEWLINE} Us hearty guys always laugh!
 END
 route9-boy2 boy 39 10 RIGHT
@@ -72,7 +72,7 @@ FORCE_INTERACTION
 1 0
 END
 INTERACTIONS
-!:route9-boy2|MOVE_TO_PLAYER|MENU:ALERT:Go, my super bug POK{e-accent}MON!|BATTLE:route9-boy2|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route9-boy2|MOVE_TO_PLAYER|MENU:ALERT:Go, my super bug POK{e-accent}MON!|BATTLE:route9-boy2|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:If you don't like bug POK{e-accent}MON, you bug me!
 END
 route9-guy2 guy2 30 9 RIGHT
@@ -83,7 +83,7 @@ FORCE_INTERACTION
 4 0
 END
 INTERACTIONS
-!:route9-guy2|MOVE_TO_PLAYER|MENU:ALERT:I'm taking ROCK TUNNEL to go to LAVENDER...|BATTLE:route9-guy2|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route9-guy2|MOVE_TO_PLAYER|MENU:ALERT:I'm taking ROCK TUNNEL to go to LAVENDER...|BATTLE:route9-guy2|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Are you off to ROCK TUNNEL too?
 END
 route9-tough3 tough 42 5 LEFT
@@ -93,7 +93,7 @@ FORCE_INTERACTION
 -3 0
 END
 INTERACTIONS
-!:route9-tough3|MOVE_TO_PLAYER|MENU:ALERT:Hahahaha! {NEWLINE} Aren't you a little toughie!|BATTLE:route9-tough3|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route9-tough3|MOVE_TO_PLAYER|MENU:ALERT:Hahahaha! {NEWLINE} Aren't you a little toughie!|BATTLE:route9-tough3|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Hahahaha! Kids should be tough!
 END
 route9-girl2 girl 47 10 RIGHT
@@ -104,7 +104,7 @@ FORCE_INTERACTION
 4 0
 END
 INTERACTIONS
-!:route9-girl2|MOVE_TO_PLAYER|MENU:ALERT:Don't you dare condescend me!|BATTLE:route9-girl2|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:route9-girl2|MOVE_TO_PLAYER|MENU:ALERT:Don't you dare condescend me!|BATTLE:route9-girl2|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:You're obviously talented! Good luck to you!
 END
 TRAINERS

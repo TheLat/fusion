@@ -1,5 +1,7 @@
 NAME
 Power Plant Exterior
+MUSIC
+music/18-road-to-cerulean-intro.mp3,music/18-road-to-cerulean-loop.mp3
 LEAVESOUND
 sound_effects/general/sfx_go_outside.mp3
 NPCS
@@ -10,7 +12,7 @@ FORCE_INTERACTION
 -3 0
 END
 INTERACTIONS
-!:power-plant-outside-girl1|MOVE_TO_PLAYER|MENU:ALERT:I've been to a POK{e-accent}MON GYM a few times. But, I lost each time.|BATTLE:power-plant-outside-girl1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:power-plant-outside-girl1|MOVE_TO_PLAYER|MENU:ALERT:I've been to a POK{e-accent}MON GYM a few times. But, I lost each time.|BATTLE:power-plant-outside-girl1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I noticed some POK{e-accent}MANIACs prowling around.
 END
 power-plant-outside-bush1 bush 12 26
@@ -40,12 +42,16 @@ FORCE_INTERACTION
 -3 0
 END
 INTERACTIONS
-!:power-plant-outside-guy1|MOVE_TO_PLAYER|MENU:ALERT:Wow, are you a POK{e-accent}MANIAC too? Want to see my collection?|BATTLE:power-plant-outside-guy1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:power-plant-outside-guy1|MOVE_TO_PLAYER|MENU:ALERT:Wow, are you a POK{e-accent}MANIAC too? Want to see my collection?|BATTLE:power-plant-outside-guy1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I have more rare POK{e-accent}MON at home!
 END
 sign2 blank 8 43
 INTERACTIONS
 MENU:ALERT:POWER PLANT
+END
+power-plant-outside-hidden1 blank 12 19 INCORPOREAL
+INTERACTIONS
+GIVE_ITEM:SUPER POTION|DEACTIVATE:power-plant-outside-hidden1
 END
 TRAINERS
 power-plant-outside-girl1 20 0.25 0.25 JR.TRAINER{FEMALE} jrtrainerf.png {JR.TRAINER{FEMALE}: Ohh! Blew it again!}{} 25-25:22|35-35:22

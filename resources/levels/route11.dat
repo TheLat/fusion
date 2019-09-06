@@ -111,7 +111,7 @@ INTERACTIONS
 PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route11-boy4|MOVE_TO_PLAYER|MENU:ALERT:I'm the best in my class!|BATTLE:route11-boy4|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:There's a fat POK{e-accent}MON that comes down from the mountains.|MENU:ALERT:It's strong if you can get it.
 END
-route11-item1 blank 49 9
+route11-item1 blank 49 9 INCORPOREAL
 INTERACTIONS
 GIVE_ITEM:ESCAPE ROPE|DEACTIVATE:route11-item1
 END
