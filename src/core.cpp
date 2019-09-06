@@ -6441,6 +6441,37 @@ void engine::do_interaction(character& npc) {
 			choices.clear();
 			choices.push_back(e.mc.values[s2]);
 		}
+		else if (s.find("CUT:") == 0) {
+			s.erase(0, string("PLAY_SOUND:").length());
+			s2 = s;
+			if (s.find("|") != -1) {
+				s.erase(0, s.find("|"));
+				s2.erase(s2.find("|"), s2.length());
+			}
+			else {
+				s = "";
+			}
+		    character* c = &(npc);
+            if (!mc.active[c->name])
+                continue;
+            mc.active[c->name] = false;
+            update_level();
+            unsigned sprite1, sprite2;
+            double curr_x = mc.loc.x;
+            double curr_y = mc.loc.y;
+            if (c->no_offset) {
+                sprite1 = g.push_quad_load(((c->anim_offset.x + c->loc.x) - (curr_x + 0.5)) / 5.0, (-0.5 - (c->loc.y + c->anim_offset.y) + curr_y) / 4.5f + 0.0, 1.0 / 5.0f, 1.0 / 4.5f, safepath + string("images/cutbushtop.png"));
+                sprite2 = g.push_quad_load(((c->anim_offset.x + c->loc.x) - (curr_x + 0.5)) / 5.0, (-0.5 - (c->loc.y + c->anim_offset.y) + curr_y) / 4.5f + 0.0, 1.0 / 5.0f, 1.0 / 4.5f, safepath + string("images/cutbushbottom.png"));
+            }
+            else {
+                sprite1 = g.push_quad_load(((c->anim_offset.x + c->loc.x) - (curr_x + 0.5)) / 5.0, (-0.5 - (c->loc.y + c->anim_offset.y) + curr_y) / 4.5f + 0.055, 1.0 / 5.0f, 1.0 / 4.5f, safepath + string("images/cutbushtop.png"));
+                sprite2 = g.push_quad_load(((c->anim_offset.x + c->loc.x) - (curr_x + 0.5)) / 5.0, (-0.5 - (c->loc.y + c->anim_offset.y) + curr_y) / 4.5f + 0.055, 1.0 / 5.0f, 1.0 / 4.5f, safepath + string("images/cutbushbottom.png"));
+            }
+            se.play_sound(string("sound_effects/general/sfx_cut.mp3"));
+            unsigned anim1 = g.ae.create_animf(&(g.draw_list[sprite1].x), g.draw_list[sprite1].x, g.draw_list[sprite1].x - 0.1, 0.5);
+            unsigned anim2 = g.ae.create_animf(&(g.draw_list[sprite2].x), g.draw_list[sprite2].x, g.draw_list[sprite2].x + 0.1, 0.5);
+            while (!g.ae.is_donef(anim1) && !g.ae.is_donef(anim2)) {}
+		}
 		else if (s.find("PLAY_SOUND:") == 0) {
 			s.erase(0, string("PLAY_SOUND:").length());
 			s2 = s;
