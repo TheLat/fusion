@@ -4794,6 +4794,10 @@ void engine::init_level(string levelname) {
 		    levels[levelname].dungeon = true;
 		    continue;
 		}
+		if (line == "DARK") {
+		    levels[levelname].dark = true;
+		    continue;
+		}
 		if (line == "NPCS") {
 			safe_getline(f, line);
 			while (line != "TELEPORT" && line != "DATA" && line != "ENCOUNTERS" && line != "LEVELS" && line != "TRAINERS" && line.find("WATER_ENCOUNTERS_") != 0) {
@@ -6194,6 +6198,9 @@ void engine::update_level() {
 	g.draw_list.clear();
 	draw_level();
 	draw_characters();
+	if (levels[mc.loc.level].dark && !has_move_in_party(string("FLASH"))) {
+	    g.push_quad_load(-1.0, -1.0, 2.0, 2.0, safepath + string("images/darkness.png"));
+	}
 	m.unlock();
 	double delta = tim.delta(time_index);
 	while (delta < 1.0 / 120.0) {

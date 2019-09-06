@@ -1,5 +1,9 @@
 NAME
 Rock Tunnel
+DUNGEON
+DARK
+MUSIC
+music/17-mt-moon-intro.mp3,music/17-mt-moon-loop.mp3
 LEAVESOUND
 sound_effects/general/sfx_go_outside.mp3
 NPCS
@@ -10,7 +14,7 @@ FORCE_INTERACTION
 -3 0
 END
 INTERACTIONS
-!:rock-tunnel-guy1|MOVE_TO_PLAYER|MENU:ALERT:POK{e-accent}MON fight! Ready, go!|BATTLE:rock-tunnel-guy1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:rock-tunnel-guy1|MOVE_TO_PLAYER|MENU:ALERT:POK{e-accent}MON fight! Ready, go!|BATTLE:rock-tunnel-guy1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Oh well, I'll get a ZUBAT as I go!
 END
 rock-tunnel-guy2 man2 26 72 DOWN
@@ -20,7 +24,7 @@ FORCE_INTERACTION
 0 3
 END
 INTERACTIONS
-!:rock-tunnel-guy2|MOVE_TO_PLAYER|MENU:ALERT:I draw POK{e-accent}MON when I'm home.|BATTLE:rock-tunnel-guy2|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:rock-tunnel-guy2|MOVE_TO_PLAYER|MENU:ALERT:I draw POK{e-accent}MON when I'm home.|BATTLE:rock-tunnel-guy2|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I'm an artist, not a fighter.
 END
 rock-tunnel-girl1 girl 14 70 RIGHT
@@ -30,7 +34,7 @@ FORCE_INTERACTION
 3 0
 END
 INTERACTIONS
-!:rock-tunnel-girl1|MOVE_TO_PLAYER|MENU:ALERT:I don't often come here, but I will fight you.|BATTLE:rock-tunnel-girl1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:rock-tunnel-girl1|MOVE_TO_PLAYER|MENU:ALERT:I don't often come here, but I will fight you.|BATTLE:rock-tunnel-girl1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I like tiny POK{e-accent}MON, big ones are too scary!
 END
 rock-tunnel-guy3 man2 20 64 RIGHT
@@ -41,7 +45,7 @@ FORCE_INTERACTION
 4 0
 END
 INTERACTIONS
-!:rock-tunnel-guy3|MOVE_TO_PLAYER|MENU:ALERT:Do you know about costume players?|BATTLE:rock-tunnel-guy3|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:rock-tunnel-guy3|MOVE_TO_PLAYER|MENU:ALERT:Do you know about costume players?|BATTLE:rock-tunnel-guy3|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Costume players dress up as POK{e-accent}MON for fun.
 END
 rock-tunnel-tough1 tough 30 52 DOWN
@@ -51,7 +55,7 @@ FORCE_INTERACTION
 0 3
 END
 INTERACTIONS
-!:rock-tunnel-tough1|MOVE_TO_PLAYER|MENU:ALERT:My POK{e-accent}MON techniques will leave you crying!|BATTLE:rock-tunnel-tough1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:rock-tunnel-tough1|MOVE_TO_PLAYER|MENU:ALERT:My POK{e-accent}MON techniques will leave you crying!|BATTLE:rock-tunnel-tough1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:In the mountains, you'll often find rock-type POK{e-accent}MON.
 END
 rock-tunnel-tough2 tough 33 47 RIGHT
@@ -61,7 +65,7 @@ FORCE_INTERACTION
 3 0
 END
 INTERACTIONS
-!:rock-tunnel-tough2|MOVE_TO_PLAYER|MENU:ALERT:Hit me with your best shot!|BATTLE:rock-tunnel-tough2|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:rock-tunnel-tough2|MOVE_TO_PLAYER|MENU:ALERT:Hit me with your best shot!|BATTLE:rock-tunnel-tough2|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I'll raise my POK{e-accent}MON to beat yours, kid!
 END
 rock-tunnel-tough3 tough 7 5 DOWN
@@ -71,7 +75,7 @@ FORCE_INTERACTION
 0 3
 END
 INTERACTIONS
-!:rock-tunnel-tough3|MOVE_TO_PLAYER|MENU:ALERT:This tunnel goes a long way, kid!|BATTLE:rock-tunnel-tough3|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:rock-tunnel-tough3|MOVE_TO_PLAYER|MENU:ALERT:This tunnel goes a long way, kid!|BATTLE:rock-tunnel-tough3|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Watch for ONIX! It can put the squeeze on you!
 END
 rock-tunnel-tough4 tough 5 16 DOWN
@@ -81,7 +85,7 @@ FORCE_INTERACTION
 0 3
 END
 INTERACTIONS
-!:rock-tunnel-tough4|MOVE_TO_PLAYER|MENU:ALERT:Hmm. Maybe I'm lost in here...|BATTLE:rock-tunnel-tough4|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:rock-tunnel-tough4|MOVE_TO_PLAYER|MENU:ALERT:Hmm. Maybe I'm lost in here...|BATTLE:rock-tunnel-tough4|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:That sleeping POK{e-accent}MON on ROUTE 12 forced me to take this detour.
 END
 rock-tunnel-tough5 tough 17 15 LEFT
@@ -91,7 +95,7 @@ FORCE_INTERACTION
 -3 0
 END
 INTERACTIONS
-!:rock-tunnel-tough5|MOVE_TO_PLAYER|MENU:ALERT:Outsiders like you need to show me some respect!|BATTLE:rock-tunnel-tough5|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:rock-tunnel-tough5|MOVE_TO_PLAYER|MENU:ALERT:Outsiders like you need to show me some respect!|BATTLE:rock-tunnel-tough5|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:You're talented enough to hike!
 END
 rock-tunnel-girl2 girl 11 55 DOWN
@@ -101,7 +105,7 @@ FORCE_INTERACTION
 0 3
 END
 INTERACTIONS
-!:rock-tunnel-girl2|MOVE_TO_PLAYER|MENU:ALERT:Hikers leave twigs as trail markers.|BATTLE:rock-tunnel-girl2|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:rock-tunnel-girl2|MOVE_TO_PLAYER|MENU:ALERT:Hikers leave twigs as trail markers.|BATTLE:rock-tunnel-girl2|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I want to go home!
 END
 rock-tunnel-tough6 tough 6 52 DOWN
@@ -111,7 +115,7 @@ FORCE_INTERACTION
 0 3
 END
 INTERACTIONS
-!:rock-tunnel-tough6|MOVE_TO_PLAYER|MENU:ALERT:Hahaha! Can you beat my power!|BATTLE:rock-tunnel-tough6|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:rock-tunnel-tough6|MOVE_TO_PLAYER|MENU:ALERT:Hahaha! Can you beat my power!|BATTLE:rock-tunnel-tough6|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I go for power because I hate thinking!
 END
 rock-tunnel-guy4 man2 3 47 DOWN
@@ -122,7 +126,7 @@ FORCE_INTERACTION
 0 4
 END
 INTERACTIONS
-!:rock-tunnel-guy4|MOVE_TO_PLAYER|MENU:ALERT:You have a POK{e-accent}DEX?|MENU:ALERT:I want one, too!|BATTLE:rock-tunnel-guy4|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:rock-tunnel-guy4|MOVE_TO_PLAYER|MENU:ALERT:You have a POK{e-accent}DEX?|MENU:ALERT:I want one, too!|BATTLE:rock-tunnel-guy4|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:When you finish your POK{e-accent}DEX, can I have it?
 END
 rock-tunnel-girl3 girl 37 21 LEFT
@@ -132,7 +136,7 @@ FORCE_INTERACTION
 -3 0
 END
 INTERACTIONS
-!:rock-tunnel-girl3|MOVE_TO_PLAYER|MENU:ALERT:Eek! Don't try anything funny in the dark!|BATTLE:rock-tunnel-girl3|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:rock-tunnel-girl3|MOVE_TO_PLAYER|MENU:ALERT:Eek! Don't try anything funny in the dark!|BATTLE:rock-tunnel-girl3|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I saw a MACHOP in this tunnel!
 END
 rock-tunnel-girl4 girl 32 24 RIGHT
@@ -142,7 +146,7 @@ FORCE_INTERACTION
 3 0
 END
 INTERACTIONS
-!:rock-tunnel-girl4|MOVE_TO_PLAYER|MENU:ALERT:You have POK{e-accent}MON! Let's start!|BATTLE:rock-tunnel-girl4|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:rock-tunnel-girl4|MOVE_TO_PLAYER|MENU:ALERT:You have POK{e-accent}MON! Let's start!|BATTLE:rock-tunnel-girl4|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Whew! I'm all sweaty now!
 END
 rock-tunnel-girl5 girl 22 24 DOWN
@@ -152,7 +156,7 @@ FORCE_INTERACTION
 0 3
 END
 INTERACTIONS
-!:rock-tunnel-girl5|MOVE_TO_PLAYER|MENU:ALERT:I came this far for POK{e-accent}MON!|BATTLE:rock-tunnel-girl5|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:rock-tunnel-girl5|MOVE_TO_PLAYER|MENU:ALERT:I came this far for POK{e-accent}MON!|BATTLE:rock-tunnel-girl5|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:You looked cute and harmless!
 END
 rock-tunnel-sign1 blank 11 29

@@ -239,7 +239,7 @@ public:
 	std::pair<int, int> level_range, mega_level_range;
 	std::map<string, trainer> trainers;
 	string music, leavesound;
-	bool dungeon;
+	bool dungeon, dark;
 };
 
 class engine {
