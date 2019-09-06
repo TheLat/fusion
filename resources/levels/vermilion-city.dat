@@ -55,7 +55,7 @@ MENU:ALERT:Welcome to the S.S. ANNE!
 END
 vermilion-city-bush1 bush 20 20
 INTERACTIONS
-HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:vermilion-city-bush1}
+HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|CUT:}
 END
 TELEPORT
 23 0 route6 13 35

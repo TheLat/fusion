@@ -7,7 +7,7 @@ sound_effects/general/sfx_go_inside.mp3
 NPCS
 route9-bush1 bush 4 10
 INTERACTIONS
-HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:route9-bush1}
+HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|CUT:}
 END
 route9-girl1 girl 12 12 LEFT
 FORCE_INTERACTION

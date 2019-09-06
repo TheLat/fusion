@@ -78,7 +78,7 @@ MENU:ALERT:Water conducts electricity, so you should zap sea POK{e-accent}MON!
 END
 route12-bush1 bush 11 90
 INTERACTIONS
-HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:route12-bush1}
+HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|CUT:}
 END
 route12-fat5 fat 10 89 DOWN
 FORCE_INTERACTION
@@ -104,7 +104,7 @@ MENU:ALERT:I could have made my POK{e-accent}MON evolve with a MOON STONE!
 END
 route12-bush2 bush 13 101
 INTERACTIONS
-HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:route12-bush2}
+HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|CUT:}
 END
 route12-item3 blank 6 65 INCORPOREAL
 INTERACTIONS

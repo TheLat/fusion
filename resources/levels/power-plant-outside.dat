@@ -15,19 +15,19 @@ MENU:ALERT:I noticed some POK{e-accent}MANIACs prowling around.
 END
 power-plant-outside-bush1 bush 12 26
 INTERACTIONS
-HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:power-plant-outside-bush1}
+HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|CUT:}
 END
 power-plant-outside-bush2 bush 12 24
 INTERACTIONS
-HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:power-plant-outside-bush2}
+HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|CUT:}
 END
 power-plant-outside-bush3 bush 12 22
 INTERACTIONS
-HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:power-plant-outside-bush3}
+HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|CUT:}
 END
 power-plant-outside-bush4 bush 12 20
 INTERACTIONS
-HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:power-plant-outside-bush4}
+HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|CUT:}
 END
 sign1 blank 10 21
 INTERACTIONS

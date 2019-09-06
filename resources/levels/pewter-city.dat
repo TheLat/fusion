@@ -44,7 +44,7 @@ MENU:ALERT:It's rumored that CLEFAIRYs came from the moon!|MENU:ALERT:They appea
 END
 pewter-city-bush bush 26 8
 INTERACTIONS
-HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:pewter-city-bush}
+HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|CUT:}
 END
 pewter-city-sign4 blank 11 21
 INTERACTIONS

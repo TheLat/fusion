@@ -5,15 +5,15 @@ sound_effects/general/sfx_go_outside.mp3
 NPCS
 celadon-gym-bush1 bush 2 4
 INTERACTIONS
-HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:celadon-gym-bush1}
+HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|CUT:}
 END
 celadon-gym-bush2 bush 7 5
 INTERACTIONS
-HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:celadon-gym-bush2}
+HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|CUT:}
 END
 celadon-gym-bush3 bush 5 7
 INTERACTIONS
-HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:celadon-gym-bush3}
+HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|CUT:}
 END
 celadon-gym-board1 blank 3 15
 INTERACTIONS

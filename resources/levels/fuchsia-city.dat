@@ -89,19 +89,19 @@ MENU:ALERT:SAFARI ZONE has a zoo in front of the entrance.|MENU:ALERT:Out back i
 END
 fuchsia-city-bush1 bush 23 22
 INTERACTIONS
-HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:fuchsia-city-bush1}
+HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|CUT:}
 END
 fuchsia-city-bush2 bush 31 16
 INTERACTIONS
-HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:fuchsia-city-bush2}
+HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|CUT:}
 END
 fuchsia-city-bush3 bush 27 10
 INTERACTIONS
-HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:fuchsia-city-bush3}
+HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|CUT:}
 END
 fuchsia-city-bush4 bush 21 14
 INTERACTIONS
-HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:fuchsia-city-bush4}
+HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|CUT:}
 END
 TELEPORT
 4 19 route18 56 11

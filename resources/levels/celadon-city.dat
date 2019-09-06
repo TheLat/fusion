@@ -74,11 +74,11 @@ GIVE_ITEM:PP UP|DEACTIVATE:celadon-city-item1
 END
 celadon-city-bush1 bush 50 24
 INTERACTIONS
-HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:celadon-city-bush1}
+HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|CUT:}
 END
 celadon-city-bush2 bush 38 36
 INTERACTIONS
-HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|DEACTIVATE:celadon-city-bush2}
+HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|CUT:}
 END
 TELEPORT
 53 14 route7 1 5
