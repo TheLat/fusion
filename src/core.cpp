@@ -6468,8 +6468,8 @@ void engine::do_interaction(character& npc) {
                 sprite2 = g.push_quad_load(((c->anim_offset.x + c->loc.x) - (curr_x + 0.5)) / 5.0, (-0.5 - (c->loc.y + c->anim_offset.y) + curr_y) / 4.5f + 0.055, 1.0 / 5.0f, 1.0 / 4.5f, safepath + string("images/cutbushbottom.png"));
             }
             se.play_sound(string("sound_effects/general/sfx_cut.mp3"));
-            unsigned anim1 = g.ae.create_animf(&(g.draw_list[sprite1].x), g.draw_list[sprite1].x, g.draw_list[sprite1].x - 0.1, 0.5);
-            unsigned anim2 = g.ae.create_animf(&(g.draw_list[sprite2].x), g.draw_list[sprite2].x, g.draw_list[sprite2].x + 0.1, 0.5);
+            unsigned anim1 = g.ae.create_animf(&(g.draw_list[sprite1].x), g.draw_list[sprite1].x, g.draw_list[sprite1].x - 0.1, 0.25);
+            unsigned anim2 = g.ae.create_animf(&(g.draw_list[sprite2].x), g.draw_list[sprite2].x, g.draw_list[sprite2].x + 0.1, 0.25);
             while (!g.ae.is_donef(anim1) && !g.ae.is_donef(anim2)) {}
 		}
 		else if (s.find("PLAY_SOUND:") == 0) {
