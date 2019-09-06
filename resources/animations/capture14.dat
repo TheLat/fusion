@@ -20,14 +20,17 @@ CREATE_SPRITE images/ball12.png 1.6 0.45 0.3 0.2 0.2
 CREATE_SPRITE images/ball13.png 1.7 0.45 0.3 0.2 0.2
 CREATE_SPRITE images/ball12.png 1.8 0.45 0.3 0.2 0.2
 CREATE_SPRITE images/ball11.png 1.9 0.45 0.3 0.2 0.2
+CREATE_SPRITE images/ball12.png 2.0 0.45 0.3 0.2 0.2
 PLAY_SOUND sound_effects/general/sfx_healing_machine.mp3 2.4
 CREATE_SPRITE images/ball12.png 2.5 0.45 0.3 0.2 0.2
 CREATE_SPRITE images/ball13.png 2.6 0.45 0.3 0.2 0.2
 CREATE_SPRITE images/ball12.png 2.7 0.45 0.3 0.2 0.2
 CREATE_SPRITE images/ball11.png 2.8 0.45 0.3 0.2 0.2
+CREATE_SPRITE images/ball12.png 2.9 0.45 0.3 0.2 0.2
 PLAY_SOUND sound_effects/general/sfx_healing_machine.mp3 3.3
 CREATE_SPRITE images/ball12.png 3.4 0.45 0.3 0.2 0.2
 CREATE_SPRITE images/ball13.png 3.5 0.45 0.3 0.2 0.2
 CREATE_SPRITE images/ball12.png 3.6 0.45 0.3 0.2 0.2
 CREATE_SPRITE images/ball11.png 3.7 0.45 0.3 0.2 0.2
+CREATE_SPRITE images/ball12.png 3.8 0.45 0.3 0.2 0.2
 CREATE_SPRITE images/ball11.png 4.2 0.45 0.3 0.2 0.2

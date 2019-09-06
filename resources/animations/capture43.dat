@@ -20,16 +20,19 @@ CREATE_SPRITE images/ball42.png 1.6 0.45 0.3 0.2 0.2
 CREATE_SPRITE images/ball43.png 1.7 0.45 0.3 0.2 0.2
 CREATE_SPRITE images/ball42.png 1.8 0.45 0.3 0.2 0.2
 CREATE_SPRITE images/ball41.png 1.9 0.45 0.3 0.2 0.2
+CREATE_SPRITE images/ball42.png 2.0 0.45 0.3 0.2 0.2
 PLAY_SOUND sound_effects/general/sfx_healing_machine.mp3 2.4
 CREATE_SPRITE images/ball42.png 2.5 0.45 0.3 0.2 0.2
 CREATE_SPRITE images/ball43.png 2.6 0.45 0.3 0.2 0.2
 CREATE_SPRITE images/ball42.png 2.7 0.45 0.3 0.2 0.2
 CREATE_SPRITE images/ball41.png 2.8 0.45 0.3 0.2 0.2
+CREATE_SPRITE images/ball42.png 2.9 0.45 0.3 0.2 0.2
 PLAY_SOUND sound_effects/general/sfx_healing_machine.mp3 3.3
 CREATE_SPRITE images/ball42.png 3.4 0.45 0.3 0.2 0.2
 CREATE_SPRITE images/ball43.png 3.5 0.45 0.3 0.2 0.2
 CREATE_SPRITE images/ball42.png 3.6 0.45 0.3 0.2 0.2
 CREATE_SPRITE images/ball41.png 3.7 0.45 0.3 0.2 0.2
+CREATE_SPRITE images/ball42.png 3.8 0.45 0.3 0.2 0.2
 HIDE_SPRITE 0 4.2
 HIDE_SPRITE 1 4.7
 HIDE_SPRITE 2 4.7
@@ -47,6 +50,9 @@ HIDE_SPRITE 13 4.2
 HIDE_SPRITE 14 4.2
 HIDE_SPRITE 15 4.2
 HIDE_SPRITE 16 4.2
+HIDE_SPRITE 17 4.2
+HIDE_SPRITE 18 4.2
+HIDE_SPRITE 19 4.2
 PLAY_SOUND sound_effects/general/sfx_ball_poof.mp3 4.2
 SPLINE_TRANSFORM 1 4.2 4.7 0.55 0.4 0.0 0.0 0.35 0.4 0.2 0.2 0.35 0.4 0.2 0.2
 SPLINE_TRANSFORM 2 4.2 4.7 0.55 0.4 0.0 0.0 0.55 0.4 0.2 0.2 0.55 0.4 0.2 0.2
