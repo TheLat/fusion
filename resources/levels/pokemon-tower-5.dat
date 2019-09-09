@@ -13,7 +13,7 @@ FORCE_INTERACTION
 3 0
 END
 INTERACTIONS
-PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:lavender-tower-5-rocket1|MOVE_TO_PLAYER|MENU:ALERT:What do you want? Why are you here?|BATTLE:lavender-tower-5-rocket1|{NO_ADVANCE}{DISABLE_FORCE|MENU:ALERT:I'm not going to forget this!|DEACTIVATE:lavender-tower-5-rocket1}
+PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:lavender-tower-5-rocket1|MOVE_TO_PLAYER|MENU:ALERT:What do you want? Why are you here?|BATTLE:lavender-tower-5-rocket1|{NO_ADVANCE}{DISABLE_FORCE|MENU:ALERT:I'm not going to forget this!|ANIMATION:screendark|DEACTIVATE:lavender-tower-5-rocket1|ANIMATION:screenlight}
 END
 lavender-tower-5-rocket2 rocket 10 9 LEFT
 FORCE_INTERACTION
@@ -22,7 +22,7 @@ FORCE_INTERACTION
 -3 0
 END
 INTERACTIONS
-PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:lavender-tower-5-rocket2|MOVE_TO_PLAYER|MENU:ALERT:Did you lay the GHOST to rest?|BATTLE:lavender-tower-5-rocket2|{NO_ADVANCE}{DISABLE_FORCE|MENU:ALERT:We needed to capture that one...|MENU:ALERT:We needed it so badly...|DEACTIVATE:lavender-tower-5-rocket2}
+PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:lavender-tower-5-rocket2|MOVE_TO_PLAYER|MENU:ALERT:Did you lay the GHOST to rest?|BATTLE:lavender-tower-5-rocket2|{NO_ADVANCE}{DISABLE_FORCE|MENU:ALERT:We needed to capture that one...|MENU:ALERT:We needed it so badly...|ANIMATION:screendark|DEACTIVATE:lavender-tower-5-rocket2|ANIMATION:screenlight}
 END
 lavender-tower-5-rocket3 rocket 7 7 RIGHT
 FORCE_INTERACTION
@@ -31,11 +31,11 @@ FORCE_INTERACTION
 3 0
 END
 INTERACTIONS
-PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:lavender-tower-5-rocket3|MOVE_TO_PLAYER|MENU:ALERT:You're not saving anyone, kid!|BATTLE:lavender-tower-5-rocket3|{NO_ADVANCE}{DISABLE_FORCE|MENU:ALERT:You're not getting away with this!|DEACTIVATE:lavender-tower-5-rocket3}
+PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:lavender-tower-5-rocket3|MOVE_TO_PLAYER|MENU:ALERT:You're not saving anyone, kid!|BATTLE:lavender-tower-5-rocket3|{NO_ADVANCE}{DISABLE_FORCE|MENU:ALERT:You're not getting away with this!|ANIMATION:screendark|DEACTIVATE:lavender-tower-5-rocket3|ANIMATION:screenlight}
 END
 lavender-tower-5-fuji oldman2 8 3 DOWN
 INTERACTIONS
-MENU:ALERT:MR. FUJI: Heh? You came to save me?|MENU:ALERT:Thank you. But, I came here of my own free will.|MENU:ALERT:I came to calm the soul of CUBONE's mother.|MENU:ALERT:I think MAROWAK's spirit has gone to the afterlife.|MENU:ALERT:I must thank you for your kind concern.|MENU:ALERT:Follow me to my home, POK{e-accent}MON HOUSE at the foot of this tower.|ADVANCE:lavender-house1-man|ADVANCE:lavender-house1-girl|ACTIVATE:lavender-house1-fuji|DEACTIVATE:lavender-tower-5-fuji|TELEPORT:lavender-house1 2 7
+MENU:ALERT:MR. FUJI: Heh? You came to save me?|MENU:ALERT:Thank you. But, I came here of my own free will.|MENU:ALERT:I came to calm the soul of CUBONE's mother.|MENU:ALERT:I think MAROWAK's spirit has gone to the afterlife.|MENU:ALERT:I must thank you for your kind concern.|MENU:ALERT:Follow me to my home, POK{e-accent}MON HOUSE at the foot of this tower.|ADVANCE:lavender-house1-man|ADVANCE:lavender-house1-girl|ACTIVATE:lavender-house1-fuji|ANIMATION:screendark|DEACTIVATE:lavender-tower-5-fuji|TELEPORT:lavender-house1 2 7|ANIMATION:screenlight
 END
 TRAINERS
 lavender-tower-5-rocket1 {NO_SWITCH:2} 35 0.5 0.5 ROCKET rocket.png {ROCKET: I give up!}{} 41-41:27|41-41:27|42-42:27
