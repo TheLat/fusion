@@ -1,5 +1,7 @@
 NAME
 Lavender City House 2
+MUSIC
+music/31-lavender-town-intro.mp3,music/31-lavender-town-loop.mp3
 LEAVESOUND
 sound_effects/general/sfx_go_outside.mp3
 NPCS
@@ -21,7 +23,7 @@ MENU:ALERT:A TOWN MAP.|MAP
 END
 lavender-house2-mon2 mon 3 5 UP
 INTERACTIONS
-MENU:ALERT:CUBONE: Kyarugoo!|FACE:UP
+PLAY_CRY:104-104|MENU:ALERT:CUBONE: Kyarugoo!|FACE:UP
 END
 lavender-house2-girl girl4 2 4 RIGHT
 INTERACTIONS

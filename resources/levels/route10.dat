@@ -1,5 +1,7 @@
 NAME
 Route 10
+MUSIC
+music/25-road-to-lavender-intro.mp3,music/25-road-to-lavender-loop.mp3
 LEAVESOUND
 sound_effects/general/sfx_go_inside.mp3
 NPCS
@@ -13,7 +15,7 @@ FORCE_INTERACTION
 0 2
 END
 INTERACTIONS
-!:route10-girl1|MOVE_TO_PLAYER|MENU:ALERT:I'm feeling a bit faint from this tough hike.|BATTLE:route10-girl1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:route10-girl1|MOVE_TO_PLAYER|MENU:ALERT:I'm feeling a bit faint from this tough hike.|BATTLE:route10-girl1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:The POK{e-accent}MON here are so chunky! There should be a pink one with a floral pattern!
 END
 route10-guy1 tough 7 11 UP
@@ -23,7 +25,7 @@ FORCE_INTERACTION
 0 -3
 END
 INTERACTIONS
-!:route10-guy1|MOVE_TO_PLAYER|MENU:ALERT:Ha-hahaha-ah-ah!|BATTLE:route10-guy1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route10-guy1|MOVE_TO_PLAYER|MENU:ALERT:Ha-hahaha-ah-ah!|BATTLE:route10-guy1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Haha-ha-choo! {NEWLINE} Ha-choo! {NEWLINE} Snort! Snivel!
 END
 route10-guy2 tough 7 15 DOWN
@@ -33,7 +35,7 @@ FORCE_INTERACTION
 0 3
 END
 INTERACTIONS
-!:route10-guy2|MOVE_TO_PLAYER|MENU:ALERT:Ah! This mountain air is delicious!|BATTLE:route10-guy2|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route10-guy2|MOVE_TO_PLAYER|MENU:ALERT:Ah! This mountain air is delicious!|BATTLE:route10-guy2|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I feel bloated on mountain air!
 END
 route10-guy3 man2 18 18 LEFT
@@ -43,10 +45,10 @@ FORCE_INTERACTION
 -3 0
 END
 INTERACTIONS
-!:route10-guy3|MOVE_TO_PLAYER|MENU:ALERT:Hi kid, want to see my POK{e-accent}MON?|BATTLE:route10-guy3|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route10-guy3|MOVE_TO_PLAYER|MENU:ALERT:Hi kid, want to see my POK{e-accent}MON?|BATTLE:route10-guy3|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I don't like you for beating me!
 END
-route10-item1 blank 20 7
+route10-item1 blank 20 7 INCORPOREAL
 INTERACTIONS
 GIVE_ITEM:MAX ETHER|DEACTIVATE:route10-item1
 END
