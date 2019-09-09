@@ -1,5 +1,8 @@
 NAME
 Pok{e-accent}mon Tower Floor 7
+DUNGEON
+MUSIC
+music/32-pokemon-tower-intro.mp3,music/32-pokemon-tower-loop.mp3
 LEAVESOUND
 sound_effects/general/sfx_go_outside.mp3
 NPCS
@@ -10,7 +13,7 @@ FORCE_INTERACTION
 3 0
 END
 INTERACTIONS
-!:lavender-tower-5-rocket1|MOVE_TO_PLAYER|MENU:ALERT:What do you want? Why are you here?|BATTLE:lavender-tower-5-rocket1|{NO_ADVANCE}{DISABLE_FORCE|MENU:ALERT:I'm not going to forget this!|DEACTIVATE:lavender-tower-5-rocket1}
+PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:lavender-tower-5-rocket1|MOVE_TO_PLAYER|MENU:ALERT:What do you want? Why are you here?|BATTLE:lavender-tower-5-rocket1|{NO_ADVANCE}{DISABLE_FORCE|MENU:ALERT:I'm not going to forget this!|DEACTIVATE:lavender-tower-5-rocket1}
 END
 lavender-tower-5-rocket2 rocket 10 9 LEFT
 FORCE_INTERACTION
@@ -19,7 +22,7 @@ FORCE_INTERACTION
 -3 0
 END
 INTERACTIONS
-!:lavender-tower-5-rocket2|MOVE_TO_PLAYER|MENU:ALERT:Did you lay the GHOST to rest?|BATTLE:lavender-tower-5-rocket2|{NO_ADVANCE}{DISABLE_FORCE|MENU:ALERT:We needed to capture that one...|MENU:ALERT:We needed it so badly...|DEACTIVATE:lavender-tower-5-rocket2}
+PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:lavender-tower-5-rocket2|MOVE_TO_PLAYER|MENU:ALERT:Did you lay the GHOST to rest?|BATTLE:lavender-tower-5-rocket2|{NO_ADVANCE}{DISABLE_FORCE|MENU:ALERT:We needed to capture that one...|MENU:ALERT:We needed it so badly...|DEACTIVATE:lavender-tower-5-rocket2}
 END
 lavender-tower-5-rocket3 rocket 7 7 RIGHT
 FORCE_INTERACTION
@@ -28,7 +31,7 @@ FORCE_INTERACTION
 3 0
 END
 INTERACTIONS
-!:lavender-tower-5-rocket3|MOVE_TO_PLAYER|MENU:ALERT:You're not saving anyone, kid!|BATTLE:lavender-tower-5-rocket3|{NO_ADVANCE}{DISABLE_FORCE|MENU:ALERT:You're not getting away with this!|DEACTIVATE:lavender-tower-5-rocket3}
+PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:lavender-tower-5-rocket3|MOVE_TO_PLAYER|MENU:ALERT:You're not saving anyone, kid!|BATTLE:lavender-tower-5-rocket3|{NO_ADVANCE}{DISABLE_FORCE|MENU:ALERT:You're not getting away with this!|DEACTIVATE:lavender-tower-5-rocket3}
 END
 lavender-tower-5-fuji oldman2 8 3 DOWN
 INTERACTIONS

@@ -1,5 +1,8 @@
 NAME
 Pok{e-accent}mon Tower Floor 5
+DUNGEON
+MUSIC
+music/32-pokemon-tower-intro.mp3,music/32-pokemon-tower-loop.mp3
 LEAVESOUND
 sound_effects/general/sfx_go_outside.mp3
 NPCS
@@ -14,7 +17,7 @@ FORCE_INTERACTION
 -3 0
 END
 INTERACTIONS
-!:lavender-tower-3-woman1|MOVE_TO_PLAYER|MENU:ALERT:You...shall... join...us...|BATTLE:lavender-tower-3-woman1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:lavender-tower-3-woman1|MOVE_TO_PLAYER|MENU:ALERT:You...shall... join...us...|BATTLE:lavender-tower-3-woman1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I was possessed!
 END
 lavender-tower-3-woman2 elder 15 7 LEFT
@@ -23,7 +26,7 @@ FORCE_INTERACTION
 -2 0
 END
 INTERACTIONS
-!:lavender-tower-3-woman2|MOVE_TO_PLAYER|MENU:ALERT:Give...me... your...soul...|BATTLE:lavender-tower-3-woman2|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:lavender-tower-3-woman2|MOVE_TO_PLAYER|MENU:ALERT:Give...me... your...soul...|BATTLE:lavender-tower-3-woman2|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:POK{e-accent}MON that suffer when they die can become powerful spirits.|MENU:ALERT:...that one must have suffered so much...
 END
 lavender-tower-3-woman3 elder 4 10 RIGHT
@@ -32,7 +35,7 @@ FORCE_INTERACTION
 2 0
 END
 INTERACTIONS
-!:lavender-tower-3-woman3|MOVE_TO_PLAYER|MENU:ALERT:You will be a grand vessel!|BATTLE:lavender-tower-3-woman3|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:lavender-tower-3-woman3|MOVE_TO_PLAYER|MENU:ALERT:You will be a grand vessel!|BATTLE:lavender-tower-3-woman3|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I regained my senses!
 END
 lavender-tower-3-woman4 elder 7 16 RIGHT
@@ -41,7 +44,7 @@ FORCE_INTERACTION
 2 0
 END
 INTERACTIONS
-!:lavender-tower-3-woman4|MOVE_TO_PLAYER|MENU:ALERT:Urgah... {NEWLINE} Urff...|BATTLE:lavender-tower-3-woman4|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:lavender-tower-3-woman4|MOVE_TO_PLAYER|MENU:ALERT:Urgah... {NEWLINE} Urff...|BATTLE:lavender-tower-3-woman4|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I fell to evil spirits despite my training!
 END
 lavender-tower-3-woman5 elder 10 8
