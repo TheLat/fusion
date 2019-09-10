@@ -1,5 +1,8 @@
 NAME
 Rocket Hideout
+DUNGEON
+MUSIC
+music/36-hideout-intro.mp3,music/36-hideout-loop.mp3
 LEAVESOUND
 sound_effects/general/sfx_go_outside.mp3
 NPCS
@@ -9,7 +12,7 @@ FORCE_INTERACTION
 2 0
 END
 INTERACTIONS
-!:celadon-hideout-rocket1|MOVE_TO_PLAYER|MENU:ALERT:You broke into our operation?|BATTLE:celadon-hideout-rocket1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:celadon-hideout-rocket1|MOVE_TO_PLAYER|MENU:ALERT:You broke into our operation?|BATTLE:celadon-hideout-rocket1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:You're not going to get away with this, brat!
 END
 celadon-hideout-item1 orb 2 14
@@ -22,7 +25,7 @@ FORCE_INTERACTION
 -2 0
 END
 INTERACTIONS
-!:celadon-hideout-rocket2|MOVE_TO_PLAYER|MENU:ALERT:Who are you? How did you get here?|BATTLE:celadon-hideout-rocket2|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:celadon-hideout-rocket2|MOVE_TO_PLAYER|MENU:ALERT:Who are you? How did you get here?|BATTLE:celadon-hideout-rocket2|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Are you dissing TEAM ROCKET?
 END
 celadon-hideout-rocket3 rocket 20 40 DOWN
@@ -32,7 +35,7 @@ FORCE_INTERACTION
 0 3
 END
 INTERACTIONS
-!:celadon-hideout-rocket3|MOVE_TO_PLAYER|MENU:ALERT:BOSS said you can reveal powerful GHOSTs with the SILPH SCOPE!|BATTLE:celadon-hideout-rocket3|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:celadon-hideout-rocket3|MOVE_TO_PLAYER|MENU:ALERT:BOSS said you can reveal powerful GHOSTs with the SILPH SCOPE!|BATTLE:celadon-hideout-rocket3|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:The TEAM ROCKET HQ has 4 basement floors. Can you reach the BOSS?
 END
 celadon-hideout-item2 orb 16 36
@@ -58,7 +61,7 @@ FORCE_INTERACTION
 3 0
 END
 INTERACTIONS
-!:celadon-hideout-rocket4|MOVE_TO_PLAYER|MENU:ALERT:Why did you come here?|BATTLE:celadon-hideout-rocket4|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:celadon-hideout-rocket4|MOVE_TO_PLAYER|MENU:ALERT:Why did you come here?|BATTLE:celadon-hideout-rocket4|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:OK, I'll talk! Take the elevator to see my BOSS!
 END
 celadon-hideout-rocket5 rocket 10 17 DOWN
@@ -67,7 +70,7 @@ FORCE_INTERACTION
 0 2
 END
 INTERACTIONS
-!:celadon-hideout-rocket5|MOVE_TO_PLAYER|MENU:ALERT:Intruder alert!|BATTLE:celadon-hideout-rocket5|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:celadon-hideout-rocket5|MOVE_TO_PLAYER|MENU:ALERT:Intruder alert!|BATTLE:celadon-hideout-rocket5|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:SILPH SCOPE? {NEWLINE} I don't know where it is!
 END
 celadon-hideout-item6 orb 1 17
@@ -86,7 +89,7 @@ FORCE_INTERACTION
 0 -4
 END
 INTERACTIONS
-!:celadon-hideout-rocket6|MOVE_TO_PLAYER|MENU:ALERT:We got word from upstairs that you were coming!|BATTLE:celadon-hideout-rocket6|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:celadon-hideout-rocket6|MOVE_TO_PLAYER|MENU:ALERT:We got word from upstairs that you were coming!|BATTLE:celadon-hideout-rocket6|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Go ahead and go! But, you need the LIFT KEY to run the elevator!
 END
 celadon-hideout-item8 orb 18 75
@@ -99,7 +102,7 @@ FORCE_INTERACTION
 2 0
 END
 INTERACTIONS
-!:celadon-hideout-rocket7|MOVE_TO_PLAYER|MENU:ALERT:Stop meddling in TEAM ROCKET's affairs!|BATTLE:celadon-hideout-rocket7|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:celadon-hideout-rocket7|MOVE_TO_PLAYER|MENU:ALERT:Stop meddling in TEAM ROCKET's affairs!|BATTLE:celadon-hideout-rocket7|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:SILPH SCOPE? The machine the BOSS stole. It's here somewhere.
 END
 celadon-hideout-item9 orb 2 104
@@ -115,7 +118,7 @@ FORCE_INTERACTION
 0 1
 END
 INTERACTIONS
-!:celadon-hideout-rocket8|MOVE_TO_PLAYER|MENU:ALERT:The elevator doesn't work? Who has the LIFT KEY?|BATTLE:celadon-hideout-rocket8|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:celadon-hideout-rocket8|MOVE_TO_PLAYER|MENU:ALERT:The elevator doesn't work? Who has the LIFT KEY?|BATTLE:celadon-hideout-rocket8|{NO_ADVANCE}{DISABLE_FORCE}
 ACTIVATE:celadon-hideout-item11|MENU:ALERT:Oh, no! I dropped the LIFT KEY!
 END
 celadon-hideout-item11 orb 2 94 INACTIVE
@@ -129,7 +132,7 @@ FORCE_INTERACTION
 -3 0
 END
 INTERACTIONS
-!:celadon-hideout-rocket9|MOVE_TO_PLAYER|MENU:ALERT:Are you lost, you little rat?|BATTLE:celadon-hideout-rocket9|{NO_ADVANCE}{DISABLE_FORCE|DEACTIVATE:celadon-hideout-door1|DEACTIVATE:celadon-hideout-door2}
+PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:celadon-hideout-rocket9|MOVE_TO_PLAYER|MENU:ALERT:Are you lost, you little rat?|BATTLE:celadon-hideout-rocket9|{NO_ADVANCE}{DISABLE_FORCE|DEACTIVATE:celadon-hideout-door1|DEACTIVATE:celadon-hideout-door2}
 MENU:ALERT:Uh-oh, that fight opened the door!
 END
 celadon-hideout-door1 door 16 16 NO_OFFSET
@@ -226,7 +229,7 @@ celadon-hideout-rocket8 35 0.5 0.5 ROCKET rocket.png {ROCKET: No!}{} 67-58:28|20
 celadon-hideout-rocket9 35 0.5 0.5 ROCKET rocket.png {ROCKET: Why...?}{} 20-37:28|20-58:28
 celadon-hideout-rocket10 35 0.5 0.5 ROCKET rocket.png {ROCKET: Burned again!}{} 24-28:27|24-24:27|58-28:27
 celadon-hideout-rocket11 35 0.5 0.5 ROCKET rocket.png {ROCKET: Ayaya!}{} 58-24:27|28-24:27|24-24:27
-celadon-hideout-giovanni 99 1.0 1.0 GIOVANNI giovanni.png {GIOVANNI: WHAT! This cannot be!}{} 111-111:35:HORN ATTACK,STOMP,ROCK SLIDE,DIG|115-115:33:RAGE,BODY SLAM,COMET PUNCH,BITE|68-28:34:SLASH,LOW KICK,FOCUS ENERGY,EARTHQUAKE|31-31:33:BODY SLAM,EARTHQUAKE,ICE BEAM,POISON STING|51-91:35:EARTHQUAKE,CLAMP,SAND ATTACK,ICE BEAM
+celadon-hideout-giovanni {BOSSFIGHT} 99 1.0 1.0 GIOVANNI giovanni.png {GIOVANNI: WHAT! This cannot be!}{} 111-111:35:HORN ATTACK,STOMP,ROCK SLIDE,DIG|115-115:33:RAGE,BODY SLAM,COMET PUNCH,BITE|68-28:34:SLASH,LOW KICK,FOCUS ENERGY,EARTHQUAKE|31-31:33:BODY SLAM,EARTHQUAKE,ICE BEAM,POISON STING|51-91:35:EARTHQUAKE,CLAMP,SAND ATTACK,ICE BEAM
 END
 TELEPORT
 13 2 celadon-game-corner 17 1
