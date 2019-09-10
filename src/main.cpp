@@ -225,6 +225,9 @@ int main(int argc, char** argv) {
 	e.init_jumpleft();
 	e.init_jumpright();
 	printf("Done!\n");
+	printf("Loading slide tiles...");
+	e.init_slide();
+	printf("Done!\n");
 	printf("Loading encounter tiles...");
 	e.init_encounter_tiles();
 	printf("Done!\n");

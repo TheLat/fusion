@@ -257,6 +257,11 @@ public:
 	std::map<int, bool> jumpdown;
 	std::map<int, bool> jumpright;
 	std::map<int, bool> jumpleft;
+	std::map<int, bool> slidedown;
+	std::map<int, bool> slideup;
+	std::map<int, bool> slideleft;
+	std::map<int, bool> slideright;
+	std::map<int, bool> slidestop;
 	std::map<int, bool> encounter_tile;
 	std::map<int, bool> water;
 	std::vector<menu*> menus;
@@ -357,6 +362,7 @@ public:
 	void init_status();
 	void init_blocking();
 	void init_npc_blocking();
+	void init_slide();
 	void init_jumpdown();
 	void init_jumpright();
 	void init_jumpleft();

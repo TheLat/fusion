@@ -5641,6 +5641,45 @@ void engine::init_npc_blocking() {
 	}
 }
 
+void engine::init_slide() {
+	string line;
+	ifstream f1("../resources/data/slidedown-tiles.dat");
+	while (f1.is_open()) {
+		while (safe_getline(f1, line)) {
+			slidedown[stoi(line)] = true;
+		}
+		f1.close();
+	}
+	ifstream f2("../resources/data/slideleft-tiles.dat");
+	while (f2.is_open()) {
+		while (safe_getline(f2, line)) {
+			slideleft[stoi(line)] = true;
+		}
+		f2.close();
+	}
+	ifstream f3("../resources/data/slideright-tiles.dat");
+	while (f3.is_open()) {
+		while (safe_getline(f3, line)) {
+			slideright[stoi(line)] = true;
+		}
+		f3.close();
+	}
+	ifstream f4("../resources/data/slideup-tiles.dat");
+	while (f4.is_open()) {
+		while (safe_getline(f4, line)) {
+			slideup[stoi(line)] = true;
+		}
+		f4.close();
+	}
+	ifstream f5("../resources/data/slidestop-tiles.dat");
+	while (f5.is_open()) {
+		while (safe_getline(f5, line)) {
+			slidestop[stoi(line)] = true;
+		}
+		f5.close();
+	}
+}
+
 void engine::init_jumpdown() {
 	string line;
 	ifstream f("../resources/data/jumpdown-tiles.dat");
@@ -6165,6 +6204,58 @@ void engine::player_input(bool up, bool down, bool left, bool right, bool select
 					}
 				}
 			}
+		}
+		while (slidedown[get_tile(mc.loc.y, mc.loc.x)] || slideup[get_tile(mc.loc.y, mc.loc.x)] || slideleft[get_tile(mc.loc.y, mc.loc.x)] || slideright[get_tile(mc.loc.y, mc.loc.x)]) {
+		    double newx, newy;
+		    newx = mc.loc.x;
+		    newy = mc.loc.y;
+		    if (slidedown[get_tile(mc.loc.y, mc.loc.x)]) {
+		        newy += 1.0;
+		        while (!blocking[get_tile(newy + 1.0, newx)] && !slidedown[get_tile(newy, newx)] && !slideup[get_tile(newy, newx)] && !slideleft[get_tile(newy, newx)] && !slideright[get_tile(newy, newx)] && !slidestop[get_tile(newy, newx)]) {
+		            newy += 1.0;
+		        }
+		    }
+		    else if (slideup[get_tile(mc.loc.y, mc.loc.x)]) {
+		        newy -= 1.0;
+		        while (!blocking[get_tile(newy - 1.0, newx)] && !slidedown[get_tile(newy, newx)] && !slideup[get_tile(newy, newx)] && !slideleft[get_tile(newy, newx)] && !slideright[get_tile(newy, newx)] && !slidestop[get_tile(newy, newx)]) {
+		            newy -= 1.0;
+		        }
+		    }
+		    else if (slideleft[get_tile(mc.loc.y, mc.loc.x)]) {
+		        newx -= 1.0;
+		        while (!blocking[get_tile(newy, newx - 1.0)] && !slidedown[get_tile(newy, newx)] && !slideup[get_tile(newy, newx)] && !slideleft[get_tile(newy, newx)] && !slideright[get_tile(newy, newx)] && !slidestop[get_tile(newy, newx)]) {
+		            newx -= 1.0;
+		        }
+		    }
+		    else if (slideright[get_tile(mc.loc.y, mc.loc.x)]) {
+		        newx += 1.0;
+		        while (!blocking[get_tile(newy, newx + 1.0)] && !slidedown[get_tile(newy, newx)] && !slideup[get_tile(newy, newx)] && !slideleft[get_tile(newy, newx)] && !slideright[get_tile(newy, newx)] && !slidestop[get_tile(newy, newx)]) {
+		            newx += 1.0;
+		        }
+		    }
+		    double mul = fabs(mc.loc.y - newy) + fabs(mc.loc.x - newx);
+		    int spinner = 0;
+		    se.play_sound(string("sound_effects/general/sfx_arrow_tiles.mp3"));
+            a1 = g.ae.create_animf(&(mc.loc.x), mc.loc.x, newx, move_time*mul);
+            a2 = g.ae.create_animf(&(mc.loc.y), mc.loc.y, newy, move_time*mul);
+            a3 = g.ae.create_animi(&(spinner), spinner, int(mul*8.0), move_time*mul);
+            while (!g.ae.is_donef(a1) || !g.ae.is_donef(a2) || !g.ae.is_donef(a3)) {
+                switch(spinner%4) {
+                    case 0:
+                        mc.dir = LEFT;
+                        break;
+                    case 1:
+                        mc.dir = UP;
+                        break;
+                    case 2:
+                        mc.dir = RIGHT;
+                        break;
+                    case 3:
+                        mc.dir = DOWN;
+                        break;
+                }
+                update_level();
+            }
 		}
 	}
 	if (mc.movement == string("seal") && !water[get_tile(l.y, l.x)]) {
