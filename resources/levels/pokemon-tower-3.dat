@@ -73,6 +73,10 @@ END
 INTERACTIONS
 DEACTIVATE:lavender-tower-3-safe2|ACTIVATE:lavender-tower-3-safe1
 END
+lavender-tower-3-item2 blank 2 12 INCORPOREAL
+INTERACTIONS
+GIVE_ITEM:ELIXER|DEACTIVATE:lavender-tower-3-item2
+END
 TRAINERS
 lavender-tower-3-woman1 30 0.45 0.45 CHANNELER channeler.png {CHANNELER: What a nightmare!}{} 70-92:31|43-93:31|21-92:31|83-93:31|3-93:32
 lavender-tower-3-woman2 30 0.45 0.45 CHANNELER channeler.png {CHANNELER: Gasp!}{} 93-124:35
