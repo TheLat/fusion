@@ -1,5 +1,7 @@
 NAME
 Celadon City
+MUSIC
+music/33-celadon-intro.mp3,music/33-celadon-loop.mp3
 LEAVESOUND
 sound_effects/general/sfx_go_inside.mp3
 NPCS
@@ -58,7 +60,7 @@ MENU:ALERT:The GAME CORNER is bad for our city's image!
 END
 celadon-city-mon1 mon 33 16 RIGHT
 INTERACTIONS
-MENU:ALERT:POLIWRATH: Ribi ribit!|FACE:RIGHT
+PLAY_CRY:62-62|MENU:ALERT:POLIWRATH: Ribi ribit!|FACE:RIGHT
 END
 celadon-city-fat1 fat 35 16 LEFT
 INTERACTIONS
@@ -68,7 +70,7 @@ celadon-city-rocket2 rocket 45 18 WANDER
 INTERACTIONS
 MENU:ALERT:Keep out of TEAM ROCKET's way!
 END
-celadon-city-item1 blank 51 19
+celadon-city-item1 blank 51 19 INCORPOREAL
 INTERACTIONS
 GIVE_ITEM:PP UP|DEACTIVATE:celadon-city-item1
 END

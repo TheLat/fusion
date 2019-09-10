@@ -59,7 +59,7 @@ FORCE_INTERACTION
 8 8
 END
 INTERACTIONS
-MENU:ALERT:Entered purified, protected zone!|MENU:ALERT:{PLAYER_NAME}'s POK{e-accent}MON are fully healed!|FULL_HEAL|DEACTIVATE:lavender-tower-3-safe1|ACTIVATE:lavender-tower-3-safe2
+MENU:ALERT:Entered purified, protected zone!|ANIMATION:screenbright|ANIMATION:screenunbright|MENU:ALERT:{PLAYER_NAME}'s POK{e-accent}MON are fully healed!|FULL_HEAL|DEACTIVATE:lavender-tower-3-safe1|ACTIVATE:lavender-tower-3-safe2
 END
 lavender-tower-3-safe2 blank 0 0 INACTIVE NOLOOK
 FORCE_INTERACTION

@@ -1,5 +1,7 @@
 NAME
 Celadon Mansion
+MUSIC
+music/33-celadon-intro.mp3,music/33-celadon-loop.mp3
 LEAVESOUND
 sound_effects/general/sfx_go_outside.mp3
 NPCS
@@ -25,15 +27,15 @@ MENU:ALERT:My dear POK{e-accent}MON keep me company.|MENU:ALERT:MEOWTH even brin
 END
 celadon-mansion-mon1 mon 0 5 RIGHT
 INTERACTIONS
-MENU:ALERT:MEOWTH: Meow!|FACE:RIGHT
+PLAY_CRY:52-52|MENU:ALERT:MEOWTH: Meow!|FACE:RIGHT
 END
 celadon-mansion-mon2 mon 4 6 WANDER
 INTERACTIONS
-MENU:ALERT:NIDORAN: Kya kyaoo!
+PLAY_CRY:32-32|MENU:ALERT:NIDORAN: Kya kyaoo!
 END
 celadon-mansion-mon3 clefairy 0 8 RIGHT
 INTERACTIONS
-MENU:ALERT:CLEFAIRY: Pi pippippi!
+PLAY_CRY:35-35|MENU:ALERT:CLEFAIRY: Pi pippippi!
 END
 celadon-mansion-bookcase3 blank 0 21
 INTERACTIONS

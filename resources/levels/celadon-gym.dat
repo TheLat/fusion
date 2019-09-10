@@ -1,5 +1,7 @@
 NAME
 Celadon City Gym
+MUSIC
+music/20-pokemon-gym-intro.mp3,music/20-pokemon-gym-loop.mp3
 LEAVESOUND
 sound_effects/general/sfx_go_outside.mp3
 NPCS
@@ -31,7 +33,7 @@ FORCE_INTERACTION
 2 0
 END
 INTERACTIONS
-!:celadon-gym-girl1|MOVE_TO_PLAYER|MENU:ALERT:Hey!|MENU:ALERT:You're not allowed in here!|BATTLE:celadon-gym-girl1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:celadon-gym-girl1|MOVE_TO_PLAYER|MENU:ALERT:Hey!|MENU:ALERT:You're not allowed in here!|BATTLE:celadon-gym-girl1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Bleaah! {NEWLINE} I hope ERIKA wipes you out!
 END
 celadon-gym-girl2 woman4 7 10 LEFT
@@ -40,7 +42,7 @@ FORCE_INTERACTION
 -2 0
 END
 INTERACTIONS
-!:celadon-gym-girl2|MOVE_TO_PLAYER|MENU:ALERT:I was getting bored.|BATTLE:celadon-gym-girl2|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:celadon-gym-girl2|MOVE_TO_PLAYER|MENU:ALERT:I was getting bored.|BATTLE:celadon-gym-girl2|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Grass-type POK{e-accent}MON are tough against the water-type!|MENU:ALERT:They also have the edge on rock and ground POK{e-accent}MON!
 END
 celadon-gym-girl3 woman4 1 5 DOWN
@@ -50,7 +52,7 @@ FORCE_INTERACTION
 0 3
 END
 INTERACTIONS
-!:celadon-gym-girl3|MOVE_TO_PLAYER|MENU:ALERT:Look at my grass POK{e-accent}MON!|MENU:ALERT:They're so easy to raise!|BATTLE:celadon-gym-girl3|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:celadon-gym-girl3|MOVE_TO_PLAYER|MENU:ALERT:Look at my grass POK{e-accent}MON!|MENU:ALERT:They're so easy to raise!|BATTLE:celadon-gym-girl3|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:We only use grass-type POK{e-accent}MON at our GYM!|MENU:ALERT:We also use them for making flower arrangements!
 END
 celadon-gym-girl4 girl 9 5 DOWN
@@ -60,7 +62,7 @@ FORCE_INTERACTION
 0 3
 END
 INTERACTIONS
-!:celadon-gym-girl4|MOVE_TO_PLAYER|MENU:ALERT:Aren't you the peeping Tom?|BATTLE:celadon-gym-girl4|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:celadon-gym-girl4|MOVE_TO_PLAYER|MENU:ALERT:Aren't you the peeping Tom?|BATTLE:celadon-gym-girl4|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Oh, you weren't peeping? We get a lot of gawkers!
 END
 celadon-gym-girl5 woman4 3 3 DOWN
@@ -70,7 +72,7 @@ FORCE_INTERACTION
 0 3
 END
 INTERACTIONS
-!:celadon-gym-girl5|MOVE_TO_PLAYER|MENU:ALERT:Pleased to meet you. My hobby is POK{e-accent}MON training.|BATTLE:celadon-gym-girl5|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:celadon-gym-girl5|MOVE_TO_PLAYER|MENU:ALERT:Pleased to meet you. My hobby is POK{e-accent}MON training.|BATTLE:celadon-gym-girl5|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I have a blind date coming up. I have to learn to be polite.
 END
 celadon-gym-girl6 girl 5 3 DOWN
@@ -80,7 +82,7 @@ FORCE_INTERACTION
 0 3
 END
 INTERACTIONS
-!:celadon-gym-girl6|MOVE_TO_PLAYER|MENU:ALERT:Welcome to CELADON GYM!|MENU:ALERT:You better not underestimate girl power!|BATTLE:celadon-gym-girl6|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:celadon-gym-girl6|MOVE_TO_PLAYER|MENU:ALERT:Welcome to CELADON GYM!|MENU:ALERT:You better not underestimate girl power!|BATTLE:celadon-gym-girl6|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I didn't bring my best POK{e-accent}MON!|MENU:ALERT:Wait 'til next time!
 END
 celadon-gym-girl7 girl 6 3 DOWN
@@ -89,7 +91,7 @@ FORCE_INTERACTION
 0 2
 END
 INTERACTIONS
-!:celadon-gym-girl7|MOVE_TO_PLAYER|MENU:ALERT:Don't bring any bugs or fire POK{e-accent}MON here!|BATTLE:celadon-gym-girl7|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:celadon-gym-girl7|MOVE_TO_PLAYER|MENU:ALERT:Don't bring any bugs or fire POK{e-accent}MON here!|BATTLE:celadon-gym-girl7|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Our LEADER, ERIKA, might be quiet, but she's also very skilled!
 END
 celadon-gym-erika girl4 4 3 DOWN
@@ -99,13 +101,13 @@ MENU:ALERT:You are cataloging POK{e-accent}MON? I must say I'm impressed.|MENU:A
 END
 TRAINERS
 celadon-gym-girl1 15 0.4 0.4 LASS lass.png {LASS: You're too rough!}{} 70-61:29|70-118:29
-celadon-gym-girl2 70 0.8 0.8 BEAUTY beauty.png {BEAUTY: My makeup!}{} 44-44:26|70-70:26|44-74:26|70-95:26
-celadon-gym-girl3 70 0.8 0.8 BEAUTY beauty.png {BEAUTY: No!}{} 71-71:33:RAZOR LEAF,ACID,STUN SPORE,SLEEP POWDER
+celadon-gym-girl2 70 0.85 0.85 BEAUTY beauty.png {BEAUTY: My makeup!}{} 44-44:26|70-70:26|44-74:26|70-95:26
+celadon-gym-girl3 70 0.85 0.85 BEAUTY beauty.png {BEAUTY: No!}{} 71-71:33:RAZOR LEAF,ACID,STUN SPORE,SLEEP POWDER
 celadon-gym-girl4 20 0.5 0.5 JR.TRAINER{FEMALE} jrtrainerf.png {JR.TRAINER{FEMALE}: I'm in shock!}{} 2-2:30|2-25:30
-celadon-gym-girl5 70 0.8 0.8 BEAUTY beauty.png {BEAUTY: Oh! Splendid!}{} 114-114:32
+celadon-gym-girl5 70 0.85 0.85 BEAUTY beauty.png {BEAUTY: Oh! Splendid!}{} 114-114:32
 celadon-gym-girl6 35 0.6 0.6 COOLTRAINER{FEMALE} cooltrainerf.png {COOLTRAINER{FEMALE}: Oh! Beaten!}{} 70-70:28|22-44:28:FURY ATTACK,ABSORB,PECK,ACID|2-2:28:TACKLE,LEECH SEED,VINE WHIP,POISON POWDER
 celadon-gym-girl7 15 0.4 0.4 LASS lass.png {LASS: Oh! You!}{} 44-44:29|70-70:29
-celadon-gym-erika 99 1.0 1.0 ERIKA erika.png {ERIKA: Oh! I concede defeat. You are remarkably strong. I must confer you the RAINBOWBADGE.}{} 76-45:36:MEGA DRAIN,EXPLOSION,EARTHQUAKE,ROCK SLIDE|71-38:36:CONFUSE RAY,FIRE BLAST,ACID,MEGA DRAIN|103-103:36:STOMP,PSYCHIC,MEGA DRAIN,EXPLOSION|47-47:36:SPORE,SLASH,STUN SPORE,DIG|3-3:36:RAZOR LEAF,MEGA DRAIN,BODY SLAM,VINE WHIP
+celadon-gym-erika {BOSSFIGHT} 99 1.0 1.0 ERIKA erika.png {ERIKA: Oh! I concede defeat. You are remarkably strong. I must confer you the RAINBOWBADGE.}{} 76-45:36:MEGA DRAIN,EXPLOSION,EARTHQUAKE,ROCK SLIDE|71-38:36:CONFUSE RAY,FIRE BLAST,ACID,MEGA DRAIN|103-103:36:STOMP,PSYCHIC,MEGA DRAIN,EXPLOSION|47-47:36:SPORE,SLASH,STUN SPORE,DIG|3-3:36:RAZOR LEAF,MEGA DRAIN,BODY SLAM,VINE WHIP
 END
 TELEPORT
 4 18 celadon-city 15 32

@@ -1,5 +1,7 @@
 NAME
 Route 8
+MUSIC
+music/19-cerulean-city-intro.mp3,music/19-cerulean-city-loop.mp3
 LEAVESOUND
 sound_effects/general/sfx_go_inside.mp3
 NPCS
@@ -11,7 +13,7 @@ FORCE_INTERACTION
 -4 0
 END
 INTERACTIONS
-!:route8-girl1|MOVE_TO_PLAYER|MENU:ALERT:What's a cute, round, and fluffy POK{e-accent}MON?|BATTLE:route8-girl1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:route8-girl1|MOVE_TO_PLAYER|MENU:ALERT:What's a cute, round, and fluffy POK{e-accent}MON?|BATTLE:route8-girl1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I heard that CLEFAIRY evolves when it's exposed to a MOON STONE.
 END
 route8-bald1 bald4 46 16 DOWN
@@ -20,7 +22,7 @@ FORCE_INTERACTION
 0 2
 END
 INTERACTIONS
-!:route8-bald1|MOVE_TO_PLAYER|MENU:ALERT:I'm a rambling, gambling dude!|BATTLE:route8-bald1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route8-bald1|MOVE_TO_PLAYER|MENU:ALERT:I'm a rambling, gambling dude!|BATTLE:route8-bald1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Gambling and POK{e-accent}MON are like eating peanuts!|MENU:ALERT:You just can't stop!
 END
 route8-man1 man2 42 9 UP
@@ -31,7 +33,7 @@ FORCE_INTERACTION
 0 -4
 END
 INTERACTIONS
-!:route8-man1|MOVE_TO_PLAYER|MENU:ALERT:You need strategy to win at this!|BATTLE:route8-man1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route8-man1|MOVE_TO_PLAYER|MENU:ALERT:You need strategy to win at this!|BATTLE:route8-man1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Go with RATIMER first...and... ...and...then...
 END
 route8-man2 man2 26 7 RIGHT
@@ -41,7 +43,7 @@ FORCE_INTERACTION
 3 0
 END
 INTERACTIONS
-!:route8-man2|MOVE_TO_PLAYER|MENU:ALERT:School is fun, but so are POK{e-accent}MON.|BATTLE:route8-man2|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route8-man2|MOVE_TO_PLAYER|MENU:ALERT:School is fun, but so are POK{e-accent}MON.|BATTLE:route8-man2|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:We're stuck here because of the gates at SAFFRON.
 END
 route8-girl2 girl 26 9 RIGHT
@@ -50,7 +52,7 @@ FORCE_INTERACTION
 2 0
 END
 INTERACTIONS
-!:route8-girl2|MOVE_TO_PLAYER|MENU:ALERT:We must look silly standing here like this!|BATTLE:route8-girl2|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:route8-girl2|MOVE_TO_PLAYER|MENU:ALERT:We must look silly standing here like this!|BATTLE:route8-girl2|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:SAFFRON's gate keeper won't let us through.|MENU:ALERT:He's so mean!
 END
 route8-girl3 girl 26 8 LEFT
@@ -60,7 +62,7 @@ FORCE_INTERACTION
 -3 0
 END
 INTERACTIONS
-!:route8-girl3|MOVE_TO_PLAYER|MENU:ALERT:MEOWTH is so cute, meow, meow, meow!|BATTLE:route8-girl3|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:route8-girl3|MOVE_TO_PLAYER|MENU:ALERT:MEOWTH is so cute, meow, meow, meow!|BATTLE:route8-girl3|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I think PIDGEY and RATTATA are cute, too!
 END
 route8-girl4 girl 26 6 LEFT
@@ -69,7 +71,7 @@ FORCE_INTERACTION
 -2 0
 END
 INTERACTIONS
-!:route8-girl4|MOVE_TO_PLAYER|MENU:ALERT:I like NIDORAN, so I collect them!|BATTLE:route8-girl4|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:route8-girl4|MOVE_TO_PLAYER|MENU:ALERT:I like NIDORAN, so I collect them!|BATTLE:route8-girl4|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:When POK{e-accent}MON grow up they get ugly!|MENU:ALERT:They shouldn't evolve!
 END
 route8-bald2 bald4 13 12 UP
@@ -80,7 +82,7 @@ FORCE_INTERACTION
 0 -4
 END
 INTERACTIONS
-!:route8-bald2|MOVE_TO_PLAYER|MENU:ALERT:All right! Let's roll the dice!|BATTLE:route8-bald2|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route8-bald2|MOVE_TO_PLAYER|MENU:ALERT:All right! Let's roll the dice!|BATTLE:route8-bald2|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Lady Luck's not with me today!
 END
 route8-man3 man2 7 8 RIGHT
@@ -90,7 +92,7 @@ FORCE_INTERACTION
 3 0
 END
 INTERACTIONS
-!:route8-man3|MOVE_TO_PLAYER|MENU:ALERT:You look good at POK{e-accent}MON, but how's your chem?|BATTLE:route8-man3|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route8-man3|MOVE_TO_PLAYER|MENU:ALERT:You look good at POK{e-accent}MON, but how's your chem?|BATTLE:route8-man3|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I am better at school than this!
 END
 route8-sign1 blank 17 6
@@ -113,7 +115,7 @@ route8-man2 25 0.25 0.65 SUPER{SPACE}NERD supernerd.png {SUPER NERD: I'll stay w
 route8-girl2 15 0.35 0.35 LASS lass.png {LASS: Look what you did!}{} 16-16:23|19-19:23|32-32:23|52-52:23|25-25:23
 route8-girl3 15 0.35 0.35 LASS lass.png {LASS: Meow!}{} 52-52:24|52-52:24|52-52:24
 route8-girl4 15 0.35 0.35 LASS lass.png {LASS: Why? Why??}{} 29-29:25|30-30:25
-route8-bald2 {NO_ACCURACY_CHECK} 70 0.85 0.85 GAMBLER gambler.png {GAMBLER: Drat! Came up short!}{} 60-60:24|61-61:24|62-62:24:BUBBLE,HYPNOSIS,WATER GUN,DOUBLESLAP
+route8-bald2 {NO_ACCURACY_CHECK NO_SWITCH:4} 70 0.85 0.85 GAMBLER gambler.png {GAMBLER: Drat! Came up short!}{} 60-60:24|61-61:24|62-62:24:BUBBLE,HYPNOSIS,WATER GUN,DOUBLESLAP
 route8-man3 25 0.25 0.65 SUPER{SPACE}NERD supernerd.png {SUPER NERD: Ow! Meltdown!}{} 81-100:24|109-100:24|100-109:24|100-81:24
 END
 TELEPORT
