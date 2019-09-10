@@ -58,7 +58,7 @@ MENU:ALERT:I'm guarding this poster!|MENU:ALERT:Go away, or else!|BATTLE:celadon
 END
 celadon-game-corner-poster blank 9 0
 INTERACTIONS
-MENU:ALERT:Hey!|MENU:ALERT:A switch behind the poster!? Let's push it!|DEACTIVATE:celadon-game-corner-wall|DEACTIVATE:celadon-game-corner-poster
+MENU:ALERT:Hey!|MENU:ALERT:A switch behind the poster!? Let's push it!|PLAY_BLOCKING_SOUND:sound_effects/general/sfx_switch.mp3|PLAY_BLOCKING_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:celadon-game-corner-wall|DEACTIVATE:celadon-game-corner-poster
 END
 celadon-game-corner-hidden1 blank 1 12 INCORPOREAL
 INTERACTIONS
