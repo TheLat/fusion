@@ -194,7 +194,7 @@ GET:celadon-dept-floor|{}{TELEPORT:celadon-dept 1 3}{TELEPORT:celadon-dept 1 16}
 END
 celadon-dept-elevator-controls blank 3 86
 INTERACTIONS
-MENU:ELEVATOR_CONTROLS:|{SET:celadon-dept-floor:1}{SET:celadon-dept-floor:2}{SET:celadon-dept-floor:3}{SET:celadon-dept-floor:4}{SET:celadon-dept-floor:5}{}
+MENU:ELEVATOR_CONTROLS:|{ANIMATION:elevator|SET:celadon-dept-floor:1}{ANIMATION:elevator|SET:celadon-dept-floor:2}{ANIMATION:elevator|SET:celadon-dept-floor:3}{ANIMATION:elevator|SET:celadon-dept-floor:4}{ANIMATION:elevator|SET:celadon-dept-floor:5}{}
 END
 TELEPORT
 2 9 celadon-city 11 18
