@@ -15,7 +15,7 @@ HIDE_SPRITE 1 1.1
 HIDE_SPRITE 2 1.1
 HIDE_SPRITE 3 1.1
 HIDE_SPRITE 4 1.1
-PLAY_SOUND sound_effects/general/sfx_healing_machine.mp3 1.5
+PLAY_SOUND sound_effects/general/sfx_tink.mp3 1.5
 CREATE_SPRITE images/ball12.png 1.6 0.45 0.3 0.2 0.2
 CREATE_SPRITE images/ball13.png 1.7 0.45 0.3 0.2 0.2
 CREATE_SPRITE images/ball12.png 1.8 0.45 0.3 0.2 0.2
