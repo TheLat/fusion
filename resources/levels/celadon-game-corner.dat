@@ -11,7 +11,7 @@ MENU:ALERT:Welcome!|MENU:ALERT:You can exchange your coins for fabulous prizes n
 END
 celadon-game-corner-clerk clerk2 5 2 DOWN FARSPEAK
 INTERACTIONS
-MENU:ALERT:Welcome to the ROCKET GAME CORNER!|MENU:ALERT:Do you need some coins?|MENU:ALERT:It's $1000 for 50 coins.|MENU:ALERT_YES_NO_COINS_AND_MONEY:Would you like some?|{IN_INVENTORY:COIN CASE|{MENU:ALERT:You don't have a COIN CASE!|NO_ADVANCE}{HAS_MONEY:1000|{MENU:ALERT:You can't afford the coins!|NO_ADVANCE}{REMOVE_MONEY:1000|GIVE_COINS:50|MENU:ALERT:Thanks! Here are your 50 coins!}}}{MENU:ALERT:No? Please come play sometime!}
+MENU:ALERT:Welcome to the ROCKET GAME CORNER!|MENU:ALERT:Do you need some coins?|MENU:ALERT:It's $1000 for 50 coins.|MENU:ALERT_YES_NO_COINS_AND_MONEY:Would you like some?|{IN_INVENTORY:COIN CASE|{PLAY_SOUND:sound_effects/general/sfx_denied.mp3|MENU:ALERT:You don't have a COIN CASE!|NO_ADVANCE}{HAS_MONEY:1000|{PLAY_SOUND:sound_effects/general/sfx_denied.mp3|MENU:ALERT:You can't afford the coins!|NO_ADVANCE}{REMOVE_MONEY:1000|PLAY_SOUND:sound_effects/general/sfx_get_item_1.mp3|GIVE_COINS:50|MENU:ALERT:Thanks! Here are your 50 coins!}}}{MENU:ALERT:No? Please come play sometime!}
 END
 celadon-game-corner-player1 bald3 2 6 LEFT
 INTERACTIONS
@@ -23,7 +23,7 @@ MENU:ALERT:I think these machines have different odds.|FACE:LEFT
 END
 celadon-game-corner-player3 safari 5 7 RIGHT
 INTERACTIONS
-MENU:ALERT:Kid, do you want to play?|IN_INVENTORY:COIN CASE|{MENU:ALERT:Oops! Forgot the COIN CASE!|FACE:RIGHT|NO_ADVANCE}{GIVE_COINS:10|MENU:ALERT:{PLAYER_NAME} got 10 coins!|FACE:RIGHT}
+MENU:ALERT:Kid, do you want to play?|IN_INVENTORY:COIN CASE|{PLAY_SOUND:sound_effects/general/sfx_denied.mp3|MENU:ALERT:Oops! Forgot the COIN CASE!|FACE:RIGHT|NO_ADVANCE}{PLAY_SOUND:sound_effects/general/sfx_get_item_1.mp3|GIVE_COINS:10|MENU:ALERT:{PLAYER_NAME} got 10 coins!|FACE:RIGHT}
 MENU:ALERT:Wins seem to come and go.|FACE:RIGHT
 END
 celadon-game-corner-player4 woman5 8 7 LEFT
@@ -40,12 +40,12 @@ MENU:ALERT:Games are scary! It's so easy to get hooked!|FACE:RIGHT
 END
 celadon-game-corner-player7 clerk2 14 7 LEFT
 INTERACTIONS
-MENU:ALERT:What's up? Want some coins?|IN_INVENTORY:COIN CASE|{MENU:ALERT:Oops! Forgot the COIN CASE!|FACE:LEFT|NO_ADVANCE}{GIVE_COINS:20|MENU:ALERT:{PLAYER_NAME} got 20 coins!|FACE:LEFT}
+MENU:ALERT:What's up? Want some coins?|IN_INVENTORY:COIN CASE|{PLAY_SOUND:sound_effects/general/sfx_denied.mp3|MENU:ALERT:Oops! Forgot the COIN CASE!|FACE:LEFT|NO_ADVANCE}{PLAY_SOUND:sound_effects/general/sfx_get_item_1.mp3|GIVE_COINS:20|MENU:ALERT:{PLAYER_NAME} got 20 coins!|FACE:LEFT}
 MENU:ALERT:Darn! I need more coins for the POK{e-accent}MON I want!|FACE:LEFT
 END
 celadon-game-corner-player8 hat 17 8 RIGHT
 INTERACTIONS
-MENU:ALERT:Hey, what? You're throwing me off! Here are some coins, shoo!|IN_INVENTORY:COIN CASE|{MENU:ALERT:Oops! Forgot the COIN CASE!|FACE:RIGHT|NO_ADVANCE}{GIVE_COINS:20|MENU:ALERT:{PLAYER_NAME} got 20 coins!|FACE:RIGHT}
+MENU:ALERT:Hey, what? You're throwing me off! Here are some coins, shoo!|IN_INVENTORY:COIN CASE|{PLAY_SOUND:sound_effects/general/sfx_denied.mp3|MENU:ALERT:Oops! Forgot the COIN CASE!|FACE:RIGHT|NO_ADVANCE}{PLAY_SOUND:sound_effects/general/sfx_get_item_1.mp3|GIVE_COINS:20|MENU:ALERT:{PLAYER_NAME} got 20 coins!|FACE:RIGHT}
 MENU:ALERT:The trick is to watch the reels closely!|FACE:RIGHT
 END
 celadon-game-corner-wall wall 17 0 RIGHT NO_OFFSET
@@ -59,6 +59,50 @@ END
 celadon-game-corner-poster blank 9 0
 INTERACTIONS
 MENU:ALERT:Hey!|MENU:ALERT:A switch behind the poster!? Let's push it!|DEACTIVATE:celadon-game-corner-wall|DEACTIVATE:celadon-game-corner-poster
+END
+celadon-game-corner-hidden1 blank 1 12 INCORPOREAL
+INTERACTIONS
+MENU:ALERT:Found some coins!|IN_INVENTORY:COIN CASE|{PLAY_SOUND:sound_effects/general/sfx_denied.mp3|MENU:ALERT:Oops! Forgot the COIN CASE!|NO_ADVANCE}{PLAY_SOUND:sound_effects/general/sfx_get_item_1.mp3|GIVE_COINS:20|MENU:ALERT:{PLAYER_NAME} got 20 coins!|DEACTIVATE:celadon-game-corner-hidden1}
+END
+celadon-game-corner-hidden2 blank 3 10 INCORPOREAL
+INTERACTIONS
+MENU:ALERT:Found some coins!|IN_INVENTORY:COIN CASE|{PLAY_SOUND:sound_effects/general/sfx_denied.mp3|MENU:ALERT:Oops! Forgot the COIN CASE!|NO_ADVANCE}{PLAY_SOUND:sound_effects/general/sfx_get_item_1.mp3|GIVE_COINS:20|MENU:ALERT:{PLAYER_NAME} got 20 coins!|DEACTIVATE:celadon-game-corner-hidden2}
+END
+celadon-game-corner-hidden3 blank 4 9 INCORPOREAL
+INTERACTIONS
+MENU:ALERT:Found some coins!|IN_INVENTORY:COIN CASE|{PLAY_SOUND:sound_effects/general/sfx_denied.mp3|MENU:ALERT:Oops! Forgot the COIN CASE!|NO_ADVANCE}{PLAY_SOUND:sound_effects/general/sfx_get_item_1.mp3|GIVE_COINS:20|MENU:ALERT:{PLAYER_NAME} got 20 coins!|DEACTIVATE:celadon-game-corner-hidden3}
+END
+celadon-game-corner-hidden4 blank 3 8 INCORPOREAL
+INTERACTIONS
+MENU:ALERT:Found some coins!|IN_INVENTORY:COIN CASE|{PLAY_SOUND:sound_effects/general/sfx_denied.mp3|MENU:ALERT:Oops! Forgot the COIN CASE!|NO_ADVANCE}{PLAY_SOUND:sound_effects/general/sfx_get_item_1.mp3|GIVE_COINS:20|MENU:ALERT:{PLAYER_NAME} got 20 coins!|DEACTIVATE:celadon-game-corner-hidden4}
+END
+celadon-game-corner-hidden5 blank 0 4 INCORPOREAL
+INTERACTIONS
+MENU:ALERT:Found some coins!|IN_INVENTORY:COIN CASE|{PLAY_SOUND:sound_effects/general/sfx_denied.mp3|MENU:ALERT:Oops! Forgot the COIN CASE!|NO_ADVANCE}{PLAY_SOUND:sound_effects/general/sfx_get_item_1.mp3|GIVE_COINS:20|MENU:ALERT:{PLAYER_NAME} got 20 coins!|DEACTIVATE:celadon-game-corner-hidden5}
+END
+celadon-game-corner-hidden6 blank 11 3 INCORPOREAL
+INTERACTIONS
+MENU:ALERT:Found some coins!|IN_INVENTORY:COIN CASE|{PLAY_SOUND:sound_effects/general/sfx_denied.mp3|MENU:ALERT:Oops! Forgot the COIN CASE!|NO_ADVANCE}{PLAY_SOUND:sound_effects/general/sfx_get_item_1.mp3|GIVE_COINS:20|MENU:ALERT:{PLAYER_NAME} got 20 coins!|DEACTIVATE:celadon-game-corner-hidden6}
+END
+celadon-game-corner-hidden7 blank 9 8 INCORPOREAL
+INTERACTIONS
+MENU:ALERT:Found some coins!|IN_INVENTORY:COIN CASE|{PLAY_SOUND:sound_effects/general/sfx_denied.mp3|MENU:ALERT:Oops! Forgot the COIN CASE!|NO_ADVANCE}{PLAY_SOUND:sound_effects/general/sfx_get_item_1.mp3|GIVE_COINS:20|MENU:ALERT:{PLAYER_NAME} got 20 coins!|DEACTIVATE:celadon-game-corner-hidden7}
+END
+celadon-game-corner-hidden8 blank 9 11 INCORPOREAL
+INTERACTIONS
+MENU:ALERT:Found some coins!|IN_INVENTORY:COIN CASE|{PLAY_SOUND:sound_effects/general/sfx_denied.mp3|MENU:ALERT:Oops! Forgot the COIN CASE!|NO_ADVANCE}{PLAY_SOUND:sound_effects/general/sfx_get_item_1.mp3|GIVE_COINS:20|MENU:ALERT:{PLAYER_NAME} got 20 coins!|DEACTIVATE:celadon-game-corner-hidden8}
+END
+celadon-game-corner-hidden9 blank 10 12 INCORPOREAL
+INTERACTIONS
+MENU:ALERT:Found some coins!|IN_INVENTORY:COIN CASE|{PLAY_SOUND:sound_effects/general/sfx_denied.mp3|MENU:ALERT:Oops! Forgot the COIN CASE!|NO_ADVANCE}{PLAY_SOUND:sound_effects/general/sfx_get_item_1.mp3|GIVE_COINS:20|MENU:ALERT:{PLAYER_NAME} got 20 coins!|DEACTIVATE:celadon-game-corner-hidden9}
+END
+celadon-game-corner-hidden10 blank 16 10 INCORPOREAL
+INTERACTIONS
+MENU:ALERT:Found some coins!|IN_INVENTORY:COIN CASE|{PLAY_SOUND:sound_effects/general/sfx_denied.mp3|MENU:ALERT:Oops! Forgot the COIN CASE!|NO_ADVANCE}{PLAY_SOUND:sound_effects/general/sfx_get_item_1.mp3|GIVE_COINS:20|MENU:ALERT:{PLAYER_NAME} got 20 coins!|DEACTIVATE:celadon-game-corner-hidden10}
+END
+celadon-game-corner-hidden11 blank 15 4 INCORPOREAL
+INTERACTIONS
+MENU:ALERT:Found some coins!|IN_INVENTORY:COIN CASE|{PLAY_SOUND:sound_effects/general/sfx_denied.mp3|MENU:ALERT:Oops! Forgot the COIN CASE!|NO_ADVANCE}{PLAY_SOUND:sound_effects/general/sfx_get_item_1.mp3|GIVE_COINS:20|MENU:ALERT:{PLAYER_NAME} got 20 coins!|DEACTIVATE:celadon-game-corner-hidden11}
 END
 TRAINERS
 celadon-game-corner-rocker 35 0.45 0.45 ROCKET rocket.png {ROCKET: Dang!}{} 42-20:28|20-42:28
