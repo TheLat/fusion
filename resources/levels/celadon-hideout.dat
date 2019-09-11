@@ -118,8 +118,8 @@ FORCE_INTERACTION
 0 1
 END
 INTERACTIONS
-PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:celadon-hideout-rocket8|MOVE_TO_PLAYER|MENU:ALERT:The elevator doesn't work? Who has the LIFT KEY?|BATTLE:celadon-hideout-rocket8|{NO_ADVANCE}{DISABLE_FORCE}
-ACTIVATE:celadon-hideout-item11|MENU:ALERT:Oh, no! I dropped the LIFT KEY!
+PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:celadon-hideout-rocket8|MOVE_TO_PLAYER|MENU:ALERT:The elevator doesn't work? Who has the LIFT KEY?|BATTLE:celadon-hideout-rocket8|{NO_ADVANCE}{DISABLE_FORCE|ACTIVATE:celadon-hideout-item11}
+MENU:ALERT:Oh, no! I dropped the LIFT KEY!
 END
 celadon-hideout-item11 orb 2 94 INACTIVE
 INTERACTIONS
@@ -177,7 +177,7 @@ GET:celadon-hideout-floor|{}{TELEPORT:celadon-hideout 17 19}{TELEPORT:celadon-hi
 END
 celadon-hideout-elevator-controls blank 1 123
 INTERACTIONS
-IN_INVENTORY:LIFT KEY|{MENU:ALERT:It appears to need a key.}{MENU:ELEVATOR_CONTROLS_HIDEOUT:|{SET:celadon-hideout-floor:1}{SET:celadon-hideout-floor:2}{SET:celadon-hideout-floor:3}{}}
+IN_INVENTORY:LIFT KEY|{MENU:ALERT:It appears to need a key.}{MENU:ELEVATOR_CONTROLS_HIDEOUT:|{ANIMATION:elevator|SET:celadon-hideout-floor:1}{ANIMATION:elevator|SET:celadon-hideout-floor:2}{ANIMATION:elevator|SET:celadon-hideout-floor:3}{}}
 END
 celadon-hideout-item12 orb 4 112
 INTERACTIONS
@@ -201,21 +201,33 @@ MENU:ALERT:There doesn't seem to be a way to open it!
 END
 celadon-hideout-rocket10 rocket 15 104 DOWN
 INTERACTIONS
-MENU:ALERT:I know you! You ruined our plans at MT. MOON!|BATTLE:celadon-hideout-rocket10|{NO_ADVANCE}{DISABLE_FORCE|DEACTIVATE:celadon-hideout-door3|DEACTIVATE:celadon-hideout-door4}
+MENU:ALERT:I know you! You ruined our plans at MT. MOON!|BATTLE:celadon-hideout-rocket10|{NO_ADVANCE}{DISABLE_FORCE|DEACTIVATE:celadon-hideout-door3|DEACTIVATE:celadon-hideout-door4|PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3}
 MENU:ALERT:Do you have something against TEAM ROCKET?
 END
 celadon-hideout-rocket11 rocket 18 104 DOWN
 INTERACTIONS
-MENU:ALERT:How can you not see the beauty of our evil?|BATTLE:celadon-hideout-rocket11|{NO_ADVANCE}{DISABLE_FORCE|DEACTIVATE:celadon-hideout-door5|DEACTIVATE:celadon-hideout-door6}
+MENU:ALERT:How can you not see the beauty of our evil?|BATTLE:celadon-hideout-rocket11|{NO_ADVANCE}{DISABLE_FORCE|DEACTIVATE:celadon-hideout-door5|DEACTIVATE:celadon-hideout-door6|PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3}
 MENU:ALERT:BOSS! I'm sorry I failed you!
 END
 celadon-hideout-giovanni boss 17 95 DOWN
 INTERACTIONS
-MENU:ALERT:So! I must say, I am impressed you got here!|BATTLE:celadon-hideout-giovanni|{NO_ADVANCE}{MENU:ALERT:I see that you raise POK{e-accent}MON with utmost care.|MENU:ALERT:However, a child like you would never understand what I hope to achieve.|MENU:ALERT:I shall step aside this time!|MENU:ALERT:This was just a key to one of many solutions to the problem.|MENU:ALERT:I hope we meet again...|DEACTIVATE:celadon-hideout-giovanni|ACTIVATE:celadon-hideout-item13|DEACTIVATE:saffron-city-rocket-silph}
+MENU:ALERT:So! I must say, I am impressed you got here!|BATTLE:celadon-hideout-giovanni|{NO_ADVANCE}{MENU:ALERT:I see that you raise POK{e-accent}MON with utmost care.|MENU:ALERT:However, a child like you would never understand what I hope to achieve.|MENU:ALERT:I shall step aside this time!|MENU:ALERT:This was just a key to one of many solutions to the problem.|MENU:ALERT:I hope we meet again...|ANIMATION:screendark|DEACTIVATE:celadon-hideout-giovanni|ACTIVATE:celadon-hideout-item13|ANIMATION:screenlight|DEACTIVATE:saffron-city-rocket-silph}
 END
 celadon-hideout-item13 orb 17 94 INACTIVE
 INTERACTIONS
 GIVE_ITEM:SILPH SCOPE|DEACTIVATE:celadon-hideout-item13
+END
+celadon-hideout-hidden1 blank 13 15 INCORPOREAL
+INTERACTIONS
+GIVE_ITEM:PP UP|DEACTIVATE:celadon-hideout-hidden1
+END
+celadon-hideout-hidden2 blank 19 75 INCORPOREAL
+INTERACTIONS
+GIVE_ITEM:NUGGET|DEACTIVATE:celadon-hideout-hidden2
+END
+celadon-hideout-hidden3 blank 17 93 INCORPOREAL
+INTERACTIONS
+GIVE_ITEM:SUPER POTION|DEACTIVATE:celadon-hideout-hidden3
 END
 TRAINERS
 celadon-hideout-rocket1 35 0.5 0.5 ROCKET rocket.png {ROCKET: Burnt!}{} 24-20:28|58-20:28
