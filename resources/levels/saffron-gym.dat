@@ -1,5 +1,7 @@
 NAME
 Saffron City Gym
+MUSIC
+music/20-pokemon-gym-intro.mp3,music/20-pokemon-gym-loop.mp3
 LEAVESOUND
 sound_effects/general/sfx_go_outside.mp3
 NPCS
@@ -19,7 +21,7 @@ FORCE_INTERACTION
 0 3
 END
 INTERACTIONS
-!:saffron-gym-boy1|MOVE_TO_PLAYER|MENU:ALERT:SABRINA is young, but she's also our LEADER!|MENU:ALERT:You won't reach her easily!|BATTLE:saffron-gym-boy1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:saffron-gym-boy1|MOVE_TO_PLAYER|MENU:ALERT:SABRINA is young, but she's also our LEADER!|MENU:ALERT:You won't reach her easily!|BATTLE:saffron-gym-boy1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:There used to be 2 POK{e-accent}MON GYMs in SAFFRON.|MENU:ALERT:The FIGHTING DOJO next door lost its GYM status when we went and creamed them!
 END
 saffron-gym-boy2 boy 17 7 DOWN
@@ -29,7 +31,7 @@ FORCE_INTERACTION
 0 3
 END
 INTERACTIONS
-!:saffron-gym-boy2|MOVE_TO_PLAYER|MENU:ALERT:You should know that power alone isn't enough!|BATTLE:saffron-gym-boy2|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:saffron-gym-boy2|MOVE_TO_PLAYER|MENU:ALERT:You should know that power alone isn't enough!|BATTLE:saffron-gym-boy2|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:SABRINA just wiped out the KARATE MASTER next door!
 END
 saffron-gym-old1 elder 3 7 DOWN
@@ -39,7 +41,7 @@ FORCE_INTERACTION
 0 3
 END
 INTERACTIONS
-!:saffron-gym-old1|MOVE_TO_PLAYER|MENU:ALERT:POK{e-accent}MON take on the appearance of their trainers!|MENU:ALERT:Your POK{e-accent}MON must be tough, then!|BATTLE:saffron-gym-old1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:saffron-gym-old1|MOVE_TO_PLAYER|MENU:ALERT:POK{e-accent}MON take on the appearance of their trainers!|MENU:ALERT:Your POK{e-accent}MON must be tough, then!|BATTLE:saffron-gym-old1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I must teach better techniques to my POK{e-accent}MON!
 END
 saffron-gym-boy3 boy 3 1 DOWN
@@ -49,7 +51,7 @@ FORCE_INTERACTION
 0 3
 END
 INTERACTIONS
-!:saffron-gym-boy3|MOVE_TO_PLAYER|MENU:ALERT:SAFFRON POK{e-accent}MON GYM is famous for its psychics!|MENU:ALERT:You want to see SABRINA!|MENU:ALERT:I can tell!|BATTLE:saffron-gym-boy3|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:saffron-gym-boy3|MOVE_TO_PLAYER|MENU:ALERT:SAFFRON POK{e-accent}MON GYM is famous for its psychics!|MENU:ALERT:You want to see SABRINA!|MENU:ALERT:I can tell!|BATTLE:saffron-gym-boy3|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:That's right! I used telepathy to read your mind!
 END
 saffron-gym-old2 elder 10 1 DOWN
@@ -59,7 +61,7 @@ FORCE_INTERACTION
 0 3
 END
 INTERACTIONS
-!:saffron-gym-old2|MOVE_TO_PLAYER|MENU:ALERT:SABRINA is younger than I, but I respect her!|BATTLE:saffron-gym-old2|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:saffron-gym-old2|MOVE_TO_PLAYER|MENU:ALERT:SABRINA is younger than I, but I respect her!|BATTLE:saffron-gym-old2|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:In a battle of equals, the one with stronger will wins!|MENU:ALERT:If you wish to beat SABRINA, focus on winning!
 END
 saffron-gym-old3 elder 3 13 DOWN
@@ -69,7 +71,7 @@ FORCE_INTERACTION
 0 3
 END
 INTERACTIONS
-!:saffron-gym-old3|MOVE_TO_PLAYER|MENU:ALERT:You and I, our POK{e-accent}MON shall fight!|BATTLE:saffron-gym-old3|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:saffron-gym-old3|MOVE_TO_PLAYER|MENU:ALERT:You and I, our POK{e-accent}MON shall fight!|BATTLE:saffron-gym-old3|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I knew that this was going to take place.
 END
 saffron-gym-boy4 boy 17 1 DOWN
@@ -79,7 +81,7 @@ FORCE_INTERACTION
 0 3
 END
 INTERACTIONS
-!:saffron-gym-boy4|MOVE_TO_PLAYER|MENU:ALERT:Does our unseen power scare you?|BATTLE:saffron-gym-boy4|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:saffron-gym-boy4|MOVE_TO_PLAYER|MENU:ALERT:Does our unseen power scare you?|BATTLE:saffron-gym-boy4|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Psychic POK{e-accent}MON fear only ghosts and bugs!
 END
 saffron-gym-sabrina woman3 9 8 DOWN
@@ -95,7 +97,7 @@ saffron-gym-boy3 10 0.65 0.65 PSYCHIC psychic.png {PSYCHIC: Arrrgh!}{} 80-80:44:
 saffron-gym-old2 30 0.85 0.85 CHANNELER channeler.png {CHANNELER: Not good enough!}{} 64-93:42:PSYCHIC,PSYBEAM,NIGHT SHADE,CONFUSE RAY|93-93:42:NIGHT SHADE,CONFUSE RAY,HYPNOSIS,DREAM EATER
 saffron-gym-old3 30 0.85 0.85 CHANNELER channeler.png {CHANNELER: I lost after all!}{} 44-93:41:SLEEP POWDER,DREAM EATER,CONFUSE RAY,PETAL DANCE|121-93:41:MINIMIZE,RECOVER,NIGHT SHADE,CONFUSE RAY|93-91:41:AURORA BEAM,HYPNOSIS,CLAMP,LICK
 saffron-gym-boy4 10 0.65 0.65 PSYCHIC psychic.png {PSYCHIC: I never foresaw this!}{} 64-64:40|80-80:40:CONFUSION,WATER GUN,AMNESIA,HEADBUTT|122-122:40:BARRIER,CONFUSION,LIGHT SCREEN,DOUBLESLAP|64-64:40
-saffron-gym-sabrina 99 1.0 1.0 SABRINA sabrina.png {SABRINA: I'm shocked! {NEWLINE} But, a loss is a loss. {NEWLINE} I admit I didn't work hard enough to win! {NEWLINE} You earned the MARSHBADGE!}{} 97-97:51:HYPNOSIS,DREAM EATER,BODY SLAM,SEISMIC TOSS|124-124:52:PSYCHIC,BLIZZARD,BODY SLAM,LOVELY KISS|121-121:53:HYDROPUMP,RECOVER,SWIFT,PSYCHIC|103-103:51:SOLAR BEAM,PSYCHIC,HYPNOSIS,EXPLOSION|65-65:52:PSYCHIC,RECOVER,COUNTER,SUBSTITUTE
+saffron-gym-sabrina {BOSSFIGHT} 99 1.0 1.0 SABRINA sabrina.png {SABRINA: I'm shocked! {NEWLINE} But, a loss is a loss. {NEWLINE} I admit I didn't work hard enough to win! {NEWLINE} You earned the MARSHBADGE!}{} 97-97:51:HYPNOSIS,DREAM EATER,BODY SLAM,SEISMIC TOSS|124-124:52:PSYCHIC,BLIZZARD,BODY SLAM,LOVELY KISS|121-121:53:HYDROPUMP,RECOVER,SWIFT,PSYCHIC|103-103:51:SOLAR BEAM,PSYCHIC,HYPNOSIS,EXPLOSION|65-65:52:PSYCHIC,RECOVER,COUNTER,SUBSTITUTE
 END
 TELEPORT
 8 18 saffron-city 43 11

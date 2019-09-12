@@ -5,163 +5,163 @@ sound_effects/general/sfx_go_outside.mp3
 NPCS
 silph-co-floor2-door1a door 4 28 NO_OFFSET
 INTERACTIONS
-IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor2-door1a|DEACTIVATE:silph-co-floor2-door1b}
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:silph-co-floor2-door1a|DEACTIVATE:silph-co-floor2-door1b}
 END
 silph-co-floor2-door1b door 5 28 NO_OFFSET
 INTERACTIONS
-IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor2-door1a|DEACTIVATE:silph-co-floor2-door1b}
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:silph-co-floor2-door1a|DEACTIVATE:silph-co-floor2-door1b}
 END
 silph-co-floor2-door2a door 4 34 NO_OFFSET
 INTERACTIONS
-IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor2-door2a|DEACTIVATE:silph-co-floor2-door2b}
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:silph-co-floor2-door2a|DEACTIVATE:silph-co-floor2-door2b}
 END
 silph-co-floor2-door2b door 5 34 NO_OFFSET
 INTERACTIONS
-IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor2-door2a|DEACTIVATE:silph-co-floor2-door2b}
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:silph-co-floor2-door2a|DEACTIVATE:silph-co-floor2-door2b}
 END
 silph-co-floor3-door1a door2 9 55 NO_OFFSET
 INTERACTIONS
-IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor3-door1a|DEACTIVATE:silph-co-floor3-door1b}
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:silph-co-floor3-door1a|DEACTIVATE:silph-co-floor3-door1b}
 END
 silph-co-floor3-door1b door2 9 56 NO_OFFSET
 INTERACTIONS
-IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor3-door1a|DEACTIVATE:silph-co-floor3-door1b}
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:silph-co-floor3-door1a|DEACTIVATE:silph-co-floor3-door1b}
 END
 silph-co-floor3-door2a door2 17 55 NO_OFFSET
 INTERACTIONS
-IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor3-door2a|DEACTIVATE:silph-co-floor3-door2b}
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:silph-co-floor3-door2a|DEACTIVATE:silph-co-floor3-door2b}
 END
 silph-co-floor3-door2b door2 17 56 NO_OFFSET
 INTERACTIONS
-IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor3-door2a|DEACTIVATE:silph-co-floor3-door2b}
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:silph-co-floor3-door2a|DEACTIVATE:silph-co-floor3-door2b}
 END
 silph-co-floor4-door1a door 4 82 NO_OFFSET
 INTERACTIONS
-IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor4-door1a|DEACTIVATE:silph-co-floor4-door1b}
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:silph-co-floor4-door1a|DEACTIVATE:silph-co-floor4-door1b}
 END
 silph-co-floor4-door1b door 5 82 NO_OFFSET
 INTERACTIONS
-IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor4-door1a|DEACTIVATE:silph-co-floor4-door1b}
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:silph-co-floor4-door1a|DEACTIVATE:silph-co-floor4-door1b}
 END
 silph-co-floor4-door2a door 12 78 NO_OFFSET
 INTERACTIONS
-IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor4-door2a|DEACTIVATE:silph-co-floor4-door2b}
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:silph-co-floor4-door2a|DEACTIVATE:silph-co-floor4-door2b}
 END
 silph-co-floor4-door2b door 13 78 NO_OFFSET
 INTERACTIONS
-IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor4-door2a|DEACTIVATE:silph-co-floor4-door2b}
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:silph-co-floor4-door2a|DEACTIVATE:silph-co-floor4-door2b}
 END
 silph-co-floor5-door1a door2 7 97 NO_OFFSET
 INTERACTIONS
-IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor5-door1a|DEACTIVATE:silph-co-floor5-door1b}
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:silph-co-floor5-door1a|DEACTIVATE:silph-co-floor5-door1b}
 END
 silph-co-floor5-door1b door2 7 98 NO_OFFSET
 INTERACTIONS
-IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor5-door1a|DEACTIVATE:silph-co-floor5-door1b}
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:silph-co-floor5-door1a|DEACTIVATE:silph-co-floor5-door1b}
 END
 silph-co-floor5-door2a door2 7 105 NO_OFFSET
 INTERACTIONS
-IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor5-door2a|DEACTIVATE:silph-co-floor5-door2b}
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:silph-co-floor5-door2a|DEACTIVATE:silph-co-floor5-door2b}
 END
 silph-co-floor5-door2b door2 7 106 NO_OFFSET
 INTERACTIONS
-IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor5-door2a|DEACTIVATE:silph-co-floor5-door2b}
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:silph-co-floor5-door2a|DEACTIVATE:silph-co-floor5-door2b}
 END
 silph-co-floor5-door3a door2 15 103 NO_OFFSET
 INTERACTIONS
-IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor5-door3a|DEACTIVATE:silph-co-floor5-door3b}
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:silph-co-floor5-door3a|DEACTIVATE:silph-co-floor5-door3b}
 END
 silph-co-floor5-door3b door2 15 104 NO_OFFSET
 INTERACTIONS
-IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor5-door3a|DEACTIVATE:silph-co-floor5-door3b}
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:silph-co-floor5-door3a|DEACTIVATE:silph-co-floor5-door3b}
 END
 silph-co-floor6-door1a door2 5 128 NO_OFFSET
 INTERACTIONS
-IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor6-door1a|DEACTIVATE:silph-co-floor6-door1b}
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:silph-co-floor6-door1a|DEACTIVATE:silph-co-floor6-door1b}
 END
 silph-co-floor6-door1b door2 5 129 NO_OFFSET
 INTERACTIONS
-IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor6-door1a|DEACTIVATE:silph-co-floor6-door1b}
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:silph-co-floor6-door1a|DEACTIVATE:silph-co-floor6-door1b}
 END
 silph-co-floor7-door1a door 10 145 NO_OFFSET
 INTERACTIONS
-IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor7-door1a|DEACTIVATE:silph-co-floor7-door1b}
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:silph-co-floor7-door1a|DEACTIVATE:silph-co-floor7-door1b}
 END
 silph-co-floor7-door1b door 11 145 NO_OFFSET
 INTERACTIONS
-IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor7-door1a|DEACTIVATE:silph-co-floor7-door1b}
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:silph-co-floor7-door1a|DEACTIVATE:silph-co-floor7-door1b}
 END
 silph-co-floor7-door2a door 20 151 NO_OFFSET
 INTERACTIONS
-IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor7-door2a|DEACTIVATE:silph-co-floor7-door2b}
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:silph-co-floor7-door2a|DEACTIVATE:silph-co-floor7-door2b}
 END
 silph-co-floor7-door2b door 21 151 NO_OFFSET
 INTERACTIONS
-IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor7-door2a|DEACTIVATE:silph-co-floor7-door2b}
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:silph-co-floor7-door2a|DEACTIVATE:silph-co-floor7-door2b}
 END
 silph-co-floor7-door3a door 20 143 NO_OFFSET
 INTERACTIONS
-IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor7-door3a|DEACTIVATE:silph-co-floor7-door3b}
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:silph-co-floor7-door3a|DEACTIVATE:silph-co-floor7-door3b}
 END
 silph-co-floor7-door3b door 21 143 NO_OFFSET
 INTERACTIONS
-IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor7-door3a|DEACTIVATE:silph-co-floor7-door3b}
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:silph-co-floor7-door3a|DEACTIVATE:silph-co-floor7-door3b}
 END
 silph-co-floor8-door1a door2 7 170 NO_OFFSET
 INTERACTIONS
-IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor8-door1a|DEACTIVATE:silph-co-floor8-door1b}
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:silph-co-floor8-door1a|DEACTIVATE:silph-co-floor8-door1b}
 END
 silph-co-floor8-door1b door2 7 171 NO_OFFSET
 INTERACTIONS
-IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor8-door1a|DEACTIVATE:silph-co-floor8-door1b}
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:silph-co-floor8-door1a|DEACTIVATE:silph-co-floor8-door1b}
 END
 silph-co-floor9-door1a door2 3 193 NO_OFFSET
 INTERACTIONS
-IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor9-door1a|DEACTIVATE:silph-co-floor9-door1b}
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:silph-co-floor9-door1a|DEACTIVATE:silph-co-floor9-door1b}
 END
 silph-co-floor9-door1b door2 3 194 NO_OFFSET
 INTERACTIONS
-IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor9-door1a|DEACTIVATE:silph-co-floor9-door1b}
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:silph-co-floor9-door1a|DEACTIVATE:silph-co-floor9-door1b}
 END
 silph-co-floor9-door2a door2 11 197 NO_OFFSET
 INTERACTIONS
-IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor9-door2a|DEACTIVATE:silph-co-floor9-door2b}
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:silph-co-floor9-door2a|DEACTIVATE:silph-co-floor9-door2b}
 END
 silph-co-floor9-door2b door2 11 198 NO_OFFSET
 INTERACTIONS
-IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor9-door2a|DEACTIVATE:silph-co-floor9-door2b}
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:silph-co-floor9-door2a|DEACTIVATE:silph-co-floor9-door2b}
 END
 silph-co-floor9-door3a door 18 195 NO_OFFSET
 INTERACTIONS
-IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor9-door3a|DEACTIVATE:silph-co-floor9-door3b}
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:silph-co-floor9-door3a|DEACTIVATE:silph-co-floor9-door3b}
 END
 silph-co-floor9-door3b door 19 195 NO_OFFSET
 INTERACTIONS
-IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor9-door3a|DEACTIVATE:silph-co-floor9-door3b}
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:silph-co-floor9-door3a|DEACTIVATE:silph-co-floor9-door3b}
 END
 silph-co-floor9-door4a door 18 189 NO_OFFSET
 INTERACTIONS
-IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor9-door4a|DEACTIVATE:silph-co-floor9-door4b}
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:silph-co-floor9-door4a|DEACTIVATE:silph-co-floor9-door4b}
 END
 silph-co-floor9-door4b door 19 189 NO_OFFSET
 INTERACTIONS
-IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor9-door4a|DEACTIVATE:silph-co-floor9-door4b}
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:silph-co-floor9-door4a|DEACTIVATE:silph-co-floor9-door4b}
 END
 silph-co-floor10-door1a door 10 216 NO_OFFSET
 INTERACTIONS
-IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor10-door1a|DEACTIVATE:silph-co-floor10-door1b}
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:silph-co-floor10-door1a|DEACTIVATE:silph-co-floor10-door1b}
 END
 silph-co-floor10-door1b door 11 216 NO_OFFSET
 INTERACTIONS
-IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor10-door1a|DEACTIVATE:silph-co-floor10-door1b}
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:silph-co-floor10-door1a|DEACTIVATE:silph-co-floor10-door1b}
 END
 silph-co-floor11-door1a door 6 243 NO_OFFSET
 INTERACTIONS
-IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor11-door1a|DEACTIVATE:silph-co-floor11-door1b}
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:silph-co-floor11-door1a|DEACTIVATE:silph-co-floor11-door1b}
 END
 silph-co-floor11-door1b door 7 243 NO_OFFSET
 INTERACTIONS
-IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{DEACTIVATE:silph-co-floor11-door1a|DEACTIVATE:silph-co-floor11-door1b}
+IN_INVENTORY:CARD KEY|{MENU:ALERT:Darn! It needs a CARD KEY!}{PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:silph-co-floor11-door1a|DEACTIVATE:silph-co-floor11-door1b}
 END
 silph-co-rocket1 rocket 8 109 RIGHT
 FORCE_INTERACTION
@@ -169,7 +169,7 @@ FORCE_INTERACTION
 2 0
 END
 INTERACTIONS
-!:silph-co-rocket1|MOVE_TO_PLAYER|MENU:ALERT:I heard a kid was wandering around.|BATTLE:silph-co-rocket1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:silph-co-rocket1|MOVE_TO_PLAYER|MENU:ALERT:I heard a kid was wandering around.|BATTLE:silph-co-rocket1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:It's not smart to pick a fight with TEAM ROCKET!
 END
 silph-co-item1 orb 21 109
@@ -183,7 +183,7 @@ FORCE_INTERACTION
 0 -3
 END
 INTERACTIONS
-!:silph-co-rocket2|MOVE_TO_PLAYER|MENU:ALERT:Hey, kid! What are you doing here?|BATTLE:silph-co-rocket2|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:silph-co-rocket2|MOVE_TO_PLAYER|MENU:ALERT:Hey, kid! What are you doing here?|BATTLE:silph-co-rocket2|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:SILPH CO. will be merged with TEAM ROCKET!
 END
 silph-co-woman1 girl4 10 25 UP
@@ -198,7 +198,7 @@ FORCE_INTERACTION
 0 3
 END
 INTERACTIONS
-!:silph-co-rocket3|MOVE_TO_PLAYER|MENU:ALERT:Help! I'm a SILPH employee.|BATTLE:silph-co-rocket3|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:silph-co-rocket3|MOVE_TO_PLAYER|MENU:ALERT:Help! I'm a SILPH employee.|BATTLE:silph-co-rocket3|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I work for both SILPH and TEAM ROCKET!
 END
 silph-co-rocket4 rocket 16 35 UP
@@ -208,7 +208,7 @@ FORCE_INTERACTION
 0 -3
 END
 INTERACTIONS
-!:silph-co-rocket4|MOVE_TO_PLAYER|MENU:ALERT:No kids are allowed in here!|BATTLE:silph-co-rocket4|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:silph-co-rocket4|MOVE_TO_PLAYER|MENU:ALERT:No kids are allowed in here!|BATTLE:silph-co-rocket4|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Diamond-shaped tiles are teleport blocks!|MENU:ALERT:They're hi-tech transporters!
 END
 silph-co-rocket5 doctor 24 37 LEFT
@@ -218,7 +218,7 @@ FORCE_INTERACTION
 -3 0
 END
 INTERACTIONS
-!:silph-co-rocket5|MOVE_TO_PLAYER|MENU:ALERT:It's off limits here! Go home!|BATTLE:silph-co-rocket5|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:silph-co-rocket5|MOVE_TO_PLAYER|MENU:ALERT:It's off limits here! Go home!|BATTLE:silph-co-rocket5|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Can you solve the maze in here?
 END
 silph-co-rocket6 rocket 20 54 LEFT
@@ -227,7 +227,7 @@ FORCE_INTERACTION
 -2 0
 END
 INTERACTIONS
-!:silph-co-rocket6|MOVE_TO_PLAYER|MENU:ALERT:Quit messing with us, kid!|BATTLE:silph-co-rocket6|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:silph-co-rocket6|MOVE_TO_PLAYER|MENU:ALERT:Quit messing with us, kid!|BATTLE:silph-co-rocket6|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:A hint? You can open doors with a CARD KEY!
 END
 silph-co-man1 guy 24 55
@@ -246,7 +246,7 @@ FORCE_INTERACTION
 0 3
 END
 INTERACTIONS
-!:silph-co-rocket7|MOVE_TO_PLAYER|MENU:ALERT:I support TEAM ROCKET more than I support SILPH!|BATTLE:silph-co-rocket7|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:silph-co-rocket7|MOVE_TO_PLAYER|MENU:ALERT:I support TEAM ROCKET more than I support SILPH!|BATTLE:silph-co-rocket7|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Humph...|MENU:ALERT:TEAM ROCKET said that if I helped them, they'd let me study POK{e-accent}MON!
 END
 silph-co-rocket8 rocket 26 80 UP
@@ -257,7 +257,7 @@ FORCE_INTERACTION
 0 -4
 END
 INTERACTIONS
-!:silph-co-rocket8|MOVE_TO_PLAYER|MENU:ALERT:Intruder spotted!|BATTLE:silph-co-rocket8|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:silph-co-rocket8|MOVE_TO_PLAYER|MENU:ALERT:Intruder spotted!|BATTLE:silph-co-rocket8|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I better tell the BOSS on 11F!
 END
 silph-co-rocket9 rocket 9 84 RIGHT
@@ -268,7 +268,7 @@ FORCE_INTERACTION
 4 0
 END
 INTERACTIONS
-!:silph-co-rocket9|MOVE_TO_PLAYER|MENU:ALERT:TEAM ROCKET has taken command of SILPH CO.!|BATTLE:silph-co-rocket9|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:silph-co-rocket9|MOVE_TO_PLAYER|MENU:ALERT:TEAM ROCKET has taken command of SILPH CO.!|BATTLE:silph-co-rocket9|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Fwahahaha! {NEWLINE} My BOSS has been after this place!
 END
 silph-co-rocket10 doctor 14 76 LEFT
@@ -278,7 +278,7 @@ FORCE_INTERACTION
 -3 0
 END
 INTERACTIONS
-!:silph-co-rocket10|MOVE_TO_PLAYER|MENU:ALERT:My POK{e-accent}MON are my loyal soldiers!|BATTLE:silph-co-rocket10|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:silph-co-rocket10|MOVE_TO_PLAYER|MENU:ALERT:My POK{e-accent}MON are my loyal soldiers!|BATTLE:silph-co-rocket10|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:The doors are electronically locked! A CARD KEY opens them!
 END
 silph-co-item3 orb 3 79
@@ -305,7 +305,7 @@ FORCE_INTERACTION
 0 -3
 END
 INTERACTIONS
-!:silph-co-rocket11|MOVE_TO_PLAYER|MENU:ALERT:Show TEAM ROCKET a little respect!|BATTLE:silph-co-rocket11|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:silph-co-rocket11|MOVE_TO_PLAYER|MENU:ALERT:Show TEAM ROCKET a little respect!|BATTLE:silph-co-rocket11|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Which reminds me.|MENU:ALERT:KOFFING evolves into WHEEZING!
 END
 silph-co-rocket12 doctor 8 96 RIGHT
@@ -314,7 +314,7 @@ FORCE_INTERACTION
 2 0
 END
 INTERACTIONS
-!:silph-co-rocket12|MOVE_TO_PLAYER|MENU:ALERT:We study POK{e-accent} BALL technology on this floor!|BATTLE:silph-co-rocket12|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:silph-co-rocket12|MOVE_TO_PLAYER|MENU:ALERT:We study POK{e-accent} BALL technology on this floor!|BATTLE:silph-co-rocket12|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:We worked on the ultimate POK{e-accent} BALL which would catch anything!
 END
 silph-co-item6 orb 4 99
@@ -333,7 +333,7 @@ FORCE_INTERACTION
 0 -4
 END
 INTERACTIONS
-!:silph-co-rocket13|MOVE_TO_PLAYER|MENU:ALERT:Whaaat? There shouldn't be any children here?|BATTLE:silph-co-rocket13|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:silph-co-rocket13|MOVE_TO_PLAYER|MENU:ALERT:Whaaat? There shouldn't be any children here?|BATTLE:silph-co-rocket13|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:You're only on 5F. It's a long way to my BOSS!
 END
 silph-co-man3 guy 13 102
@@ -359,7 +359,7 @@ FORCE_INTERACTION
 2 0
 END
 INTERACTIONS
-!:silph-co-rocket14|MOVE_TO_PLAYER|MENU:ALERT:I am one of the 4 ROCKET BROTHERS!|BATTLE:silph-co-rocket14|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:silph-co-rocket14|MOVE_TO_PLAYER|MENU:ALERT:I am one of the 4 ROCKET BROTHERS!|BATTLE:silph-co-rocket14|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:No matter! {NEWLINE} My brothers will avenge me!
 END
 silph-co-rocket15 rocket 14 131 LEFT
@@ -368,7 +368,7 @@ FORCE_INTERACTION
 -2 0
 END
 INTERACTIONS
-!:silph-co-rocket15|MOVE_TO_PLAYER|MENU:ALERT:You dare betray TEAM ROCKET?|BATTLE:silph-co-rocket15|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:silph-co-rocket15|MOVE_TO_PLAYER|MENU:ALERT:You dare betray TEAM ROCKET?|BATTLE:silph-co-rocket15|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:If you stand for justice, you betray evil!
 END
 silph-co-rocket16 doctor 7 124 DOWN
@@ -378,7 +378,7 @@ FORCE_INTERACTION
 0 3
 END
 INTERACTIONS
-!:silph-co-rocket16|MOVE_TO_PLAYER|MENU:ALERT:That rotten PRESIDENT!|MENU:ALERT:He shouldn't have sent me to the TIKSI BRANCH!|BATTLE:silph-co-rocket16|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:silph-co-rocket16|MOVE_TO_PLAYER|MENU:ALERT:That rotten PRESIDENT!|MENU:ALERT:He shouldn't have sent me to the TIKSI BRANCH!|BATTLE:silph-co-rocket16|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:TIKSI BRANCH? {NEWLINE} It's in Russian no man's land!
 END
 silph-co-item8 orb 3 128
@@ -421,7 +421,7 @@ FORCE_INTERACTION
 -3 0
 END
 INTERACTIONS
-!:silph-co-rocket17|MOVE_TO_PLAYER|MENU:ALERT:I am one of the 4 ROCKET BROTHERS!|BATTLE:silph-co-rocket17|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:silph-co-rocket17|MOVE_TO_PLAYER|MENU:ALERT:I am one of the 4 ROCKET BROTHERS!|BATTLE:silph-co-rocket17|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Doesn't matter. My brothers will repay the favor!
 END
 silph-co-rocket18 rocket 13 140 DOWN
@@ -430,7 +430,7 @@ FORCE_INTERACTION
 0 2
 END
 INTERACTIONS
-!:silph-co-rocket18|MOVE_TO_PLAYER|MENU:ALERT:Oh ho! I smell a little rat!|BATTLE:silph-co-rocket18|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:silph-co-rocket18|MOVE_TO_PLAYER|MENU:ALERT:Oh ho! I smell a little rat!|BATTLE:silph-co-rocket18|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:You won't find my BOSS by just scurrying around!
 END
 silph-co-rocket19 rocket 19 153 RIGHT
@@ -441,7 +441,7 @@ FORCE_INTERACTION
 4 0
 END
 INTERACTIONS
-!:silph-co-rocket19|MOVE_TO_PLAYER|MENU:ALERT:A child intruder? That must be you!|BATTLE:silph-co-rocket19|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:silph-co-rocket19|MOVE_TO_PLAYER|MENU:ALERT:A child intruder? That must be you!|BATTLE:silph-co-rocket19|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Go on home before my BOSS gets ticked off!
 END
 silph-co-item10 orb 24 150
@@ -459,7 +459,7 @@ FORCE_INTERACTION
 0 3
 END
 INTERACTIONS
-!:silph-co-rocket20|MOVE_TO_PLAYER|MENU:ALERT:Heheh!|MENU:ALERT:You mistook me for a SILPH worker?|BATTLE:silph-co-rocket20|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:silph-co-rocket20|MOVE_TO_PLAYER|MENU:ALERT:Heheh!|MENU:ALERT:You mistook me for a SILPH worker?|BATTLE:silph-co-rocket20|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Despite your age, you are a skilled trainer!
 END
 silph-co-man7 guy 7 149
@@ -485,7 +485,7 @@ FORCE_INTERACTION
 -4 0
 END
 INTERACTIONS
-!:silph-co-rocket21|MOVE_TO_PLAYER|MENU:ALERT:That's as far as you'll go!|BATTLE:silph-co-rocket21|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:silph-co-rocket21|MOVE_TO_PLAYER|MENU:ALERT:That's as far as you'll go!|BATTLE:silph-co-rocket21|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:If you don't turn back, I'll call for backup!
 END
 silph-co-rocket22 rocket 12 177 RIGHT
@@ -496,7 +496,7 @@ FORCE_INTERACTION
 4 0
 END
 INTERACTIONS
-!:silph-co-rocket22|MOVE_TO_PLAYER|MENU:ALERT:I am one of the 4 ROCKET BROTHERS!|BATTLE:silph-co-rocket22|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:silph-co-rocket22|MOVE_TO_PLAYER|MENU:ALERT:I am one of the 4 ROCKET BROTHERS!|BATTLE:silph-co-rocket22|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I'll leave you up to my brothers!
 END
 silph-co-rocket23 doctor 10 164 DOWN
@@ -506,7 +506,7 @@ FORCE_INTERACTION
 0 3
 END
 INTERACTIONS
-!:silph-co-rocket23|MOVE_TO_PLAYER|MENU:ALERT:You're causing us problems!|BATTLE:silph-co-rocket23|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:silph-co-rocket23|MOVE_TO_PLAYER|MENU:ALERT:You're causing us problems!|BATTLE:silph-co-rocket23|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:So, what do you think of SILPH BUILDING's maze?
 END
 silph-co-man9 guy 4 164
@@ -522,7 +522,7 @@ FORCE_INTERACTION
 0 -4
 END
 INTERACTIONS
-!:silph-co-rocket24|MOVE_TO_PLAYER|MENU:ALERT:I am one of the 4 ROCKET BROTHERS!|BATTLE:silph-co-rocket24|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:silph-co-rocket24|MOVE_TO_PLAYER|MENU:ALERT:I am one of the 4 ROCKET BROTHERS!|BATTLE:silph-co-rocket24|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:My brothers will avenge me!
 END
 silph-co-woman5 woman 3 199
@@ -542,7 +542,7 @@ FORCE_INTERACTION
 0 -4
 END
 INTERACTIONS
-!:silph-co-rocket25|MOVE_TO_PLAYER|MENU:ALERT:Your POK{e-accent}MON seem to adore you, kid!|BATTLE:silph-co-rocket25|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:silph-co-rocket25|MOVE_TO_PLAYER|MENU:ALERT:Your POK{e-accent}MON seem to adore you, kid!|BATTLE:silph-co-rocket25|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:If I had started as a trainer at your age...
 END
 silph-co-rocket26 doctor 21 198 DOWN
@@ -551,7 +551,7 @@ FORCE_INTERACTION
 0 2
 END
 INTERACTIONS
-!:silph-co-rocket26|MOVE_TO_PLAYER|MENU:ALERT:Your POK{e-accent}MON have weak points! I can nail them!|BATTLE:silph-co-rocket26|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:silph-co-rocket26|MOVE_TO_PLAYER|MENU:ALERT:Your POK{e-accent}MON have weak points! I can nail them!|BATTLE:silph-co-rocket26|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Exploiting weak spots does work! Think about element types!
 END
 silph-co-rocket27 doctor 10 210 LEFT
@@ -561,7 +561,7 @@ FORCE_INTERACTION
 -3 0
 END
 INTERACTIONS
-!:silph-co-rocket27|MOVE_TO_PLAYER|MENU:ALERT:Enough of your silly games!|BATTLE:silph-co-rocket27|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:silph-co-rocket27|MOVE_TO_PLAYER|MENU:ALERT:Enough of your silly games!|BATTLE:silph-co-rocket27|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Are you satisfied with beating me? Then go on home!
 END
 silph-co-rocket28 rocket 1 217 RIGHT
@@ -572,7 +572,7 @@ FORCE_INTERACTION
 4 0
 END
 INTERACTIONS
-!:silph-co-rocket28|MOVE_TO_PLAYER|MENU:ALERT:Welcome to the 10F! So good of you to join me!|BATTLE:silph-co-rocket28|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:silph-co-rocket28|MOVE_TO_PLAYER|MENU:ALERT:Welcome to the 10F! So good of you to join me!|BATTLE:silph-co-rocket28|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Nice try, but the boardroom is up one more floor!
 END
 silph-co-item13 orb 5 219
@@ -600,7 +600,7 @@ FORCE_INTERACTION
 0 -4
 END
 INTERACTIONS
-!:silph-co-rocket29|MOVE_TO_PLAYER|MENU:ALERT:Halt! Do you have an appointment with my BOSS?|BATTLE:silph-co-rocket29|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:silph-co-rocket29|MOVE_TO_PLAYER|MENU:ALERT:Halt! Do you have an appointment with my BOSS?|BATTLE:silph-co-rocket29|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Watch your step, my BOSS likes his POK{e-accent}MON tough!
 END
 silph-co-rocket30 rocket 3 246 UP
@@ -611,7 +611,7 @@ FORCE_INTERACTION
 0 -4
 END
 INTERACTIONS
-!:silph-co-rocket30|MOVE_TO_PLAYER|MENU:ALERT:Stop right there! Don't you move!|BATTLE:silph-co-rocket30|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:silph-co-rocket30|MOVE_TO_PLAYER|MENU:ALERT:Stop right there! Don't you move!|BATTLE:silph-co-rocket30|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:So, you want to see my BOSS?
 END
 silph-co-rival rival 3 146 UP
@@ -623,14 +623,14 @@ FORCE_INTERACTION
 1 0
 END
 INTERACTIONS
-SET_FACE:PLAYER:DOWN|MENU:ALERT:{RIVAL_NAME}: What kept you {PLAYER_NAME}?|MOVE:silph-co-rival:0,-1|MOVE:silph-co-rival:0,-1|MOVE:silph-co-rival:0,-1|MENU:ALERT:{RIVAL_NAME}: Hahaha! I thought you'd turn up if I waited here!|MENU:ALERT:I guess TEAM ROCKET slowed you down! Not that I care!|MENU:ALERT:I saw you in SAFFRON, so I decided to see if you got better!|GET:RIVALVALUE|{BATTLE:silph-co-rival0}{BATTLE:silph-co-rival1}{BATTLE:silph-co-rival2}|{NO_ADVANCE}{}|MENU:ALERT:Well, {PLAYER_NAME}!|MENU:ALERT:I'm moving on up and ahead!|MENU:ALERT:By checking my POK{e-accent}DEX, I'm starting to see what's strong and how they evolve!|MENU:ALERT:I'm going to the POK{e-accent}MON LEAGUE to boot out the ELITE FOUR!|MENU:ALERT:I'll become the world's most powerful trainer!|MENU:ALERT:{PLAYER_NAME}, well, good luck to you! Don't sweat it! {NEWLINE} Smell ya!|MOVE:silph-co-rival:-1,0|MOVE:silph-co-rival:0,-1|MOVE:silph-co-rival:0,-1|MOVE:silph-co-rival:1,0|MOVE:silph-co-rival:1,0|MOVE:silph-co-rival:1,0|MOVE:silph-co-rival:0,1|DEACTIVATE:silph-co-rival-script2|DEACTIVATE:silph-co-rival-script1|DEACTIVATE:silph-co-rival
+PLAY_MUSIC:music/05-rival-appears-intro.mp3,music/05-rival-appears-loop.mp3|SET_FACE:PLAYER:DOWN|MENU:ALERT:{RIVAL_NAME}: What kept you {PLAYER_NAME}?|MOVE:silph-co-rival:0,-1|MOVE:silph-co-rival:0,-1|MOVE:silph-co-rival:0,-1|MENU:ALERT:{RIVAL_NAME}: Hahaha! I thought you'd turn up if I waited here!|MENU:ALERT:I guess TEAM ROCKET slowed you down! Not that I care!|MENU:ALERT:I saw you in SAFFRON, so I decided to see if you got better!|GET:RIVALVALUE|{BATTLE:silph-co-rival0}{BATTLE:silph-co-rival1}{BATTLE:silph-co-rival2}|{NO_ADVANCE}{}|MENU:ALERT:Well, {PLAYER_NAME}!|MENU:ALERT:I'm moving on up and ahead!|MENU:ALERT:By checking my POK{e-accent}DEX, I'm starting to see what's strong and how they evolve!|MENU:ALERT:I'm going to the POK{e-accent}MON LEAGUE to boot out the ELITE FOUR!|MENU:ALERT:I'll become the world's most powerful trainer!|MENU:ALERT:{PLAYER_NAME}, well, good luck to you! Don't sweat it! {NEWLINE} Smell ya!|MOVE:silph-co-rival:-1,0|MOVE:silph-co-rival:0,-1|MOVE:silph-co-rival:0,-1|MOVE:silph-co-rival:1,0|MOVE:silph-co-rival:1,0|MOVE:silph-co-rival:1,0|MOVE:silph-co-rival:0,1|DEACTIVATE:silph-co-rival-script2|DEACTIVATE:silph-co-rival-script1|DEACTIVATE:silph-co-rival
 END
 silph-co-rival-script2 blank 2 141 NOLOOK
 FORCE_INTERACTION
 1 0
 END
 INTERACTIONS
-SET_FACE:PLAYER:DOWN|MENU:ALERT:{RIVAL_NAME}: What kept you {PLAYER_NAME}?|MOVE:silph-co-rival:0,-1|MOVE:silph-co-rival:0,-1|MOVE:silph-co-rival:0,-1|MOVE:silph-co-rival:0,-1||MENU:ALERT:{RIVAL_NAME}: Hahaha! I thought you'd turn up if I waited here!|MENU:ALERT:I guess TEAM ROCKET slowed you down! Not that I care!|MENU:ALERT:I saw you in SAFFRON, so I decided to see if you got better!|GET:RIVALVALUE|{BATTLE:silph-co-rival0}{BATTLE:silph-co-rival1}{BATTLE:silph-co-rival2}|{NO_ADVANCE}{}|MENU:ALERT:Well, {PLAYER_NAME}!|MENU:ALERT:I'm moving on up and ahead!|MENU:ALERT:By checking my POK{e-accent}DEX, I'm starting to see what's strong and how they evolve!|MENU:ALERT:I'm going to the POK{e-accent}MON LEAGUE to boot out the ELITE FOUR!|MENU:ALERT:I'll become the world's most powerful trainer!|MENU:ALERT:{PLAYER_NAME}, well, good luck to you! Don't sweat it! {NEWLINE} Smell ya!|MOVE:silph-co-rival:1,0|MOVE:silph-co-rival:1,0|DEACTIVATE:silph-co-rival-script2|DEACTIVATE:silph-co-rival-script1|DEACTIVATE:silph-co-rival
+PLAY_MUSIC:music/05-rival-appears-intro.mp3,music/05-rival-appears-loop.mp3|SET_FACE:PLAYER:DOWN|MENU:ALERT:{RIVAL_NAME}: What kept you {PLAYER_NAME}?|MOVE:silph-co-rival:0,-1|MOVE:silph-co-rival:0,-1|MOVE:silph-co-rival:0,-1|MOVE:silph-co-rival:0,-1||MENU:ALERT:{RIVAL_NAME}: Hahaha! I thought you'd turn up if I waited here!|MENU:ALERT:I guess TEAM ROCKET slowed you down! Not that I care!|MENU:ALERT:I saw you in SAFFRON, so I decided to see if you got better!|GET:RIVALVALUE|{BATTLE:silph-co-rival0}{BATTLE:silph-co-rival1}{BATTLE:silph-co-rival2}|{NO_ADVANCE}{}|MENU:ALERT:Well, {PLAYER_NAME}!|MENU:ALERT:I'm moving on up and ahead!|MENU:ALERT:By checking my POK{e-accent}DEX, I'm starting to see what's strong and how they evolve!|MENU:ALERT:I'm going to the POK{e-accent}MON LEAGUE to boot out the ELITE FOUR!|MENU:ALERT:I'll become the world's most powerful trainer!|MENU:ALERT:{PLAYER_NAME}, well, good luck to you! Don't sweat it! {NEWLINE} Smell ya!|MOVE:silph-co-rival:1,0|MOVE:silph-co-rival:1,0|DEACTIVATE:silph-co-rival-script2|DEACTIVATE:silph-co-rival-script1|DEACTIVATE:silph-co-rival
 END
 silph-co-man10 guy 1 144
 INTERACTIONS
@@ -706,7 +706,7 @@ silph-co-rocket30 35 0.65 0.65 ROCKET rocket.png {ROCKET: Don't... Please!}{} 10
 silph-co-rival0 65 0.8 0.8 {RIVAL_NAME} rival2.png {{RIVAL_NAME}: Oh ho! {NEWLINE} So, you are ready for BOSS ROCKET!}{{RIVAL_NAME}: Yeah! Am I great or what?} 58-58:46:BITE,EMBER,TAKE DOWN,AGILITY|45-45:43|26-26:44:THUNDERBOLT,SWIFT,BODY SLAM,SUBMISSION|22-28:45:SLASH,EARTHQUAKE,DRILL PECK,SWIFT|9-9:47:BUBBLEBEAM,BODY SLAM,ICE BEAM,BITE
 silph-co-rival1 65 0.8 0.8 {RIVAL_NAME} rival2.png {{RIVAL_NAME}: Oh ho! {NEWLINE} So, you are ready for BOSS ROCKET!}{{RIVAL_NAME}: Yeah! Am I great or what?} 18-18:46:WING ATTACK,SKY ATTACK,HYPER BEAM,SWIFT|64-64:43:PSYCHIC,RECOVER,PSYBEAM,REFLECT|99-67:44:CRABHAMMER,SUBMISSION,EARTHQUAKE,ICE BEAM|76-76:45:EARTHQUAKE,EXPLOSION,ROCK SLIDE,BODY SLAM|3-3:47:BODY SLAM,MEGA DRAIN,RAZOR LEAF,SLEEP POWDER
 silph-co-rival2 65 0.8 0.8 {RIVAL_NAME} rival2.png {{RIVAL_NAME}: Oh ho! {NEWLINE} So, you are ready for BOSS ROCKET!}{{RIVAL_NAME}: Yeah! Am I great or what?} 70-70:46:RAZOR LEAF,TAKE DOWN,ACID,MEGA DRAIN|95-65:43:PSYCHIC,RECOVER,SLAM,ROCK SLIDE|82-82:44:SUPERSONIC,THUNDERBOLT,SWIFT,SONICBOOM|99-28:45:CRABHAMMER,SLASH,EARTHQUAKE,SWIFT|6-6:47:SLASH,FLAMETHROWER,SWORDS DANCE,BODY SLAM
-silph-co-giovanni 99 1.0 1.0 GIOVANNI giovanni.png {GIOVANNI: Arrgh!! I lost again!?}{} 112-112:46:BODY SLAM,HORN DRILL,ROCK SLIDE,EARTHQUAKE|115-115:44:RAGE,BODY SLAM,DIZZY PUNCH,BITE|135-28:43:SLASH,THUNDERBOLT,EARTHQUAKE,BODY SLAM|68-28:44:SLASH,SUBMISSION,FOCUS ENERGY,EARTHQUAKE|31-31:46:BODY SLAM,EARTHQUAKE,ICE BEAM,THUNDERBOLT|51-91:47:EARTHQUAKE,CLAMP,SAND ATTACK,BLIZZARD
+silph-co-giovanni {BOSSFIGHT} 99 1.0 1.0 GIOVANNI giovanni.png {GIOVANNI: Arrgh!! I lost again!?}{} 112-112:46:BODY SLAM,HORN DRILL,ROCK SLIDE,EARTHQUAKE|115-115:44:RAGE,BODY SLAM,DIZZY PUNCH,BITE|135-28:43:SLASH,THUNDERBOLT,EARTHQUAKE,BODY SLAM|68-28:44:SLASH,SUBMISSION,FOCUS ENERGY,EARTHQUAKE|31-31:46:BODY SLAM,EARTHQUAKE,ICE BEAM,THUNDERBOLT|51-91:47:EARTHQUAKE,CLAMP,SAND ATTACK,BLIZZARD
 END
 TELEPORT
 10 18 saffron-city 27 29

@@ -1,5 +1,7 @@
 NAME
 Saffron City Fighting Dojo
+MUSIC
+music/20-pokemon-gym-intro.mp3,music/20-pokemon-gym-loop.mp3
 LEAVESOUND
 sound_effects/general/sfx_go_outside.mp3
 NPCS
@@ -17,7 +19,7 @@ FORCE_INTERACTION
 -2 0
 END
 INTERACTIONS
-!:saffron-dojo-tough1|MOVE_TO_PLAYER|MENU:ALERT:Hoohah!|MENU:ALERT:You're trespassing in our FIGHTING DOJO!|BATTLE:saffron-dojo-tough1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:saffron-dojo-tough1|MOVE_TO_PLAYER|MENU:ALERT:Hoohah!|MENU:ALERT:You're trespassing in our FIGHTING DOJO!|BATTLE:saffron-dojo-tough1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:The prime fighters across the land train here.
 END
 saffron-dojo-tough2 tough 3 6 RIGHT
@@ -26,7 +28,7 @@ FORCE_INTERACTION
 2 0
 END
 INTERACTIONS
-!:saffron-dojo-tough2|MOVE_TO_PLAYER|MENU:ALERT:I hear you're good! Show me!|BATTLE:saffron-dojo-tough2|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:saffron-dojo-tough2|MOVE_TO_PLAYER|MENU:ALERT:I hear you're good! Show me!|BATTLE:saffron-dojo-tough2|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Our master is a pro fighter!
 END
 saffron-dojo-tough3 tough 6 5 LEFT
@@ -35,7 +37,7 @@ FORCE_INTERACTION
 -2 0
 END
 INTERACTIONS
-!:saffron-dojo-tough3|MOVE_TO_PLAYER|MENU:ALERT:Nothing tough frightens me!|MENU:ALERT:I break boulders for training!|BATTLE:saffron-dojo-tough3|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:saffron-dojo-tough3|MOVE_TO_PLAYER|MENU:ALERT:Nothing tough frightens me!|MENU:ALERT:I break boulders for training!|BATTLE:saffron-dojo-tough3|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:The only thing that frightens us is psychic power!
 END
 saffron-dojo-tough4 tough 3 4 RIGHT
@@ -43,7 +45,7 @@ FORCE_INTERACTION
 1 0
 END
 INTERACTIONS
-!:saffron-dojo-tough4|MOVE_TO_PLAYER|MENU:ALERT:Hoargh! Take your shoes off!|BATTLE:saffron-dojo-tough4|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:saffron-dojo-tough4|MOVE_TO_PLAYER|MENU:ALERT:Hoargh! Take your shoes off!|BATTLE:saffron-dojo-tough4|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:You wait 'til you see our Master!|MENU:ALERT:I'm a small fry compared to him!
 END
 saffron-dojo-orb1 orb 4 1
@@ -75,7 +77,7 @@ saffron-dojo-tough1 25 0.65 0.65 BLACKBELT blackbelt.png {BLACKBELT: Oof! I give
 saffron-dojo-tough2 25 0.65 0.65 BLACKBELT blackbelt.png {BLACKBELT: Judge! 1 point!}{} 67-75:36|97-67:36:KARATE CHOP,HYPNOSIS,CONFUSION,POISON GAS
 saffron-dojo-tough3 25 0.65 0.65 BLACKBELT blackbelt.png {BLACKBELT: Yow! Stubbed fingers!}{} 57-57:38
 saffron-dojo-tough4 25 0.65 0.65 BLACKBELT blackbelt.png {BLACKBELT: I give up!}{} 57-125:37|67-59:37:EMBER,LOW KICK,TAKE DOWN,FOCUS ENERGY
-saffron-dojo-boss 25 1.0 1.0 BLACKBELT blackbelt.png {BLACKBELT: Hwa! Arrgh! Beaten!}{} 107-107:40|93-106:40|94-68:40:LICK,SUBMISSION,HYPNOSIS,EARTHQUAKE|68-65:40:SUBMISSION,RECOVER,FOCUS ENERGY,DISABLE|59-57:40:BITE,KARATE CHOP,FOCUS ENERGY,AGILITY|112-68:40:ROCK SLIDE,SUBMISSION,EARTHQUAKE,KARATE CHOP
+saffron-dojo-boss {BOSSFIGHT} 25 1.0 1.0 BLACKBELT blackbelt.png {BLACKBELT: Hwa! Arrgh! Beaten!}{} 107-107:40|93-106:40|94-68:40:LICK,SUBMISSION,HYPNOSIS,EARTHQUAKE|68-65:40:SUBMISSION,RECOVER,FOCUS ENERGY,DISABLE|59-57:40:BITE,KARATE CHOP,FOCUS ENERGY,AGILITY|112-68:40:ROCK SLIDE,SUBMISSION,EARTHQUAKE,KARATE CHOP
 END
 TELEPORT
 4 12 saffron-city 35 11
