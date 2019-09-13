@@ -3350,6 +3350,7 @@ void engine::rebuild_battle_hud(mon& p, mon& e) {
 bool engine::battle(trainer& t) { // trainer battle
 	int i;
 	int index;
+	mon copy;
 	int escape_attempts = 0;
 	vector<int> choices;
 	double count;
@@ -3471,6 +3472,7 @@ bool engine::battle(trainer& t) { // trainer battle
 	mc.enemy_team[mc.enemy_selected].fought[mc.selected] = true;
 	while (true) {
 		old_team_selected = mc.selected;
+		copy = mc.team[mc.selected];
 		if (in_status(mc.team[mc.selected], string("RAGE")) && mc.team[mc.selected].queue.size() == 0)
 			mc.team[mc.selected].queue.push_back(string("RAGE2"));
 		if (in_status(mc.enemy_team[mc.enemy_selected], string("RAGE")) && mc.enemy_team[mc.enemy_selected].queue.size() == 0)
@@ -3569,14 +3571,15 @@ bool engine::battle(trainer& t) { // trainer battle
 		if (mc.enemy_team[mc.enemy_selected].queue.size() == 0) {
 			if (random(0.0, 1.0) <= t.skill) {
 				double temp3 = 0.0;
-				index = get_smart_move(mc.team[old_team_selected], mc.enemy_team[mc.enemy_selected], t, true, 0, a, b, false, temp3);
+				// "copy" used to be "mc.team[old_team_selected]"
+				index = get_smart_move(copy, mc.enemy_team[mc.enemy_selected], t, true, 0, a, b, false, temp3);
 				for (i = 0; i < 6; ++i) {
 					if (mc.enemy_team[i].defined && !is_KO(mc.enemy_team[i])) {
-						int hp_offset = get_smart_damage(mc.team[old_team_selected], mc.enemy_team[i], mc.team[old_team_selected].moves[index], t);
+						int hp_offset = get_smart_damage(copy, mc.enemy_team[i], copy.moves[index], t);
 						if (i == mc.enemy_selected) {
 							hp_offset = 0;
 						}
-						get_smart_move(mc.enemy_team[i], mc.team[old_team_selected], t, false, hp_offset, a, b, false, temp3);
+						get_smart_move(mc.enemy_team[i], copy, t, false, hp_offset, a, b, false, temp3);
 						fitness = a - b;
 						if (i == mc.enemy_selected) {
 							current_fitness = fitness;
@@ -3639,7 +3642,7 @@ bool engine::battle(trainer& t) { // trainer battle
 					index = int(random(0.0, count));
 					if (random(0.0, 1.0) <= t.skill) {
 						double temp3;
-						index = get_smart_move(mc.enemy_team[mc.enemy_selected], mc.team[old_team_selected], t, false, 0, a, b, false, temp3);
+						index = get_smart_move(mc.enemy_team[mc.enemy_selected], copy, t, false, 0, a, b, false, temp3);
 					}
 					int choice = -1;
 					for (i = 0; i <= index; ++i) {
