@@ -1036,6 +1036,7 @@ bool engine::use_item(string filter, std::vector<int> &choices, string &ret) {
 		}
 	}
 	if (get_item_effect(name).find("INFINITE") == -1) {
+	    // TODO: if all effects of an item fail, the item should not be consumed
 		for (unsigned i = 0; i < mc.inventory.size(); ++i) {
 			if (mc.inventory[i].first == name) {
 				mc.inventory[i].second--;
@@ -1093,15 +1094,27 @@ bool engine::do_effect(mon& m, string effect, int extra) {
 	}
 	else if (effect.find("FILL_PP") == 0) {
 		effect.erase(0, effect.find(":") + 1);
+		int oldpp = m.pp[extra];
 		m.pp[extra] = min(m.pp[extra] + stoi(effect), m.max_pp[extra]);
+		if (oldpp == m.pp[extra]) {
+		    return false;
+		}
+		se.play_sound(string("sound_effects/general/sfx_heal_ailment.mp3"));
 	}
 	else if (effect.find("FILL_ALL_PP") == 0) {
 		effect.erase(0, effect.find(":") + 1);
+		bool change = false;
+		int oldpp;
 		for (unsigned i = 0; i < 4; i++) {
 			if (moves[m.moves[i]].defined) {
+			    oldpp = m.pp[i];
 				m.pp[i] = min(m.pp[i] + stoi(effect), m.max_pp[i]);
+				if (oldpp != m.pp[i])
+				    change = true;
 			}
 		}
+		if (change)
+		    se.play_sound(string("sound_effects/general/sfx_heal_ailment.mp3"));
 	}
 	else if (effect.find("REVIVE") == 0) {
 		if (m.curr_hp > 0)
@@ -1133,34 +1146,33 @@ bool engine::do_effect(mon& m, string effect, int extra) {
 		}
 		effect.erase(0, effect.find(":") + 1);
 		// TODO: Add in-game EV boost limit
+		if (m.EV[s] > 25600)
+		    return false;
 		m.EV[s] += stoi(effect);
+		se.play_sound(string("sound_effects/general/sfx_heal_ailment.mp3"));
 	}
 	else if (effect.find("PP_UP") == 0) {
 		int i = int(double(moves[m.moves[extra]].pp) * 0.2) + m.max_pp[extra];
 		int j = int(double(moves[m.moves[extra]].pp) * 1.6);
 		i = min(i, j);
-		m.max_pp[extra] = i;
-		m.pp[extra] = i;
-		// TODO:  Don't use up items from maxed out PP.
+		if (m.max_pp[extra] != i) {
+		    m.max_pp[extra] = i;
+    		m.pp[extra] = i;
+		    se.play_sound(string("sound_effects/general/sfx_heal_ailment.mp3"));
+		}
+		else {
+		    return false;
+		}
 	}
 	else if (effect.find("LEVEL_UP") == 0) {
-		// TODO: Fail when level 100
+	    if (m.level >= 100)
+	        return false;
 		m.exp = level_to_exp[min(100, m.level + 1)];
 		level_up(m, true);
 	}
 	else if (effect.find("APPLY_STATUS") == 0) {
 		effect.erase(0, effect.find(":") + 1);
 		apply_status(m, effect);
-	}
-	else if (effect.find("TM") == 0) {
-		effect.erase(0, effect.find(":") + 1);
-		if (!learn_move(m, TM[stoi(effect)]))
-			return false;
-	}
-	else if (effect.find("HM") == 0) {
-		effect.erase(0, effect.find(":") + 1);
-		if (!learn_move(m, HM[stoi(effect)]))
-			return false;
 	}
 	return true;
 }
@@ -1640,6 +1652,7 @@ bool engine::learn_move(mon& m, string move) {
 	int counter = get_move_count(m);
 	if (counter < 4) {
 		create_move(m, move, counter);
+        se.play_sound(string("sound_effects/general/sfx_get_item_1.mp3"));
 		do_menu("ALERT", get_nickname(m) + string(" learned ") + move + string("!"));
 	}
 	else {
@@ -1673,9 +1686,11 @@ bool engine::learn_move(mon& m, string move) {
 			if (choices[choices.size() - 2] != 4) {
 				string oldmove = m.moves[choices[choices.size() - 2]];
 				create_move(m, move, choices[choices.size() - 2]);
+                se.play_sound(string("sound_effects/general/sfx_swap.mp3"));
 				do_menu("ALERT", string("1, 2 and... Poof!"));
 				do_menu("ALERT", get_nickname(m) + string(" forgot ") + oldmove + string("!"));
 				do_menu("ALERT", string("And..."));
+                se.play_sound(string("sound_effects/general/sfx_get_item_1.mp3"));
 				do_menu("ALERT", get_nickname(m) + string(" learned ") + move + string("!"));
 				return true;
 			}
