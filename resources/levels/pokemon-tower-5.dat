@@ -35,7 +35,7 @@ PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-l
 END
 lavender-tower-5-fuji oldman2 8 3 DOWN
 INTERACTIONS
-MENU:ALERT:MR. FUJI: Heh? You came to save me?|MENU:ALERT:Thank you. But, I came here of my own free will.|MENU:ALERT:I came to calm the soul of CUBONE's mother.|MENU:ALERT:I think MAROWAK's spirit has gone to the afterlife.|MENU:ALERT:I must thank you for your kind concern.|MENU:ALERT:Follow me to my home, POK{e-accent}MON HOUSE at the foot of this tower.|ADVANCE:lavender-house1-man|ADVANCE:lavender-house1-girl|ACTIVATE:lavender-house1-fuji|ANIMATION:screendark|DEACTIVATE:lavender-tower-5-fuji|TELEPORT:lavender-house1 2 7|ANIMATION:screenlight
+MENU:ALERT:MR. FUJI: Heh? You came to save me?|MENU:ALERT:Thank you. But, I came here of my own free will.|MENU:ALERT:I came to calm the soul of CUBONE's mother.|MENU:ALERT:I think MAROWAK's spirit has gone to the afterlife.|MENU:ALERT:I must thank you for your kind concern.|MENU:ALERT:Follow me to my home, POK{e-accent}MON HOUSE at the foot of this tower.|ADVANCE:lavender-house1-man|ADVANCE:lavender-house1-girl|ACTIVATE:lavender-house1-fuji|DEACTIVATE:lavender-tower-5-fuji|TELEPORT:lavender-house1 2 7
 END
 TRAINERS
 lavender-tower-5-rocket1 {NO_SWITCH:2} 35 0.5 0.5 ROCKET rocket.png {ROCKET: I give up!}{} 41-41:27|41-41:27|42-42:27

@@ -6506,9 +6506,14 @@ void engine::do_interaction(character& npc) {
 			int newx = stoi(s2);
 			s2 = s;
 			int newy = stoi(s2);
+			unsigned anim = g.ae.create_anim_scene(string("screendark"));
+			while (!g.ae.is_dones(anim)) {}
 			mc.loc.level = destination;
 			mc.loc.x = newx;
 			mc.loc.y = newy;
+			update_level();
+			anim = g.ae.create_anim_scene(string("screenlight"));
+			while (!g.ae.is_dones(anim)) {}
 			break;
 		}
 		else if (s.find("SET:") == 0) {
