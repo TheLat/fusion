@@ -6521,6 +6521,7 @@ void engine::do_interaction(character& npc) {
 			int newx = stoi(s2);
 			s2 = s;
 			int newy = stoi(s2);
+			se.play_sound(levels[mc.loc.level].leavesound);
 			unsigned anim = g.ae.create_anim_scene(string("screendark"));
 			while (!g.ae.is_dones(anim)) {}
 			mc.loc.level = destination;
