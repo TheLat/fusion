@@ -675,6 +675,99 @@ silph-co-man11 guy 1 144 INACTIVE
 INTERACTIONS
 MENU:ALERT:Saved at last! Thank you!
 END
+silph-co-item16 blank 12 96 INCORPOREAL
+INTERACTIONS
+GIVE_ITEM:MAX POTION|DEACTIVATE:silph-co-item16
+END
+silph-co-elevator-entrance1 blank 20 -1 NOLOOK
+FORCE_INTERACTION
+0 1
+END
+INTERACTIONS
+SET:silph-co-floor:1|TELEPORT:silph-co 1 256
+END
+silph-co-elevator-entrance2 blank 20 23 NOLOOK
+FORCE_INTERACTION
+0 1
+END
+INTERACTIONS
+SET:silph-co-floor:2|TELEPORT:silph-co 1 256
+END
+silph-co-elevator-entrance3 blank 20 46 NOLOOK
+FORCE_INTERACTION
+0 1
+END
+INTERACTIONS
+SET:silph-co-floor:3|TELEPORT:silph-co 1 256
+END
+silph-co-elevator-entrance4 blank 20 69 NOLOOK
+FORCE_INTERACTION
+0 1
+END
+INTERACTIONS
+SET:silph-co-floor:4|TELEPORT:silph-co 1 256
+END
+silph-co-elevator-entrance5 blank 20 92 NOLOOK
+FORCE_INTERACTION
+0 1
+END
+INTERACTIONS
+SET:silph-co-floor:5|TELEPORT:silph-co 1 256
+END
+silph-co-elevator-entrance6 blank 16 115 NOLOOK
+FORCE_INTERACTION
+0 1
+END
+INTERACTIONS
+SET:silph-co-floor:6|TELEPORT:silph-co 1 256
+END
+silph-co-elevator-entrance7 blank 16 138 NOLOOK
+FORCE_INTERACTION
+0 1
+END
+INTERACTIONS
+SET:silph-co-floor:7|TELEPORT:silph-co 1 256
+END
+silph-co-elevator-entrance8 blank 16 161 NOLOOK
+FORCE_INTERACTION
+0 1
+END
+INTERACTIONS
+SET:silph-co-floor:8|TELEPORT:silph-co 1 256
+END
+silph-co-elevator-entrance9 blank 16 184 NOLOOK
+FORCE_INTERACTION
+0 1
+END
+INTERACTIONS
+SET:silph-co-floor:9|TELEPORT:silph-co 1 256
+END
+silph-co-elevator-entrance10 blank 6 207 NOLOOK
+FORCE_INTERACTION
+0 1
+END
+INTERACTIONS
+SET:silph-co-floor:10|TELEPORT:silph-co 1 256
+END
+silph-co-elevator-entrance11 blank 7 230 NOLOOK
+FORCE_INTERACTION
+0 1
+END
+INTERACTIONS
+SET:silph-co-floor:11|TELEPORT:silph-co 1 256
+END
+silph-co-elevator-exit blank -1 257 NOLOOK
+FORCE_INTERACTION
+2 0
+3 0
+END
+INTERACTIONS
+GET:silph-co-floor|{}{TELEPORT:silph-co 20 1}{TELEPORT:silph-co 20 25}{TELEPORT:silph-co 20 48}{TELEPORT:silph-co 20 71}{TELEPORT:silph-co 20 94}{TELEPORT:silph-co 16 117}{TELEPORT:silph-co 16 140}{TELEPORT:silph-co 16 163}{TELEPORT:silph-co 16 186}{TELEPORT:silph-co 6 209}{TELEPORT:silph-co 7 232}
+END
+silph-co-elevator-controls blank 3 253
+INTERACTIONS
+MENU:ELEVATOR_CONTROLS_SILPH:|{ANIMATION:elevator|SET:silph-co-floor:1}{ANIMATION:elevator|SET:silph-co-floor:2}{ANIMATION:elevator|SET:silph-co-floor:3}{ANIMATION:elevator|SET:silph-co-floor:4}{ANIMATION:elevator|SET:silph-co-floor:5}{ANIMATION:elevator|SET:silph-co-floor:6}{ANIMATION:elevator|SET:silph-co-floor:7}{ANIMATION:elevator|SET:silph-co-floor:8}{ANIMATION:elevator|SET:silph-co-floor:9}{ANIMATION:elevator|SET:silph-co-floor:10}{ANIMATION:elevator|SET:silph-co-floor:11}{}
+END
 TRAINERS
 silph-co-rocket1 35 0.65 0.65 ROCKET rocket.png {ROCKET: Boom!}{} 24-24:41
 silph-co-rocket2 35 0.65 0.65 ROCKET rocket.png {ROCKET: I goofed!}{} 20-42:36|42-20:36|42-42:36|20-20:36|42-42:36
@@ -1017,3 +1110,14 @@ DATA
 599  18  18  18  18  18  18  18 599  18  18  18  18 599  18  18 599
 599  18  18  18  18  18  18  18 599  18  18  18  18 599  18  18 599
 596 597 597 597 597 597 597 597 596 597 597 597 598 613 597 597 598
+82
+82
+82
+82
+82
+516 516 516 547
+507 507 507 507
+507 507 507 507
+507  54  54 507
+82  166 166  82
+82   82  82  82
