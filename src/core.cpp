@@ -2592,64 +2592,66 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 	if (miss && in_special(move, string("CLEAR_QUEUE_ON_FAIL"))) {
 		clear_queue(attacker);
 	}
-	if (!skip_accuracy_check) {
-        if (!at_start_confused && in_status(defender, string("CONFUSE"))) {
-            do_alert(get_nickname(defender) + string(" became confused!"));
-        }
-        if (!at_start_confused_self && in_status(attacker, string("CONFUSE"))) {
-            do_alert(get_nickname(attacker) + string(" became confused!"));
-        }
-        if ((!at_start_burned && in_status(defender, string("BURN"))) ||
-            (!at_start_paralyzed && in_status(defender, string("PARALYZE"))) ||
-            (!at_start_asleep && in_status(defender, string("SLEEP"))) ||
-            (!at_start_frozen && in_status(defender, string("FREEZE"))) ||
-            (!at_start_seed && in_status(defender, string("SEED"))) ||
-            (!at_start_poisoned && in_status(defender, string("POISON"))) ||
-            (!at_start_toxic && in_status(defender, string("TOXIC")))) {
-            unsigned anim_holder = 0;
-            unsigned clear_point = g.draw_list.size();
-            if (attacker.enemy) {
-                anim_holder = g.ae.create_anim_scene(string("statusshake-enemy"), attacker.sprite_index, defender.sprite_index);
+	if (!is_KO(defender)) {  // TODO: move attacker messages out of this
+        if (!skip_accuracy_check) {
+            if (!at_start_confused && in_status(defender, string("CONFUSE"))) {
+                do_alert(get_nickname(defender) + string(" became confused!"));
             }
-            else {
-                anim_holder = g.ae.create_anim_scene(string("statusshake"), attacker.sprite_index, defender.sprite_index);
+            if (!at_start_confused_self && in_status(attacker, string("CONFUSE"))) {
+                do_alert(get_nickname(attacker) + string(" became confused!"));
             }
-            while (!g.ae.is_dones(anim_holder)) {}
-            g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
+            if ((!at_start_burned && in_status(defender, string("BURN"))) ||
+                (!at_start_paralyzed && in_status(defender, string("PARALYZE"))) ||
+                (!at_start_asleep && in_status(defender, string("SLEEP"))) ||
+                (!at_start_frozen && in_status(defender, string("FREEZE"))) ||
+                (!at_start_seed && in_status(defender, string("SEED"))) ||
+                (!at_start_poisoned && in_status(defender, string("POISON"))) ||
+                (!at_start_toxic && in_status(defender, string("TOXIC")))) {
+                unsigned anim_holder = 0;
+                unsigned clear_point = g.draw_list.size();
+                if (attacker.enemy) {
+                    anim_holder = g.ae.create_anim_scene(string("statusshake-enemy"), attacker.sprite_index, defender.sprite_index);
+                }
+                else {
+                    anim_holder = g.ae.create_anim_scene(string("statusshake"), attacker.sprite_index, defender.sprite_index);
+                }
+                while (!g.ae.is_dones(anim_holder)) {}
+                g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
+            }
+            if (!at_start_burned && in_status(defender, string("BURN"))) {
+                do_alert(get_nickname(defender) + string(" was badly burned!"));
+            }
+            if (!at_start_poisoned && in_status(defender, string("POISON"))) {
+                do_alert(get_nickname(defender) + string(" was poisoned!"));
+            }
+            if (!at_start_toxic && in_status(defender, string("TOXIC"))) {
+                do_alert(get_nickname(defender) + string(" was badly poisoned!"));
+            }
+            if (!at_start_paralyzed && in_status(defender, string("PARALYZE"))) {
+                do_alert(get_nickname(defender) + string(" was paralyzed! It might not attack!"));
+            }
+            if (!at_start_frozen && in_status(defender, string("FREEZE"))) {
+                do_alert(get_nickname(defender) + string(" was frozen solid!"));
+            }
+            if (!at_start_seed && in_status(defender, string("SEED"))) {
+                do_alert(get_nickname(defender) + string(" was seeded!"));
+            }
         }
-        if (!at_start_burned && in_status(defender, string("BURN"))) {
-            do_alert(get_nickname(defender) + string(" was badly burned!"));
+        if (!at_start_asleep && in_status(defender, string("SLEEP"))) {
+            do_alert(get_nickname(defender) + string(" fell asleep!"));
         }
-        if (!at_start_poisoned && in_status(defender, string("POISON"))) {
-            do_alert(get_nickname(defender) + string(" was poisoned!"));
+        if (!at_start_asleep_self && in_status(attacker, string("SLEEP"))) {
+            do_alert(get_nickname(attacker) + string(" fell asleep!"));
         }
-        if (!at_start_toxic && in_status(defender, string("TOXIC"))) {
-            do_alert(get_nickname(defender) + string(" was badly poisoned!"));
+        if (!at_start_lightscreen && in_status(attacker, string("LIGHTSCREEN"))) {
+            do_alert(get_nickname(attacker) + string(" is protected from SPECIAL attacks!"));
         }
-        if (!at_start_paralyzed && in_status(defender, string("PARALYZE"))) {
-            do_alert(get_nickname(defender) + string(" was paralyzed! It might not attack!"));
+        if (!at_start_reflect && in_status(attacker, string("REFLECT"))) {
+            do_alert(get_nickname(attacker) + string(" is protected from PHYSICAL attacks!"));
         }
-        if (!at_start_frozen && in_status(defender, string("FREEZE"))) {
-            do_alert(get_nickname(defender) + string(" was frozen solid!"));
+        if (!at_start_locked_stats && in_status(attacker, string("LOCK_STATS"))) {
+            do_alert(string("STATS are now locked against buffs and debuffs!"));
         }
-        if (!at_start_seed && in_status(defender, string("SEED"))) {
-            do_alert(get_nickname(defender) + string(" was seeded!"));
-        }
-    }
-    if (!at_start_asleep && in_status(defender, string("SLEEP"))) {
-        do_alert(get_nickname(defender) + string(" fell asleep!"));
-    }
-    if (!at_start_asleep_self && in_status(attacker, string("SLEEP"))) {
-        do_alert(get_nickname(attacker) + string(" fell asleep!"));
-    }
-    if (!at_start_lightscreen && in_status(attacker, string("LIGHTSCREEN"))) {
-        do_alert(get_nickname(attacker) + string(" is protected from SPECIAL attacks!"));
-    }
-    if (!at_start_reflect && in_status(attacker, string("REFLECT"))) {
-        do_alert(get_nickname(attacker) + string(" is protected from PHYSICAL attacks!"));
-    }
-    if (!at_start_locked_stats && in_status(attacker, string("LOCK_STATS"))) {
-        do_alert(string("STATS are now locked against buffs and debuffs!"));
     }
 	return success;
 }
