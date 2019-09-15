@@ -530,7 +530,7 @@ MENU:ALERT:My brothers will avenge me!
 END
 silph-co-woman5 woman 3 199
 INTERACTIONS
-MENU:ALERT:You look tired! You should take a quick nap!|FULL_HEAL|MENU:ALERT:Don't give up!|NO_ADVANCE
+MENU:ALERT:You look tired! You should take a quick nap!|FULL_HEAL|MUTE_MUSIC:|PLAY_BLOCKING_SOUND:music/11-recovery.mp3|UNMUTE_MUSIC:|MENU:ALERT:Don't give up!|NO_ADVANCE
 MENU:ALERT:Thank you so much!
 END
 silph-co-item12 blank 2 200 INCORPOREAL
