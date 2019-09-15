@@ -2592,13 +2592,29 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 	if (miss && in_special(move, string("CLEAR_QUEUE_ON_FAIL"))) {
 		clear_queue(attacker);
 	}
+	if (!is_KO(attacker)) {
+	    if (!skip_accuracy_check) {
+            if (!at_start_confused_self && in_status(attacker, string("CONFUSE"))) {
+                do_alert(get_nickname(attacker) + string(" became confused!"));
+            }
+        }
+        if (!at_start_asleep_self && in_status(attacker, string("SLEEP"))) {
+            do_alert(get_nickname(attacker) + string(" fell asleep!"));
+        }
+        if (!at_start_lightscreen && in_status(attacker, string("LIGHTSCREEN"))) {
+            do_alert(get_nickname(attacker) + string(" is protected from SPECIAL attacks!"));
+        }
+        if (!at_start_reflect && in_status(attacker, string("REFLECT"))) {
+            do_alert(get_nickname(attacker) + string(" is protected from PHYSICAL attacks!"));
+        }
+        if (!at_start_locked_stats && in_status(attacker, string("LOCK_STATS"))) {
+            do_alert(string("STATS are now locked against buffs and debuffs!"));
+        }
+	}
 	if (!is_KO(defender)) {  // TODO: move attacker messages out of this
         if (!skip_accuracy_check) {
             if (!at_start_confused && in_status(defender, string("CONFUSE"))) {
                 do_alert(get_nickname(defender) + string(" became confused!"));
-            }
-            if (!at_start_confused_self && in_status(attacker, string("CONFUSE"))) {
-                do_alert(get_nickname(attacker) + string(" became confused!"));
             }
             if ((!at_start_burned && in_status(defender, string("BURN"))) ||
                 (!at_start_paralyzed && in_status(defender, string("PARALYZE"))) ||
@@ -2639,18 +2655,6 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
         }
         if (!at_start_asleep && in_status(defender, string("SLEEP"))) {
             do_alert(get_nickname(defender) + string(" fell asleep!"));
-        }
-        if (!at_start_asleep_self && in_status(attacker, string("SLEEP"))) {
-            do_alert(get_nickname(attacker) + string(" fell asleep!"));
-        }
-        if (!at_start_lightscreen && in_status(attacker, string("LIGHTSCREEN"))) {
-            do_alert(get_nickname(attacker) + string(" is protected from SPECIAL attacks!"));
-        }
-        if (!at_start_reflect && in_status(attacker, string("REFLECT"))) {
-            do_alert(get_nickname(attacker) + string(" is protected from PHYSICAL attacks!"));
-        }
-        if (!at_start_locked_stats && in_status(attacker, string("LOCK_STATS"))) {
-            do_alert(string("STATS are now locked against buffs and debuffs!"));
         }
     }
 	return success;
@@ -7552,6 +7556,9 @@ void engine::do_interaction(character& npc) {
 		    s2.erase(0, s2.find(":") + 1);
 		    if (s2.find("|") != -1) {
 		        s2.erase(s2.find("|"), s2.length());
+		    }
+		    else {
+		        s = string("");
 		    }
 		    unsigned clear_point = g.draw_list.size();
 		    unsigned anim = g.ae.create_anim_scene(s2);
