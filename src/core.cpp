@@ -981,7 +981,7 @@ bool engine::use_item(string filter, std::vector<int> &choices, string &ret) {
 			do_menu(string("ALERT"), string("It contained ") + move + string("!"));
 			choices = do_menu(string("ALERT_YES_NO"), string("Teach ") + move + string(" to a POK{e-accent}MON?"));
 			choices = remove_cancels(choices);
-			if (choices[0] == 1)
+			if (choices[choices.size() - 1] == 1)
 				return false;
 			choices = do_menu(string("LEARN_MON_SELECT"), base);
 			if (choices.size() > 1)
@@ -1654,6 +1654,7 @@ bool engine::learn_move(mon& m, string move) {
 		create_move(m, move, counter);
         se.play_sound(string("sound_effects/general/sfx_get_item_1.mp3"));
 		do_menu("ALERT", get_nickname(m) + string(" learned ") + move + string("!"));
+		return true;
 	}
 	else {
 		do_menu("ALERT", get_nickname(m) + string(" is trying to learn ") + move + string("!"));
@@ -7215,12 +7216,17 @@ void engine::do_interaction(character& npc) {
 					}
 					else if (choices[0] == 1) { // SELL
 						if (choices[choices.size() - 1] == 0) { // Sold
+						    string record;
 							holder = get_item_count(string("ALL"), choices[1]);
 							while (holder.find("}") != -1) {
 								holder.erase(0, holder.find("}") + 1);
 							}
 							int num = stoi(holder) - choices[2];
-							// TODO: Selling a TM puts it in the USED_TMS shop
+							// Selling a TM puts it in the USED_TMS shop
+							record = get_item_name(string("ALL"), choices[1]);
+                            if (record.find("TM") == 0) {
+                                mc.used_tms[record] = true;
+                            }
 							mc.money += num * items[get_item_name(string("ALL"), choices[1])].price / 2;
 							remove_item(get_item_name(string("ALL"), choices[1]), num);
 						}
