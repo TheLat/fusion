@@ -7297,7 +7297,7 @@ void engine::do_interaction(character& npc) {
 							string name = get_nickname(mc.storage[mc.box_number][choice]);
 							do_alert(string("You will probably never see ") + get_nickname(mc.storage[mc.box_number][choice]) + string(" again."));
 							choices = do_menu(string("ALERT_YES_NO"), string("Are you sure you want to do this?"));
-							if (choices[0] == 0) {
+							if (choices[choices.size() - 1] == 0) {
 								do_alert(string("{PLAYER_NAME} released ") + name + string("."));
 								switch (int(random(0.0, 8.0))) {
 								case 0:
