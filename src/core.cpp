@@ -1961,7 +1961,7 @@ bool engine::apply_status(mon& m, string s, bool skip_chance, bool silent) {
 				            different = true;
 				        }
 				    }
-					if (different) {
+					if (different && !is_KO(m)) {
 				        if (s4.find("rose") != -1 || s4.find("fell") != -1)
 					        do_alert(s4);
 					}
@@ -2737,6 +2737,8 @@ void engine::do_turn_inner(mon& m1, mon& m2) {
 	int temp;
 	m1.turn_count++;
 	m2.turn_count++;
+	m2.last_hit_physical = 0;
+	m2.last_hit_special = 0;
 	if (in_status(m1, string("SLEEP"))) {
 		remove_status(m1, string("SLEEP"));
 		if (in_status(m1, string("SLEEP"))) {
@@ -2821,6 +2823,8 @@ void engine::do_turn_inner(mon& m1, mon& m2) {
 		m1.queue.erase(m1.queue.begin());
 	}
 	use_status(m1, m2);
+	m1.last_hit_physical = 0;
+	m1.last_hit_special = 0;
 	if (in_status(m2, string("SLEEP"))) {
 		remove_status(m2, string("SLEEP"));
 		if (in_status(m2, string("SLEEP"))) {
@@ -2935,6 +2939,8 @@ void engine::clear_volatile(mon& m) {
 			}
 		}
 	}
+	m.last_hit_physical = 0;
+	m.last_hit_special = 0;
 }
 
 void engine::team_clear_volatile() {
@@ -4500,6 +4506,7 @@ int engine::damage(mon& attacker, mon& defender, string move, bool& crit, double
 	}
 	if (in_special(move, string("COUNTER"))) {
         damage = min(attacker.last_hit_physical * 2, defender.curr_hp);
+        attacker.last_hit_physical = 0;
         mul = 1.0;
         crit = false;
 	}
