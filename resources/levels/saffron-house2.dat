@@ -11,7 +11,7 @@ MENU:ALERT:The COPYCAT is cute! I'm getting her a POK{e-accent} DOLL!
 END
 saffron-house2-bird bird 0 5 WANDER
 INTERACTIONS
-MENU:ALERT:PIDGEY: Kurukkoo!
+PLAY_CRY:16-16|MENU:ALERT:PIDGEY: Kurukkoo!
 END
 saffron-house2-girl girl5 2 3 RIGHT
 INTERACTIONS

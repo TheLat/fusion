@@ -91,7 +91,7 @@ MENU:ALERT:I flew here on my PIDGEOT when I read about SILPH.|MENU:ALERT:It's al
 END
 saffron-city-folk4 bird 40 19 INACTIVE DOWN
 INTERACTIONS
-MENU:ALERT:PIDGEOT: Bi bibii!
+PLAY_CRY:17-17|MENU:ALERT:PIDGEOT: Bi bibii!
 END
 saffron-city-folk5 guy 32 30 INACTIVE WANDER
 INTERACTIONS
