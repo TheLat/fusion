@@ -2034,7 +2034,7 @@ bool engine::apply_status(mon& m, string s, bool skip_chance, bool silent) {
 		}
 		else if (s2 == "VAMPIRE") {
 		    int old_hp = m.curr_hp;
-			heal_damage(m, max(int(double(m.last_damage) * (double(value) / 100.0)), 1));
+			heal_damage(m, max(int(double(m.last_damage) * (double(value) / 100.0)), 0));
 			if (old_hp != m.curr_hp)
     			do_alert(string("Stole the opponent's health!"));
 		}
