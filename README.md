@@ -81,6 +81,7 @@ List of changes:
 - Mimic just copies the last move now because the developer is lazy.
 - Buffed power of Razor Leaf.
 - Buffed accuracy of Rock Throw.
+- Switched locations of ITEMFINDER and EXP.ALL.
 
 Concerning Fusions:
   There are 22,801 pokemon that can appear in Pokemon: Fusion.  The developer can't inspect all of them.  Some may be duds with few or no attack moves (Pikachu-Bulbasaur is quite terrible).  Some things may happen that make no sense (things fused with Gengar will learn Hypnosis from Gengar or Dream Eater from Gengar, but not both).  As a way to balance this, fusions are compatible with every TM and HM that either parent could learn.
