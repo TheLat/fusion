@@ -19,8 +19,8 @@ MENU:ALERT:Looked into the binoculars.|MENU:ALERT:A big POK{e-accent}MON is asle
 END
 route11-checkpoint-doctor doctor 3 20
 INTERACTIONS
-MENU:ALERT:Hi! Remember me? I'm PROF.OAK's AIDE!|MENU:ALERT:If you caught 30 kinds of POK{e-accent}MON, I'm supposed to give you an ITEMFINDER!|MENU:ALERT:So, {PLAYER_NAME}! Have you caught at least 30 kinds of POK{e-accent}MON?|CAUGHT:30|{MENU:ALERT:Oh.  I see.|MENU:ALERT:When you get 30 kinds, come back for ITEMFINDER.|NO_ADVANCE}{MENU:ALERT:Great! You have caught {CAUGHT} kinds of POK{e-accent}MON!|MENU:ALERT:Congratulations!|MENU:ALERT:Here you go!|GIVE_ITEM:ITEMFINDER|MENU:ALERT:There are items on the ground that can't be seen.|MENU:ALERT:ITEMFINDER will detect an item close to you.|MENU:ALERT:It can't pinpoint it, so you have to look yourself!}
-MENU:ALERT:There are items on the ground that can't be seen.|MENU:ALERT:ITEMFINDER will detect an item close to you.|MENU:ALERT:It can't pinpoint it, so you have to look yourself!
+MENU:ALERT:Hi! Remember me? I'm PROF.OAK's AIDE!|MENU:ALERT:If you caught 30 kinds of POK{e-accent}MON, I'm supposed to give you an EXP.ALL!|MENU:ALERT:So, {PLAYER_NAME}! Have you caught at least 30 kinds of POK{e-accent}MON?|CAUGHT:30|{MENU:ALERT:Oh.  I see.|MENU:ALERT:When you get 30 kinds, come back for EXP.ALL.|NO_ADVANCE}{MENU:ALERT:Great! You have caught {CAUGHT} kinds of POK{e-accent}MON!|MENU:ALERT:Congratulations!|MENU:ALERT:Here you go!|GIVE_ITEM:EXP.ALL|MENU:ALERT:EXP.ALL gives EXP points to all the POK{e-accent}MON with you, even if they don't fight.|MENU:ALERT:It does, however, reduce the amount of EXP for each POK{e-accent}MON.|MENU:ALERT:If you don't need it, you should store it via PC.}
+MENU:ALERT:EXP.ALL gives EXP points to all the POK{e-accent}MON with you, even if they don't fight.|MENU:ALERT:It does, however, reduce the amount of EXP for each POK{e-accent}MON.|MENU:ALERT:If you don't need it, you should store it via PC.
 END
 route11-checkpoint-boy boy 4 16 WANDER
 INTERACTIONS
