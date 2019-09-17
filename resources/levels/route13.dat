@@ -1,5 +1,7 @@
 NAME
 Route 13
+MUSIC
+music/25-road-to-lavender-intro.mp3,music/25-road-to-lavender-loop.mp3
 LEAVESOUND
 sound_effects/general/sfx_go_inside.mp3
 NPCS
@@ -10,7 +12,7 @@ FORCE_INTERACTION
 0 3
 END
 INTERACTIONS
-!:route13-girl1|MOVE_TO_PLAYER|MENU:ALERT:I found CARBOS in a cave once.|BATTLE:route13-girl1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:route13-girl1|MOVE_TO_PLAYER|MENU:ALERT:I found CARBOS in a cave once.|BATTLE:route13-girl1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:CARBOS boosted the SPEED of my POK{e-accent}MON.
 END
 route13-guy1 guy2 66 11 RIGHT
@@ -19,7 +21,7 @@ FORCE_INTERACTION
 2 0
 END
 INTERACTIONS
-!:route13-guy1|MOVE_TO_PLAYER|MENU:ALERT:My bird POK{e-accent}MON want to scrap!|BATTLE:route13-guy1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route13-guy1|MOVE_TO_PLAYER|MENU:ALERT:My bird POK{e-accent}MON want to scrap!|BATTLE:route13-guy1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:My POK{e-accent}MON look happy even though they lost.
 END
 route13-girl2 girl 65 11 DOWN
@@ -28,7 +30,7 @@ FORCE_INTERACTION
 0 2
 END
 INTERACTIONS
-!:route13-girl2|MOVE_TO_PLAYER|MENU:ALERT:I'm told I'm good for a kid!|BATTLE:route13-girl2|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:route13-girl2|MOVE_TO_PLAYER|MENU:ALERT:I'm told I'm good for a kid!|BATTLE:route13-girl2|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I want to become a good trainer. I'll train hard.
 END
 route13-item1 blank 34 14 INCORPOREAL
@@ -44,7 +46,7 @@ FORCE_INTERACTION
 0 1
 END
 INTERACTIONS
-!:route13-girl3|MOVE_TO_PLAYER|MENU:ALERT:Wow! Your BADGEs are too cool!|BATTLE:route13-girl3|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:route13-girl3|MOVE_TO_PLAYER|MENU:ALERT:Wow! Your BADGEs are too cool!|BATTLE:route13-girl3|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:You got those BADGEs from GYM LEADERs. I know!
 END
 route13-girl4 girl 40 11 LEFT
@@ -53,7 +55,7 @@ FORCE_INTERACTION
 -2 0
 END
 INTERACTIONS
-!:route13-girl4|MOVE_TO_PLAYER|MENU:ALERT:My cute POK{e-accent}MON wish to make your acquaintance.|BATTLE:route13-girl4|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:route13-girl4|MOVE_TO_PLAYER|MENU:ALERT:My cute POK{e-accent}MON wish to make your acquaintance.|BATTLE:route13-girl4|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:You have to make POK{e-accent}MON fight to toughen them up!
 END
 route13-sign2 blank 33 14
@@ -66,7 +68,7 @@ FORCE_INTERACTION
 0 2
 END
 INTERACTIONS
-!:route13-girl5|MOVE_TO_PLAYER|MENU:ALERT:Do you want to POK{e-accent}MON with me?|BATTLE:route13-girl5|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:route13-girl5|MOVE_TO_PLAYER|MENU:ALERT:Do you want to POK{e-accent}MON with me?|BATTLE:route13-girl5|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I don't know anything about POK{e-accent}MON. I just like cool ones!
 END
 route13-girl6 woman4 50 7 DOWN
@@ -76,7 +78,7 @@ FORCE_INTERACTION
 0 3
 END
 INTERACTIONS
-!:route13-girl6|MOVE_TO_PLAYER|MENU:ALERT:Sure, I'll play with you!|BATTLE:route13-girl6|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:route13-girl6|MOVE_TO_PLAYER|MENU:ALERT:Sure, I'll play with you!|BATTLE:route13-girl6|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I wonder which is stronger, male or female POK{e-accent}MON?
 END
 route13-sign3 blank 50 6
@@ -94,7 +96,7 @@ FORCE_INTERACTION
 0 -3
 END
 INTERACTIONS
-!:route13-guy2|MOVE_TO_PLAYER|MENU:ALERT:I always go with bird POK{e-accent}MON!|BATTLE:route13-guy2|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route13-guy2|MOVE_TO_PLAYER|MENU:ALERT:I always go with bird POK{e-accent}MON!|BATTLE:route13-guy2|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I wish I could fly like PIDGEY and PIDGEOTTO...
 END
 route13-item2 blank 21 15 INCORPOREAL
@@ -107,7 +109,7 @@ FORCE_INTERACTION
 2 0
 END
 INTERACTIONS
-!:route13-guy3|MOVE_TO_PLAYER|MENU:ALERT:The wind's blowing my way!|BATTLE:route13-guy3|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route13-guy3|MOVE_TO_PLAYER|MENU:ALERT:The wind's blowing my way!|BATTLE:route13-guy3|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I'm beat. I guess I'll FLY home.
 END
 route13-guy4 biker 28 8 UP
@@ -115,7 +117,7 @@ FORCE_INTERACTION
 0 -1
 END
 INTERACTIONS
-!:route13-guy4|MOVE_TO_PLAYER|MENU:ALERT:What're you lookin' at?|BATTLE:route13-guy4|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route13-guy4|MOVE_TO_PLAYER|MENU:ALERT:What're you lookin' at?|BATTLE:route13-guy4|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Get lost!
 END
 route13-guy5 guy2 17 7 DOWN
@@ -124,7 +126,7 @@ FORCE_INTERACTION
 0 2
 END
 INTERACTIONS
-!:route13-guy5|MOVE_TO_PLAYER|MENU:ALERT:My bird POK{e-accent}MON should be ready for battle.|BATTLE:route13-guy5|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route13-guy5|MOVE_TO_PLAYER|MENU:ALERT:My bird POK{e-accent}MON should be ready for battle.|BATTLE:route13-guy5|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:They need to learn better moves.
 END
 route13-guy6 guy2 6 5 DOWN
@@ -133,7 +135,7 @@ FORCE_INTERACTION
 0 2
 END
 INTERACTIONS
-!:route13-guy6|MOVE_TO_PLAYER|MENU:ALERT:You need to use TMs to teach good moves to POK{e-accent}MON!|BATTLE:route13-guy6|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route13-guy6|MOVE_TO_PLAYER|MENU:ALERT:You need to use TMs to teach good moves to POK{e-accent}MON!|BATTLE:route13-guy6|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:You have some HMs, right? Those are really important.
 END
 route13-guy7 guy2 14 12 DOWN
@@ -143,7 +145,7 @@ FORCE_INTERACTION
 0 3
 END
 INTERACTIONS
-!:route13-guy7|MOVE_TO_PLAYER|MENU:ALERT:TMs are on sale in CELADON! But, only a few people have HMs!|BATTLE:route13-guy7|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route13-guy7|MOVE_TO_PLAYER|MENU:ALERT:TMs are on sale in CELADON! But, only a few people have HMs!|BATTLE:route13-guy7|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Teach POK{e-accent}MON moves of the same element type for more power.
 END
 route13-guy8 guy2 16 16 UP
@@ -153,7 +155,7 @@ FORCE_INTERACTION
 0 -3
 END
 INTERACTIONS
-!:route13-guy8|MOVE_TO_PLAYER|MENU:ALERT:Have you taught your bird POK{e-accent}MON how to FLY?|BATTLE:route13-guy8|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route13-guy8|MOVE_TO_PLAYER|MENU:ALERT:Have you taught your bird POK{e-accent}MON how to FLY?|BATTLE:route13-guy8|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Bird POK{e-accent}MON are my true love!
 END
 route13-sign4 blank 19 14

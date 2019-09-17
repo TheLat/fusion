@@ -17,7 +17,7 @@ FORCE_INTERACTION
 -4 0
 END
 INTERACTIONS
-!:route12-fat1|MOVE_TO_PLAYER|MENU:ALERT:Yeah! I got a bite, here!|BATTLE:route12-fat1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route12-fat1|MOVE_TO_PLAYER|MENU:ALERT:Yeah! I got a bite, here!|BATTLE:route12-fat1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Hang on! My line's snagged!
 END
 route12-item1 orb 18 37
@@ -32,7 +32,7 @@ FORCE_INTERACTION
 0 -4
 END
 INTERACTIONS
-!:route12-fat2|MOVE_TO_PLAYER|MENU:ALERT:Be patient! Fishing is a waiting game!|BATTLE:route12-fat2|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route12-fat2|MOVE_TO_PLAYER|MENU:ALERT:Be patient! Fishing is a waiting game!|BATTLE:route12-fat2|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:With a better ROD, I could catch better POK{e-accent}MON!
 END
 route12-fat3 fat 16 42 LEFT
@@ -43,7 +43,7 @@ FORCE_INTERACTION
 -4 0
 END
 INTERACTIONS
-!:route12-fat3|MOVE_TO_PLAYER|MENU:ALERT:The FISHING FOOL vs. POK{e-accent}MON KID!|BATTLE:route12-fat3|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route12-fat3|MOVE_TO_PLAYER|MENU:ALERT:The FISHING FOOL vs. POK{e-accent}MON KID!|BATTLE:route12-fat3|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:You beat me at POK{e-accent}MON, but I'm good at fishing!
 END
 route12-fat4 fat 13 54 RIGHT
@@ -54,7 +54,7 @@ FORCE_INTERACTION
 4 0
 END
 INTERACTIONS
-!:route12-fat4|MOVE_TO_PLAYER|MENU:ALERT:I'd rather be working!|BATTLE:route12-fat4|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route12-fat4|MOVE_TO_PLAYER|MENU:ALERT:I'd rather be working!|BATTLE:route12-fat4|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:It's all right. Losing doesn't bug me any more.
 END
 route12-sign2 blank 15 65
@@ -73,7 +73,7 @@ FORCE_INTERACTION
 0 -4
 END
 INTERACTIONS
-!:route12-man1|MOVE_TO_PLAYER|MENU:ALERT:Electricity is my specialty!|BATTLE:route12-man1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route12-man1|MOVE_TO_PLAYER|MENU:ALERT:Electricity is my specialty!|BATTLE:route12-man1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Water conducts electricity, so you should zap sea POK{e-accent}MON!
 END
 route12-bush1 bush 11 90
@@ -85,7 +85,7 @@ FORCE_INTERACTION
 0 1
 END
 INTERACTIONS
-!:route12-fat5|MOVE_TO_PLAYER|MENU:ALERT:You never know what you could catch!|BATTLE:route12-fat5|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route12-fat5|MOVE_TO_PLAYER|MENU:ALERT:You never know what you could catch!|BATTLE:route12-fat5|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I catch MAGIKARP all the time, but they're so weak!
 END
 route12-item2 orb 9 91
@@ -99,7 +99,7 @@ FORCE_INTERACTION
 -3 0
 END
 INTERACTIONS
-!:route12-man2|MOVE_TO_PLAYER|MENU:ALERT:Have you found a MOON STONE?|BATTLE:route12-man2|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route12-man2|MOVE_TO_PLAYER|MENU:ALERT:Have you found a MOON STONE?|BATTLE:route12-man2|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I could have made my POK{e-accent}MON evolve with a MOON STONE!
 END
 route12-bush2 bush 13 101
