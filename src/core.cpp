@@ -6181,6 +6181,8 @@ void engine::player_input(bool up, bool down, bool left, bool right, bool select
 			for (unsigned k = 0; k < 6; ++k) {
 			    if (mc.team[k].defined) {
 				    if (in_status(mc.team[k], string("POISON")) || in_status(mc.team[k], string("TOXIC"))) {
+				        if (is_KO(mc.team[k]))
+				            continue;
 				        poison_found = true;
 				        if (mc.team[k].curr_hp > 1)
 				            mc.team[k].curr_hp--;
