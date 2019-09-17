@@ -1,5 +1,7 @@
 NAME
-Route 16 House 1
+Route 16 House
+MUSIC
+music/33-celadon-intro.mp3,music/33-celadon-loop.mp3
 LEAVESOUND
 sound_effects/general/sfx_go_outside.mp3
 NPCS
@@ -26,7 +28,7 @@ MENU:ALERT:HM02 is FLY. It will take you back to any town.|MENU:ALERT:Put it to 
 END
 route16-house1-bird1 bird 5 5 WANDER
 INTERACTIONS
-MENU:ALERT:FEAROW: Kyueen!
+PLAY_CRY:22-22|MENU:ALERT:FEAROW: Kyueen!
 END
 TELEPORT
 2 8 route16 13 10

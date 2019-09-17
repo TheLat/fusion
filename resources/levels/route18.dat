@@ -1,5 +1,7 @@
 NAME
 Route 18
+MUSIC
+music/18-road-to-cerulean-intro.mp3,music/18-road-to-cerulean-loop.mp3
 LEAVESOUND
 sound_effects/general/sfx_go_inside.mp3
 NPCS
@@ -22,7 +24,7 @@ FORCE_INTERACTION
 3 0
 END
 INTERACTIONS
-!:route18-guy1|MOVE_TO_PLAYER|MENU:ALERT:I always check every grassy area for new POK{e-accent}MON.|BATTLE:route18-guy1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route18-guy1|MOVE_TO_PLAYER|MENU:ALERT:I always check every grassy area for new POK{e-accent}MON.|BATTLE:route18-guy1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I wish I had a BIKE!
 END
 route18-guy2 guy2 49 16 LEFT
@@ -32,7 +34,7 @@ FORCE_INTERACTION
 -3 0
 END
 INTERACTIONS
-!:route18-guy2|MOVE_TO_PLAYER|MENU:ALERT:This is my turf! Get out of here!|BATTLE:route18-guy2|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route18-guy2|MOVE_TO_PLAYER|MENU:ALERT:This is my turf! Get out of here!|BATTLE:route18-guy2|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:This is my fave POK{e-accent}MON hunting area!
 END
 route18-guy3 guy2 47 18 LEFT
@@ -42,7 +44,7 @@ FORCE_INTERACTION
 -3 0
 END
 INTERACTIONS
-!:route18-guy3|MOVE_TO_PLAYER|MENU:ALERT:Kurukkoo! {NEWLINE} How do you like my bird call?|BATTLE:route18-guy3|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route18-guy3|MOVE_TO_PLAYER|MENU:ALERT:Kurukkoo! {NEWLINE} How do you like my bird call?|BATTLE:route18-guy3|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I also collect sea POK{e-accent}MON on weekends!
 END
 TRAINERS

@@ -1,5 +1,7 @@
 NAME
 Route 17
+MUSIC
+music/18-road-to-cerulean-intro.mp3,music/18-road-to-cerulean-loop.mp3
 LEAVESOUND
 sound_effects/general/sfx_go_inside.mp3
 NPCS
@@ -11,7 +13,7 @@ FORCE_INTERACTION
 4 0
 END
 INTERACTIONS
-!:route17-guy1|MOVE_TO_PLAYER|MENU:ALERT:What do you want, kiddo?|BATTLE:route17-guy1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route17-guy1|MOVE_TO_PLAYER|MENU:ALERT:What do you want, kiddo?|BATTLE:route17-guy1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I could belly-bump you outta here!
 END
 route17-guy2 biker 18 19 LEFT
@@ -22,7 +24,7 @@ FORCE_INTERACTION
 -4 0
 END
 INTERACTIONS
-!:route17-guy2|MOVE_TO_PLAYER|MENU:ALERT:There's no money in fighting kids!|BATTLE:route17-guy2|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route17-guy2|MOVE_TO_PLAYER|MENU:ALERT:There's no money in fighting kids!|BATTLE:route17-guy2|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Good stuff is lying around on CYCLING ROAD!
 END
 route17-guy3 biker 10 18 UP
@@ -33,7 +35,7 @@ FORCE_INTERACTION
 0 -4
 END
 INTERACTIONS
-!:route17-guy3|MOVE_TO_PLAYER|MENU:ALERT:You heading to FUCHSIA?|BATTLE:route17-guy3|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route17-guy3|MOVE_TO_PLAYER|MENU:ALERT:You heading to FUCHSIA?|BATTLE:route17-guy3|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I love racing downhill!
 END
 route17-guy4 biker 13 33 LEFT
@@ -44,7 +46,7 @@ FORCE_INTERACTION
 -4 0
 END
 INTERACTIONS
-!:route17-guy4|MOVE_TO_PLAYER|MENU:ALERT:We're BIKERs! Highway stars!|BATTLE:route17-guy4|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route17-guy4|MOVE_TO_PLAYER|MENU:ALERT:We're BIKERs! Highway stars!|BATTLE:route17-guy4|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Are you looking for adventure?
 END
 route17-guy5 biker 20 35 RIGHT
@@ -55,7 +57,7 @@ FORCE_INTERACTION
 4 0
 END
 INTERACTIONS
-!:route17-guy5|MOVE_TO_PLAYER|MENU:ALERT:Let ELECTRODE electrify you!|BATTLE:route17-guy5|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route17-guy5|MOVE_TO_PLAYER|MENU:ALERT:Let ELECTRODE electrify you!|BATTLE:route17-guy5|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I got my ELECTRODE at the abandoned POWER PLANT!
 END
 route17-guy6 biker 8 68 RIGHT
@@ -63,7 +65,7 @@ FORCE_INTERACTION
 1 0
 END
 INTERACTIONS
-!:route17-guy6|MOVE_TO_PLAYER|MENU:ALERT:I need a little exercise!|BATTLE:route17-guy6|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route17-guy6|MOVE_TO_PLAYER|MENU:ALERT:I need a little exercise!|BATTLE:route17-guy6|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I'm sure I lost weight there!
 END
 route17-guy7 biker 11 99 LEFT
@@ -74,7 +76,7 @@ FORCE_INTERACTION
 -4 0
 END
 INTERACTIONS
-!:route17-guy7|MOVE_TO_PLAYER|MENU:ALERT:Nice BIKE! How's it handle?|BATTLE:route17-guy7|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route17-guy7|MOVE_TO_PLAYER|MENU:ALERT:Nice BIKE! How's it handle?|BATTLE:route17-guy7|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:The slope makes it hard to steer!
 END
 route17-guy8 biker 23 59 LEFT
@@ -84,7 +86,7 @@ FORCE_INTERACTION
 -3 0
 END
 INTERACTIONS
-!:route17-guy8|MOVE_TO_PLAYER|MENU:ALERT:My POK{e-accent}MON won't evolve! Why?|BATTLE:route17-guy8|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route17-guy8|MOVE_TO_PLAYER|MENU:ALERT:My POK{e-accent}MON won't evolve! Why?|BATTLE:route17-guy8|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Maybe some POK{e-accent}MON need element STONEs to evolve.
 END
 route17-guy9 biker 20 99 RIGHT
@@ -95,7 +97,7 @@ FORCE_INTERACTION
 4 0
 END
 INTERACTIONS
-!:route17-guy9|MOVE_TO_PLAYER|MENU:ALERT:Be a rebel!|BATTLE:route17-guy9|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route17-guy9|MOVE_TO_PLAYER|MENU:ALERT:Be a rebel!|BATTLE:route17-guy9|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Be ready to fight for your beliefs!
 END
 route17-guy10 biker 16 119 DOWN
@@ -106,7 +108,7 @@ FORCE_INTERACTION
 0 4
 END
 INTERACTIONS
-!:route17-guy10|MOVE_TO_PLAYER|MENU:ALERT:Get lost kid! I'm bushed!|BATTLE:route17-guy10|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route17-guy10|MOVE_TO_PLAYER|MENU:ALERT:Get lost kid! I'm bushed!|BATTLE:route17-guy10|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I need to catch a few Zs!
 END
 route17-sign1 blank 11 0
