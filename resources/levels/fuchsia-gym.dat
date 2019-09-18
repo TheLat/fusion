@@ -27,7 +27,7 @@ FORCE_INTERACTION
 0 3
 END
 INTERACTIONS
-!:fuchsia-gym-punk1|MOVE_TO_PLAYER|MENU:ALERT:Let's see you beat my special techniques!|BATTLE:fuchsia-gym-punk1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:fuchsia-gym-punk1|MOVE_TO_PLAYER|MENU:ALERT:Let's see you beat my special techniques!|BATTLE:fuchsia-gym-punk1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I like poison and sleep techniques, as they linger after battle.
 END
 fuchsia-gym-punk2 punk 8 13 DOWN
@@ -36,7 +36,7 @@ FORCE_INTERACTION
 0 2
 END
 INTERACTIONS
-!:fuchsia-gym-punk2|MOVE_TO_PLAYER|MENU:ALERT:Strength isn't the key for POK{e-accent}MON!|MENU:ALERT:It's strategy!|MENU:ALERT:I'll show you how strategy can beat brute strength!|BATTLE:fuchsia-gym-punk2|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:fuchsia-gym-punk2|MOVE_TO_PLAYER|MENU:ALERT:Strength isn't the key for POK{e-accent}MON!|MENU:ALERT:It's strategy!|MENU:ALERT:I'll show you how strategy can beat brute strength!|BATTLE:fuchsia-gym-punk2|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:So, you mix brawn with brains?|MENU:ALERT:Good strategy!
 END
 fuchsia-gym-punk3 punk 7 8 RIGHT
@@ -45,7 +45,7 @@ FORCE_INTERACTION
 2 0
 END
 INTERACTIONS
-!:fuchsia-gym-punk3|MOVE_TO_PLAYER|MENU:ALERT:I wanted to become a ninja, so I joined this GYM!|BATTLE:fuchsia-gym-punk3|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:fuchsia-gym-punk3|MOVE_TO_PLAYER|MENU:ALERT:I wanted to become a ninja, so I joined this GYM!|BATTLE:fuchsia-gym-punk3|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I will keep on training under KOGA, my ninja master!
 END
 fuchsia-gym-punk4 punk 8 2 DOWN
@@ -55,7 +55,7 @@ FORCE_INTERACTION
 0 3
 END
 INTERACTIONS
-!:fuchsia-gym-punk4|MOVE_TO_PLAYER|MENU:ALERT:I also study the way of the ninja with master KOGA!|MENU:ALERT:Ninja have a long history of using animals!|BATTLE:fuchsia-gym-punk4|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:fuchsia-gym-punk4|MOVE_TO_PLAYER|MENU:ALERT:I also study the way of the ninja with master KOGA!|MENU:ALERT:Ninja have a long history of using animals!|BATTLE:fuchsia-gym-punk4|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I still have much to learn!
 END
 fuchsia-gym-punk5 punk 3 5 UP
@@ -64,7 +64,7 @@ FORCE_INTERACTION
 0 -2
 END
 INTERACTIONS
-!:fuchsia-gym-punk5|MOVE_TO_PLAYER|MENU:ALERT:Stop right there!|MENU:ALERT:Our invisible walls have you frustrated?|BATTLE:fuchsia-gym-punk5|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:fuchsia-gym-punk5|MOVE_TO_PLAYER|MENU:ALERT:Stop right there!|MENU:ALERT:Our invisible walls have you frustrated?|BATTLE:fuchsia-gym-punk5|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:You impressed me! Here's a hint!|MENU:ALERT:Look very closely for gaps in the invisible walls!
 END
 fuchsia-gym-punk6 punk 2 7 LEFT
@@ -72,7 +72,7 @@ FORCE_INTERACTION
 -1 0
 END
 INTERACTIONS
-!:fuchsia-gym-punk6|MOVE_TO_PLAYER|MENU:ALERT:Master KOGA comes from a long line of ninjas!|MENU:ALERT:What did you descend from?|BATTLE:fuchsia-gym-punk6|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:fuchsia-gym-punk6|MOVE_TO_PLAYER|MENU:ALERT:Master KOGA comes from a long line of ninjas!|MENU:ALERT:What did you descend from?|BATTLE:fuchsia-gym-punk6|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Where there is light, there is shadow!|MENU:ALERT:Light and shadow! Which do you choose?
 END
 fuchsia-gym-koga headband 4 10 DOWN
@@ -87,7 +87,7 @@ fuchsia-gym-punk3 {OVERSWITCH} 35 0.95 0.95 JUGGLER juggler.png {JUGGLER: I'm do
 fuchsia-gym-punk4 40 0.95 0.95 TAMER tamer.png {TAMER: Awoo!}{} 64-123:53|28-28:53|89-38:53:FIRE SPIN,CONFUSE RAY,MINIMIZE,QUICK ATTACK
 fuchsia-gym-punk5 40 0.95 0.95 TAMER tamer.png {TAMER: Whoa! {NEWLINE} You've got it!}{} 110-110:54|110-18:54
 fuchsia-gym-punk6 {OVERSWITCH} 35 0.95 0.95 JUGGLER juggler.png {JUGGLER: Dropped my balls!}{} 42-42:50:BITE,CONFUSE RAY,SCREECH,WING ATTACK|110-125:50|110-142:50|71-71:50:RAZOR LEAF,ACID,STUN SPORE,SLEEP POWDER|94-94:50:CONFUSE RAY,LICK,HYPNOSIS,DREAM EATER|89-9:50:SURF,MINIMIZE,DISABLE,BODY SLAM
-fuchsia-gym-koga 99 1.0 1.0 KOGA koga.png {KOGA: Humph! {NEWLINE} You have proven your worth! {NEWLINE} Here! Take the SOULBADGE!}{} 110-110:61:EXPLOSION,TOXIC,THUNDERBOLT,FIRE BLAST|42-42:60:TOXIC,CONFUSE RAY,MEGA DRAIN,WING ATTACK|49-49:58:TOXIC,SLEEP POWDER,STUN SPORE,PSYCHIC|91-24:61:TOXIC,WRAP,ICE BEAM,ACID|80-73:63:TOXIC,WRAP,AMNESIA,HYDROPUMP|89-89:65:TOXIC,BODY SLAM,FIRE BLAST,EXPLOSION
+fuchsia-gym-koga {BOSSFIGHT} 99 1.0 1.0 KOGA koga.png {KOGA: Humph! {NEWLINE} You have proven your worth! {NEWLINE} Here! Take the SOULBADGE!}{} 110-110:61:EXPLOSION,TOXIC,THUNDERBOLT,FIRE BLAST|42-42:60:TOXIC,CONFUSE RAY,MEGA DRAIN,WING ATTACK|49-49:58:TOXIC,SLEEP POWDER,STUN SPORE,PSYCHIC|91-24:61:TOXIC,WRAP,ICE BEAM,ACID|80-73:63:TOXIC,WRAP,AMNESIA,HYDROPUMP|89-89:65:TOXIC,BODY SLAM,FIRE BLAST,EXPLOSION
 END
 TELEPORT
 4 18 fuchsia-city 10 31
