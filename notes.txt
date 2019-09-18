@@ -7,6 +7,7 @@ Jynx-Gengar that knows LOVELY KISS, DREAM EATER, BODY SLAM, and BLIZZARD
 Magmar-Golem that knows ROCK SLIDE, FIRE PUNCH, EXPLOSION, and EARTHQUAKE
 
 TO FIX:
+Seaking's faces?
 Can Counter moves that were done by a previous mon.
 Can sell to vending machines.
 Some tiles that the player can walk into don't draw over the player.
