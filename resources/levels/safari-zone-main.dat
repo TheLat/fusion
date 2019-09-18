@@ -1,5 +1,8 @@
 NAME
 Safari Zone Main
+DUNGEON
+MUSIC
+music/12-viridian-forest-intro.mp3,music/12-viridian-forest-loop.mp3
 LEAVESOUND
 sound_effects/general/sfx_go_inside.mp3
 NPCS

@@ -1,5 +1,7 @@
 NAME
 Fuchsia House 4
+MUSIC
+music/19-cerulean-city-intro.mp3,music/19-cerulean-city-loop.mp3
 LEAVESOUND
 sound_effects/general/sfx_go_outside.mp3
 NPCS
