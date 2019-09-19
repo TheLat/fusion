@@ -6269,15 +6269,43 @@ void engine::player_input(bool up, bool down, bool left, bool right, bool select
 	}
 	if (mc.loc.x != l.x || mc.loc.y != l.y) {
 		unsigned a1, a2, a3;
-		a1 = g.ae.create_animf(&(mc.loc.x), mc.loc.x, double(int(l.x)), move_time);
-		a2 = g.ae.create_animf(&(mc.loc.y), mc.loc.y, double(int(l.y)), move_time);
-		a3 = g.ae.create_animi(&(mc.frame), mc.frame, mc.frame + 2, move_time);
 		if (fabs(mc.loc.x - l.x) + fabs(mc.loc.y - l.y) > 1.0) {
 			// TODO: Lift in jump
+			double startx, starty;
+			startx = mc.loc.x;
+			starty = mc.loc.y;
+			double endx = double(int(l.x));
+			double endy = double(int(l.y));
 			se.play_sound(string("sound_effects/general/sfx_ledge.mp3"));
+            a3 = g.ae.create_animi(&(mc.frame), mc.frame, mc.frame + 2, move_time*2.0);
+            a1 = g.ae.create_animf(&(mc.loc.x), mc.loc.x, startx + (0.25 * (endx - startx)), move_time*.5);
+            a2 = g.ae.create_animf(&(mc.loc.y), mc.loc.y, -0.3 + starty + (0.25 * (endy - starty)), move_time*.5);
+            while (!g.ae.is_donef(a1) || !g.ae.is_donef(a2)) {
+                update_level();
+            }
+            a1 = g.ae.create_animf(&(mc.loc.x), mc.loc.x, startx + (0.5 * (endx - startx)), move_time*.5);
+            a2 = g.ae.create_animf(&(mc.loc.y), mc.loc.y, -0.4 + starty + (0.5 * (endy - starty)), move_time*.5);
+            while (!g.ae.is_donef(a1) || !g.ae.is_donef(a2)) {
+                update_level();
+            }
+            a1 = g.ae.create_animf(&(mc.loc.x), mc.loc.x, startx + (0.75 * (endx - startx)), move_time*.5);
+            a2 = g.ae.create_animf(&(mc.loc.y), mc.loc.y, -0.3 + starty + (0.75 * (endy - starty)), move_time*.5);
+            while (!g.ae.is_donef(a1) || !g.ae.is_donef(a2)) {
+                update_level();
+            }
+            a1 = g.ae.create_animf(&(mc.loc.x), mc.loc.x, endx, move_time*.5);
+            a2 = g.ae.create_animf(&(mc.loc.y), mc.loc.y, endy, move_time*.5);
+            while (!g.ae.is_donef(a1) || !g.ae.is_donef(a2) || !g.ae.is_donei(a3)) {
+                update_level();
+            }
 		}
-		while (!g.ae.is_donef(a1) || !g.ae.is_donef(a2) || !g.ae.is_donei(a3)) {
-			update_level();
+		else {
+            a1 = g.ae.create_animf(&(mc.loc.x), mc.loc.x, double(int(l.x)), move_time);
+            a2 = g.ae.create_animf(&(mc.loc.y), mc.loc.y, double(int(l.y)), move_time);
+            a3 = g.ae.create_animi(&(mc.frame), mc.frame, mc.frame + 2, move_time);
+            while (!g.ae.is_donef(a1) || !g.ae.is_donef(a2) || !g.ae.is_donei(a3)) {
+                update_level();
+            }
 		}
 		mc.frame = mc.frame%8;
 		if (mc.frame%8 == 0 || mc.frame%8 == 1) {
