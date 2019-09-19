@@ -15,8 +15,8 @@ private:
 	FMOD::Channel *music1, *music2;
 	FMOD::Channel *channels[8];
 	int channel_index;
-	string last_music;
 public:
+	string last_music;
 	bool holder;
 	void init_sounds();
 	void play_sound(string s);
