@@ -6203,6 +6203,7 @@ void engine::player_input(bool up, bool down, bool left, bool right, bool select
 	if (water[get_tile(l.y, l.x)] && has_move_in_party(string("SURF"))) {
 		if (!water[get_tile(mc.loc.y, mc.loc.x)]) {
 			mc.movement = string("seal");
+			se.play_music(string("music/38-ocean-intro.mp3,music/38-ocean-loop.mp3"));
 		}
 	}
 	if (down && jumpdown[get_tile(l.y, l.x)])
@@ -6425,6 +6426,7 @@ void engine::player_input(bool up, bool down, bool left, bool right, bool select
 	}
 	if (mc.movement == string("seal") && !water[get_tile(l.y, l.x)]) {
 		mc.movement = string("player");
+		se.play_music(levels[mc.loc.level].music);
 	}
 }
 
