@@ -38,6 +38,10 @@ safari-zone-west-item4 orb 9 8
 INTERACTIONS
 GIVE_ITEM:TM32|DEACTIVATE:safari-zone-west-item4
 END
+safari-zone-west-hidden blank 6 6 INCORPOREAL
+INTERACTIONS
+GIVE_ITEM:REVIVE|DEACTIVATE:safari-zone-west-hidden
+END
 TELEPORT
 21 0 safari-zone-north 4 35
 20 0 safari-zone-north 3 35
