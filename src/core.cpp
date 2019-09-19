@@ -6270,7 +6270,6 @@ void engine::player_input(bool up, bool down, bool left, bool right, bool select
 	if (mc.loc.x != l.x || mc.loc.y != l.y) {
 		unsigned a1, a2, a3;
 		if (fabs(mc.loc.x - l.x) + fabs(mc.loc.y - l.y) > 1.0) {
-			// TODO: Lift in jump
 			double startx, starty;
 			startx = mc.loc.x;
 			starty = mc.loc.y;
