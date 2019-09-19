@@ -1662,14 +1662,68 @@ bool engine::level_up(mon& out, bool confirm_learn) {
 					temp.erase(0, temp.find(" ") + 1);
 					min_level = stoi(temp);
 					if (min_level <= out.level) {
+					    bool stop = false;
+                        unsigned cp = g.draw_list.size();
+                        double t = 1.0;
+                        double t2 = 0.0;
+                        g.push_box(-1.1f, -1.1f, 2.2f, 2.2f);
+                        unsigned current = g.push_quad_load(-0.4f, -0.4f, 0.9f, 0.9f, safepath + string("images/") + out.number + string(".png"));
+                        unsigned next = g.push_quad_load(-2.0f, -0.4f, 0.9f, 0.9f, safepath + string("images/") + all_mon[out.number].evolution[x].first + string(".png"));
+                        se.mute_music(false);
+                        se.play_sound_blocking(string("sound_effects/general/sfx_tink.mp3"));
+                        se.play_cry(out.number, true);
 						do_alert(string("What? ") + get_nickname(out) + string(" is evolving!"));
+                        string last_music = se.last_music;
+                        se.play_music(string("music/41-evolution-intro.mp3,music/41-evolution-loop.mp3"));
+                        se.unmute_music();
+                        unsigned anim_holder = g.ae.create_animf(&t, 1.0, 0.5, 8.0);
+                        unsigned anim_holder2 = 0;
+                        double counter = 0.0;
+                        while (!g.ae.is_donef(anim_holder)) {
+                            if (player_cancel) {
+                                g.ae.finishf(anim_holder);
+                                se.mute_music(false);
+                                g.draw_list[current].x = -0.4;
+                                g.draw_list[next].x = -2.0;
+                                se.play_cry(out.number, true);
+                                do_alert(string("What? ") + get_nickname(out) + string(" stopped evolving!"));
+                                g.draw_list.erase(g.draw_list.begin() + cp, g.draw_list.end());
+                                se.unmute_music();
+                                se.play_music(last_music);
+                                stop = true;
+                                break;
+                            }
+                            counter = counter + 0.7;
+                            while (counter > 1.0) {
+                                counter -= 1.0;
+                            }
+                            if (counter > t) {
+                                g.draw_list[next].x = -0.4;
+                                g.draw_list[current].x = -2.0;
+                            }
+                            else {
+                                g.draw_list[current].x = -0.4;
+                                g.draw_list[next].x = -2.0;
+                            }
+                            anim_holder2 = g.ae.create_animf(&t2, 1.0, 0.5, 0.025);
+                            while (!g.ae.is_donef(anim_holder2)) {}
+                        }
+                        if (stop)
+                            continue;
+                        g.draw_list[next].x = -0.4;
+                        g.draw_list[current].x = -2.0;
+                        se.mute_music(false);
+                        se.play_cry(all_mon[out.number].evolution[x].first, true);
+                        se.play_sound(string("sound_effects/general/sfx_get_item_2.mp3"));
 						string old_nickname = get_nickname(out);
-						// TODO: Evolution screen and cancel option;
 						out.number = all_mon[out.number].evolution[x].first;
 						evolved = true;
 						do_alert(old_nickname + string(" evolved into ") + all_mon[out.number].name + string("!"));
 						mc.seen[out.number] = true;
 						mc.caught[out.number] = true;
+                        g.draw_list.erase(g.draw_list.begin() + cp, g.draw_list.end());
+                        se.unmute_music();
+                        se.play_music(last_music);
 						rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
 					}
 				}
