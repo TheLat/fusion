@@ -116,11 +116,8 @@ void engine::push_hp_bar_if_exists(float x, float y, int index) {
 }
 
 void engine::collision() {
-	se.play_sound(string("sound_effects/general/sfx_collision.mp3"));
 	update_level();
-	double nothing = 0;
-	unsigned nothing_holder = g.ae.create_animf(&nothing, 0.0, 1.0, 0.25);
-	while (!g.ae.is_donef(nothing_holder)) {}
+	se.play_sound_blocking(string("sound_effects/general/sfx_collision.mp3"));
 }
 
 string engine::get_special_string(string in) {
@@ -6241,8 +6238,13 @@ void engine::player_input(bool up, bool down, bool left, bool right, bool select
 						return;
 					}
 					else {
-						levels[mc.loc.level].characters[i].loc.x = ahead2.x;
-						levels[mc.loc.level].characters[i].loc.y = ahead2.y;
+					    // TODO: cloud effect
+					    se.play_sound(string("sound_effects/general/sfx_push_boulder.mp3"));
+					    unsigned b1 = g.ae.create_animf(&(levels[mc.loc.level].characters[i].loc.x), levels[mc.loc.level].characters[i].loc.x, ahead2.x, 0.7);
+					    unsigned b2 = g.ae.create_animf(&(levels[mc.loc.level].characters[i].loc.y), levels[mc.loc.level].characters[i].loc.y, ahead2.y, 0.7);
+					    while (!g.ae.is_donef(b1) || !g.ae.is_donef(b2)) {
+					        update_level();
+					    }
 						if (levels[mc.loc.level].characters[i].teleportable) {
 							for (unsigned j = 0; j < levels[mc.loc.level].teleport.size(); ++j) {
 								if (levels[mc.loc.level].teleport[j].first.allow_npcs) {
@@ -6254,7 +6256,6 @@ void engine::player_input(bool up, bool down, bool left, bool right, bool select
 								}
 							}
 						}
-						collision();
 						return;
 					}
 				}
