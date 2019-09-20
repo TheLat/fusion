@@ -264,6 +264,7 @@ public:
 	std::map<int, bool> slidestop;
 	std::map<int, bool> encounter_tile;
 	std::map<int, bool> water;
+	std::map<int, bool> water_render;
 	std::vector<menu*> menus;
 	std::map<int, string> TM;
 	std::map<int, string> HM;

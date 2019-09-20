@@ -5869,6 +5869,13 @@ void engine::init_swimming() {
 		}
 		f.close();
 	}
+	ifstream f2("../resources/data/water-render.dat");
+	while (f2.is_open()) {
+		while (safe_getline(f2, line)) {
+			water_render[stoi(line)] = true;
+		}
+		f2.close();
+	}
 }
 
 void engine::init_exp() {
@@ -6472,6 +6479,7 @@ void engine::draw_level() {
 	double curr_x = mc.loc.x;
 	double curr_y = mc.loc.y;
 	level* l = &(levels[curr_level]);
+	string waterstring = safepath + string("images/water") + to_string(g.frame%8) + string(".png");
 	unsigned maxy = min(int(l->data.size()), max(int(curr_y + 6.0), 0));
 	for (unsigned y = max(0, unsigned(curr_y - 4.0)); y < maxy; ++y) {
 		unsigned maxx = min(int(l->data[y].size()), max(int(curr_x + 7.0), 0));
@@ -6488,6 +6496,8 @@ void engine::draw_level() {
 				continue;
 			if (yp > 1.0f && yp + yl > 1.0f)
 				continue;
+			if (water_render[l->data[y][x]])
+			    g.push_quad_load(xp, yp, xl, yl, waterstring);
 			g.push_quad(xp, yp, xl, yl, g.tiles[l->data[y][x]]);
 		}
 	}
@@ -6509,6 +6519,8 @@ void engine::draw_level() {
 					continue;
 				if (yp > 1.0f && yp + yl > 1.0f)
 					continue;
+				if (water_render[levels[levels[curr_level].neighbors[i].level].data[y][x]])
+				    g.push_quad_load(xp, yp, xl, yl, waterstring);
 				g.push_quad(xp, yp, xl, yl, g.tiles[levels[levels[curr_level].neighbors[i].level].data[y][x]]);
 			}
 		}

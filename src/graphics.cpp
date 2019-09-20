@@ -125,6 +125,8 @@ void graphics::load_tile(string filename, int index) {
 
 void graphics::initRendering() {
 	//Makes 3D drawing work when something is in front of something else
+	frame = 0;
+	frame_anim_holder = ae.create_animi(&frame, 0, 64, 64.0);
 	time_index = tim.create();
 	glDisable(GL_DEPTH_TEST);
 	glEnable(GL_TEXTURE_2D);
@@ -142,7 +144,7 @@ void graphics::initRendering() {
 			tmp = '0' + tmp;
 		if (i < 10)
 			tmp = '0' + tmp;
-		tmp = tmp + ".bmp";
+		tmp = tmp + ".png";
 		load_tile(string("level_sprites/") + tmp, i);
 	}
 
@@ -320,6 +322,9 @@ void graphics::drawScene() {
 	printf("%f fps\n", deltat);
 	//*/
 	tim.update(wobble_index);
+	if (ae.is_donei(frame_anim_holder)) {
+	    frame_anim_holder = ae.create_animi(&frame, 0, 64, 64.0);
+	}
 	while  (tim.delta(wobble_index) < 1.0/120.0) {
 	}
 	wobble_counter += tim.delta(wobble_index);
