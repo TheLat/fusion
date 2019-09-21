@@ -1,5 +1,7 @@
 NAME
 Route 21
+MUSIC
+music/18-road-to-cerulean-intro.mp3,music/18-road-to-cerulean-loop.mp3
 LEAVESOUND
 sound_effects/general/sfx_go_inside.mp3
 NPCS
@@ -8,7 +10,7 @@ FORCE_INTERACTION
 -1 0
 END
 INTERACTIONS
-!:route21-fisher1|MOVE_TO_PLAYER|MENU:ALERT:You want to know if the fish are biting?|BATTLE:route21-fisher1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route21-fisher1|MOVE_TO_PLAYER|MENU:ALERT:You want to know if the fish are biting?|BATTLE:route21-fisher1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I can't catch anything good!
 END
 route21-fisher2 fat 11 26 DOWN
@@ -16,7 +18,7 @@ FORCE_INTERACTION
 0 1
 END
 INTERACTIONS
-!:route21-fisher2|MOVE_TO_PLAYER|MENU:ALERT:I got a big haul! Wanna go for it?|BATTLE:route21-fisher2|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route21-fisher2|MOVE_TO_PLAYER|MENU:ALERT:I got a big haul! Wanna go for it?|BATTLE:route21-fisher2|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I seem to only catch MAGIKARP!
 END
 route21-swimmer1 manswim 15 32 UP
@@ -27,7 +29,7 @@ FORCE_INTERACTION
 0 -4
 END
 INTERACTIONS
-!:route21-swimmer1|MOVE_TO_PLAYER|MENU:ALERT:The sea cleanses my body and soul!|BATTLE:route21-swimmer1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route21-swimmer1|MOVE_TO_PLAYER|MENU:ALERT:The sea cleanses my body and soul!|BATTLE:route21-swimmer1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I like the mountains too!
 END
 route21-swimmer2 manswim 17 31 RIGHT
@@ -38,7 +40,7 @@ FORCE_INTERACTION
 4 0
 END
 INTERACTIONS
-!:route21-swimmer2|MOVE_TO_PLAYER|MENU:ALERT:What's wrong with me swimming?|BATTLE:route21-swimmer2|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route21-swimmer2|MOVE_TO_PLAYER|MENU:ALERT:What's wrong with me swimming?|BATTLE:route21-swimmer2|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I look like what? A studded inner tube?|MENU:ALERT:Get lost!
 END
 route21-fisher3 fat 22 57 RIGHT
@@ -46,7 +48,7 @@ FORCE_INTERACTION
 1 0
 END
 INTERACTIONS
-!:route21-fisher3|MOVE_TO_PLAYER|MENU:ALERT:Keep me company 'til I get a hit!|BATTLE:route21-fisher3|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route21-fisher3|MOVE_TO_PLAYER|MENU:ALERT:Keep me company 'til I get a hit!|BATTLE:route21-fisher3|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Oh wait! I got a bite! Yeah!
 END
 route21-fisher4 fat 19 56 LEFT
@@ -54,7 +56,7 @@ FORCE_INTERACTION
 -1 0
 END
 INTERACTIONS
-!:route21-fisher4|MOVE_TO_PLAYER|MENU:ALERT:Hey, don't scare away the fish!|BATTLE:route21-fisher4|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route21-fisher4|MOVE_TO_PLAYER|MENU:ALERT:Hey, don't scare away the fish!|BATTLE:route21-fisher4|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I was just angry that I couldn't catch anything.
 END
 route21-swimmer3 manswim 21 63 DOWN
@@ -65,7 +67,7 @@ FORCE_INTERACTION
 0 4
 END
 INTERACTIONS
-!:route21-swimmer3|MOVE_TO_PLAYER|MENU:ALERT:I caught all my POK{e-accent}MON at sea!|BATTLE:route21-swimmer3|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route21-swimmer3|MOVE_TO_PLAYER|MENU:ALERT:I caught all my POK{e-accent}MON at sea!|BATTLE:route21-swimmer3|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Where'd you catch your POK{e-accent}MON?
 END
 route21-swimmer4 manswim 20 71 LEFT
@@ -76,7 +78,7 @@ FORCE_INTERACTION
 -4 0
 END
 INTERACTIONS
-!:route21-swimmer4|MOVE_TO_PLAYER|MENU:ALERT:Ahh! Feel the sun and the wind!|BATTLE:route21-swimmer4|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route21-swimmer4|MOVE_TO_PLAYER|MENU:ALERT:Ahh! Feel the sun and the wind!|BATTLE:route21-swimmer4|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I'm sunburnt to a crisp!
 END
 route21-swimmer5 manswim 10 71 RIGHT
@@ -87,7 +89,7 @@ FORCE_INTERACTION
 4 0
 END
 INTERACTIONS
-!:route21-swimmer5|MOVE_TO_PLAYER|MENU:ALERT:Right now, I'm in a triathlon meet!|BATTLE:route21-swimmer5|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route21-swimmer5|MOVE_TO_PLAYER|MENU:ALERT:Right now, I'm in a triathlon meet!|BATTLE:route21-swimmer5|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I'm beat! {NEWLINE} But, I still have the bike race and marathon left!
 END
 TRAINERS

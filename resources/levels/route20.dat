@@ -1,5 +1,7 @@
 NAME
 Route 20
+MUSIC
+music/18-road-to-cerulean-intro.mp3,music/18-road-to-cerulean-loop.mp3
 LEAVESOUND
 sound_effects/general/sfx_go_inside.mp3
 NPCS
@@ -11,7 +13,7 @@ FORCE_INTERACTION
 0 -4
 END
 INTERACTIONS
-!:route20-swimmer1|MOVE_TO_PLAYER|MENU:ALERT:The water is shallow here.|BATTLE:route20-swimmer1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route20-swimmer1|MOVE_TO_PLAYER|MENU:ALERT:The water is shallow here.|BATTLE:route20-swimmer1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I wish I could ride my POK{e-accent}MON.
 END
 route20-swimmer2 manswim 88 17 UP
@@ -22,7 +24,7 @@ FORCE_INTERACTION
 0 -4
 END
 INTERACTIONS
-!:route20-swimmer2|MOVE_TO_PLAYER|MENU:ALERT:Why are you riding a POK{e-accent}MON? Can't you swim?|BATTLE:route20-swimmer2|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route20-swimmer2|MOVE_TO_PLAYER|MENU:ALERT:Why are you riding a POK{e-accent}MON? Can't you swim?|BATTLE:route20-swimmer2|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Riding a POK{e-accent}MON sure looks fun!
 END
 route20-swimmer3 manswim 66 15 UP
@@ -33,7 +35,7 @@ FORCE_INTERACTION
 0 -4
 END
 INTERACTIONS
-!:route20-swimmer3|MOVE_TO_PLAYER|MENU:ALERT:SEAFOAM is a quiet getaway!|BATTLE:route20-swimmer3|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:route20-swimmer3|MOVE_TO_PLAYER|MENU:ALERT:SEAFOAM is a quiet getaway!|BATTLE:route20-swimmer3|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:There's a huge cavern underneath this island.
 END
 route20-sign1 blank 49 11
@@ -46,7 +48,7 @@ FORCE_INTERACTION
 0 2
 END
 INTERACTIONS
-!:route20-swimmer4|MOVE_TO_PLAYER|MENU:ALERT:I love floading with the fishes!|BATTLE:route20-swimmer4|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:route20-swimmer4|MOVE_TO_PLAYER|MENU:ALERT:I love floading with the fishes!|BATTLE:route20-swimmer4|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Want to float with me?
 END
 route20-sign2 blank 55 15
@@ -60,7 +62,7 @@ FORCE_INTERACTION
 3 0
 END
 INTERACTIONS
-!:route20-swimmer5|MOVE_TO_PLAYER|MENU:ALERT:Are you on vacation too?|BATTLE:route20-swimmer5|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:route20-swimmer5|MOVE_TO_PLAYER|MENU:ALERT:Are you on vacation too?|BATTLE:route20-swimmer5|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Seafoam used to be one island!
 END
 route20-swimmer6 manswim 36 17 DOWN
@@ -70,7 +72,7 @@ FORCE_INTERACTION
 0 3
 END
 INTERACTIONS
-!:route20-swimmer6|MOVE_TO_PLAYER|MENU:ALERT:Check out my buff physique!|BATTLE:route20-swimmer6|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route20-swimmer6|MOVE_TO_PLAYER|MENU:ALERT:Check out my buff physique!|BATTLE:route20-swimmer6|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I should've been buffing up my POK{e-accent}MON, not me!
 END
 route20-guy1 guy2 32 13 UP
@@ -79,7 +81,7 @@ FORCE_INTERACTION
 0 -2
 END
 INTERACTIONS
-!:route20-guy1|MOVE_TO_PLAYER|MENU:ALERT:I rode my bird POK{e-accent}MON here!|BATTLE:route20-guy1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route20-guy1|MOVE_TO_PLAYER|MENU:ALERT:I rode my bird POK{e-accent}MON here!|BATTLE:route20-guy1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:My birds can't FLY me back!
 END
 route20-swimmer7 manswim 23 11 UP
@@ -89,7 +91,7 @@ FORCE_INTERACTION
 0 -3
 END
 INTERACTIONS
-!:route20-swimmer7|MOVE_TO_PLAYER|MENU:ALERT:My boyfriend gave me big pearls!|BATTLE:route20-swimmer7|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:route20-swimmer7|MOVE_TO_PLAYER|MENU:ALERT:My boyfriend gave me big pearls!|BATTLE:route20-swimmer7|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Will my pearls will grow bigger inside CLOYSTER?
 END
 route20-swimmer8 manswim 22 16 DOWN
@@ -99,7 +101,7 @@ FORCE_INTERACTION
 0 3
 END
 INTERACTIONS
-!:route20-swimmer8|MOVE_TO_PLAYER|MENU:ALERT:I swam here from CINNABAR ISLAND!|BATTLE:route20-swimmer8|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:route20-swimmer8|MOVE_TO_PLAYER|MENU:ALERT:I swam here from CINNABAR ISLAND!|BATTLE:route20-swimmer8|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:POK{e-accent}MON have taken over an abandoned mansion on CINNABAR!
 END
 route20-swimmer9 manswim 13 12 UP
@@ -109,7 +111,7 @@ FORCE_INTERACTION
 0 -3
 END
 INTERACTIONS
-!:route20-swimmer9|MOVE_TO_PLAYER|MENU:ALERT:CINNABAR, in the west, has a LAB for POK{e-accent}MON.|BATTLE:route20-swimmer9|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:route20-swimmer9|MOVE_TO_PLAYER|MENU:ALERT:CINNABAR, in the west, has a LAB for POK{e-accent}MON.|BATTLE:route20-swimmer9|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:CINNABAR is a volcanic island!
 END
 TRAINERS

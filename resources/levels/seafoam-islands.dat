@@ -1,5 +1,8 @@
 NAME
 Seafoam Islands
+DUNGEON
+MUSIC
+music/17-mt-moon-intro.mp3,music/17-mt-moon-loop.mp3
 LEAVESOUND
 sound_effects/general/sfx_go_inside.mp3
 NPCS
@@ -149,7 +152,7 @@ MENU:ALERT:The current is too strong!
 END
 seafoam-islands-articuno bird 8 111
 INTERACTIONS
-MENU:ALERT:Gyaoo!|WILD_BATTLE:144-144:50|{NO_ADVANCE}{DEACTIVATE:seafoam-islands-articuno}
+PLAY_CRY:144-144|MENU:ALERT:Gyaoo!|WILD_BATTLE:144-144:50|{NO_ADVANCE}{DEACTIVATE:seafoam-islands-articuno}
 END
 TELEPORT
 6 19 route20 46 10

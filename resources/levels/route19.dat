@@ -1,5 +1,7 @@
 NAME
 Route 19
+MUSIC
+music/18-road-to-cerulean-intro.mp3,music/18-road-to-cerulean-loop.mp3
 LEAVESOUND
 sound_effects/general/sfx_go_inside.mp3
 NPCS
@@ -11,7 +13,7 @@ FORCE_INTERACTION
 -4 0
 END
 INTERACTIONS
-!:route19-guy1|MOVE_TO_PLAYER|MENU:ALERT:Have to warm up before my swim!|BATTLE:route19-guy1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route19-guy1|MOVE_TO_PLAYER|MENU:ALERT:Have to warm up before my swim!|BATTLE:route19-guy1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Thanks, kid! I'm ready for a swim!
 END
 route19-guy2 guy2 18 9 LEFT
@@ -21,7 +23,7 @@ FORCE_INTERACTION
 -3 0
 END
 INTERACTIONS
-!:route19-guy2|MOVE_TO_PLAYER|MENU:ALERT:Wait! You'll have a heart attack!|BATTLE:route19-guy2|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route19-guy2|MOVE_TO_PLAYER|MENU:ALERT:Wait! You'll have a heart attack!|BATTLE:route19-guy2|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Watch out for TENTACRUEL!
 END
 route19-sign1 blank 16 11
@@ -35,7 +37,7 @@ FORCE_INTERACTION
 0 3
 END
 INTERACTIONS
-!:route19-guy3|MOVE_TO_PLAYER|MENU:ALERT:I look at the sea to forget!|BATTLE:route19-guy3|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route19-guy3|MOVE_TO_PLAYER|MENU:ALERT:I look at the sea to forget!|BATTLE:route19-guy3|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I'm looking at the sea to forget!
 END
 route19-guy4 manswim 18 27 LEFT
@@ -46,7 +48,7 @@ FORCE_INTERACTION
 -4 0
 END
 INTERACTIONS
-!:route19-guy4|MOVE_TO_PLAYER|MENU:ALERT:I love swimming! What about you?|BATTLE:route19-guy4|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route19-guy4|MOVE_TO_PLAYER|MENU:ALERT:I love swimming! What about you?|BATTLE:route19-guy4|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I can beat POK{e-accent}MON at swimming!
 END
 route19-guy5 manswim 9 29 RIGHT
@@ -57,7 +59,7 @@ FORCE_INTERACTION
 4 0
 END
 INTERACTIONS
-!:route19-guy5|MOVE_TO_PLAYER|MENU:ALERT:What's beyond the horizon?|BATTLE:route19-guy5|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route19-guy5|MOVE_TO_PLAYER|MENU:ALERT:What's beyond the horizon?|BATTLE:route19-guy5|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I see a couple of islands!
 END
 route19-guy6 manswim 21 33 UP
@@ -68,7 +70,7 @@ FORCE_INTERACTION
 0 -4
 END
 INTERACTIONS
-!:route19-guy6|MOVE_TO_PLAYER|MENU:ALERT:I tried diving for POK{e-accent}MON, but it was a no go!|BATTLE:route19-guy6|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route19-guy6|MOVE_TO_PLAYER|MENU:ALERT:I tried diving for POK{e-accent}MON, but it was a no go!|BATTLE:route19-guy6|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:You have to fish for sea POK{e-accent}MON!
 END
 route19-guy7 manswim 16 44 RIGHT
@@ -79,7 +81,7 @@ FORCE_INTERACTION
 4 0
 END
 INTERACTIONS
-!:route19-guy7|MOVE_TO_PLAYER|MENU:ALERT:Swimming's great! Sunburns aren't!|BATTLE:route19-guy7|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:route19-guy7|MOVE_TO_PLAYER|MENU:ALERT:Swimming's great! Sunburns aren't!|BATTLE:route19-guy7|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:My boy friend wanted to swim to SEAFOAM ISLANDS.
 END
 route19-guy8 manswim 15 45 DOWN
@@ -90,7 +92,7 @@ FORCE_INTERACTION
 0 4
 END
 INTERACTIONS
-!:route19-guy8|MOVE_TO_PLAYER|MENU:ALERT:I swam here, but I'm tired.|BATTLE:route19-guy8|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:route19-guy8|MOVE_TO_PLAYER|MENU:ALERT:I swam here, but I'm tired.|BATTLE:route19-guy8|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:LAPRAS is so big, it could keep you dry while you're on the water.
 END
 route19-guy9 manswim 14 43 UP
@@ -101,7 +103,7 @@ FORCE_INTERACTION
 0 -4
 END
 INTERACTIONS
-!:route19-guy9|MOVE_TO_PLAYER|MENU:ALERT:These waters are treacherous!|BATTLE:route19-guy9|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route19-guy9|MOVE_TO_PLAYER|MENU:ALERT:These waters are treacherous!|BATTLE:route19-guy9|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I got a cramp! Glub, glub...
 END
 route19-guy10 manswim 13 44 LEFT
@@ -112,7 +114,7 @@ FORCE_INTERACTION
 -4 0
 END
 INTERACTIONS
-!:route19-guy10|MOVE_TO_PLAYER|MENU:ALERT:I just love your ride! Can I have it if I win?|BATTLE:route19-guy10|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:route19-guy10|MOVE_TO_PLAYER|MENU:ALERT:I just love your ride! Can I have it if I win?|BATTLE:route19-guy10|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:It's still a long way to go to SEAFOAM ISLANDS.
 END
 TRAINERS
