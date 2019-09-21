@@ -197,11 +197,12 @@ public:
 	vector<string> interactions;
 	vector<location> force_interactions;
 	location loc, origin, anim_offset;
+	double height, width;
 	int frame;
 	GLuint images[16];
 	bool wander, incorporeal, no_force, nolook, far, no_offset, pushable, teleportable, assigned_facing;
 	double delay;
-	character() { wander = false; dir = DOWN; incorporeal = false; no_force = false; nolook = false; far = false; no_offset = false; pushable = false; teleportable = false; frame = 0; anim_offset.x = 0.0; anim_offset.y = 0.0; assigned_facing = false; delay = 0.0; }
+	character() { wander = false; dir = DOWN; incorporeal = false; no_force = false; nolook = false; far = false; no_offset = false; pushable = false; teleportable = false; frame = 0; anim_offset.x = 0.0; anim_offset.y = 0.0; assigned_facing = false; delay = 0.0; width = 1.0/5.0; height = 1.0 / 4.5f;}
 };
 
 class trainer {
