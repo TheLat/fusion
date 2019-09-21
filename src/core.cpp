@@ -6025,7 +6025,13 @@ void engine::handle_teleport() {
 					levels[mc.loc.level].characters[j].dir = levels[mc.loc.level].characters[j].origin_dir;
 					levels[mc.loc.level].characters[j].loc = levels[mc.loc.level].characters[j].origin;
 				}
-				play_level_music();
+                if (water[get_tile(mc.loc.y, mc.loc.x)]) {
+                    mc.movement = string("seal");
+                }
+                else {
+                    mc.movement = string("player");
+                }
+                play_level_music();
 			    if (!found) {
 				    update_level();
 			        g.ae.create_anim_scene(string("screenlight"));
@@ -6709,6 +6715,13 @@ void engine::do_interaction(character& npc) {
 			mc.loc.x = newx;
 			mc.loc.y = newy;
 			update_level();
+			if (water[get_tile(mc.loc.y, mc.loc.x)]) {
+			    mc.movement = string("seal");
+			}
+			else {
+			    mc.movement = string("player");
+			}
+			play_level_music();
 			anim = g.ae.create_anim_scene(string("screenlight"));
 			while (!g.ae.is_dones(anim)) {}
 			break;
