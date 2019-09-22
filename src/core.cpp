@@ -6217,12 +6217,6 @@ void engine::player_input(bool up, bool down, bool left, bool right, bool select
 		collision();
 		return;
 	}
-	if (water[get_tile(l.y, l.x)] && has_move_in_party(string("SURF"))) {
-		if (!water[get_tile(mc.loc.y, mc.loc.x)]) {
-			mc.movement = string("seal");
-			se.play_music(string("music/38-ocean-intro.mp3,music/38-ocean-loop.mp3"));
-		}
-	}
 	if (down && jumpdown[get_tile(l.y, l.x)])
 		l.y += 1.0;
 	if (right && jumpright[get_tile(l.y, l.x)])
@@ -6297,6 +6291,12 @@ void engine::player_input(bool up, bool down, bool left, bool right, bool select
 	}
 	if (start) {
 		open_menu = true;
+	}
+	if (water[get_tile(l.y, l.x)] && has_move_in_party(string("SURF"))) {
+		if (!water[get_tile(mc.loc.y, mc.loc.x)]) {
+			mc.movement = string("seal");
+			se.play_music(string("music/38-ocean-intro.mp3,music/38-ocean-loop.mp3"));
+		}
 	}
 	if (mc.loc.x != l.x || mc.loc.y != l.y) {
 		unsigned a1, a2, a3;
