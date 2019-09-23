@@ -2,12 +2,12 @@ WARNING: Editing this file can easily corrupt game state.
 NAME:RED
 RIVAL_NAME:BLUE
 MOVEMENT:player
-DIRECTION:3
+DIRECTION:0
 WINS:0
 LOSSES:0
-LOCATION:fuchsia-house3|9|5
-LAST_CENTER:fuchsia-center|3|3
-MONEY:89253
+LOCATION:cinnabar-island|23|8
+LAST_CENTER:cinnabar-center|3|3
+MONEY:143099
 COINS:270
 REPEL:0
 INTERACTIONS:
@@ -288,8 +288,8 @@ cinnabar-center-girl|0
 cinnabar-center-hat|0
 cinnabar-center-joy|0
 cinnabar-center-pc|0
-cinnabar-gym-blaine|0
-cinnabar-gym-board1|0
+cinnabar-gym-blaine|1
+cinnabar-gym-board1|1
 cinnabar-gym-clerk|0
 cinnabar-gym-door1a|0
 cinnabar-gym-door1b|0
@@ -303,13 +303,13 @@ cinnabar-gym-door6a|0
 cinnabar-gym-door6b|0
 cinnabar-gym-door7a|0
 cinnabar-gym-door7b|0
-cinnabar-gym-man1|0
-cinnabar-gym-man2|0
-cinnabar-gym-man3|0
-cinnabar-gym-man4|0
-cinnabar-gym-man5|0
-cinnabar-gym-man6|0
-cinnabar-gym-man7|0
+cinnabar-gym-man1|1
+cinnabar-gym-man2|1
+cinnabar-gym-man3|1
+cinnabar-gym-man4|1
+cinnabar-gym-man5|1
+cinnabar-gym-man6|1
+cinnabar-gym-man7|1
 cinnabar-gym-quiz1|0
 cinnabar-gym-quiz3|0
 cinnabar-gym-quiz4|0
@@ -322,7 +322,7 @@ cinnabar-island-sign2|0
 cinnabar-island-woman1|0
 cinnabar-lab-doctor1|0
 cinnabar-lab-doctor2|0
-cinnabar-lab-doctor3|0
+cinnabar-lab-doctor3|1
 cinnabar-lab-doctor4|0
 cinnabar-lab-man1|0
 cinnabar-lab-oldman1|0
@@ -918,16 +918,16 @@ route18-guy3|0
 route18-sign1|0
 route18-sign2|0
 route18-sign3|0
-route19-guy1|0
-route19-guy10|0
-route19-guy2|0
-route19-guy3|0
-route19-guy4|0
-route19-guy5|0
+route19-guy1|1
+route19-guy10|1
+route19-guy2|1
+route19-guy3|1
+route19-guy4|1
+route19-guy5|1
 route19-guy6|0
-route19-guy7|0
-route19-guy8|0
-route19-guy9|0
+route19-guy7|1
+route19-guy8|1
+route19-guy9|1
 route19-sign1|0
 route2-bush1|0
 route2-bush2|0
@@ -939,18 +939,18 @@ route2-item2|0
 route2-sign1|0
 route2-sign2|0
 route2-sign3|0
-route20-guy1|0
+route20-guy1|1
 route20-sign1|0
 route20-sign2|0
-route20-swimmer1|0
+route20-swimmer1|1
 route20-swimmer2|0
 route20-swimmer3|0
-route20-swimmer4|0
-route20-swimmer5|0
-route20-swimmer6|0
-route20-swimmer7|0
-route20-swimmer8|0
-route20-swimmer9|0
+route20-swimmer4|1
+route20-swimmer5|1
+route20-swimmer6|1
+route20-swimmer7|1
+route20-swimmer8|1
+route20-swimmer9|1
 route21-fisher1|0
 route21-fisher2|0
 route21-fisher3|0
@@ -1221,20 +1221,22 @@ seafoam-islands-current7|0
 seafoam-islands-current8|0
 seafoam-islands-current9|0
 seafoam-islands-item1|0
+seafoam-islands-item2|0
+seafoam-islands-item3|0
 seafoam-islands-sign1|0
 seafoam-islands-sign2|0
-seafoam-islands-stone1|0
+seafoam-islands-stone1|1
 seafoam-islands-stone10|0
-seafoam-islands-stone11|0
+seafoam-islands-stone11|1
 seafoam-islands-stone12|0
-seafoam-islands-stone13|0
+seafoam-islands-stone13|1
 seafoam-islands-stone14|0
-seafoam-islands-stone2|0
-seafoam-islands-stone3|0
+seafoam-islands-stone2|1
+seafoam-islands-stone3|1
 seafoam-islands-stone4|0
-seafoam-islands-stone5|0
-seafoam-islands-stone6|0
-seafoam-islands-stone7|0
+seafoam-islands-stone5|1
+seafoam-islands-stone6|1
+seafoam-islands-stone7|1
 seafoam-islands-stone8|0
 seafoam-islands-stone9|0
 sign1|0
@@ -1925,18 +1927,18 @@ cinnabar-center-pc|1
 cinnabar-gym-blaine|1
 cinnabar-gym-board1|1
 cinnabar-gym-clerk|1
-cinnabar-gym-door1a|1
-cinnabar-gym-door1b|1
-cinnabar-gym-door3a|1
-cinnabar-gym-door3b|1
-cinnabar-gym-door4a|1
-cinnabar-gym-door4b|1
-cinnabar-gym-door5a|1
-cinnabar-gym-door5b|1
-cinnabar-gym-door6a|1
-cinnabar-gym-door6b|1
-cinnabar-gym-door7a|1
-cinnabar-gym-door7b|1
+cinnabar-gym-door1a|0
+cinnabar-gym-door1b|0
+cinnabar-gym-door3a|0
+cinnabar-gym-door3b|0
+cinnabar-gym-door4a|0
+cinnabar-gym-door4b|0
+cinnabar-gym-door5a|0
+cinnabar-gym-door5b|0
+cinnabar-gym-door6a|0
+cinnabar-gym-door6b|0
+cinnabar-gym-door7a|0
+cinnabar-gym-door7b|0
 cinnabar-gym-man1|1
 cinnabar-gym-man2|1
 cinnabar-gym-man3|1
@@ -1944,12 +1946,12 @@ cinnabar-gym-man4|1
 cinnabar-gym-man5|1
 cinnabar-gym-man6|1
 cinnabar-gym-man7|1
-cinnabar-gym-quiz1|1
-cinnabar-gym-quiz3|1
-cinnabar-gym-quiz4|1
-cinnabar-gym-quiz5|1
-cinnabar-gym-quiz6|1
-cinnabar-gym-quiz7|1
+cinnabar-gym-quiz1|0
+cinnabar-gym-quiz3|0
+cinnabar-gym-quiz4|0
+cinnabar-gym-quiz5|0
+cinnabar-gym-quiz6|0
+cinnabar-gym-quiz7|0
 cinnabar-island-man1|1
 cinnabar-island-sign1|1
 cinnabar-island-sign2|1
@@ -2841,35 +2843,37 @@ saffron-mart-shelf1|1
 saffron-mart-shelf2|1
 saffron-mart-shelf3|1
 saffron-mart-shelf4|1
-seafoam-islands-articuno|1
-seafoam-islands-current1|1
-seafoam-islands-current10|1
-seafoam-islands-current11|1
-seafoam-islands-current12|1
-seafoam-islands-current2|1
-seafoam-islands-current3|1
-seafoam-islands-current4|1
-seafoam-islands-current5|1
-seafoam-islands-current6|1
-seafoam-islands-current7|1
-seafoam-islands-current8|1
-seafoam-islands-current9|1
+seafoam-islands-articuno|0
+seafoam-islands-current1|0
+seafoam-islands-current10|0
+seafoam-islands-current11|0
+seafoam-islands-current12|0
+seafoam-islands-current2|0
+seafoam-islands-current3|0
+seafoam-islands-current4|0
+seafoam-islands-current5|0
+seafoam-islands-current6|0
+seafoam-islands-current7|0
+seafoam-islands-current8|0
+seafoam-islands-current9|0
 seafoam-islands-item1|1
+seafoam-islands-item2|0
+seafoam-islands-item3|0
 seafoam-islands-sign1|1
 seafoam-islands-sign2|1
-seafoam-islands-stone1|1
+seafoam-islands-stone1|0
 seafoam-islands-stone10|1
-seafoam-islands-stone11|1
-seafoam-islands-stone12|0
-seafoam-islands-stone13|1
-seafoam-islands-stone14|0
+seafoam-islands-stone11|0
+seafoam-islands-stone12|1
+seafoam-islands-stone13|0
+seafoam-islands-stone14|1
 seafoam-islands-stone2|0
 seafoam-islands-stone3|0
-seafoam-islands-stone4|0
-seafoam-islands-stone5|1
+seafoam-islands-stone4|1
+seafoam-islands-stone5|0
 seafoam-islands-stone6|0
 seafoam-islands-stone7|0
-seafoam-islands-stone8|0
+seafoam-islands-stone8|1
 seafoam-islands-stone9|1
 sign1|1
 sign2|1
@@ -3284,14 +3288,12 @@ ANTIDOTE|1
 TM34|1
 TM12|1
 RARE CANDY|7
-ESCAPE ROPE|5
+ESCAPE ROPE|4
 TM01|1
 ETHER|4
 MOON STONE|4
-DOME FOSSIL|1
-HELIX FOSSIL|1
 GREAT BALL|20
-NUGGET|5
+NUGGET|6
 TM45|1
 ELIXER|3
 TM19|1
@@ -3304,7 +3306,6 @@ HM01|1
 TM24|1
 HP UP|4
 HM05|1
-OLD AMBER|1
 TM30|1
 PP UP|4
 TM49|1
@@ -3335,15 +3336,15 @@ TM46|1
 HM02|1
 EXP.ALL|1
 FULL RESTORE|2
-MAX ELIXER|1
+MAX ELIXER|2
 BICYCLE|1
 TM39|1
 SUPER ROD|1
 TM20|1
 GOOD ROD|1
-REVIVE|29
-ULTRA BALL|44
-SUPER POTION|11
+REVIVE|27
+ULTRA BALL|23
+SUPER POTION|3
 TM06|1
 TM37|1
 MAX POTION|2
@@ -3352,6 +3353,8 @@ TM40|1
 TM32|1
 HM03|1
 HM04|1
+TM35|1
+TM38|1
 END
 INVENTORY_STORAGE:
 END
@@ -3371,6 +3374,7 @@ SEEN:
 101-119
 101-28
 101-57
+101-59
 101-67
 101-82
 101-89
@@ -3387,6 +3391,7 @@ SEEN:
 105-110
 105-42
 105-67
+105-78
 105-97
 106-106
 107-107
@@ -3429,16 +3434,31 @@ SEEN:
 112-112
 112-68
 114-114
+114-119
+114-38
 115-115
 115-55
 116-116
+117-117
+117-119
+117-120
+117-135
 117-18
 117-35
+117-59
 118-118
 118-54
 118-58
+119-113
+119-119
+119-120
 119-18
+119-24
+119-3
+119-45
 119-67
+119-78
+119-90
 119-93
 12-12
 12-16
@@ -3448,31 +3468,45 @@ SEEN:
 12-53
 12-61
 12-92
+120-119
 120-120
 120-57
 120-58
 120-59
+120-73
+120-90
+121-119
 121-121
 121-59
+121-9
 121-93
 122-122
 122-92
 124-124
 125-125
+126-126
+126-68
 128-102
 128-30
 129-129
 129-92
 13-13
 13-25
+130-119
 130-130
 131-131
 132-110
 133-133
+134-131
 135-28
+136-101
 136-136
+138-138
 14-14
+140-140
+142-142
 143-143
+144-144
 15-15
 16-10
 16-13
@@ -3512,6 +3546,7 @@ SEEN:
 21-92
 22-117
 22-118
+22-119
 22-12
 22-18
 22-22
@@ -3521,6 +3556,7 @@ SEEN:
 22-58
 22-64
 22-67
+22-71
 22-82
 23-19
 23-23
@@ -3541,9 +3577,11 @@ SEEN:
 28-42
 28-85
 29-29
+3-119
 3-18
 3-3
 3-57
+3-78
 3-93
 30-30
 31-31
@@ -3560,7 +3598,14 @@ SEEN:
 37-18
 37-58
 37-85
+38-114
+38-131
+38-18
+38-38
+38-62
 38-67
+38-76
+38-89
 39-25
 39-39
 39-52
@@ -3586,8 +3631,10 @@ SEEN:
 42-42
 42-6
 42-67
+42-80
 42-96
 42-97
+42-99
 43-118
 43-16
 43-19
@@ -3616,6 +3663,7 @@ SEEN:
 50-27
 50-46
 50-50
+51-117
 51-18
 51-91
 52-43
@@ -3623,6 +3671,7 @@ SEEN:
 52-63
 53-18
 53-53
+55-87
 56-11
 56-56
 57-125
@@ -3635,13 +3684,16 @@ SEEN:
 58-57
 58-58
 58-67
+59-15
 59-57
+59-59
 6-57
 6-6
 60-60
 60-69
 61-12
 61-18
+61-58
 61-61
 61-66
 62-62
@@ -3688,7 +3740,12 @@ SEEN:
 71-38
 71-71
 72-72
+73-119
+73-24
+73-68
 73-73
+73-80
+73-90
 74-104
 74-27
 74-41
@@ -3709,10 +3766,13 @@ SEEN:
 77-77
 79-104
 79-79
+80-120
 80-38
 80-44
+80-59
 80-73
 80-80
+80-90
 81-100
 81-27
 81-37
@@ -3720,7 +3780,10 @@ SEEN:
 81-81
 82-101
 82-110
+82-119
+82-126
 82-18
+82-38
 82-82
 83-83
 83-93
@@ -3729,7 +3792,10 @@ SEEN:
 85-37
 85-51
 85-85
+87-117
+87-120
 87-87
+87-90
 88-110
 88-20
 88-66
@@ -3749,9 +3815,13 @@ SEEN:
 89-97
 9-9
 9-93
+90-120
+90-73
 90-74
 90-90
+91-112
 91-24
+91-91
 92-104
 92-122
 92-123
@@ -3781,6 +3851,8 @@ SEEN:
 93-93
 93-95
 94-105
+94-117
+94-38
 94-68
 94-94
 95-64
@@ -3797,6 +3869,7 @@ SEEN:
 97-67
 97-97
 99-28
+99-55
 END
 CAUGHT:
 1-1
@@ -3815,7 +3888,11 @@ CAUGHT:
 131-131
 133-133
 136-136
+138-138
+140-140
+142-142
 143-143
+144-144
 16-52
 19-13
 19-19`
@@ -3851,18 +3928,18 @@ RIVALVALUE|2
 SOULBADGE|1
 SURGESWITCH|2
 THUNDERBADGE|1
-VOLCANOBADGE|0
+VOLCANOBADGE|1
 celadon-dept-floor|1
 celadon-hideout-floor|1
 silph-co-floor|1
 END
 TEAM:
-0|NUMBER:133-133|NICKNAME:|HP:0|EXP:114|LEVEL:5|EV:55|55|50|65|55|IV:0|5|4|1|11|MOVES:TACKLE|TAIL WHIP|||PP:28|24|||MAX_PP:35|30|||STATUS:
-1|NUMBER:130-130|NICKNAME:|HP:182|EXP:125871|LEVEL:53|EV:17702|20600|19817|19661|20156|IV:2|15|13|6|6|MOVES:ICE BEAM|BITE|SURF|HYDROPUMP|PP:10|25|15|5|MAX_PP:10|25|15|5|STATUS:
-2|NUMBER:76-76|NICKNAME:|HP:174|EXP:121392|LEVEL:53|EV:20852|24480|23091|22427|24595|IV:8|13|3|12|3|MOVES:STRENGTH|EARTHQUAKE|ROCK SLIDE|DIG|PP:15|7|9|10|MAX_PP:15|10|10|10|STATUS:
-3|NUMBER:3-3|NICKNAME:|HP:182|EXP:127495|LEVEL:54|EV:30396|32884|33057|30061|32805|IV:8|2|8|7|10|MOVES:CUT|RAZOR LEAF|VINE WHIP|BODY SLAM|PP:30|25|25|15|MAX_PP:30|25|25|15|STATUS:
-4|NUMBER:131-131|NICKNAME:|HP:196|EXP:114025|LEVEL:52|EV:11670|13316|12762|11863|12800|IV:5|9|10|1|10|MOVES:SURF|BODY SLAM|ICE BEAM|CONFUSE RAY|PP:15|15|10|9|MAX_PP:15|15|10|10|STATUS:
-5|NUMBER:121-59|NICKNAME:|HP:114|EXP:114705|LEVEL:52|EV:13964|15945|15337|14635|15357|IV:2|14|14|11|4|MOVES:RECOVER|SURF|PSYCHIC|FLAMETHROWER|PP:20|15|8|12|MAX_PP:20|15|10|15|STATUS:
+0|NUMBER:76-76|NICKNAME:|HP:0|EXP:146566|LEVEL:56|EV:26958|31443|30447|30060|31679|IV:8|13|3|12|3|MOVES:STRENGTH|EARTHQUAKE|ROCK SLIDE|DIG|PP:15|4|10|10|MAX_PP:15|10|10|10|STATUS:
+1|NUMBER:130-130|NICKNAME:|HP:0|EXP:149920|LEVEL:57|EV:24088|27920|27508|27611|27533|IV:2|15|13|6|6|MOVES:ICE BEAM|BITE|SURF|HYDROPUMP|PP:10|24|11|4|MAX_PP:10|25|15|5|STATUS:PARALYZE
+2|NUMBER:3-3|NICKNAME:|HP:0|EXP:147987|LEVEL:56|EV:35834|39087|39516|36756|39092|IV:8|2|8|7|10|MOVES:CUT|RAZOR LEAF|VINE WHIP|BODY SLAM|PP:30|25|25|14|MAX_PP:30|25|25|15|STATUS:
+3|NUMBER:131-131|NICKNAME:|HP:134|EXP:148853|LEVEL:57|EV:18388|20987|20725|20130|20527|IV:5|9|10|1|10|MOVES:SURF|BODY SLAM|ICE BEAM|CONFUSE RAY|PP:15|15|10|9|MAX_PP:15|15|10|10|STATUS:
+4|NUMBER:121-59|NICKNAME:|HP:65|EXP:149782|LEVEL:57|EV:20772|23701|23400|23027|23169|IV:2|14|14|11|4|MOVES:RECOVER|SURF|PSYCHIC|FLAMETHROWER|PP:20|14|10|15|MAX_PP:20|15|10|15|STATUS:
+5|NUMBER:144-144|NICKNAME:|HP:0|EXP:127320|LEVEL:54|EV:3240|3841|3784|4047|3842|IV:14|13|1|7|14|MOVES:PECK|ICE BEAM|BLIZZARD||PP:35|10|4||MAX_PP:35|10|5||STATUS:
 END
 STORAGE:
 0|0|NUMBER:19-13|NICKNAME:|HP:15|EXP:21|LEVEL:3|EV:0|0|0|0|0|IV:5|13|1|1|10|MOVES:POISON STING|TAIL WHIP|||PP:35|30|||MAX_PP:35|30|||STATUS:
@@ -3881,6 +3958,10 @@ STORAGE:
 0|13|NUMBER:43-19|NICKNAME:|HP:38|EXP:2195|LEVEL:14|EV:0|0|0|0|0|IV:15|7|9|4|9|MOVES:TACKLE|QUICK ATTACK|||PP:34|30|||MAX_PP:35|30|||STATUS:
 0|14|NUMBER:136-136|NICKNAME:|HP:98|EXP:36280|LEVEL:35|EV:2465|2889|2631|3605|3422|IV:5|4|1|13|15|MOVES:TACKLE|TAIL WHIP|SAND ATTACK|EMBER|PP:35|30|15|25|MAX_PP:35|30|15|25|STATUS:
 0|15|NUMBER:12-17|NICKNAME:|HP:43|EXP:6252|LEVEL:19|EV:274|356|352|334|289|IV:4|10|11|5|13|MOVES:GUST|SLEEP POWDER|FLASH|CONFUSION|PP:35|15|20|25|MAX_PP:35|15|20|25|STATUS:
+0|16|NUMBER:133-133|NICKNAME:|HP:0|EXP:114|LEVEL:5|EV:55|55|50|65|55|IV:0|5|4|1|11|MOVES:TACKLE|TAIL WHIP|||PP:28|24|||MAX_PP:35|30|||STATUS:
+0|17|NUMBER:138-138|NICKNAME:|HP:61|EXP:21600|LEVEL:30|EV:0|0|0|0|0|IV:1|11|8|8|6|MOVES:WATER GUN|WITHDRAW|||PP:25|40|||MAX_PP:25|40|||STATUS:
+0|18|NUMBER:140-140|NICKNAME:|HP:61|EXP:21600|LEVEL:30|EV:0|0|0|0|0|IV:6|0|6|4|13|MOVES:SCRATCH|HARDEN|||PP:35|30|||MAX_PP:35|30|||STATUS:
+0|19|NUMBER:142-142|NICKNAME:|HP:96|EXP:21600|LEVEL:30|EV:0|0|0|0|0|IV:14|3|4|3|3|MOVES:WING ATTACK|AGILITY|||PP:25|30|||MAX_PP:25|30|||STATUS:
 END
 LEVEL:
 bill-house
@@ -4232,11 +4313,11 @@ cinnabar-island
 0|0|18|7|0
 1|0|14|9|0
 2|0|14|15|0
-3|0|19|10|0
-4|0|17|9|0
+3|2|19|10|0
+4|1|18|10|0
 END
 cinnabar-lab
-0|0|1|1|0
+0|2|1|1|0
 1|0|3|0|0
 2|0|9|2|0
 3|0|13|2|0
@@ -4346,15 +4427,15 @@ fuchsia-city
 9|0|18|10|0
 10|0|22|8|0
 11|0|11|8|0
-12|0|17|9|0
+12|0|17|8|0
 13|0|30|9|0
-14|2|36|8|0
+14|0|37|8|0
 15|0|36|15|0
 16|0|13|20|0
 17|0|24|15|0
 18|1|29|11|0
 19|0|35|17|0
-20|2|27|20|0
+20|0|28|20|0
 21|0|23|22|0
 22|0|31|16|0
 23|0|27|10|0
@@ -4964,17 +5045,17 @@ route18-checkpoint
 3|0|5|16|0
 END
 route19
-0|2|13|9|0
-1|2|18|9|0
+0|2|13|9|1
+1|2|18|9|1
 2|0|16|11|0
-3|0|14|13|0
-4|2|18|27|0
-5|3|9|29|0
+3|0|14|13|1
+4|2|18|27|1
+5|3|9|29|1
 6|1|21|33|0
-7|3|16|44|0
-8|0|15|45|0
-9|1|14|43|0
-10|2|13|44|0
+7|3|16|44|1
+8|0|15|45|1
+9|1|14|43|1
+10|2|13|44|1
 END
 route2
 0|0|14|74|0
@@ -4989,18 +5070,18 @@ route2
 9|0|18|63|0
 END
 route20
-0|1|88|12|0
+0|1|88|12|1
 1|1|88|17|0
 2|1|66|15|0
 3|0|49|11|0
-4|0|43|14|0
-5|0|55|15|0
-6|3|53|18|0
-7|0|36|17|0
-8|1|32|13|0
-9|1|23|11|0
-10|0|22|16|0
-11|1|13|12|0
+4|0|43|14|1
+5|1|55|15|0
+6|1|53|18|1
+7|0|36|17|1
+8|3|32|13|1
+9|1|23|11|1
+10|0|22|16|1
+11|1|13|12|1
 END
 route21
 0|2|9|25|0
@@ -5374,10 +5455,10 @@ seafoam-islands
 16|0|24|35|0
 17|0|25|62|0
 18|0|21|89|0
-19|0|11|97|0
+19|3|11|97|0
 20|0|7|97|0
 21|0|10|97|0
-22|0|7|125|0
+22|2|7|125|0
 23|0|5|98|0
 24|0|6|125|0
 25|0|7|125|0
@@ -5385,6 +5466,8 @@ seafoam-islands
 27|0|9|122|0
 28|0|9|122|0
 29|0|8|111|0
+30|0|17|71|0
+31|0|11|99|0
 END
 silph-co
 0|0|4|28|0
