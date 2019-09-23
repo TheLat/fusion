@@ -25,16 +25,16 @@ INTERACTIONS
 END
 cinnabar-gym-man1 man2 17 8 DOWN
 INTERACTIONS
-MENU:ALERT:I was a thief, but I became straight as a trainer!|BATTLE:cinnabar-gym-man1|{NO_ADVANCE}{DEACTIVATE:cinnabar-gym-door1a|DEACTIVATE:cinnabar-gym-door1b|DEACTIVATE:cinnabar-gym-quiz1}
+MENU:ALERT:I was a thief, but I became straight as a trainer!|BATTLE:cinnabar-gym-man1|{NO_ADVANCE}{PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:cinnabar-gym-door1a|DEACTIVATE:cinnabar-gym-door1b|DEACTIVATE:cinnabar-gym-quiz1}
 MENU:ALERT:I can't help stealing other people's POK{e-accent}MON!
 END
 cinnabar-gym-quiz1 blank 15 7
 INTERACTIONS
-MENU:ALERT:POK{e-accent}MON Quiz!|MENU:ALERT:Get it right and the door opens to the next room!|MENU:ALERT:Get it wrong and face a trainer!|MENU:ALERT:If you want to conserver your POK{e-accent}MON for the GYM LEADER...|MENU:ALERT:Then get it right! Here we go!|MENU:ALERT_YES_NO:CATERPIE evolves into BUTTERFREE?|{MENU:ALERT:You're absolutely correct!|MENU:ALERT:Go on through!|DEACTIVATE:cinnabar-gym-door1a|DEACTIVATE:cinnabar-gym-door1b|DEACTIVATE:cinnabar-gym-quiz1}{MENU:ALERT:Sorry! Bad call!|MOVE:cinnabar-gym-man1:-1,0|MENU:ALERT:I was a thief, but I became straight as a trainer!|BATTLE:cinnabar-gym-man1|{}{ADVANCE:cinnabar-gym-man1|DEACTIVATE:cinnabar-gym-door1a|DEACTIVATE:cinnabar-gym-door1b|DEACTIVATE:cinnabar-gym-quiz1}}
+MENU:ALERT:POK{e-accent}MON Quiz!|MENU:ALERT:Get it right and the door opens to the next room!|MENU:ALERT:Get it wrong and face a trainer!|MENU:ALERT:If you want to conserver your POK{e-accent}MON for the GYM LEADER...|MENU:ALERT:Then get it right! Here we go!|MENU:ALERT_YES_NO:CATERPIE evolves into BUTTERFREE?|{PLAY_SOUND:sound_effects/general/sfx_get_item_1.mp3|MENU:ALERT:You're absolutely correct!|MENU:ALERT:Go on through!|PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:cinnabar-gym-door1a|DEACTIVATE:cinnabar-gym-door1b|DEACTIVATE:cinnabar-gym-quiz1}{PLAY_BLOCKING_SOUND:sound_effects/general/sfx_denied.mp3|MENU:ALERT:Sorry! Bad call!|PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|MOVE:cinnabar-gym-man1:-1,0|MENU:ALERT:I was a thief, but I became straight as a trainer!|BATTLE:cinnabar-gym-man1|{}{ADVANCE:cinnabar-gym-man1|PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:cinnabar-gym-door1a|DEACTIVATE:cinnabar-gym-door1b|DEACTIVATE:cinnabar-gym-quiz1}}
 END
 cinnabar-gym-man2 man2 17 2 DOWN
 INTERACTIONS
-MENU:ALERT:Do you know how hot POK{e-accent}MON fire breath can get?|BATTLE:cinnabar-gym-man2|{NO_ADVANCE}{DEACTIVATE:cinnabar-gym-door1a|DEACTIVATE:cinnabar-gym-door1b|DEACTIVATE:cinnabar-gym-quiz1}
+MENU:ALERT:Do you know how hot POK{e-accent}MON fire breath can get?|BATTLE:cinnabar-gym-man2|{NO_ADVANCE}{PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:cinnabar-gym-door1a|DEACTIVATE:cinnabar-gym-door1b|DEACTIVATE:cinnabar-gym-quiz1}
 MENU:ALERT:Fire, or to be more precise, combustion...|MENU:ALERT:Blah, blah, blah, blah...
 END
 cinnabar-gym-door3a door 12 6 NO_OFFSET
@@ -47,12 +47,12 @@ INTERACTIONS
 END
 cinnabar-gym-man3 man2 11 4 DOWN
 INTERACTIONS
-MENU:ALERT:You can't win! I have studied POK{e-accent}MON totally!|BATTLE:cinnabar-gym-man3|{NO_ADVANCE}{DEACTIVATE:cinnabar-gym-door3a|DEACTIVATE:cinnabar-gym-door3b|DEACTIVATE:cinnabar-gym-quiz3}
+MENU:ALERT:You can't win! I have studied POK{e-accent}MON totally!|BATTLE:cinnabar-gym-man3|{NO_ADVANCE}{PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:cinnabar-gym-door3a|DEACTIVATE:cinnabar-gym-door3b|DEACTIVATE:cinnabar-gym-quiz3}
 MENU:ALERT:My theories are too complicated for you!
 END
 cinnabar-gym-quiz3 blank 10 1
 INTERACTIONS
-MENU:ALERT:POK{e-accent}MON Quiz!|MENU:ALERT:Get it right and the door opens to the next room!|MENU:ALERT:Get it wrong and face a trainer!|MENU:ALERT:If you want to conserver your POK{e-accent}MON for the GYM LEADER...|MENU:ALERT:Then get it right! Here we go!|MENU:ALERT_YES_NO:There are 9 certified POK{e-accent}MON LEAGUE BADGESs?|{MENU:ALERT:Sorry! Bad call!|MOVE:cinnabar-gym-man3:-1,0|MOVE:cinnabar-gym-man3:0,-1|MENU:ALERT:You can't win! I have studied POK{e-accent}MON totally!|BATTLE:cinnabar-gym-man3|{}{ADVANCE:cinnabar-gym-man3|DEACTIVATE:cinnabar-gym-door3a|DEACTIVATE:cinnabar-gym-door3b|DEACTIVATE:cinnabar-gym-quiz3}}{MENU:ALERT:You're absolutely correct!|MENU:ALERT:Go on through!|DEACTIVATE:cinnabar-gym-door3a|DEACTIVATE:cinnabar-gym-door3b|DEACTIVATE:cinnabar-gym-quiz3}
+MENU:ALERT:POK{e-accent}MON Quiz!|MENU:ALERT:Get it right and the door opens to the next room!|MENU:ALERT:Get it wrong and face a trainer!|MENU:ALERT:If you want to conserver your POK{e-accent}MON for the GYM LEADER...|MENU:ALERT:Then get it right! Here we go!|MENU:ALERT_YES_NO:There are 9 certified POK{e-accent}MON LEAGUE BADGESs?|{PLAY_BLOCKING_SOUND:sound_effects/general/sfx_denied.mp3|MENU:ALERT:Sorry! Bad call!|PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|MOVE:cinnabar-gym-man3:-1,0|MOVE:cinnabar-gym-man3:0,-1|MENU:ALERT:You can't win! I have studied POK{e-accent}MON totally!|BATTLE:cinnabar-gym-man3|{}{ADVANCE:cinnabar-gym-man3|PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:cinnabar-gym-door3a|DEACTIVATE:cinnabar-gym-door3b|DEACTIVATE:cinnabar-gym-quiz3}}{PLAY_SOUND:sound_effects/general/sfx_get_item_1.mp3|MENU:ALERT:You're absolutely correct!|MENU:ALERT:Go on through!|PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:cinnabar-gym-door3a|DEACTIVATE:cinnabar-gym-door3b|DEACTIVATE:cinnabar-gym-quiz3}
 END
 cinnabar-gym-door4a door 12 12 NO_OFFSET
 INTERACTIONS
@@ -64,12 +64,12 @@ INTERACTIONS
 END
 cinnabar-gym-man4 man2 11 8 DOWN
 INTERACTIONS
-MENU:ALERT:I just like using fire POK{e-accent}MON!|BATTLE:cinnabar-gym-man4|{NO_ADVANCE}{DEACTIVATE:cinnabar-gym-door4a|DEACTIVATE:cinnabar-gym-door4b|DEACTIVATE:cinnabar-gym-quiz4}
+MENU:ALERT:I just like using fire POK{e-accent}MON!|BATTLE:cinnabar-gym-man4|{NO_ADVANCE}{PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:cinnabar-gym-door4a|DEACTIVATE:cinnabar-gym-door4b|DEACTIVATE:cinnabar-gym-quiz4}
 MENU:ALERT:I wish there were a thief POK{e-accent}MON!|MENU:ALERT:I'd use that!
 END
 cinnabar-gym-quiz4 blank 9 7
 INTERACTIONS
-MENU:ALERT:POK{e-accent}MON Quiz!|MENU:ALERT:Get it right and the door opens to the next room!|MENU:ALERT:Get it wrong and face a trainer!|MENU:ALERT:If you want to conserver your POK{e-accent}MON for the GYM LEADER...|MENU:ALERT:Then get it right! Here we go!|MENU:ALERT_YES_NO:POLIWAG evolves 3 times?|{MENU:ALERT:Sorry! Bad call!|MOVE:cinnabar-gym-man4:-1,0|MENU:ALERT:I just like using fire POK{e-accent}MON!|BATTLE:cinnabar-gym-man4|{}{ADVANCE:cinnabar-gym-man4|DEACTIVATE:cinnabar-gym-door4a|DEACTIVATE:cinnabar-gym-door4b|DEACTIVATE:cinnabar-gym-quiz4}}{MENU:ALERT:You're absolutely correct!|MENU:ALERT:Go on through!|DEACTIVATE:cinnabar-gym-door4a|DEACTIVATE:cinnabar-gym-door4b|DEACTIVATE:cinnabar-gym-quiz4}
+MENU:ALERT:POK{e-accent}MON Quiz!|MENU:ALERT:Get it right and the door opens to the next room!|MENU:ALERT:Get it wrong and face a trainer!|MENU:ALERT:If you want to conserver your POK{e-accent}MON for the GYM LEADER...|MENU:ALERT:Then get it right! Here we go!|MENU:ALERT_YES_NO:POLIWAG evolves 3 times?|{PLAY_BLOCKING_SOUND:sound_effects/general/sfx_denied.mp3|MENU:ALERT:Sorry! Bad call!|PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|MOVE:cinnabar-gym-man4:-1,0|MENU:ALERT:I just like using fire POK{e-accent}MON!|BATTLE:cinnabar-gym-man4|{}{ADVANCE:cinnabar-gym-man4|PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:cinnabar-gym-door4a|DEACTIVATE:cinnabar-gym-door4b|DEACTIVATE:cinnabar-gym-quiz4}}{PLAY_SOUND:sound_effects/general/sfx_get_item_1.mp3|MENU:ALERT:You're absolutely correct!|MENU:ALERT:Go on through!|PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:cinnabar-gym-door4a|DEACTIVATE:cinnabar-gym-door4b|DEACTIVATE:cinnabar-gym-quiz4}
 END
 cinnabar-gym-door5a door2 7 16 NO_OFFSET
 INTERACTIONS
@@ -81,12 +81,12 @@ INTERACTIONS
 END
 cinnabar-gym-man5 man2 11 14 DOWN
 INTERACTIONS
-MENU:ALERT:I know why BLAINE became a trainer!|BATTLE:cinnabar-gym-man5|{NO_ADVANCE}{DEACTIVATE:cinnabar-gym-door5a|DEACTIVATE:cinnabar-gym-door5b|DEACTIVATE:cinnabar-gym-quiz5}
+MENU:ALERT:I know why BLAINE became a trainer!|BATTLE:cinnabar-gym-man5|{NO_ADVANCE}{PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:cinnabar-gym-door5a|DEACTIVATE:cinnabar-gym-door5b|DEACTIVATE:cinnabar-gym-quiz5}
 MENU:ALERT:BLAINE was lost in the mountains when a fiery bird POK{e-accent}MON appeared.|MENU:ALERT:Its light enabled BLAINE to find his way down!
 END
 cinnabar-gym-quiz5 blank 9 13
 INTERACTIONS
-MENU:ALERT:POK{e-accent}MON Quiz!|MENU:ALERT:Get it right and the door opens to the next room!|MENU:ALERT:Get it wrong and face a trainer!|MENU:ALERT:If you want to conserver your POK{e-accent}MON for the GYM LEADER...|MENU:ALERT:Then get it right! Here we go!|MENU:ALERT_YES_NO:Are electric moves effective against ground-type POK{e-accent}MON?|{MENU:ALERT:Sorry! Bad call!|MOVE:cinnabar-gym-man5:-1,0|MENU:ALERT:I know why BLAINE became a trainer!|BATTLE:cinnabar-gym-man5|{}{ADVANCE:cinnabar-gym-man5|DEACTIVATE:cinnabar-gym-door5a|DEACTIVATE:cinnabar-gym-door5b|DEACTIVATE:cinnabar-gym-quiz5}}{MENU:ALERT:You're absolutely correct!|MENU:ALERT:Go on through!|DEACTIVATE:cinnabar-gym-door5a|DEACTIVATE:cinnabar-gym-door5b|DEACTIVATE:cinnabar-gym-quiz5}
+MENU:ALERT:POK{e-accent}MON Quiz!|MENU:ALERT:Get it right and the door opens to the next room!|MENU:ALERT:Get it wrong and face a trainer!|MENU:ALERT:If you want to conserver your POK{e-accent}MON for the GYM LEADER...|MENU:ALERT:Then get it right! Here we go!|MENU:ALERT_YES_NO:Are electric moves effective against ground-type POK{e-accent}MON?|{PLAY_BLOCKING_SOUND:sound_effects/general/sfx_denied.mp3|MENU:ALERT:Sorry! Bad call!|PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|MOVE:cinnabar-gym-man5:-1,0|MENU:ALERT:I know why BLAINE became a trainer!|BATTLE:cinnabar-gym-man5|{}{ADVANCE:cinnabar-gym-man5|PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:cinnabar-gym-door5a|DEACTIVATE:cinnabar-gym-door5b|DEACTIVATE:cinnabar-gym-quiz5}}{PLAY_SOUND:sound_effects/general/sfx_get_item_1.mp3|MENU:ALERT:You're absolutely correct!|MENU:ALERT:Go on through!|PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:cinnabar-gym-door5a|DEACTIVATE:cinnabar-gym-door5b|DEACTIVATE:cinnabar-gym-quiz5}
 END
 cinnabar-gym-door6a door 4 12 NO_OFFSET
 INTERACTIONS
@@ -98,12 +98,12 @@ INTERACTIONS
 END
 cinnabar-gym-man6 man2 3 14 DOWN
 INTERACTIONS
-MENU:ALERT:I've been to many GYMs, but this is my favorite!|BATTLE:cinnabar-gym-man6|{NO_ADVANCE}{DEACTIVATE:cinnabar-gym-door6a|DEACTIVATE:cinnabar-gym-door6b|DEACTIVATE:cinnabar-gym-quiz6}
+MENU:ALERT:I've been to many GYMs, but this is my favorite!|BATTLE:cinnabar-gym-man6|{NO_ADVANCE}{PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:cinnabar-gym-door6a|DEACTIVATE:cinnabar-gym-door6b|DEACTIVATE:cinnabar-gym-quiz6}
 MENU:ALERT:Us fire POK{e-accent}MON fans like PONYTA and NINETALES!
 END
 cinnabar-gym-quiz6 blank 1 13
 INTERACTIONS
-MENU:ALERT:POK{e-accent}MON Quiz!|MENU:ALERT:Get it right and the door opens to the next room!|MENU:ALERT:Get it wrong and face a trainer!|MENU:ALERT:If you want to conserver your POK{e-accent}MON for the GYM LEADER...|MENU:ALERT:Then get it right! Here we go!|MENU:ALERT_YES_NO:POK{e-accent}MON of the same kind and level are not identical?|{MENU:ALERT:You're absolutely correct!|MENU:ALERT:Go on through!|DEACTIVATE:cinnabar-gym-door6a|DEACTIVATE:cinnabar-gym-door6b|DEACTIVATE:cinnabar-gym-quiz6}{MENU:ALERT:Sorry! Bad call!|MOVE:cinnabar-gym-man6:-1,0|MENU:ALERT:I've been to many GYMs, but this is my favorite!|BATTLE:cinnabar-gym-man6|{}{ADVANCE:cinnabar-gym-man6|DEACTIVATE:cinnabar-gym-door6a|DEACTIVATE:cinnabar-gym-door6b|DEACTIVATE:cinnabar-gym-quiz6}}
+MENU:ALERT:POK{e-accent}MON Quiz!|MENU:ALERT:Get it right and the door opens to the next room!|MENU:ALERT:Get it wrong and face a trainer!|MENU:ALERT:If you want to conserver your POK{e-accent}MON for the GYM LEADER...|MENU:ALERT:Then get it right! Here we go!|MENU:ALERT_YES_NO:POK{e-accent}MON of the same kind and level are not identical?|{PLAY_SOUND:sound_effects/general/sfx_get_item_1.mp3|MENU:ALERT:You're absolutely correct!|MENU:ALERT:Go on through!|PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:cinnabar-gym-door6a|DEACTIVATE:cinnabar-gym-door6b|DEACTIVATE:cinnabar-gym-quiz6}{PLAY_BLOCKING_SOUND:sound_effects/general/sfx_denied.mp3|MENU:ALERT:Sorry! Bad call!|PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|MOVE:cinnabar-gym-man6:-1,0|MENU:ALERT:I've been to many GYMs, but this is my favorite!|BATTLE:cinnabar-gym-man6|{}{ADVANCE:cinnabar-gym-man6|PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:cinnabar-gym-door6a|DEACTIVATE:cinnabar-gym-door6b|DEACTIVATE:cinnabar-gym-quiz6}}
 END
 cinnabar-gym-door7a door 4 6 NO_OFFSET
 INTERACTIONS
@@ -115,12 +115,12 @@ INTERACTIONS
 END
 cinnabar-gym-man7 man2 3 8 DOWN
 INTERACTIONS
-MENU:ALERT:Fire is weak against H2O!|BATTLE:cinnabar-gym-man7|{NO_ADVANCE}{DEACTIVATE:cinnabar-gym-door7a|DEACTIVATE:cinnabar-gym-door7b|DEACTIVATE:cinnabar-gym-quiz7}
+MENU:ALERT:Fire is weak against H2O!|BATTLE:cinnabar-gym-man7|{NO_ADVANCE}{PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:cinnabar-gym-door7a|DEACTIVATE:cinnabar-gym-door7b|DEACTIVATE:cinnabar-gym-quiz7}
 MENU:ALERT:Water beats fire, but fire melts ice POK{e-accent}MON!
 END
 cinnabar-gym-quiz7 blank 1 7
 INTERACTIONS
-MENU:ALERT:POK{e-accent}MON Quiz!|MENU:ALERT:Get it right and the door opens to the next room!|MENU:ALERT:Get it wrong and face a trainer!|MENU:ALERT:If you want to conserver your POK{e-accent}MON for the GYM LEADER...|MENU:ALERT:Then get it right! Here we go!|MENU:ALERT_YES_NO:TM28 contains TOMBSTONER?|{MENU:ALERT:Sorry! Bad call!|MOVE:cinnabar-gym-man7:-1,0|MENU:ALERT:Fire is weak against H2O!|BATTLE:cinnabar-gym-man7|{}{ADVANCE:cinnabar-gym-man7|DEACTIVATE:cinnabar-gym-door7a|DEACTIVATE:cinnabar-gym-door7b|DEACTIVATE:cinnabar-gym-quiz7}}{MENU:ALERT:You're absolutely correct!|MENU:ALERT:Go on through!|DEACTIVATE:cinnabar-gym-door7a|DEACTIVATE:cinnabar-gym-door7b|DEACTIVATE:cinnabar-gym-quiz7}
+MENU:ALERT:POK{e-accent}MON Quiz!|MENU:ALERT:Get it right and the door opens to the next room!|MENU:ALERT:Get it wrong and face a trainer!|MENU:ALERT:If you want to conserver your POK{e-accent}MON for the GYM LEADER...|MENU:ALERT:Then get it right! Here we go!|MENU:ALERT_YES_NO:TM28 contains TOMBSTONER?|{PLAY_BLOCKING_SOUND:sound_effects/general/sfx_denied.mp3|MENU:ALERT:Sorry! Bad call!|PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|MOVE:cinnabar-gym-man7:-1,0|MENU:ALERT:Fire is weak against H2O!|BATTLE:cinnabar-gym-man7|{}{ADVANCE:cinnabar-gym-man7|PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:cinnabar-gym-door7a|DEACTIVATE:cinnabar-gym-door7b|DEACTIVATE:cinnabar-gym-quiz7}}{PLAY_SOUND:sound_effects/general/sfx_get_item_1.mp3|MENU:ALERT:You're absolutely correct!|MENU:ALERT:Go on through!|PLAY_SOUND:sound_effects/general/sfx_go_inside.mp3|DEACTIVATE:cinnabar-gym-door7a|DEACTIVATE:cinnabar-gym-door7b|DEACTIVATE:cinnabar-gym-quiz7}
 END
 cinnabar-gym-blaine bald3 3 3 DOWN
 INTERACTIONS
