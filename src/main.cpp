@@ -257,7 +257,7 @@ int main(int argc, char** argv) {
 	e.mc.dir = UP;
 	e.mc.money = 3000;
 	e.load_game();
-	se.play_music(e.levels[e.mc.loc.level].music);
+	e.play_level_music();
 
 	//Initialize GLUT
 	glutInit(&argc, argv);

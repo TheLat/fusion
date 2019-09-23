@@ -1083,6 +1083,7 @@ bool engine::use_item(string filter, std::vector<int> &choices, string &ret) {
 		    unsigned anim_holder = g.ae.create_anim_scene(string("screendark"));
             while (!g.ae.is_dones(anim_holder)) {}
 			mc.loc = mc.last_center;
+			mc.movement = string("player");
 			update_level();
 			se.play_music(levels[mc.loc.level].music);
 			anim_holder = g.ae.create_anim_scene(string("screenlight"));
@@ -7282,13 +7283,13 @@ void engine::do_interaction(character& npc) {
                 do_alert(string("You still need more POK{e-accent}MON! Try catching more species!"));
             }
             else if (caught < 40) {
-                do_alert(string("Good, you're trying hard! Get an ITEMFINDER from my aide."));
+                do_alert(string("Good, you're trying hard! Get EXP.ALL from my aide."));
             }
             else if (caught < 50) {
                 do_alert(string("Looking good! Go find my aide when you get to 50!"));
             }
             else if (caught < 70) {
-                do_alert(string("You finally got at least 50 species! Be sure to get EXP.ALL from my aide."));
+                do_alert(string("You finally got at least 50 species! Be sure to get an ITEMFINDER from my aide."));
             }
             else if (caught < 100) {
                 do_alert(string("Ho! This is getting even better!"));
