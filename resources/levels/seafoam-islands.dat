@@ -14,7 +14,7 @@ seafoam-islands-sign2 blank 11 125
 INTERACTIONS
 MENU:ALERT:Boulders might change the flow of water!
 END
-seafoam-islands-item1 blank 27 127
+seafoam-islands-item1 blank 27 127 INCORPOREAL
 INTERACTIONS
 GIVE_ITEM:ULTRA BALL|DEACTIVATE:seafoam-islands-item1
 END
@@ -153,6 +153,14 @@ END
 seafoam-islands-articuno bird 8 111
 INTERACTIONS
 PLAY_CRY:144-144|MENU:ALERT:Gyaoo!|WILD_BATTLE:144-144:50|{NO_ADVANCE}{DEACTIVATE:seafoam-islands-articuno}
+END
+seafoam-islands-item2 blank 17 71 INCORPOREAL
+INTERACTIONS
+GIVE_ITEM:NUGGET|DEACTIVATE:seafoam-islands-item2
+END
+seafoam-islands-item3 blank 11 99 INCORPOREAL
+INTERACTIONS
+GIVE_ITEM:MAX ELIXER|DEACTIVATE:seafoam-islands-item3
 END
 TELEPORT
 6 19 route20 46 10
