@@ -1,5 +1,7 @@
 NAME
 Cinnabar Island
+MUSIC
+music/39-cinnabar-intro.mp3,music/39-cinnabar-loop.mp3
 LEAVESOUND
 sound_effects/general/sfx_go_inside.mp3
 NPCS
