@@ -8,7 +8,7 @@ NPCS
 mom woman6 5 23 LEFT
 INTERACTIONS
 MENU:ALERT:MOM: Right.{NEWLINE}All boys leave home some day. It said so on TV.|MENU:ALERT:PROF. OAK, next door, is looking for you.|FACE:LEFT|NO_ADVANCE
-MENU:ALERT:MOM: {PLAYER_NAME}!{NEWLINE}You should take a quick rest.|FULL_HEAL|MENU:ALERT:MOM: Oh good! You and your POK{e-accent}MON are looking great!
+MENU:ALERT:MOM: {PLAYER_NAME}!{NEWLINE}You should take a quick rest.|MUTE_MUSIC:|PLAY_BLOCKING_SOUND:music/11-recovery.mp3|UNMUTE_MUSIC:|FULL_HEAL|MENU:ALERT:MOM: Oh good! You and your POK{e-accent}MON are looking great!
 END
 snes blank 3 5
 INTERACTIONS
