@@ -1656,6 +1656,7 @@ int engine::get_move_count(mon& m) {
 
 bool engine::level_up(mon& out, bool confirm_learn) {
 	bool evolved = false;
+	int hp_start = get_stat(out, HP);
 	if (level_to_exp[out.level + 1] > out.exp)
 		return false;
 	int counter = get_move_count(out);
@@ -1753,6 +1754,8 @@ bool engine::level_up(mon& out, bool confirm_learn) {
 			}
 		}
 	}
+	out.curr_hp += get_stat(out, HP) - hp_start;
+    rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
 	return true;
 }
 
