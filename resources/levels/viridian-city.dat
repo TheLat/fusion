@@ -51,6 +51,7 @@ viridian-city-grandpa3 bald4 30 8
 INTERACTIONS
 MENU:ALERT:This POK{e-accent}MON GYM is always closed.|MENU:ALERT:I wonder who the LEADER is?|NO_ADVANCE
 MENU:ALERT:VIRIDIAN GYM's LEADER returned!
+MENU:ALERT:VIRIDIAN GYM's LEADER returned!
 END
 viridian-city-gym-lock blank 32 7
 INTERACTIONS
