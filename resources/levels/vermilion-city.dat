@@ -57,6 +57,10 @@ vermilion-city-bush1 bush 20 20
 INTERACTIONS
 HAS_MOVE:CUT|{}{MENU:ALERT:Used CUT!|CUT:}
 END
+vermilion-city-hidden blank 19 13 INCORPOREAL
+INTERACTIONS
+GIVE_ITEM:ETHER|DEACTIVATE:vermilion-city-hidden
+END
 TELEPORT
 23 0 route6 13 35
 24 0 route6 14 35
