@@ -11,7 +11,7 @@ FORCE_INTERACTION
 -2 0
 END
 INTERACTIONS
-MENU:ALERT:You can only go through here if you have a BOULDERBADGE.|GET:BOULDERBADGE|{MOVE:PLAYER:0,1|NO_ADVANCE}{DISABLE_FORCE|MENU:ALERT:Oh! That is a BOULDERBADGE!|MENU:ALERT:Go right ahead!}
+MENU:ALERT:You can only go through here if you have a BOULDERBADGE.|GET:BOULDERBADGE|{PLAY_SOUND:sound_effects/general/sfx_denied.mp3|MOVE:PLAYER:0,1|NO_ADVANCE}{PLAY_SOUND:sound_effects/general/sfx_get_item_1.mp3|DISABLE_FORCE|MENU:ALERT:Oh! That is a BOULDERBADGE!|MENU:ALERT:Go right ahead!}
 MENU:ALERT:Oh! That is a BOULDERBADGE!|MENU:ALERT:Go right ahead!
 END
 TELEPORT

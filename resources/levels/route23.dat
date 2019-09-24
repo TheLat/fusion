@@ -1,5 +1,7 @@
 NAME
 Route 23
+MUSIC
+music/42-final-road-intro.mp3,music/42-final-road-loop.mp3
 LEAVESOUND
 sound_effects/general/sfx_go_inside.mp3
 NPCS
@@ -14,7 +16,7 @@ FORCE_INTERACTION
 -2 0
 END
 INTERACTIONS
-MENU:ALERT:You can only go through here if you have a CASCADEBADGE.|GET:CASCADEBADGE|{MOVE:PLAYER:0,1|NO_ADVANCE}{DISABLE_FORCE|MENU:ALERT:Oh! That is a CASCADEBADGE!|MENU:ALERT:Go right ahead!}
+MENU:ALERT:You can only go through here if you have a CASCADEBADGE.|GET:CASCADEBADGE|{PLAY_SOUND:sound_effects/general/sfx_denied.mp3|MOVE:PLAYER:0,1|NO_ADVANCE}{PLAY_SOUND:sound_effects/general/sfx_get_item_1.mp3|DISABLE_FORCE|MENU:ALERT:Oh! That is a CASCADEBADGE!|MENU:ALERT:Go right ahead!}
 MENU:ALERT:Oh! That is a CASCADEBADGE!|MENU:ALERT:Go right ahead!
 END
 route23-checkpoint-guard2 guard3 13 119 DOWN
@@ -22,7 +24,7 @@ FORCE_INTERACTION
 1 0
 END
 INTERACTIONS
-MENU:ALERT:You can only go through here if you have a THUNDERBADGE.|GET:THUNDERBADGE|{MOVE:PLAYER:0,1|NO_ADVANCE}{DISABLE_FORCE|MENU:ALERT:Oh! That is a THUNDERBADGE!|MENU:ALERT:Go right ahead!}
+MENU:ALERT:You can only go through here if you have a THUNDERBADGE.|GET:THUNDERBADGE|{PLAY_SOUND:sound_effects/general/sfx_denied.mp3|MOVE:PLAYER:0,1|NO_ADVANCE}{PLAY_SOUND:sound_effects/general/sfx_get_item_1.mp3|DISABLE_FORCE|MENU:ALERT:Oh! That is a THUNDERBADGE!|MENU:ALERT:Go right ahead!}
 MENU:ALERT:Oh! That is a THUNDERBADGE!|MENU:ALERT:Go right ahead!
 END
 route23-checkpoint-guard3 guard3 17 105 DOWN
@@ -34,7 +36,7 @@ FORCE_INTERACTION
 3 0
 END
 INTERACTIONS
-MENU:ALERT:You can only go through here if you have a RAINBOWBADGE.|GET:RAINBOWBADGE|{MOVE:PLAYER:0,1|NO_ADVANCE}{DISABLE_FORCE|MENU:ALERT:Oh! That is a RAINBOWBADGE!|MENU:ALERT:Go right ahead!}
+MENU:ALERT:You can only go through here if you have a RAINBOWBADGE.|GET:RAINBOWBADGE|{PLAY_SOUND:sound_effects/general/sfx_denied.mp3|MOVE:PLAYER:0,1|NO_ADVANCE}{PLAY_SOUND:sound_effects/general/sfx_get_item_1.mp3|DISABLE_FORCE|MENU:ALERT:Oh! That is a RAINBOWBADGE!|MENU:ALERT:Go right ahead!}
 MENU:ALERT:Oh! That is a RAINBOWBADGE!|MENU:ALERT:Go right ahead!
 END
 route23-checkpoint-guard4 manswim 16 96 DOWN
@@ -46,7 +48,7 @@ FORCE_INTERACTION
 2 0
 END
 INTERACTIONS
-MENU:ALERT:You can only go through here if you have a SOULBADGE.|GET:SOULBADGE|{MOVE:PLAYER:0,1|NO_ADVANCE}{DISABLE_FORCE|MENU:ALERT:Oh! That is a SOULBADGE!|MENU:ALERT:Go right ahead!}
+MENU:ALERT:You can only go through here if you have a SOULBADGE.|GET:SOULBADGE|{PLAY_SOUND:sound_effects/general/sfx_denied.mp3|MOVE:PLAYER:0,1|NO_ADVANCE}{PLAY_SOUND:sound_effects/general/sfx_get_item_1.mp3|DISABLE_FORCE|MENU:ALERT:Oh! That is a SOULBADGE!|MENU:ALERT:Go right ahead!}
 MENU:ALERT:Oh! That is a SOULBADGE!|MENU:ALERT:Go right ahead!
 END
 route23-checkpoint-guard5 manswim 13 85 DOWN
@@ -62,7 +64,7 @@ FORCE_INTERACTION
 5 0
 END
 INTERACTIONS
-MENU:ALERT:You can only go through here if you have a MARSHBADGE.|GET:MARSHBADGE|{MOVE:PLAYER:0,1|NO_ADVANCE}{DISABLE_FORCE|MENU:ALERT:Oh! That is a MARSHBADGE!|MENU:ALERT:Go right ahead!}
+MENU:ALERT:You can only go through here if you have a MARSHBADGE.|GET:MARSHBADGE|{PLAY_SOUND:sound_effects/general/sfx_denied.mp3|MOVE:PLAYER:0,1|NO_ADVANCE}{PLAY_SOUND:sound_effects/general/sfx_get_item_1.mp3|DISABLE_FORCE|MENU:ALERT:Oh! That is a MARSHBADGE!|MENU:ALERT:Go right ahead!}
 MENU:ALERT:Oh! That is a MARSHBADGE!|MENU:ALERT:Go right ahead!
 END
 route23-checkpoint-guard6 guard3 15 56 DOWN
@@ -71,7 +73,7 @@ FORCE_INTERACTION
 3 0
 END
 INTERACTIONS
-MENU:ALERT:You can only go through here if you have a VOLCANOBADGE.|GET:VOLCANOBADGE|{MOVE:PLAYER:0,1|NO_ADVANCE}{DISABLE_FORCE|MENU:ALERT:Oh! That is a VOLCANOBADGE!|MENU:ALERT:Go right ahead!}
+MENU:ALERT:You can only go through here if you have a VOLCANOBADGE.|GET:VOLCANOBADGE|{PLAY_SOUND:sound_effects/general/sfx_denied.mp3|MOVE:PLAYER:0,1|NO_ADVANCE}{PLAY_SOUND:sound_effects/general/sfx_get_item_1.mp3|DISABLE_FORCE|MENU:ALERT:Oh! That is a VOLCANOBADGE!|MENU:ALERT:Go right ahead!}
 MENU:ALERT:Oh! That is a VOLCANOBADGE!|MENU:ALERT:Go right ahead!
 END
 route23-checkpoint-guard7 guard3 9 35 DOWN
@@ -85,7 +87,7 @@ FORCE_INTERACTION
 3 0
 END
 INTERACTIONS
-MENU:ALERT:You can only go through here if you have a EARTHBADGE.|GET:EARTHBADGE|{MOVE:PLAYER:0,1|NO_ADVANCE}{DISABLE_FORCE|MENU:ALERT:Oh! That is a EARTHBADGE!|MENU:ALERT:Go right ahead!}
+MENU:ALERT:You can only go through here if you have a EARTHBADGE.|GET:EARTHBADGE|{PLAY_SOUND:sound_effects/general/sfx_denied.mp3|MOVE:PLAYER:0,1|NO_ADVANCE}{PLAY_SOUND:sound_effects/general/sfx_get_item_1.mp3|DISABLE_FORCE|MENU:ALERT:Oh! That is a EARTHBADGE!|MENU:ALERT:Go right ahead!}
 MENU:ALERT:Oh! That is a EARTHBADGE!|MENU:ALERT:Go right ahead!
 END
 route23-odd-squad guy2 23 26 DOWN
@@ -95,8 +97,20 @@ FORCE_INTERACTION
 0 3
 END
 INTERACTIONS
-!:route23-odd-squad|MOVE_TO_PLAYER|MENU:ALERT:There's no escape from the Odd Squad!|BATTLE:route23-odd-squad|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:route23-odd-squad|MOVE_TO_PLAYER|MENU:ALERT:There's no escape from the Odd Squad!|BATTLE:route23-odd-squad|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Maybe the Odd Squad needs to evolve...
+END
+route23-item-hidden1 blank 13 90 INCORPOREAL
+INTERACTIONS
+GIVE_ITEM:MAX ETHER|DEACTIVATE:route23-item-hidden1
+END
+route23-item-hidden2 blank 24 70 INCORPOREAL
+INTERACTIONS
+GIVE_ITEM:ULTRA BALL|DEACTIVATE:route23-item-hidden2
+END
+route23-item-hidden3 blank 14 44 INCORPOREAL
+INTERACTIONS
+GIVE_ITEM:FULL RESTORE|DEACTIVATE:route23-item-hidden3
 END
 TRAINERS
 route23-odd-squad 50 1.0 0.75 POK{e-accent}MANIAC pokemaniac.png {POK{e-accent}MANIAC: You even beat up their mascot!}{} 43-68:64|43-76:64|43-65:64|43-82:64|43-87:64|43-43:64
