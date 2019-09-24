@@ -2,12 +2,12 @@ WARNING: Editing this file can easily corrupt game state.
 NAME:RED
 RIVAL_NAME:BLUE
 MOVEMENT:player
-DIRECTION:0
+DIRECTION:2
 WINS:0
 LOSSES:0
-LOCATION:cinnabar-island|23|8
-LAST_CENTER:cinnabar-center|3|3
-MONEY:143099
+LOCATION:power-plant-outside|9|43
+LAST_CENTER:vermilion-center|3|3
+MONEY:204223
 COINS:270
 REPEL:0
 INTERACTIONS:
@@ -339,9 +339,9 @@ cinnabar-mansion-book2|0
 cinnabar-mansion-book3|0
 cinnabar-mansion-book4|0
 cinnabar-mansion-book5|0
-cinnabar-mansion-doctor1|0
-cinnabar-mansion-doctor2|0
-cinnabar-mansion-doctor3|0
+cinnabar-mansion-doctor1|1
+cinnabar-mansion-doctor2|1
+cinnabar-mansion-doctor3|1
 cinnabar-mansion-door-even1|0
 cinnabar-mansion-door-even10|0
 cinnabar-mansion-door-even2|0
@@ -370,6 +370,9 @@ cinnabar-mansion-door-odd8|0
 cinnabar-mansion-door-odd9|0
 cinnabar-mansion-item1|0
 cinnabar-mansion-item10|0
+cinnabar-mansion-item11|0
+cinnabar-mansion-item12|0
+cinnabar-mansion-item13|0
 cinnabar-mansion-item2|0
 cinnabar-mansion-item3|0
 cinnabar-mansion-item4|0
@@ -378,9 +381,9 @@ cinnabar-mansion-item6|0
 cinnabar-mansion-item7|0
 cinnabar-mansion-item8|0
 cinnabar-mansion-item9|0
-cinnabar-mansion-man1|0
-cinnabar-mansion-man2|0
-cinnabar-mansion-man3|0
+cinnabar-mansion-man1|1
+cinnabar-mansion-man2|1
+cinnabar-mansion-man3|1
 cinnabar-mansion-statue1|0
 cinnabar-mansion-statue2|0
 cinnabar-mansion-statue3|0
@@ -746,7 +749,7 @@ power-plant-outside-bush2|0
 power-plant-outside-bush3|0
 power-plant-outside-bush4|0
 power-plant-outside-girl1|1
-power-plant-outside-guy1|0
+power-plant-outside-guy1|1
 power-plant-outside-hidden1|0
 power-plant-zapdos|0
 rival-house-map-item|0
@@ -951,15 +954,15 @@ route20-swimmer6|1
 route20-swimmer7|1
 route20-swimmer8|1
 route20-swimmer9|1
-route21-fisher1|0
-route21-fisher2|0
-route21-fisher3|0
-route21-fisher4|0
-route21-swimmer1|0
-route21-swimmer2|0
-route21-swimmer3|0
-route21-swimmer4|0
-route21-swimmer5|0
+route21-fisher1|1
+route21-fisher2|1
+route21-fisher3|1
+route21-fisher4|1
+route21-swimmer1|1
+route21-swimmer2|1
+route21-swimmer3|1
+route21-swimmer4|1
+route21-swimmer5|1
 route22-checkpoint-guard|0
 route22-rival-script1|0
 route22-rival-script2|0
@@ -1598,18 +1601,18 @@ viridian-forest-sign3|0
 viridian-forest-sign4|0
 viridian-forest-sign5|0
 viridian-forest-sign6|0
-viridian-gym-board1|0
-viridian-gym-board2|0
-viridian-gym-clerk|0
-viridian-gym-giovanni|0
-viridian-gym-guy|0
-viridian-gym-guy2|0
-viridian-gym-guy3|0
-viridian-gym-punk|0
-viridian-gym-punk2|0
-viridian-gym-tough|0
-viridian-gym-tough2|0
-viridian-gym-tough3|0
+viridian-gym-board1|1
+viridian-gym-board2|1
+viridian-gym-clerk|1
+viridian-gym-giovanni|1
+viridian-gym-guy|1
+viridian-gym-guy2|1
+viridian-gym-guy3|1
+viridian-gym-punk|1
+viridian-gym-punk2|1
+viridian-gym-tough|1
+viridian-gym-tough2|1
+viridian-gym-tough3|1
 viridian-house1-bird|0
 viridian-house1-bookshelf1|0
 viridian-house1-bookshelf2|0
@@ -1978,42 +1981,45 @@ cinnabar-mansion-book5|1
 cinnabar-mansion-doctor1|1
 cinnabar-mansion-doctor2|1
 cinnabar-mansion-doctor3|1
-cinnabar-mansion-door-even1|0
-cinnabar-mansion-door-even10|0
-cinnabar-mansion-door-even2|0
-cinnabar-mansion-door-even3|0
-cinnabar-mansion-door-even4|0
-cinnabar-mansion-door-even5|0
-cinnabar-mansion-door-even6|0
-cinnabar-mansion-door-even7|0
-cinnabar-mansion-door-even8|0
-cinnabar-mansion-door-even9|0
-cinnabar-mansion-door-odd1|1
-cinnabar-mansion-door-odd10|1
-cinnabar-mansion-door-odd11|1
-cinnabar-mansion-door-odd12|1
-cinnabar-mansion-door-odd13|1
-cinnabar-mansion-door-odd14|1
-cinnabar-mansion-door-odd15|1
-cinnabar-mansion-door-odd16|1
-cinnabar-mansion-door-odd2|1
-cinnabar-mansion-door-odd3|1
-cinnabar-mansion-door-odd4|1
-cinnabar-mansion-door-odd5|1
-cinnabar-mansion-door-odd6|1
-cinnabar-mansion-door-odd7|1
-cinnabar-mansion-door-odd8|1
-cinnabar-mansion-door-odd9|1
-cinnabar-mansion-item1|1
-cinnabar-mansion-item10|1
-cinnabar-mansion-item2|1
-cinnabar-mansion-item3|1
-cinnabar-mansion-item4|1
-cinnabar-mansion-item5|1
-cinnabar-mansion-item6|1
-cinnabar-mansion-item7|1
-cinnabar-mansion-item8|1
-cinnabar-mansion-item9|1
+cinnabar-mansion-door-even1|1
+cinnabar-mansion-door-even10|1
+cinnabar-mansion-door-even2|1
+cinnabar-mansion-door-even3|1
+cinnabar-mansion-door-even4|1
+cinnabar-mansion-door-even5|1
+cinnabar-mansion-door-even6|1
+cinnabar-mansion-door-even7|1
+cinnabar-mansion-door-even8|1
+cinnabar-mansion-door-even9|1
+cinnabar-mansion-door-odd1|0
+cinnabar-mansion-door-odd10|0
+cinnabar-mansion-door-odd11|0
+cinnabar-mansion-door-odd12|0
+cinnabar-mansion-door-odd13|0
+cinnabar-mansion-door-odd14|0
+cinnabar-mansion-door-odd15|0
+cinnabar-mansion-door-odd16|0
+cinnabar-mansion-door-odd2|0
+cinnabar-mansion-door-odd3|0
+cinnabar-mansion-door-odd4|0
+cinnabar-mansion-door-odd5|0
+cinnabar-mansion-door-odd6|0
+cinnabar-mansion-door-odd7|0
+cinnabar-mansion-door-odd8|0
+cinnabar-mansion-door-odd9|0
+cinnabar-mansion-item1|0
+cinnabar-mansion-item10|0
+cinnabar-mansion-item11|0
+cinnabar-mansion-item12|0
+cinnabar-mansion-item13|0
+cinnabar-mansion-item2|0
+cinnabar-mansion-item3|0
+cinnabar-mansion-item4|0
+cinnabar-mansion-item5|0
+cinnabar-mansion-item6|0
+cinnabar-mansion-item7|0
+cinnabar-mansion-item8|0
+cinnabar-mansion-item9|0
 cinnabar-mansion-man1|1
 cinnabar-mansion-man2|1
 cinnabar-mansion-man3|1
@@ -2601,8 +2607,8 @@ route22-rival-script1|0
 route22-rival-script2|0
 route22-rival1|0
 route22-rival2|0
-route22-rival2-script1|0
-route22-rival2-script2|0
+route22-rival2-script1|1
+route22-rival2-script2|1
 route22-sign1|1
 route23-checkpoint-guard1|1
 route23-checkpoint-guard2|1
@@ -3237,7 +3243,7 @@ viridian-forest-sign6|1
 viridian-gym-board1|1
 viridian-gym-board2|1
 viridian-gym-clerk|1
-viridian-gym-giovanni|1
+viridian-gym-giovanni|0
 viridian-gym-guy|1
 viridian-gym-guy2|1
 viridian-gym-guy3|1
@@ -3284,24 +3290,23 @@ viridian-station3-doctor|1
 END
 INVENTORY:
 POK{e-accent} BALL|7
-ANTIDOTE|1
 TM34|1
 TM12|1
-RARE CANDY|7
+RARE CANDY|10
 ESCAPE ROPE|4
 TM01|1
 ETHER|4
-MOON STONE|4
+MOON STONE|5
 GREAT BALL|20
-NUGGET|6
+NUGGET|7
 TM45|1
-ELIXER|3
+ELIXER|4
 TM19|1
 S.S. TICKET|1
 OLD ROD|1
 TM44|1
 TM08|1
-MAX ETHER|1
+MAX ETHER|2
 HM01|1
 TM24|1
 HP UP|4
@@ -3316,13 +3321,13 @@ TM10|1
 TM02|1
 LIFT KEY|1
 TM07|1
-IRON|2
+IRON|3
 SILPH SCOPE|1
 X ACCURACY|2
 POK{e-accent}FLUTE|1
 CARD KEY|1
-CALCIUM|2
-CARBOS|2
+CALCIUM|3
+CARBOS|3
 TM26|1
 TM36|1
 FULL HEAL|1
@@ -3335,26 +3340,29 @@ TM31|1
 TM46|1
 HM02|1
 EXP.ALL|1
-FULL RESTORE|2
-MAX ELIXER|2
+FULL RESTORE|4
+MAX ELIXER|3
 BICYCLE|1
 TM39|1
 SUPER ROD|1
 TM20|1
 GOOD ROD|1
-REVIVE|27
+REVIVE|25
 ULTRA BALL|23
 SUPER POTION|3
 TM06|1
 TM37|1
-MAX POTION|2
-MAX REVIVE|1
+MAX POTION|3
+MAX REVIVE|3
 TM40|1
 TM32|1
 HM03|1
 HM04|1
 TM35|1
 TM38|1
+TM14|1
+TM22|1
+TM27|1
 END
 INVENTORY_STORAGE:
 END
@@ -3371,11 +3379,13 @@ SEEN:
 100-81
 101-101
 101-110
+101-112
 101-119
 101-28
 101-57
 101-59
 101-67
+101-80
 101-82
 101-89
 101-92
@@ -3395,6 +3405,7 @@ SEEN:
 105-97
 106-106
 107-107
+108-108
 109-100
 109-109
 109-20
@@ -3413,6 +3424,7 @@ SEEN:
 110-114
 110-122
 110-125
+110-126
 110-135
 110-142
 110-15
@@ -3426,19 +3438,23 @@ SEEN:
 110-58
 110-67
 110-75
+110-78
 110-82
 110-88
 110-95
 111-111
 111-57
 112-112
+112-119
 112-68
+113-73
 114-114
 114-119
 114-38
 115-115
 115-55
 116-116
+116-79
 117-117
 117-119
 117-120
@@ -3446,6 +3462,8 @@ SEEN:
 117-18
 117-35
 117-59
+117-68
+117-78
 118-118
 118-54
 118-58
@@ -3481,12 +3499,19 @@ SEEN:
 121-9
 121-93
 122-122
+122-91
 122-92
 124-124
 125-125
+126-110
 126-126
+126-20
 126-68
+126-78
+126-89
 128-102
+128-128
+128-28
 128-30
 129-129
 129-92
@@ -3496,6 +3521,8 @@ SEEN:
 130-130
 131-131
 132-110
+132-20
+132-37
 133-133
 134-131
 135-28
@@ -3527,7 +3554,9 @@ SEEN:
 19-41
 2-2
 2-25
+20-119
 20-126
+20-132
 20-18
 20-20
 20-22
@@ -3565,6 +3594,7 @@ SEEN:
 24-24
 24-28
 24-42
+24-68
 25-25
 26-26
 27-19
@@ -3575,6 +3605,7 @@ SEEN:
 28-24
 28-28
 28-42
+28-68
 28-85
 29-29
 3-119
@@ -3591,14 +3622,19 @@ SEEN:
 33-33
 33-47
 33-85
+34-34
 35-18
 35-35
 35-41
 35-74
+37-132
 37-18
+37-20
 37-58
+37-78
 37-85
 38-114
+38-119
 38-131
 38-18
 38-38
@@ -3647,6 +3683,7 @@ SEEN:
 44-74
 44-75
 44-93
+45-119
 45-45
 46-27
 46-35
@@ -3676,6 +3713,8 @@ SEEN:
 56-56
 57-125
 57-57
+58-110
+58-132
 58-20
 58-24
 58-28
@@ -3684,9 +3723,12 @@ SEEN:
 58-57
 58-58
 58-67
+58-78
+58-89
 59-15
 59-57
 59-59
+6-28
 6-57
 6-6
 60-60
@@ -3708,6 +3750,7 @@ SEEN:
 64-95
 65-111
 65-65
+65-73
 66-30
 66-66
 66-74
@@ -3738,6 +3781,7 @@ SEEN:
 70-92
 70-95
 71-38
+71-59
 71-71
 72-72
 73-119
@@ -3761,11 +3805,16 @@ SEEN:
 75-92
 75-93
 76-45
+76-68
 76-76
 76-89
 77-77
+78-37
+78-78
+78-89
 79-104
 79-79
+80-119
 80-120
 80-38
 80-44
@@ -3784,7 +3833,11 @@ SEEN:
 82-126
 82-18
 82-38
+82-73
+82-80
 82-82
+82-9
+83-82
 83-83
 83-93
 84-22
@@ -3794,6 +3847,7 @@ SEEN:
 85-85
 87-117
 87-120
+87-68
 87-87
 87-90
 88-110
@@ -3806,6 +3860,7 @@ SEEN:
 89-125
 89-126
 89-38
+89-58
 89-67
 89-75
 89-78
@@ -3816,6 +3871,7 @@ SEEN:
 9-9
 9-93
 90-120
+90-18
 90-73
 90-74
 90-90
@@ -3852,6 +3908,7 @@ SEEN:
 93-95
 94-105
 94-117
+94-28
 94-38
 94-68
 94-94
@@ -3920,8 +3977,9 @@ BILL|1
 BOULDERBADGE|1
 CASCADEBADGE|1
 CHEF_MESSAGE|1
+CINNABAR-SWITCH|1
 DEX|1
-EARTHBADGE|0
+EARTHBADGE|1
 MARSHBADGE|1
 RAINBOWBADGE|1
 RIVALVALUE|2
@@ -3934,12 +3992,12 @@ celadon-hideout-floor|1
 silph-co-floor|1
 END
 TEAM:
-0|NUMBER:76-76|NICKNAME:|HP:0|EXP:146566|LEVEL:56|EV:26958|31443|30447|30060|31679|IV:8|13|3|12|3|MOVES:STRENGTH|EARTHQUAKE|ROCK SLIDE|DIG|PP:15|4|10|10|MAX_PP:15|10|10|10|STATUS:
-1|NUMBER:130-130|NICKNAME:|HP:0|EXP:149920|LEVEL:57|EV:24088|27920|27508|27611|27533|IV:2|15|13|6|6|MOVES:ICE BEAM|BITE|SURF|HYDROPUMP|PP:10|24|11|4|MAX_PP:10|25|15|5|STATUS:PARALYZE
-2|NUMBER:3-3|NICKNAME:|HP:0|EXP:147987|LEVEL:56|EV:35834|39087|39516|36756|39092|IV:8|2|8|7|10|MOVES:CUT|RAZOR LEAF|VINE WHIP|BODY SLAM|PP:30|25|25|14|MAX_PP:30|25|25|15|STATUS:
-3|NUMBER:131-131|NICKNAME:|HP:134|EXP:148853|LEVEL:57|EV:18388|20987|20725|20130|20527|IV:5|9|10|1|10|MOVES:SURF|BODY SLAM|ICE BEAM|CONFUSE RAY|PP:15|15|10|9|MAX_PP:15|15|10|10|STATUS:
-4|NUMBER:121-59|NICKNAME:|HP:65|EXP:149782|LEVEL:57|EV:20772|23701|23400|23027|23169|IV:2|14|14|11|4|MOVES:RECOVER|SURF|PSYCHIC|FLAMETHROWER|PP:20|14|10|15|MAX_PP:20|15|10|15|STATUS:
-5|NUMBER:144-144|NICKNAME:|HP:0|EXP:127320|LEVEL:54|EV:3240|3841|3784|4047|3842|IV:14|13|1|7|14|MOVES:PECK|ICE BEAM|BLIZZARD||PP:35|10|4||MAX_PP:35|10|5||STATUS:
+0|NUMBER:76-76|NICKNAME:|HP:205|EXP:190525|LEVEL:61|EV:33884|39609|38358|37207|39091|IV:8|13|3|12|3|MOVES:STRENGTH|EARTHQUAKE|ROCK SLIDE|DIG|PP:15|8|9|8|MAX_PP:15|10|10|10|STATUS:
+1|NUMBER:130-130|NICKNAME:|HP:218|EXP:193463|LEVEL:62|EV:31139|36304|35537|34935|35105|IV:2|15|13|6|6|MOVES:ICE BEAM|BITE|SURF|HYDROPUMP|PP:10|25|15|5|MAX_PP:10|25|15|5|STATUS:
+2|NUMBER:3-3|NICKNAME:|HP:205|EXP:187187|LEVEL:61|EV:42585|47129|47228|43858|46321|IV:8|2|8|7|10|MOVES:CUT|RAZOR LEAF|VINE WHIP|BODY SLAM|PP:30|24|25|15|MAX_PP:30|25|25|15|STATUS:
+3|NUMBER:131-131|NICKNAME:|HP:263|EXP:192624|LEVEL:62|EV:25439|29371|28754|27454|28099|IV:5|9|10|1|10|MOVES:SURF|BODY SLAM|ICE BEAM|CONFUSE RAY|PP:15|15|10|10|MAX_PP:15|15|10|10|STATUS:
+4|NUMBER:121-59|NICKNAME:|HP:189|EXP:191906|LEVEL:62|EV:27738|31960|31324|30291|30691|IV:2|14|14|11|4|MOVES:RECOVER|SURF|PSYCHIC|FLAMETHROWER|PP:20|15|10|15|MAX_PP:20|15|10|15|STATUS:
+5|NUMBER:144-144|NICKNAME:|HP:209|EXP:177504|LEVEL:60|EV:10291|12225|11813|11371|11414|IV:14|13|1|7|14|MOVES:PECK|ICE BEAM|BLIZZARD|AGILITY|PP:35|10|5|30|MAX_PP:35|10|5|30|STATUS:
 END
 STORAGE:
 0|0|NUMBER:19-13|NICKNAME:|HP:15|EXP:21|LEVEL:3|EV:0|0|0|0|0|IV:5|13|1|1|10|MOVES:POISON STING|TAIL WHIP|||PP:35|30|||MAX_PP:35|30|||STATUS:
@@ -4274,9 +4332,9 @@ END
 cinnabar-center
 0|0|0|4|0
 1|0|3|1|0
-2|0|2|6|0
+2|3|2|6|0
 3|0|10|5|0
-4|0|11|2|0
+4|1|11|2|0
 5|0|13|3|0
 END
 cinnabar-gym
@@ -4313,8 +4371,8 @@ cinnabar-island
 0|0|18|7|0
 1|0|14|9|0
 2|0|14|15|0
-3|2|19|10|0
-4|1|18|10|0
+3|0|19|10|0
+4|0|17|9|0
 END
 cinnabar-lab
 0|2|1|1|0
@@ -4334,57 +4392,60 @@ cinnabar-lab
 END
 cinnabar-mansion
 0|0|14|3|0
-1|0|3|51|0
+1|3|4|51|0
 2|0|28|41|0
-3|0|18|36|0
-4|0|3|56|0
-5|0|6|79|0
-6|0|5|78|0
+3|3|18|36|0
+4|1|3|56|0
+5|1|6|79|0
+6|3|5|78|0
 7|0|1|83|0
 8|0|25|72|0
-9|2|20|78|0
-10|2|17|17|0
+9|2|20|78|1
+10|2|17|17|1
 11|0|18|21|0
-12|0|1|112|0
+12|3|1|112|0
 13|0|16|110|0
 14|0|19|115|0
-15|0|16|113|0
-16|0|27|101|0
-17|0|10|92|0
-18|0|5|94|0
-19|0|5|103|0
-20|0|4|94|0
-21|0|26|27|0
+15|0|15|115|0
+16|3|27|103|1
+17|3|10|92|0
+18|3|5|94|0
+19|1|5|103|0
+20|1|4|94|0
+21|2|26|27|0
 22|0|27|27|0
-23|0|20|17|0
-24|0|21|17|0
+23|2|20|17|0
+24|2|21|17|0
 25|0|16|7|0
-26|0|17|7|0
-27|0|18|42|0
+26|3|17|7|0
+27|1|18|42|0
 28|0|19|42|0
-29|0|15|77|0
-30|0|15|78|0
-31|0|16|106|0
+29|3|15|77|0
+30|2|15|78|0
+31|3|16|106|0
 32|0|17|106|0
 33|0|9|96|0
-34|0|9|97|0
+34|1|9|97|0
 35|0|7|56|0
 36|0|7|57|0
 37|0|13|112|0
-38|0|13|113|0
-39|0|26|107|0
-40|0|27|107|0
-41|0|24|13|0
-42|0|25|13|0
-43|0|9|38|0
+38|3|13|113|0
+39|3|26|107|0
+40|3|27|107|0
+41|2|24|13|0
+42|3|25|13|0
+43|2|9|38|0
 44|0|9|39|0
-45|0|15|71|0
-46|0|15|72|0
+45|2|15|71|0
+46|1|15|72|0
 47|0|2|5|0
 48|0|2|45|0
 49|0|10|72|0
 50|0|18|115|0
 51|0|20|93|0
+52|0|8|16|0
+53|0|1|76|0
+54|3|1|99|0
 END
 cinnabar-mart
 0|0|4|4|0
@@ -4490,7 +4551,7 @@ fuchsia-mart
 6|3|0|5|0
 END
 home
-0|2|5|23|0
+0|0|5|23|0
 1|0|3|5|0
 2|0|0|7|0
 3|0|0|6|0
@@ -4640,7 +4701,7 @@ oak-lab
 END
 pallet-town
 0|0|8|8|0
-1|0|16|14|0
+1|2|15|14|0
 2|0|12|9|0
 3|0|8|5|0
 4|0|16|5|0
@@ -4830,8 +4891,8 @@ power-plant-outside
 3|0|12|22|0
 4|0|12|20|0
 5|0|10|21|0
-6|2|13|46|0
-7|0|8|43|0
+6|2|13|46|1
+7|3|8|43|0
 8|0|12|19|0
 END
 rival-home
@@ -5084,15 +5145,15 @@ route20
 11|1|13|12|1
 END
 route21
-0|2|9|25|0
-1|0|11|26|0
-2|1|15|32|0
-3|3|17|31|0
-4|3|22|57|0
-5|2|19|56|0
-6|0|21|63|0
-7|2|20|71|0
-8|3|10|71|0
+0|2|9|25|1
+1|0|11|26|1
+2|3|15|32|1
+3|2|17|31|1
+4|1|22|57|1
+5|1|19|56|1
+6|1|21|63|1
+7|1|17|71|1
+8|3|12|71|1
 END
 route22
 0|0|9|14|0
@@ -5181,7 +5242,7 @@ route5-checkpoint
 1|3|1|4|0
 END
 route5-tunnel
-0|3|2|3|0
+0|0|2|3|0
 END
 route6
 0|0|24|16|0
@@ -5232,18 +5293,18 @@ route8-tunnel
 END
 route9
 0|0|4|10|0
-1|0|12|12|1
-2|1|14|17|1
+1|2|12|12|1
+2|2|14|17|1
 3|0|9|17|0
 4|0|24|9|0
 5|2|23|9|1
-6|2|22|4|1
+6|0|22|4|1
 7|0|13|9|0
-8|0|45|17|1
-9|2|39|10|1
-10|1|33|9|1
-11|2|40|5|1
-12|1|48|10|1
+8|3|44|17|1
+9|3|39|10|1
+10|3|30|9|1
+11|2|42|5|1
+12|3|47|10|1
 END
 safari-checkpoint
 0|2|6|3|0
@@ -5687,8 +5748,8 @@ END
 vermilion-center
 0|0|0|4|0
 1|0|3|1|0
-2|3|5|4|0
-3|1|10|5|0
+2|0|5|4|0
+3|0|10|5|0
 4|0|11|2|0
 5|0|13|3|0
 END
@@ -5701,7 +5762,7 @@ vermilion-city
 5|0|19|8|0
 6|0|25|9|0
 7|0|34|9|0
-8|3|34|10|0
+8|0|33|10|0
 9|0|32|29|0
 10|1|24|32|1
 11|0|20|20|0
@@ -5825,25 +5886,25 @@ viridian-center
 1|0|3|1|0
 2|1|4|3|0
 3|0|10|5|0
-4|0|11|2|0
+4|2|11|2|0
 5|0|13|3|0
 END
 viridian-city
-0|0|10|20|0
-1|3|32|24|0
+0|3|11|20|0
+1|0|31|24|0
 2|3|17|9|0
 3|0|18|9|0
 4|0|21|29|0
 5|0|17|17|0
 6|0|14|4|0
-7|0|18|7|0
+7|0|18|6|0
 8|0|19|1|0
 9|0|30|8|0
 10|0|32|7|0
 11|0|27|7|0
-12|2|14|4|0
+12|0|14|4|0
 13|0|8|22|0
-14|3|6|23|0
+14|0|6|23|0
 END
 viridian-forest
 0|0|18|46|0
@@ -5867,14 +5928,14 @@ viridian-gym
 0|0|15|15|0
 1|0|18|15|0
 2|0|16|15|0
-3|3|2|16|0
-4|2|3|7|0
-5|0|6|5|0
-6|0|12|7|0
-7|3|13|5|0
-8|1|11|11|0
-9|0|10|7|0
-10|0|10|1|0
+3|3|2|16|1
+4|0|3|7|1
+5|3|6|5|1
+6|0|12|7|1
+7|3|13|5|1
+8|0|11|11|1
+9|0|10|7|1
+10|2|10|1|1
 11|0|2|1|0
 END
 viridian-house1
@@ -5923,7 +5984,7 @@ viridian-station2
 1|0|4|2|0
 END
 viridian-station3
-0|1|6|4|0
-1|3|1|4|0
+0|0|6|4|0
+1|2|1|4|0
 END
 END_LEVELS
