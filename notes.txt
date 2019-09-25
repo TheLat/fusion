@@ -8,6 +8,7 @@ Magmar-Golem that knows ROCK SLIDE, FIRE PUNCH, EXPLOSION, and EARTHQUAKE
 
 TO FIX:
 Bugs in Wrap with paralyze and KOing the target. Trap never goes away.
+Sound bugs, clear all mutes when playing a sound.
 Seaking's faces?
 Can Counter moves that were done by a previous mon.
 Can sell to vending machines.
