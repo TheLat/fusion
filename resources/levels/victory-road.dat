@@ -1,9 +1,12 @@
 NAME
 Victory Road
+DUNGEON
+MUSIC
+music/17-mt-moon-intro.mp3,music/17-mt-moon-loop.mp3
 LEAVESOUND
 sound_effects/general/sfx_go_outside.mp3
 NPCS
-victory-road-stone1 boulder 11 20 PUSHABLE TELEPORTABLE
+victory-road-stone1 boulder 11 20 PUSHABLE TELEPORTABLE NO_FALL
 INTERACTIONS
 MENU:ALERT:This requires STRENGTH to move!|NO_ADVANCE
 ACTIVATE:victory-road-stone2|DEACTIVATE:victory-road-block1|DEACTIVATE:victory-road-stone1
@@ -39,7 +42,7 @@ FORCE_INTERACTION
 3 0
 END
 INTERACTIONS
-!:victory-road-girl1|MOVE_TO_PLAYER|MENU:ALERT:I wonder if you are good enough for me!|BATTLE:victory-road-girl1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:victory-road-girl1|MOVE_TO_PLAYER|MENU:ALERT:I wonder if you are good enough for me!|BATTLE:victory-road-girl1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I never wanted to lose to anybody!
 END
 victory-road-guy1 guy2 9 7 DOWN
@@ -49,7 +52,7 @@ FORCE_INTERACTION
 0 3
 END
 INTERACTIONS
-!:victory-road-guy1|MOVE_TO_PLAYER|MENU:ALERT:I can see you're good! Let me see exactly how good!|BATTLE:victory-road-guy1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:victory-road-guy1|MOVE_TO_PLAYER|MENU:ALERT:I can see you're good! Let me see exactly how good!|BATTLE:victory-road-guy1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I concede, you're better than me!
 END
 victory-road-stone5 boulder 10 38 PUSHABLE
@@ -68,7 +71,7 @@ victory-road-stone6 boulder 6 49 INACTIVE
 INTERACTIONS
 MENU:ALERT:This requires STRENGTH to move!
 END
-victory-road-stone7 boulder 9 47 PUSHABLE TELEPORTABLE
+victory-road-stone7 boulder 9 47 PUSHABLE TELEPORTABLE NO_FALL
 INTERACTIONS
 MENU:ALERT:This requires STRENGTH to move!|NO_ADVANCE
 ACTIVATE:victory-road-stone6|DEACTIVATE:victory-road-block2|DEACTIVATE:victory-road-block3|DEACTIVATE:victory-road-stone7
@@ -80,7 +83,7 @@ FORCE_INTERACTION
 0 -3
 END
 INTERACTIONS
-!:victory-road-tough1|MOVE_TO_PLAYER|MENU:ALERT:VICTORY ROAD is the final test for trainers!|BATTLE:victory-road-tough1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:victory-road-tough1|MOVE_TO_PLAYER|MENU:ALERT:VICTORY ROAD is the final test for trainers!|BATTLE:victory-road-tough1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:If you get stuck, try moving some boulders around!
 END
 victory-road-guy2 guy2 26 46 LEFT
@@ -90,7 +93,7 @@ FORCE_INTERACTION
 -3 0
 END
 INTERACTIONS
-!:victory-road-guy2|MOVE_TO_PLAYER|MENU:ALERT:Ah, so you wish to challenge the ELITE FOUR?|BATTLE:victory-road-guy2|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:victory-road-guy2|MOVE_TO_PLAYER|MENU:ALERT:Ah, so you wish to challenge the ELITE FOUR?|BATTLE:victory-road-guy2|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:{RIVAL_NAME} also came through here!
 END
 victory-road-guy3 guy2 24 41 DOWN
@@ -100,7 +103,7 @@ FORCE_INTERACTION
 0 3
 END
 INTERACTIONS
-!:victory-road-guy3|MOVE_TO_PLAYER|MENU:ALERT:Come on! {NEWLINE} I'll whip you!|BATTLE:victory-road-guy3|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:victory-road-guy3|MOVE_TO_PLAYER|MENU:ALERT:Come on! {NEWLINE} I'll whip you!|BATTLE:victory-road-guy3|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:You earned the right to be on VICTORY ROAD!
 END
 victory-road-item3 orb 23 42
@@ -114,7 +117,7 @@ FORCE_INTERACTION
 -3 0
 END
 INTERACTIONS
-!:victory-road-guy4|MOVE_TO_PLAYER|MENU:ALERT:Is VICTORY ROAD too tough?|BATTLE:victory-road-guy4|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:victory-road-guy4|MOVE_TO_PLAYER|MENU:ALERT:Is VICTORY ROAD too tough?|BATTLE:victory-road-guy4|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Many trainers give up the challenge here.
 END
 victory-road-item4 orb 32 38
@@ -126,7 +129,7 @@ FORCE_INTERACTION
 -1 0
 END
 INTERACTIONS
-!:victory-road-guy5|MOVE_TO_PLAYER|MENU:ALERT:I heard rumors of a child prodigy!|BATTLE:victory-road-guy5|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:victory-road-guy5|MOVE_TO_PLAYER|MENU:ALERT:I heard rumors of a child prodigy!|BATTLE:victory-road-guy5|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:You beat GIOVANNI of TEAM ROCKET?
 END
 victory-road-item5 orb 31 67
@@ -140,14 +143,14 @@ FORCE_INTERACTION
 3 0
 END
 INTERACTIONS
-!:victory-road-girl2|MOVE_TO_PLAYER|MENU:ALERT:Trainers live to seek stronger opponents!|BATTLE:victory-road-girl2|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:victory-road-girl2|MOVE_TO_PLAYER|MENU:ALERT:Trainers live to seek stronger opponents!|BATTLE:victory-road-girl2|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:By fighting tough battles, you get stronger!
 END
 victory-road-block4 block 12 72 NO_OFFSET
 INTERACTIONS
 
 END
-victory-road-stone8 boulder 27 65 PUSHABLE TELEPORTABLE
+victory-road-stone8 boulder 27 65 PUSHABLE TELEPORTABLE NO_FALL
 INTERACTIONS
 MENU:ALERT:This requires STRENGTH to move!|NO_ADVANCE
 ACTIVATE:victory-road-stone9|DEACTIVATE:victory-road-block4|DEACTIVATE:victory-road-stone8
@@ -165,7 +168,7 @@ FORCE_INTERACTION
 0 1
 END
 INTERACTIONS
-!:victory-road-guy6|MOVE_TO_PLAYER|MENU:ALERT:If you can get through here, you can go meet the ELITE FOUR!|BATTLE:victory-road-guy6|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:victory-road-guy6|MOVE_TO_PLAYER|MENU:ALERT:If you can get through here, you can go meet the ELITE FOUR!|BATTLE:victory-road-guy6|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:I can beat you when it comes to knowledge about POK{e-accent}MON!
 END
 victory-road-item7 orb 16 33
@@ -183,7 +186,7 @@ FORCE_INTERACTION
 -3 0
 END
 INTERACTIONS
-!:victory-road-guy7|MOVE_TO_PLAYER|MENU:ALERT:Only the chosen can pass here!|BATTLE:victory-road-guy7|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:victory-road-guy7|MOVE_TO_PLAYER|MENU:ALERT:Only the chosen can pass here!|BATTLE:victory-road-guy7|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:All trainers here are headed to the POK{e-accent}MON LEAGUE!|MENU:ALERT:Be careful!
 END
 victory-road-girl3 girl 12 75 RIGHT
@@ -193,7 +196,7 @@ FORCE_INTERACTION
 3 0
 END
 INTERACTIONS
-!:victory-road-girl3|MOVE_TO_PLAYER|MENU:ALERT:I'll show you just how good you are!|BATTLE:victory-road-girl3|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:victory-road-girl3|MOVE_TO_PLAYER|MENU:ALERT:I'll show you just how good you are!|BATTLE:victory-road-girl3|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:You showed me just how good I was!
 END
 victory-road-stone10 boulder 18 74 PUSHABLE
@@ -209,7 +212,7 @@ INTERACTIONS
 MENU:ALERT:This requires STRENGTH to move!|NO_ADVANCE
 ACTIVATE:victory-road-stone13|DEACTIVATE:victory-road-stone12
 END
-victory-road-stone13 boulder 28 49 PUSHABLE TELEPORTABLE INACTIVE
+victory-road-stone13 boulder 28 49 PUSHABLE TELEPORTABLE INACTIVE NO_FALL
 INTERACTIONS
 MENU:ALERT:This requires STRENGTH to move!|NO_ADVANCE
 ACTIVATE:victory-road-stone14|DEACTIVATE:victory-road-block5|DEACTIVATE:victory-road-stone13
@@ -229,8 +232,16 @@ FORCE_INTERACTION
 0 3
 END
 INTERACTIONS
-!:victory-road-guy8|MOVE_TO_PLAYER|MENU:ALERT:I'm on a lucky streak today!|BATTLE:victory-road-guy8|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:victory-road-guy8|MOVE_TO_PLAYER|MENU:ALERT:I'm on a lucky streak today!|BATTLE:victory-road-guy8|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Luck always runs out at some point...
+END
+victory-road-item8 blank 10 35 INCORPOREAL
+INTERACTIONS
+GIVE_ITEM:ULTRA BALL|DEACTIVATE:victory-road-item8
+END
+victory-road-item9 blank 31 40 INCORPOREAL
+INTERACTIONS
+GIVE_ITEM:FULL RESTORE|DEACTIVATE:victory-road-item9
 END
 TRAINERS
 victory-road-girl1 35 0.75 0.75 COOLTRAINER{FEMALE} cooltrainerf.png {COOLTRAINER{FEMALE}: I lost out!}{} 123-53:68:SLASH,SCREECH,SWORDS DANCE,DOUBLE TEAM|38-53:68:SLASH,FLAMETHROWER,SCREECH,BITE

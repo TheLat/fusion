@@ -5019,6 +5019,12 @@ void engine::init_level(string levelname) {
 				else {
 					levels[levelname].characters[levels[levelname].characters.size() - 1].pushable = false;
 				}
+				if (s.find("NO_FALL") != -1) {
+					levels[levelname].characters[levels[levelname].characters.size() - 1].no_fall = true;
+				}
+				else {
+					levels[levelname].characters[levels[levelname].characters.size() - 1].no_fall = false;
+				}
 				if (s.find("TELEPORTABLE") != -1) {
 					levels[levelname].characters[levels[levelname].characters.size() - 1].teleportable = true;
 				}
@@ -6268,13 +6274,15 @@ void engine::player_input(bool up, bool down, bool left, bool right, bool select
 							for (unsigned j = 0; j < levels[mc.loc.level].teleport.size(); ++j) {
 								if (levels[mc.loc.level].teleport[j].first.allow_npcs) {
 									if (levels[mc.loc.level].characters[i].loc.x == levels[mc.loc.level].teleport[j].first.x && levels[mc.loc.level].characters[i].loc.y == levels[mc.loc.level].teleport[j].first.y) {
-									    se.play_sound(string("sound_effects/general/sfx_faint_fall.mp3"));
-									    b1 = g.ae.create_animf(&(levels[mc.loc.level].characters[i].loc.x), levels[mc.loc.level].characters[i].loc.x, levels[mc.loc.level].characters[i].loc.x + 0.5, 0.25);
-									    b2 = g.ae.create_animf(&(levels[mc.loc.level].characters[i].loc.y), levels[mc.loc.level].characters[i].loc.y, levels[mc.loc.level].characters[i].loc.y, 0.25);
-									    b3 = g.ae.create_animf(&(levels[mc.loc.level].characters[i].width), levels[mc.loc.level].characters[i].width, 0.0, 0.25);
-									    b4 = g.ae.create_animf(&(levels[mc.loc.level].characters[i].height), levels[mc.loc.level].characters[i].height, 0.0, 0.25);
-                                        while (!g.ae.is_donef(b1) || !g.ae.is_donef(b2) || !g.ae.is_donef(b3) || !g.ae.is_donef(b4)) {
-                                            update_level();
+									    if (!levels[mc.loc.level].characters[i].no_fall) {
+                                            se.play_sound(string("sound_effects/general/sfx_faint_fall.mp3"));
+                                            b1 = g.ae.create_animf(&(levels[mc.loc.level].characters[i].loc.x), levels[mc.loc.level].characters[i].loc.x, levels[mc.loc.level].characters[i].loc.x + 0.5, 0.25);
+                                            b2 = g.ae.create_animf(&(levels[mc.loc.level].characters[i].loc.y), levels[mc.loc.level].characters[i].loc.y, levels[mc.loc.level].characters[i].loc.y, 0.25);
+                                            b3 = g.ae.create_animf(&(levels[mc.loc.level].characters[i].width), levels[mc.loc.level].characters[i].width, 0.0, 0.25);
+                                            b4 = g.ae.create_animf(&(levels[mc.loc.level].characters[i].height), levels[mc.loc.level].characters[i].height, 0.0, 0.25);
+                                            while (!g.ae.is_donef(b1) || !g.ae.is_donef(b2) || !g.ae.is_donef(b3) || !g.ae.is_donef(b4)) {
+                                                update_level();
+                                            }
                                         }
 										mc.interaction[levels[mc.loc.level].characters[i].name] = levels[mc.loc.level].characters[i].interactions.size() - 1;
 										do_interaction(levels[mc.loc.level].characters[i]);
