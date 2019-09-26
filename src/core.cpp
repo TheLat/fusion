@@ -4046,7 +4046,7 @@ bool engine::battle(trainer& t) { // trainer battle
 		}
 	}
 	if (t.finalboss)
-	    se.play_music(string("music/44-into-the-palace-intro.mp3,music/44-into-the-palace-loop.mp3"));
+	    se.play_music(string("music/29-victory-gym-intro.mp3,music/29-victory-gym-loop.mp3"));
 	else if (t.bossfight)
 	    se.play_music(string("music/29-victory-gym-intro.mp3,music/29-victory-gym-loop.mp3"));
 	else
