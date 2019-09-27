@@ -6773,8 +6773,69 @@ void engine::do_interaction(character& npc) {
 			choices.clear();
 			choices.push_back(e.mc.values[s2]);
 		}
+		else if (s.find("CREDITS:") == 0) {
+			s.erase(0, string("CREDITS:").length());
+			s2 = s;
+			if (s.find("|") != -1) {
+				s.erase(0, s.find("|"));
+				s2.erase(s2.find("|"), s2.length());
+			}
+			else {
+				s = "";
+			}
+			se.play_music(string("music/45-ending.mp3"));
+		    unsigned clear_point = g.draw_list.size();
+		    g.push_quad_load(-1.0, -1.0, 2.0, 2.0, safepath + string("images/credits01.png"));
+		    unsigned anim1, anim2;
+		    unsigned old_quad, new_quad;
+		    double deltat = -0.5 + (95.0/37.0);
+		    double nothing = 0.0;
+		    old_quad = g.push_quad_load(1.0, -1.0, 2.0, 2.0, safepath + string("images/credits02.png"));
+		    anim1 = g.ae.create_animf(&(g.draw_list[old_quad].x), 1.0, -1.0, 0.5);
+		    while (!g.ae.is_donef(anim1)) {}
+		    anim1 = g.ae.create_animf(&nothing, 0.0, 1.0, deltat);
+		    while (!g.ae.is_donef(anim1)) {}
+		    for (int i = 3; i < 53; ++i) {
+		        if (i < 10) {
+		            new_quad = g.push_quad_load(1.0, -1.0, 2.0, 2.0, safepath + string("images/credits0") + to_string(i) + string(".png"));
+		        }
+		        else {
+		            new_quad = g.push_quad_load(1.0, -1.0, 2.0, 2.0, safepath + string("images/credits") + to_string(i) + string(".png"));
+		        }
+		        anim1 = g.ae.create_animf(&(g.draw_list[old_quad].x), -1.0, -3.0, 0.5);
+		        anim2 = g.ae.create_animf(&(g.draw_list[new_quad].x), 1.0, -1.0, 0.5);
+		        while (!g.ae.is_donef(anim1) || !g.ae.is_donef(anim2)) {}
+		        anim1 = g.ae.create_animf(&nothing, 0.0, 1.0, deltat);
+		        old_quad = new_quad;
+		        switch (i) {
+		            default:
+		                break;
+		            case 3:
+		            case 5:
+		            case 8:
+		            case 10:
+		            case 13:
+		            case 15:
+		            case 18:
+		            case 21:
+		            case 23:
+		            case 26:
+		            case 29:
+		            case 33:
+		            case 37:
+		            case 49:
+		            case 51:
+		                continue;
+		        }
+		        while (!g.ae.is_donef(anim1)) {}
+		    }
+		    anim1 = g.ae.create_animf(&nothing, 0.0, 1.0, 5.0);
+		    while (!g.ae.is_donef(anim1)) {}
+		    g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
+			//TODO: Save game
+		}
 		else if (s.find("CUT:") == 0) {
-			s.erase(0, string("PLAY_SOUND:").length());
+			s.erase(0, string("CUT:").length());
 			s2 = s;
 			if (s.find("|") != -1) {
 				s.erase(0, s.find("|"));
