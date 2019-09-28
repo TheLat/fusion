@@ -6773,6 +6773,73 @@ void engine::do_interaction(character& npc) {
 			choices.clear();
 			choices.push_back(e.mc.values[s2]);
 		}
+		else if (s.find("HALLOFFAME:") == 0) {
+			s.erase(0, string("HALLOFFAME:").length());
+			s2 = s;
+			if (s.find("|") != -1) {
+				s.erase(0, s.find("|"));
+				s2.erase(s2.find("|"), s2.length());
+			}
+			else {
+				s = "";
+			}
+		    unsigned clear_point = g.draw_list.size();
+		    unsigned anim1, new_quad;
+		    double nothing = 0.0;
+		    anim1 = g.ae.create_animf(&g.r_effects.width, 0.0, 1.0, 0.5);
+		    while (!g.ae.is_donef(anim1)) {}
+		    g.push_quad_load(-1.0, -1.0, 2.0, 2.0, safepath + string("images/offwhite.png"));
+		    g.r_effects.width = 0.0;
+		    for (int i = 0; i < 6; ++i) {
+		        if (!mc.team[i].defined)
+		            continue;
+		        g.push_quad_load(-1.0, -1.0, 2.0, 2.0, safepath + string("images/offwhite.png"));
+		        new_quad = g.push_quad_load(1.0, -1.0, 0.9, 0.9, safepath + string("images/") + mc.team[i].number + string("-back.png"));
+                anim1 = g.ae.create_animf(&(g.draw_list[new_quad].x), 1.0, -1.9, 1.0);
+                while (!g.ae.is_donef(anim1)) {}
+                new_quad = g.push_quad_load(-1.9, -0.3, 0.9, 0.9, safepath + string("images/") + mc.team[i].number + string(".png"));
+                anim1 = g.ae.create_animf(&(g.draw_list[new_quad].x), -1.9, 0.1, 1.0);
+                while (!g.ae.is_donef(anim1)) {}
+                g.push_box(-1.0, -0.4, 1.1, 1.2);
+                g.push_text(-0.9, 0.4, 0.9, 0.2, 0.1, string("{SINGLE}") + get_nickname(mc.team[i]));
+                g.push_text(-0.85, 0.3, 0.7, 0.1, 0.1, string("LEVEL/"));
+                g.push_text(-0.85, 0.2, 0.7, 0.1, 0.1, get_special_string(string("RIGHT_JUSTIFY:7:") + to_string(mc.team[i].level)));
+                g.push_text(-0.85, 0.1, 0.7, 0.1, 0.1, string("TYPE1/"));
+                g.push_text(-0.8, 0.0, 0.8, 0.1, 0.1, all_mon[mc.team[i].number].type_1);
+                if (all_mon[mc.team[i].number].type_2 != "") {
+                    g.push_text(-0.85, -0.1, 0.7, 0.1, 0.1, string("TYPE2/"));
+                    g.push_text(-0.8, -0.2, 0.8, 0.1, 0.1, all_mon[mc.team[i].number].type_2);
+                }
+                se.play_cry(mc.team[i].number, true);
+                g.push_box(-0.8, -1.0, 1.6, 0.5);
+                g.push_text(-0.6, -0.9, 1.4, 0.1, 0.1, string("HALL OF FAME"));
+                anim1 = g.ae.create_animf(&nothing, 0.0, 1.0, 4.0);
+                while (!g.ae.is_donef(anim1)) {}
+		    }
+		    g.push_quad_load(-1.0, -1.0, 2.0, 2.0, safepath + string("images/offwhite.png"));
+		    new_quad = g.push_quad_load(1.0, -1.0, 0.9, 0.9, safepath + string("images/player-back.png"));
+            anim1 = g.ae.create_animf(&(g.draw_list[new_quad].x), 1.0, -1.9, 1.0);
+            while (!g.ae.is_donef(anim1)) {}
+            new_quad = g.push_quad_load(-1.9, -0.3, 0.9, 0.9, safepath + string("images/player1.png"));
+            anim1 = g.ae.create_animf(&(g.draw_list[new_quad].x), -1.9, 0.1, 1.0);
+            while (!g.ae.is_donef(anim1)) {}
+            g.push_box(-1.0, -1.0, 2.0, 0.6);
+            g.push_box(-1.0, -0.4, 1.1, 0.9);
+            g.push_box(-0.7, 0.5, 1.4, 0.5);
+            g.push_text(-0.5, 0.6, 1.0, 0.2, 0.1, string("{SINGLE}") + mc.name);
+            g.push_text(-0.9, 0.1, 0.9, 0.1, 0.1, string("PLAY TIME"));
+            g.push_text(-0.9, -0.01, 0.9, 0.1, 0.1, get_special_string(("RIGHT_JUSTIFY:9:") + get_special_string(string("{PLAYER_TIME}"))));
+            g.push_text(-0.9, -0.2, 0.9, 0.1, 0.1, string("MONEY"));
+            g.push_text(-0.9, -0.31, 0.9, 0.1, 0.1, get_special_string(("RIGHT_JUSTIFY:9:") + get_special_string(string("{MONEY}"))));
+            g.push_text(-0.1, -0.7, 1.0, 0.1, 0.1, get_special_string(("RIGHT_JUSTIFY:10:Seen:") + get_special_string(string("{SEEN}"))));
+            g.push_text(-0.3, -0.9, 1.2, 0.1, 0.1, get_special_string(("RIGHT_JUSTIFY:12:Caught:") + get_special_string(string("{CAUGHT}"))));
+            g.push_text(-0.9, -0.7, 0.9, 0.1, 0.1, string("POK{e-accent}DEX"));
+            anim1 = g.ae.create_animf(&nothing, 0.0, 1.0, 4.0);
+            while (!g.ae.is_donef(anim1)) {}
+		    anim1 = g.ae.create_animf(&g.r_effects.width, 0.0, 1.0, 0.5);
+		    while (!g.ae.is_donef(anim1)) {}
+		    g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
+		}
 		else if (s.find("CREDITS:") == 0) {
 			s.erase(0, string("CREDITS:").length());
 			s2 = s;
@@ -6790,6 +6857,8 @@ void engine::do_interaction(character& npc) {
 		    unsigned old_quad, new_quad;
 		    double deltat = -0.5 + (95.0/37.0);
 		    double nothing = 0.0;
+		    anim1 = g.ae.create_animf(&g.r_effects.width, 1.0, 0.0, 0.5);
+		    while (!g.ae.is_donef(anim1)) {}
 		    old_quad = g.push_quad_load(1.0, -1.0, 2.0, 2.0, safepath + string("images/credits02.png"));
 		    anim1 = g.ae.create_animf(&(g.draw_list[old_quad].x), 1.0, -1.0, 0.5);
 		    while (!g.ae.is_donef(anim1)) {}
