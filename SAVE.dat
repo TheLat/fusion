@@ -2,12 +2,12 @@ WARNING: Editing this file can easily corrupt game state.
 NAME:RED
 RIVAL_NAME:BLUE
 MOVEMENT:player
-DIRECTION:2
+DIRECTION:1
 WINS:0
 LOSSES:0
-LOCATION:power-plant-outside|9|43
-LAST_CENTER:vermilion-center|3|3
-MONEY:204223
+LOCATION:pallet-town|14|9
+LAST_CENTER:home|5|22
+MONEY:134439
 COINS:270
 REPEL:0
 INTERACTIONS:
@@ -701,8 +701,8 @@ pewter-museum-old1|0
 pewter-museum-tough1|0
 pokedex1|0
 pokedex2|0
-pokemon-league-agatha|0
-pokemon-league-bruno|0
+pokemon-league-agatha|1
+pokemon-league-bruno|1
 pokemon-league-door1|0
 pokemon-league-door10|0
 pokemon-league-door11|0
@@ -715,8 +715,8 @@ pokemon-league-door6|0
 pokemon-league-door7|0
 pokemon-league-door8|0
 pokemon-league-door9|0
-pokemon-league-lance|0
-pokemon-league-lorelei|0
+pokemon-league-lance|1
+pokemon-league-lorelei|1
 pokemon-league-no-leave|0
 pokemon-league-oak|0
 pokemon-league-oak2|0
@@ -731,6 +731,8 @@ power-plant-center-fat|0
 power-plant-center-guy|0
 power-plant-center-joy|0
 power-plant-center-pc|0
+power-plant-hidden1|0
+power-plant-hidden2|0
 power-plant-orb1|0
 power-plant-orb10|0
 power-plant-orb11|0
@@ -963,7 +965,7 @@ route21-swimmer2|1
 route21-swimmer3|1
 route21-swimmer4|1
 route21-swimmer5|1
-route22-checkpoint-guard|0
+route22-checkpoint-guard|1
 route22-rival-script1|0
 route22-rival-script2|0
 route22-rival1|0
@@ -971,14 +973,17 @@ route22-rival2|0
 route22-rival2-script1|0
 route22-rival2-script2|0
 route22-sign1|0
-route23-checkpoint-guard1|0
-route23-checkpoint-guard2|0
-route23-checkpoint-guard3|0
-route23-checkpoint-guard4|0
-route23-checkpoint-guard5|0
-route23-checkpoint-guard6|0
-route23-checkpoint-guard7|0
-route23-odd-squad|0
+route23-checkpoint-guard1|1
+route23-checkpoint-guard2|1
+route23-checkpoint-guard3|1
+route23-checkpoint-guard4|1
+route23-checkpoint-guard5|1
+route23-checkpoint-guard6|1
+route23-checkpoint-guard7|1
+route23-item-hidden1|0
+route23-item-hidden2|0
+route23-item-hidden3|0
+route23-odd-squad|1
 route23-sign1|0
 route24-boy1|1
 route24-boy2|1
@@ -1456,6 +1461,7 @@ vermilion-center-joy|0
 vermilion-center-pc|0
 vermilion-center-safari|0
 vermilion-city-bush1|0
+vermilion-city-hidden|0
 vermilion-city-man1|0
 vermilion-city-man2|0
 vermilion-city-mon1|0
@@ -1531,16 +1537,16 @@ victory-road-block2|0
 victory-road-block3|0
 victory-road-block4|0
 victory-road-block5|0
-victory-road-girl1|0
-victory-road-girl2|0
-victory-road-girl3|0
-victory-road-guy1|0
-victory-road-guy2|0
-victory-road-guy3|0
-victory-road-guy4|0
-victory-road-guy5|0
-victory-road-guy6|0
-victory-road-guy7|0
+victory-road-girl1|1
+victory-road-girl2|1
+victory-road-girl3|1
+victory-road-guy1|1
+victory-road-guy2|1
+victory-road-guy3|1
+victory-road-guy4|1
+victory-road-guy5|1
+victory-road-guy6|1
+victory-road-guy7|1
 victory-road-guy8|0
 victory-road-item1|0
 victory-road-item2|0
@@ -1549,22 +1555,24 @@ victory-road-item4|0
 victory-road-item5|0
 victory-road-item6|0
 victory-road-item7|0
+victory-road-item8|0
+victory-road-item9|0
 victory-road-moltres|0
-victory-road-stone1|0
+victory-road-stone1|1
 victory-road-stone10|0
 victory-road-stone11|0
-victory-road-stone12|0
-victory-road-stone13|0
+victory-road-stone12|1
+victory-road-stone13|1
 victory-road-stone14|0
 victory-road-stone2|0
 victory-road-stone3|0
 victory-road-stone4|0
 victory-road-stone5|0
 victory-road-stone6|0
-victory-road-stone7|0
-victory-road-stone8|0
+victory-road-stone7|1
+victory-road-stone8|1
 victory-road-stone9|0
-victory-road-tough1|0
+victory-road-tough1|1
 viridian-center-cableclub|0
 viridian-center-couch|0
 viridian-center-guy|0
@@ -1574,7 +1582,7 @@ viridian-city-boy|0
 viridian-city-boy2|0
 viridian-city-bush1|0
 viridian-city-bush2|0
-viridian-city-fat|0
+viridian-city-fat|1
 viridian-city-girl|1
 viridian-city-grandpa|0
 viridian-city-grandpa2|0
@@ -1877,7 +1885,7 @@ cerulean-center-joy-desk|1
 cerulean-center-man|1
 cerulean-center-pc|1
 cerulean-city-bush1|0
-cerulean-city-cave-guard|1
+cerulean-city-cave-guard|0
 cerulean-city-girl1|1
 cerulean-city-girl2|1
 cerulean-city-guard|0
@@ -2201,21 +2209,21 @@ lavender-town-sign1|1
 lavender-town-sign2|1
 lavender-town-sign3|1
 lavender-town-sign4|1
-lavender-town-wall1|1
-lavender-town-wall10|1
-lavender-town-wall11|1
-lavender-town-wall12|1
-lavender-town-wall13|1
-lavender-town-wall14|1
-lavender-town-wall15|1
-lavender-town-wall2|1
-lavender-town-wall3|1
-lavender-town-wall4|1
-lavender-town-wall5|1
-lavender-town-wall6|1
-lavender-town-wall7|1
-lavender-town-wall8|1
-lavender-town-wall9|1
+lavender-town-wall1|0
+lavender-town-wall10|0
+lavender-town-wall11|0
+lavender-town-wall12|0
+lavender-town-wall13|0
+lavender-town-wall14|0
+lavender-town-wall15|0
+lavender-town-wall2|0
+lavender-town-wall3|0
+lavender-town-wall4|0
+lavender-town-wall5|0
+lavender-town-wall6|0
+lavender-town-wall7|0
+lavender-town-wall8|0
+lavender-town-wall9|0
 mom|1
 mt-moon-boy1|1
 mt-moon-boy2|1
@@ -2342,18 +2350,18 @@ pokedex1|0
 pokedex2|0
 pokemon-league-agatha|1
 pokemon-league-bruno|1
-pokemon-league-door1|1
-pokemon-league-door10|1
-pokemon-league-door11|1
-pokemon-league-door12|1
-pokemon-league-door2|1
-pokemon-league-door3|1
-pokemon-league-door4|1
-pokemon-league-door5|1
-pokemon-league-door6|1
-pokemon-league-door7|0
-pokemon-league-door8|0
-pokemon-league-door9|1
+pokemon-league-door1|0
+pokemon-league-door10|0
+pokemon-league-door11|0
+pokemon-league-door12|0
+pokemon-league-door2|0
+pokemon-league-door3|0
+pokemon-league-door4|0
+pokemon-league-door5|0
+pokemon-league-door6|0
+pokemon-league-door7|1
+pokemon-league-door8|1
+pokemon-league-door9|0
 pokemon-league-lance|1
 pokemon-league-lorelei|1
 pokemon-league-no-leave|1
@@ -2361,7 +2369,7 @@ pokemon-league-oak|0
 pokemon-league-oak2|1
 pokemon-league-rival|1
 pokemon-league-script1|1
-pokemon-league-script2|1
+pokemon-league-script2|0
 pokemon-league-script3|1
 pokemon-league-script4|1
 power-plant-center-cableclub|1
@@ -2370,19 +2378,21 @@ power-plant-center-fat|1
 power-plant-center-guy|1
 power-plant-center-joy|1
 power-plant-center-pc|1
-power-plant-orb1|1
-power-plant-orb10|1
-power-plant-orb11|1
-power-plant-orb12|1
-power-plant-orb13|1
-power-plant-orb2|1
-power-plant-orb3|1
-power-plant-orb4|1
-power-plant-orb5|1
-power-plant-orb6|1
-power-plant-orb7|1
-power-plant-orb8|1
-power-plant-orb9|1
+power-plant-hidden1|0
+power-plant-hidden2|0
+power-plant-orb1|0
+power-plant-orb10|0
+power-plant-orb11|0
+power-plant-orb12|0
+power-plant-orb13|0
+power-plant-orb2|0
+power-plant-orb3|0
+power-plant-orb4|0
+power-plant-orb5|0
+power-plant-orb6|0
+power-plant-orb7|0
+power-plant-orb8|0
+power-plant-orb9|0
 power-plant-outside-bush1|0
 power-plant-outside-bush2|0
 power-plant-outside-bush3|0
@@ -2607,8 +2617,8 @@ route22-rival-script1|0
 route22-rival-script2|0
 route22-rival1|0
 route22-rival2|0
-route22-rival2-script1|1
-route22-rival2-script2|1
+route22-rival2-script1|0
+route22-rival2-script2|0
 route22-sign1|1
 route23-checkpoint-guard1|1
 route23-checkpoint-guard2|1
@@ -2617,6 +2627,9 @@ route23-checkpoint-guard4|1
 route23-checkpoint-guard5|1
 route23-checkpoint-guard6|1
 route23-checkpoint-guard7|1
+route23-item-hidden1|0
+route23-item-hidden2|0
+route23-item-hidden3|0
 route23-odd-squad|1
 route23-sign1|1
 route24-boy1|1
@@ -3095,6 +3108,7 @@ vermilion-center-joy|1
 vermilion-center-pc|1
 vermilion-center-safari|1
 vermilion-city-bush1|0
+vermilion-city-hidden|0
 vermilion-city-man1|1
 vermilion-city-man2|1
 vermilion-city-mon1|1
@@ -3165,11 +3179,11 @@ vermilion-mart-shelf3|1
 vermilion-mart-shelf4|1
 vermillion-city-sign1|1
 vermillion-harbor-placeholder|1
-victory-road-block1|1
-victory-road-block2|1
-victory-road-block3|1
-victory-road-block4|1
-victory-road-block5|1
+victory-road-block1|0
+victory-road-block2|0
+victory-road-block3|0
+victory-road-block4|0
+victory-road-block5|0
 victory-road-girl1|1
 victory-road-girl2|1
 victory-road-girl3|1
@@ -3181,28 +3195,30 @@ victory-road-guy5|1
 victory-road-guy6|1
 victory-road-guy7|1
 victory-road-guy8|1
-victory-road-item1|1
-victory-road-item2|1
-victory-road-item3|1
-victory-road-item4|1
-victory-road-item5|1
-victory-road-item6|1
-victory-road-item7|1
+victory-road-item1|0
+victory-road-item2|0
+victory-road-item3|0
+victory-road-item4|0
+victory-road-item5|0
+victory-road-item6|0
+victory-road-item7|0
+victory-road-item8|0
+victory-road-item9|0
 victory-road-moltres|1
-victory-road-stone1|1
+victory-road-stone1|0
 victory-road-stone10|1
 victory-road-stone11|1
-victory-road-stone12|1
+victory-road-stone12|0
 victory-road-stone13|0
-victory-road-stone14|0
-victory-road-stone2|0
+victory-road-stone14|1
+victory-road-stone2|1
 victory-road-stone3|1
 victory-road-stone4|1
 victory-road-stone5|1
-victory-road-stone6|0
-victory-road-stone7|1
-victory-road-stone8|1
-victory-road-stone9|0
+victory-road-stone6|1
+victory-road-stone7|0
+victory-road-stone8|0
+victory-road-stone9|1
 victory-road-tough1|1
 viridian-center-cableclub|1
 viridian-center-couch|1
@@ -3211,8 +3227,8 @@ viridian-center-joy|1
 viridian-center-pc|1
 viridian-city-boy|1
 viridian-city-boy2|1
-viridian-city-bush1|1
-viridian-city-bush2|1
+viridian-city-bush1|0
+viridian-city-bush2|0
 viridian-city-fat|1
 viridian-city-girl|1
 viridian-city-grandpa|0
@@ -3289,30 +3305,38 @@ viridian-station3-boy|1
 viridian-station3-doctor|1
 END
 INVENTORY:
-POK{e-accent} BALL|7
+ESCAPE ROPE|2
+NUGGET|7
+POK{e-accent}FLUTE|1
+POK{e-accent} DOLL|1
+EXP.ALL|1
+BICYCLE|1
+REVIVE|46
+ULTRA BALL|25
+END
+INVENTORY_STORAGE:
 TM34|1
+POK{e-accent} BALL|7
 TM12|1
-RARE CANDY|10
-ESCAPE ROPE|4
+RARE CANDY|11
 TM01|1
-ETHER|4
+ETHER|5
 MOON STONE|5
 GREAT BALL|20
-NUGGET|7
 TM45|1
 ELIXER|4
 TM19|1
-S.S. TICKET|1
 OLD ROD|1
+S.S. TICKET|1
 TM44|1
 TM08|1
-MAX ETHER|2
+MAX ETHER|3
 HM01|1
 TM24|1
-HP UP|4
+HP UP|5
 HM05|1
 TM30|1
-PP UP|4
+PP UP|5
 TM49|1
 TM18|1
 TM21|1
@@ -3324,36 +3348,28 @@ TM07|1
 IRON|3
 SILPH SCOPE|1
 X ACCURACY|2
-POK{e-accent}FLUTE|1
 CARD KEY|1
 CALCIUM|3
-CARBOS|3
+CARBOS|4
 TM26|1
 TM36|1
-FULL HEAL|1
+FULL HEAL|2
 PROTEIN|2
 TM09|1
 TM03|1
 MASTER BALL|1
-POK{e-accent} DOLL|1
 TM31|1
 TM46|1
 HM02|1
-EXP.ALL|1
-FULL RESTORE|4
-MAX ELIXER|3
-BICYCLE|1
+FULL RESTORE|6
+MAX ELIXER|4
 TM39|1
 SUPER ROD|1
 TM20|1
 GOOD ROD|1
-REVIVE|25
-ULTRA BALL|23
-SUPER POTION|3
 TM06|1
 TM37|1
-MAX POTION|3
-MAX REVIVE|3
+MAX REVIVE|4
 TM40|1
 TM32|1
 HM03|1
@@ -3363,8 +3379,13 @@ TM38|1
 TM14|1
 TM22|1
 TM27|1
-END
-INVENTORY_STORAGE:
+TM33|1
+TM25|1
+TM42|1
+TM43|1
+TM17|1
+TM47|1
+GUARD SPEC.|1
 END
 SEEN:
 1-1
@@ -3406,6 +3427,7 @@ SEEN:
 106-106
 107-107
 108-108
+108-42
 109-100
 109-109
 109-20
@@ -3444,6 +3466,7 @@ SEEN:
 110-95
 111-111
 111-57
+112-108
 112-112
 112-119
 112-68
@@ -3496,13 +3519,17 @@ SEEN:
 121-119
 121-121
 121-59
+121-68
 121-9
 121-93
 122-122
 122-91
 122-92
+123-53
 124-124
+124-65
 125-125
+125-51
 126-110
 126-126
 126-20
@@ -3519,6 +3546,7 @@ SEEN:
 13-25
 130-119
 130-130
+130-3
 131-131
 132-110
 132-20
@@ -3534,6 +3562,8 @@ SEEN:
 142-142
 143-143
 144-144
+148-148
+149-149
 15-15
 16-10
 16-13
@@ -3561,10 +3591,12 @@ SEEN:
 20-20
 20-22
 20-24
+20-28
 20-37
 20-42
 20-5
 20-58
+20-68
 20-84
 20-88
 20-89
@@ -3590,21 +3622,27 @@ SEEN:
 23-19
 23-23
 23-66
+24-112
 24-20
 24-24
 24-28
 24-42
+24-67
 24-68
+25-125
 25-25
+25-51
 26-26
 27-19
 27-27
 27-41
 27-43
 27-46
+28-112
 28-24
 28-28
 28-42
+28-51
 28-68
 28-85
 29-29
@@ -3638,6 +3676,7 @@ SEEN:
 38-131
 38-18
 38-38
+38-53
 38-62
 38-67
 38-76
@@ -3675,8 +3714,13 @@ SEEN:
 43-16
 43-19
 43-43
+43-65
 43-66
+43-68
 43-69
+43-76
+43-82
+43-87
 43-93
 44-28
 44-44
@@ -3684,6 +3728,8 @@ SEEN:
 44-75
 44-93
 45-119
+45-131
+45-26
 45-45
 46-27
 46-35
@@ -3694,25 +3740,36 @@ SEEN:
 47-47
 47-92
 48-48
+49-105
 49-123
 49-49
+49-75
+49-99
 5-5
 50-27
 50-46
 50-50
+51-101
 51-117
 51-18
+51-26
+51-82
+51-89
 51-91
 52-43
 52-52
 52-63
 53-18
 53-53
+55-55
 55-87
 56-11
 56-56
+57-105
 57-125
+57-132
 57-57
+57-95
 58-110
 58-132
 58-20
@@ -3731,6 +3788,8 @@ SEEN:
 6-28
 6-57
 6-6
+6-76
+6-94
 60-60
 60-69
 61-12
@@ -3749,6 +3808,7 @@ SEEN:
 64-93
 64-95
 65-111
+65-51
 65-65
 65-73
 66-30
@@ -3756,6 +3816,7 @@ SEEN:
 66-74
 66-92
 66-95
+67-112
 67-58
 67-59
 67-67
@@ -3763,6 +3824,7 @@ SEEN:
 67-89
 67-95
 67-97
+68-143
 68-28
 68-65
 68-68
@@ -3783,6 +3845,8 @@ SEEN:
 71-38
 71-59
 71-71
+71-76
+71-99
 72-72
 73-119
 73-24
@@ -3805,15 +3869,21 @@ SEEN:
 75-92
 75-93
 76-45
+76-47
+76-6
 76-68
 76-76
 76-89
+76-94
 77-77
 78-37
 78-78
 78-89
+78-9
 79-104
 79-79
+80-112
+80-113
 80-119
 80-120
 80-38
@@ -3828,11 +3898,14 @@ SEEN:
 81-50
 81-81
 82-101
+82-103
 82-110
 82-119
 82-126
 82-18
+82-25
 82-38
+82-68
 82-73
 82-80
 82-82
@@ -3841,12 +3914,17 @@ SEEN:
 83-83
 83-93
 84-22
+85-119
 85-18
 85-37
 85-51
 85-85
 87-117
 87-120
+87-149
+87-26
+87-47
+87-59
 87-68
 87-87
 87-90
@@ -3860,14 +3938,17 @@ SEEN:
 89-125
 89-126
 89-38
+89-51
 89-58
 89-67
 89-75
 89-78
 89-80
+89-82
 89-89
 89-9
 89-97
+9-68
 9-9
 9-93
 90-120
@@ -3907,11 +3988,18 @@ SEEN:
 93-93
 93-95
 94-105
+94-113
 94-117
+94-131
 94-28
 94-38
+94-65
 94-68
+94-9
 94-94
+95-112
+95-24
+95-49
 95-64
 95-65
 95-66
@@ -3927,6 +4015,7 @@ SEEN:
 97-97
 99-28
 99-55
+99-75
 END
 CAUGHT:
 1-1
@@ -3992,12 +4081,12 @@ celadon-hideout-floor|1
 silph-co-floor|1
 END
 TEAM:
-0|NUMBER:76-76|NICKNAME:|HP:205|EXP:190525|LEVEL:61|EV:33884|39609|38358|37207|39091|IV:8|13|3|12|3|MOVES:STRENGTH|EARTHQUAKE|ROCK SLIDE|DIG|PP:15|8|9|8|MAX_PP:15|10|10|10|STATUS:
-1|NUMBER:130-130|NICKNAME:|HP:218|EXP:193463|LEVEL:62|EV:31139|36304|35537|34935|35105|IV:2|15|13|6|6|MOVES:ICE BEAM|BITE|SURF|HYDROPUMP|PP:10|25|15|5|MAX_PP:10|25|15|5|STATUS:
-2|NUMBER:3-3|NICKNAME:|HP:205|EXP:187187|LEVEL:61|EV:42585|47129|47228|43858|46321|IV:8|2|8|7|10|MOVES:CUT|RAZOR LEAF|VINE WHIP|BODY SLAM|PP:30|24|25|15|MAX_PP:30|25|25|15|STATUS:
-3|NUMBER:131-131|NICKNAME:|HP:263|EXP:192624|LEVEL:62|EV:25439|29371|28754|27454|28099|IV:5|9|10|1|10|MOVES:SURF|BODY SLAM|ICE BEAM|CONFUSE RAY|PP:15|15|10|10|MAX_PP:15|15|10|10|STATUS:
-4|NUMBER:121-59|NICKNAME:|HP:189|EXP:191906|LEVEL:62|EV:27738|31960|31324|30291|30691|IV:2|14|14|11|4|MOVES:RECOVER|SURF|PSYCHIC|FLAMETHROWER|PP:20|15|10|15|MAX_PP:20|15|10|15|STATUS:
-5|NUMBER:144-144|NICKNAME:|HP:209|EXP:177504|LEVEL:60|EV:10291|12225|11813|11371|11414|IV:14|13|1|7|14|MOVES:PECK|ICE BEAM|BLIZZARD|AGILITY|PP:35|10|5|30|MAX_PP:35|10|5|30|STATUS:
+0|NUMBER:144-144|NICKNAME:|HP:256|EXP:303487|LEVEL:72|EV:20730|24676|23531|23321|23419|IV:14|13|1|7|14|MOVES:PECK|ICE BEAM|BLIZZARD|AGILITY|PP:35|10|5|30|MAX_PP:35|10|5|30|STATUS:
+1|NUMBER:76-76|NICKNAME:|HP:249|EXP:311276|LEVEL:73|EV:44039|51952|49850|48712|50715|IV:8|13|3|12|3|MOVES:STRENGTH|EARTHQUAKE|ROCK SLIDE|DIG|PP:15|10|10|10|MAX_PP:15|10|10|10|STATUS:
+2|NUMBER:3-3|NICKNAME:|HP:246|EXP:292131|LEVEL:71|EV:52068|58524|57815|54676|57328|IV:8|2|8|7|10|MOVES:CUT|RAZOR LEAF|VINE WHIP|BODY SLAM|PP:30|25|25|15|MAX_PP:30|25|25|15|STATUS:
+3|NUMBER:131-131|NICKNAME:|HP:309|EXP:299607|LEVEL:72|EV:35141|41253|39771|38720|39650|IV:5|9|10|1|10|MOVES:SURF|BODY SLAM|ICE BEAM|CONFUSE RAY|PP:15|15|10|10|MAX_PP:15|15|10|10|STATUS:
+4|NUMBER:130-130|NICKNAME:|HP:254|EXP:297255|LEVEL:71|EV:40561|47615|46137|45413|45778|IV:2|15|13|6|6|MOVES:ICE BEAM|BITE|SURF|HYDROPUMP|PP:10|25|15|5|MAX_PP:10|25|15|5|STATUS:
+5|NUMBER:121-59|NICKNAME:|HP:230|EXP:318393|LEVEL:73|EV:38307|44718|43155|42307|42817|IV:2|14|14|11|4|MOVES:RECOVER|SURF|PSYCHIC|FLAMETHROWER|PP:20|15|10|15|MAX_PP:20|15|10|15|STATUS:
 END
 STORAGE:
 0|0|NUMBER:19-13|NICKNAME:|HP:15|EXP:21|LEVEL:3|EV:0|0|0|0|0|IV:5|13|1|1|10|MOVES:POISON STING|TAIL WHIP|||PP:35|30|||MAX_PP:35|30|||STATUS:
@@ -4551,7 +4640,7 @@ fuchsia-mart
 6|3|0|5|0
 END
 home
-0|0|5|23|0
+0|1|5|23|0
 1|0|3|5|0
 2|0|0|7|0
 3|0|0|6|0
@@ -4562,7 +4651,7 @@ home
 END
 indigo-center
 0|0|7|5|0
-1|0|15|6|0
+1|2|15|6|0
 2|0|17|7|0
 3|3|4|9|0
 4|3|0|5|0
@@ -4670,13 +4759,13 @@ END
 oak-lab
 0|0|4|3|0
 1|0|4|9|0
-2|3|2|8|0
-3|3|2|10|0
-4|2|8|10|0
+2|0|1|9|0
+3|0|2|10|0
+4|0|8|10|0
 5|0|0|1|0
 6|0|1|1|0
-7|3|2|1|0
-8|2|3|1|0
+7|0|2|1|0
+8|0|3|1|0
 9|0|4|0|0
 10|0|5|0|0
 11|0|6|1|0
@@ -4693,7 +4782,7 @@ oak-lab
 22|0|9|7|0
 23|0|5|10|0
 24|0|6|3|0
-25|3|7|3|0
+25|0|7|3|0
 26|0|8|3|0
 27|0|5|2|0
 28|0|5|7|0
@@ -4701,7 +4790,7 @@ oak-lab
 END
 pallet-town
 0|0|8|8|0
-1|2|15|14|0
+1|0|16|14|0
 2|0|12|9|0
 3|0|8|5|0
 4|0|16|5|0
@@ -4806,8 +4895,8 @@ pokemon-league
 19|0|4|81|0
 20|1|3|86|0
 21|0|2|86|0
-22|1|4|98|0
-23|0|3|99|0
+22|2|5|94|0
+23|3|3|99|0
 END
 pokemon-tower-1
 0|0|10|1|0
@@ -4861,20 +4950,22 @@ pokemon-tower-lower
 9|3|1|32|0
 END
 power-plant
-0|0|8|25|0
+0|2|8|25|0
 1|0|10|20|0
-2|0|33|18|0
-3|0|26|18|0
+2|3|33|18|0
+3|1|26|18|0
 4|0|21|32|0
-5|0|24|34|0
+5|2|24|34|0
 6|0|22|25|0
-7|0|27|28|0
-8|0|27|32|0
-9|0|38|32|0
-10|0|35|3|0
+7|2|27|28|0
+8|2|27|32|0
+9|3|38|32|0
+10|3|35|3|0
 11|0|29|3|0
-12|0|22|14|0
+12|2|22|14|0
 13|0|5|9|0
+14|3|18|16|0
+15|0|13|1|0
 END
 power-plant-center
 0|0|0|4|0
@@ -4892,7 +4983,7 @@ power-plant-outside
 4|0|12|20|0
 5|0|10|21|0
 6|2|13|46|1
-7|3|8|43|0
+7|0|8|43|0
 8|0|12|19|0
 END
 rival-home
@@ -5157,26 +5248,29 @@ route21
 END
 route22
 0|0|9|14|0
-1|0|33|13|0
-2|3|30|8|0
+1|0|25|8|0
+2|0|30|8|0
 3|0|30|7|0
 4|0|25|8|0
 5|0|30|8|0
 6|0|30|7|0
 END
 route22-checkpoint
-0|2|6|3|0
+0|2|6|3|1
 END
 route23
 0|0|8|33|0
-1|0|13|136|0
-2|0|13|119|0
-3|0|17|105|0
-4|0|16|96|0
-5|0|13|85|0
-6|0|15|56|0
-7|0|9|35|0
-8|0|23|26|0
+1|0|13|136|1
+2|0|13|119|1
+3|0|17|105|1
+4|0|16|96|1
+5|0|13|85|1
+6|0|15|56|1
+7|0|9|35|1
+8|0|23|28|1
+9|0|13|90|0
+10|0|24|70|0
+11|0|14|44|0
 END
 route24
 0|2|13|33|1
@@ -5749,7 +5843,7 @@ vermilion-center
 0|0|0|4|0
 1|0|3|1|0
 2|0|5|4|0
-3|0|10|5|0
+3|2|10|5|0
 4|0|11|2|0
 5|0|13|3|0
 END
@@ -5760,12 +5854,13 @@ vermilion-city
 3|0|34|17|0
 4|0|41|15|0
 5|0|19|8|0
-6|0|25|9|0
+6|0|25|8|0
 7|0|34|9|0
-8|0|33|10|0
-9|0|32|29|0
+8|1|32|9|0
+9|3|34|29|0
 10|1|24|32|1
 11|0|20|20|0
+12|2|19|13|0
 END
 vermilion-gym
 0|0|4|14|0
@@ -5845,34 +5940,34 @@ victory-road
 1|0|23|18|0
 2|0|15|17|0
 3|0|8|15|0
-4|0|20|7|0
+4|1|20|7|0
 5|0|15|7|0
 6|0|17|5|0
-7|3|13|10|0
-8|0|9|7|0
+7|3|13|10|1
+8|0|9|7|1
 9|0|10|38|0
 10|0|12|42|0
 11|0|12|41|0
-12|0|6|49|0
+12|3|6|49|0
 13|0|9|47|0
-14|1|18|47|0
-15|2|26|46|0
-16|0|24|41|0
+14|1|18|47|1
+15|2|26|46|1
+16|0|24|41|1
 17|0|23|42|0
-18|2|31|36|0
+18|2|31|36|1
 19|0|32|38|0
-20|2|33|67|0
+20|2|33|67|1
 21|0|31|67|0
-22|3|18|65|0
+22|3|18|65|1
 23|0|12|72|0
 24|0|27|65|0
 25|0|8|67|0
 26|0|12|69|0
-27|0|9|35|0
+27|0|9|35|1
 28|0|16|33|0
 29|0|16|38|0
-30|2|11|76|0
-31|3|12|75|0
+30|2|11|76|1
+31|3|12|75|1
 32|0|18|74|0
 33|0|29|72|0
 34|0|27|77|0
@@ -5880,17 +5975,19 @@ victory-road
 36|0|28|47|0
 37|0|14|49|0
 38|0|33|72|0
+39|0|10|35|0
+40|0|31|40|0
 END
 viridian-center
 0|0|0|4|0
 1|0|3|1|0
 2|1|4|3|0
 3|0|10|5|0
-4|2|11|2|0
+4|0|11|2|0
 5|0|13|3|0
 END
 viridian-city
-0|3|11|20|0
+0|0|10|20|0
 1|0|31|24|0
 2|3|17|9|0
 3|0|18|9|0
