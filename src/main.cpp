@@ -220,6 +220,9 @@ int main(int argc, char** argv) {
 	e.init_blocking();
 	e.init_npc_blocking();
 	printf("Done!\n");
+	printf("Loading animating tiles...");
+	e.init_animating();
+	printf("Done!\n");
 	printf("Loading jumping tiles...");
 	e.init_jumpdown();
 	e.init_jumpleft();

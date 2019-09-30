@@ -5787,6 +5787,17 @@ void engine::init_blocking() {
 	}
 }
 
+void engine::init_animating() {
+	string line;
+	ifstream f("../resources/data/animating-tiles.dat");
+	while (f.is_open()) {
+		while (safe_getline(f, line)) {
+			animating[stoi(line)] = true;
+		}
+		f.close();
+	}
+}
+
 void engine::init_npc_blocking() {
 	string line;
 	ifstream f("../resources/data/npc-blocking-tiles.dat");
@@ -6541,6 +6552,8 @@ void engine::draw_level() {
 			if (water_render[l->data[y][x]])
 			    g.push_quad_load(xp, yp, xl, yl, waterstring);
 			g.push_quad(xp, yp, xl, yl, g.tiles[l->data[y][x]]);
+			if (animating[l->data[y][x]])
+			    g.push_quad_load(xp, yp, xl, yl, safepath + string("images/") + to_string(l->data[y][x]) + string("-frame") + to_string(g.frame%8) + string(".png"));
 		}
 	}
 	for (unsigned i = 0; i < l->neighbors.size(); ++i) {
@@ -6564,6 +6577,8 @@ void engine::draw_level() {
 				if (water_render[levels[levels[curr_level].neighbors[i].level].data[y][x]])
 				    g.push_quad_load(xp, yp, xl, yl, waterstring);
 				g.push_quad(xp, yp, xl, yl, g.tiles[levels[levels[curr_level].neighbors[i].level].data[y][x]]);
+                if (animating[levels[levels[curr_level].neighbors[i].level].data[y][x]])
+                    g.push_quad_load(xp, yp, xl, yl, safepath + string("images/") + to_string(levels[levels[curr_level].neighbors[i].level].data[y][x]) + string("-frame") + to_string(g.frame%8) + string(".png"));
 			}
 		}
 	}

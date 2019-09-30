@@ -254,6 +254,7 @@ public:
 	std::map<string, level> levels;
 	std::map<string, item> items;
 	std::map<int, bool> blocking;
+	std::map<int, bool> animating;
 	std::map<int, bool> npc_blocking;
 	std::map<int, bool> jumpdown;
 	std::map<int, bool> jumpright;
@@ -363,6 +364,7 @@ public:
 	void init_mon();
 	void init_status();
 	void init_blocking();
+	void init_animating();
 	void init_npc_blocking();
 	void init_slide();
 	void init_jumpdown();
