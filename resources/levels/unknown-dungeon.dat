@@ -1,5 +1,8 @@
 NAME
 Unknown Dungeon
+DUNGEON
+MUSIC
+music/40-pokemon-mansion-intro.mp3,music/40-pokemon-mansion-loop.mp3
 LEAVESOUND
 sound_effects/general/sfx_go_outside.mp3
 NPCS
@@ -37,7 +40,15 @@ GIVE_ITEM:ULTRA BALL|DEACTIVATE:unknown-dungeon-item8
 END
 unknown-dungeon-mewtwo mon 32 83 DOWN
 INTERACTIONS
-MENU:ALERT:Mew!|WILD_BATTLE:150-150:70|{NO_ADVANCE}{DEACTIVATE:unknown-dungeon-mewtwo}
+PLAY_CRY:150-150|MENU:ALERT:Mew!|WILD_BATTLE:150-150:70|{NO_ADVANCE}{DEACTIVATE:unknown-dungeon-mewtwo}
+END
+unknown-dungeon-item9 blank 19 16 INCORPOREAL
+INTERACTIONS
+GIVE_ITEM:RARE CANDY|DEACTIVATE:unknown-dungeon-item9
+END
+unknown-dungeon-item10 blank 32 73 INCORPOREAL
+INTERACTIONS
+GIVE_ITEM:ULTRA BALL|DEACTIVATE:unknown-dungeon-item10
 END
 TELEPORT
 29 23 cerulean-city 6 14
