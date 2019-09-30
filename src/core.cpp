@@ -1094,6 +1094,8 @@ bool engine::use_item(string filter, std::vector<int> &choices, string &ret) {
 		}
 		else if (base.find("REPEL") == 0) {
 			base.erase(0, base.find(":") + 1);
+			if (mc.repel < 0)
+			    mc.repel = 0;
 			mc.repel += stoi(base);
 		}
 	}
@@ -6367,6 +6369,10 @@ void engine::player_input(bool up, bool down, bool left, bool right, bool select
                 update_level();
             }
 		}
+        mc.repel = mc.repel - 1;
+        if (mc.repel == 0) {
+            do_alert(string("REPEL wore off!"));
+        }
 		mc.frame = mc.frame%8;
 		if (mc.frame%8 == 0 || mc.frame%8 == 1) {
 		    bool poison_found = false;
@@ -6387,6 +6393,11 @@ void engine::player_input(bool up, bool down, bool left, bool right, bool select
 		}
 		if (encounter_tile[get_tile(mc.loc.y, mc.loc.x)]) {
 			if (levels[mc.loc.level].encounters.size() > 0) {
+			    double chance = 0.0;
+			    if (mc.repel <= 0)
+			        chance = random(0.0, 187.5);
+			    else
+			        chance = random(0.0, 187.5*20.0);
 				if (random(0.0, 187.5) < 8.5) {
 					if (levels[mc.loc.level].mega_encounters.size() > 0 && random(0.0, 20.0) >= 19.0) {
 						int choice = int(random(0.0, double(levels[mc.loc.level].mega_encounters.size())));
