@@ -3684,6 +3684,9 @@ bool engine::battle(trainer& t) { // trainer battle
 				if (o.find("CAPTURE") == 0) {
 					do_alert(string("You can't do that!")); // TODO:  Animation and correct fail message
 				}
+				if (o.find("FLEE") == 0) {
+				    apply_status(mc.team[mc.selected], string("FLEE"));
+				}
 			}
 			else if (choices[0] == 3) { // Player has selected RUN
 				do_alert("No! There's no running from a trainer battle!");
@@ -4242,6 +4245,9 @@ bool engine::battle() { // wild pokemon
 				if (!use_item(string("COMBAT"), choices, o))
 					continue;
 				mc.team[mc.selected].queue.insert(mc.team[mc.selected].queue.begin(), string(""));
+				if (o.find("FLEE") == 0) {
+				    apply_status(mc.team[mc.selected], string("FLEE"));
+				}
 				if (o.find("CAPTURE") == 0) {
 					o.erase(0, o.find(":") + 1);
 					float capture_power = stof(o);
