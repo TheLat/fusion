@@ -6929,7 +6929,6 @@ void engine::do_interaction(character& npc) {
 		    anim1 = g.ae.create_animf(&nothing, 0.0, 1.0, 3.0);
 		    while (!g.ae.is_donef(anim1)) {}
 		    g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
-			//TODO: Save game
 		}
 		else if (s.find("CUT:") == 0) {
 			s.erase(0, string("CUT:").length());
