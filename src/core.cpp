@@ -123,6 +123,8 @@ void engine::collision() {
 void engine::play_level_music() {
     if (mc.movement == string("seal"))
 		se.play_music(string("music/38-ocean-intro.mp3,music/38-ocean-loop.mp3"));
+    else if (mc.movement == string("bike"))
+        se.play_music(string("music/30-cycling-intro.mp3,music/30-cycling-loop.mp3"));
 	else
 	    se.play_music(levels[mc.loc.level].music);
 }
@@ -950,7 +952,13 @@ bool engine::use_item(string filter, std::vector<int> &choices, string &ret) {
 			// TODO: MAP
 		}
 		else if (base.find("BIKE") == 0) {
-			// TODO: BIKE
+		    if (!levels[mc.loc.level].inside && mc.movement != string("seal")) {
+			    mc.movement = string("bike");
+			    se.play_music(string("music/30-cycling-intro.mp3,music/30-cycling-loop.mp3"));
+			}
+			else {
+			    do_alert("This isn't the time to use that!");
+			}
 		}
 		else if (base.find("ITEMFINDER") == 0) {
 			// TODO: ITEMFINDER
@@ -4953,6 +4961,10 @@ void engine::init_level(string levelname) {
 		    levels[levelname].dungeon = true;
 		    continue;
 		}
+		if (line == "INSIDE") {
+		    levels[levelname].inside = true;
+		    continue;
+		}
 		if (line == "DARK") {
 		    levels[levelname].dark = true;
 		    continue;
@@ -6065,7 +6077,12 @@ void engine::handle_teleport() {
                     mc.movement = string("seal");
                 }
                 else {
-                    mc.movement = string("player");
+                    if (!levels[mc.loc.level].inside && mc.movement == string("bike")) {
+                        mc.movement = string("bike");
+                    }
+                    else {
+                        mc.movement = string("player");
+                    }
                 }
                 play_level_music();
 			    if (!found) {
@@ -6338,6 +6355,9 @@ void engine::player_input(bool up, bool down, bool left, bool right, bool select
 	}
 	if (mc.loc.x != l.x || mc.loc.y != l.y) {
 		unsigned a1, a2, a3;
+		double walk_mul = 1.0;
+		if (mc.movement == string("bike"))
+		    walk_mul = 0.5;
 		if (fabs(mc.loc.x - l.x) + fabs(mc.loc.y - l.y) > 1.0) {
 			double startx, starty;
 			startx = mc.loc.x;
@@ -6345,32 +6365,32 @@ void engine::player_input(bool up, bool down, bool left, bool right, bool select
 			double endx = double(int(l.x));
 			double endy = double(int(l.y));
 			se.play_sound(string("sound_effects/general/sfx_ledge.mp3"));
-            a3 = g.ae.create_animi(&(mc.frame), mc.frame, mc.frame + 2, move_time*2.0);
-            a1 = g.ae.create_animf(&(mc.loc.x), mc.loc.x, startx + (0.25 * (endx - startx)), move_time*.5);
-            a2 = g.ae.create_animf(&(mc.loc.y), mc.loc.y, -0.3 + starty + (0.25 * (endy - starty)), move_time*.5);
+            a3 = g.ae.create_animi(&(mc.frame), mc.frame, mc.frame + 2, walk_mul*move_time*2.0);
+            a1 = g.ae.create_animf(&(mc.loc.x), mc.loc.x, startx + (0.25 * (endx - startx)), walk_mul*move_time*.5);
+            a2 = g.ae.create_animf(&(mc.loc.y), mc.loc.y, -0.3 + starty + (0.25 * (endy - starty)), walk_mul*move_time*.5);
             while (!g.ae.is_donef(a1) || !g.ae.is_donef(a2)) {
                 update_level();
             }
-            a1 = g.ae.create_animf(&(mc.loc.x), mc.loc.x, startx + (0.5 * (endx - startx)), move_time*.5);
-            a2 = g.ae.create_animf(&(mc.loc.y), mc.loc.y, -0.4 + starty + (0.5 * (endy - starty)), move_time*.5);
+            a1 = g.ae.create_animf(&(mc.loc.x), mc.loc.x, startx + (0.5 * (endx - startx)), walk_mul*move_time*.5);
+            a2 = g.ae.create_animf(&(mc.loc.y), mc.loc.y, -0.4 + starty + (0.5 * (endy - starty)), walk_mul*move_time*.5);
             while (!g.ae.is_donef(a1) || !g.ae.is_donef(a2)) {
                 update_level();
             }
-            a1 = g.ae.create_animf(&(mc.loc.x), mc.loc.x, startx + (0.75 * (endx - startx)), move_time*.5);
-            a2 = g.ae.create_animf(&(mc.loc.y), mc.loc.y, -0.3 + starty + (0.75 * (endy - starty)), move_time*.5);
+            a1 = g.ae.create_animf(&(mc.loc.x), mc.loc.x, startx + (0.75 * (endx - startx)), walk_mul*move_time*.5);
+            a2 = g.ae.create_animf(&(mc.loc.y), mc.loc.y, -0.3 + starty + (0.75 * (endy - starty)), walk_mul*move_time*.5);
             while (!g.ae.is_donef(a1) || !g.ae.is_donef(a2)) {
                 update_level();
             }
-            a1 = g.ae.create_animf(&(mc.loc.x), mc.loc.x, endx, move_time*.5);
-            a2 = g.ae.create_animf(&(mc.loc.y), mc.loc.y, endy, move_time*.5);
+            a1 = g.ae.create_animf(&(mc.loc.x), mc.loc.x, endx, walk_mul*move_time*.5);
+            a2 = g.ae.create_animf(&(mc.loc.y), mc.loc.y, endy, walk_mul*move_time*.5);
             while (!g.ae.is_donef(a1) || !g.ae.is_donef(a2) || !g.ae.is_donei(a3)) {
                 update_level();
             }
 		}
 		else {
-            a1 = g.ae.create_animf(&(mc.loc.x), mc.loc.x, double(int(l.x)), move_time);
-            a2 = g.ae.create_animf(&(mc.loc.y), mc.loc.y, double(int(l.y)), move_time);
-            a3 = g.ae.create_animi(&(mc.frame), mc.frame, mc.frame + 2, move_time);
+            a1 = g.ae.create_animf(&(mc.loc.x), mc.loc.x, double(int(l.x)), walk_mul*move_time);
+            a2 = g.ae.create_animf(&(mc.loc.y), mc.loc.y, double(int(l.y)), walk_mul*move_time);
+            a3 = g.ae.create_animi(&(mc.frame), mc.frame, mc.frame + 2, walk_mul*move_time);
             while (!g.ae.is_donef(a1) || !g.ae.is_donef(a2) || !g.ae.is_donei(a3)) {
                 update_level();
             }
@@ -6504,7 +6524,12 @@ void engine::player_input(bool up, bool down, bool left, bool right, bool select
 		}
 	}
 	if (mc.movement == string("seal") && !water[get_tile(l.y, l.x)]) {
-		mc.movement = string("player");
+		if (!levels[mc.loc.level].inside && mc.movement == string("bike")) {
+            mc.movement = string("bike");
+        }
+        else {
+            mc.movement = string("player");
+        }
 		play_level_music();
 	}
 }
@@ -6772,7 +6797,12 @@ void engine::do_interaction(character& npc) {
 			    mc.movement = string("seal");
 			}
 			else {
-			    mc.movement = string("player");
+			    if (!levels[mc.loc.level].inside && mc.movement == string("bike")) {
+                    mc.movement = string("bike");
+                }
+                else {
+                    mc.movement = string("player");
+                }
 			}
 			play_level_music();
 			anim = g.ae.create_anim_scene(string("screenlight"));
