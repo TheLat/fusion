@@ -6368,6 +6368,8 @@ void engine::player_input(bool up, bool down, bool left, bool right, bool select
             while (!g.ae.is_donef(a1) || !g.ae.is_donef(a2) || !g.ae.is_donei(a3)) {
                 update_level();
             }
+            mc.loc.x = double(int(l.x));
+            mc.loc.y = double(int(l.y));
 		}
         mc.repel = mc.repel - 1;
         if (mc.repel == 0) {
