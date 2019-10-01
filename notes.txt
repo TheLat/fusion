@@ -11,7 +11,6 @@ Sound bugs, clear all mutes when playing a sound.
 Can sell to vending machines.
 Some tiles that the player can walk into don't draw over the player.
 Grass doesn't draw over characters/player.
-Bicycle animations.  Switch all characters to pngs.
 Selfdestruct faint animations/Teleport escape animation
 Brock with a Geodude that only knows Spore and Dream Eater never uses Spore.
 HP bars don't display correctly in storage.
