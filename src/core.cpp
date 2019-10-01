@@ -4917,7 +4917,7 @@ void engine::init_characters() {
 		for (unsigned i = 0; i < levels[it1->first].characters.size(); ++i) {
 			for (unsigned j = DOWN; j <= RIGHT; j++) {
 				for (unsigned k = 0; k < 4; ++k) {
-					levels[it1->first].characters[i].images[(j * 4) + k] = g.tex[levels[it1->first].characters[i].image + string("-") + get_direction_string(direction(j)) + string("-") + to_string(k) + string(".bmp")];
+					levels[it1->first].characters[i].images[(j * 4) + k] = g.tex[levels[it1->first].characters[i].image + string("-") + get_direction_string(direction(j)) + string("-") + to_string(k) + string(".png")];
 				}
 			}
 		}
@@ -6746,7 +6746,7 @@ void engine::draw_characters() {
 				g.push_quad((levels[curr_level].neighbors[j].x + (c->anim_offset.x + c->loc.x) - (curr_x + 0.5)) / 5.0, (-levels[curr_level].neighbors[j].y - 0.5 - (c->loc.y + c->anim_offset.y) + curr_y) / 4.5f + 0.055, c->width, c->height, get_character_tex(*c));
 		}
 	}
-	g.push_quad(-0.1, -0.5 / 4.5 + 0.055, 1.0 / 5.0, 1.0 / 4.5, g.tex[mc.movement + string("-") + get_direction_string(mc.dir) + string("-") + to_string(mc.frame % 4) + string(".bmp")]);
+	g.push_quad(-0.1, -0.5 / 4.5 + 0.055, 1.0 / 5.0, 1.0 / 4.5, g.tex[mc.movement + string("-") + get_direction_string(mc.dir) + string("-") + to_string(mc.frame % 4) + string(".png")]);
 }
 
 void engine::do_interaction(character& npc) {
