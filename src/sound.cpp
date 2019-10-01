@@ -68,6 +68,7 @@ void soundengine::play_music(string s) {
 	unsigned int slen = 0;
 	float freq = 0.0;
 	int outputrate = 0;
+    double volume = 1.0;
 	if (s == "") {
 		return;
 	}
@@ -105,6 +106,8 @@ void soundengine::play_music(string s) {
 		clock_start += slen;
 		result = music2->setDelay(clock_start, 0, false);
 		music2->setLoopCount(1000000);
+        music2->setVolume(volume);
+        music1->setVolume(volume);
 		music2->setPaused(false);
 		music1->setPaused(false);
 	}
@@ -114,6 +117,7 @@ void soundengine::play_music(string s) {
 		}
 		result = system->playSound(sounds[s], 0, true, &music1);
 		music1->setLoopCount(1000000);
+        music1->setVolume(volume);
 		music1->setPaused(false);
 	}
 }
