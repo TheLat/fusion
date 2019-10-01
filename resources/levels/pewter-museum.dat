@@ -11,7 +11,7 @@ FORCE_INTERACTION
 -2 0
 END
 INTERACTIONS
-MENU:ALERT:It's $50 for a child's ticket.|MENU:ALERT_YES_NO_MONEY:Would you like to come in?|{HAS_MONEY:50|{PLAY_SOUND:sound_effects/general/sfx_denied.mp3|MENU:ALERT:You don't have enough money.|MENU:ALERT:Come again!|MOVE:PLAYER:0,1|NO_ADVANCE}{MENU:ALERT:Right, $50! {NEWLINE} Thank you!|REMOVE_MONEY:50|DISABLE_FORCE}}{MENU:ALERT:Come again!|MOVE:PLAYER:0,1|NO_ADVANCE}
+MENU:ALERT:It's $50 for a child's ticket.|MENU:ALERT_YES_NO_MONEY:Would you like to come in?|{HAS_MONEY:50|{PLAY_SOUND:sound_effects/general/sfx_denied.mp3|MENU:ALERT:You don't have enough money.|MENU:ALERT:Come again!|MOVE:PLAYER:0,1|NO_ADVANCE}{PLAY_SOUND:sound_effects/general/sfx_purchase.mp3|MENU:ALERT:Right, $50! {NEWLINE} Thank you!|REMOVE_MONEY:50|DISABLE_FORCE}}{MENU:ALERT:Come again!|MOVE:PLAYER:0,1|NO_ADVANCE}
 SET_FACE:pewter-museum-doctor2:LEFT|MENU:ALERT:Take plenty of time to look!
 END
 pewter-museum-bald1 bald4 1 4
@@ -69,7 +69,7 @@ END
 pewter-museum-doctor4 doctor 15 2
 INTERACTIONS
 MENU:ALERT:Ssh! I think that this chunk of AMBER contains POK{e-accent}MON DNA!|MENU:ALERT:It would be great if POK{e-accent}MON could be resurrected from it!|MENU:ALERT:But, my colleagues just ignore me!|MENU:ALERT:So, I have a favor to ask!|MENU:ALERT:Take this to a POK{e-accent}MON LAB and get it examined!|DEACTIVATE:pewter-museum-amber|GIVE_ITEM:OLD AMBER
-MENU:ALERT:Ssh! Get the OLD AMBER checked!
+HAS_MON_IN_PARTY:142-142|{MENU:ALERT:Ssh! Get the OLD AMBER checked!}{MENU:ALERT:I knew it!|MENU:ALERT:It's so beautiful!|MENU:ALERT:Please, show the world what we've done!}
 END
 TELEPORT
 10 8 pewter-city 14 12

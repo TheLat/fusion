@@ -7170,6 +7170,28 @@ void engine::do_interaction(character& npc) {
 				choices.push_back(0);
 			}
 		}
+		else if (s.find("HAS_MON_IN_PARTY:") == 0) {
+			s.erase(0, string("HAS_MON_IN_PARTY:").length());
+			s2 = s;
+			if (s.find("|") != -1) {
+				s.erase(0, s.find("|"));
+				s2.erase(s2.find("|"), s2.length());
+			}
+			else {
+				s = "";
+			}
+			choices.clear();
+			choices.push_back(0);
+			for (int i = 0; i < 6; ++i) {
+			    if (mc.team[i].defined) {
+			        if (mc.team[i].number == s2) {
+                        choices.clear();
+                        choices.push_back(1);
+                        break;
+			        }
+			    }
+			}
+		}
 		else if (s.find("HAS_MONEY:") == 0) {
 			s.erase(0, string("HAS_MONEY:").length());
 			s2 = s;

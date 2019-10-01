@@ -13,6 +13,5 @@ Some tiles that the player can walk into don't draw over the player.
 Grass doesn't draw over characters/player.
 Bicycle.
 Selfdestruct faint animations/Teleport escape animation
-Easter eggs for having an Aerodactyl in your party when you talk to the guy who gives you the amber and a Gyarados when you talk to the guy who sold you a Magikarp.
 Brock with a Geodude that only knows Spore and Dream Eater never uses Spore.
 HP bars don't display correctly in storage.
