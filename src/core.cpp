@@ -1217,7 +1217,6 @@ bool engine::do_effect(mon& m, string effect, int extra) {
 			return false;
 		}
 		effect.erase(0, effect.find(":") + 1);
-		// TODO: Add in-game EV boost limit
 		if (m.EV[s] > 25600)
 		    return false;
 		m.EV[s] += stoi(effect);
@@ -1754,7 +1753,7 @@ bool engine::level_up(mon& out, bool confirm_learn) {
 		}
 		for (unsigned x = 0; x < all_mon[out.number].learned.size(); ++x) {
 			if (all_mon[out.number].learned[x].first == out.level || (all_mon[out.number].learned[x].first == 0 && evolved) || (all_mon[out.number].learned[x].first == 0 && !confirm_learn && out.level == 1)) {
-				if (!confirm_learn) { // TODO:  OR Surface confirmation window
+				if (!confirm_learn) {
 					create_move(out, all_mon[out.number].learned[x].second, counter % 4);
 					counter++;
 				}
@@ -1876,7 +1875,6 @@ double engine::random(double min, double max) {
 
 void engine::heal_damage(mon& m, int heal_amount) {
 	if (heal_amount < 0) {
-		// TODO:  Error logic here
 		return;
 	}
 	if (heal_amount + m.curr_hp > get_stat(m, HP))
@@ -1895,7 +1893,6 @@ void engine::heal_damage(mon& m, int heal_amount) {
 
 void engine::deal_damage(mon& m, int damage_amount) {
 	if (damage_amount <= 0) {
-		// TODO:  Error logic here
 		return;
 	}
 	if (damage_amount > m.curr_hp)

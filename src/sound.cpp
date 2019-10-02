@@ -57,7 +57,6 @@ void soundengine::play_sound_blocking(string s) {
 		result = (channels[channel_index])->isPlaying(&playing);
 	}
 	channel_index = (channel_index+1) % SOUND_CHANNELS;
-	// TODO: seems to block for a second longer than it should
 }
 
 void soundengine::play_music(string s) {
