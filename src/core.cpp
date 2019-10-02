@@ -4288,7 +4288,6 @@ bool engine::battle() { // wild pokemon
 					default:
 						break;
 					}
-					// TODO:  Capture messages
 					if (out == 4) {
 						clear_volatile(mc.enemy_team[mc.enemy_selected]);
 						mc.enemy_team[mc.enemy_selected].wild = false;
@@ -4353,7 +4352,6 @@ bool engine::battle() { // wild pokemon
 						}
 						g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
 						return true;
-						// TODO:  Implement storage
 					}
 				}
 			}
@@ -4444,7 +4442,6 @@ bool engine::battle() { // wild pokemon
 				}
 			}
 			if (i == 6) {
-				// TODO:  Handle defeat
 				do_alert(string("{PLAYER_NAME} is out of useable POK{e-accent}MON!"));
 				do_alert(string("{PLAYER_NAME} blacked out!"));
                 unsigned anim_holder = g.ae.create_anim_scene(string("screendark"));
@@ -4594,7 +4591,6 @@ int engine::damage(mon& attacker, mon& defender, string move, bool& crit, double
 	if (pow == 0.0)
 		damage = 0.0;
 	for (unsigned j = 0; j < moves[move].target.size(); ++j) {
-		// Possible TODO: Remove multiplier from self-level damage moves.
 		if (moves[move].target[j] == "SELF_LEVEL") {
 			damage = int(double(attacker.level) * mul);
 			if (crit)
@@ -6058,7 +6054,6 @@ void engine::handle_teleport() {
 			        }
 			    }
 			    if (!found) {
-			        // TODO: force off bike
 			        se.play_sound(levels[mc.loc.level].leavesound);
 			        unsigned anim_holder = g.ae.create_anim_scene(string("screendark"));
 			        while (!g.ae.is_dones(anim_holder)) {}
