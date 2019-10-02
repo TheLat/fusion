@@ -2738,7 +2738,7 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
             do_alert(string("STATS are now locked against buffs and debuffs!"));
         }
 	}
-	if (!is_KO(defender)) {  // TODO: move attacker messages out of this
+	if (!is_KO(defender)) {
         if (!skip_accuracy_check) {
             if (!at_start_confused && in_status(defender, string("CONFUSE"))) {
                 do_alert(get_nickname(defender) + string(" became confused!"));
