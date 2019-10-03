@@ -9,6 +9,7 @@ Magmar-Golem that knows ROCK SLIDE, FIRE PUNCH, EXPLOSION, and EARTHQUAKE
 TO FIX:
 Map
 Itemfinder
+Tall Grass
 Enemy team status
 Can't use Pokeball animation in trainer fights
 Name menu
