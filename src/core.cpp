@@ -953,8 +953,13 @@ bool engine::use_item(string filter, std::vector<int> &choices, string &ret) {
 		}
 		else if (base.find("BIKE") == 0) {
 		    if (!levels[mc.loc.level].inside && mc.movement != string("seal")) {
-			    mc.movement = string("bike");
-			    se.play_music(string("music/30-cycling-intro.mp3,music/30-cycling-loop.mp3"));
+		        if (mc.movement != string("bike")) {
+			        mc.movement = string("bike");
+			    }
+			    else {
+			        mc.movement = string("player");
+			    }
+			    play_level_music();
 			}
 			else {
 			    do_alert("This isn't the time to use that!");
