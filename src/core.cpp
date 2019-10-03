@@ -961,7 +961,20 @@ bool engine::use_item(string filter, std::vector<int> &choices, string &ret) {
 			}
 		}
 		else if (base.find("ITEMFINDER") == 0) {
-			// TODO: ITEMFINDER
+		    bool found = false;
+		    for (unsigned i = 0; i < levels[mc.loc.level].characters.size(); ++i) {
+		        if (mc.active[levels[mc.loc.level].characters[i].name]) {
+		            if (levels[mc.loc.level].characters[i].incorporeal) {
+		                if ((fabs(mc.loc.x - levels[mc.loc.level].characters[i].loc.x) + fabs(mc.loc.y - levels[mc.loc.level].characters[i].loc.y)) < 10.0) {
+		                    se.play_sound_blocking(string("sound_effects/general/sfx_safari_zone_pa.mp3"));
+		                    found = true;
+		                    break;
+		                }
+		            }
+		        }
+		    }
+		    if (!found)
+	    	    se.play_sound_blocking(string("sound_effects/general/sfx_denied.mp3"));
 		}
 		else if (base.find("EVOLVE") == 0) {
 			base.erase(0, base.find(":") + 1);
