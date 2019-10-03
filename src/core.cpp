@@ -2509,17 +2509,26 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 	    	do_move_animation(attacker, defender, move);
 	    }
 		defender.last_hit_physical = 0;
-		if (attacker.enemy) {
-		    g.draw_list[attacker.sprite_index].x = 0.1;
-		    g.draw_list[attacker.sprite_index].y = 0.1;
-		    g.draw_list[attacker.sprite_index].height = 0.9;
-		    g.draw_list[attacker.sprite_index].width = 0.9;
+		bool no_animate = false;
+		for (unsigned i = 0; i < moves[move].self.size(); ++i) {
+		    if (moves[move].self[i] == string("NO_ANIMATE")) {
+		        no_animate = true;
+		        break;
+		    }
 		}
-		else {
-		    g.draw_list[attacker.sprite_index].x = -1.0;
-		    g.draw_list[attacker.sprite_index].y = -0.422;
-		    g.draw_list[attacker.sprite_index].height = 0.9;
-		    g.draw_list[attacker.sprite_index].width = 0.9;
+		if (!no_animate) {
+            if (attacker.enemy) {
+                g.draw_list[attacker.sprite_index].x = 0.1;
+                g.draw_list[attacker.sprite_index].y = 0.1;
+                g.draw_list[attacker.sprite_index].height = 0.9;
+                g.draw_list[attacker.sprite_index].width = 0.9;
+            }
+            else {
+                g.draw_list[attacker.sprite_index].x = -1.0;
+                g.draw_list[attacker.sprite_index].y = -0.422;
+                g.draw_list[attacker.sprite_index].height = 0.9;
+                g.draw_list[attacker.sprite_index].width = 0.9;
+            }
 		}
 		if (pow == 0) {
 			do_alert(string("But, it failed!"));
