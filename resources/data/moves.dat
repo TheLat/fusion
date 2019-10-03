@@ -948,7 +948,7 @@ ANIMATION: teleport
 TYPE: PSYCHIC
 ACC: 95
 PP: 20
-SELF: FLEE
+SELF: FLEE NO_ANIMATE
 NOTES: Flees from combat. Can be used outside of combat.
 
 MOVE: RECOVER
@@ -1022,7 +1022,7 @@ TYPE: NORMAL
 ACC: 100
 PP: 5
 POWER: 260
-SELF: KO
+SELF: KO NO_ANIMATE
 DEFENSE: DEFENSE
 SPECIAL: ANIMATE_ON_MISS
 NOTES: A powerful attack that destroys the user.
@@ -1033,7 +1033,7 @@ TYPE: NORMAL
 POWER: 340
 ACC: 100
 PP: 5
-SELF: KO
+SELF: KO NO_ANIMATE
 DEFENSE: DEFENSE
 SPECIAL: ANIMATE_ON_MISS
 NOTES: A powerful attack that destroys the user.
