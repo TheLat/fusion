@@ -12,7 +12,6 @@ Teleport
 Dig
 Fly
 Sound bugs, clear all mutes when playing a sound.
-Can sell to vending machines.
 Some tiles that the player can walk into don't draw over the player.
 Grass doesn't draw over characters/player.
 Selfdestruct faint animations/Teleport escape animation

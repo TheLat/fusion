@@ -7570,7 +7570,10 @@ void engine::do_interaction(character& npc) {
             se.play_sound_blocking(string("sound_effects/general/sfx_pokedex_rating.mp3"));
             se.unmute_music();
 		}
-		else if (s.find("SHOP:") == 0) {
+		else if (s.find("SHOP:") == 0 || s.find("SHOP_NO_SELL:") == 0) {
+		    bool no_sell = false;
+		    if (s.find("SHOP_NO_SELL:") == 0)
+		        no_sell = true;
 			s.erase(0, s.find(":") + 1);
 			s2 = s;
 			if (s2.find("|") != -1) {
@@ -7614,7 +7617,10 @@ void engine::do_interaction(character& npc) {
 			int money_holder = mc.money;
 			while (choices.size() == 0 || choices[0] != 2) {
 			    money_holder = mc.money;
-				choices = do_menu(string("SHOP_FRAME"), s2); // TODO: Reopen on anything except cancel.
+			    if (no_sell)
+			        choices = do_menu(string("SHOP_FRAME_NO_SELL"), s2);
+			    else
+    				choices = do_menu(string("SHOP_FRAME"), s2);
 				choices = remove_cancels(choices);
 				if (choices.size() > 1) {
 					if (choices[0] == 0) { // BUY
@@ -7642,6 +7648,8 @@ void engine::do_interaction(character& npc) {
 						}
 					}
 				}
+				else
+				    break;
                 if (money_holder != mc.money) {
                     se.play_sound(string("sound_effects/general/sfx_purchase.mp3"));
                 }
