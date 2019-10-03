@@ -7,6 +7,10 @@ Jynx-Gengar that knows LOVELY KISS, DREAM EATER, BODY SLAM, and BLIZZARD
 Magmar-Golem that knows ROCK SLIDE, FIRE PUNCH, EXPLOSION, and EARTHQUAKE
 
 TO FIX:
+Softboiled
+Teleport
+Dig
+Fly
 Sound bugs, clear all mutes when playing a sound.
 Can sell to vending machines.
 Some tiles that the player can walk into don't draw over the player.
