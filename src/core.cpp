@@ -845,6 +845,10 @@ string engine::get_special_string(string in) {
 		}
 		return to_string(count);
 	}
+	else if (in == "{BADGE_COUNT}") {
+	    int count = e.mc.values[string("BOULDERBADGE")] + e.mc.values[string("CASCADEBADGE")] + e.mc.values[string("EARTHBADGE")] + e.mc.values[string("MARSHBADGE")] + e.mc.values[string("RAINBOWBADGE")] + e.mc.values[string("SOULBADGE")] + e.mc.values[string("THUNDERBADGE")] + e.mc.values[string("VOLCANOBADGE")];
+	    return to_string(count);
+	}
 	return in;
 }
 
