@@ -25,4 +25,6 @@ Dig
 Fly
 Sound bugs, clear all mutes when playing a sound.
 Brock with a Geodude that only knows Spore and Dream Eater never uses Spore.
+Pandemonium Cave
+Oak Fight
 HP bars don't display correctly in storage.
