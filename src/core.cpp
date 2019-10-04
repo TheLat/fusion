@@ -6610,6 +6610,7 @@ void engine::update_level() {
 	g.draw_list.clear();
 	draw_level();
 	draw_characters();
+	draw_grass();
 	if (levels[mc.loc.level].dark && !has_move_in_party(string("FLASH"))) {
 	    g.push_quad_load(-1.0, -1.0, 2.0, 2.0, safepath + string("images/darkness.png"));
 	}
@@ -6680,12 +6681,95 @@ void engine::draw_level() {
 					continue;
 				if (water_render[levels[levels[curr_level].neighbors[i].level].data[y][x]])
 				    g.push_quad_load(xp, yp, xl, yl, waterstring);
+                if (grass_render[levels[levels[curr_level].neighbors[i].level].data[y][x]]) {
+                    if (offwhitetex == 0) {
+                        g.push_quad_load(xp, yp, xl, yl, offwhite);
+                    }
+                    else {
+                        g.push_quad(xp, yp, xl, yl, offwhitetex);
+                    }
+                }
 				g.push_quad(xp, yp, xl, yl, g.tiles[levels[levels[curr_level].neighbors[i].level].data[y][x]]);
                 if (animating[levels[levels[curr_level].neighbors[i].level].data[y][x]])
                     g.push_quad_load(xp, yp, xl, yl, safepath + string("images/") + to_string(levels[levels[curr_level].neighbors[i].level].data[y][x]) + string("-frame") + to_string(g.frame%8) + string(".png"));
 			}
 		}
 	}
+}
+
+void engine::draw_grass() {
+	float xp, xl, yp, yl;
+	string curr_level = mc.loc.level;
+	double curr_x = mc.loc.x;
+	double curr_y = mc.loc.y;
+	level* l = &(levels[curr_level]);
+	unsigned maxy = min(int(l->data.size()), max(int(curr_y + 6.0), 0));
+	for (unsigned y = max(0, unsigned(curr_y - 4.0)); y < maxy; ++y) {
+		unsigned maxx = min(int(l->data[y].size()), max(int(curr_x + 7.0), 0));
+		for (unsigned x = max(0, unsigned(curr_x - 5.0)); x < maxx; ++x) {
+			xp = -1.0f + (float(x) / 5.0f) - ((curr_x - 4.5f) / 5.0f);
+			yp = (-float(y) / 4.5f) - (0.5f / 4.5f) + (curr_y / 4.5f);
+			xl = 1.0f / 5.0f;
+			yl = 1.0 / 4.5f;
+			if (xp < -1.0f && xp + xl < -1.0f)
+				continue;
+			if (yp < -1.0f && yp + yl < -1.0f)
+				continue;
+			if (xp > 1.0f && xp + xl > 1.0f)
+				continue;
+			if (yp > 1.0f && yp + yl > 1.0f)
+				continue;
+			if (grass_render[l->data[y][x]]) {
+			    g.push_quad(xp, yp, xl, yl, g.tiles[l->data[y][x]]);
+			}
+		}
+	}
+	for (unsigned i = 0; i < l->neighbors.size(); ++i) {
+		level* n = &(levels[l->neighbors[i].level]);
+		unsigned maxy = min(int(levels[levels[curr_level].neighbors[i].level].data.size()), max(int(curr_y - levels[curr_level].neighbors[i].y + 6.0), 0));
+		for (unsigned y = max(0, unsigned(curr_y - levels[curr_level].neighbors[i].y - 4.0)); y < maxy; ++y) {
+			unsigned maxx = min(int(levels[levels[curr_level].neighbors[i].level].data[y].size()), max(int(curr_x - levels[curr_level].neighbors[i].x + 7.0), 0));
+			for (unsigned x = max(0, unsigned(curr_x - levels[curr_level].neighbors[i].x - 5.0)); x < maxx; ++x) {
+				xp = -1.0f + (float(x + levels[curr_level].neighbors[i].x) / 5.0f) - ((curr_x - 4.5f) / 5.0f);
+				yp = (-float(y + levels[curr_level].neighbors[i].y) / 4.5f) - (0.5f / 4.5f) + (curr_y / 4.5f);
+				xl = 1.0f / 5.0f;
+				yl = 1.0 / 4.5f;
+				if (xp < -1.0f && xp + xl < -1.0f)
+					continue;
+				if (yp < -1.0f && yp + yl < -1.0f)
+					continue;
+				if (xp > 1.0f && xp + xl > 1.0f)
+					continue;
+				if (yp > 1.0f && yp + yl > 1.0f)
+					continue;
+				if (grass_render[levels[levels[curr_level].neighbors[i].level].data[y][x]])
+				    g.push_quad(xp, yp, xl, yl, g.tiles[levels[levels[curr_level].neighbors[i].level].data[y][x]]);
+			}
+		}
+	}
+
+	for (unsigned i = 0; i < l->characters.size(); ++i) {
+		character* c = &(l->characters[i]);
+		if (!mc.active[c->name])
+			continue;
+		if (c->no_offset)
+			g.push_quad_half(((c->anim_offset.x + c->loc.x) - (curr_x + 0.5)) / 5.0, (-0.5 - (c->loc.y + c->anim_offset.y) + curr_y) / 4.5f + 0.0, c->width, c->height, get_character_tex(*c));
+		else
+			g.push_quad_half(((c->anim_offset.x + c->loc.x) - (curr_x + 0.5)) / 5.0, (-0.5 - (c->loc.y + c->anim_offset.y) + curr_y) / 4.5f + 0.055, c->width, c->height, get_character_tex(*c));
+	}
+	for (unsigned j = 0; j < l->neighbors.size(); ++j) {
+		level* n = &(levels[l->neighbors[j].level]);
+		for (unsigned i = 0; i < n->characters.size(); ++i) {
+			character* c = &(n->characters[i]);
+			if (!mc.active[c->name])
+				continue;
+			if (c->no_offset)
+				g.push_quad_half((levels[curr_level].neighbors[j].x + (c->anim_offset.x + c->loc.x) - (curr_x + 0.5)) / 5.0, (-levels[curr_level].neighbors[j].y - 0.5 - (c->loc.y + c->anim_offset.y) + curr_y) / 4.5f + 0.0, c->width, c->height, get_character_tex(*c));
+			else
+				g.push_quad_half((levels[curr_level].neighbors[j].x + (c->anim_offset.x + c->loc.x) - (curr_x + 0.5)) / 5.0, (-levels[curr_level].neighbors[j].y - 0.5 - (c->loc.y + c->anim_offset.y) + curr_y) / 4.5f + 0.055, c->width, c->height, get_character_tex(*c));
+		}
+	}
+	g.push_quad_half(-0.1, -0.5 / 4.5 + 0.055, 1.0 / 5.0, 1.0 / 4.5, g.tex[mc.movement + string("-") + get_direction_string(mc.dir) + string("-") + to_string(mc.frame % 4) + string(".png")]);
 }
 
 void engine::npc_wander(double deltat) {

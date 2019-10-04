@@ -390,6 +390,7 @@ public:
 	void do_move_animation(mon& attacker, mon& defender, string move);
 	void update_level();
 	void draw_level();
+	void draw_grass();
 	void draw_characters();
 	void do_interaction(character& npc);
 	void main();

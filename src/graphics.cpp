@@ -285,6 +285,21 @@ unsigned graphics::push_quad(float x, float y, float width, float height, GLuint
 	q.width = width;
 	q.height = height;
 	q.tex = texture;
+	q.half = false;
+	if (texture == 0)
+		q.filename = filename;
+	draw_list.push_back(q);
+	return draw_list.size() - 1;
+}
+
+unsigned graphics::push_quad_half(float x, float y, float width, float height, GLuint texture, string filename) {
+	quad q;
+	q.x = x;
+	q.y = y;
+	q.width = width;
+	q.height = height;
+	q.tex = texture;
+	q.half = true;
 	if (texture == 0)
 		q.filename = filename;
 	draw_list.push_back(q);
@@ -294,14 +309,26 @@ unsigned graphics::push_quad(float x, float y, float width, float height, GLuint
 void graphics::draw_quad(quad &q) {
 	glBindTexture(GL_TEXTURE_2D, q.tex);
 	glBegin(GL_QUADS);
-	glTexCoord2f(0.0f, 0.0f);
-	glVertex3f(q.x, q.y, 0.0f);
-	glTexCoord2f(1.0f, 0.0f);
-	glVertex3f(q.x + q.width, q.y, 0.0f);
-	glTexCoord2f(1.0f, 1.0f);
-	glVertex3f(q.x + q.width, q.y + q.height, 0.0f);
-	glTexCoord2f(0.0f, 1.0f);
-	glVertex3f(q.x, q.y + q.height, 0.0f);
+	if (!q.half) {
+        glTexCoord2f(0.0f, 0.0f);
+        glVertex3f(q.x, q.y, 0.0f);
+        glTexCoord2f(1.0f, 0.0f);
+        glVertex3f(q.x + q.width, q.y, 0.0f);
+        glTexCoord2f(1.0f, 1.0f);
+        glVertex3f(q.x + q.width, q.y + q.height, 0.0f);
+        glTexCoord2f(0.0f, 1.0f);
+        glVertex3f(q.x, q.y + q.height, 0.0f);
+	}
+	else {
+        glTexCoord2f(0.0f, 0.5f);
+        glVertex3f(q.x, q.y + (q.height/2.0), 0.0f);
+        glTexCoord2f(1.0f, 0.5f);
+        glVertex3f(q.x + q.width, q.y + (q.height/2.0), 0.0f);
+        glTexCoord2f(1.0f, 1.0f);
+        glVertex3f(q.x + q.width, q.y + q.height, 0.0f);
+        glTexCoord2f(0.0f, 1.0f);
+        glVertex3f(q.x, q.y + q.height, 0.0f);
+	}
 	glEnd();
 }
 

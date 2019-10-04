@@ -24,6 +24,7 @@ public:
 	double y;
 	double width;
 	double height;
+	bool half;
 	GLuint tex;
 	string filename;
 };
@@ -68,6 +69,7 @@ public:
 	//Called when the window is resized
 	void handleResize(int w, int h);
 	unsigned push_quad(float x, float y, float width, float height, GLuint texture, string filename = string(""));
+	unsigned push_quad_half(float x, float y, float width, float height, GLuint texture, string filename = string(""));
 	void draw_quad(quad &q);
 
 	//Draws the scene
