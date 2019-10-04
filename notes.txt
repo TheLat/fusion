@@ -12,7 +12,6 @@ Enemy team status
 Can't use Pokeball animation in trainer fights
 Name menu
 Boulder push cloud effect
-Rebalance TM prices
 give_mon storage full failure
 Failure messages for item use
 Fishing animations/chance for failure
