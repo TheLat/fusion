@@ -259,6 +259,9 @@ int main(int argc, char** argv) {
 	printf("Loading sounds...");
 	se.init_sounds();
 	printf("Done!\n");
+	printf("Initializing game clock...");
+	e.init_game_timer();
+	printf("Done!\n");
 
 	e.mc.loc.x = 3.0;
 	e.mc.loc.y = 6.0;

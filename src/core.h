@@ -163,6 +163,7 @@ public:
 	int extra_winnings;
 	int box_number;
 	int frame;
+	int game_time;
 	mon team[6];
 	mon enemy_team[6];
 	mon storage[STORAGE_MAX][STORAGE_MAX];
@@ -175,7 +176,7 @@ public:
 	std::map<string, bool> seen;
 	std::map<string, bool> caught;
 	std::map<string, bool> used_tms;
-	player() { wins = 0; losses = 0; money = 0; name = "RED"; rivalname = "BLUE"; repel = 0; selected = 0; enemy_selected = 0; box_number = 0; movement = string("player"); frame = 0; }
+	player() { wins = 0; losses = 0; money = 0; name = "RED"; rivalname = "BLUE"; repel = 0; selected = 0; enemy_selected = 0; box_number = 0; movement = string("player"); frame = 0; game_time = 0;}
 };
 
 class status_effect {
@@ -278,6 +279,7 @@ public:
 	player mc;
 	location ahead, ahead2;
 	bool interact, open_menu;
+	unsigned game_start_timer;
 public:
 	void npc_wander(double deltat);
 	void full_heal();
@@ -379,6 +381,7 @@ public:
 	void init_exp();
 	void init_special();
 	void init_types();
+	void init_game_timer();
 	int weightedrand();
 	void handle_teleport();
 	int get_tile(double y, double x);

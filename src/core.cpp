@@ -849,6 +849,15 @@ string engine::get_special_string(string in) {
 	    int count = e.mc.values[string("BOULDERBADGE")] + e.mc.values[string("CASCADEBADGE")] + e.mc.values[string("EARTHBADGE")] + e.mc.values[string("MARSHBADGE")] + e.mc.values[string("RAINBOWBADGE")] + e.mc.values[string("SOULBADGE")] + e.mc.values[string("THUNDERBADGE")] + e.mc.values[string("VOLCANOBADGE")];
 	    return to_string(count);
 	}
+	else if (in == "{PLAYER_TIME}") {
+	    int count = mc.game_time + int(tim.delta(game_start_timer));
+	    mc.game_time = count;
+	    tim.update(game_start_timer);
+	    if (((count/60) % 60) >= 10)
+    	    return to_string(count / (60*60)) + string(":") + to_string((count/60) % 60);
+    	else
+    	    return to_string(count / (60*60)) + string(":0") + to_string((count/60) % 60);
+	}
 	return in;
 }
 
@@ -6018,6 +6027,9 @@ void engine::init_special() {
 	}
 }
 
+void engine::init_game_timer() {
+}
+
 void engine::init_types() {
 	string line;
 	ifstream f("../resources/data/types.dat");
@@ -8447,6 +8459,7 @@ void engine::do_interaction(character& npc) {
 
 void engine::main() {
 	unsigned time_index2 = tim.create();
+	game_start_timer = tim.create();
 	double deltat = tim.delta(time_index);
 	while (true) {
 		deltat = tim.delta(time_index);
@@ -8640,6 +8653,11 @@ void engine::save_game() {
 	f << string("\nMOVEMENT:") + mc.movement;
 	f << string("\nDIRECTION:");
 	f << int(mc.dir);
+	f << string("\nGAMETIME:");
+	int count = mc.game_time + int(tim.delta(game_start_timer));
+	mc.game_time = count;
+	tim.update(game_start_timer);
+	f << int(mc.game_time);
 	f << string("\nWINS:");
 	f << mc.wins;
 	f << string("\nLOSSES:");
@@ -8836,6 +8854,10 @@ void engine::load_game() {
 		else if (line.find("DIRECTION:") == 0) {
 			line.erase(0, line.find(":") + 1);
 			mc.dir = direction(stoi(line));
+		}
+		else if (line.find("GAMETIME:") == 0) {
+			line.erase(0, line.find(":") + 1);
+			mc.game_time = direction(stoi(line));
 		}
 		else if (line.find("WINS:") == 0) {
 			line.erase(0, line.find(":") + 1);
