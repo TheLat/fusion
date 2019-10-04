@@ -23,6 +23,5 @@ Dig
 Fly
 Cycling Road doesn't force cycling
 Sound bugs, clear all mutes when playing a sound.
-Grass doesn't draw over characters/player.
 Brock with a Geodude that only knows Spore and Dream Eater never uses Spore.
 HP bars don't display correctly in storage.
