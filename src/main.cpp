@@ -233,7 +233,12 @@ int main(int argc, char** argv) {
 	printf("Done!\n");
 	printf("Loading encounter tiles...");
 	e.init_encounter_tiles();
+	printf("Done!\n");
+	printf("Loading grass tiles...");
 	e.init_grass();
+	printf("Done!\n");
+	printf("Loading draw over tiles...");
+	e.init_draw_over();
 	printf("Done!\n");
 	printf("Loading swimming tiles...");
 	e.init_swimming();
@@ -268,11 +273,7 @@ int main(int argc, char** argv) {
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
 	glutInitWindowSize(160*4, 144*4); //Set the window size
 	//Create the window
-	#ifdef __APPLE__
 	glutCreateWindow("Pokemon Fusion");
-	#else
-	glutCreateWindow("Pok�mon Fusion");
-	#endif
 	g.initRendering(); //Initialize rendering
 	e.init_characters();
 	//Set handler functions for drawing, keypresses, and window resizes

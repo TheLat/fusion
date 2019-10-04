@@ -5963,6 +5963,17 @@ void engine::init_grass() {
 	}
 }
 
+void engine::init_draw_over() {
+	string line;
+	ifstream f("../resources/data/drawover-tiles.dat");
+	while (f.is_open()) {
+		while (safe_getline(f, line)) {
+			draw_over[stoi(line)] = true;
+		}
+		f.close();
+	}
+}
+
 void engine::init_swimming() {
 	string line;
 	ifstream f("../resources/data/water-tiles.dat");
@@ -6610,7 +6621,7 @@ void engine::update_level() {
 	g.draw_list.clear();
 	draw_level();
 	draw_characters();
-	draw_grass();
+	draw_special();
 	if (levels[mc.loc.level].dark && !has_move_in_party(string("FLASH"))) {
 	    g.push_quad_load(-1.0, -1.0, 2.0, 2.0, safepath + string("images/darkness.png"));
 	}
@@ -6697,7 +6708,7 @@ void engine::draw_level() {
 	}
 }
 
-void engine::draw_grass() {
+void engine::draw_special() {
 	float xp, xl, yp, yl;
 	string curr_level = mc.loc.level;
 	double curr_x = mc.loc.x;
@@ -6770,6 +6781,27 @@ void engine::draw_grass() {
 		}
 	}
 	g.push_quad_half(-0.1, -0.5 / 4.5 + 0.055, 1.0 / 5.0, 1.0 / 4.5, g.tex[mc.movement + string("-") + get_direction_string(mc.dir) + string("-") + to_string(mc.frame % 4) + string(".png")]);
+	maxy = min(int(l->data.size()), max(int(curr_y + 6.0), 0));
+	for (unsigned y = max(0, unsigned(curr_y - 4.0)); y < maxy; ++y) {
+		unsigned maxx = min(int(l->data[y].size()), max(int(curr_x + 7.0), 0));
+		for (unsigned x = max(0, unsigned(curr_x - 5.0)); x < maxx; ++x) {
+			xp = -1.0f + (float(x) / 5.0f) - ((curr_x - 4.5f) / 5.0f);
+			yp = (-float(y) / 4.5f) - (0.5f / 4.5f) + (curr_y / 4.5f);
+			xl = 1.0f / 5.0f;
+			yl = 1.0 / 4.5f;
+			if (xp < -1.0f && xp + xl < -1.0f)
+				continue;
+			if (yp < -1.0f && yp + yl < -1.0f)
+				continue;
+			if (xp > 1.0f && xp + xl > 1.0f)
+				continue;
+			if (yp > 1.0f && yp + yl > 1.0f)
+				continue;
+			if (draw_over[l->data[y][x]]) {
+			    g.push_quad(xp, yp, xl, yl, g.tiles[l->data[y][x]]);
+			}
+		}
+	}
 }
 
 void engine::npc_wander(double deltat) {

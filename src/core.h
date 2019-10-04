@@ -268,6 +268,7 @@ public:
 	std::map<int, bool> water;
 	std::map<int, bool> water_render;
 	std::map<int, bool> grass_render;
+	std::map<int, bool> draw_over;
 	std::vector<menu*> menus;
 	std::map<int, string> TM;
 	std::map<int, string> HM;
@@ -374,6 +375,7 @@ public:
 	void init_encounter_tiles();
 	void init_swimming();
 	void init_grass();
+	void init_draw_over();
 	void init_exp();
 	void init_special();
 	void init_types();
@@ -390,7 +392,7 @@ public:
 	void do_move_animation(mon& attacker, mon& defender, string move);
 	void update_level();
 	void draw_level();
-	void draw_grass();
+	void draw_special();
 	void draw_characters();
 	void do_interaction(character& npc);
 	void main();
