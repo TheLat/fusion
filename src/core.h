@@ -267,6 +267,7 @@ public:
 	std::map<int, bool> encounter_tile;
 	std::map<int, bool> water;
 	std::map<int, bool> water_render;
+	std::map<int, bool> grass_render;
 	std::vector<menu*> menus;
 	std::map<int, string> TM;
 	std::map<int, string> HM;
@@ -372,6 +373,7 @@ public:
 	void init_jumpleft();
 	void init_encounter_tiles();
 	void init_swimming();
+	void init_grass();
 	void init_exp();
 	void init_special();
 	void init_types();

@@ -233,6 +233,7 @@ int main(int argc, char** argv) {
 	printf("Done!\n");
 	printf("Loading encounter tiles...");
 	e.init_encounter_tiles();
+	e.init_grass();
 	printf("Done!\n");
 	printf("Loading swimming tiles...");
 	e.init_swimming();
