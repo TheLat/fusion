@@ -8,6 +8,7 @@ Magmar-Golem that knows ROCK SLIDE, FIRE PUNCH, EXPLOSION, and EARTHQUAKE
 
 TO FIX:
 Map
+Put Dragon Rage, Hyperbeam, and Substitute TMs in the game.
 Enemy team status
 Can't use Pokeball animation in trainer fights
 Name menu
