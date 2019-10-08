@@ -7449,6 +7449,20 @@ void engine::do_interaction(character& npc) {
 			else
 				choices.push_back(0);
 		}
+		else if (s.find("GIVE_MONEY:") == 0) {
+			s.erase(0, string("GIVE_MONEY:").length());
+			s2 = s;
+			if (s.find("|") != -1) {
+				s.erase(0, s.find("|"));
+				s2.erase(s2.find("|"), s2.length());
+			}
+			else {
+				s = "";
+			}
+			mc.money += stoi(s2);
+			se.play_sound_blocking(string("sound_effects/general/sfx_get_item_1.mp3"));
+			do_alert(string("{PLAYER_NAME} got $") + s2 + string("!"));
+		}
 		else if (s.find("REMOVE_MONEY:") == 0) {
 			s.erase(0, string("REMOVE_MONEY:").length());
 			s2 = s;
