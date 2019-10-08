@@ -111,13 +111,19 @@ string get_menu(string r) {
 	}
 	return r;
 }
+
 bool is_menu(string s) {
 	if (get_menu(s) == "")
 		return false;
 	return true;
 }
+
 void push_hp_bar_if_exists(float x, float y, int index) {
 	e.push_hp_bar_if_exists(x, y, index);
+}
+
+void push_storage_hp_bar_if_exists(float x, float y, int index) {
+	e.push_storage_hp_bar_if_exists(x, y, index);
 }
 int get_mon_move_size(int index){
 	int ret = 0;

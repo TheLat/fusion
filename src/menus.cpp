@@ -119,6 +119,27 @@ void menu::create_menu(string file, string choice, string text_override, string 
 						safe_getline(f, line);
 					}
 				}
+				else if (temp1 == "STORAGE_HP_BARS") {
+					safe_getline(f, line);
+					while (line != "END") {
+						while (line.find("{CHOICE}") != -1) {
+							line.insert(line.find("{CHOICE}"), choice);
+							line.erase(line.find("{CHOICE}"), string("{CHOICE}").length());
+						}
+						temp1 = line;
+						temp1.erase(temp1.find(" "), temp1.length());
+						line.erase(0, line.find(" ") + 1);
+						t.xmin = stof(temp1);
+						temp1 = line;
+						temp1.erase(temp1.find(" "), temp1.length());
+						line.erase(0, line.find(" ") + 1);
+						t.ymin = stof(temp1);
+						temp1 = line;
+						t.s = to_string(stoi(line));
+						storage_hp_bars.push_back(t);
+						safe_getline(f, line);
+					}
+				}
 				else if (temp1 == "BOXES") {
 					safe_getline(f, line);
 					while (line != "END") {
@@ -1073,6 +1094,9 @@ void menu::push_menu() {
 	}
 	for (unsigned i = 0; i < hp_bars.size(); ++i) {
 		push_hp_bar_if_exists(hp_bars[i].xmin, hp_bars[i].ymin, stoi(hp_bars[i].s));
+	}
+	for (unsigned i = 0; i < storage_hp_bars.size(); ++i) {
+		push_storage_hp_bar_if_exists(storage_hp_bars[i].xmin, storage_hp_bars[i].ymin, stoi(storage_hp_bars[i].s));
 	}
 	for (unsigned i = 0; i < images.size(); ++i) {
 		g.push_quad_load(images[i].xmin, images[i].ymin, images[i].length, images[i].height, safepath + string("images/") + images[i].filename);

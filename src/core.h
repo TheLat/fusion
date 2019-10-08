@@ -285,6 +285,7 @@ public:
 	void full_heal();
 	string get_item_effect(string in);
 	void push_hp_bar_if_exists(float x, float y, int index);
+	void push_storage_hp_bar_if_exists(float x, float y, int index);
 	string get_special_string(string in);
 	bool can_use_item(string filter, string name);
 	bool use_item(string filter, std::vector<int> &choices, string &ret);

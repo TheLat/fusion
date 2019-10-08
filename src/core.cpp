@@ -114,6 +114,10 @@ void engine::push_hp_bar_if_exists(float x, float y, int index) {
 	if (mc.team[index].defined)
 		g.push_hp_bar(x, y, get_hp_percent(mc.team[index]));
 }
+void engine::push_storage_hp_bar_if_exists(float x, float y, int index) {
+	if (mc.storage[mc.box_number][index].defined)
+		g.push_hp_bar(x, y, get_hp_percent(mc.storage[mc.box_number][index]));
+}
 
 void engine::collision() {
 	update_level();

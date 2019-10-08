@@ -12,6 +12,7 @@ extern engine e;
 extern mutex m;
 extern string get_special_string(string in);
 extern void push_hp_bar_if_exists(float x, float y, int index);
+extern void push_storage_hp_bar_if_exists(float x, float y, int index);
 extern string get_item_effect(string in);
 extern int get_item_count(string in);
 extern int get_item_storage_count(string in);
@@ -70,7 +71,7 @@ public:
 	MENUTYPE etype;
 	vector<image> images;
 	vector<box> boxes, arrowboxes;
-	vector<text> raw, display, hp_bars;
+	vector<text> raw, display, hp_bars, storage_hp_bars;
 	vector<string> followup, reserve, reserve_followup;
 	int index, step, selection, columns, cursor, selection_cap, offset, cancel_option, scroll, max, replace_cancel;
 	float cursor_offset_x, cursor_offset_y;
