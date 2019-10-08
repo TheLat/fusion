@@ -193,6 +193,14 @@ void graphics::initRendering() {
 		}
 		f3.close();
 	}
+
+    ifstream f5("../resources/data/offset_letters.dat");
+	while (f5.is_open()) {
+		while (safe_getline(f5, tmp)) {
+			offset_letters[tmp] = true;
+		}
+		f5.close();
+	}
 	chunk[' '] = true;
 	chunk['-'] = true;
 	chunk['\n'] = true;
@@ -474,7 +482,10 @@ unsigned graphics::push_text(float x, float y, float width, float height, float 
 			if (key == string("white.bmp") && x_curr == x && y_curr != y + height) {
 			}
 			else {
-				push_quad(x_curr, y_curr, size, size, tex[key]);
+			    if (offset_letters[key])
+    				push_quad(x_curr, y_curr-(2.0/144.0), size, size, tex[key]);
+			    else
+    				push_quad(x_curr, y_curr, size, size, tex[key]);
 				x_curr += size;
 			}
 		}

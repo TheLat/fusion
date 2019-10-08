@@ -55,6 +55,7 @@ public:
 	std::map<int, GLuint> tiles;
 	std::map<string, GLuint> tex;
 	std::map<string, string_lookup_data> string_lookup;
+	std::map<string, bool> offset_letters;
 	std::map<char, bool> chunk;
 	std::vector<quad> draw_list;
 	bool new_load;
