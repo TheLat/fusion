@@ -3967,9 +3967,7 @@ bool engine::battle(trainer& t) { // trainer battle
 		remove_status(mc.enemy_team[mc.enemy_selected], string("FLINCH"), true);
 
 		if (is_KO(mc.team[mc.selected])) {
-		    if ((moves[mc.team[mc.selected].last_move].defined)
-		     && (moves[mc.team[mc.selected].last_move].self.size() > 0)
-		     && (!in_status(mc.team[mc.selected], string("NO_ANIMATE")))) {
+		    if ((in_status(mc.team[mc.selected], string("NO_ANIMATE")))) {
 		    }
 		    else {
                 cp = g.draw_list.size();
@@ -4031,9 +4029,7 @@ bool engine::battle(trainer& t) { // trainer battle
 			mc.team[mc.selected].turn_count = 1;
 		}
 		if (is_KO(mc.enemy_team[mc.enemy_selected])) {
-		    if ((moves[mc.enemy_team[mc.enemy_selected].last_move].defined)
-		     && (moves[mc.enemy_team[mc.enemy_selected].last_move].self.size() > 0)
-		     && (!in_status(mc.enemy_team[mc.enemy_selected], string("NO_ANIMATE")))) {
+		    if ((in_status(mc.enemy_team[mc.enemy_selected], string("NO_ANIMATE")))) {
 		    }
 		    else {
                 cp = g.draw_list.size();
