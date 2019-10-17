@@ -3733,7 +3733,23 @@ bool engine::battle(trainer& t) { // trainer battle
 					continue;
 				mc.team[mc.selected].queue.insert(mc.team[mc.selected].queue.begin(), string(""));
 				if (o.find("CAPTURE") == 0) {
-					do_alert(string("You can't do that!")); // TODO:  Animation and correct fail message
+				    o.erase(0, o.find(":") + 1);
+					float capture_power = stof(o);
+					unsigned clear_point = g.draw_list.size();
+					string anim_name = string("capture");
+					if (capture_power < 1.5)
+					    anim_name += string("1");
+					else if (capture_power < 2.0)
+					    anim_name += string("2");
+					else if (capture_power < 255.0)
+					    anim_name += string("3");
+					else
+					    anim_name += string("4");
+					anim_name += string("block");
+					unsigned anim_holder = g.ae.create_anim_scene(anim_name, mc.team[mc.selected].sprite_index, mc.enemy_team[mc.enemy_selected].sprite_index);
+					while (!g.ae.is_dones(anim_holder)) {}
+					do_alert(string("You can't do that!"));
+					g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
 				}
 				if (o.find("FLEE") == 0) {
 				    apply_status(mc.team[mc.selected], string("FLEE"));
