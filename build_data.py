@@ -35,6 +35,10 @@ for filename in os.listdir("resources/sound_effects/general"):
     if filename != ".DS_Store":
         sounds.append("sound_effects/general/" + filename)
 
+for filename in os.listdir("resources/music"):
+    if filename != ".DS_Store":
+        sounds.append("music/" + filename)
+
 f = open("resources/data/levels.dat", 'w')
 for l in levels:
     f.write(l)
