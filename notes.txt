@@ -8,7 +8,6 @@ Magmar-Golem that knows ROCK SLIDE, FIRE PUNCH, EXPLOSION, and EARTHQUAKE
 
 TO FIX:
 Map
-Enemy team status
 Name menu
 Boulder push cloud effect
 give_mon storage full failure
@@ -25,3 +24,4 @@ Pandemonium Cave
 Oak Fight
 Options
 Opening Scene
+Controller input

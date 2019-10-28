@@ -3601,7 +3601,26 @@ bool engine::battle(trainer& t) { // trainer battle
 	anim_holder1 = g.ae.create_animf(&(g.draw_list[enemy_trainer_sprite].x), -1.9, 0.1, 1.5);
 	anim_holder2 = g.ae.create_animf(&(g.draw_list[player_sprite].x), 1.0, -1.0, 1.5);
 	while (!g.ae.is_donef(anim_holder1) && !g.ae.is_donef(anim_holder2)) {}
-	// TODO: show team status
+	float ball_offset = 0.0;
+	for (i = 0; i < 6; ++i) {
+		if (!mc.team[i].defined)
+			g.push_quad_load(0.3f + ball_offset, -0.4f, 0.1f, 0.1f, safepath + string("images/ball-empty.png"));
+		else if (mc.team[i].status.size() != 0 || mc.team[i].curr_hp <= 0)
+			g.push_quad_load(0.3f + ball_offset, -0.4f, 0.1f, 0.1f, safepath + string("images/ball-bad.png"));
+		else
+			g.push_quad_load(0.3f + ball_offset, -0.4f, 0.1f, 0.1f, safepath + string("images/ball.png"));
+		ball_offset += 0.1;
+	}
+	ball_offset = 0.0;
+	for (i = 0; i < 6; ++i) {
+		if (!mc.enemy_team[i].defined)
+			g.push_quad_load(-0.9f + ball_offset, 0.9f, 0.1f, 0.1f, safepath + string("images/ball-empty.png"));
+		else if (mc.enemy_team[i].status.size() != 0 || mc.enemy_team[i].curr_hp <= 0)
+			g.push_quad_load(-0.9f + ball_offset, 0.9f, 0.1f, 0.1f, safepath + string("images/ball-bad.png"));
+		else
+			g.push_quad_load(-0.9f + ball_offset, 0.9f, 0.1f, 0.1f, safepath + string("images/ball.png"));
+		ball_offset += 0.1;
+	}
 	do_alert(t.display_name + string(" wants to fight!"));
 	anim_holder1 = g.ae.create_animf(&(g.draw_list[enemy_trainer_sprite].x), 0.1, 1.0, 0.5);
 	while (!g.ae.is_donef(anim_holder1)) {}
@@ -4203,6 +4222,16 @@ bool engine::battle() { // wild pokemon
 	se.mute_music(false);
 	se.play_cry(mc.enemy_team[mc.enemy_selected].number, true);
 	se.unmute_music();
+	float ball_offset = 0.0f;
+	for (i = 0; i < 6; ++i) {
+		if (!mc.team[i].defined)
+			g.push_quad_load(0.3f + ball_offset, -0.4f, 0.1f, 0.1f, safepath + string("images/ball-empty.png"));
+		else if (mc.team[i].status.size() != 0 || mc.team[i].curr_hp <= 0)
+			g.push_quad_load(0.3f + ball_offset, -0.4f, 0.1f, 0.1f, safepath + string("images/ball-bad.png"));
+		else
+			g.push_quad_load(0.3f + ball_offset, -0.4f, 0.1f, 0.1f, safepath + string("images/ball.png"));
+		ball_offset += 0.1;
+	}
 	do_alert(string("Wild ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string(" appeared!"));
 	mc.enemy_team[mc.enemy_selected].turn_count = 0;
 	mc.seen[mc.enemy_team[mc.enemy_selected].number] = true;
