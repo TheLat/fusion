@@ -20,7 +20,10 @@ void soundengine::init_sounds() {
 	string line;
 	while (f.is_open()) {
 		while (safe_getline(f, line)) {
-			result = system->createSound((safepath + line).c_str(), FMOD_DEFAULT, 0, &sounds[line]);
+			if (line.find("-loop.mp3") == -1)
+				result = system->createSound((safepath + line).c_str(), FMOD_DEFAULT, 0, &sounds[line]);
+			else
+				result = system->createSound((safepath + line).c_str(), FMOD_LOOP_NORMAL, 0, &sounds[line]);
 		}
 		f.close();
 	}
@@ -187,7 +190,7 @@ void soundengine::play_cry(string s, bool blocking) {
 }
 
 void soundengine::mute_music(bool partial) {
-    double volume = 0.0;
+    float volume = 0.0;
     if (partial)
         volume = 0.5;
     if (music1) {
@@ -203,7 +206,7 @@ void soundengine::mute_music(bool partial) {
 }
 
 void soundengine::unmute_music() {
-    double volume = 1.0;
+    float volume = 1.0;
     if (music1) {
         music1->setPaused(true);
         music1->setVolume(volume);
