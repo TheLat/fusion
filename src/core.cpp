@@ -3612,13 +3612,14 @@ bool engine::battle(trainer& t) { // trainer battle
 		ball_offset += 0.1;
 	}
 	ball_offset = 0.0;
+	unsigned enemy_ball_status_sprite_holder = 0;
 	for (i = 0; i < 6; ++i) {
 		if (!mc.enemy_team[i].defined)
-			g.push_quad_load(-0.9f + ball_offset, 0.9f, 0.1f, 0.1f, safepath + string("images/ball-empty.png"));
+			enemy_ball_status_sprite_holder = g.push_quad_load(-0.9f + ball_offset, 0.9f, 0.1f, 0.1f, safepath + string("images/ball-empty.png"));
 		else if (mc.enemy_team[i].status.size() != 0 || mc.enemy_team[i].curr_hp <= 0)
-			g.push_quad_load(-0.9f + ball_offset, 0.9f, 0.1f, 0.1f, safepath + string("images/ball-bad.png"));
+			enemy_ball_status_sprite_holder = g.push_quad_load(-0.9f + ball_offset, 0.9f, 0.1f, 0.1f, safepath + string("images/ball-bad.png"));
 		else
-			g.push_quad_load(-0.9f + ball_offset, 0.9f, 0.1f, 0.1f, safepath + string("images/ball.png"));
+			enemy_ball_status_sprite_holder = g.push_quad_load(-0.9f + ball_offset, 0.9f, 0.1f, 0.1f, safepath + string("images/ball.png"));
 		ball_offset += 0.1;
 	}
 	do_alert(t.display_name + string(" wants to fight!"));
@@ -3632,6 +3633,9 @@ bool engine::battle(trainer& t) { // trainer battle
 	se.play_cry(mc.enemy_team[mc.enemy_selected].number, true);
 	se.unmute_music();
 	do_alert(t.display_name + string(" sent out ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string("!"));
+	for (i = 0; i < 6; ++i) {
+		g.draw_list[enemy_ball_status_sprite_holder - i].y = 10.0;
+	}
 	mc.enemy_team[mc.enemy_selected].hp_bar_index = g.push_hp_bar(-0.7f, 0.7f, get_hp_percent(mc.enemy_team[mc.enemy_selected]));
 	mc.enemy_team[mc.enemy_selected].hud_index = 0;
 	mc.enemy_team[mc.enemy_selected].turn_count = 1;
