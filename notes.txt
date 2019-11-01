@@ -23,5 +23,6 @@ Brock with a Geodude that only knows Spore and Dream Eater never uses Spore.
 Pandemonium Cave
 Oak Fight
 Options
+Animating sprites in menus
 Opening Scene
 Controller input
