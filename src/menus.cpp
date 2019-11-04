@@ -1204,12 +1204,9 @@ void menu::input(bool up, bool down, bool left, bool right, bool select, bool st
 			}
 		}
 		if (down) {
-			if (selection >= selection_cap - columns) {
-				selection = selection + columns - selection_cap;
-			}
-			else {
-				selection += columns;
-			}
+			selection += columns;
+			if (selection >= selection_cap)
+				selection = selection % columns;
 		}
 		if (right) {
 			if (columns > 1) {
