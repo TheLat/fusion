@@ -1195,7 +1195,9 @@ void menu::input(bool up, bool down, bool left, bool right, bool select, bool st
 	else if (etype == SELECT) {
 		if (up) {
 			if (selection < columns) {
-				selection = selection_cap - (columns - selection);
+				selection = (((selection_cap + columns - 1)/columns)*columns) - (columns - selection);
+				if (selection >= selection_cap)
+					selection = selection_cap - 1;
 			}
 			else {
 				selection -= columns;
@@ -1216,6 +1218,8 @@ void menu::input(bool up, bool down, bool left, bool right, bool select, bool st
 				}
 				else if (selection % columns < columns - 1) {
 					selection++;
+					if (selection >= selection_cap)
+						selection = selection_cap - 1;
 				}
 				else {
 					selection--;
@@ -1226,6 +1230,8 @@ void menu::input(bool up, bool down, bool left, bool right, bool select, bool st
 			if (columns > 1) {
 				if (selection % columns == 0) {
 					selection += columns - 1;
+					if (selection >= selection_cap)
+						selection = selection_cap - 1;
 				}
 				else {
 					selection--;
