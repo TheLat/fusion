@@ -1211,7 +1211,10 @@ void menu::input(bool up, bool down, bool left, bool right, bool select, bool st
 		}
 		if (right) {
 			if (columns > 1) {
-				if (selection % columns < columns - 1) {
+				if (selection % columns >= columns - 1) {
+					selection -= selection % columns;
+				}
+				else if (selection % columns < columns - 1) {
 					selection++;
 				}
 				else {

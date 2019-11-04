@@ -406,6 +406,7 @@ public:
 	void save_mon(ofstream& f, mon& m);
 	void load_game();
 	void load_mon(string s, mon& m);
+	string get_input_string();
 };
 
 #endif

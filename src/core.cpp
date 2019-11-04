@@ -133,6 +133,210 @@ void engine::play_level_music() {
 	    se.play_music(levels[mc.loc.level].music);
 }
 
+string engine::get_input_string() {
+	string out = "";
+	std::vector<int> choices;
+	choices = do_menu(string("NAME_MENU13"));
+	choices = remove_cancels(choices);
+	for (unsigned i = 0; i < choices.size(); ++i) {
+		switch (choices[i]) {
+		case 0:
+			out = out + string("A");
+			break;
+		case 1:
+			out = out + string("B");
+			break;
+		case 2:
+			out = out + string("C");
+			break;
+		case 3:
+			out = out + string("D");
+			break;
+		case 4:
+			out = out + string("E");
+			break;
+		case 5:
+			out = out + string("F");
+			break;
+		case 6:
+			out = out + string("G");
+			break;
+		case 7:
+			out = out + string("H");
+			break;
+		case 8:
+			out = out + string("I");
+			break;
+		case 9:
+			out = out + string("J");
+			break;
+		case 10:
+			out = out + string("K");
+			break;
+		case 11:
+			out = out + string("L");
+			break;
+		case 12:
+			out = out + string("M");
+			break;
+		case 13:
+			out = out + string("N");
+			break;
+		case 14:
+			out = out + string("O");
+			break;
+		case 15:
+			out = out + string("P");
+			break;
+		case 16:
+			out = out + string("Q");
+			break;
+		case 17:
+			out = out + string("R");
+			break;
+		case 18:
+			out = out + string("S");
+			break;
+		case 19:
+			out = out + string("T");
+			break;
+		case 20:
+			out = out + string("U");
+			break;
+		case 21:
+			out = out + string("V");
+			break;
+		case 22:
+			out = out + string("W");
+			break;
+		case 23:
+			out = out + string("X");
+			break;
+		case 24:
+			out = out + string("Y");
+			break;
+		case 25:
+			out = out + string("Z");
+			break;
+		case 26:
+			out = out + string("a");
+			break;
+		case 27:
+			out = out + string("b");
+			break;
+		case 28:
+			out = out + string("c");
+			break;
+		case 29:
+			out = out + string("d");
+			break;
+		case 30:
+			out = out + string("e");
+			break;
+		case 31:
+			out = out + string("f");
+			break;
+		case 32:
+			out = out + string("g");
+			break;
+		case 33:
+			out = out + string("h");
+			break;
+		case 34:
+			out = out + string("i");
+			break;
+		case 35:
+			out = out + string("j");
+			break;
+		case 36:
+			out = out + string("k");
+			break;
+		case 37:
+			out = out + string("l");
+			break;
+		case 38:
+			out = out + string("m");
+			break;
+		case 39:
+			out = out + string("n");
+			break;
+		case 40:
+			out = out + string("o");
+			break;
+		case 41:
+			out = out + string("p");
+			break;
+		case 42:
+			out = out + string("q");
+			break;
+		case 43:
+			out = out + string("r");
+			break;
+		case 44:
+			out = out + string("s");
+			break;
+		case 45:
+			out = out + string("t");
+			break;
+		case 46:
+			out = out + string("u");
+			break;
+		case 47:
+			out = out + string("v");
+			break;
+		case 48:
+			out = out + string("w");
+			break;
+		case 49:
+			out = out + string("x");
+			break;
+		case 50:
+			out = out + string("y");
+			break;
+		case 51:
+			out = out + string("z");
+			break;
+		case 52:
+			out = out + string(".");
+			break;
+		case 53:
+			out = out + string("?");
+			break;
+		case 54:
+			out = out + string("{TIMES}");
+			break;
+		case 55:
+			out = out + string("(");
+			break;
+		case 56:
+			out = out + string(")");
+			break;
+		case 57:
+			out = out + string(";");
+			break;
+		case 58:
+			out = out + string(":");
+			break;
+		case 59:
+			out = out + string("[");
+			break;
+		case 60:
+			out = out + string("]");
+			break;
+		case 61:
+			out = out + string("{PK}");
+			break;
+		case 62:
+			out = out + string("{MN}");
+			break;
+		default:
+			out = out;
+			break;
+		}
+	}
+	return out;
+}
+
 string engine::get_special_string(string in) {
 	string parse;
 	string out;
@@ -4394,7 +4598,11 @@ bool engine::battle() { // wild pokemon
 						se.mute_music(false);
 		                se.play_sound_blocking(string("sound_effects/general/sfx_caught_mon.mp3"));
 						se.unmute_music();
-						// TODO:  Nickname menu
+						do_alert(string("Wild ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string(" was captured!"));
+						choices = do_menu(string("ALERT_YES_NO"), string("Would you like to give ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string(" a nickname?"));
+						if (choices[choices.size() - 1] == 0) {
+							mc.enemy_team[mc.enemy_selected].nickname = get_input_string();
+						}
 						int count = 0;
 						for (unsigned i = 0; i < 6; ++i) {
 							if (mc.enemy_team[mc.enemy_selected].fought[i] && mc.team[i].defined && !is_KO(mc.team[i])) {
@@ -4404,7 +4612,6 @@ bool engine::battle() { // wild pokemon
 						bool found = false;
 						for (int i = 0; i < 6; ++i) {
 							if (!mc.team[i].defined) {
-								do_alert(string("Wild ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string(" was captured!"));
 								mc.team[i] = mc.enemy_team[mc.enemy_selected];
 								mc.team[i].wild = false;
 								mc.team[i].enemy = false;
@@ -4417,7 +4624,6 @@ bool engine::battle() { // wild pokemon
 								for (int j = 0; j < STORAGE_MAX && !found; ++j) {
 									if (!mc.storage[i][j].defined) {
 										found = true;
-										do_alert(string("Wild ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string(" was captured!"));
 										mc.storage[i][j] = mc.enemy_team[mc.enemy_selected];
 										mc.storage[i][j].wild = false;
 										mc.storage[i][j].enemy = false;
