@@ -8,10 +8,8 @@ Magmar-Golem that knows ROCK SLIDE, FIRE PUNCH, EXPLOSION, and EARTHQUAKE
 
 TO FIX:
 Map
-Name menu bugs
 Fix capture animation (wobble)
 Boulder push cloud effect
-give_mon storage full failure
 Failure messages for item use
 Fishing animations/chance for failure
 Item failure if and only if all effects fail

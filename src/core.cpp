@@ -8285,8 +8285,11 @@ void engine::do_interaction(character& npc) {
 					make_mon(s2, l, mc.team[i]);
 					mc.team[i].wild = false;
 					mc.team[i].enemy = false;
-					// TODO: Nickname menu
 					do_menu(string("ALERT"), mc.name + string(" got ") + all_mon[mc.team[i].number].name + string("!"));
+					choices = do_menu(string("ALERT_YES_NO"), string("Would you like to give ") + get_nickname(mc.team[i]) + string(" a nickname?"));
+					if (choices[choices.size() - 1] == 0) {
+						mc.team[i].nickname = get_input_string();
+					}
 					mc.seen[mc.team[i].number] = true;
 					mc.caught[mc.team[i].number] = true;
 					mon_created = true;
@@ -8300,8 +8303,11 @@ void engine::do_interaction(character& npc) {
 							make_mon(s2, l, mc.storage[i][j]);
 							mc.storage[i][j].wild = false;
 							mc.storage[i][j].enemy = false;
-							// TODO: Nickname menu
 							do_menu(string("ALERT"), mc.name + string(" got ") + all_mon[mc.storage[i][j].number].name + string("!"));
+							choices = do_menu(string("ALERT_YES_NO"), string("Would you like to give ") + get_nickname(mc.storage[i][j]) + string(" a nickname?"));
+							if (choices[choices.size() - 1] == 0) {
+								mc.storage[i][j].nickname = get_input_string();
+							}
 							mc.seen[mc.storage[i][j].number] = true;
 							mc.caught[mc.storage[i][j].number] = true;
 							mon_created = true;
@@ -8310,7 +8316,9 @@ void engine::do_interaction(character& npc) {
 						}
 					}
 				}
-				// TODO: Storage full
+				do_alert("Storage is full!");
+				advance = false;
+				break;
 			}
 		}
 		else if (s.find("SET_FACE:") == 0) {
