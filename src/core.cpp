@@ -8611,7 +8611,7 @@ void engine::do_interaction(character& npc) {
 			g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
 		}
 		else if (s.find("MAP") == 0) {
-			// TODO: Implement MAP
+			do_menu(string("MAP"));
 			if (s.find("|") != -1) {
 				s.erase(0, s.find("|") + 1);
 			}
