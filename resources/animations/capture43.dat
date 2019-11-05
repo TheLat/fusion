@@ -17,22 +17,37 @@ HIDE_SPRITE 3 1.1
 HIDE_SPRITE 4 1.1
 PLAY_SOUND sound_effects/general/sfx_tink.mp3 1.5
 CREATE_SPRITE images/ball42.png 1.6 0.45 0.3 0.2 0.2
-CREATE_SPRITE images/ball43.png 1.7 0.45 0.3 0.2 0.2
+HIDE_SPRITE 0 1.6
+CREATE_SPRITE images/ball43.png 1.7 0.4625 0.3 0.2 0.2
+HIDE_SPRITE 5 1.7
 CREATE_SPRITE images/ball42.png 1.8 0.45 0.3 0.2 0.2
-CREATE_SPRITE images/ball41.png 1.9 0.45 0.3 0.2 0.2
+HIDE_SPRITE 6 1.8
+CREATE_SPRITE images/ball41.png 1.9 0.4375 0.3 0.2 0.2
+HIDE_SPRITE 7 1.9
 CREATE_SPRITE images/ball42.png 2.0 0.45 0.3 0.2 0.2
+HIDE_SPRITE 8 2.0
 PLAY_SOUND sound_effects/general/sfx_tink.mp3 2.4
 CREATE_SPRITE images/ball42.png 2.5 0.45 0.3 0.2 0.2
-CREATE_SPRITE images/ball43.png 2.6 0.45 0.3 0.2 0.2
+HIDE_SPRITE 9 2.5
+CREATE_SPRITE images/ball43.png 2.6 0.4625 0.3 0.2 0.2
+HIDE_SPRITE 10 2.6
 CREATE_SPRITE images/ball42.png 2.7 0.45 0.3 0.2 0.2
-CREATE_SPRITE images/ball41.png 2.8 0.45 0.3 0.2 0.2
+HIDE_SPRITE 11 2.7
+CREATE_SPRITE images/ball41.png 2.8 0.4375 0.3 0.2 0.2
+HIDE_SPRITE 12 2.8
 CREATE_SPRITE images/ball42.png 2.9 0.45 0.3 0.2 0.2
+HIDE_SPRITE 13 2.9
 PLAY_SOUND sound_effects/general/sfx_tink.mp3 3.3
 CREATE_SPRITE images/ball42.png 3.4 0.45 0.3 0.2 0.2
-CREATE_SPRITE images/ball43.png 3.5 0.45 0.3 0.2 0.2
+HIDE_SPRITE 14 3.4
+CREATE_SPRITE images/ball43.png 3.5 0.4625 0.3 0.2 0.2
+HIDE_SPRITE 15 3.5
 CREATE_SPRITE images/ball42.png 3.6 0.45 0.3 0.2 0.2
-CREATE_SPRITE images/ball41.png 3.7 0.45 0.3 0.2 0.2
+HIDE_SPRITE 16 3.6
+CREATE_SPRITE images/ball41.png 3.7 0.4375 0.3 0.2 0.2
+HIDE_SPRITE 17 3.7
 CREATE_SPRITE images/ball42.png 3.8 0.45 0.3 0.2 0.2
+HIDE_SPRITE 18 3.8
 HIDE_SPRITE 0 4.2
 HIDE_SPRITE 1 4.7
 HIDE_SPRITE 2 4.7
