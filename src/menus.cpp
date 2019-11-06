@@ -218,10 +218,17 @@ void menu::create_menu(string file, string choice, string text_override, string 
 					std::vector<float> map_coords = get_map_coords();
 					std::vector<string> map_names = get_map_names();
 					selection_cap = map_names.size();
+					is_map = true;
 					while (line != "END") {
 						safe_getline(f, line);
 					}
-					for (unsigned i = 0; i < map_names.size(); ++i) {
+					t.xmin = map_coords[0];
+					t.ymin = map_coords[1];
+					t.height = 0.1;
+					t.length = 1.0;
+					t.s = map_names[0];
+					raw.push_back(t);
+					for (unsigned i = map_names.size() - 1; i > 0; --i) {
 						t.xmin = map_coords[(i * 2)];
 						t.ymin = map_coords[(i * 2) + 1];
 						t.height = 0.1;
@@ -229,6 +236,12 @@ void menu::create_menu(string file, string choice, string text_override, string 
 						t.s = map_names[i];
 						raw.push_back(t);
 					}
+					t.xmin = -1.0;
+					t.ymin = 0.8;
+					t.height = 0.1;
+					t.length = 2.0;
+					t.s = string("PLACEHOLDER");
+					raw.push_back(t);
 					// TODO
 				}
 				else if (temp1.find("DEX") == 0) {
@@ -1167,13 +1180,22 @@ void menu::pop_menu() {
 
 void menu::process_strings() {
 	display.clear();
-	for (unsigned i = 0; i < raw.size(); ++i) {
-		display.push_back(raw[i]);
-		if (display[i].s.find("SELECTION") != -1) {
-			display[i].s.erase(display[i].s.find("SELECTION"), string("SELECTION").length());
-			display[i].s = display[i].s + to_string(selection);
+	if (!is_map) {
+		for (unsigned i = 0; i < raw.size(); ++i) {
+			display.push_back(raw[i]);
+			if (display[i].s.find("SELECTION") != -1) {
+				display[i].s.erase(display[i].s.find("SELECTION"), string("SELECTION").length());
+				display[i].s = display[i].s + to_string(selection);
+			}
+			display[i].s = get_special_string(display[i].s);
 		}
-		display[i].s = get_special_string(display[i].s);
+	}
+	else {
+		for (unsigned i = 0; i < raw.size(); ++i) {
+			display.push_back(raw[i]);
+			display[i].s = "";
+		}
+		display[display.size() - 1].s = get_special_string(string("CENTER_JUSTIFY:20:") + raw[selection].s);
 	}
 }
 
