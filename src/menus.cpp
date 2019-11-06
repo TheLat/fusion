@@ -56,6 +56,9 @@ void menu::create_menu(string file, string choice, string text_override, string 
 				else if (temp1 == "COLUMNS") {
 					columns = stoi(temp2);
 				}
+				else if (temp1 == "ICON") {
+					icon = safepath + string("images/") + temp2;
+				}
 				else if (temp1 == "CANCEL_OPTION") {
 					cancel_option = stoi(temp2);
 				}
@@ -209,6 +212,24 @@ void menu::create_menu(string file, string choice, string text_override, string 
 						arrowboxes.push_back(b);
 						safe_getline(f, line);
 					}
+				}
+				else if (temp1.find("MAP") == 0) {
+					safe_getline(f, line);
+					std::vector<float> map_coords = get_map_coords();
+					std::vector<string> map_names = get_map_names();
+					selection_cap = map_names.size();
+					while (line != "END") {
+						safe_getline(f, line);
+					}
+					for (unsigned i = 0; i < map_names.size(); ++i) {
+						t.xmin = map_coords[(i * 2)];
+						t.ymin = map_coords[(i * 2) + 1];
+						t.height = 0.1;
+						t.length = 1.0;
+						t.s = map_names[i];
+						raw.push_back(t);
+					}
+					// TODO
 				}
 				else if (temp1.find("DEX") == 0) {
 					int count = 0;
@@ -1290,12 +1311,10 @@ vector<int> menu::main() {
 	vector<int> choice;
 	while (!done || (done && (selection >= 0) && (selection < (int)followup.size()) && (followup[selection] != ""))) {
 		mutex2.lock();
-		//if (etype == ALERT && followup.size() > 0 && followup[0] == string("YES_NO") && anim_index >= 0) {
-		//    done = g.ae.is_donei(anim_index);
-		//}
 		if ((etype == SELECT || etype == SCROLL) && cursor == -1) {
 			cursor = g.draw_list.size();
-			g.push_quad(display[0].xmin - 0.1f + cursor_offset_x, display[0].ymin - 0.1f + cursor_offset_y, 0.1f, 0.1f, g.tex[string("cursor-2.bmp")]);
+			// TODO: Bigger if not the default
+			g.push_quad_load(display[0].xmin - 0.1f + cursor_offset_x, display[0].ymin - 0.1f + cursor_offset_y, 0.1f, 0.1f, icon);
 		}
 		if ((cursor > 0) && (selection != -1)) {
 			g.draw_list[cursor].x = display[selection].xmin - 0.1f + cursor_offset_x;

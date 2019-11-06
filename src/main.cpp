@@ -48,6 +48,46 @@ int get_team_size() {
 	}
 	return ret;
 }
+
+extern std::vector<float> get_map_coords() {
+	std::vector<float> out;
+	std::map<string, level>::iterator it;
+	bool found;
+	for (unsigned i = 1; i < 1000000; ++i) {
+		found = false;
+		for (it = e.levels.begin(); it != e.levels.end(); it++) {
+			if (it->second.map_order == i) {
+				found = true;
+				out.push_back(it->second.map.x);
+				out.push_back(it->second.map.y);
+				break;
+			}
+		}
+		if (!found) {
+			break;
+		}
+	}
+	return out;
+}
+extern std::vector<string> get_map_names() {
+	std::vector<string> out;
+	std::map<string, level>::iterator it;
+	bool found;
+	for (unsigned i = 1; i < 1000000; ++i) {
+		found = false;
+		for (it = e.levels.begin(); it != e.levels.end(); it++) {
+			if (it->second.map_order == i) {
+				found = true;
+				out.push_back(it->second.map.level);
+				break;
+			}
+		}
+		if (!found) {
+			break;
+		}
+	}
+	return out;
+}
 std::map<string, bool> get_seen_table() {
 	return e.mc.seen;
 }

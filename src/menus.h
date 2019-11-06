@@ -7,6 +7,7 @@
 
 class graphics;
 class engine;
+class level;
 extern graphics g;
 extern engine e;
 extern mutex m;
@@ -24,6 +25,8 @@ extern int get_mon_move_size(int index);
 extern int get_storage_mon_move_size(int index);
 extern int get_inventory_count(string type);
 extern int get_inventory_storage_count(string type);
+extern std::vector<float> get_map_coords();
+extern std::vector<string> get_map_names();
 extern std::map<string, bool> get_seen_table();
 extern std::map<string, bool> get_caught_table();
 extern bool is_menu(string s);
@@ -68,6 +71,7 @@ private:
     std::vector<quad> draw_list_copy;
 public:
 	string type;
+	string icon;
 	MENUTYPE etype;
 	vector<image> images;
 	vector<box> boxes, arrowboxes;
@@ -76,7 +80,7 @@ public:
 	int index, step, selection, columns, cursor, selection_cap, offset, cancel_option, scroll, max, replace_cancel;
 	float cursor_offset_x, cursor_offset_y;
 	bool done, always_cancel, initialized, autoclose, discard_choice;
-	menu() { step = 0; index = 0; done = false; selection = 0; selection_cap = 0; columns = 1; cursor = -1; offset = 0; cancel_option = -1; cursor_offset_x = 0.0f; cursor_offset_y = 0.0; scroll = 0; max = 0; replace_cancel = -1; always_cancel = false; initialized = false; etype = NONE; anim_index = -1; autoclose = false; discard_choice = false;}
+	menu() { step = 0; index = 0; done = false; selection = 0; selection_cap = 0; columns = 1; cursor = -1; offset = 0; cancel_option = -1; cursor_offset_x = 0.0f; cursor_offset_y = 0.0; scroll = 0; max = 0; replace_cancel = -1; always_cancel = false; initialized = false; etype = NONE; anim_index = -1; autoclose = false; discard_choice = false; icon = string("cursor-2.bmp"); }
 	void create_menu(string file, string choice = "", string text_override = "", string followup_override = "");
 	void update_reserves();
 	void push_menu();

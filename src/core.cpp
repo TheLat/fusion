@@ -5260,6 +5260,16 @@ void engine::init_level(string levelname) {
 			levels[levelname].music = line;
 			continue;
 		}
+		if (line == "MAP") {
+			levels[levelname].map.level = levels[levelname].name;
+			safe_getline(f, line);
+			levels[levelname].map.x = stof(line);
+			safe_getline(f, line);
+			levels[levelname].map.y = stof(line);
+			safe_getline(f, line);
+			levels[levelname].map_order = stoi(line);
+			continue;
+		}
 		if (line == "LEAVESOUND") {
 			safe_getline(f, line);
 			levels[levelname].leavesound = line;
