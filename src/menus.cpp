@@ -1335,12 +1335,20 @@ vector<int> menu::main() {
 		mutex2.lock();
 		if ((etype == SELECT || etype == SCROLL) && cursor == -1) {
 			cursor = g.draw_list.size();
-			// TODO: Bigger if not the default
-			g.push_quad_load(display[0].xmin - 0.1f + cursor_offset_x, display[0].ymin - 0.1f + cursor_offset_y, 0.1f, 0.1f, icon);
+			if (!is_map)
+				g.push_quad_load(display[0].xmin - 0.1f + cursor_offset_x, display[0].ymin - 0.1f + cursor_offset_y, 0.1f, 0.1f, icon);
+			else
+				g.push_quad_load(display[0].xmin - 0.125f + cursor_offset_x, display[0].ymin - 0.125f + cursor_offset_y, 0.15f, 0.15f, icon);
 		}
 		if ((cursor > 0) && (selection != -1)) {
-			g.draw_list[cursor].x = display[selection].xmin - 0.1f + cursor_offset_x;
-			g.draw_list[cursor].y = display[selection].ymin + 0.1f + cursor_offset_y;
+			if (!is_map) {
+				g.draw_list[cursor].x = display[selection].xmin - 0.1f + cursor_offset_x;
+				g.draw_list[cursor].y = display[selection].ymin + 0.1f + cursor_offset_y;
+			}
+			else {
+				g.draw_list[cursor].x = display[selection].xmin - 0.125f + cursor_offset_x;
+				g.draw_list[cursor].y = display[selection].ymin + 0.075f + cursor_offset_y;
+			}
 		}
 		if (etype == ALERT) {
 		    for (unsigned i = string_start; i < string_stage; ++i) {
