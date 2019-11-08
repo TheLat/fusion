@@ -216,6 +216,7 @@ void menu::create_menu(string file, string choice, string text_override, string 
 				else if (temp1.find("MAP") == 0) {
 					safe_getline(f, line);
 					std::vector<float> map_coords = get_map_coords();
+					std::vector<float> player_coords = find_player_coords();
 					std::vector<string> map_names = get_map_names();
 					selection_cap = map_names.size();
 					is_map = true;
@@ -242,7 +243,14 @@ void menu::create_menu(string file, string choice, string text_override, string 
 					t.length = 2.0;
 					t.s = string("PLACEHOLDER");
 					raw.push_back(t);
-					// TODO
+					if (player_coords.size() > 0) {
+						im.xmin = player_coords[0] - 0.125f;
+						im.ymin = player_coords[1] + 0.1;
+						im.length = 0.15;
+						im.height = 0.15;
+						im.filename = string("map_player.png");
+						images.push_back(im);
+					}
 				}
 				else if (temp1.find("DEX") == 0) {
 					int count = 0;

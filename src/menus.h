@@ -25,6 +25,7 @@ extern int get_mon_move_size(int index);
 extern int get_storage_mon_move_size(int index);
 extern int get_inventory_count(string type);
 extern int get_inventory_storage_count(string type);
+extern std::vector<float> find_player_coords();
 extern std::vector<float> get_map_coords();
 extern std::vector<string> get_map_names();
 extern std::map<string, bool> get_seen_table();

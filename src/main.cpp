@@ -49,7 +49,33 @@ int get_team_size() {
 	return ret;
 }
 
-extern std::vector<float> get_map_coords() {
+std::vector<float> find_map_coords(string this_level) {
+	std::vector<float> out;
+	std::vector<string> to_traverse;
+	std::vector<string> yet_to_traverse;
+	yet_to_traverse.push_back(this_level);
+	while (yet_to_traverse.size() != 0) {
+		to_traverse = yet_to_traverse;
+		yet_to_traverse.clear();
+		for (unsigned i = 0; i < to_traverse.size(); ++i) {
+			if (e.levels[to_traverse[i]].map_order != 0) {
+				out.push_back(e.levels[to_traverse[i]].map.x);
+				out.push_back(e.levels[to_traverse[i]].map.y);
+				return out;
+			}
+			for (unsigned j = 0; j < e.levels[to_traverse[i]].teleport.size(); ++j) {
+				yet_to_traverse.push_back(e.levels[to_traverse[i]].teleport[j].second.level);
+			}
+		}
+		to_traverse.clear();
+	}
+	return out;
+}
+std::vector<float> find_player_coords() {
+	return find_map_coords(e.mc.loc.level);
+}
+
+std::vector<float> get_map_coords() {
 	std::vector<float> out;
 	std::map<string, level>::iterator it;
 	bool found;
@@ -69,7 +95,7 @@ extern std::vector<float> get_map_coords() {
 	}
 	return out;
 }
-extern std::vector<string> get_map_names() {
+std::vector<string> get_map_names() {
 	std::vector<string> out;
 	std::map<string, level>::iterator it;
 	bool found;
