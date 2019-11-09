@@ -7,10 +7,11 @@ Jynx-Gengar that knows LOVELY KISS, DREAM EATER, BODY SLAM, and BLIZZARD
 Magmar-Golem that knows ROCK SLIDE, FIRE PUNCH, EXPLOSION, and EARTHQUAKE
 
 TO FIX:
-Boulder push cloud effect
+Boulder push cloud effect 
 Failure messages for item use
 Fishing animations/chance for failure
 Item failure if and only if all effects fail
+Trade animations
 Softboiled
 Teleport
 Dig
