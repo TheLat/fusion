@@ -252,6 +252,38 @@ void menu::create_menu(string file, string choice, string text_override, string 
 						images.push_back(im);
 					}
 				}
+				else if (temp1.find("AREA") == 0) {
+					safe_getline(f, line);
+					string holder = choice;
+					int face;
+					int body;
+					holder.erase(holder.find("-"), holder.size());
+					face = stoi(holder);
+					holder = choice;
+					holder.erase(0, holder.find("-") + 1);
+					body = stoi(holder);
+					while (line != "END") {
+						safe_getline(f, line);
+					}
+					std::vector<float> map_coords = find_mon_coords(face);
+					for (unsigned i = 0; i < map_coords.size(); i += 2) {
+						im.xmin = map_coords[i] - 0.1f;
+						im.ymin = map_coords[i+1] + 0.1;
+						im.length = 0.1;
+						im.height = 0.1;
+						im.filename = string("area-face.png");
+						images.push_back(im);
+					}
+					map_coords = find_mon_coords(body);
+					for (unsigned i = 0; i < map_coords.size(); i += 2) {
+						im.xmin = map_coords[i] - 0.1f;
+						im.ymin = map_coords[i + 1] + 0.1;
+						im.length = 0.1;
+						im.height = 0.1;
+						im.filename = string("area-body.png");
+						images.push_back(im);
+					}
+				}
 				else if (temp1.find("DEX") == 0) {
 					int count = 0;
 					safe_getline(f, line);

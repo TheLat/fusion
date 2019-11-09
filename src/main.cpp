@@ -53,18 +53,23 @@ std::vector<float> find_map_coords(string this_level) {
 	std::vector<float> out;
 	std::vector<string> to_traverse;
 	std::vector<string> yet_to_traverse;
+	std::map<string, bool> traversed;
 	yet_to_traverse.push_back(this_level);
 	while (yet_to_traverse.size() != 0) {
 		to_traverse = yet_to_traverse;
 		yet_to_traverse.clear();
 		for (unsigned i = 0; i < to_traverse.size(); ++i) {
+			traversed[to_traverse[i]] = true;
 			if (e.levels[to_traverse[i]].map_order != 0) {
 				out.push_back(e.levels[to_traverse[i]].map.x);
 				out.push_back(e.levels[to_traverse[i]].map.y);
 				return out;
 			}
 			for (unsigned j = 0; j < e.levels[to_traverse[i]].teleport.size(); ++j) {
-				yet_to_traverse.push_back(e.levels[to_traverse[i]].teleport[j].second.level);
+				if (!traversed[e.levels[to_traverse[i]].teleport[j].second.level]) {
+					yet_to_traverse.push_back(e.levels[to_traverse[i]].teleport[j].second.level);
+					traversed[e.levels[to_traverse[i]].teleport[j].second.level] = true;
+				}
 			}
 		}
 		to_traverse.clear();
@@ -73,6 +78,47 @@ std::vector<float> find_map_coords(string this_level) {
 }
 std::vector<float> find_player_coords() {
 	return find_map_coords(e.mc.loc.level);
+}
+std::vector<float> find_mon_coords(int type) {
+	std::vector<float> out;
+	std::vector<float> holder;
+	std::map<string, level>::iterator it;
+	for (it = e.levels.begin(); it != e.levels.end(); it++) {
+		holder = find_map_coords(it->first);
+		if (holder.size() == 0)
+			continue;
+		for (unsigned i = 0; i < it->second.encounters.size(); ++i) {
+			if (it->second.encounters[i] == type && holder.size() != 0) {
+				out.push_back(holder[0]);
+				out.push_back(holder[1]);
+			}
+		}
+		for (unsigned i = 0; i < it->second.mega_encounters.size(); ++i) {
+			if (it->second.mega_encounters[i] == type && holder.size() != 0) {
+				out.push_back(holder[0]);
+				out.push_back(holder[1]);
+			}
+		}
+		for (unsigned i = 0; i < it->second.water_encounters_old.size(); ++i) {
+			if (it->second.water_encounters_old[i] == type && holder.size() != 0) {
+				out.push_back(holder[0]);
+				out.push_back(holder[1]);
+			}
+		}
+		for (unsigned i = 0; i < it->second.water_encounters_good.size(); ++i) {
+			if (it->second.water_encounters_good[i] == type && holder.size() != 0) {
+				out.push_back(holder[0]);
+				out.push_back(holder[1]);
+			}
+		}
+		for (unsigned i = 0; i < it->second.water_encounters_super.size(); ++i) {
+			if (it->second.water_encounters_super[i] == type && holder.size() != 0) {
+				out.push_back(holder[0]);
+				out.push_back(holder[1]);
+			}
+		}
+	}
+	return out;
 }
 
 std::vector<float> get_map_coords() {
