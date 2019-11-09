@@ -266,6 +266,15 @@ void menu::create_menu(string file, string choice, string text_override, string 
 						safe_getline(f, line);
 					}
 					std::vector<float> map_coords = find_mon_coords(face);
+					std::vector<float> player_coords = find_player_coords();
+					if (player_coords.size() > 0) {
+						im.xmin = player_coords[0] - 0.125f;
+						im.ymin = player_coords[1] + 0.1;
+						im.length = 0.15;
+						im.height = 0.15;
+						im.filename = string("map_player.png");
+						images.push_back(im);
+					}
 					for (unsigned i = 0; i < map_coords.size(); i += 2) {
 						im.xmin = map_coords[i] - 0.1f;
 						im.ymin = map_coords[i+1] + 0.1;
