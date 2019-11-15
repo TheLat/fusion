@@ -7638,6 +7638,58 @@ void engine::do_interaction(character& npc) {
 				choices.push_back(0);
 			}
 		}
+		else if (s.find("TRADE_ACTION:") == 0) {
+			s.erase(0, string("TRADE_ACTION:").length());
+			s2 = s;
+			s.erase(0, s.find(":") + 1);
+			s2.erase(s2.find(":"), s2.length());
+			int l = stoi(s2);
+			s2 = s;
+			if (s2.find("|") != -1) {
+				s2.erase(s2.find("|"), s2.length());
+			}
+			else {
+				s = "";
+			}
+			do_alert(string("Okay, connect the cable like so!"));
+			string old_num;
+			for (unsigned i = 0; i < 6; ++i) {
+				if (!mc.team[i].defined) {
+					old_num = mc.team[i].number;
+				}
+			}
+			//ANIMATION
+			unsigned clear_point = g.draw_list.size();
+			unsigned mon_sprite;
+			double nothing = 0.0;
+			unsigned anim1;
+			g.push_box(-1.1f, -1.1f, 2.2f, 2.2f);
+			mon_sprite = g.push_quad_load(-0.45f, 0.0f, 0.9f, 0.9f, safepath + string("images/") + old_num + string(".png"));
+			anim1 = g.ae.create_anim_scene(string("trade_out"), mon_sprite);
+			while (!g.ae.is_dones(anim1)) {}
+			mon_sprite = g.push_quad_load(-0.45f, 0.0f, 0.0f, 0.0f, safepath + string("images/") + s2 + string(".png"));
+			anim1 = g.ae.create_anim_scene(string("trade_in"), mon_sprite);
+			while (!g.ae.is_dones(anim1)) {}
+			for (unsigned i = 0; i < 6; ++i) {
+				if (!mc.team[i].defined) {
+					old_num = mc.team[i].number;
+					make_mon(s2, l, mc.team[i]);
+					mc.team[i].wild = false;
+					mc.team[i].enemy = false;
+					do_menu(string("ALERT"), mc.name + string(" got ") + all_mon[mc.team[i].number].name + string("!"));
+					choices = do_menu(string("ALERT_YES_NO"), string("Would you like to give ") + get_nickname(mc.team[i]) + string(" a nickname?"));
+					if (choices[choices.size() - 1] == 0) {
+						mc.team[i].nickname = get_input_string();
+					}
+					mc.seen[mc.team[i].number] = true;
+					mc.caught[mc.team[i].number] = true;
+					break;
+				}
+			}
+			g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
+			se.play_sound(string("sound_effects/general/sfx_get_key_item.mp3"));
+			do_alert(string("{PLAYER_NAME} traded ") + all_mon[old_num].name + string(" for ") + all_mon[s2].name + string("!"));
+		}
 		else if (s.find("CAUGHT:") == 0) {
 			s.erase(0, string("CAUGHT:").length());
 			s2 = s;
