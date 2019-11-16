@@ -40,7 +40,7 @@ PLAY_SOUND:sound_effects/general/sfx_turn_on_pc.mp3|MENU:ALERT:{PLAYER_NAME} tur
 END
 cinnabar-lab-doctor2 doctor 7 49 UP
 INTERACTIONS
-MENU:ALERT:I'm looking for a PONYTA!|MENU:ALERT_YES_NO:Wanna trade one for SEEL?|{MENU:MON_SELECT:|TRADE_LOGIC:77-77|{MENU:ALERT:What? That's not PONYTA!|MENU:ALERT:If you get one, come back here!|NO_ADVANCE}{MENU:ALERT:Okay, connect the cable like so!|MENU:ALERT:ANIMATION GOES HERE|MENU:ALERT:{PLAYER_NAME} traded PONYTA for SEEL!|GIVE_MON:5:86-86|MENU:ALERT:Hey thanks!}}{MENU:ALERT:Aww! {NEWLINE} Oh well...|NO_ADVANCE}
+MENU:ALERT:I'm looking for a PONYTA!|MENU:ALERT_YES_NO:Wanna trade one for SEEL?|{MENU:MON_SELECT:|TRADE_LOGIC:77-77|{MENU:ALERT:What? That's not PONYTA!|MENU:ALERT:If you get one, come back here!|NO_ADVANCE}{TRADE_ACTION:5:86-86|MENU:ALERT:Hey thanks!}}{MENU:ALERT:Aww! {NEWLINE} Oh well...|NO_ADVANCE}
 MENU:ALERT:Isn't my old SEEL great?
 END
 cinnabar-lab-doctor3 doctor 7 30 DOWN
@@ -58,12 +58,12 @@ MENU:ALERT:I found this very strange fossil in MT. MOON!|MENU:ALERT:I think it's
 END
 cinnabar-lab-woman1 woman4 5 18 UP
 INTERACTIONS
-MENU:ALERT:Hi! Do you have a VENONAT?|MENU:ALERT_YES_NO:Wanna trade it for TANGELA?|{MENU:MON_SELECT:|TRADE_LOGIC:48-48|{MENU:ALERT:...This is no VENONAT.|MENU:ALERT:If you get one, trade it with me!|NO_ADVANCE}{MENU:ALERT:Okay, connect the cable like so!|MENU:ALERT:ANIMATION GOES HERE|MENU:ALERT:{PLAYER_NAME} traded VENONAT for TANGELA!|GIVE_MON:5:114-114|MENU:ALERT:Thanks pal!}}{MENU:ALERT:That's too bad.|NO_ADVANCE}
+MENU:ALERT:Hi! Do you have a VENONAT?|MENU:ALERT_YES_NO:Wanna trade it for TANGELA?|{MENU:MON_SELECT:|TRADE_LOGIC:48-48|{MENU:ALERT:...This is no VENONAT.|MENU:ALERT:If you get one, trade it with me!|NO_ADVANCE}{TRADE_ACTION:5:114-114|MENU:ALERT:Thanks pal!}}{MENU:ALERT:That's too bad.|NO_ADVANCE}
 MENU:ALERT:How is my old TANGELA?|MENU:ALERT:My VENONAT is doing great!
 END
 cinnabar-lab-oldman1 oldman 1 17 DOWN
 INTERACTIONS
-MENU:ALERT:Hello there! Do you want to trade|MENU:ALERT_YES_NO:your RAICHU for ELECTRODE?|{MENU:MON_SELECT:|TRADE_LOGIC:26-26|{MENU:ALERT:Hmm? This isn't RAICHU.|MENU:ALERT:Think of me when you get one.|NO_ADVANCE}{MENU:ALERT:Okay, connect the cable like so!|MENU:ALERT:ANIMATION GOES HERE|MENU:ALERT:{PLAYER_NAME} traded RAICHU for ELECTRODE!|GIVE_MON:5:101-101|MENU:ALERT:Thanks!}}{MENU:ALERT:Well, if you don't want to...|NO_ADVANCE}
+MENU:ALERT:Hello there! Do you want to trade|MENU:ALERT_YES_NO:your RAICHU for ELECTRODE?|{MENU:MON_SELECT:|TRADE_LOGIC:26-26|{MENU:ALERT:Hmm? This isn't RAICHU.|MENU:ALERT:Think of me when you get one.|NO_ADVANCE}{TRADE_ACTION:5:101-101|MENU:ALERT:Thanks!}}{MENU:ALERT:Well, if you don't want to...|NO_ADVANCE}
 MENU:ALERT:The RAICHU you traded me is doing great!
 END
 TELEPORT

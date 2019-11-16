@@ -28,7 +28,7 @@ MENU:ALERT:My husband likes trading POK{e-accent}MON.|MENU:ALERT:If you are a co
 END
 cerulean-house1-man bald4 1 2
 INTERACTIONS
-MENU:ALERT:Hello, there! Do you want to trade|MENU:ALERT_YES_NO:your POLIWHIRL for JYNX?|{MENU:MON_SELECT:|TRADE_LOGIC:61-61|{MENU:ALERT:Hmmm? This isn't a POLIWHIRL.|MENU:ALERT:Think of me when you get one.|NO_ADVANCE}{MENU:ALERT:Okay, connect the cable like so!|MENU:ALERT:ANIMATION GOES HERE|MENU:ALERT:{PLAYER_NAME} traded POLIWHIRL for JYNX!|GIVE_MON:5:124-124|MENU:ALERT:Thanks!}}{MENU:ALERT:Well, if you don't want to...|NO_ADVANCE}
+MENU:ALERT:Hello, there! Do you want to trade|MENU:ALERT_YES_NO:your POLIWHIRL for JYNX?|{MENU:MON_SELECT:|TRADE_LOGIC:61-61|{MENU:ALERT:Hmmm? This isn't a POLIWHIRL.|MENU:ALERT:Think of me when you get one.|NO_ADVANCE}{TRADE_ACTION:5:124-124|MENU:ALERT:Thanks!}}{MENU:ALERT:Well, if you don't want to...|NO_ADVANCE}
 MENU:ALERT:The POLIWHIRL you traded me went and evolved!
 END
 TELEPORT

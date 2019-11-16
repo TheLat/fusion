@@ -24,7 +24,7 @@ MENU:ALERT:A TOWN MAP.|MAP
 END
 vermilion-house2-girl girl2 3 5
 INTERACTIONS
-MENU:ALERT:Hi! Do you have a SPEAROW?|MENU:ALERT_YES_NO:Want to trade it for a FARFETCH'D?|{MENU:MON_SELECT:|TRADE_LOGIC:21-21|{MENU:ALERT:...This is no SPEAROW.|MENU:ALERT:If you get one, trade with me!|NO_ADVANCE}{MENU:ALERT:Okay, connect the cable like so!|MENU:ALERT:ANIMATION GOES HERE|MENU:ALERT:{PLAYER_NAME} traded SPEAROW for FARFETCH'D!|GIVE_MON:5:83-83|MENU:ALERT:Thanks pal!}}{MENU:ALERT:That's too bad.|NO_ADVANCE}
+MENU:ALERT:Hi! Do you have a SPEAROW?|MENU:ALERT_YES_NO:Want to trade it for a FARFETCH'D?|{MENU:MON_SELECT:|TRADE_LOGIC:21-21|{MENU:ALERT:...This is no SPEAROW.|MENU:ALERT:If you get one, trade with me!|NO_ADVANCE}{TRADE_ACTION:5:83-83|MENU:ALERT:Thanks pal!}}{MENU:ALERT:That's too bad.|NO_ADVANCE}
 MENU:ALERT:How is my old FARFETCH'D?|MENU:ALERT:My SPEAROW is doing great!
 END
 TELEPORT
