@@ -7687,8 +7687,10 @@ void engine::do_interaction(character& npc) {
 				}
 			}
 			g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
+			se.mute_music(false);
 			se.play_sound(string("sound_effects/general/sfx_get_key_item.mp3"));
 			do_alert(string("{PLAYER_NAME} traded ") + all_mon[old_num].name + string(" for ") + all_mon[s2].name + string("!"));
+			se.unmute_music();
 		}
 		else if (s.find("CAUGHT:") == 0) {
 			s.erase(0, string("CAUGHT:").length());
