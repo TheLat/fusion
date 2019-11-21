@@ -1122,6 +1122,9 @@ bool engine::use_item(string filter, std::vector<int> &choices, string &ret) {
 			if (!water[get_tile(temp.y, temp.x)]) {
 				return false;
 			}
+			if (mc.movement == string("seal")) {
+				return false;
+			}
 			string s = base;
 			s.erase(0, s.find(":") + 1);
 			if (s.find("|") != -1) {
