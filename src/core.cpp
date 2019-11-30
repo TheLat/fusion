@@ -1173,6 +1173,8 @@ bool engine::use_item(string filter, std::vector<int> &choices, string &ret) {
 			mc.movement = string("player");
 			update_level();
 			play_level_music();
+			mc.movement = string("blank");
+			update_level();
 			unsigned clear_point = g.draw_list.size();
 			unsigned fishing_image = 0;
 			if (mc.dir == UP) {
@@ -1187,17 +1189,30 @@ bool engine::use_item(string filter, std::vector<int> &choices, string &ret) {
 			if (mc.dir == RIGHT) {
 				fishing_image = g.push_quad_load(-0.1, -0.5 / 4.5 + 0.055, 2.0 / 5.0, 1.0 / 4.5, safepath + string("images/fish-right.png"));
 			}
-			if (random(0.0, 24.0) < 8.5) {
-				// animate image
-			}
-			else {
-				// wait
-				encounter = "";
-			}
 			double nothing = 0.0;
 			unsigned anim1 = g.ae.create_animf(&nothing, 0.0, 1.0, 4.0);
 			while (!g.ae.is_donef(anim1)) {}
+			if (random(0.0, 24.0) < 8.5) {
+				for (unsigned i = 0; i < 12; ++i) {
+					if (i % 2 == 0) {
+						g.draw_list[fishing_image].y += 0.01;
+					}
+					else {
+						g.draw_list[fishing_image].y -= 0.01;
+					}
+					anim1 = g.ae.create_animf(&nothing, 0.0, 1.0, 1.0/12.0);
+					while (!g.ae.is_donef(anim1)) {}
+				}
+			}
+			else {
+				anim1 = g.ae.create_animf(&nothing, 0.0, 1.0, 1.0);
+				while (!g.ae.is_donef(anim1)) {}
+				do_alert("Not even a nibble!");
+				encounter = "";
+			}
 			g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
+			mc.movement = string("player");
+			update_level();
 		}
 		else if (base.find("MAP") == 0) {
 			// TODO: MAP

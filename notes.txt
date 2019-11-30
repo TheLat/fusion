@@ -8,7 +8,6 @@ Magmar-Golem that knows ROCK SLIDE, FIRE PUNCH, EXPLOSION, and EARTHQUAKE
 
 TO FIX:
 Boulder push cloud effect
-Fishing animations/chance for failure
 Failure messages for item use
 Item failure if and only if all effects fail
 Softboiled
