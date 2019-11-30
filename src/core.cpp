@@ -1170,7 +1170,34 @@ bool engine::use_item(string filter, std::vector<int> &choices, string &ret) {
 			else if (tier == 1) {
 				encounter_level = max(encounter_level - 5, 5);
 			}
-			//TODO: Random chance for fishing to work
+			mc.movement = string("player");
+			update_level();
+			play_level_music();
+			unsigned clear_point = g.draw_list.size();
+			unsigned fishing_image = 0;
+			if (mc.dir == UP) {
+				fishing_image = g.push_quad_load(-0.1, -0.5 / 4.5 + 0.055, 1.0 / 5.0, 2.0 / 4.5, safepath + string("images/fish-up.png"));
+			}
+			if (mc.dir == DOWN) {
+				fishing_image = g.push_quad_load(-0.1, -1.5 / 4.5 + 0.055, 1.0 / 5.0, 2.0 / 4.5, safepath + string("images/fish-down.png"));
+			}
+			if (mc.dir == LEFT) {
+				fishing_image = g.push_quad_load(-0.3, -0.5 / 4.5 + 0.055, 2.0 / 5.0, 1.0 / 4.5, safepath + string("images/fish-left.png"));
+			}
+			if (mc.dir == RIGHT) {
+				fishing_image = g.push_quad_load(-0.1, -0.5 / 4.5 + 0.055, 2.0 / 5.0, 1.0 / 4.5, safepath + string("images/fish-right.png"));
+			}
+			if (random(0.0, 24.0) < 8.5) {
+				// animate image
+			}
+			else {
+				// wait
+				encounter = "";
+			}
+			double nothing = 0.0;
+			unsigned anim1 = g.ae.create_animf(&nothing, 0.0, 1.0, 4.0);
+			while (!g.ae.is_donef(anim1)) {}
+			g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
 		}
 		else if (base.find("MAP") == 0) {
 			// TODO: MAP
@@ -6771,7 +6798,7 @@ void engine::player_input(bool up, bool down, bool left, bool right, bool select
 			        chance = random(0.0, 187.5);
 			    else
 			        chance = random(0.0, 187.5*20.0);
-				if (random(0.0, 187.5) < 8.5) {
+				if (chance < 8.5) {
 					if (levels[mc.loc.level].mega_encounters.size() > 0 && random(0.0, 20.0) >= 19.0) {
 						int choice = int(random(0.0, double(levels[mc.loc.level].mega_encounters.size())));
 						int choice2 = int(random(0.0, double(levels[mc.loc.level].mega_encounters.size())));
