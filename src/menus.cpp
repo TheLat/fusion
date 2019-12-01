@@ -62,6 +62,41 @@ void menu::create_menu(string file, string choice, string text_override, string 
 				else if (temp1 == "CANCEL_OPTION") {
 					cancel_option = stoi(temp2);
 				}
+				else if (temp1 == "GENERATE_SELECTION") {
+					t.height = 0.1;
+					t.length = 1.0;
+					t.size = 0.1;
+					t.xmin = -0.1;
+					t.ymin = 0.6;
+					if (temp2.find("{CHOICE}") != -1)
+						temp2 = choice;
+					if (temp2.find(",") == -1) {
+						t.s = temp2;
+						raw.push_back(t);
+						t.ymin -= 0.2;
+					}
+					else {
+						while (temp2.find(",") != -1) {
+							temp1 = temp2;
+							temp1.erase(temp1.find(","), temp1.length());
+							temp2.erase(0, temp2.find(",") + 1);
+							t.s = temp1;
+							raw.push_back(t);
+							t.ymin -= 0.2;
+						}
+						t.s = temp2;
+						raw.push_back(t);
+						t.ymin -= 0.2;
+					}
+					t.s = string("CANCEL");
+					raw.push_back(t);
+					selection_cap = raw.size();
+					b.xmin = -0.3;
+					b.length = 1.3;
+					b.ymin = 0.8 - (float(raw.size()) * 0.2);
+					b.height = (float(raw.size()) * 0.2) + 0.1;
+					boxes.push_back(b);
+				}
 				else if (temp1 == "CURSOR_OFFSET_X") {
 					cursor_offset_x = stof(temp2);
 				}
