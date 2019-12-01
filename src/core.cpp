@@ -8892,6 +8892,40 @@ void engine::main() {
 			int offset = 0;
 			bool found = false;
 			open_menu = false;
+			string holder = "";
+			vector<string> holder_array;
+			if (!(has_move_in_party(string("TELEPORT")) || has_move_in_party(string("FLY")) || has_move_in_party(string("SOFTBOILED")) || has_move_in_party(string("DIG"))))
+				offset++;
+			else {
+				if (has_move_in_party(string("FLY"))) {
+					if (holder != string(""))
+						holder += string(",");
+					holder += string("FLY");
+					holder_array.push_back(string("FLY"));
+				}
+				if (has_move_in_party(string("TELEPORT"))) {
+					if (holder != string(""))
+						holder += string(",");
+					holder += string("TELEPORT");
+					holder_array.push_back(string("TELEPORT"));
+				}
+				if (has_move_in_party(string("DIG"))) {
+					if (holder != string(""))
+						holder += string(",");
+					holder += string("DIG");
+					holder_array.push_back(string("DIG"));
+				}
+				if (has_move_in_party(string("SOFTBOILED"))) {
+					if (holder != string(""))
+						holder += string(",");
+					holder += string("SOFTBOILED");
+					holder_array.push_back(string("SOFTBOILED"));
+				}
+				if (holder != string(""))
+					holder += string(",");
+				holder += string("CANCEL");
+				holder_array.push_back(string("CANCEL"));
+			}
 			if (!e.mc.values[string("DEX")]) {
 				offset++;
 			}
@@ -8903,7 +8937,7 @@ void engine::main() {
 			}
 			if (!found)
 				offset += 2;
-			choices = do_menu(string("MAINMENU") + to_string(offset));
+			choices = do_menu(string("MAINMENU") + to_string(offset), holder);
 			choices = remove_cancels(choices);
 			choices[0] += offset;
 			if (choices[0] == 1) {
@@ -8931,6 +8965,8 @@ void engine::main() {
 					se.play_sound(string("sound_effects/general/sfx_save.mp3"));
 					do_alert("{PLAYER_NAME} saved the game!");
 				}
+			}
+			if (offset == 0 && choices[0] == 6) { // SPECIAL
 			}
 		}
 		else if (interact) {
