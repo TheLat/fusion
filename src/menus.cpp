@@ -88,8 +88,6 @@ void menu::create_menu(string file, string choice, string text_override, string 
 						raw.push_back(t);
 						t.ymin -= 0.2;
 					}
-					t.s = string("CANCEL");
-					raw.push_back(t);
 					selection_cap = raw.size();
 					b.xmin = -0.3;
 					b.length = 1.3;
