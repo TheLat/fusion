@@ -6453,6 +6453,8 @@ void engine::handle_teleport() {
 			        unsigned anim_holder = g.ae.create_anim_scene(string("screendark"));
 			        while (!g.ae.is_dones(anim_holder)) {}
 			    }
+				if (!levels[mc.loc.level].dungeon)
+					mc.last_non_dungeon = mc.last_loc;
 				mc.loc.x = levels[mc.loc.level].teleport[i].second.x;
 				mc.loc.y = levels[mc.loc.level].teleport[i].second.y;
 				mc.loc.level = levels[mc.loc.level].teleport[i].second.level;
@@ -6743,6 +6745,7 @@ void engine::player_input(bool up, bool down, bool left, bool right, bool select
 	if (mc.loc.x != l.x || mc.loc.y != l.y) {
 		unsigned a1, a2, a3;
 		double walk_mul = 1.0;
+		mc.last_loc = mc.loc;
 		if (mc.movement == string("bike"))
 		    walk_mul = 0.5;
 		if (fabs(mc.loc.x - l.x) + fabs(mc.loc.y - l.y) > 1.0) {
@@ -8967,6 +8970,40 @@ void engine::main() {
 				}
 			}
 			if (offset == 0 && choices[0] == 6) { // SPECIAL
+				if (holder_array[choices[choices.size() - 1]] == string("TELEPORT")) {
+					se.play_sound(string("sound_effects/general/sfx_teleport_enter_1.mp3"));
+					unsigned anim_holder = g.ae.create_anim_scene(string("screendark"));
+					while (!g.ae.is_dones(anim_holder)) {}
+					mc.loc = mc.last_center;
+					mc.movement = string("player");
+					update_level();
+					se.play_music(levels[mc.loc.level].music);
+					anim_holder = g.ae.create_anim_scene(string("screenlight"));
+					while (!g.ae.is_dones(anim_holder)) {}
+				}
+				if (holder_array[choices[choices.size() - 1]] == string("DIG")) {
+					if (levels[mc.loc.level].dungeon) {
+						se.play_sound(string("sound_effects/general/sfx_teleport_enter_1.mp3"));
+						unsigned anim_holder = g.ae.create_anim_scene(string("screendark"));
+						while (!g.ae.is_dones(anim_holder)) {}
+						mc.loc = mc.last_non_dungeon;
+						mc.movement = string("player");
+						update_level();
+						se.play_music(levels[mc.loc.level].music);
+						anim_holder = g.ae.create_anim_scene(string("screenlight"));
+						while (!g.ae.is_dones(anim_holder)) {}
+
+					}
+					else {
+						do_alert("This isn't the time to use that!");
+					}
+				}
+				if (holder_array[choices[choices.size() - 1]] == string("FLY")) {
+
+				}
+				if (holder_array[choices[choices.size() - 1]] == string("SOFTBOILED")) {
+
+				}
 			}
 		}
 		else if (interact) {
@@ -9096,6 +9133,12 @@ void engine::save_game() {
 	f << mc.last_center.x;
 	f << string("|");
 	f << mc.last_center.y;
+	f << string("\nLAST_NON_DUNGEON:");
+	f << mc.last_non_dungeon.level;
+	f << string("|");
+	f << mc.last_non_dungeon.x;
+	f << string("|");
+	f << mc.last_non_dungeon.y;
 	f << string("\nMONEY:");
 	f << mc.money;
 	f << string("\nCOINS:");
@@ -9314,6 +9357,19 @@ void engine::load_game() {
 			mc.last_center.x = stoi(temp);
 			temp = line;
 			mc.last_center.y = stoi(temp);
+		}
+		else if (line.find("LAST_NON_DUNGEON:") == 0) {
+			line.erase(0, line.find(":") + 1);
+			temp = line;
+			temp.erase(temp.find("|"), temp.length());
+			line.erase(0, line.find("|") + 1);
+			mc.last_non_dungeon.level = temp;
+			temp = line;
+			temp.erase(temp.find("|"), temp.length());
+			line.erase(0, line.find("|") + 1);
+			mc.last_non_dungeon.x = stoi(temp);
+			temp = line;
+			mc.last_non_dungeon.y = stoi(temp);
 		}
 		else if (line.find("MONEY:") == 0) {
 			line.erase(0, line.find(":") + 1);

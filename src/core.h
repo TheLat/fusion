@@ -167,7 +167,7 @@ public:
 	mon team[6];
 	mon enemy_team[6];
 	mon storage[STORAGE_MAX][STORAGE_MAX];
-	location loc, last_center;
+	location loc, last_center, last_non_dungeon, last_loc;
 	std::map<string, bool> active;
 	std::map<string, unsigned> interaction;
 	std::vector<pair<string, int> > inventory;
