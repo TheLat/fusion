@@ -9002,7 +9002,35 @@ void engine::main() {
 
 				}
 				if (holder_array[choices[choices.size() - 1]] == string("SOFTBOILED")) {
-
+					choices = do_menu(string("SOFTBOILED_MON_SELECT"));
+					choices = remove_cancels(choices);
+					string m = string("SOFTBOILED");
+					if (choices.size() > 0) {
+						if (!has_move(mc.team[choices[0]], m)) {
+							do_alert(get_nickname(mc.team[choices[0]]) + string(" doesn't know SOFTBOILED!"));
+						}
+						else {
+							int old = choices[0];
+							int hp = int(0.2*get_stat(mc.team[old], HP));
+							if (hp >= mc.team[old].curr_hp) {
+								do_alert(get_nickname(mc.team[old]) + string(" isn't healthy enough to use SOFTBOILED!"));
+							}
+							else {
+								choices = do_menu(string("SOFTBOILED_MON_SELECT2"));
+								choices = remove_cancels(choices);
+								if (choices.size() > 0) {
+									if (mc.team[choices[0]].curr_hp >= get_stat(mc.team[choices[0]], HP)) {
+										do_alert(get_nickname(mc.team[choices[0]]) + " is already fully healed!");
+									}
+									else {
+										se.play_sound(string("sound_effects/general/sfx_heal_up.mp3"));
+										mc.team[old].curr_hp -= hp;
+										heal_damage(mc.team[choices[0]], hp);
+									}
+								}
+							}
+						}
+					}
 				}
 			}
 		}
