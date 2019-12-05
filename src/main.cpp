@@ -150,7 +150,12 @@ std::vector<string> get_map_names() {
 	std::vector<string> out;
 	std::map<string, level>::iterator it;
 	bool found;
-	for (unsigned i = 1; i < 1000000; ++i) {
+	unsigned total = 0;
+	for (it = e.levels.begin(); it != e.levels.end(); it++) {
+		if (it->second.map_order >= total)
+			total = it->second.map_order + 1;
+	}
+	for (unsigned i = 1; i < total; ++i) {
 		found = false;
 		for (it = e.levels.begin(); it != e.levels.end(); it++) {
 			if (it->second.map_order == i) {
