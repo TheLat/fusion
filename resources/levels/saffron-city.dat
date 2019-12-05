@@ -8,6 +8,9 @@ MUSIC
 music/09-pewter-city-loop.mp3
 LEAVESOUND
 sound_effects/general/sfx_go_inside.mp3
+FLY_LOCATION
+18
+37
 NPCS
 saffron-city-rocket-house1 rocket 16 13
 INTERACTIONS

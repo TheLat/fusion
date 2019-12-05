@@ -8,6 +8,9 @@ MUSIC
 music/09-pewter-city-loop.mp3
 LEAVESOUND
 sound_effects/general/sfx_go_inside.mp3
+FLY_LOCATION
+23
+26
 NPCS
 viridian-city-boy boy 10 20 WANDER
 INTERACTIONS

@@ -5315,6 +5315,14 @@ void engine::init_level(string levelname) {
 			levels[levelname].map_order = stoi(line);
 			continue;
 		}
+		if (line == "FLY_LOCATION") {
+			levels[levelname].fly_loc.level = levels[levelname].name;
+			safe_getline(f, line);
+			levels[levelname].fly_loc.x = stof(line);
+			safe_getline(f, line);
+			levels[levelname].fly_loc.y = stof(line);
+			continue;
+		}
 		if (line == "LEAVESOUND") {
 			safe_getline(f, line);
 			levels[levelname].leavesound = line;
@@ -8999,7 +9007,7 @@ void engine::main() {
 					}
 				}
 				if (holder_array[choices[choices.size() - 1]] == string("FLY")) {
-
+					do_menu(string("MAP_FLY"));
 				}
 				if (holder_array[choices[choices.size() - 1]] == string("SOFTBOILED")) {
 					choices = do_menu(string("SOFTBOILED_MON_SELECT"));

@@ -241,7 +241,7 @@ public:
 	std::pair<int, int> level_range, mega_level_range;
 	std::map<string, trainer> trainers;
 	string music, leavesound;
-	location map;
+	location map, fly_loc;
 	int map_order;
 	bool dungeon, dark, inside;
 };

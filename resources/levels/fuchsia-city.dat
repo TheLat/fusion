@@ -8,6 +8,9 @@ MUSIC
 music/19-cerulean-city-intro.mp3,music/19-cerulean-city-loop.mp3
 LEAVESOUND
 sound_effects/general/sfx_go_inside.mp3
+FLY_LOCATION
+24
+31
 NPCS
 fuchsia-city-sign1 blank 10 32
 INTERACTIONS

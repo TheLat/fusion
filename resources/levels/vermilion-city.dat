@@ -8,6 +8,9 @@ MUSIC
 music/23-vermillion-city-loop.mp3
 LEAVESOUND
 sound_effects/general/sfx_go_inside.mp3
+FLY_LOCATION
+16
+6
 NPCS
 vermillion-city-sign1 blank 32 5
 INTERACTIONS

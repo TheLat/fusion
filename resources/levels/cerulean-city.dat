@@ -8,6 +8,9 @@ MUSIC
 music/19-cerulean-city-intro.mp3,music/19-cerulean-city-loop.mp3
 LEAVESOUND
 sound_effects/general/sfx_go_inside.mp3
+FLY_LOCATION
+21
+20
 NPCS
 cerulean-city-guy1 man2 10 23 WANDER
 INTERACTIONS

@@ -8,6 +8,9 @@ MUSIC
 music/42-final-road-intro.mp3,music/42-final-road-loop.mp3
 LEAVESOUND
 sound_effects/general/sfx_go_inside.mp3
+FLY_LOCATION
+5
+5
 TELEPORT
 5 18 route23 14 1
 6 18 route23 15 1

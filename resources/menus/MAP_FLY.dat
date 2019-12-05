@@ -1,0 +1,11 @@
+TYPE:SELECT
+COLUMNS:1
+ICON:map-icon-bird.png
+IMAGES:
+-1.0 -1.0 2.0 2.0 map.png
+END
+FLY_MAP:
+-1.1 -1.1 2.2 2.2
+END
+FOLLOW_UP:
+END

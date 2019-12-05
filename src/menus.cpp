@@ -285,6 +285,45 @@ void menu::create_menu(string file, string choice, string text_override, string 
 						images.push_back(im);
 					}
 				}
+				else if (temp1.find("FLY_MAP") == 0) {
+					safe_getline(f, line);
+					std::vector<float> map_coords = get_map_coords(true);
+					std::vector<float> player_coords = find_player_coords();
+					std::vector<string> map_names = get_map_names(true);
+					selection_cap = map_names.size();
+					is_map = true;
+					while (line != "END") {
+						safe_getline(f, line);
+					}
+					t.xmin = map_coords[0];
+					t.ymin = map_coords[1];
+					t.height = 0.1;
+					t.length = 1.0;
+					t.s = map_names[0];
+					raw.push_back(t);
+					for (unsigned i = map_names.size() - 1; i > 0; --i) {
+						t.xmin = map_coords[(i * 2)];
+						t.ymin = map_coords[(i * 2) + 1];
+						t.height = 0.1;
+						t.length = 1.0;
+						t.s = map_names[i];
+						raw.push_back(t);
+					}
+					t.xmin = -1.0;
+					t.ymin = 0.8;
+					t.height = 0.1;
+					t.length = 2.0;
+					t.s = string("PLACEHOLDER");
+					raw.push_back(t);
+					if (player_coords.size() > 0) {
+						im.xmin = player_coords[0] - 0.125f;
+						im.ymin = player_coords[1] + 0.1;
+						im.length = 0.15;
+						im.height = 0.15;
+						im.filename = string("map_player.png");
+						images.push_back(im);
+					}
+				}
 				else if (temp1.find("AREA") == 0) {
 					safe_getline(f, line);
 					string holder = choice;
