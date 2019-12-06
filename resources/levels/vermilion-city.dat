@@ -82,6 +82,12 @@ TELEPORT
 17 21 vermilion-gym 4 17
 44 16 route11 1 10
 44 17 route11 1 11
+44 18 route11 1 12
+44 19 route11 1 13
+44 20 route11 1 14
+44 21 route11 1 15
+44 22 route11 1 16
+44 23 route11 1 17
 NEIGHBORS
 route6 10 -35
 route11 43 6
