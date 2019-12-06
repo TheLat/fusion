@@ -28,7 +28,7 @@ extern int get_inventory_storage_count(string type);
 extern std::vector<float> find_player_coords();
 extern std::vector<float> find_mon_coords(int type);
 extern std::vector<float> get_map_coords(bool only_include_fly=false);
-extern std::vector<string> get_map_names(bool only_include_fly=false);
+extern std::vector<string> get_map_names(bool only_include_fly=false, bool data_name=false);
 extern std::map<string, bool> get_seen_table();
 extern std::map<string, bool> get_caught_table();
 extern bool is_menu(string s);

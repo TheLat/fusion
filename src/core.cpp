@@ -5316,7 +5316,7 @@ void engine::init_level(string levelname) {
 			continue;
 		}
 		if (line == "FLY_LOCATION") {
-			levels[levelname].fly_loc.level = levels[levelname].name;
+			levels[levelname].fly_loc.level = levelname;
 			safe_getline(f, line);
 			levels[levelname].fly_loc.x = stof(line);
 			safe_getline(f, line);
@@ -8989,7 +8989,7 @@ void engine::main() {
 					anim_holder = g.ae.create_anim_scene(string("screenlight"));
 					while (!g.ae.is_dones(anim_holder)) {}
 				}
-				if (holder_array[choices[choices.size() - 1]] == string("DIG")) {
+				else if (holder_array[choices[choices.size() - 1]] == string("DIG")) {
 					if (levels[mc.loc.level].dungeon) {
 						se.play_sound(string("sound_effects/general/sfx_teleport_enter_1.mp3"));
 						unsigned anim_holder = g.ae.create_anim_scene(string("screendark"));
@@ -9006,10 +9006,36 @@ void engine::main() {
 						do_alert("This isn't the time to use that!");
 					}
 				}
-				if (holder_array[choices[choices.size() - 1]] == string("FLY")) {
-					do_menu(string("MAP_FLY"));
+				else if (holder_array[choices[choices.size() - 1]] == string("FLY")) {
+					choices = do_menu(string("MAP_FLY"));
+					choices = remove_cancels(choices);
+					std::vector<string> places = get_map_names(true, true);
+					std::vector<string> real_places;
+					real_places.push_back(places[0]);
+					for (unsigned i = places.size() - 1; i > 0; --i) {
+						real_places.push_back(places[i]);
+					}
+					if (choices.size() > 0 && choices[0] != -1) {
+						mc.dir = DOWN;
+						unsigned anim;
+						mc.movement = string("blank");
+						update_level();
+						anim = g.ae.create_anim_scene(string("bird_out"));
+						while (!g.ae.is_dones(anim)) {}
+						anim = g.ae.create_anim_scene(string("screendark"));
+						while (!g.ae.is_dones(anim)) {}
+						mc.loc = levels[real_places[choices[0]]].fly_loc;
+						update_level();
+						play_level_music();
+						anim = g.ae.create_anim_scene(string("screenlight"));
+						while (!g.ae.is_dones(anim)) {}
+						anim = g.ae.create_anim_scene(string("bird_in"));
+						while (!g.ae.is_dones(anim)) {}
+						mc.movement = string("player");
+						update_level();
+					}
 				}
-				if (holder_array[choices[choices.size() - 1]] == string("SOFTBOILED")) {
+				else if (holder_array[choices[choices.size() - 1]] == string("SOFTBOILED")) {
 					choices = do_menu(string("SOFTBOILED_MON_SELECT"));
 					choices = remove_cancels(choices);
 					string m = string("SOFTBOILED");

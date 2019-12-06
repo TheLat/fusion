@@ -148,7 +148,7 @@ std::vector<float> get_map_coords(bool only_include_fly) {
 	}
 	return out;
 }
-std::vector<string> get_map_names(bool only_include_fly) {
+std::vector<string> get_map_names(bool only_include_fly, bool data_name) {
 	std::vector<string> out;
 	std::map<string, level>::iterator it;
 	bool found;
@@ -164,7 +164,10 @@ std::vector<string> get_map_names(bool only_include_fly) {
 				found = true;
 				if (only_include_fly && it->second.fly_loc.level == "")
 					break;
-				out.push_back(it->second.map.level);
+				if (data_name)
+					out.push_back(it->first);
+				else
+					out.push_back(it->second.map.level);
 				break;
 			}
 		}
