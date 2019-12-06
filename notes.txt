@@ -10,7 +10,6 @@ TO FIX:
 Boulder push cloud effect
 Failure messages for item use
 Item failure if and only if all effects fail
-Fly
 Sound bugs, clear all mutes when playing a sound.
 Brock with a Geodude that only knows Spore and Dream Eater never uses Spore.
 Pandemonium Cave

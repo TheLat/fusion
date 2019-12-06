@@ -135,7 +135,7 @@ std::vector<float> get_map_coords(bool only_include_fly) {
 		for (it = e.levels.begin(); it != e.levels.end(); it++) {
 			if (it->second.map_order == i) {
 				found = true;
-				if (only_include_fly && it->second.fly_loc.level == "")
+				if (only_include_fly && (it->second.fly_loc.level == "" || !e.mc.visited[it->first]))
 					break;
 				out.push_back(it->second.map.x);
 				out.push_back(it->second.map.y);
@@ -162,7 +162,7 @@ std::vector<string> get_map_names(bool only_include_fly, bool data_name) {
 		for (it = e.levels.begin(); it != e.levels.end(); it++) {
 			if (it->second.map_order == i) {
 				found = true;
-				if (only_include_fly && it->second.fly_loc.level == "")
+				if (only_include_fly && (it->second.fly_loc.level == "" || !e.mc.visited[it->first]))
 					break;
 				if (data_name)
 					out.push_back(it->first);

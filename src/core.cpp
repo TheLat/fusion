@@ -6466,6 +6466,7 @@ void engine::handle_teleport() {
 				mc.loc.x = levels[mc.loc.level].teleport[i].second.x;
 				mc.loc.y = levels[mc.loc.level].teleport[i].second.y;
 				mc.loc.level = levels[mc.loc.level].teleport[i].second.level;
+				mc.visited[mc.loc.level] = true;
 				for (unsigned j = 0; j < levels[mc.loc.level].characters.size(); ++j) {
 					levels[mc.loc.level].characters[j].dir = levels[mc.loc.level].characters[j].origin_dir;
 					levels[mc.loc.level].characters[j].loc = levels[mc.loc.level].characters[j].origin;
@@ -9003,36 +9004,41 @@ void engine::main() {
 
 					}
 					else {
-						do_alert("This isn't the time to use that!");
+						do_alert("You can't use DIG here!");
 					}
 				}
 				else if (holder_array[choices[choices.size() - 1]] == string("FLY")) {
-					choices = do_menu(string("MAP_FLY"));
-					choices = remove_cancels(choices);
-					std::vector<string> places = get_map_names(true, true);
-					std::vector<string> real_places;
-					real_places.push_back(places[0]);
-					for (unsigned i = places.size() - 1; i > 0; --i) {
-						real_places.push_back(places[i]);
+					if (levels[mc.loc.level].inside) {
+						do_alert("You can't use FLY here!");
 					}
-					if (choices.size() > 0 && choices[0] != -1) {
-						mc.dir = DOWN;
-						unsigned anim;
-						mc.movement = string("blank");
-						update_level();
-						anim = g.ae.create_anim_scene(string("bird_out"));
-						while (!g.ae.is_dones(anim)) {}
-						anim = g.ae.create_anim_scene(string("screendark"));
-						while (!g.ae.is_dones(anim)) {}
-						mc.loc = levels[real_places[choices[0]]].fly_loc;
-						update_level();
-						play_level_music();
-						anim = g.ae.create_anim_scene(string("screenlight"));
-						while (!g.ae.is_dones(anim)) {}
-						anim = g.ae.create_anim_scene(string("bird_in"));
-						while (!g.ae.is_dones(anim)) {}
-						mc.movement = string("player");
-						update_level();
+					else {
+						choices = do_menu(string("MAP_FLY"));
+						choices = remove_cancels(choices);
+						std::vector<string> places = get_map_names(true, true);
+						std::vector<string> real_places;
+						real_places.push_back(places[0]);
+						for (unsigned i = places.size() - 1; i > 0; --i) {
+							real_places.push_back(places[i]);
+						}
+						if (choices.size() > 0 && choices[0] != -1) {
+							mc.dir = DOWN;
+							unsigned anim;
+							mc.movement = string("blank");
+							update_level();
+							anim = g.ae.create_anim_scene(string("bird_out"));
+							while (!g.ae.is_dones(anim)) {}
+							anim = g.ae.create_anim_scene(string("screendark"));
+							while (!g.ae.is_dones(anim)) {}
+							mc.loc = levels[real_places[choices[0]]].fly_loc;
+							update_level();
+							play_level_music();
+							anim = g.ae.create_anim_scene(string("screenlight"));
+							while (!g.ae.is_dones(anim)) {}
+							anim = g.ae.create_anim_scene(string("bird_in"));
+							while (!g.ae.is_dones(anim)) {}
+							mc.movement = string("player");
+							update_level();
+						}
 					}
 				}
 				else if (holder_array[choices[choices.size() - 1]] == string("SOFTBOILED")) {
@@ -9263,6 +9269,15 @@ void engine::save_game() {
 	f << string("\nEND\nUSED_TMS:");
 	it2 = mc.used_tms.begin();
 	while (it2 != mc.used_tms.end()) {
+		if (it2->second) {
+			f << string("\n");
+			f << it2->first;
+		}
+		it2++;
+	}
+	f << string("\nEND\nVISITED:");
+	it2 = mc.visited.begin();
+	while (it2 != mc.visited.end()) {
 		if (it2->second) {
 			f << string("\n");
 			f << it2->first;
@@ -9509,6 +9524,13 @@ void engine::load_game() {
 			safe_getline(f, line);
 			while (line != "END") {
 				mc.used_tms[line] = true;
+				safe_getline(f, line);
+			}
+		}
+		else if (line.find("VISITED:") == 0) {
+			safe_getline(f, line);
+			while (line != "END") {
+				mc.visited[line] = true;
 				safe_getline(f, line);
 			}
 		}
