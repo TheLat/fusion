@@ -18,4 +18,3 @@ Options
 Animating sprites in menus
 Opening Scene
 Controller input
-Daycare

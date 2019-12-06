@@ -6755,6 +6755,8 @@ void engine::player_input(bool up, bool down, bool left, bool right, bool select
 		unsigned a1, a2, a3;
 		double walk_mul = 1.0;
 		mc.last_loc = mc.loc;
+		if (mc.daycare.defined)
+			mc.daycare_bill += 1;
 		if (mc.movement == string("bike"))
 		    walk_mul = 0.5;
 		if (fabs(mc.loc.x - l.x) + fabs(mc.loc.y - l.y) > 1.0) {
@@ -7795,6 +7797,76 @@ void engine::do_interaction(character& npc) {
                         break;
 			        }
 			    }
+			}
+		}
+		else if (s.find("DAYCARE_IN:") == 0) {
+			s.erase(0, string("DAYCARE_IN:").length());
+			if (mc.daycare.defined) {
+				do_alert(string("There's already a POK{e-accent}MON in the daycare!"));
+				choices.clear();
+				choices.push_back(1);
+			}
+			else {
+				choices = do_menu(string("NONCOMBAT_MON_SELECT2"));
+				choices = remove_cancels(choices);
+				if (choices.size() > 0) {
+					mc.daycare = mc.team[choices[0]];
+					mc.daycare.defined = true;
+					mc.daycare.wild = false;
+					mc.daycare.enemy = false;
+					mc.team[choices[0]].defined = false;
+					pack_team();
+					do_alert(string("Alright, I'll look after ") + get_nickname(mc.daycare) + string(" for you."));
+					choices.clear();
+					choices.push_back(0);
+				}
+				else {
+					choices.clear();
+					choices.push_back(1);
+				}
+			}
+		}
+		else if (s.find("DAYCARE_OUT:") == 0) {
+			s.erase(0, string("DAYCARE_OUT:").length());
+			if (mc.money < mc.daycare_bill) {
+				do_alert(string("It looks like you don't have enough money to pay for daycare!"));
+				do_alert(string("Come back when you have $") + to_string(mc.daycare_bill) + string("!"));
+				choices.clear();
+				choices.push_back(1);
+			}
+			else {
+				choices = do_menu(string("ALERT_YES_NO_MONEY"), string("Pay $") + to_string(mc.daycare_bill) + string(" for daycare?"));
+				if (choices[choices.size() - 1] == 0) {
+					unsigned i = 0;
+					for (i = 0; i < 6; ++i) {
+						if (!mc.team[i].defined)
+							break;
+					}
+					if (i == 6) {
+						do_alert("You don't have enough room in your team!");
+						choices.clear();
+						choices.push_back(1);
+					}
+					else {
+						se.play_sound(string("sound_effects/general/sfx_purchase.mp3"));
+						mc.money -= mc.daycare_bill;
+						mc.team[i] = mc.daycare;
+						mc.team[i].defined = true;
+						mc.team[i].wild = false;
+						mc.team[i].enemy = false;
+						mc.team[i].exp += mc.daycare_bill;
+						do_alert(string("Your ") + get_nickname(mc.team[i]) + string(" has sure grown a lot!"));
+						level_up(mc.team[i], true);
+						mc.daycare.defined = false;
+						mc.daycare_bill = 0;
+						choices.clear();
+						choices.push_back(0);
+					}
+				}
+				else {
+					choices.clear();
+					choices.push_back(1);
+				}
 			}
 		}
 		else if (s.find("HAS_MONEY:") == 0) {
@@ -9189,6 +9261,8 @@ void engine::save_game() {
 	f << mc.wins;
 	f << string("\nLOSSES:");
 	f << mc.losses;
+	f << string("\nDAYCARE_BILL:");
+	f << mc.daycare_bill;
 	f << string("\nLOCATION:");
 	f << mc.loc.level;
 	f << string("|");
@@ -9315,6 +9389,11 @@ void engine::save_game() {
 			}
 		}
 	}
+	f << string("\nEND\nDAYCARE:");
+	if (mc.daycare.defined) {
+		f << string("\n");
+		save_mon(f, mc.daycare);
+	}
 	f << string("\nEND");
 	f << string("\nLEVEL:");
 	std::map<string, level>::iterator l = levels.begin();
@@ -9408,6 +9487,10 @@ void engine::load_game() {
 		else if (line.find("LOSSES:") == 0) {
 			line.erase(0, line.find(":") + 1);
 			mc.losses = stoi(line);
+		}
+		else if (line.find("DAYCARE_BILL:") == 0) {
+			line.erase(0, line.find(":") + 1);
+			mc.daycare_bill = stoi(line);
 		}
 		else if (line.find("LOCATION:") == 0) {
 			line.erase(0, line.find(":") + 1);
@@ -9567,6 +9650,13 @@ void engine::load_game() {
 				line.erase(0, line.find("|") + 1);
 				j = stoi(temp);
 				load_mon(line, mc.storage[i][j]);
+				safe_getline(f, line);
+			}
+		}
+		else if (line.find("DAYCARE:") == 0) {
+			safe_getline(f, line);
+			while (line != "END") {
+				load_mon(line, mc.daycare);
 				safe_getline(f, line);
 			}
 		}

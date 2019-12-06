@@ -167,6 +167,8 @@ public:
 	mon team[6];
 	mon enemy_team[6];
 	mon storage[STORAGE_MAX][STORAGE_MAX];
+	mon daycare;
+	int daycare_bill;
 	location loc, last_center, last_non_dungeon, last_loc;
 	std::map<string, bool> active;
 	std::map<string, unsigned> interaction;
@@ -177,7 +179,7 @@ public:
 	std::map<string, bool> caught;
 	std::map<string, bool> used_tms;
 	std::map<string, bool> visited;
-	player() { wins = 0; losses = 0; money = 0; name = "RED"; rivalname = "BLUE"; repel = 0; selected = 0; enemy_selected = 0; box_number = 0; movement = string("player"); frame = 0; game_time = 0;}
+	player() { wins = 0; losses = 0; money = 0; name = "RED"; rivalname = "BLUE"; repel = 0; selected = 0; enemy_selected = 0; box_number = 0; movement = string("player"); frame = 0; game_time = 0; daycare_bill = 0; }
 };
 
 class status_effect {

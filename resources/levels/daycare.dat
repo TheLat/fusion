@@ -24,7 +24,7 @@ MENU:ALERT:A TOWN MAP.|MAP
 END
 daycare-man hat 2 3 RIGHT
 INTERACTIONS
-MENU:ALERT:I run a DAYCARE.|MENU:ALERT_YES_NO:Would you like me to raise one of your POK{e-accent}MON?|{MENU:ALERT:TODO: DAYCARE LOGIC}{MENU:ALERT:Come again.}
+GET:IN_DAYCARE|{MENU:ALERT:I run a DAYCARE.|MENU:ALERT_YES_NO:Would you like me to raise one of your POK{e-accent}MON?|{DAYCARE_IN:|{SET:IN_DAYCARE:1}{NO_ADVANCE}}{MENU:ALERT:Come again.}}{DAYCARE_OUT:|{SET:IN_DAYCARE:0}{MENU:ALERT:See you later!}}
 END
 TELEPORT
 2 8 route5 22 27
