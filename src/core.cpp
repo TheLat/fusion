@@ -1086,6 +1086,8 @@ bool engine::use_item(string filter, std::vector<int> &choices, string &ret) {
 	string name = get_item_name(filter, choices[1]);
 	string effect = get_item_effect(name);
 	string base = effect;
+	mc.to_alert.clear();
+	bool success = false;
 	while (base.size() > 0) {
 		base = effect;
 		if (base.find("|") != -1) {
@@ -1099,11 +1101,12 @@ bool engine::use_item(string filter, std::vector<int> &choices, string &ret) {
 			string menu = base;
 			menu.erase(menu.find(":"), menu.size());
 			base.erase(0, base.find(":") + 1);
-			if (!do_effect(mc.team[choices[2]], base, choices[choices.size() - 1]))
-				return false;
+			if (do_effect(mc.team[choices[2]], base, choices[choices.size() - 1]))
+				success = true;
 		}
 		else if (base.find("CAPTURE") == 0) {
 			ret = base;
+			success = true;
 		}
 		else if (base.find("FISH") == 0) {
 			location temp = mc.loc;
@@ -1214,9 +1217,6 @@ bool engine::use_item(string filter, std::vector<int> &choices, string &ret) {
 			mc.movement = string("player");
 			update_level();
 		}
-		else if (base.find("MAP") == 0) {
-			// TODO: MAP
-		}
 		else if (base.find("BIKE") == 0) {
 		    if (!levels[mc.loc.level].inside && mc.movement != string("seal")) {
 		        if (mc.movement != string("bike")) {
@@ -1314,6 +1314,7 @@ bool engine::use_item(string filter, std::vector<int> &choices, string &ret) {
 					g.draw_list.erase(g.draw_list.begin() + cp, g.draw_list.end());
 					se.unmute_music();
 					se.play_music(last_music);
+					success = true;
 					break;
 				}
 			}
@@ -1341,6 +1342,7 @@ bool engine::use_item(string filter, std::vector<int> &choices, string &ret) {
 				}
 				mc.used_tms[record] = true;
 			}
+			success = true;
 		}
 		else if (base.find("HM") == 0) {
 			string move = base;
@@ -1357,18 +1359,22 @@ bool engine::use_item(string filter, std::vector<int> &choices, string &ret) {
 			if (choices[0] == -1)
 				return false;
 			bool out = learn_move(mc.team[choices[0]], move);
+			success = true;
 		}
 		else if (base.find("TARGET") == 0) {
-			do_effect(mc.enemy_team[mc.enemy_selected], base);
+			if (do_effect(mc.enemy_team[mc.enemy_selected], base))
+				success = true;
 		}
 		else if (base.find("TEAM") == 0) {
 			for (int i = 0; i < 6; ++i) {
 				if (mc.team[i].defined)
-					do_effect(mc.team[i], base);
+					if (do_effect(mc.team[i], base))
+						success = true;
 			}
 		}
 		else if (base.find("SELF") == 0) {
-			do_effect(mc.team[mc.selected], base);
+			if (do_effect(mc.team[mc.selected], base))
+				success = true;
 		}
 		else if (base.find("TELEPORT") == 0) {
             se.play_sound(string("sound_effects/general/sfx_teleport_enter_1.mp3"));
@@ -1380,26 +1386,41 @@ bool engine::use_item(string filter, std::vector<int> &choices, string &ret) {
 			se.play_music(levels[mc.loc.level].music);
 			anim_holder = g.ae.create_anim_scene(string("screenlight"));
             while (!g.ae.is_dones(anim_holder)) {}
+			success = true;
 		}
 		else if (base.find("FLEE") == 0) {
 			ret = "FLEE";
+			success = true;
 		}
 		else if (base.find("REPEL") == 0) {
 			base.erase(0, base.find(":") + 1);
 			if (mc.repel < 0)
 			    mc.repel = 0;
 			mc.repel += stoi(base);
+			success = true;
 		}
 	}
 	if (get_item_effect(name).find("INFINITE") == -1) {
-	    // TODO: if all effects of an item fail, the item should not be consumed
-		for (unsigned i = 0; i < mc.inventory.size(); ++i) {
-			if (mc.inventory[i].first == name) {
-				mc.inventory[i].second--;
-				if (mc.inventory[i].second <= 0) {
-					mc.inventory.erase(mc.inventory.begin() + i);
+		if (success) {
+			for (unsigned i = 0; i < mc.inventory.size(); ++i) {
+				if (mc.inventory[i].first == name) {
+					mc.inventory[i].second--;
+					if (mc.inventory[i].second <= 0) {
+						mc.inventory.erase(mc.inventory.begin() + i);
+					}
+					break;
 				}
-				break;
+			}
+		}
+		else {
+			if (mc.to_alert.size() > 0) {
+				se.play_sound(string("sound_effects/general/sfx_denied.mp3"));
+				if (mc.to_alert.size() > 1) {
+					do_alert("It won't have any effect!");
+				}
+				else {
+					do_alert(mc.to_alert[0]);
+				}
 			}
 		}
 	}
@@ -1431,6 +1452,11 @@ bool engine::do_effect(mon& m, string effect, int extra) {
 		}
 		if (holder != m.status.size()) {
 		    se.play_sound(string("sound_effects/general/sfx_heal_ailment.mp3"));
+			return true;
+		}
+		else {
+			mc.to_alert.push_back(string("No status to remove!"));
+			return false;
 		}
 	}
 	else if (effect.find("FILL_HP") == 0) {
@@ -1440,11 +1466,11 @@ bool engine::do_effect(mon& m, string effect, int extra) {
 			heal_damage(m, stoi(effect));
 		}
 		else if (m.curr_hp == get_stat(m, HP)) {
-		    do_alert(string("It's already at max HP!"));
+		    mc.to_alert.push_back(string("It's already at max HP!"));
 		    return false;
 		}
 		else {
-			do_alert(string("It's knocked out cold!"));
+			mc.to_alert.push_back(string("It's knocked out cold!"));
 			return false;
 		}
 	}
@@ -1453,6 +1479,7 @@ bool engine::do_effect(mon& m, string effect, int extra) {
 		int oldpp = m.pp[extra];
 		m.pp[extra] = min(m.pp[extra] + stoi(effect), m.max_pp[extra]);
 		if (oldpp == m.pp[extra]) {
+			mc.to_alert.push_back(string("It's already full on power points!"));
 		    return false;
 		}
 		se.play_sound(string("sound_effects/general/sfx_heal_ailment.mp3"));
@@ -1471,10 +1498,14 @@ bool engine::do_effect(mon& m, string effect, int extra) {
 		}
 		if (change)
 		    se.play_sound(string("sound_effects/general/sfx_heal_ailment.mp3"));
+		else
+			mc.to_alert.push_back(string("It's already full on power points!"));
 	}
 	else if (effect.find("REVIVE") == 0) {
-		if (m.curr_hp > 0)
+		if (m.curr_hp > 0) {
+			mc.to_alert.push_back(string("It's isn't KO'ed!"));
 			return false;
+		}
 		se.play_sound(string("sound_effects/general/sfx_heal_up.mp3"));
 		m.curr_hp = get_stat(m, HP) / 2;
 		m.status.clear();
@@ -1501,8 +1532,10 @@ bool engine::do_effect(mon& m, string effect, int extra) {
 			return false;
 		}
 		effect.erase(0, effect.find(":") + 1);
-		if (m.EV[s] > 25600)
-		    return false;
+		if (m.EV[s] > 25600) {
+			mc.to_alert.push_back(string("It won't have any effect!"));
+			return false;
+		}
 		m.EV[s] += stoi(effect);
 		se.play_sound(string("sound_effects/general/sfx_heal_ailment.mp3"));
 	}
@@ -1516,12 +1549,15 @@ bool engine::do_effect(mon& m, string effect, int extra) {
 		    se.play_sound(string("sound_effects/general/sfx_heal_ailment.mp3"));
 		}
 		else {
+			mc.to_alert.push_back(string("It won't have any effect!"));
 		    return false;
 		}
 	}
 	else if (effect.find("LEVEL_UP") == 0) {
-	    if (m.level >= 100)
-	        return false;
+		if (m.level >= 100) {
+			mc.to_alert.push_back(string("It won't have any effect!"));
+			return false;
+		}
 		m.exp = level_to_exp[min(100, m.level + 1)];
 		level_up(m, true);
 	}
