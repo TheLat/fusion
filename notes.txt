@@ -16,4 +16,3 @@ Options
 Animating sprites in menus
 Opening Scene
 Controller input
-Can switch from a pokemon to itself

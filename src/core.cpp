@@ -4003,6 +4003,10 @@ bool engine::battle(trainer& t) { // trainer battle
 					do_alert("Couldn't get away!");
 					continue;
 				}
+				if (choices[1] == mc.selected) {
+					do_alert("You have to pick a different POK{e-accent}MON!");
+					continue;
+				}
 				mc.team[mc.selected].queue.clear();
 				mc.team[mc.selected].last_move = "";
 				do_alert(get_nickname(mc.team[mc.selected]) + string("! That's enough!"));
@@ -4597,6 +4601,10 @@ bool engine::battle() { // wild pokemon
 			else if (choices[0] == 1) { // Player has selected Pokemon
 				if (in_status(mc.team[mc.selected], string("TRAP"))) {
 					do_alert("Couldn't get away!");
+					continue;
+				}
+				if (choices[1] == mc.selected) {
+					do_alert("You have to pick a different POK{e-accent}MON!");
 					continue;
 				}
 				mc.team[mc.selected].queue.clear();
