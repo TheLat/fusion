@@ -412,9 +412,9 @@ void menu::create_menu(string file, string choice, string text_override, string 
 					for (unsigned i = 0; i < seen.size(); ++i) {
 						reserve.push_back(string("RIGHT_JUSTIFY:13:MON_TEMPLATE_NAME:") + seen[i]);
 						if (caught[seen[i]])
-							reserve_followup.push_back(string("DEX_MENU_CAUGHT:") + seen[i]); // TODO: DATA, CRY, AREA, QUIT
+							reserve_followup.push_back(string("DEX_MENU_CAUGHT:") + seen[i]);
 						else
-							reserve_followup.push_back(string("DEX_MENU_SEEN:") + seen[i]); // TODO: DATA, CRY, AREA, QUIT
+							reserve_followup.push_back(string("DEX_MENU_SEEN:") + seen[i]);
 					}
 					t.xmin = x;
 					t.ymin = y;

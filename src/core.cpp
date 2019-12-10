@@ -8290,7 +8290,6 @@ void engine::do_interaction(character& npc) {
 				s = "";
 			}
 			if (s2 == "USED_TMS") {
-				// TODO: Rebalance TM prices.
 				s2 = "";
 				std::map<string, bool>::iterator it2 = mc.used_tms.begin();
 				bool first = true;
@@ -8402,7 +8401,7 @@ void engine::do_interaction(character& npc) {
 								do_alert(string("You can't deposit your last POK{e-accent}MON!"));
 							}
 							else if (count == STORAGE_MAX) {
-								do_alert(string("No room left in that box!")); // TODO: Test this
+								do_alert(string("No room left in that box!"));
 							}
 							else {
 					            se.play_sound(string("sound_effects/general/sfx_withdraw_deposit.mp3"));
@@ -9084,7 +9083,7 @@ void engine::main() {
 			}
 			if (choices[0] == 2) { // INVENTORY
 				string o;
-				if (!can_use_item(string("NONCOMBAT"), get_item_name(string("ALL"), choices[1])) || !use_item(string("ALL"), choices, o)) { // TODO: Failure messages for item use.
+				if (!can_use_item(string("NONCOMBAT"), get_item_name(string("ALL"), choices[1])) || !use_item(string("ALL"), choices, o)) {
 				}
 			}
 			if (choices[0] == 4) { // SAVING

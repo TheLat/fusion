@@ -15,7 +15,7 @@ MENU:ALERT:CYCLING ROAD {NEWLINE} Slope ends here!
 END
 route18-sign2 blank 40 8
 INTERACTIONS
-MENU:ALERT:CYCLING ROAD {NEWLINE} No pedestrians permitted!|MENU:ALERT:TODO: IMPLEMENT THIS
+MENU:ALERT:CYCLING ROAD {NEWLINE} A bicycle is highly recommended!
 END
 route18-sign3 blank 50 10
 INTERACTIONS
