@@ -8819,6 +8819,39 @@ void engine::do_interaction(character& npc) {
 			}
 			update_level();
 		}
+		else if (s.find("NAME_RATER:") == 0) {
+			s2 = s;
+			s2.erase(0, string("NAME_RATER:").length());
+			if (s2.find("|") != -1) {
+				s2.erase(s2.find("|"), s2.length());
+			}
+			else
+				s = "";
+			choices = do_menu(string("NONCOMBAT_MON_SELECT2"));
+			choices = remove_cancels(choices);
+			if (choices.size() == 0) {
+				do_alert(string("Fine! Come any time you like!"));
+			}
+			else {
+				unsigned holder = choices[0];
+				string temp = get_nickname(mc.team[choices[0]]);
+				do_alert(temp + string("? That's a good nickname, but you can do better."));
+				string temp2 = get_input_string();
+				if (temp2 == "") {
+					do_alert(string("Fine! Come any time you like!"));
+				}
+				else {
+					choices = do_menu(string("ALERT_YES_NO"), string("Change ") + temp + string("'s name to ") + temp2 + string("?"));
+					if (choices[choices.size() - 1] == 0) {
+						mc.team[holder].nickname = temp2;
+						do_alert(string("There! ") + temp2 + string(" is a much better nickname!"));
+					}
+					else {
+						do_alert(string("Fine! Come any time you like!"));
+					}
+				}
+			}
+		}
 		else if (s.find("!:") == 0) {
 			int clear_point = g.draw_list.size();
 			s2 = s;

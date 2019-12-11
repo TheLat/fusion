@@ -24,7 +24,7 @@ MENU:ALERT:A TOWN MAP.|MAP
 END
 lavender-house3-man bald 5 3 LEFT
 INTERACTIONS
-MENU:ALERT:Hello, hello! I am the official NAME RATER!|MENU:ALERT_YES_NO:Want me to rate the nicknames of your POK{e-accent}MON?|{MENU:ALERT:TODO: NAME RATER LOGIC}{MENU:ALERT:Fine! Come any time you like!}|FACE:LEFT
+MENU:ALERT:Hello, hello! I am the official NAME RATER!|MENU:ALERT_YES_NO:Want me to rate the nicknames of your POK{e-accent}MON?|{NAME_RATER:}{MENU:ALERT:Fine! Come any time you like!}|FACE:LEFT
 END
 TELEPORT
 2 8 lavender-town 11 21
