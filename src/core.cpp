@@ -6740,14 +6740,33 @@ void engine::player_input(bool up, bool down, bool left, bool right, bool select
 						return;
 					}
 					else {
-					    // TODO: cloud effect
+						mc.active[levels[mc.loc.level].characters[i].name] = false;
+						update_level();
+						unsigned sprite1, sprite2;
+						double curr_x = mc.loc.x;
+						double curr_y = mc.loc.y;
+						if (levels[mc.loc.level].characters[i].no_offset) {
+							sprite1 = g.push_quad_load(((levels[mc.loc.level].characters[i].anim_offset.x + levels[mc.loc.level].characters[i].loc.x) - (curr_x + 0.5)) / 5.0, (-0.5 - (levels[mc.loc.level].characters[i].loc.y + levels[mc.loc.level].characters[i].anim_offset.y) + curr_y) / 4.5f + 0.0, 1.0 / 5.0f, 1.0 / 4.5f, safepath + string("images/cloud.png"));
+							sprite2 = g.push_quad(((levels[mc.loc.level].characters[i].anim_offset.x + levels[mc.loc.level].characters[i].loc.x) - (curr_x + 0.5)) / 5.0, (-0.5 - (levels[mc.loc.level].characters[i].loc.y + levels[mc.loc.level].characters[i].anim_offset.y) + curr_y) / 4.5f + 0.0, 1.0 / 5.0f, 1.0 / 4.5f, get_character_tex(levels[mc.loc.level].characters[i]));
+						}
+						else {
+							sprite1 = g.push_quad_load(((levels[mc.loc.level].characters[i].anim_offset.x + levels[mc.loc.level].characters[i].loc.x) - (curr_x + 0.5)) / 5.0, (-0.5 - (levels[mc.loc.level].characters[i].loc.y + levels[mc.loc.level].characters[i].anim_offset.y) + curr_y) / 4.5f + 0.055, 1.0 / 5.0f, 1.0 / 4.5f, safepath + string("images/cloud.png"));
+							sprite2 = g.push_quad(((levels[mc.loc.level].characters[i].anim_offset.x + levels[mc.loc.level].characters[i].loc.x) - (curr_x + 0.5)) / 5.0, (-0.5 - (levels[mc.loc.level].characters[i].loc.y + levels[mc.loc.level].characters[i].anim_offset.y) + curr_y) / 4.5f + 0.055, 1.0 / 5.0f, 1.0 / 4.5f, get_character_tex(levels[mc.loc.level].characters[i]));
+						}
+						double delta_x = (ahead2.x - levels[mc.loc.level].characters[i].loc.x) / 5.0;
+						double delta_y = (ahead2.y - levels[mc.loc.level].characters[i].loc.y) / -4.5;
+						g.ae.create_animf(&(g.draw_list[sprite1].x), g.draw_list[sprite1].x, g.draw_list[sprite1].x + (delta_x / 3.0), 0.7);
+						g.ae.create_animf(&(g.draw_list[sprite1].y), g.draw_list[sprite1].y, g.draw_list[sprite1].y + (delta_y / 3.0), 0.7);
+						g.ae.create_animf(&(g.draw_list[sprite2].x), g.draw_list[sprite2].x, g.draw_list[sprite2].x + delta_x, 0.7);
+						g.ae.create_animf(&(g.draw_list[sprite2].y), g.draw_list[sprite2].y, g.draw_list[sprite2].y + delta_y, 0.7);
 					    se.play_sound(string("sound_effects/general/sfx_push_boulder.mp3"));
 					    unsigned b1 = g.ae.create_animf(&(levels[mc.loc.level].characters[i].loc.x), levels[mc.loc.level].characters[i].loc.x, ahead2.x, 0.7);
 					    unsigned b2 = g.ae.create_animf(&(levels[mc.loc.level].characters[i].loc.y), levels[mc.loc.level].characters[i].loc.y, ahead2.y, 0.7);
 					    unsigned b3, b4;
 					    while (!g.ae.is_donef(b1) || !g.ae.is_donef(b2)) {
-					        update_level();
 					    }
+						mc.active[levels[mc.loc.level].characters[i].name] = true;
+						update_level();
 						if (levels[mc.loc.level].characters[i].teleportable) {
 							for (unsigned j = 0; j < levels[mc.loc.level].teleport.size(); ++j) {
 								if (levels[mc.loc.level].teleport[j].first.allow_npcs) {
