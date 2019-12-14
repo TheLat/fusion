@@ -9073,8 +9073,9 @@ void engine::main() {
 			open_menu = false;
 			string holder = "";
 			vector<string> holder_array;
-			if (!(has_move_in_party(string("TELEPORT")) || has_move_in_party(string("FLY")) || has_move_in_party(string("SOFTBOILED")) || has_move_in_party(string("DIG"))))
+			if (!(has_move_in_party(string("TELEPORT")) || has_move_in_party(string("FLY")) || has_move_in_party(string("SOFTBOILED")) || has_move_in_party(string("DIG")))) {
 				offset++;
+			}
 			else {
 				if (has_move_in_party(string("FLY"))) {
 					if (holder != string(""))
@@ -9119,6 +9120,11 @@ void engine::main() {
 			choices = do_menu(string("MAINMENU") + to_string(offset), holder);
 			choices = remove_cancels(choices);
 			choices[0] += offset;
+			if (!(has_move_in_party(string("TELEPORT")) || has_move_in_party(string("FLY")) || has_move_in_party(string("SOFTBOILED")) || has_move_in_party(string("DIG")))) {
+				if (choices[0] < 7) {
+					choices[0]--;
+				}
+			}
 			if (choices[0] == 1) {
 				if (choices.size() == 4) {
 					if (choices[2] == 1) {
@@ -9133,19 +9139,22 @@ void engine::main() {
 					}
 				}
 			}
-			if (choices[0] == 2) { // INVENTORY
+			else if (choices[0] == 2) { // INVENTORY
 				string o;
 				if (!can_use_item(string("NONCOMBAT"), get_item_name(string("ALL"), choices[1])) || !use_item(string("ALL"), choices, o)) {
 				}
 			}
-			if (choices[0] == 4) { // SAVING
+			else if (choices[0] == 4) { // SAVING
 				if (choices[choices.size() - 1] == 0) {
 					save_game();
 					se.play_sound(string("sound_effects/general/sfx_save.mp3"));
 					do_alert("{PLAYER_NAME} saved the game!");
 				}
 			}
-			if (offset == 0 && choices[0] == 6) { // SPECIAL
+			else if (choices[0] == 5) {
+				do_alert("OPTIONS GO HERE");
+			}
+			else if (offset == 0 && choices[0] == 6) { // SPECIAL
 				if (holder_array[choices[choices.size() - 1]] == string("TELEPORT")) {
 					se.play_sound(string("sound_effects/general/sfx_teleport_enter_1.mp3"));
 					unsigned anim_holder = g.ae.create_anim_scene(string("screendark"));
