@@ -1069,7 +1069,7 @@ string engine::get_special_string(string in) {
 	else if (in.find("CURSOR_IF:") != -1 && in.find("==") != -1) {
 		string valkey = in;
 		string value = in;
-		valkey.erase(0, string("CURSOR_IF:").size() + 1);
+		valkey.erase(0, string("CURSOR_IF:").size());
 		valkey.erase(valkey.find("="), valkey.size());
 		value.erase(0, value.find("=") + 2);
 		if (mc.values[valkey] == stoi(value))
@@ -9162,7 +9162,18 @@ void engine::main() {
 				}
 			}
 			else if (choices[0] == 5) {
-				do_alert("OPTIONS GO HERE");
+				if (choices[1] == 0) {
+					mc.values[string("AUTOSAVE")] = choices[2];
+				}
+				else if (choices[1] == 1) {
+					mc.values[string("SFXVOLUME")] = choices[2];
+				}
+				else if (choices[1] == 2) {
+					mc.values[string("MUSICVOLUME")] = choices[2];
+				}
+				else if (choices[1] == 3) {
+					mc.values[string("MUTEBIKE")] = choices[2];
+				}
 			}
 			else if (offset == 0 && choices[0] == 6) { // SPECIAL
 				if (holder_array[choices[choices.size() - 1]] == string("TELEPORT")) {
