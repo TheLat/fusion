@@ -127,7 +127,7 @@ void engine::collision() {
 void engine::play_level_music() {
     if (mc.movement == string("seal"))
 		se.play_music(string("music/38-ocean-intro.mp3,music/38-ocean-loop.mp3"));
-    else if (mc.movement == string("bike"))
+    else if (mc.movement == string("bike") && mc.values[string("MUTEBIKE")] == 0)
         se.play_music(string("music/30-cycling-intro.mp3,music/30-cycling-loop.mp3"));
 	else
 	    se.play_music(levels[mc.loc.level].music);
