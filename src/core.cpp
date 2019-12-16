@@ -1066,6 +1066,16 @@ string engine::get_special_string(string in) {
     	else
     	    return to_string(count / (60*60)) + string(":0") + to_string((count/60) % 60);
 	}
+	else if (in.find("CURSOR_IF:") != -1 && in.find("==") != -1) {
+		string valkey = in;
+		string value = in;
+		valkey.erase(0, string("CURSOR_IF:").size() + 1);
+		valkey.erase(valkey.find("="), valkey.size());
+		value.erase(0, value.find("=") + 2);
+		if (mc.values[valkey] == stoi(value))
+			return string("cursor.bmp");
+		return string("transparent.png");
+	}
 	return in;
 }
 
