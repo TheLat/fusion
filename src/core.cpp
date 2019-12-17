@@ -5440,6 +5440,12 @@ void engine::init_level(string levelname) {
 				else {
 					levels[levelname].characters[levels[levelname].characters.size() - 1].far = false;
 				}
+				if (s.find("WIDE") != -1) {
+					levels[levelname].characters[levels[levelname].characters.size() - 1].wide = true;
+				}
+				else {
+					levels[levelname].characters[levels[levelname].characters.size() - 1].wide = false;
+				}
 				if (s.find("NO_OFFSET") != -1) {
 					levels[levelname].characters[levels[levelname].characters.size() - 1].no_offset = true;
 				}
@@ -6733,7 +6739,7 @@ void engine::player_input(bool up, bool down, bool left, bool right, bool select
 			continue;
 		if (levels[mc.loc.level].characters[i].incorporeal)
 			continue;
-		if (l.x == levels[mc.loc.level].characters[i].loc.x && l.y == levels[mc.loc.level].characters[i].loc.y) {
+		if ((l.x == levels[mc.loc.level].characters[i].loc.x && l.y == levels[mc.loc.level].characters[i].loc.y) || (levels[mc.loc.level].characters[i].wide && l.x == levels[mc.loc.level].characters[i].loc.x + 1.0 && l.y == levels[mc.loc.level].characters[i].loc.y)){
 			if (levels[mc.loc.level].characters[i].pushable && has_move_in_party(string("STRENGTH"))) {
 				if (ahead2.x >= 0.0 && ahead2.y >= 0.0 && int(ahead2.y) < levels[mc.loc.level].data.size() && int(ahead2.x) < levels[mc.loc.level].data[int(ahead2.y)].size() && !blocking[get_tile(ahead2.y, ahead2.x)] && !npc_blocking[get_tile(ahead2.y, ahead2.x)]) {
 					bool npc_in_way = false;
@@ -6755,13 +6761,16 @@ void engine::player_input(bool up, bool down, bool left, bool right, bool select
 						unsigned sprite1, sprite2;
 						double curr_x = mc.loc.x;
 						double curr_y = mc.loc.y;
+						double mul = 1.0;
+						if (levels[mc.loc.level].characters[i].wide)
+							mul = 2.0;
 						if (levels[mc.loc.level].characters[i].no_offset) {
 							sprite1 = g.push_quad_load(((levels[mc.loc.level].characters[i].anim_offset.x + levels[mc.loc.level].characters[i].loc.x) - (curr_x + 0.5)) / 5.0, (-0.5 - (levels[mc.loc.level].characters[i].loc.y + levels[mc.loc.level].characters[i].anim_offset.y) + curr_y) / 4.5f + 0.0, 1.0 / 5.0f, 1.0 / 4.5f, safepath + string("images/cloud.png"));
-							sprite2 = g.push_quad(((levels[mc.loc.level].characters[i].anim_offset.x + levels[mc.loc.level].characters[i].loc.x) - (curr_x + 0.5)) / 5.0, (-0.5 - (levels[mc.loc.level].characters[i].loc.y + levels[mc.loc.level].characters[i].anim_offset.y) + curr_y) / 4.5f + 0.0, 1.0 / 5.0f, 1.0 / 4.5f, get_character_tex(levels[mc.loc.level].characters[i]));
+							sprite2 = g.push_quad(((levels[mc.loc.level].characters[i].anim_offset.x + levels[mc.loc.level].characters[i].loc.x) - (curr_x + 0.5)) / 5.0, (-0.5 - (levels[mc.loc.level].characters[i].loc.y + levels[mc.loc.level].characters[i].anim_offset.y) + curr_y) / 4.5f + 0.0, mul * 1.0 / 5.0f, 1.0 / 4.5f, get_character_tex(levels[mc.loc.level].characters[i]));
 						}
 						else {
 							sprite1 = g.push_quad_load(((levels[mc.loc.level].characters[i].anim_offset.x + levels[mc.loc.level].characters[i].loc.x) - (curr_x + 0.5)) / 5.0, (-0.5 - (levels[mc.loc.level].characters[i].loc.y + levels[mc.loc.level].characters[i].anim_offset.y) + curr_y) / 4.5f + 0.055, 1.0 / 5.0f, 1.0 / 4.5f, safepath + string("images/cloud.png"));
-							sprite2 = g.push_quad(((levels[mc.loc.level].characters[i].anim_offset.x + levels[mc.loc.level].characters[i].loc.x) - (curr_x + 0.5)) / 5.0, (-0.5 - (levels[mc.loc.level].characters[i].loc.y + levels[mc.loc.level].characters[i].anim_offset.y) + curr_y) / 4.5f + 0.055, 1.0 / 5.0f, 1.0 / 4.5f, get_character_tex(levels[mc.loc.level].characters[i]));
+							sprite2 = g.push_quad(((levels[mc.loc.level].characters[i].anim_offset.x + levels[mc.loc.level].characters[i].loc.x) - (curr_x + 0.5)) / 5.0, (-0.5 - (levels[mc.loc.level].characters[i].loc.y + levels[mc.loc.level].characters[i].anim_offset.y) + curr_y) / 4.5f + 0.055, mul * 1.0 / 5.0f, 1.0 / 4.5f, get_character_tex(levels[mc.loc.level].characters[i]));
 						}
 						double delta_x = (ahead2.x - levels[mc.loc.level].characters[i].loc.x) / 5.0;
 						double delta_y = (ahead2.y - levels[mc.loc.level].characters[i].loc.y) / -4.5;
@@ -7171,15 +7180,19 @@ void engine::draw_special() {
 			}
 		}
 	}
-
+	double mul;
 	for (unsigned i = 0; i < l->characters.size(); ++i) {
 		character* c = &(l->characters[i]);
 		if (!mc.active[c->name])
 			continue;
-		if (c->no_offset)
-			g.push_quad_half(((c->anim_offset.x + c->loc.x) - (curr_x + 0.5)) / 5.0, (-0.5 - (c->loc.y + c->anim_offset.y) + curr_y) / 4.5f + 0.0, c->width, c->height, get_character_tex(*c));
+		if (c->wide)
+			mul = 2.0;
 		else
-			g.push_quad_half(((c->anim_offset.x + c->loc.x) - (curr_x + 0.5)) / 5.0, (-0.5 - (c->loc.y + c->anim_offset.y) + curr_y) / 4.5f + 0.055, c->width, c->height, get_character_tex(*c));
+			mul = 1.0;
+		if (c->no_offset)
+			g.push_quad_half(((c->anim_offset.x + c->loc.x) - (curr_x + 0.5)) / 5.0, (-0.5 - (c->loc.y + c->anim_offset.y) + curr_y) / 4.5f + 0.0, c->width * mul, c->height, get_character_tex(*c));
+		else
+			g.push_quad_half(((c->anim_offset.x + c->loc.x) - (curr_x + 0.5)) / 5.0, (-0.5 - (c->loc.y + c->anim_offset.y) + curr_y) / 4.5f + 0.055, c->width * mul, c->height, get_character_tex(*c));
 	}
 	for (unsigned j = 0; j < l->neighbors.size(); ++j) {
 		level* n = &(levels[l->neighbors[j].level]);
@@ -7187,10 +7200,14 @@ void engine::draw_special() {
 			character* c = &(n->characters[i]);
 			if (!mc.active[c->name])
 				continue;
-			if (c->no_offset)
-				g.push_quad_half((levels[curr_level].neighbors[j].x + (c->anim_offset.x + c->loc.x) - (curr_x + 0.5)) / 5.0, (-levels[curr_level].neighbors[j].y - 0.5 - (c->loc.y + c->anim_offset.y) + curr_y) / 4.5f + 0.0, c->width, c->height, get_character_tex(*c));
+			if (c->wide)
+				mul = 2.0;
 			else
-				g.push_quad_half((levels[curr_level].neighbors[j].x + (c->anim_offset.x + c->loc.x) - (curr_x + 0.5)) / 5.0, (-levels[curr_level].neighbors[j].y - 0.5 - (c->loc.y + c->anim_offset.y) + curr_y) / 4.5f + 0.055, c->width, c->height, get_character_tex(*c));
+				mul = 1.0;
+			if (c->no_offset)
+				g.push_quad_half((levels[curr_level].neighbors[j].x + (c->anim_offset.x + c->loc.x) - (curr_x + 0.5)) / 5.0, (-levels[curr_level].neighbors[j].y - 0.5 - (c->loc.y + c->anim_offset.y) + curr_y) / 4.5f + 0.0, c->width * mul, c->height, get_character_tex(*c));
+			else
+				g.push_quad_half((levels[curr_level].neighbors[j].x + (c->anim_offset.x + c->loc.x) - (curr_x + 0.5)) / 5.0, (-levels[curr_level].neighbors[j].y - 0.5 - (c->loc.y + c->anim_offset.y) + curr_y) / 4.5f + 0.055, c->width * mul, c->height, get_character_tex(*c));
 		}
 	}
 	g.push_quad_half(-0.1, -0.5 / 4.5 + 0.055, 1.0 / 5.0, 1.0 / 4.5, g.tex[mc.movement + string("-") + get_direction_string(mc.dir) + string("-") + to_string(mc.frame % 4) + string(".png")]);
@@ -7314,14 +7331,19 @@ void engine::draw_characters() {
 	double curr_x = mc.loc.x;
 	double curr_y = mc.loc.y;
 	level* l = &(levels[curr_level]);
+	double mul = 0.0;
 	for (unsigned i = 0; i < l->characters.size(); ++i) {
 		character* c = &(l->characters[i]);
 		if (!mc.active[c->name])
 			continue;
-		if (c->no_offset)
-			g.push_quad(((c->anim_offset.x + c->loc.x) - (curr_x + 0.5)) / 5.0, (-0.5 - (c->loc.y + c->anim_offset.y) + curr_y) / 4.5f + 0.0, c->width, c->height, get_character_tex(*c));
+		if (c->wide)
+			mul = 2.0;
 		else
-			g.push_quad(((c->anim_offset.x + c->loc.x) - (curr_x + 0.5)) / 5.0, (-0.5 - (c->loc.y + c->anim_offset.y) + curr_y) / 4.5f + 0.055, c->width, c->height, get_character_tex(*c));
+			mul = 1.0;
+		if (c->no_offset)
+			g.push_quad(((c->anim_offset.x + c->loc.x) - (curr_x + 0.5)) / 5.0, (-0.5 - (c->loc.y + c->anim_offset.y) + curr_y) / 4.5f + 0.0, c->width * mul, c->height, get_character_tex(*c));
+		else
+			g.push_quad(((c->anim_offset.x + c->loc.x) - (curr_x + 0.5)) / 5.0, (-0.5 - (c->loc.y + c->anim_offset.y) + curr_y) / 4.5f + 0.055, c->width * mul, c->height, get_character_tex(*c));
 	}
 	for (unsigned j = 0; j < l->neighbors.size(); ++j) {
 		level* n = &(levels[l->neighbors[j].level]);
@@ -7329,10 +7351,14 @@ void engine::draw_characters() {
 			character* c = &(n->characters[i]);
 			if (!mc.active[c->name])
 				continue;
-			if (c->no_offset)
-				g.push_quad((levels[curr_level].neighbors[j].x + (c->anim_offset.x + c->loc.x) - (curr_x + 0.5)) / 5.0, (-levels[curr_level].neighbors[j].y - 0.5 - (c->loc.y + c->anim_offset.y) + curr_y) / 4.5f + 0.0, c->width, c->height, get_character_tex(*c));
+			if (c->wide)
+				mul = 2.0;
 			else
-				g.push_quad((levels[curr_level].neighbors[j].x + (c->anim_offset.x + c->loc.x) - (curr_x + 0.5)) / 5.0, (-levels[curr_level].neighbors[j].y - 0.5 - (c->loc.y + c->anim_offset.y) + curr_y) / 4.5f + 0.055, c->width, c->height, get_character_tex(*c));
+				mul = 1.0;
+			if (c->no_offset)
+				g.push_quad((levels[curr_level].neighbors[j].x + (c->anim_offset.x + c->loc.x) - (curr_x + 0.5)) / 5.0, (-levels[curr_level].neighbors[j].y - 0.5 - (c->loc.y + c->anim_offset.y) + curr_y) / 4.5f + 0.0, c->width * mul, c->height, get_character_tex(*c));
+			else
+				g.push_quad((levels[curr_level].neighbors[j].x + (c->anim_offset.x + c->loc.x) - (curr_x + 0.5)) / 5.0, (-levels[curr_level].neighbors[j].y - 0.5 - (c->loc.y + c->anim_offset.y) + curr_y) / 4.5f + 0.055, c->width * mul, c->height, get_character_tex(*c));
 		}
 	}
 	g.push_quad(-0.1, -0.5 / 4.5 + 0.055, 1.0 / 5.0, 1.0 / 4.5, g.tex[mc.movement + string("-") + get_direction_string(mc.dir) + string("-") + to_string(mc.frame % 4) + string(".png")]);
