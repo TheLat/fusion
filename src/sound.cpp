@@ -155,7 +155,9 @@ void soundengine::play_cry(string s, bool blocking) {
 	if (s1 == s2) {
 	    if (channels[channel_index])
 	        channels[channel_index]->stop();
-	    result = system->playSound(sounds[s1], 0, false, &(channels[channel_index]));
+	    result = system->playSound(sounds[s1], 0, true, &(channels[channel_index]));
+		channels[channel_index]->setVolume(volume);
+		channels[channel_index]->setPaused(false);
 	    if (blocking) {
 	        result = (channels[channel_index])->isPlaying(&playing);
             while (playing) {
