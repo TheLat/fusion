@@ -9030,6 +9030,9 @@ void engine::do_interaction(character& npc) {
 		do_alert(string("{PLAYER_NAME} lost $") + to_string(mc.money/2) + string("!"));
 		mc.money = mc.money - (mc.money/2);
 	}
+	if (mc.values[string("AUTOSAVE")]) {
+		save_game();
+	}
 }
 
 void engine::main() {
