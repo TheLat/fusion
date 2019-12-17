@@ -15,4 +15,3 @@ Oak Fight
 Animating sprites in menus
 Opening Scene
 Controller input
-Mew encounter
