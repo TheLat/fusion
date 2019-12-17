@@ -25,6 +25,9 @@ public:
 	void play_cry(string s, bool blocking=false);
 	void mute_music(bool partial);
 	void unmute_music();
+	void update_volumes();
+	float get_sfx_volume();
+	float get_music_volume();
 };
 
 #endif

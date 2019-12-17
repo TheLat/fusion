@@ -9167,9 +9167,11 @@ void engine::main() {
 				}
 				else if (choices[1] == 1) {
 					mc.values[string("SFXVOLUME")] = choices[2];
+					se.update_volumes();
 				}
 				else if (choices[1] == 2) {
 					mc.values[string("MUSICVOLUME")] = choices[2];
+					se.update_volumes();
 				}
 				else if (choices[1] == 3) {
 					mc.values[string("MUTEBIKE")] = choices[2];

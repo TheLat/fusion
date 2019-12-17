@@ -1,12 +1,12 @@
 #include "sound.h"
-
+#include "core.h"
 #include <stdio.h>
 #include <iostream>
 #include <fstream>
 
 extern bool safe_getline(ifstream &f, string& s);
 extern string safepath;
-
+extern engine e;
 void soundengine::init_sounds() {
 	FMOD::Channel    *channel = 0;
 	FMOD_RESULT       result;
@@ -37,24 +37,36 @@ void soundengine::init_sounds() {
 
 void soundengine::play_sound(string s) {
 	FMOD_RESULT       result;
+	float volume = get_sfx_volume();
+	if (volume == 0.0) {
+		return;
+	}
 	if (sounds[s] == 0) {
 		result = system->createSound((safepath + s).c_str(), FMOD_DEFAULT, 0, &sounds[s]);
 	}
 	if (channels[channel_index])
 	    channels[channel_index]->stop();
-	result = system->playSound(sounds[s], 0, false, &(channels[channel_index]));
+	result = system->playSound(sounds[s], 0, true, &(channels[channel_index]));
+	result = (channels[channel_index])->setVolume(volume);
+	result = (channels[channel_index])->setPaused(false);
 	channel_index = (channel_index+1) % SOUND_CHANNELS;
 }
 
 void soundengine::play_sound_blocking(string s) {
 	FMOD_RESULT       result;
+	float volume = get_sfx_volume();
+	if (volume == 0.0) {
+		return;
+	}
 	bool playing = false;
 	if (sounds[s] == 0) {
 		result = system->createSound((safepath + s).c_str(), FMOD_DEFAULT, 0, &sounds[s]);
 	}
 	if (channels[channel_index])
 	    channels[channel_index]->stop();
-	result = system->playSound(sounds[s], 0, false, &(channels[channel_index]));
+	result = system->playSound(sounds[s], 0, true, &(channels[channel_index]));
+	result = (channels[channel_index])->setVolume(volume);
+	result = (channels[channel_index])->setPaused(false);
 	result = (channels[channel_index])->isPlaying(&playing);
 	while (playing) {
 		result = (channels[channel_index])->isPlaying(&playing);
@@ -70,7 +82,7 @@ void soundengine::play_music(string s) {
 	unsigned int slen = 0;
 	float freq = 0.0;
 	int outputrate = 0;
-    double volume = 1.0;
+    float volume = get_music_volume();
 	if (s == "") {
 		return;
 	}
@@ -132,6 +144,7 @@ void soundengine::play_cry(string s, bool blocking) {
 	unsigned int slen1 = 0, slen2 = 0;
 	float flen1 = 0, flen2 = 0;
 	float freq1 = 0.0, freq2 = 0.0;
+	float volume = get_sfx_volume();
 	int outputrate = 0;
 	s1 = s;
 	s2 = s;
@@ -174,6 +187,8 @@ void soundengine::play_cry(string s, bool blocking) {
 	}
 	result = (channels[(channel_index + 1) % SOUND_CHANNELS])->addFadePoint(clock_start, 0.0);
 	result = (channels[(channel_index + 1) % SOUND_CHANNELS])->addFadePoint(clock_start + flen2, 1.0);
+	(channels[channel_index])->setVolume(volume);
+	(channels[(channel_index + 1) % SOUND_CHANNELS])->setVolume(volume);
 	(channels[channel_index])->setPaused(false);
 	(channels[(channel_index + 1) % SOUND_CHANNELS])->setPaused(false);
 	if (blocking) {
@@ -192,7 +207,7 @@ void soundengine::play_cry(string s, bool blocking) {
 void soundengine::mute_music(bool partial) {
     float volume = 0.0;
     if (partial)
-        volume = 0.5;
+        volume = 0.5*get_music_volume();
     if (music1) {
         music1->setPaused(true);
         music1->setVolume(volume);
@@ -206,7 +221,7 @@ void soundengine::mute_music(bool partial) {
 }
 
 void soundengine::unmute_music() {
-    float volume = 1.0;
+    float volume = get_music_volume();
     if (music1) {
         music1->setPaused(true);
         music1->setVolume(volume);
@@ -217,4 +232,15 @@ void soundengine::unmute_music() {
         music2->setVolume(volume);
         music2->setPaused(false);
     }
+}
+
+void soundengine::update_volumes() {
+	unmute_music();
+}
+
+float soundengine::get_sfx_volume() {
+	return float(e.mc.values[string("SFXVOLUME")]) / 8.0f;
+}
+float soundengine::get_music_volume() {
+	return float(e.mc.values[string("MUSICVOLUME")]) / 8.0f;
 }

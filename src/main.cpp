@@ -403,6 +403,8 @@ int main(int argc, char** argv) {
 	e.mc.loc.level = "home";
 	e.mc.dir = UP;
 	e.mc.money = 3000;
+	e.mc.values[string("SFXVOLUME")] = 4;
+	e.mc.values[string("MUSICVOLUME")] = 4;
 	e.load_game();
 	e.play_level_music();
 
