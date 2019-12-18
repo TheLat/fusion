@@ -112,10 +112,12 @@ TELEPORT
 0 15 route8 56 11
 12 24 route12 12 1
 13 24 route12 13 1
+27 16 path-to-pandemonium 1 28
 NEIGHBORS
 route8 -56 4
 route10 0 -19
 route12 0 23
+path-to-pandemonium 26 -12
 DATA
 158  96  96  96  96  96  96  96  96  96  96  96  96  97   1   1   1   1   1   1   1   1 158  96  96  96  96  96
 158  96  96  96  96  96  96  96  96  96  96  96  96  97   1   1  70  71  71  71  71  72 158  96  96  96  96  96
