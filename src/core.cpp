@@ -6915,6 +6915,12 @@ void engine::player_input(bool up, bool down, bool left, bool right, bool select
 						int choice2 = int(random(0.0, double(levels[mc.loc.level].mega_encounters.size())));
 						encounter = std::to_string(levels[mc.loc.level].mega_encounters[choice]) + string("-") + std::to_string(levels[mc.loc.level].mega_encounters[choice2]);
 						int l = int(random(levels[mc.loc.level].mega_level_range.first, levels[mc.loc.level].mega_level_range.second + 1));
+						if (l == 0) {
+							for (unsigned k = 0; k < 6; ++k) {
+								if (mc.team[k].defined && !is_KO(mc.team[k]) && mc.team[k].level > l)
+									l = mc.team[k].level;
+							}
+						}
 						encounter_level = l;
 					}
 					else {
@@ -6922,6 +6928,12 @@ void engine::player_input(bool up, bool down, bool left, bool right, bool select
 						int choice2 = int(random(0.0, double(levels[mc.loc.level].encounters.size())));
 						encounter = std::to_string(levels[mc.loc.level].encounters[choice]) + string("-") + std::to_string(levels[mc.loc.level].encounters[choice2]);
 						int l = int(random(levels[mc.loc.level].level_range.first, levels[mc.loc.level].level_range.second + 1));
+						if (l == 0) {
+							for (unsigned k = 0; k < 6; ++k) {
+								if (mc.team[k].defined && !is_KO(mc.team[k]) && mc.team[k].level > l)
+									l = mc.team[k].level;
+							}
+						}
 						encounter_level = l;
 					}
 				}
