@@ -38,9 +38,6 @@ void soundengine::init_sounds() {
 void soundengine::play_sound(string s) {
 	FMOD_RESULT       result;
 	float volume = get_sfx_volume();
-	if (volume == 0.0) {
-		return;
-	}
 	if (sounds[s] == 0) {
 		result = system->createSound((safepath + s).c_str(), FMOD_DEFAULT, 0, &sounds[s]);
 	}
@@ -55,9 +52,6 @@ void soundengine::play_sound(string s) {
 void soundengine::play_sound_blocking(string s) {
 	FMOD_RESULT       result;
 	float volume = get_sfx_volume();
-	if (volume == 0.0) {
-		return;
-	}
 	bool playing = false;
 	if (sounds[s] == 0) {
 		result = system->createSound((safepath + s).c_str(), FMOD_DEFAULT, 0, &sounds[s]);
