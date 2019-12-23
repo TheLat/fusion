@@ -225,6 +225,7 @@ public:
 	int no_switch;
 	bool bossfight;
 	bool finalboss;
+	bool max_ev;
 	mon team[6];
 };
 

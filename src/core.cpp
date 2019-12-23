@@ -3846,6 +3846,14 @@ bool engine::battle(trainer& t) { // trainer battle
 		}
 	}
 	for (i = 0; i < 6; ++i) {
+		if (mc.enemy_team[i].defined) {
+			for (unsigned j = 0; j < SIZE; ++j) {
+				if (t.max_ev)
+					mc.enemy_team[i].EV[j] = 65535;
+				else
+					mc.enemy_team[i].EV[j] = 0;
+			}
+		}
 		mc.enemy_team[i] = t.team[i];
 		mc.enemy_team[i].wild = false;
 		mc.enemy_team[i].enemy = true;
@@ -5545,6 +5553,7 @@ void engine::init_level(string levelname) {
 				d.no_switch = 0;
 				d.bossfight = false;
 				d.finalboss = false;
+				d.max_ev = false;
 				if (s.find("{") == 0) {
 					// Special modifiers here
 					s2 = s;
@@ -5552,6 +5561,9 @@ void engine::init_level(string levelname) {
 					s2.erase(s2.find("}") + 1, s2.length());
 					if (s2.find("NO_ACCURACY_CHECK") != -1) {
 						d.skip_accuracy_check = true;
+					}
+					if (s2.find("MAX_EV") != -1) {
+						d.max_ev = true;
 					}
 					if (s2.find("NO_SWITCH:1") != -1) {
 						d.no_switch = 1;
