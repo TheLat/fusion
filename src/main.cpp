@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <thread>
+#include <ctime>
 #include "graphics.h"
 #include "core.h"
 #include "menus.h"
