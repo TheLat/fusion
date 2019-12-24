@@ -165,3 +165,174 @@ void input::keypress(bool &up, bool &down, bool &left, bool &right, bool &confir
         key_press[i] = false;
     }
 }
+
+unsigned char input::get_pressed_key(bool& pressed) {
+	pressed = false;
+	for (unsigned char i = 0; i < 16 * 16; ++i) {
+		if (key_down[i]) {
+			pressed = true;
+			return i;
+		}
+	}
+	return 0;
+}
+
+bool input::set_key(unsigned char key, int mapping) {
+	if (mapping == 0) {
+		if (key == i_down)
+			return false;
+		if (key == i_right)
+			return false;
+		if (key == i_left)
+			return false;
+		if (key == i_confirm)
+			return false;
+		if (key == i_cancel)
+			return false;
+		if (key == i_start)
+			return false;
+		if (key == i_select)
+			return false;
+	}
+	if (mapping == 1) {
+		if (key == i_up)
+			return false;
+		if (key == i_right)
+			return false;
+		if (key == i_left)
+			return false;
+		if (key == i_confirm)
+			return false;
+		if (key == i_cancel)
+			return false;
+		if (key == i_start)
+			return false;
+		if (key == i_select)
+			return false;
+	}
+	if (mapping == 2) {
+		if (key == i_up)
+			return false;
+		if (key == i_down)
+			return false;
+		if (key == i_left)
+			return false;
+		if (key == i_confirm)
+			return false;
+		if (key == i_cancel)
+			return false;
+		if (key == i_start)
+			return false;
+		if (key == i_select)
+			return false;
+	}
+	if (mapping == 3) {
+		if (key == i_up)
+			return false;
+		if (key == i_down)
+			return false;
+		if (key == i_right)
+			return false;
+		if (key == i_confirm)
+			return false;
+		if (key == i_cancel)
+			return false;
+		if (key == i_start)
+			return false;
+		if (key == i_select)
+			return false;
+	}
+	if (mapping == 4) {
+		if (key == i_up)
+			return false;
+		if (key == i_down)
+			return false;
+		if (key == i_right)
+			return false;
+		if (key == i_left)
+			return false;
+		if (key == i_cancel)
+			return false;
+		if (key == i_start)
+			return false;
+		if (key == i_select)
+			return false;
+	}
+	if (mapping == 5) {
+		if (key == i_up)
+			return false;
+		if (key == i_down)
+			return false;
+		if (key == i_right)
+			return false;
+		if (key == i_left)
+			return false;
+		if (key == i_confirm)
+			return false;
+		if (key == i_start)
+			return false;
+		if (key == i_select)
+			return false;
+	}
+	if (mapping == 6) {
+		if (key == i_up)
+			return false;
+		if (key == i_down)
+			return false;
+		if (key == i_right)
+			return false;
+		if (key == i_left)
+			return false;
+		if (key == i_confirm)
+			return false;
+		if (key == i_cancel)
+			return false;
+		if (key == i_select)
+			return false;
+	}
+	if (mapping == 7) {
+		if (key == i_up)
+			return false;
+		if (key == i_down)
+			return false;
+		if (key == i_right)
+			return false;
+		if (key == i_left)
+			return false;
+		if (key == i_confirm)
+			return false;
+		if (key == i_cancel)
+			return false;
+		if (key == i_start)
+			return false;
+	}
+	switch (mapping) {
+	case 0:
+		u_up = key;
+		break;
+	case 1:
+		u_down = key;
+		break;
+	case 2:
+		u_right = key;
+		break;
+	case 3:
+		u_left = key;
+		break;
+	case 4:
+		u_confirm = key;
+		break;
+	case 5:
+		u_cancel = key;
+		break;
+	case 6:
+		u_start = key;
+		break;
+	case 7:
+		u_select = key;
+		break;
+	default:
+		return false;
+	}
+	return true;
+}
