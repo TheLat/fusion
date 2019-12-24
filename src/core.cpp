@@ -9143,6 +9143,45 @@ void engine::main() {
 	unsigned time_index2 = tim.create();
 	game_start_timer = tim.create();
 	double deltat = tim.delta(time_index);
+
+	vector<int> picks;
+	picks = do_menu(string("OPENING_MENU"));
+	picks = remove_cancels(picks);
+	if (picks[0] == 0) {
+		e.mc.loc.x = 3.0;
+		e.mc.loc.y = 6.0;
+		e.mc.loc.level = "home";
+		e.mc.dir = UP;
+		e.mc.money = 3000;
+	}
+	else if (picks[0] == 1) {
+		load_game();
+	}
+	else if (picks[0] == 2) {
+		// TODO: Keybindings
+	}
+	while (picks.size() == 0) {
+		picks = do_menu(string("OPENING_MENU"));
+		picks = remove_cancels(picks);
+		if (picks.size() != 0) {
+			if (picks[0] == 0) {
+				e.mc.loc.x = 3.0;
+				e.mc.loc.y = 6.0;
+				e.mc.loc.level = "home";
+				e.mc.dir = UP;
+				e.mc.money = 3000;
+			}
+			else if (picks[0] == 1) {
+				load_game();
+			}
+			else if (picks[0] == 2) {
+				// TODO: Keybindings
+			}
+		}
+	}
+	e.play_level_music();
+
+	deltat = tim.delta(time_index);
 	while (true) {
 		deltat = tim.delta(time_index);
 		while (deltat < 1.0/120.0)

@@ -401,13 +401,7 @@ int main(int argc, char** argv) {
 	e.init_game_timer();
 	printf("Done!\n");
 
-	e.mc.loc.x = 3.0;
-	e.mc.loc.y = 6.0;
-	e.mc.loc.level = "home";
-	e.mc.dir = UP;
-	e.mc.money = 3000;
-	e.load_game();
-	e.play_level_music();
+
 
 	//Initialize GLUT
 	glutInit(&argc, argv);
