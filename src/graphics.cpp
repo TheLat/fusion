@@ -12,7 +12,7 @@ extern bool safe_getline(ifstream &f, string& s);
 extern string safepath;
 extern void input_tick();
 
-double tile_anim_dur = 48.0;
+double tile_anim_dur = 48000.0;
 
 GLuint graphics::load_image(string filename) {
 	GLuint ret = 0;
@@ -128,7 +128,7 @@ void graphics::load_tile(string filename, int index) {
 void graphics::initRendering() {
 	//Makes 3D drawing work when something is in front of something else
 	frame = 0;
-	frame_anim_holder = ae.create_animi(&frame, 0, 64, tile_anim_dur);
+	frame_anim_holder = ae.create_animi(&frame, 0, 64000, tile_anim_dur);
 	time_index = tim.create();
 	glDisable(GL_DEPTH_TEST);
 	glEnable(GL_TEXTURE_2D);
@@ -360,7 +360,7 @@ void graphics::drawScene() {
 	//*/
 	tim.update(wobble_index);
 	if (ae.is_donei(frame_anim_holder)) {
-	    frame_anim_holder = ae.create_animi(&frame, 0, 64, tile_anim_dur);
+	    frame_anim_holder = ae.create_animi(&frame, 0, 64000, tile_anim_dur);
 	}
 	while  (tim.delta(wobble_index) < 1.0/120.0) {
 	}
