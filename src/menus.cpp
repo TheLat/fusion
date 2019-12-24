@@ -1285,7 +1285,9 @@ void menu::push_menu() {
                 for (unsigned j = string_start; j < string_end; ++j) {
                     g.draw_list[j].tex = g.tex[string("space.bmp")];
                 }
-                anim_index = g.ae.create_animi(&(string_stage), string_start, string_end, 0.01*double(string_end - string_start));
+				anim_index = 0;
+				while (!anim_index)
+	                anim_index = g.ae.create_animi(&(string_stage), string_start, string_end, 0.01*double(string_end - string_start));
 			}
 		}
 	}

@@ -3485,6 +3485,9 @@ double engine::get_smart_damage(mon& attacker, mon& defender, string move, train
 		pow *= get_accuracy_modifier(attacker);
 		pow *= double(moves[move].acc) / 100.0;
 	}
+	if (move == string("HYPER BEAM") && pow < defender.curr_hp) {
+		pow *= 0.5;
+	}
 	if (in_status(defender, string("POISON")) && !in_status(attacker, string("BURN")) && !in_status(attacker, string("POISON")) && !in_status(attacker, string("TOXIC"))) {
 		pow += double(get_stat(defender, HP)*turn_count) / 16.0;
 	}
@@ -3630,7 +3633,7 @@ int engine::get_smart_move(mon& attacker, mon& defender, trainer& t, bool skip_r
 			delay = false;
 			self_damage = get_smart_damage(attacker, defender, attacker.moves[i], t);
 			self_heal = get_smart_healing(attacker, defender, attacker.moves[i], t);
-			if ((self_damage + self_heal) == 0.0 && moves[attacker.moves[i]].target.size() == 0) {
+			if ((self_damage + self_heal) == 0.0 && moves[attacker.moves[i]].target.size() == 0 && moves[attacker.moves[i]].self.size() == 0) {
 				for (unsigned j = 0; j < moves[attacker.moves[i]].self.size(); ++j) {
 					if (moves[attacker.moves[i]].self[j] == "UNTARGETABLE") {
 						self_damage = get_smart_damage(attacker, defender, moves[attacker.moves[i]].queue[0], t);
@@ -3685,6 +3688,57 @@ int engine::get_smart_move(mon& attacker, mon& defender, trainer& t, bool skip_r
 							self_heal += enemy_damage * 0.25 * temp;
 						}
 						if (!in_status(defender, string("CONFUSE")) && in_status(defendercopy, string("CONFUSE"))) {
+							self_damage += enemy_heal * 0.5;
+							self_heal += enemy_damage * 0.5;
+						}
+						self_damage *= double(moves[attacker.moves[i]].acc) / 100.0;
+						self_heal *= double(moves[attacker.moves[i]].acc) / 100.0;
+						self_damage *= double(holder_turns_to_live - 1) / double(max(holder_turns_to_live, 1));
+						self_heal *= double(holder_turns_to_live - 1) / double(max(holder_turns_to_live, 1));
+					}
+				}
+			}
+			else if ((self_damage + self_heal) == 0.0 && moves[attacker.moves[i]].self.size() != 0) {
+				if (!no_depth) {
+					mon attackercopy;
+					attackercopy = attacker;
+					bool applied = false;
+					for (unsigned j = 0; j < moves[attacker.moves[i]].self.size(); ++j) {
+						if (moves[attacker.moves[i]].self[j].find("HEAL:") == -1) {
+							applied = applied || apply_status(attackercopy, moves[attacker.moves[i]].self[j], true, true);
+						}
+					}
+					for (unsigned j = 0; j < moves[attacker.moves[i]].special.size(); ++j) {
+						if (moves[attacker.moves[i]].special[j].find(string("STATUS_IMMUNITY")) != -1) {
+							if (get_type_1(defender) != "" && moves[attacker.moves[i]].special[j].find(get_type_1(defender)) != -1) {
+								applied = false;
+							}
+							if (get_type_2(defender) != "" && moves[attacker.moves[i]].special[j].find(get_type_2(defender)) != -1) {
+								applied = false;
+							}
+						}
+					}
+					if (applied) {
+						int temp1, temp2;
+						double temp3;
+						int future_move = get_smart_move(attackercopy, defender, t, skip_recurse, hp_offset, temp1, temp2, true, temp3);
+						self_damage = get_smart_damage(attackercopy, defender, attacker.moves[future_move], t, 1);
+						self_heal = get_smart_healing(attackercopy, defender, attacker.moves[future_move], t, 1);
+						holder_turns_to_live = (attackercopy.curr_hp / max(int(enemy_damage - self_heal), 1));
+						if (get_stat(attacker, SPEED) > get_stat(defender, SPEED)) {
+							holder_turns_to_live += 1;
+						}
+						delay = true;
+						if (!in_status(defender, string("SLEEP")) && in_status(defender, string("SLEEP"))) {
+							self_damage += enemy_heal * 3.0;
+							self_heal += enemy_damage * 3.0;
+						}
+						if (!in_status(defender, string("PARALYZE")) && in_status(defender, string("PARALYZE"))) {
+							double temp = min((defender.curr_hp / max(int(self_damage - enemy_heal), 1)), holder_turns_to_live);
+							self_damage += enemy_heal * 0.25 * temp;
+							self_heal += enemy_damage * 0.25 * temp;
+						}
+						if (!in_status(defender, string("CONFUSE")) && in_status(defender, string("CONFUSE"))) {
 							self_damage += enemy_heal * 0.5;
 							self_heal += enemy_damage * 0.5;
 						}
