@@ -52,25 +52,26 @@ input::input() {
 	u_cancel = i_cancel;
 	if (!f.is_open()) {
 		f.close();
-		return;
 	}
-	safe_getline(f, line);
-	i_up = stoi(line);
-	safe_getline(f, line);
-	i_down = stoi(line);
-	safe_getline(f, line);
-	i_left = stoi(line);
-	safe_getline(f, line);
-	i_right = stoi(line);
-	safe_getline(f, line);
-	i_confirm = stoi(line);
-	safe_getline(f, line);
-	i_cancel = stoi(line);
-	safe_getline(f, line);
-	i_start = stoi(line);
-	safe_getline(f, line);
-	i_select = stoi(line);
-	f.close();
+	else {
+		safe_getline(f, line);
+		i_up = stoi(line);
+		safe_getline(f, line);
+		i_down = stoi(line);
+		safe_getline(f, line);
+		i_left = stoi(line);
+		safe_getline(f, line);
+		i_right = stoi(line);
+		safe_getline(f, line);
+		i_confirm = stoi(line);
+		safe_getline(f, line);
+		i_cancel = stoi(line);
+		safe_getline(f, line);
+		i_start = stoi(line);
+		safe_getline(f, line);
+		i_select = stoi(line);
+		f.close();
+	}
 	u_up = i_up;
 	u_down = i_down;
 	u_right = i_right;
@@ -86,25 +87,26 @@ input::input() {
 #endif
 	if (!f2.is_open()) {
 		f2.close();
-		return;
 	}
-	safe_getline(f2, line);
-	u_up = stoi(line);
-	safe_getline(f2, line);
-	u_down = stoi(line);
-	safe_getline(f2, line);
-	u_left = stoi(line);
-	safe_getline(f2, line);
-	u_right = stoi(line);
-	safe_getline(f2, line);
-	u_confirm = stoi(line);
-	safe_getline(f2, line);
-	u_cancel = stoi(line);
-	safe_getline(f2, line);
-	u_start = stoi(line);
-	safe_getline(f2, line);
-	u_select = stoi(line);
-	f2.close();
+	else {
+		safe_getline(f2, line);
+		u_up = stoi(line);
+		safe_getline(f2, line);
+		u_down = stoi(line);
+		safe_getline(f2, line);
+		u_left = stoi(line);
+		safe_getline(f2, line);
+		u_right = stoi(line);
+		safe_getline(f2, line);
+		u_confirm = stoi(line);
+		safe_getline(f2, line);
+		u_cancel = stoi(line);
+		safe_getline(f2, line);
+		u_start = stoi(line);
+		safe_getline(f2, line);
+		u_select = stoi(line);
+		f2.close();
+	}
 }
 
 void input::tick() {
