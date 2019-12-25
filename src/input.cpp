@@ -79,7 +79,11 @@ input::input() {
 	u_select = i_select;
 	u_confirm = i_confirm;
 	u_cancel = i_cancel;
-	ifstream f2("../user_keybinds.dat");
+#ifdef __APPLE__
+	ifstream f2("../osx_user_keybinds.dat");
+#else
+	ifstream f2("../windows_user_keybinds.dat");
+#endif
 	if (!f2.is_open()) {
 		f2.close();
 		return;
@@ -339,7 +343,11 @@ bool input::set_key(unsigned char key, int mapping) {
 }
 
 void input::save_bindings() {
-	ofstream f("../user_keybinds.dat");
+#ifdef __APPLE__
+	ofstream f("../osx_user_keybinds.dat");
+#else
+	ofstream f("../windows_user_keybinds.dat");
+#endif
 	f << int(u_up) << string("\n");
 	f << int(u_down) << string("\n");
 	f << int(u_left) << string("\n");
