@@ -9147,35 +9147,287 @@ void engine::main() {
 	vector<int> picks;
 	picks = do_menu(string("OPENING_MENU"));
 	picks = remove_cancels(picks);
-	if (picks[0] == 0) {
+	if (picks[0] == 1) {
 		e.mc.loc.x = 3.0;
 		e.mc.loc.y = 6.0;
 		e.mc.loc.level = "home";
 		e.mc.dir = UP;
 		e.mc.money = 3000;
 	}
-	else if (picks[0] == 1) {
+	else if (picks[0] == 0) {
 		load_game();
 	}
 	else if (picks[0] == 2) {
-		// TODO: Keybindings
+		bool got_input = false;
+		bool success = false;
+		unsigned char key;
+		unsigned cp = g.draw_list.size();
+		g.push_box(-1.1f, -1.1f, 2.2f, 2.2f);
+		while (!success) {
+			key = ie.get_pressed_key(got_input);
+			while (got_input) {
+				key = ie.get_pressed_key(got_input);
+			}
+			g.push_box(-1.0f, -1.0f, 2.0f, 0.6f);
+			g.push_text(-0.9f, -1.0f, 1.8f, 0.3f, 0.1f, string("Press a button for UP"));
+			while (!got_input) {
+				key = ie.get_pressed_key(got_input);
+			}
+			success = ie.set_key(key, 0);
+			if (!success)
+				do_alert("Unable to remind that key to UP");
+		}
+		success = false;
+		while (!success) {
+			key = ie.get_pressed_key(got_input);
+			while (got_input) {
+				key = ie.get_pressed_key(got_input);
+			}
+			g.push_box(-1.0f, -1.0f, 2.0f, 0.6f);
+			g.push_text(-0.9f, -1.0f, 1.8f, 0.3f, 0.1f, string("Press a button for DOWN"));
+			while (!got_input) {
+				key = ie.get_pressed_key(got_input);
+			}
+			success = ie.set_key(key, 1);
+			if (!success)
+				do_alert("Unable to remind that key to DOWN");
+		}
+		success = false;
+		while (!success) {
+			key = ie.get_pressed_key(got_input);
+			while (got_input) {
+				key = ie.get_pressed_key(got_input);
+			}
+			g.push_box(-1.0f, -1.0f, 2.0f, 0.6f);
+			g.push_text(-0.9f, -1.0f, 1.8f, 0.3f, 0.1f, string("Press a button for RIGHT"));
+			while (!got_input) {
+				key = ie.get_pressed_key(got_input);
+			}
+			success = ie.set_key(key, 2);
+			if (!success)
+				do_alert("Unable to remind that key to RIGHT");
+		}
+		success = false;
+		while (!success) {
+			key = ie.get_pressed_key(got_input);
+			while (got_input) {
+				key = ie.get_pressed_key(got_input);
+			}
+			g.push_box(-1.0f, -1.0f, 2.0f, 0.6f);
+			g.push_text(-0.9f, -1.0f, 1.8f, 0.3f, 0.1f, string("Press a button for LEFT"));
+			while (!got_input) {
+				key = ie.get_pressed_key(got_input);
+			}
+			success = ie.set_key(key, 3);
+			if (!success)
+				do_alert("Unable to remind that key to LEFT");
+		}
+		success = false;
+		while (!success) {
+			key = ie.get_pressed_key(got_input);
+			while (got_input) {
+				key = ie.get_pressed_key(got_input);
+			}
+			g.push_box(-1.0f, -1.0f, 2.0f, 0.6f);
+			g.push_text(-0.9f, -1.0f, 1.8f, 0.3f, 0.1f, string("Press a button for CONFIRM/INTERACT"));
+			while (!got_input) {
+				key = ie.get_pressed_key(got_input);
+			}
+			success = ie.set_key(key, 4);
+			if (!success)
+				do_alert("Unable to remind that key to CONFIRM/INTERACT");
+		}
+		success = false;
+		while (!success) {
+			key = ie.get_pressed_key(got_input);
+			while (got_input) {
+				key = ie.get_pressed_key(got_input);
+			}
+			g.push_box(-1.0f, -1.0f, 2.0f, 0.6f);
+			g.push_text(-0.9f, -1.0f, 1.8f, 0.3f, 0.1f, string("Press a button for CANCEL"));
+			while (!got_input) {
+				key = ie.get_pressed_key(got_input);
+			}
+			success = ie.set_key(key, 5);
+			if (!success)
+				do_alert("Unable to remind that key to CANCEL");
+		}
+		success = false;
+		while (!success) {
+			key = ie.get_pressed_key(got_input);
+			while (got_input) {
+				key = ie.get_pressed_key(got_input);
+			}
+			g.push_box(-1.0f, -1.0f, 2.0f, 0.6f);
+			g.push_text(-0.9f, -1.0f, 1.8f, 0.3f, 0.1f, string("Press a button for START"));
+			while (!got_input) {
+				key = ie.get_pressed_key(got_input);
+			}
+			success = ie.set_key(key, 6);
+			if (!success)
+				do_alert("Unable to remind that key to START");
+		}
+		success = false;
+		while (!success) {
+			key = ie.get_pressed_key(got_input);
+			while (got_input) {
+				key = ie.get_pressed_key(got_input);
+			}
+			g.push_box(-1.0f, -1.0f, 2.0f, 0.6f);
+			g.push_text(-0.9f, -1.0f, 1.8f, 0.3f, 0.1f, string("Press a button for SELECT"));
+			while (!got_input) {
+				key = ie.get_pressed_key(got_input);
+			}
+			success = ie.set_key(key, 7);
+			if (!success)
+				do_alert("Unable to remind that key to SELECT");
+		}
+		g.draw_list.erase(g.draw_list.begin() + cp, g.draw_list.end());
+		picks.clear();
+		ie.save_bindings();
 	}
 	while (picks.size() == 0) {
 		picks = do_menu(string("OPENING_MENU"));
 		picks = remove_cancels(picks);
 		if (picks.size() != 0) {
-			if (picks[0] == 0) {
+			if (picks[0] == 1) {
 				e.mc.loc.x = 3.0;
 				e.mc.loc.y = 6.0;
 				e.mc.loc.level = "home";
 				e.mc.dir = UP;
 				e.mc.money = 3000;
 			}
-			else if (picks[0] == 1) {
+			else if (picks[0] == 0) {
 				load_game();
 			}
 			else if (picks[0] == 2) {
-				// TODO: Keybindings
+				bool got_input = false;
+				bool success = false;
+				unsigned char key;
+				unsigned cp = g.draw_list.size();
+				g.push_box(-1.1f, -1.1f, 2.2f, 2.2f);
+				while (!success) {
+					key = ie.get_pressed_key(got_input);
+					while (got_input) {
+						key = ie.get_pressed_key(got_input);
+					}
+					g.push_box(-1.0f, -1.0f, 2.0f, 0.6f);
+					g.push_text(-0.9f, -1.0f, 1.8f, 0.3f, 0.1f, string("Press a button for UP"));
+					while (!got_input) {
+						key = ie.get_pressed_key(got_input);
+					}
+					success = ie.set_key(key, 0);
+					if (!success)
+						do_alert("Unable to remind that key to UP");
+				}
+				success = false;
+				while (!success) {
+					key = ie.get_pressed_key(got_input);
+					while (got_input) {
+						key = ie.get_pressed_key(got_input);
+					}
+					g.push_box(-1.0f, -1.0f, 2.0f, 0.6f);
+					g.push_text(-0.9f, -1.0f, 1.8f, 0.3f, 0.1f, string("Press a button for DOWN"));
+					while (!got_input) {
+						key = ie.get_pressed_key(got_input);
+					}
+					success = ie.set_key(key, 1);
+					if (!success)
+						do_alert("Unable to remind that key to DOWN");
+				}
+				success = false;
+				while (!success) {
+					key = ie.get_pressed_key(got_input);
+					while (got_input) {
+						key = ie.get_pressed_key(got_input);
+					}
+					g.push_box(-1.0f, -1.0f, 2.0f, 0.6f);
+					g.push_text(-0.9f, -1.0f, 1.8f, 0.3f, 0.1f, string("Press a button for RIGHT"));
+					while (!got_input) {
+						key = ie.get_pressed_key(got_input);
+					}
+					success = ie.set_key(key, 2);
+					if (!success)
+						do_alert("Unable to remind that key to RIGHT");
+				}
+				success = false;
+				while (!success) {
+					key = ie.get_pressed_key(got_input);
+					while (got_input) {
+						key = ie.get_pressed_key(got_input);
+					}
+					g.push_box(-1.0f, -1.0f, 2.0f, 0.6f);
+					g.push_text(-0.9f, -1.0f, 1.8f, 0.3f, 0.1f, string("Press a button for LEFT"));
+					while (!got_input) {
+						key = ie.get_pressed_key(got_input);
+					}
+					success = ie.set_key(key, 3);
+					if (!success)
+						do_alert("Unable to remind that key to LEFT");
+				}
+				success = false;
+				while (!success) {
+					key = ie.get_pressed_key(got_input);
+					while (got_input) {
+						key = ie.get_pressed_key(got_input);
+					}
+					g.push_box(-1.0f, -1.0f, 2.0f, 0.6f);
+					g.push_text(-0.9f, -1.0f, 1.8f, 0.3f, 0.1f, string("Press a button for CONFIRM/INTERACT"));
+					while (!got_input) {
+						key = ie.get_pressed_key(got_input);
+					}
+					success = ie.set_key(key, 4);
+					if (!success)
+						do_alert("Unable to remind that key to CONFIRM/INTERACT");
+				}
+				success = false;
+				while (!success) {
+					key = ie.get_pressed_key(got_input);
+					while (got_input) {
+						key = ie.get_pressed_key(got_input);
+					}
+					g.push_box(-1.0f, -1.0f, 2.0f, 0.6f);
+					g.push_text(-0.9f, -1.0f, 1.8f, 0.3f, 0.1f, string("Press a button for CANCEL"));
+					while (!got_input) {
+						key = ie.get_pressed_key(got_input);
+					}
+					success = ie.set_key(key, 5);
+					if (!success)
+						do_alert("Unable to remind that key to CANCEL");
+				}
+				success = false;
+				while (!success) {
+					key = ie.get_pressed_key(got_input);
+					while (got_input) {
+						key = ie.get_pressed_key(got_input);
+					}
+					g.push_box(-1.0f, -1.0f, 2.0f, 0.6f);
+					g.push_text(-0.9f, -1.0f, 1.8f, 0.3f, 0.1f, string("Press a button for START"));
+					while (!got_input) {
+						key = ie.get_pressed_key(got_input);
+					}
+					success = ie.set_key(key, 6);
+					if (!success)
+						do_alert("Unable to remind that key to START");
+				}
+				success = false;
+				while (!success) {
+					key = ie.get_pressed_key(got_input);
+					while (got_input) {
+						key = ie.get_pressed_key(got_input);
+					}
+					g.push_box(-1.0f, -1.0f, 2.0f, 0.6f);
+					g.push_text(-0.9f, -1.0f, 1.8f, 0.3f, 0.1f, string("Press a button for SELECT"));
+					while (!got_input) {
+						key = ie.get_pressed_key(got_input);
+					}
+					success = ie.set_key(key, 7);
+					if (!success)
+						do_alert("Unable to remind that key to SELECT");
+				}
+				g.draw_list.erase(g.draw_list.begin() + cp, g.draw_list.end());
+				picks.clear();
+				ie.save_bindings();
 			}
 		}
 	}

@@ -167,11 +167,12 @@ void input::keypress(bool &up, bool &down, bool &left, bool &right, bool &confir
 }
 
 unsigned char input::get_pressed_key(bool& pressed) {
+	tick();
 	pressed = false;
-	for (unsigned char i = 0; i < 16 * 16; ++i) {
-		if (key_down[i]) {
+	for (int i = 0; i < 16 * 16; ++i) {
+		if (key_press[i]) {
 			pressed = true;
-			return i;
+			return unsigned char(i);
 		}
 	}
 	return 0;
@@ -335,4 +336,17 @@ bool input::set_key(unsigned char key, int mapping) {
 		return false;
 	}
 	return true;
+}
+
+void input::save_bindings() {
+	ofstream f("../user_keybinds.dat");
+	f << int(u_up) << string("\n");
+	f << int(u_down) << string("\n");
+	f << int(u_left) << string("\n");
+	f << int(u_right) << string("\n");
+	f << int(u_confirm) << string("\n");
+	f << int(u_cancel) << string("\n");
+	f << int(u_start) << string("\n");
+	f << int(u_select);
+	f.close();
 }

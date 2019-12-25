@@ -17,6 +17,7 @@ public:
     void keydown(bool &up, bool &down, bool &left, bool &right, bool &confirm, bool &cancel, bool &start, bool &select);
     void keypress(bool &up, bool &down, bool &left, bool &right, bool &confirm, bool &cancel, bool &start, bool &select);
     void tick();
+	void save_bindings();
 	input();
 };
 
