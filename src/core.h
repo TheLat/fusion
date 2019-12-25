@@ -79,7 +79,7 @@ public:
 
 class mon_template {
 public:
-	string number, name, type_1, type_2, dex;
+	string number, name, type_1, type_2, dex, body;
 	int stats[SIZE];
 	int exp_yield, catchrate, height;
 	double weight;

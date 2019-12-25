@@ -6141,6 +6141,9 @@ void engine::init_mon() {
 		}
 		else if (line == "SWITCH") {
 		}
+		else if (line == "BODY") {
+			all_mon[key].body = temp;
+		}
 		else if (line == "TYPE1") {
 			all_mon[key].type_1 = temp;
 		}
