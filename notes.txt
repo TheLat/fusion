@@ -6,3 +6,19 @@ Opening Scene
 Controller input
 Random seed
 Make Oak's Cloynite know Rage instead of Body Slam.
+
+body00 - flower
+body01 - mon
+body02 - bug
+body03 - bird
+body04 - quad
+body05 - snake
+body06 - pikachu
+body07 - sandshrew
+body08 - clefairy
+body09 - jigglypuff
+body10 - oddish
+body11 - seal
+body12 - orb
+body13 - fossil
+body14 - snorlax

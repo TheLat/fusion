@@ -18,6 +18,8 @@ while s != "":
         all[i]["NAME"] = s.split(" ")[1]
     if s.startswith("SURNAME: "):
         all[i]["SURNAME"] = s.split(" ")[1]
+    if s.startswith("BODY: "):
+        all[i]["BODY"] = s.split(" ")[1]
     if s.startswith("TYPE1: "):
         all[i]["TYPE1"] = s.split(" ")[1]
     if s.startswith("TYPE2: "):
@@ -100,6 +102,7 @@ while x <= len(all):
         print "Fusing " + (all[str(x)]["NAME"] + all[str(x)]["SURNAME"]).replace("EEEE", "EE") + " and " + (all[str(y)]["NAME"] + all[str(y)]["SURNAME"]).replace("EEEE", "EE") + " into " + n
         f.write("NUMBER: %s-%s" % (x, y))
         f.write("\nNAME: %s" % n)
+        f.write("\nBODY: %s" % all[str(y)]["BODY"])
         f.write("\nTYPE1: %s" % all[str(x)]["TYPE1"])
         if all[str(x)]["TYPE1"] != all[str(y)]["TYPE1"]:
             if "SWITCH" in all[str(y)].keys():

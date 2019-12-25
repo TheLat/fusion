@@ -1,6 +1,7 @@
 NUMBER: 1
 NAME: BULB
 SURNAME: ASAUR
+BODY: body00
 TYPE1: GRASS
 TYPE2: POISON
 DEX1: This Pok{e-accent}mon prefers to sleep in the sun.
@@ -33,6 +34,7 @@ HM: 01
 NUMBER: 2
 NAME: IVY
 SURNAME: SAUR
+BODY: body00
 TYPE1: GRASS
 TYPE2: POISON
 DEX1: Exposure to sunlight gives this Pok{e-accent}mon strength.
@@ -65,6 +67,7 @@ HM: 01
 NUMBER: 3
 NAME: VEN
 SURNAME: USAUR
+BODY: body00
 TYPE1: GRASS
 TYPE2: POISON
 DEX1: It stays on the move, seeking sunlight.
@@ -95,6 +98,7 @@ HM: 01
 NUMBER: 4
 NAME: CHARM
 SURNAME: ANDER
+BODY: body01
 TYPE1: FIRE
 DEX1: This Pok{e-accent}mon obviously prefers hot places.
 DEX2: The flame on its tail shows the strength of its life force.
@@ -124,6 +128,7 @@ HM: 01 04
 NUMBER: 5
 NAME: CHAR
 SURNAME: MELEON
+BODY: body01
 TYPE1: FIRE
 DEX1: Tough fights excite this Pok{e-accent}mon.
 DEX2: It is very hot-headed by nature, so it constantly seeks out opponents.
@@ -153,6 +158,7 @@ HM: 01 04
 NUMBER: 6
 NAME: CHARI
 SURNAME: ZARD
+BODY: body01
 TYPE1: FIRE
 TYPE2: FLYING
 DEX1: This Pok{e-accent}mon can trap enemies with its powerful flames.
@@ -181,6 +187,7 @@ HM: 01 02 04
 NUMBER: 7
 NAME: SQUIR
 SURNAME: TLE
+BODY: body01
 TYPE1: WATER
 DEX1: It shoots water at its prey.
 DEX2: It withdraws into its shell when in danger.
@@ -210,6 +217,7 @@ HM: 03 04
 NUMBER: 8
 NAME: WAR
 SURNAME: TORTLE
+BODY: body01
 TYPE1: WATER
 DEX1: It often hides in the water to stalk unwary prey.
 DEX2: Scratches on its shell are a sign of this Pok{e-accent}mon's toughness as a battler.
@@ -239,6 +247,7 @@ HM: 03 04
 NUMBER: 9
 NAME: BLAS
 SURNAME: TOISE
+BODY: body01
 TYPE1: WATER
 DEX1: This Pok{e-accent}mon has survived countless battles and is as tough as can be for it.
 DEX2: The jets on its shell can shoot water capable of punching through steel.
@@ -266,6 +275,7 @@ HM: 03 04
 NUMBER: 10
 NAME: CATER
 SURNAME: PIE
+BODY: body02
 TYPE1: BUG
 DEX1: If you touch the top of its head, it will release a terrible stink cloud to protect itself.
 DEX2: Its feet have suction cups designed to stick to any surface.
@@ -289,6 +299,7 @@ HM: 0
 NUMBER: 11
 NAME: META
 SURNAME: POD
+BODY: body02
 TYPE1: BUG
 DEX1: This Pok{e-accent}mon hardens its shell in preparation for evolution.
 DEX2: It can barely move in its protective armor.
@@ -311,6 +322,7 @@ HM: 0
 NUMBER: 12
 NAME: BUTTER
 SURNAME: FREE
+BODY: body02
 TYPE1: BUG
 TYPE2: FLYING
 DEX1: It has a superior ability to search for delicious nectar from flowers.
@@ -339,6 +351,7 @@ HM: 5
 NUMBER: 13
 NAME: WEE
 SURNAME: DLE
+BODY: body02
 TYPE1: BUG
 TYPE2: POISON
 DEX1: Often found in forests, eating leaves.
@@ -363,6 +376,7 @@ HM: 0
 NUMBER: 14
 NAME: KAK
 SURNAME: UNA
+BODY: body02
 TYPE1: BUG
 TYPE2: POISON
 DEX1: While awaiting evolution, it hides from predators under leaves and in nooks of branches.
@@ -386,6 +400,7 @@ HM: 0
 NUMBER: 15
 NAME: BEE
 SURNAME: DRILL
+BODY: body02
 TYPE1: BUG
 TYPE2: POISON
 DEX1: This Pok{e-accent}mon is extremely territorial and aggressive.
@@ -412,6 +427,7 @@ HM: 1
 NUMBER: 16
 NAME: PIDG
 SURNAME: EY
+BODY: body03
 TYPE1: FLYING
 TYPE2: NORMAL
 DEX1: This Pok{e-accent}mon is very docile.
@@ -441,6 +457,7 @@ HM: 2
 NUMBER: 17
 NAME: PIDGE
 SURNAME: OTTO
+BODY: body03
 TYPE1: FLYING
 TYPE2: NORMAL
 DEX1: This Pok{e-accent}mon is protective of its large territory.
@@ -470,6 +487,7 @@ HM: 2
 NUMBER: 18
 NAME: PID
 SURNAME: GEOT
+BODY: body03
 TYPE1: FLYING
 TYPE2: NORMAL
 DEX1: Its keen eyesight allows it to see prey from up to 3,300 feet away.
@@ -497,6 +515,7 @@ HM: 2
 NUMBER: 19
 NAME: RATT
 SURNAME: ATA
+BODY: body04
 TYPE1: NORMAL
 DEX1: Its fangs are long and sharp.
 DEX2: Small and quick, it is a common sight in many places.
@@ -524,6 +543,7 @@ HM: 0
 NUMBER: 20
 NAME: RATI
 SURNAME: CATE
+BODY: body04
 TYPE1: NORMAL
 DEX1: It gnaws on anything with its powerful fangs. It can even chew through concrete.
 DEX2: Its hind feet are webbed, allowing it to easily swim.
@@ -549,6 +569,7 @@ HM: 0
 NUMBER: 21
 NAME: SPE
 SURNAME: AROW
+BODY: body03
 TYPE1: FLYING
 TYPE2: NORMAL
 DEX1: This Pok{e-accent}mon eats bugs in grassy areas.
@@ -578,6 +599,7 @@ HM: 2
 NUMBER: 22
 NAME: FEAR
 SURNAME: OW
+BODY: body03
 TYPE1: FLYING
 TYPE2: NORMAL
 DEX1: Its elongated beak is ideal for catching prey in soil or water.
@@ -605,6 +627,7 @@ HM: 2
 NUMBER: 23
 NAME: EK
 SURNAME: ANS
+BODY: body05
 TYPE1: POISON
 DEX1: It flutters the tip of its tongue to seek out the scent of prey, then swallows it whole.
 DEX2: The older it gets, the longer it grows. At night, it wraps is long body around tree branches to rest.
@@ -633,6 +656,7 @@ HM: 4
 NUMBER: 24
 NAME: AR
 SURNAME: BOK
+BODY: body05
 TYPE1: POISON
 DEX1: With a very vengeful nature, it won't give up the chase, no matter how far, once it targets its prey.
 DEX2: Transfixing prey with the face-like pattern on its belly, it binds and poisons the frightened victim.
@@ -659,6 +683,7 @@ HM: 4
 NUMBER: 25
 NAME: PIK
 SURNAME: ACHU
+BODY: body06
 TYPE1: ELECTRIC
 DEX1: When it is angered, it immediately discharges energy stored in the pouches in its cheeks.
 DEX2: When several of these Pok{e-accent}mon gather, their electricity can build and cause lightning storms.
@@ -687,6 +712,7 @@ HM: 5
 NUMBER: 26
 NAME: RAI
 SURNAME: CHU
+BODY: body06
 TYPE1: ELECTRIC
 DEX1: When electricity builds up in its body, it becomes feisty.
 DEX2: Its long tail serves to protect it from its own high voltage.
@@ -709,6 +735,7 @@ HM: 5
 NUMBER: 27
 NAME: SAN
 SURNAME: SHREW
+BODY: body07
 TYPE1: GROUND
 DEX1: It burrows and lives underground.
 DEX2: It prefers dry, sandy places because it uses the sand to protect itself.
@@ -736,6 +763,7 @@ HM: 1 4
 NUMBER: 28
 NAME: SAND
 SURNAME: SLASH
+BODY: body07
 TYPE1: GROUND
 DEX1: This Pok{e-accent}mon is a skilled digger.
 DEX2: It can burrow and an amazing pace.
@@ -761,6 +789,7 @@ HM: 1 4
 NUMBER: 29
 NAME: NIDA
 SURNAME: RAN{FEMALE}
+BODY: body01
 TYPE1: POISON
 DEX1: A mild-mannered Pok{e-accent}mon that does not like to fight.
 DEX2: Beware, its horns secret venom.
@@ -790,6 +819,7 @@ HM: 0
 NUMBER: 30
 NAME: NIDAR
 SURNAME: INA
+BODY: body01
 TYPE1: POISON
 DEX1: When feeding its young, it first chews and tenderizes food, then spits it out for the offspring.
 DEX2: If it is threatened, it raises the barbs that are all over its body.
@@ -819,6 +849,7 @@ HM: 0
 NUMBER: 31
 NAME: NID
 SURNAME: AQUEEN
+BODY: body01
 TYPE1: POISON
 TYPE2: GROUND
 DEX1: It never shows any signs of shrinking from an attack.
@@ -845,6 +876,7 @@ HM: 3 4
 NUMBER: 32
 NAME: NIDO
 SURNAME: RAN{MALE}
+BODY: body01
 TYPE1: POISON
 DEX1: It constantly moves its ears in many directions, in order to detect danger right away.
 DEX2: The larger its horn, the more powerful its secreted venom.
@@ -874,6 +906,7 @@ HM: 0
 NUMBER: 33
 NAME: NIDOR
 SURNAME: INO
+BODY: body01
 EXP_YIELD: 128
 CATCHRATE: 120
 HEIGHT: 35
@@ -903,6 +936,7 @@ HM: 0
 NUMBER: 34
 NAME: NIDOK
 SURNAME: ING
+BODY: body01
 TYPE1: POISON
 TYPE2: GROUND
 DEX1: Be careful of this Pok{e-accent}mon's powerful venom in its horn.
@@ -928,6 +962,7 @@ HM: 3 4
 NUMBER: 35
 NAME: CLE
 SURNAME: FAIRY
+BODY: body08
 TYPE1: NORMAL
 DEX1: This Pok{e-accent}mon is adored for its cute looks and playfulness.
 DEX2: It uses the wings on its back to collect moonlight.
@@ -957,6 +992,7 @@ HM: 4 5
 NUMBER: 36
 NAME: CLEF
 SURNAME: ABLE
+BODY: body08
 TYPE1: NORMAL
 DEX1: A timid Pok{e-accent}mon that is rarely seen.
 DEX2: With its acute hearing, it can pick up sounds from far away.
@@ -980,6 +1016,7 @@ HM: 4 5
 NUMBER: 37
 NAME: VUL
 SURNAME: PIX
+BODY: body04
 TYPE1: FIRE
 DEX1: Inside this Pok{e-accent}mon's body burns a flame that will never go out.
 DEX2: At the time of its birth, it has just one tail. As it grows, the tail splits to form more tails.
@@ -1008,6 +1045,7 @@ HM: 0
 NUMBER: 38
 NAME: NINE
 SURNAME: TALES
+BODY: body04
 TYPE1: FIRE
 DEX1: It is very smart and very vengeful.
 DEX2: Its nine beautiful tails are filled with a wonderous energy.
@@ -1031,6 +1069,7 @@ HM: 0
 NUMBER: 39
 NAME: JIGGLY
 SURNAME: PUFF
+BODY: body09
 TYPE1: NORMAL
 DEX1: It uses its alluring eyes to enrapture its foe.
 DEX2: It can inflate to sing more effectively.
@@ -1060,6 +1099,7 @@ HM: 4 5
 NUMBER: 40
 NAME: WIGGLY
 SURNAME: TUFF
+BODY: body09
 TYPE1: NORMAL
 DEX1: This Pok{e-accent}mon has large, saucer-like eyes.
 DEX2: Its body is soft and rubbery. When angered, it will suck in air and inflate itself to an enormous size.
@@ -1083,6 +1123,7 @@ HM: 4 5
 NUMBER: 41
 NAME: ZUB
 SURNAME: AT
+BODY: body03
 TYPE1: POISON
 TYPE2: FLYING
 DEX1: Having no eyes, it forms colonies in perpetually dark places.
@@ -1113,6 +1154,7 @@ HM: 0
 NUMBER: 42
 NAME: GOL
 SURNAME: BAT
+BODY: body03
 TYPE1: POISON
 TYPE2: FLYING
 DEX1: It uses its powerful bite and sharp fangs to suck blood from its prey.
@@ -1141,6 +1183,7 @@ HM: 0
 NUMBER: 43
 NAME: ODD
 SURNAME: ISH
+BODY: body10
 TYPE1: GRASS
 TYPE2: POISON
 DEX1: During the daytime, it buries itself in the soil to absorb nutrients.
@@ -1170,6 +1213,7 @@ HM: 1
 NUMBER: 44
 NAME: GLO
 SURNAME: OM
+BODY: body10
 TYPE1: GRASS
 TYPE2: POISON
 DEX1: The fluid that oozes from its mouth is not drool. It is a nectar that is used to attract prey.
@@ -1199,6 +1243,7 @@ HM: 1
 NUMBER: 45
 NAME: VILE
 SURNAME: PLUME
+BODY: body10
 TYPE1: GRASS
 TYPE2: POISON
 DEX1: Once this Pok{e-accent}mon has immobilized its prey, it catches and devours them.
@@ -1223,6 +1268,7 @@ HM: 1
 NUMBER: 46
 NAME: PAR
 SURNAME: AS
+BODY: body02
 TYPE1: BUG
 TYPE2: GRASS
 DEX1: It burrows under the ground to gnaw on tree roots.
@@ -1251,6 +1297,7 @@ HM: 1
 NUMBER: 47
 NAME: PARAS
 SURNAME: ECT
+BODY: body00
 TYPE1: GRASS
 TYPE2: BUG
 DEX1: It mostly prefers damp, dark places.
@@ -1277,6 +1324,7 @@ HM: 1
 NUMBER: 48
 NAME: VE
 SURNAME: NONAT
+BODY: body02
 TYPE1: BUG
 TYPE2: POISON
 DEX1: Its large eyes act like radar. In a bright place, you can see that they are clusters of many tiny eyes.
@@ -1307,6 +1355,7 @@ HM: 5
 NUMBER: 49
 NAME: VENO
 SURNAME: MOTH
+BODY: body02
 TYPE1: BUG
 TYPE2: POISON
 DEX1: It is nocturnal and prefers to hunt bugs that gather around street lights.
@@ -1335,6 +1384,7 @@ HM: 5
 NUMBER: 50
 NAME: DIG
 SURNAME: LETT
+BODY: body01
 TYPE1: GROUND
 DEX1: It prefers burrowing to a shallow depth to chew on roots.
 DEX2: When it digs through a field, it leaves the soil perfectly tilled and ideal for planting crops.
@@ -1362,6 +1412,7 @@ HM: 1
 NUMBER: 51
 NAME: DUG
 SURNAME: TRIO
+BODY: body01
 TYPE1: GROUND
 DEX1: In battle, it digs through the ground and strikes unsuspecting foes from an unexpected direction.
 DEX2: Extremely powerful when working together, they can burrow through even the hardest ground to a depth of 60 miles.
@@ -1387,6 +1438,7 @@ HM: 1
 NUMBER: 52
 NAME: MEO
 SURNAME: WTH
+BODY: body01
 TYPE1: NORMAL
 DEX1: This Pok{e-accent}mon loves round and shiny things. It can't stop picking them up.
 DEX2: It withdraws its sharp claws into its paws to sneak silently about.
@@ -1415,6 +1467,7 @@ HM: 0
 NUMBER: 53
 NAME: PER
 SURNAME: SIAN
+BODY: body01
 TYPE1: NORMAL
 DEX1: The gem on its forehead glows on its own.
 DEX2: Although its fur has many admirers, it is tough to raise because of its fickle meanness.
@@ -1441,6 +1494,7 @@ HM: 0
 NUMBER: 54
 NAME: PSY
 SURNAME: DUCK
+BODY: body01
 TYPE1: WATER
 DEX1: Plagued by headaches, this Pok{e-accent}mon uses psychic powers, but it is not known if it means to.
 DEX2: It always looks puzzled. 
@@ -1468,6 +1522,7 @@ HM: 3 4
 NUMBER: 55
 NAME: GOLD
 SURNAME: UCK
+BODY: body01
 TYPE1: WATER
 DEX1: The gem on its forehead shines when it is using its full power.
 DEX2: It swims along gracefully along the slow-moving rivers and lakes that it makes its home in.
@@ -1493,6 +1548,7 @@ HM: 3 4
 NUMBER: 56
 NAME: MAN
 SURNAME: KEY
+BODY: body01
 TYPE1: FIGHTING
 DEX1: Extremely quick to anger, this Pok{e-accent}mon is docile one moment and thrashing away the next instant.
 DEX2: Light and agile on its feet, it makes its home in the treetops.
@@ -1521,6 +1577,7 @@ HM: 4
 NUMBER: 57
 NAME: PRIME
 SURNAME: APE
+BODY: body01
 TYPE1: FIGHTING
 DEX1: It only stops being angry when no one else is around.
 DEX2: When it becomes furious, its blood circulation is boosted. Its muscles are made stronger, but its intelligence suffers.
@@ -1547,6 +1604,7 @@ HM: 4
 NUMBER: 58
 NAME: GROW
 SURNAME: LITHE
+BODY: body04
 TYPE1: FIRE
 DEX1: This Pok{e-accent} has a superb sense of smell. Once it smells anything, it won't forget the scent, no matter what.
 DEX2: It has a brave and trustworthy nature. It fearlessly stands up to bigger and stronger foes.
@@ -1575,6 +1633,7 @@ HM: 0
 NUMBER: 59
 NAME: ARCA
 SURNAME: NINE
+BODY: body04
 TYPE1: FIRE
 DEX1: Its magnificent bark conveys a sense of majesty.
 DEX2: The fire that blazes in this Pok{e-accent}mon's body is the source of its power.
@@ -1599,6 +1658,7 @@ HM: 0
 NUMBER: 60
 NAME: POL
 SURNAME: IWAG
+BODY: body11
 TYPE1: WATER
 DEX1: This Pok{e-accent}mon's skin is very thin. Despite this, the incredible flexibility of the skin makes even sharp fangs bounce off.
 DEX2: Because it is inept at walking on its newly grown legs, it always swims around in water.
@@ -1627,6 +1687,7 @@ HM: 3
 NUMBER: 61
 NAME: PO
 SURNAME: LIWHIRL
+BODY: body11
 TYPE1: WATER
 DEX1: The skin on most of its body is moist. However, the skin on its belly feels smooth.
 DEX2: Though it is skilled at walking, it prefers to live underwater where there is less danger.
@@ -1655,6 +1716,7 @@ HM: 3 4
 NUMBER: 62
 NAME: POLI
 SURNAME: WRATH
+BODY: body11
 TYPE1: WATER
 TYPE2: FIGHTING
 DEX1: It swims powerfully, using all the muscles in its body.
@@ -1678,6 +1740,7 @@ HM: 3 4
 NUMBER: 63
 NAME: A
 SURNAME: BRA
+BODY: body01
 TYPE1: PSYCHIC
 DEX1: It sleeps 18 hours a day.
 DEX2: Using its ability to read minds, it can sense danger from far away. It will teleport away at the first sign of danger.
@@ -1701,6 +1764,7 @@ HM: 5
 NUMBER: 64
 NAME: KAD
 SURNAME: ABRA
+BODY: body01
 TYPE1: PSYCHIC
 DEX1: The more danger this Pok{e-accent}mon faces, the stronger its psychic powers become.
 DEX2: It stares at its silver spoon to focus its mind.
@@ -1729,6 +1793,7 @@ HM: 5
 NUMBER: 65
 NAME: ALA
 SURNAME: KAZAM
+BODY: body01
 TYPE1: PSYCHIC
 DEX1: This Pok{e-accent}mon can memorize anything and it never forgets what it learns.
 DEX2: While it has strong psychic abilities, it has very weak muscles. It uses its psychic powers to move its body.
@@ -1755,6 +1820,7 @@ HM: 5
 NUMBER: 66
 NAME: MACH
 SURNAME: OP
+BODY: body01
 TYPE1: FIGHTING
 DEX1: This Pok{e-accent}mon loves to build its muscles.
 DEX2: It is very powerful, in spite of its small size.
@@ -1782,6 +1848,7 @@ HM: 4
 NUMBER: 67
 NAME: MA
 SURNAME: CHOKE
+BODY: body01
 EXP_YIELD: 142
 CATCHRATE: 90
 HEIGHT: 59
@@ -1809,6 +1876,7 @@ HM: 4
 NUMBER: 68
 NAME: MAC
 SURNAME: CHAMP
+BODY: body01
 TYPE1: FIGHTING
 DEX1: This Pok{e-accent}mon tends to leap into action before it thinks.
 DEX2: It quickly swings all four arms to rock its opponents with ceaseless punches and chops from all angles.
@@ -1834,6 +1902,7 @@ HM: 4
 NUMBER: 69
 NAME: BELL
 SURNAME: SPROUT
+BODY: body00
 TYPE1: GRASS
 TYPE2: POISON
 DEX1: This Pok{e-accent}mon prefers hot and humid places.
@@ -1865,6 +1934,7 @@ HM: 1
 NUMBER: 70
 NAME: WEEPIN
 SURNAME: BELL
+BODY: body00
 TYPE1: GRASS
 TYPE2: POISON
 DEX1: When hungry, it swallows anything that moves.
@@ -1896,6 +1966,7 @@ HM: 1
 NUMBER: 71
 NAME: VICTREE
 SURNAME: BEL
+BODY: body00
 TYPE1: GRASS
 TYPE2: POISON
 DEX1: This Pok{e-accent}mon lures prey with the sweet aroma of honey.
@@ -1921,6 +1992,7 @@ HM: 1
 NUMBER: 72
 NAME: TEN
 SURNAME: TACOOL
+BODY: body11
 TYPE1: POISON
 TYPE2: WATER
 DEX1: It can sometimes be found, dry and shriveled up on the beach. Putting it into water will revive it.
@@ -1952,6 +2024,7 @@ HM: 1 3
 NUMBER: 73
 NAME: TENTA
 SURNAME: CRUEL
+BODY: body11
 TYPE1: POISON
 TYPE2: WATER
 DEX1: The orb glows before lashing the vicinity with a supersonic blast. The outburst is powerful enough to create rough waves around the Pok{e-accent}mon.
@@ -1981,6 +2054,7 @@ HM: 1 3
 NUMBER: 74
 NAME: GEO
 SURNAME: DUDE
+BODY: body01
 TYPE1: ROCK
 TYPE2: GROUND
 DEX1: Because of its coloring, this Pok{e-accent}mon is sometimes mistaken for a boulder.
@@ -2010,6 +2084,7 @@ HM: 4
 NUMBER: 75
 NAME: GRAVE
 SURNAME: LER
+BODY: body01
 TYPE1: ROCK
 TYPE2: GROUND
 DEX1: This Pok{e-accent}mon grows by eating rocks. It prefers to eat rocks covered in moss.
@@ -2039,6 +2114,7 @@ HM: 4
 NUMBER: 76
 NAME: GO
 SURNAME: LEM
+BODY: body01
 TYPE1: ROCK
 TYPE2: GROUND
 DEX1: Its rock-like hide is so durable, even dynamite blasts fail to scratch it.
@@ -2066,6 +2142,7 @@ HM: 4
 NUMBER: 77
 NAME: PONY
 SURNAME: TA
+BODY: body04
 TYPE1: FIRE
 DEX1: A weak runner after birth, it gradually becomes faster by chasing after its parents.
 DEX2: Its hooves are 10 times harder than diamond. It can trample anything flat in a short time.
@@ -2094,6 +2171,7 @@ HM: 0
 NUMBER: 78
 NAME: RAPI
 SURNAME: DASH
+BODY: body04
 TYPE1: FIRE
 DEX1: A very competitive Pok{e-accent}mon, it will chase anything in the hopes of racing it.
 DEX2: It can usually be seen cantering in the fields and plains. When it becomes serious, its fiery mane and tail blaze.
@@ -2120,6 +2198,7 @@ HM: 0
 NUMBER: 79
 NAME: SLO
 SURNAME: POKE
+BODY: body01
 TYPE1: PSYCHIC
 TYPE2: WATER
 DEX1: Incredibly slow and dopey, it takes 5 seconds for it to feel pain when under attack.
@@ -2149,6 +2228,7 @@ HM: 3 4 5
 NUMBER: 80
 NAME: SLOW
 SURNAME: BRO
+BODY: body01
 TYPE1: PSYCHIC
 TYPE2: WATER
 DEX1: Naturally dull to begin with, this Pok{e-accent}mon has lost its ability to feel pain entirely.
@@ -2176,6 +2256,7 @@ HM: 3 4 5
 NUMBER: 81
 NAME: MAGNEM
 SURNAME: ITE
+BODY: body12
 TYPE1: ELECTRIC
 DEX1: This Pok{e-accent}mon attaches itself to power lines to feed on electricity.
 DEX2: It uses anti-gravity to stay suspended.
@@ -2204,6 +2285,7 @@ HM: 5
 NUMBER: 82
 NAME: MAGNE
 SURNAME: TON
+BODY: body12
 TYPE1: ELECTRIC
 DEX1: This Pok{e-accent}mon's powerful magnetic fields are very dangerous to electronics.
 DEX2: The magnetism between them is so powerful that it can disrupt radio waves.
@@ -2230,6 +2312,7 @@ HM: 5
 NUMBER: 83
 NAME: FAR
 SURNAME: FETCH'D
+BODY: body03
 TYPE1: FLYING
 TYPE2: NORMAL
 DEX1: This Pok{e-accent}mon lives where reedy plants grow.
@@ -2257,6 +2340,7 @@ HM: 1 2
 NUMBER: 84
 NAME: DOD
 SURNAME: UO
+BODY: body03
 TYPE1: NORMAL
 TYPE2: FLYING
 DEX1: It lives on a grassy plain, where it can see a long way.
@@ -2286,6 +2370,7 @@ HM: 0
 NUMBER: 85
 NAME: DO
 SURNAME: DRIO
+BODY: body03
 TYPE1: NORMAL
 TYPE2: FLYING
 DEX1: If an enemy takes its eyes off this Pok{e-accent}mon, it will be pecked severely.
@@ -2313,6 +2398,7 @@ HM: 0
 NUMBER: 86
 NAME: SEE
 SURNAME: EEL
+BODY: body11
 TYPE1: WATER
 DEX1: The light blue fur that covers it protects it against the cold.
 DEX2: It hunts for prey in the frigid sea underneath sheets of ice. When it needs to breathe, it punches a hole through the ice with the sharply protruding section of its head.
@@ -2340,6 +2426,7 @@ HM: 3 4
 NUMBER: 87
 NAME: DEW
 SURNAME: GONG
+BODY: body11
 TYPE1: ICE
 TYPE2: WATER
 DEX1: Its entire body is snow-white. It is unharmed, even by intense cold.
@@ -2367,6 +2454,7 @@ HM: 3 4
 NUMBER: 88
 NAME: GRI
 SURNAME: MER
+BODY: body01
 TYPE1: POISON
 DEX1: This Pok{e-accent}mon appears in filthy areas. It thrives by sucking up polluted sludge.
 DEX2: Its sludgy and rubbery body can be forced through any opening, however small it may be.
@@ -2396,6 +2484,7 @@ HM: 0
 NUMBER: 89
 NAME: MU
 SURNAME: UK
+BODY: body01
 TYPE1: POISON
 DEX1: A toxic fluid constantly seeps from this Pok{e-accent}mon.
 DEX2: Its body is covered in a thick, filthy, vile sludge. Even its footprints contain poison.
@@ -2423,6 +2512,7 @@ HM: 0
 NUMBER: 90
 NAME: SHELL
 SURNAME: DER
+BODY: body13
 TYPE1: WATER
 DEX1: At night, this Pok{e-accent}mon burrows into the sea floor with its broad tongue.
 DEX2: Its hard shell repels all attacks. It is only vulnerable when the shell is open.
@@ -2451,6 +2541,7 @@ HM: 3
 NUMBER: 91
 NAME: CLOY
 SURNAME: STER
+BODY: body13
 TYPE1: WATER
 TYPE2: ICE
 DEX1: This Pok{e-accent}mon prefers to live in seas with harsh tidal currents.
@@ -2476,6 +2567,7 @@ HM: 3
 NUMBER: 92
 NAME: GAST
 SURNAME: LY
+BODY: body01
 TYPE1: GHOST
 TYPE2: POISON
 DEX1: This Pok{e-accent}mon is said to appear in decrepit, deserted buildings.
@@ -2503,6 +2595,7 @@ HM: 0
 NUMBER: 93
 NAME: HAUN
 SURNAME: TER
+BODY: body01
 TYPE1: GHOST
 TYPE2: POISON
 DEX1: It uses its tongue to drain a victim's lifeforce. This can cause shaking that won't stop.
@@ -2530,6 +2623,7 @@ HM: 0
 NUMBER: 94
 NAME: GEN
 SURNAME: GAR
+BODY: body01
 TYPE1: GHOST
 TYPE2: POISON
 DEX1: This Pok{e-accent}mon steals heat from its surroundings. A sudden chill is a telltale sign of its approach.
@@ -2555,6 +2649,7 @@ HM: 4
 NUMBER: 95
 NAME: ON
 SURNAME: IX
+BODY: body05
 TYPE1: ROCK
 TYPE2: GROUND
 DEX1: As it grows, the stone portions of its body harden to become similar to diamond, but colored black.
@@ -2582,6 +2677,7 @@ HM: 4
 NUMBER: 96
 NAME: DROW
 SURNAME: ZEE
+BODY: body01
 TYPE1: PSYCHIC
 DEX1: This Pok{e-accent}mon puts enemies to sleep.
 DEX2: Occasionally, it gets sick from eating bad dreams.
@@ -2613,6 +2709,7 @@ HM: 5
 NUMBER: 97
 NAME: HYP
 SURNAME: NO
+BODY: body01
 TYPE1: PSYCHIC
 DEX1: When it locks eyes with an enemy, it uses a mix of psychic moves to subdue its enemies.
 DEX2: Always holding a pendulum that rocks in a steady rhythm, it causes drowsiness in anyone nearby.
@@ -2642,6 +2739,7 @@ HM: 5
 NUMBER: 98
 NAME: KRAB
 SURNAME: BY
+BODY: body13
 TYPE1: WATER
 DEX1: If it senses danger, this Pok{e-accent}mon will cloak itself in a cover of bubbles to look bigger.
 DEX2: Its pincers are superb weapons. They sometimes break off during battle, but they grow back fast.
@@ -2670,6 +2768,7 @@ HM: 1 3 4
 NUMBER: 99
 NAME: KING
 SURNAME: GLER
+BODY: body13
 TYPE1: WATER
 DEX1: This Pok{e-accent}mon prefers to scavenge for food, but will hunt if it has to.
 DEX2: Its oversized pincer is incredibly powerful, but very difficult to aim because it is so heavy.
@@ -2696,6 +2795,7 @@ HM: 1 3 4
 NUMBER: 100
 NAME: VOLT
 SURNAME: ORB
+BODY: body12
 TYPE1: ELECTRIC
 DEX1: This Pok{e-accent}mon is known to screech as a threat before actually exploding.
 DEX2: It rolls around to move. It shocks people who get too close.
@@ -2724,6 +2824,7 @@ HM: 5
 NUMBER: 101
 NAME: ELEC
 SURNAME: TRODE
+BODY: body12
 TYPE1: ELECTRIC
 DEX1: It stores electric energy at very high pressure. If often explodes with little or no provocation.
 DEX2: The more energy it stores up, the faster it gets.
@@ -2750,6 +2851,7 @@ HM: 5
 NUMBER: 102
 NAME: EXEGG
 SURNAME: CUTE
+BODY: body00
 TYPE1: GRASS
 TYPE2: PSYCHIC
 DEX1: This Pok{e-accent}mon is known to communicate telepathically.
@@ -2779,6 +2881,7 @@ HM: 0
 NUMBER: 103
 NAME: EX
 SURNAME: EGGUTOR
+BODY: body00
 TYPE1: GRASS
 TYPE2: PSYCHIC
 DEX1: It is very noisy.
@@ -2802,6 +2905,7 @@ HM: 4
 NUMBER: 104
 NAME: CU
 SURNAME: BONE
+BODY: body01
 TYPE1: GROUND
 DEX1: This Pok{e-accent}mon wears the skull of its deceased mother. Its cries echo inside the skull and come out as a sad melody.
 DEX2: It cries out whenever it is lonely.
@@ -2830,6 +2934,7 @@ HM: 4
 NUMBER: 105
 NAME: MARO
 SURNAME: WAK
+BODY: body01
 TYPE1: GROUND
 DEX1: This Pok{e-accent}mon was originally very small and weak. Its temperament has turned ferocious.
 DEX2: The bone it holds is its key weapon. It skillfully throws the bone like a boomerang.
@@ -2856,6 +2961,7 @@ HM: 4
 NUMBER: 106
 NAME: HITMON
 SURNAME: LEE
+BODY: body01
 TYPE1: FIGHTING
 DEX1: This Pok{e-accent}mon has an amazing sense of balance.
 DEX2: Its legs can stretch to double their length, allowing it to kick enemies from far away.
@@ -2882,6 +2988,7 @@ HM: 4
 NUMBER: 107
 NAME: HIT
 SURNAME: MONCHAN
+BODY: body01
 TYPE1: FIGHTING
 DEX1: This Pok{e-accent}mon has a drive to train constantly.
 DEX2: To increase the strength of its punches, it spins its arms just before making contact.
@@ -2908,6 +3015,7 @@ HM: 4
 NUMBER: 108
 NAME: LICKI
 SURNAME: TUNG
+BODY: body01
 TYPE1: NORMAL
 DEX1: Its tongue spans almost 7 feet and moves more freely than its forelegs. Its licks can cause paralysis.
 DEX2: This stout Pok{e-accent}mon stores up as much fat for the winter as it can.
@@ -2934,6 +3042,7 @@ HM: 1 3 4
 NUMBER: 109
 NAME: KOF
 SURNAME: FING
+BODY: body01
 TYPE1: POISON
 DEX1: If you get up close to this Pok{e-accent}mon, you can see toxic gases swirling around inside it.
 DEX2: Because it stores several kinds of toxic gases in its body, it is prone to exploding without warning.
@@ -2962,6 +3071,7 @@ HM: 0
 NUMBER: 110
 NAME: WHEE
 SURNAME: ZING
+BODY: body01
 TYPE1: POISON
 DEX1: It lives and grows by absorbing dust, germs, and poison gases that come from toxic waste and garbage.
 DEX2: Diluting the toxic gases inside its body with a special process, you can make the highest-grade perfume.
@@ -2988,6 +3098,7 @@ HM: 0
 NUMBER: 111
 NAME: RHYH
 SURNAME: ORN
+BODY: body04
 TYPE1: ROCK
 TYPE2: GROUND
 DEX1: Though covered in thick, rocky hide, this Pok{e-accent}mon is not very smart.
@@ -3017,6 +3128,7 @@ HM: 4
 NUMBER: 112
 NAME: RHY
 SURNAME: DON
+BODY: body04
 TYPE1: ROCK
 TYPE2: GROUND
 DEX1: Though its rugged hide protects it from all manner of damage, even the heat of lava, it has a poor sense of touch.
@@ -3044,6 +3156,7 @@ HM: 3 4
 NUMBER: 113
 NAME: CHAN
 SURNAME: SEY
+BODY: body01
 TYPE1: NORMAL
 DEX1: A gentle and kind-hearted Pok{e-accent}mon that will care for injured Pok{e-accent}mon it comes across.
 DEX2: It lays several eggs a day. These eggs are very nutritious and it has no problem sharing them with others.
@@ -3071,6 +3184,7 @@ HM: 4 5
 NUMBER: 114
 NAME: TAN
 SURNAME: GELA
+BODY: body00
 TYPE1: GRASS
 DEX1: Its disconcerting eyes never blink.
 DEX2: Thick vines cover this Pok{e-accent}mon's body. It entangles anything that gets close.
@@ -3098,6 +3212,7 @@ HM: 1
 NUMBER: 115
 NAME: KANGAS
 SURNAME: KHAN
+BODY: body01
 TYPE1: NORMAL
 DEX1: This Pok{e-accent}mon is known for its fiercely protective parental instincts.
 DEX2: It keeps its young in a belly pouch to protect them. If it is safe, the young will come out to play, with the adult keeping a constant watch.
@@ -3124,6 +3239,7 @@ HM: 3 4
 NUMBER: 116
 NAME: HOR
 SURNAME: SEA
+BODY: body11
 TYPE1: WATER
 DEX1: If it senses any type of danger, it will spray water or a special type of ink from its mouth.
 DEX2: When they're in a safe location, these Pok{e-accent}mon can be seen playfully tangling their tales.
@@ -3151,6 +3267,7 @@ HM: 3
 NUMBER: 117
 NAME: SEAD
 SURNAME: RA
+BODY: body11
 TYPE1: WATER
 DEX1: The males of this Pok{e-accent}mon raise the young.
 DEX2: It sleeps by wriggling itself between coral.
@@ -3176,6 +3293,7 @@ HM: 3
 NUMBER: 118
 NAME: GOLDEE
 SURNAME: EEN
+BODY: body11
 TYPE1: WATER
 DEX1: It metes out staggering damage with its single horn.
 DEX2: During spawning season, it swims gracefully in the water, searching for their perfect mate.
@@ -3205,6 +3323,7 @@ HM: 3
 NUMBER: 119
 NAME: SEA
 SURNAME: KING
+BODY: body11
 TYPE1: WATER
 DEX1: The horn on its head is sharp like a drill. It bores a hole in a boulder to make its nest.
 DEX2: In autumn, its body becomes more fatty in preparation for proposal to a mate. It takes on beautiful colors when this happens.
@@ -3232,6 +3351,7 @@ HM: 3
 NUMBER: 120
 NAME: STA
 SURNAME: RYU
+BODY: body11
 TYPE1: WATER
 DEX1: Its gem twinkles in the moonlight.
 DEX2: This Pok{e-accent}mon is very energetic and can regenerate any appendage it loses in battle.
@@ -3261,6 +3381,7 @@ HM: 3 5
 NUMBER: 121
 NAME: STAR
 SURNAME: MIE
+BODY: body11
 TYPE1: PSYCHIC
 TYPE2: WATER
 DEX1: This Pok{e-accent}mon prefers to communicate by flashing its gem in different color patterns.
@@ -3285,6 +3406,7 @@ HM: 3 5
 NUMBER: 122
 NAME: MR.
 SURNAME: MIME
+BODY: body01
 TYPE1: PSYCHIC
 DEX1: A skilled mime from birth, this Pok{e-accent}mon is adept at conning people.
 DEX2: Its fingertips emit a peculiar force field that hardens the air to create an invisible wall.
@@ -3310,6 +3432,7 @@ HM: 5
 NUMBER: 123
 NAME: SCY
 SURNAME: THER
+BODY: body02
 TYPE1: BUG
 TYPE2: FLYING
 DEX1: When it moves, it leaves only a blur. If it hides in grass, its protective colors make it invisible.
@@ -3337,6 +3460,7 @@ HM: 1 2
 NUMBER: 124
 NAME: JY
 SURNAME: NX
+BODY: body01
 TYPE1: ICE
 TYPE2: PSYCHIC
 DEX1: It speaks in a way that sounds human, but research has yet to reveal what it is saying.
@@ -3365,6 +3489,7 @@ HM: 0
 NUMBER: 125
 NAME: ELECTA
 SURNAME: BUZZ
+BODY: body01
 TYPE1: ELECTRIC
 DEX1: Electricity runs across the surface of its body constantly. In darkness, its entire body glows whitish-blue.
 DEX2: It loves to feed on strong electricity. Because of this it can usually be found near power plants.
@@ -3391,6 +3516,7 @@ HM: 4 5
 NUMBER: 126
 NAME: MAG
 SURNAME: MAR
+BODY: body01
 TYPE1: FIRE
 DEX1: Its body always burns with an orange glow.
 DEX2: It was born in a volcano, so it hates cold places.
@@ -3417,6 +3543,7 @@ HM: 4
 NUMBER: 127
 NAME: PIN
 SURNAME: SIR
+BODY: body02
 TYPE1: BUG
 DEX1: During cold periods, this Pok{e-accent}mon will hide deep in the woods.
 DEX2: It grips its prey in its pincers and squeezes hard. If it can't crush them, it will throw them as hard as it can.
@@ -3443,6 +3570,7 @@ HM: 1 4
 NUMBER: 128
 NAME: TAU
 SURNAME: ROS
+BODY: body04
 TYPE1: NORMAL
 DEX1: Once it takes aim at a foe, it makes a headlong charge. It is famous for its violent nature.
 DEX2: It is very rowdy and has a lot of stamina.
@@ -3468,6 +3596,7 @@ HM: 4
 NUMBER: 129
 NAME: MAGI
 SURNAME: KARP
+BODY: body11
 TYPE1: WATER
 DEX1: Famous for being underpowered and pathetic.
 DEX2: It can be found swimming in seas, lakes, and rivers.
@@ -3491,6 +3620,7 @@ HM: 0
 NUMBER: 130
 NAME: GYA
 SURNAME: RADOS
+BODY: body11
 TYPE1: WATER
 TYPE2: FLYING
 DEX1: This Pok{e-accent}mon's powerful bite is a far cry from its humble beginnings.
@@ -3516,6 +3646,7 @@ HM: 3 4
 NUMBER: 131
 NAME: LAP
 SURNAME: RAS
+BODY: body11
 TYPE1: WATER
 TYPE2: ICE
 DEX1: This Pok{e-accent}mon has been overhunted almost to the point of extinction.
@@ -3544,6 +3675,7 @@ HM: 3 4
 NUMBER: 132
 NAME: DIT
 SURNAME: TO
+BODY: body01
 TYPE1: NORMAL
 DEX1: This Pok{e-accent}mon is capable of copying an enemy's genetic code.
 DEX2: When it sees an enemy, its body transfigures itself into an almost perfect copy of its opponent.
@@ -3565,6 +3697,7 @@ HM: 0
 NUMBER: 133
 NAME: EEV
 SURNAME: VEE
+BODY: body04
 TYPE1: NORMAL
 DEX1: A rare Pok{e-accent}mon that adapts to harsh environments by taking on different evolutionary forms.
 DEX2: It's irregular DNA is easily affected by its surroundings. It can evolve if its environment changes.
@@ -3594,6 +3727,7 @@ HM: 0
 NUMBER: 134
 NAME: VAP
 SURNAME: OREON
+BODY: body04
 TYPE1: WATER
 DEX1: It lives close to water and prefers beautiful shores.
 DEX2: The long ridge on its tail is sometimes mistaken for a mermaid's.
@@ -3621,6 +3755,7 @@ HM: 3
 NUMBER: 135
 NAME: JOLT
 SURNAME: EON
+BODY: body04
 TYPE1: ELECTRIC
 DEX1: It concentrates the weak electric charges emitted by its cells and launches wicked lightning bolts.
 DEX2: Every hair on its body stands sharply on end if it becomes charged with electricity.
@@ -3648,6 +3783,7 @@ HM: 5
 NUMBER: 136
 NAME: FLARE
 SURNAME: ON
+BODY: body04
 TYPE1: FIRE
 DEX1: It has a flame chamber inside its body. It inhales, then blows out powerful flames.
 DEX2: It fluffs out the fur on its collar to cool down its body temperature.
@@ -3675,6 +3811,7 @@ HM: 0
 NUMBER: 137
 NAME: POR
 SURNAME: YGON
+BODY: body01
 TYPE1: NORMAL
 DEX1: Since it doesn't breath, people are eager to try it in new environments.
 DEX2: Using the most advanced technologies, scientists created this artificial Pok{e-accent}mon. 
@@ -3701,6 +3838,7 @@ HM: 5
 NUMBER: 138
 NAME: OMAN
 SURNAME: YTE
+BODY: body13
 TYPE1: ROCK
 TYPE2: WATER
 DEX1: An ancient Pok{e-accent}mon whose DNA was resurrected from a fossil. It uses its tentacles to gather food.
@@ -3729,6 +3867,7 @@ HM: 3
 NUMBER: 139
 NAME: OMA
 SURNAME: STAR
+BODY: body13
 TYPE1: ROCK
 TYPE2: WATER
 DEX1: Its sharp beak is powerful enough to crack a shellder's hard shell. It will do this and suck out the insides.
@@ -3755,6 +3894,7 @@ HM: 3
 NUMBER: 140
 NAME: KAB
 SURNAME: UTO
+BODY: body13
 TYPE1: ROCK
 TYPE2: WATER
 DEX1: This ancient Pok{e-accent}mon's DNA was resurrected from a fossil. It hides its glowing eyes on the sea floor.
@@ -3783,6 +3923,7 @@ HM: 3
 NUMBER: 141
 NAME: KABU
 SURNAME: TOPS
+BODY: body13
 TYPE1: ROCK
 TYPE2: WATER
 DEX1: It aggressively hunts prey.
@@ -3809,6 +3950,7 @@ HM: 1 3
 NUMBER: 142
 NAME: AERO
 SURNAME: DACTYL
+BODY: body03
 TYPE1: ROCK
 TYPE2: FLYING
 DEX1: A ferocious, prehistoric Pok{e-accent}mon that goes for the enemy's throat with its serrated, saw-like fangs.
@@ -3837,6 +3979,7 @@ HM: 2
 NUMBER: 143
 NAME: SNOR
 SURNAME: LAX
+BODY: body14
 TYPE1: NORMAL
 DEX1: This Pok{e-accent}mon is very lazy and will just eat and sleep, if allowed.
 DEX2: It will eat anything, even if the food is mouldy. It never gets an upset stomach.
@@ -3863,6 +4006,7 @@ HM: 3 4
 NUMBER: 144
 NAME: ARTIC
 SURNAME: UNO
+BODY: body03
 TYPE1: ICE
 TYPE2: FLYING
 DEX1: This Pok{e-accent}mon is said to appear to doomed people who are lost in the icy mountains.
@@ -3889,6 +4033,7 @@ HM: 2
 NUMBER: 145
 NAME: ZAP
 SURNAME: DOS
+BODY: body03
 TYPE1: ELECTRIC
 TYPE2: FLYING
 DEX1: This Pok{e-accent}mon is said to appear from the clouds while dropping enormous lightning bolts.
@@ -3915,6 +4060,7 @@ HM: 2 5
 NUMBER: 146
 NAME: MOL
 SURNAME: TRES
+BODY: body03
 TYPE1: FIRE
 TYPE2: FLYING
 DEX1: With the ability to control fire, it is said to dip itself in molten magma to heal itself.
@@ -3942,6 +4088,7 @@ HM: 2
 NUMBER: 147
 NAME: DRA
 SURNAME: TINI
+BODY: body05
 TYPE1: DRAGON
 DEX1: It has long been considered a mirage Pok{e-accent}mon, as so few people have seen it.
 DEX2: Born large to begin with, it repeately sheds its skin as it steadily grows larger.
@@ -3970,6 +4117,7 @@ HM: 3
 NUMBER: 148
 NAME: DRAG
 SURNAME: ONAIR
+BODY: body05
 TYPE1: DRAGON
 DEX1: This Pok{e-accent}mon is said to live in seas and lakes.
 DEX2: Its body exudes a gentle aura. It is said to have the ability to control the weather.
@@ -3998,6 +4146,7 @@ HM: 3
 NUMBER: 149
 NAME: DRAGO
 SURNAME: NITE
+BODY: body01
 TYPE1: DRAGON
 TYPE2: FLYING
 DEX1: This Pok{e-accent}mon is said to have intelligence that rivals humans. It prefers to hide in the ocean.
@@ -4025,6 +4174,7 @@ HM: 3 4
 NUMBER: 150
 NAME: MEW
 SURNAME: TWO
+BODY: body01
 TYPE1: PSYCHIC
 DEX1: This cruel Pok{e-accent}mon is the result of genetic manipulation to create the ultimate weapon.
 DEX2: It has a savage heart and only knows peace when destroying its opponents.
@@ -4050,6 +4200,7 @@ HM: 4 5
 NUMBER: 151
 NAME: ME
 SURNAME: EW
+BODY: body01
 TYPE1: PSYCHIC
 DEX1: This Pok{e-accent}mon is so rare that it is thought to be entirely fiction. Legends tell of it being the ancestor to all Pok{e-accent}mon.
 DEX2: If you look closely at it, you can see that it is covered in very fine fur.
