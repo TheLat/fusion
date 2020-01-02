@@ -225,6 +225,34 @@ void menu::create_menu(string file, string choice, string text_override, string 
 						safe_getline(f, line);
 					}
 				}
+				else if (temp1 == "ANIM_IMAGES") {
+					safe_getline(f, line);
+					while (line != "END") {
+						while (line.find("{CHOICE}") != -1) {
+							line.insert(line.find("{CHOICE}"), choice);
+							line.erase(line.find("{CHOICE}"), string("{CHOICE}").length());
+						}
+						temp1 = line;
+						temp1.erase(temp1.find(" "), temp1.length());
+						line.erase(0, line.find(" ") + 1);
+						im.xmin = stof(temp1);
+						temp1 = line;
+						temp1.erase(temp1.find(" "), temp1.length());
+						line.erase(0, line.find(" ") + 1);
+						im.ymin = stof(temp1);
+						temp1 = line;
+						temp1.erase(temp1.find(" "), temp1.length());
+						line.erase(0, line.find(" ") + 1);
+						im.length = stof(temp1);
+						temp1 = line;
+						temp1.erase(temp1.find(" "), temp1.length());
+						line.erase(0, line.find(" ") + 1);
+						im.height = stof(temp1);
+						im.filename = get_special_string(line);
+						anim_images.push_back(im);
+						safe_getline(f, line);
+					}
+				}
 				else if (temp1 == "ARROWBOXES") {
 					safe_getline(f, line);
 					while (line != "END") {
@@ -1256,6 +1284,11 @@ void menu::push_menu() {
 	for (unsigned i = 0; i < images.size(); ++i) {
 		g.push_quad_load(images[i].xmin, images[i].ymin, images[i].length, images[i].height, safepath + string("images/") + images[i].filename);
 	}
+	anim_images_start = g.draw_list.size();
+	for (unsigned i = 0; i < anim_images.size(); ++i) {
+		if (anim_images[i].filename != string(""))
+			g.push_quad_load(anim_images[i].xmin, anim_images[i].ymin, anim_images[i].length, anim_images[i].height, safepath + string("images/") + anim_images[i].filename + string("-") + to_string(g.fast_frame % 8) + string(".png"));
+	}
 	for (unsigned i = 0; i < display.size(); ++i) {
 		int temp;
 		if (i == 0) {
@@ -1482,6 +1515,17 @@ vector<int> menu::main() {
 		    done = g.ae.is_donei(anim_index);
 		}
 		mutex2.unlock();
+		if (anim_images.size() > 0) {
+			for (unsigned i = 0; i < anim_images.size(); ++i) {
+				if (anim_images[i].filename != string("")) {
+					if (!g.tex[safepath + string("images/") + anim_images[i].filename + string("-") + to_string(g.fast_frame % 8) + string(".png")])
+						g.draw_list[anim_images_start + i].filename = safepath + string("images/") + anim_images[i].filename + string("-") + to_string(g.fast_frame % 8) + string(".png");
+					else
+						g.draw_list[anim_images_start + i].tex = g.tex[safepath + string("images/") + anim_images[i].filename + string("-") + to_string(g.fast_frame % 8) + string(".png")];
+				}
+				g.new_load = true;
+			}
+		}
 		if (etype == AUTO_FOLLOWUP) {
 			done = true;
 			selection = 0;

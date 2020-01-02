@@ -46,9 +46,9 @@ private:
 	GLuint VertexArrayID;
 	GLuint FragmentShaderID;
 	GLuint ProgramID;
-	unsigned frame_anim_holder;
+	unsigned frame_anim_holder, fast_frame_anim_holder;
 public:
-    int frame;
+	int frame, fast_frame;
 	quad r_quad;
 	quad r_effects;
 	animation_engine ae;

@@ -462,6 +462,22 @@ string engine::get_special_string(string in) {
 				return string("");
 			return get_nickname(mc.storage[mc.box_number][index]);
 		}
+		else if (parse == "TEAM_MON_BODY") {
+			int index = stoi(temp);
+			if (!mc.team[index].defined)
+				return string("");
+			if (mc.team[index].curr_hp < get_stat(mc.team[index], HP) / 2)
+				return all_mon[mc.team[index].number].body + string("-injured");
+			return all_mon[mc.team[index].number].body;
+		}
+		else if (parse == "STORAGE_MON_BODY") {
+			int index = stoi(temp);
+			if (!mc.storage[mc.box_number][index].defined)
+				return string("");
+			if (mc.storage[mc.box_number][index].curr_hp < get_stat(mc.storage[mc.box_number][index], HP) / 2)
+				return all_mon[mc.storage[mc.box_number][index].number].body + string("-injured");
+			return all_mon[mc.storage[mc.box_number][index].number].body;
+		}
 		else if (parse == "STORAGE_MON_LEVEL") {
 			int index = stoi(temp);
 			if (!mc.storage[mc.box_number][index].defined)
