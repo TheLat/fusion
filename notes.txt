@@ -4,3 +4,5 @@ Opening Scene
 Controller input
 Random seed
 Make Oak's Cloynite know Rage instead of Body Slam.
+Potion in storage on new game.
+Slots
