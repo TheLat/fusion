@@ -319,6 +319,19 @@ unsigned char input::get_pressed_key(bool& pressed) {
 	return 0;
 }
 
+bool input::get_and_set_key(int mapping) {
+	unsigned char key;
+	bool got_input;
+	key = get_pressed_key(got_input);
+	while (got_input) {
+		key = get_pressed_key(got_input);
+	}
+	while (!got_input) {
+		key = get_pressed_key(got_input);
+	}
+	return set_key(key, mapping);
+}
+
 bool input::set_key(unsigned char key, int mapping) {
 	if (mapping == 0) {
 		if (key == i_down)

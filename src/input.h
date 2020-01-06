@@ -16,6 +16,7 @@ private:
 public:
 	unsigned char get_pressed_key(bool& pressed);
 	bool set_key(unsigned char key, int mapping);
+	bool get_and_set_key(int mapping);
     void keydown(bool &up, bool &down, bool &left, bool &right, bool &confirm, bool &cancel, bool &start, bool &select);
     void keypress(bool &up, bool &down, bool &left, bool &right, bool &confirm, bool &cancel, bool &start, bool &select);
     void tick();
