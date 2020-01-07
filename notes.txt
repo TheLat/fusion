@@ -1,7 +1,7 @@
 TO FIX:
 Brock with a Geodude that only knows Spore and Dream Eater never uses Spore.
 Opening Scene
-Correctly set up default Windows and OSX keybinds.
+Correctly set up default OSX keybinds.
 Random seed
 Make Oak's Cloynite know Rage instead of Body Slam.
 Potion in storage on new game.

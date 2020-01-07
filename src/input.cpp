@@ -49,10 +49,10 @@ input::input() {
 	i_down = 40;
 	i_left = 37;
 	i_right = 39;
-	i_confirm = 65;
-	i_cancel = 83;
-	i_start = 90;
-	i_select = 88;
+	i_confirm = 13;
+	i_cancel = 27;
+	i_start = 219;
+	i_select = 221;
 	ifstream f("../windows_keybinds.dat");
 #endif
 	string line;
