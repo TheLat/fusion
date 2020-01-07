@@ -687,6 +687,19 @@ void input::save_bindings() {
 	f << int(u_start) << string("\n");
 	f << int(u_select);
 	f.close();
+#ifdef __APPLE__
+#else
+	ofstream f2("../controller_keybinds.dat");
+	f2 << int(c_up) << string("\n");
+	f2 << int(c_down) << string("\n");
+	f2 << int(c_left) << string("\n");
+	f2 << int(c_right) << string("\n");
+	f2 << int(c_confirm) << string("\n");
+	f2 << int(c_cancel) << string("\n");
+	f2 << int(c_start) << string("\n");
+	f2 << int(c_select);
+	f2.close();
+#endif
 }
 
 #ifdef __APPLE__
@@ -733,6 +746,14 @@ BOOL CALLBACK EnumObjectsCallback(const DIDEVICEOBJECTINSTANCE* pdidoi,
 void input::init_controller() {
 #ifdef __APPLE__
 #else
+	c_up = UNBOUND;
+	c_down = UNBOUND;
+	c_right = UNBOUND;
+	c_left = UNBOUND;
+	c_confirm = UNBOUND;
+	c_cancel = UNBOUND;
+	c_start = UNBOUND;
+	c_select = UNBOUND;
 	HRESULT hr;
 	if (FAILED(hr = DirectInput8Create(GetModuleHandle(NULL), DIRECTINPUT_VERSION, IID_IDirectInput8, (VOID**)&g_pDI, NULL))) {
 		printf("Unable to create DirectInput8 device.  Contining without controller.\n");
@@ -773,16 +794,31 @@ void input::init_controller() {
 		return;
 	}
 	printf("Controller detected.\n");
-	c_up = UNBOUND;
-	c_down = UNBOUND;
-	c_right = UNBOUND;
-	c_left = UNBOUND;
-	c_confirm = UNBOUND;
-	c_cancel = UNBOUND;
-	c_start = UNBOUND;
-	c_select = UNBOUND;
-	// TODO: Controller input bindings
 	use_controller = true;
+	ifstream f("../controller_keybinds.dat");
+	string line;
+	if (!f.is_open()) {
+		f.close();
+	}
+	else {
+		safe_getline(f, line);
+		c_up = stoi(line);
+		safe_getline(f, line);
+		c_down = stoi(line);
+		safe_getline(f, line);
+		c_left = stoi(line);
+		safe_getline(f, line);
+		c_right = stoi(line);
+		safe_getline(f, line);
+		c_confirm = stoi(line);
+		safe_getline(f, line);
+		c_cancel = stoi(line);
+		safe_getline(f, line);
+		c_start = stoi(line);
+		safe_getline(f, line);
+		c_select = stoi(line);
+		f.close();
+	}
 #endif
 }
 
