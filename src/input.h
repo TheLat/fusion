@@ -15,7 +15,9 @@ private:
 	int c_up, c_down, c_left, c_right, c_confirm, c_cancel, c_start, c_select;
 public:
 	unsigned char get_pressed_key(bool& pressed);
+	int get_button_pressed(bool& pressed);
 	bool set_key(unsigned char key, int mapping);
+	bool set_button(int button, int mapping);
 	bool get_and_set_key(int mapping);
     void keydown(bool &up, bool &down, bool &left, bool &right, bool &confirm, bool &cancel, bool &start, bool &select);
     void keypress(bool &up, bool &down, bool &left, bool &right, bool &confirm, bool &cancel, bool &start, bool &select);

@@ -9,6 +9,7 @@
 #else
 #include <windows.h>
 #define DIRECTINPUT_VERSION 0x0800
+#define UNBOUND 200
 #include <dinput.h>
 #include <dinputd.h>
 LPDIRECTINPUT8          g_pDI = NULL;
@@ -275,9 +276,109 @@ void input::tick() {
 		}
 	}
 	for (unsigned i = 0; i < 16 * 16; ++i) {
-		if (!key_down[i] && GetAsyncKeyState(i) != 0)
+		bool got_input;
+		got_input = GetAsyncKeyState(i) != 0;
+		if (use_controller) {
+			if (i == i_up) {
+				if (c_up != UNBOUND && c_up >= 0) {
+					if (controller[c_up] > 500) {
+						got_input = true;
+					}
+				}
+				if (c_up != UNBOUND && c_up < 0) {
+					if (controller[-(c_up + 1)] < -500) {
+						got_input = true;
+					}
+				}
+			}
+			if (i == i_down) {
+				if (c_down != UNBOUND && c_down >= 0) {
+					if (controller[c_down] > 500) {
+						got_input = true;
+					}
+				}
+				if (c_down != UNBOUND && c_down < 0) {
+					if (controller[-(c_down + 1)] < -500) {
+						got_input = true;
+					}
+				}
+			}
+			if (i == i_left) {
+				if (c_left != UNBOUND && c_left >= 0) {
+					if (controller[c_left] > 500) {
+						got_input = true;
+					}
+				}
+				if (c_left != UNBOUND && c_left < 0) {
+					if (controller[-(c_left + 1)] < -500) {
+						got_input = true;
+					}
+				}
+			}
+			if (i == i_right) {
+				if (c_right != UNBOUND && c_right >= 0) {
+					if (controller[c_right] > 500) {
+						got_input = true;
+					}
+				}
+				if (c_right != UNBOUND && c_right < 0) {
+					if (controller[-(c_right + 1)] < -500) {
+						got_input = true;
+					}
+				}
+			}
+			if (i == i_confirm) {
+				if (c_confirm != UNBOUND && c_confirm >= 0) {
+					if (controller[c_confirm] > 500) {
+						got_input = true;
+					}
+				}
+				if (c_confirm != UNBOUND && c_confirm < 0) {
+					if (controller[-(c_confirm + 1)] < -500) {
+						got_input = true;
+					}
+				}
+			}
+			if (i == i_cancel) {
+				if (c_cancel != UNBOUND && c_cancel >= 0) {
+					if (controller[c_cancel] > 500) {
+						got_input = true;
+					}
+				}
+				if (c_cancel != UNBOUND && c_cancel < 0) {
+					if (controller[-(c_cancel + 1)] < -500) {
+						got_input = true;
+					}
+				}
+			}
+			if (i == i_start) {
+				if (c_start != UNBOUND && c_start >= 0) {
+					if (controller[c_start] > 500) {
+						got_input = true;
+					}
+				}
+				if (c_start != UNBOUND && c_start < 0) {
+					if (controller[-(c_start + 1)] < -500) {
+						got_input = true;
+					}
+				}
+			}
+			if (i == i_select) {
+				if (c_select != UNBOUND && c_select >= 0) {
+					if (controller[c_select] > 500) {
+						got_input = true;
+					}
+				}
+				if (c_select != UNBOUND && c_select < 0) {
+					if (controller[-(c_select + 1)] < -500) {
+						got_input = true;
+					}
+				}
+			}
+		}
+		if (!key_down[i] && got_input)
 			key_press[i] = true;
-		key_down[i] = GetAsyncKeyState(i) != 0;
+		key_down[i] = got_input;
 	}
 #endif
 }
@@ -306,9 +407,27 @@ void input::keypress(bool &up, bool &down, bool &left, bool &right, bool &confir
         key_press[i] = false;
     }
 }
+int input::get_button_pressed(bool& pressed) {
+	pressed = false;
+#ifdef __APPLE__
+#else
+	if (use_controller) {
+		for (int i = 0; i < 164; ++i) {
+			if (controller[i] > 500) {
+				pressed = true;
+				return i;
+			}
+			else if (controller[i] < -500) {
+				pressed = true;
+				return (-i) - 1;
+			}
+		}
+	}
+#endif
+	return 0;
+}
 
 unsigned char input::get_pressed_key(bool& pressed) {
-	tick();
 	pressed = false;
 	for (int i = 0; i < 16 * 16; ++i) {
 		if (key_press[i]) {
@@ -321,16 +440,77 @@ unsigned char input::get_pressed_key(bool& pressed) {
 
 bool input::get_and_set_key(int mapping) {
 	unsigned char key;
-	bool got_input;
+	int button;
+	bool got_input, got_input2;
+	got_input = false;
+	got_input2 = false;
+	tick();
 	key = get_pressed_key(got_input);
-	while (got_input) {
+#ifdef __APPLE__
+#else
+	if (use_controller)
+		button = get_button_pressed(got_input2);
+#endif
+	while (got_input || got_input2) {
+		tick();
 		key = get_pressed_key(got_input);
+#ifdef __APPLE__
+#else
+		if (use_controller)
+			button = get_button_pressed(got_input2);
+#endif
 	}
-	while (!got_input) {
+	while (!got_input && !got_input2) {
+		tick();
 		key = get_pressed_key(got_input);
+#ifdef __APPLE__
+#else
+		if (use_controller)
+			button = get_button_pressed(got_input2);
+#endif
 	}
+#ifdef __APPLE__
 	return set_key(key, mapping);
+#else
+	if (got_input2)
+		return set_button(button, mapping);	
+	else
+		return set_key(key, mapping);
+#endif
 }
+
+bool input::set_button(int button, int mapping) {
+	switch (mapping) {
+	case 0:
+		c_up = button;
+		break;
+	case 1:
+		c_down = button;
+		break;
+	case 2:
+		c_right = button;
+		break;
+	case 3:
+		c_left = button;
+		break;
+	case 4:
+		c_confirm = button;
+		break;
+	case 5:
+		c_cancel = button;
+		break;
+	case 6:
+		c_start = button;
+		break;
+	case 7:
+		c_select = button;
+		break;
+	default:
+		return false;
+	}
+	return true;
+}
+
 
 bool input::set_key(unsigned char key, int mapping) {
 	if (mapping == 0) {
@@ -516,23 +696,12 @@ BOOL CALLBACK EnumJoysticksCallback(const DIDEVICEINSTANCE* pdidInstance,
 {
 	DI_ENUM_CONTEXT* pEnumContext = (DI_ENUM_CONTEXT*)pContext;
 	HRESULT hr;
-
-	// Skip anything other than the perferred Joystick device as defined by the control panel.  
-	// Instead you could store all the enumerated Joysticks and let the user pick.
 	if (pEnumContext->bPreferredJoyCfgValid &&
 		!IsEqualGUID(pdidInstance->guidInstance, pEnumContext->pPreferredJoyCfg->guidInstance))
 		return DIENUM_CONTINUE;
-
-	// Obtain an interface to the enumerated Joystick.
 	hr = g_pDI->CreateDevice(pdidInstance->guidInstance, &g_pJoystick, NULL);
-
-	// If it failed, then we can't use this Joystick. (Maybe the user unplugged
-	// it while we were in the middle of enumerating it.)
 	if (FAILED(hr))
 		return DIENUM_CONTINUE;
-
-	// Stop enumeration. Note: we're just taking the first Joystick we get. You
-	// could store all the enumerated Joysticks and let the user pick.
 	return DIENUM_STOP;
 }
 
@@ -541,11 +710,8 @@ BOOL CALLBACK EnumObjectsCallback(const DIDEVICEOBJECTINSTANCE* pdidoi,
 {
 	HWND hDlg = (HWND)pContext;
 
-	static int nSliderCount = 0;  // Number of returned slider controls
-	static int nPOVCount = 0;     // Number of returned POV controls
-
-								  // For axes that are returned, set the DIPROP_RANGE property for the
-								  // enumerated axis in order to scale min/max values.
+	static int nSliderCount = 0;
+	static int nPOVCount = 0;
 	if (pdidoi->dwType & DIDFT_AXIS)
 	{
 		DIPROPRANGE diprg;
@@ -555,8 +721,6 @@ BOOL CALLBACK EnumObjectsCallback(const DIDEVICEOBJECTINSTANCE* pdidoi,
 		diprg.diph.dwObj = pdidoi->dwType; // Specify the enumerated axis
 		diprg.lMin = -1000;
 		diprg.lMax = +1000;
-
-		// Set the range for the axis
 		if (FAILED(g_pJoystick->SetProperty(DIPROP_RANGE, &diprg.diph)))
 			return DIENUM_STOP;
 
@@ -609,6 +773,14 @@ void input::init_controller() {
 		return;
 	}
 	printf("Controller detected.\n");
+	c_up = UNBOUND;
+	c_down = UNBOUND;
+	c_right = UNBOUND;
+	c_left = UNBOUND;
+	c_confirm = UNBOUND;
+	c_cancel = UNBOUND;
+	c_start = UNBOUND;
+	c_select = UNBOUND;
 	// TODO: Controller input bindings
 	use_controller = true;
 #endif
