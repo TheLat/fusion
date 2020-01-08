@@ -248,7 +248,7 @@ public:
 	string music, leavesound;
 	location map, fly_loc;
 	int map_order;
-	bool dungeon, dark, inside;
+	bool dungeon, dark, inside, nomap;
 };
 
 class engine {

@@ -85,6 +85,8 @@ std::vector<float> find_mon_coords(int type) {
 	std::vector<float> holder;
 	std::map<string, level>::iterator it;
 	for (it = e.levels.begin(); it != e.levels.end(); it++) {
+		if (it->second.nomap)
+			continue;
 		holder = find_map_coords(it->first);
 		if (holder.size() == 0)
 			continue;

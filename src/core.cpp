@@ -5475,8 +5475,12 @@ void engine::init_level(string levelname) {
 			continue;
 		}
 		if (line == "DUNGEON") {
-		    levels[levelname].dungeon = true;
-		    continue;
+			levels[levelname].dungeon = true;
+			continue;
+		}
+		if (line == "NOMAP") {
+			levels[levelname].nomap = true;
+			continue;
 		}
 		if (line == "INSIDE") {
 		    levels[levelname].inside = true;
