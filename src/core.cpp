@@ -9167,11 +9167,6 @@ void engine::main() {
 	picks = do_menu(string("OPENING_MENU"));
 	picks = remove_cancels(picks);
 	if (picks[0] == 1) {
-		e.mc.loc.x = 3.0;
-		e.mc.loc.y = 6.0;
-		e.mc.loc.level = "home";
-		e.mc.dir = UP;
-		e.mc.money = 3000;
 	}
 	else if (picks[0] == 0) {
 		load_game();
@@ -9252,11 +9247,6 @@ void engine::main() {
 		picks = remove_cancels(picks);
 		if (picks.size() != 0) {
 			if (picks[0] == 1) {
-				e.mc.loc.x = 3.0;
-				e.mc.loc.y = 6.0;
-				e.mc.loc.level = "home";
-				e.mc.dir = UP;
-				e.mc.money = 3000;
 			}
 			else if (picks[0] == 0) {
 				load_game();
@@ -9337,6 +9327,18 @@ void engine::main() {
 	e.play_level_music();
 
 	deltat = tim.delta(time_index);
+	if (!mc.team[0].defined) {
+		// New Game
+		e.mc.loc.x = 3.0;
+		e.mc.loc.y = 6.0;
+		e.mc.loc.level = "home";
+		e.mc.dir = DOWN;
+		e.mc.money = 3000;
+		pair<string, int> p;
+		p.first = string("POTION");
+		p.second = 1;
+		mc.inventory_storage.push_back(p);
+	}
 	while (true) {
 		deltat = tim.delta(time_index);
 		while (deltat < 1.0/120.0)
