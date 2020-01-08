@@ -5,5 +5,4 @@ Correctly set up default OSX keybinds.
 Random seed
 Character sprites not matching palette
 Pandemonium Cave must not show up on area
-Slots
 Sound bug, mutes not clearing after a cry, mute/unmute music code

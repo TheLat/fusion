@@ -109,6 +109,114 @@ celadon-game-corner-slots1 blank 1 7
 INTERACTIONS
 MENU:SLOTS:|{SLOTS:1}{SLOTS:2}{SLOTS:3}{MENU:ALERT:Some other time.}
 END
+celadon-game-corner-slots2 blank 1 8
+INTERACTIONS
+MENU:SLOTS:|{SLOTS:2}{SLOTS:3}{SLOTS:4}{MENU:ALERT:Some other time.}
+END
+celadon-game-corner-slots3 blank 1 10
+INTERACTIONS
+MENU:SLOTS:|{SLOTS:1}{SLOTS:2}{SLOTS:3}{MENU:ALERT:Some other time.}
+END
+celadon-game-corner-slots4 blank 1 11
+INTERACTIONS
+MENU:SLOTS:|{SLOTS:1}{SLOTS:2}{SLOTS:3}{MENU:ALERT:Some other time.}
+END
+celadon-game-corner-slots5 blank 6 6
+INTERACTIONS
+MENU:SLOTS:|{SLOTS:1}{SLOTS:2}{SLOTS:3}{MENU:ALERT:Some other time.}
+END
+celadon-game-corner-slots6 blank 6 8
+INTERACTIONS
+MENU:SLOTS:|{SLOTS:1}{SLOTS:2}{SLOTS:3}{MENU:ALERT:Some other time.}
+END
+celadon-game-corner-slots7 blank 6 9
+INTERACTIONS
+MENU:SLOTS:|{SLOTS:1}{SLOTS:2}{SLOTS:3}{MENU:ALERT:Some other time.}
+END
+celadon-game-corner-slots8 blank 6 10
+INTERACTIONS
+MENU:SLOTS:|{SLOTS:1}{SLOTS:2}{SLOTS:3}{MENU:ALERT:Some other time.}
+END
+celadon-game-corner-slots9 blank 6 11
+INTERACTIONS
+MENU:SLOTS:|{SLOTS:2}{SLOTS:3}{SLOTS:4}{MENU:ALERT:Some other time.}
+END
+celadon-game-corner-slots10 blank 7 6
+INTERACTIONS
+MENU:SLOTS:|{SLOTS:2}{SLOTS:3}{SLOTS:4}{MENU:ALERT:Some other time.}
+END
+celadon-game-corner-slots11 blank 7 8
+INTERACTIONS
+MENU:SLOTS:|{SLOTS:1}{SLOTS:2}{SLOTS:3}{MENU:ALERT:Some other time.}
+END
+celadon-game-corner-slots12 blank 7 9
+INTERACTIONS
+MENU:SLOTS:|{SLOTS:1}{SLOTS:2}{SLOTS:3}{MENU:ALERT:Some other time.}
+END
+celadon-game-corner-slots13 blank 7 11
+INTERACTIONS
+MENU:SLOTS:|{SLOTS:2}{SLOTS:3}{SLOTS:4}{MENU:ALERT:Some other time.}
+END
+celadon-game-corner-slots14 blank 12 6
+INTERACTIONS
+MENU:SLOTS:|{SLOTS:1}{SLOTS:2}{SLOTS:3}{MENU:ALERT:Some other time.}
+END
+celadon-game-corner-slots15 blank 12 7
+INTERACTIONS
+MENU:SLOTS:|{SLOTS:1}{SLOTS:2}{SLOTS:3}{MENU:ALERT:Some other time.}
+END
+celadon-game-corner-slots16 blank 12 8
+INTERACTIONS
+MENU:SLOTS:|{SLOTS:2}{SLOTS:3}{SLOTS:4}{MENU:ALERT:Some other time.}
+END
+celadon-game-corner-slots17 blank 12 9
+INTERACTIONS
+MENU:SLOTS:|{SLOTS:1}{SLOTS:2}{SLOTS:3}{MENU:ALERT:Some other time.}
+END
+celadon-game-corner-slots18 blank 12 10
+INTERACTIONS
+MENU:SLOTS:|{SLOTS:1}{SLOTS:2}{SLOTS:3}{MENU:ALERT:Some other time.}
+END
+celadon-game-corner-slots19 blank 13 6
+INTERACTIONS
+MENU:SLOTS:|{SLOTS:1}{SLOTS:2}{SLOTS:3}{MENU:ALERT:Some other time.}
+END
+celadon-game-corner-slots20 blank 13 8
+INTERACTIONS
+MENU:SLOTS:|{SLOTS:1}{SLOTS:2}{SLOTS:3}{MENU:ALERT:Some other time.}
+END
+celadon-game-corner-slots21 blank 13 9
+INTERACTIONS
+MENU:SLOTS:|{SLOTS:1}{SLOTS:2}{SLOTS:3}{MENU:ALERT:Some other time.}
+END
+celadon-game-corner-slots22 blank 13 10
+INTERACTIONS
+MENU:SLOTS:|{SLOTS:2}{SLOTS:3}{SLOTS:4}{MENU:ALERT:Some other time.}
+END
+celadon-game-corner-slots23 blank 13 11
+INTERACTIONS
+MENU:SLOTS:|{SLOTS:1}{SLOTS:2}{SLOTS:3}{MENU:ALERT:Some other time.}
+END
+celadon-game-corner-slots24 blank 18 6
+INTERACTIONS
+MENU:SLOTS:|{SLOTS:1}{SLOTS:2}{SLOTS:3}{MENU:ALERT:Some other time.}
+END
+celadon-game-corner-slots25 blank 18 7
+INTERACTIONS
+MENU:SLOTS:|{SLOTS:2}{SLOTS:3}{SLOTS:4}{MENU:ALERT:Some other time.}
+END
+celadon-game-corner-slots26 blank 18 9
+INTERACTIONS
+MENU:SLOTS:|{SLOTS:2}{SLOTS:3}{SLOTS:4}{MENU:ALERT:Some other time.}
+END
+celadon-game-corner-slots27 blank 18 10
+INTERACTIONS
+MENU:SLOTS:|{SLOTS:2}{SLOTS:3}{SLOTS:4}{MENU:ALERT:Some other time.}
+END
+celadon-game-corner-slots28 blank 18 11
+INTERACTIONS
+MENU:SLOTS:|{SLOTS:2}{SLOTS:3}{SLOTS:4}{MENU:ALERT:Some other time.}
+END
 TRAINERS
 celadon-game-corner-rocker 35 0.45 0.45 ROCKET rocket.png {ROCKET: Dang!}{} 42-20:28|20-42:28
 END

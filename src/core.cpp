@@ -8879,11 +8879,16 @@ void engine::do_interaction(character& npc) {
 			else {
 				s = "";
 			}
-			// TODO: Create happy gambling face and wait time
 			int count = stoi(s2);
 			int winnings = 0;
 			int result = 0;
 			if (count <= mc.coins) {
+				int clear_point = g.draw_list.size();
+				g.push_quad_load(-0.1f, (0.5f / 4.5f) + 0.0416f, 0.2f, 1.0f / 4.5f, safepath + string("images/gambling.png"));
+				double waiter1 = 0.0;
+				unsigned waiter2 = g.ae.create_animf(&waiter1, 0.0, 1.0, 54.0 / 30.0);
+				while (!g.ae.is_donef(waiter2)) {}
+				g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
 				mc.coins -= count;
 				while (count > 0) {
 					count--;
