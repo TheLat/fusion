@@ -3,7 +3,7 @@ Brock with a Geodude that only knows Spore and Dream Eater never uses Spore.
 Opening Scene
 Correctly set up default OSX keybinds.
 Random seed
-Sprites not matching palette
+Character sprites not matching palette
 Pandemonium Cave must not show up on area
 Slots
 Sound bug, mutes not clearing after a cry, mute/unmute music code

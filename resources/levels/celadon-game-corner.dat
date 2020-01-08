@@ -105,6 +105,10 @@ celadon-game-corner-hidden11 blank 15 4 INCORPOREAL
 INTERACTIONS
 MENU:ALERT:Found some coins!|IN_INVENTORY:COIN CASE|{PLAY_SOUND:sound_effects/general/sfx_denied.mp3|MENU:ALERT:Oops! Forgot the COIN CASE!|NO_ADVANCE}{PLAY_SOUND:sound_effects/general/sfx_get_item_1.mp3|GIVE_COINS:20|MENU:ALERT:{PLAYER_NAME} got 20 coins!|DEACTIVATE:celadon-game-corner-hidden11}
 END
+celadon-game-corner-slots1 blank 1 7
+INTERACTIONS
+MENU:SLOTS:|{SLOTS:1}{SLOTS:2}{SLOTS:3}{MENU:ALERT:Some other time.}
+END
 TRAINERS
 celadon-game-corner-rocker 35 0.45 0.45 ROCKET rocket.png {ROCKET: Dang!}{} 42-20:28|20-42:28
 END

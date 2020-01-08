@@ -8870,6 +8870,128 @@ void engine::do_interaction(character& npc) {
 		    update_level();
 		    g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
 		}
+		else if (s.find("SLOTS:") == 0) {
+			s2 = s;
+			s2.erase(0, s2.find(":") + 1);
+			if (s2.find("|") != -1) {
+				s2.erase(s2.find("|"), s2.length());
+			}
+			else {
+				s = "";
+			}
+			// TODO: Create happy gambling face and wait time
+			int count = stoi(s2);
+			int winnings = 0;
+			int result = 0;
+			if (count <= mc.coins) {
+				mc.coins -= count;
+				while (count > 0) {
+					count--;
+					result = int(random(0.0, 400.0));
+					switch (result) {
+					case 0:
+						winnings = 300;
+						break;
+					case 1:
+						winnings = 100;
+						break;
+					case 2:
+						winnings = 50;
+						break;
+					case 3:
+						winnings = 25;
+						break;
+					case 4:
+						winnings = 15;
+						break;
+					case 5:
+						winnings = 8;
+						break;
+					case 6:
+						winnings = 8;
+						break;
+					case 7:
+						winnings = 6;
+						break;
+					case 8:
+						winnings = 4;
+						break;
+					case 9:
+						winnings = 2;
+						break;
+					case 14:
+						winnings = 15;
+						break;
+					case 15:
+						winnings = 8;
+						break;
+					case 16:
+						winnings = 8;
+						break;
+					case 17:
+						winnings = 6;
+						break;
+					case 18:
+						winnings = 4;
+						break;
+					case 19:
+						winnings = 2;
+						break;
+					case 24:
+						winnings = 15;
+						break;
+					case 225:
+						winnings = 8;
+						break;
+					case 26:
+						winnings = 8;
+						break;
+					case 27:
+						winnings = 6;
+						break;
+					case 28:
+						winnings = 4;
+						break;
+					case 29:
+						winnings = 2;
+						break;
+					case 34:
+						winnings = 15;
+						break;
+					case 35:
+						winnings = 8;
+						break;
+					case 36:
+						winnings = 8;
+						break;
+					case 37:
+						winnings = 6;
+						break;
+					case 38:
+						winnings = 4;
+						break;
+					case 39:
+						winnings = 2;
+						break;
+					default:
+						continue;
+					}
+				}
+				if (winnings > 200) {
+					do_alert(string("JACKPOT! You got ") + to_string(winnings) + string(" coins!"));
+				}
+				else if (winnings > 0) {
+					do_alert(string("You won ") + to_string(winnings) + string(" coins!"));
+				}
+				else {
+					do_alert(string("Better luck next time."));
+				}
+				mc.coins += winnings;
+			}
+			else {
+				do_alert(string("You don't have enough coins!"));
+			}
+		}
 		else if (s.find("BOW:") == 0) {
 		    s2 = s;
 		    s2.erase(0, s2.find(":") + 1);
