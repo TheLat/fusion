@@ -1403,15 +1403,29 @@ bool engine::use_item(string filter, std::vector<int> &choices, string &ret) {
 				success = true;
 		}
 		else if (base.find("TELEPORT") == 0) {
-            se.play_sound(string("sound_effects/general/sfx_teleport_enter_1.mp3"));
-		    unsigned anim_holder = g.ae.create_anim_scene(string("screendark"));
-            while (!g.ae.is_dones(anim_holder)) {}
+			se.play_sound(string("sound_effects/general/sfx_teleport_enter_1.mp3"));
+			unsigned anim_holder = g.ae.create_anim_scene(string("screendark"));
+			while (!g.ae.is_dones(anim_holder)) {}
 			mc.loc = mc.last_center;
 			mc.movement = string("player");
 			update_level();
 			se.play_music(levels[mc.loc.level].music);
 			anim_holder = g.ae.create_anim_scene(string("screenlight"));
-            while (!g.ae.is_dones(anim_holder)) {}
+			while (!g.ae.is_dones(anim_holder)) {}
+			success = true;
+		}
+		else if (base.find("DIG") == 0) {
+			if (!levels[mc.loc.level].dungeon)
+				return false;
+			se.play_sound(string("sound_effects/general/sfx_teleport_enter_1.mp3"));
+			unsigned anim_holder = g.ae.create_anim_scene(string("screendark"));
+			while (!g.ae.is_dones(anim_holder)) {}
+			mc.loc = mc.last_non_dungeon;
+			mc.movement = string("player");
+			update_level();
+			se.play_music(levels[mc.loc.level].music);
+			anim_holder = g.ae.create_anim_scene(string("screenlight"));
+			while (!g.ae.is_dones(anim_holder)) {}
 			success = true;
 		}
 		else if (base.find("FLEE") == 0) {
