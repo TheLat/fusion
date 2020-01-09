@@ -9469,7 +9469,6 @@ void engine::main() {
 			}
 		}
 	}
-	e.play_level_music();
 
 	deltat = tim.delta(time_index);
 	if (!mc.team[0].defined) {
@@ -9484,6 +9483,7 @@ void engine::main() {
 		p.second = 1;
 		mc.inventory_storage.push_back(p);
 	}
+	e.play_level_music();
 	while (true) {
 		deltat = tim.delta(time_index);
 		while (deltat < 1.0/120.0)

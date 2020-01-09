@@ -4,38 +4,3 @@ Opening Scene
 Correctly set up default OSX keybinds.
 Random seed
 Sound bug, mutes not clearing after a cry, mute/unmute music code
-
-import time
-import sys
-from PIL import Image
-import os
-
-for f in os.listdir("."):
-	im = Image.open(f).convert("RGBA")
-	px = im.load()
-	for x in range(im.size[0]):
-		for y in range(0, im.size[1]):
-			if (px[(x,y)][3] == 255):
-				dist1 = 0;
-				dist2 = 0;
-				dist3 = 0;
-				dist4 = 0;
-				for i in range(0, 3):
-					dist1 = dist1 + abs(px[(x,y)][i] - 248)
-				for i in range(0, 3):
-					dist2 = dist2 + abs(px[(x,y)][i] - 168)
-				for i in range(0, 3):
-					dist3 = dist3 + abs(px[(x,y)][i] - 96)
-				for i in range(0, 3):
-					dist4 = dist4 + abs(px[(x,y)][i] - 0)
-				if (dist1 <= dist2 and dist1 <= dist3 and dist1 <= dist4):
-					px[(x,y)] = (248, 248, 248, 255)
-				if (dist2 <= dist1 and dist2 <= dist3 and dist2 <= dist4):
-					px[(x,y)] = (168, 168, 168, 255)
-				if (dist3 <= dist2 and dist3 <= dist1 and dist3 <= dist4):
-					px[(x,y)] = (96, 96, 96, 255)
-				if (dist4 <= dist2 and dist4 <= dist3 and dist4 <= dist1):
-					px[(x,y)] = (0, 0, 0, 255)
-			else:
-				px[(x,y)] = (0, 0, 0, 0)
-	im.save(f)
