@@ -34,7 +34,7 @@ FORCE_INTERACTION
 -4 0
 END
 INTERACTIONS
-PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:viridian-forest-boy3|MOVE_TO_PLAYER|MENU:ALERT:Hey! You have POK{e-accent}MON! Come one! Let's battle 'em!|BATTLE:viridian-forest-bugcatcher-1|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/27-trainer-boy-appears-intro.mp3,music/27-trainer-boy-appears-loop.mp3|!:viridian-forest-boy3|MOVE_TO_PLAYER|MENU:ALERT:Hey! You have POK{e-accent}MON! Come on! Let's battle 'em!|BATTLE:viridian-forest-bugcatcher-1|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Ssh! You'll scare the bugs away!
 END
 viridian-forest-item1 orb 1 32
