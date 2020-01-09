@@ -20,7 +20,7 @@ MENU:ALERT:I sold a useless NUGGET for $5000!
 END
 power-plant-center-guy hat 7 3 WANDER
 INTERACTIONS
-MENU:ALERT:The element types of POK{e-acent}MON make them stronger than some types and weaker than others!
+MENU:ALERT:The element types of POK{e-accent}MON make them stronger than some types and weaker than others!
 END
 power-plant-center-cableclub woman 11 2
 INTERACTIONS

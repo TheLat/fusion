@@ -57,7 +57,7 @@ FORCE_INTERACTION
 END
 INTERACTIONS
 PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:route8-girl2|MOVE_TO_PLAYER|MENU:ALERT:We must look silly standing here like this!|BATTLE:route8-girl2|{NO_ADVANCE}{DISABLE_FORCE}
-MENU:ALERT:SAFFRON's gate keeper won't let us through.|MENU:ALERT:He's so mean!
+MENU:ALERT:SAFFRON's gatekeeper won't let us through.|MENU:ALERT:He's so mean!
 END
 route8-girl3 girl 26 8 LEFT
 FORCE_INTERACTION

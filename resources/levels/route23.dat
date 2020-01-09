@@ -91,8 +91,8 @@ FORCE_INTERACTION
 3 0
 END
 INTERACTIONS
-MENU:ALERT:You can only go through here if you have a EARTHBADGE.|GET:EARTHBADGE|{PLAY_SOUND:sound_effects/general/sfx_denied.mp3|MOVE:PLAYER:0,1|NO_ADVANCE}{PLAY_SOUND:sound_effects/general/sfx_get_item_1.mp3|DISABLE_FORCE|MENU:ALERT:Oh! That is a EARTHBADGE!|MENU:ALERT:Go right ahead!}
-MENU:ALERT:Oh! That is a EARTHBADGE!|MENU:ALERT:Go right ahead!
+MENU:ALERT:You can only go through here if you have an EARTHBADGE.|GET:EARTHBADGE|{PLAY_SOUND:sound_effects/general/sfx_denied.mp3|MOVE:PLAYER:0,1|NO_ADVANCE}{PLAY_SOUND:sound_effects/general/sfx_get_item_1.mp3|DISABLE_FORCE|MENU:ALERT:Oh! That is an EARTHBADGE!|MENU:ALERT:Go right ahead!}
+MENU:ALERT:Oh! That is an EARTHBADGE!|MENU:ALERT:Go right ahead!
 END
 route23-odd-squad guy2 23 26 DOWN
 FORCE_INTERACTION

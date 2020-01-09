@@ -12,7 +12,7 @@ MENU:ALERT:Are you going to VIRIDIAN FOREST? Be careful, it's a natural maze!
 END
 viridian-station1-girl girl2 3 3 WANDER
 INTERACTIONS
-MENU:ALERT:RATTATA may be small, but it's bite is wicked!|MENU:ALERT:Did you get one?
+MENU:ALERT:RATTATA may be small, but its bite is wicked!|MENU:ALERT:Did you get one?
 END
 TELEPORT
 4 8 route2 8 45

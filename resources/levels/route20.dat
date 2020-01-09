@@ -52,7 +52,7 @@ FORCE_INTERACTION
 0 2
 END
 INTERACTIONS
-PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:route20-swimmer4|MOVE_TO_PLAYER|MENU:ALERT:I love floading with the fishes!|BATTLE:route20-swimmer4|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:route20-swimmer4|MOVE_TO_PLAYER|MENU:ALERT:I love floating with the fishes!|BATTLE:route20-swimmer4|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Want to float with me?
 END
 route20-sign2 blank 55 15

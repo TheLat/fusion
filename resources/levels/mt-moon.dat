@@ -58,7 +58,7 @@ MENU:ALERT:I saw them! I'm sure they're from TEAM ROCKET!
 END
 mt-moon-sign1 blank 15 23
 INTERACTIONS
-MENU:ALERT:Beware! ZUBAT is a blood sucker!
+MENU:ALERT:Beware! ZUBAT is a bloodsucker!
 END
 mt-moon-girl1 girl 16 23 DOWN
 FORCE_INTERACTION

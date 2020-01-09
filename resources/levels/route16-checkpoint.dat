@@ -20,7 +20,7 @@ MENU:ALERT:Looked into the binoculars.|MENU:ALERT:It's CELADON DEPT. STORE!
 END
 route16-checkpoint-girl1 child 5 19
 INTERACTIONS
-MENU:ALERT:I'm going for a ride with my girl friend!
+MENU:ALERT:I'm going for a ride with my girlfriend!
 END
 route16-checkpoint-girl2 girl2 2 22 WANDER
 INTERACTIONS

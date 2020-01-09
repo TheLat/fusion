@@ -222,7 +222,7 @@ FORCE_INTERACTION
 -3 0
 END
 INTERACTIONS
-PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:silph-co-rocket5|MOVE_TO_PLAYER|MENU:ALERT:It's off limits here! Go home!|BATTLE:silph-co-rocket5|{NO_ADVANCE}{DISABLE_FORCE}
+PLAY_MUSIC:music/35-trainer-bad-appears-intro.mp3,music/35-trainer-bad-appears-loop.mp3|!:silph-co-rocket5|MOVE_TO_PLAYER|MENU:ALERT:It's off-limits here! Go home!|BATTLE:silph-co-rocket5|{NO_ADVANCE}{DISABLE_FORCE}
 MENU:ALERT:Can you solve the maze in here?
 END
 silph-co-rocket6 rocket 20 54 LEFT
@@ -479,7 +479,7 @@ END
 silph-co-man8 guy 13 152 UP
 INTERACTIONS
 MENU:ALERT:TEAM ROCKET was after the MASTER BALL which will catch any POK{e-accent}MON!|FACE:UP|NO_ADVANCE
-MENU:ALERT:We cancelled the MASTER BALL project because of TEAM ROCKET.
+MENU:ALERT:We canceled the MASTER BALL project because of TEAM ROCKET.
 END
 silph-co-rocket21 rocket 19 164 LEFT
 FORCE_INTERACTION

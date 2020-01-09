@@ -86,7 +86,7 @@ FORCE_INTERACTION
 END
 INTERACTIONS
 PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:route19-guy7|MOVE_TO_PLAYER|MENU:ALERT:Swimming's great! Sunburns aren't!|BATTLE:route19-guy7|{NO_ADVANCE}{DISABLE_FORCE}
-MENU:ALERT:My boy friend wanted to swim to SEAFOAM ISLANDS.
+MENU:ALERT:My boyfriend wanted to swim to SEAFOAM ISLANDS.
 END
 route19-guy8 manswim 15 45 DOWN
 FORCE_INTERACTION

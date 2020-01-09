@@ -1,9 +1,16 @@
 NAME
-Power Plant Exterior
+Rock Tunnel Entrance
+MAP
+0.6925
+0.4525
+20
 MUSIC
 music/18-road-to-cerulean-intro.mp3,music/18-road-to-cerulean-loop.mp3
 LEAVESOUND
 sound_effects/general/sfx_go_outside.mp3
+FLY_LOCATION
+14
+22
 NPCS
 power-plant-outside-girl1 girl 10 27 LEFT
 FORCE_INTERACTION

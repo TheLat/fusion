@@ -30,7 +30,7 @@ MENU:ALERT:Scientists conduct experiments in the burned out building.
 END
 cinnabar-island-woman1 woman3 17 9 WANDER
 INTERACTIONS
-MENU:ALERT:CINNABAR GYM's BLAINE is an odd man who live here for decades.
+MENU:ALERT:CINNABAR GYM's BLAINE is an odd man who lives here for decades.
 END
 TELEPORT
 30 6 route20 1 6
