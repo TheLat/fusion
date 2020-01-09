@@ -9484,6 +9484,7 @@ void engine::main() {
 		mc.inventory_storage.push_back(p);
 	}
 	e.play_level_music();
+	srand(tim.get_current_time());
 	while (true) {
 		deltat = tim.delta(time_index);
 		while (deltat < 1.0/120.0)

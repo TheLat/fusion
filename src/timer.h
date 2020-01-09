@@ -8,6 +8,7 @@ public:
 	unsigned create();
 	void update(unsigned index);
 	double delta(unsigned index);
+	unsigned get_current_time();
 	timer();
 };
 

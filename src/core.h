@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <fstream>
+#include <stdlib.h>
 #include "menus.h"
 #include "anim.h"
 

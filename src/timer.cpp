@@ -57,3 +57,18 @@ double timer::delta(unsigned index) {
 	return f;
 #endif
 }
+
+unsigned timer::get_current_time() {
+#ifdef __APPLE__
+	timeval temp;
+	gettimeofday(&temp, NULL);
+	double f = temp.tv_sec;
+	f += temp.tv_usec / 1000000.0;
+#else
+	LARGE_INTEGER temp;
+	QueryPerformanceCounter(&temp);
+	double f = 1.0 / freq.QuadPart;
+	f = (temp.QuadPart) * f;
+#endif
+	return unsigned(f*1000000.0);
+}
