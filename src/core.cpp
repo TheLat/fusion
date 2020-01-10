@@ -9308,6 +9308,16 @@ void engine::main() {
 	game_start_timer = tim.create();
 	double deltat = tim.delta(time_index);
 
+	//Opening scene!
+	mc.values[string("SFXVOLUME")] = 4;
+	mc.values[string("MUSICVOLUME")] = 4;
+	unsigned anim_holder = 0;
+	unsigned clear_point = g.draw_list.size();
+	g.ae.create_anim_scene(string("gamestart"));
+	while (!g.ae.is_dones(anim_holder)) {} // OR INPUT
+	g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
+	//se.play_music(string("music/01-opening-intro.mp3,music/01-opening-loop.mp3"));
+
 	vector<int> picks;
 	picks = do_menu(string("OPENING_MENU"));
 	picks = remove_cancels(picks);
