@@ -9313,10 +9313,15 @@ void engine::main() {
 	mc.values[string("MUSICVOLUME")] = 4;
 	unsigned anim_holder = 0;
 	unsigned clear_point = g.draw_list.size();
-	g.ae.create_anim_scene(string("gamestart"));
+	anim_holder = g.ae.create_anim_scene(string("gamestart"));
 	while (!g.ae.is_dones(anim_holder)) {} // OR INPUT
 	g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
-	//se.play_music(string("music/01-opening-intro.mp3,music/01-opening-loop.mp3"));
+	se.play_music(string("music/01-opening-intro.mp3,music/01-opening-loop.mp3"));
+	anim_holder = g.ae.create_anim_scene(string("opening"));
+	while (!g.ae.is_dones(anim_holder)) {} // OR INPUT
+	g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
+	g.push_quad_load(-1.0, -1.0, 2.0, 2.0, safepath + string("images/offwhite.png"));
+	g.ae.create_anim_scene(string("screenunbright"));
 
 	vector<int> picks;
 	picks = do_menu(string("OPENING_MENU"));
