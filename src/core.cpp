@@ -9313,6 +9313,11 @@ void engine::main() {
 	mc.values[string("MUSICVOLUME")] = 4;
 	unsigned anim_holder = 0;
 	unsigned clear_point = g.draw_list.size();
+	unsigned quad_holder = 0;
+	unsigned trainer_holder = 0;
+	unsigned mon_holder = 0;
+	string opening_mon = string("1-1");
+	double time_holder = 0.0;
 	anim_holder = g.ae.create_anim_scene(string("gamestart"));
 	while (!g.ae.is_dones(anim_holder)) {} // OR INPUT
 	g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
@@ -9320,8 +9325,83 @@ void engine::main() {
 	anim_holder = g.ae.create_anim_scene(string("opening"));
 	while (!g.ae.is_dones(anim_holder)) {} // OR INPUT
 	g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
-	g.push_quad_load(-1.0, -1.0, 2.0, 2.0, safepath + string("images/offwhite.png"));
+	quad_holder = g.push_quad_load(-1.0, -1.0, 2.0, 2.0, safepath + string("images/offwhite.png"));
+	quad_holder = g.push_quad_load(-0.8, 1.0, 1.6, 0.8, safepath + string("images/opening-title.png"));
+	mon_holder = g.push_quad_load(-0.4, -0.9, 0.8, 0.8, safepath + string("images/1-1.png"));
+	trainer_holder = g.push_quad_load(-0.2, -0.9, 0.8, 0.8, safepath + string("images/opening-player0.png"));
+	g.push_quad_load(-1.0, -1.0, 0.0, 0.0, safepath + string("images/opening-player1.png"));
+	g.push_quad_load(-1.0, -1.0, 0.0, 0.0, safepath + string("images/opening-player2.png"));
+	g.push_quad_load(-1.0, -1.0, 2.0, 0.1, safepath + string("images/opening-copyright.png"));
 	g.ae.create_anim_scene(string("screenunbright"));
+	anim_holder = g.ae.create_animf(&(g.draw_list[quad_holder].y), 1.0, 0.1, 0.25);
+	se.play_sound(string("sound_effects/general/sfx_intro_crash.mp3"));
+	while (!g.ae.is_donef(anim_holder)) {} // OR INPUT
+	quad_holder = g.push_quad_load(1.0, 0.2, 0.5625*2, 0.1, safepath + string("images/opening-version.png"));
+	anim_holder = g.ae.create_animf(&(g.draw_list[quad_holder].x), 1.0, 1.1, 0.5);
+	while (!g.ae.is_donef(anim_holder)) {} // OR INPUT
+	anim_holder = g.ae.create_animf(&(g.draw_list[quad_holder].x), 1.0, -0.5, 0.5);
+	se.play_sound(string("sound_effects/general/sfx_intro_whoosh.mp3"));
+	while (!g.ae.is_donef(anim_holder)) {} // OR INPUT
+	bool input_check = false;
+	srand(tim.get_current_time());
+	while (!ie.get_pressed_key(input_check) && !ie.get_button_pressed(input_check)) {
+		opening_mon = to_string(int(random(0.0, 151.0))) + string("-") + to_string(int(random(0.0, 151.0)));
+		anim_holder = g.ae.create_animf(&(g.draw_list[mon_holder].x), -0.4, -1.8, 0.5);
+		while (!g.ae.is_donef(anim_holder) && !ie.get_pressed_key(input_check) && !ie.get_button_pressed(input_check)) {}
+		if (ie.get_pressed_key(input_check) || ie.get_button_pressed(input_check)) {
+			g.ae.finishf(anim_holder);
+			break;
+		}
+		g.draw_list[mon_holder].filename = safepath + string("images/") + opening_mon + string(".png");
+		g.draw_list[mon_holder].tex = g.tex[g.draw_list[mon_holder].filename];
+		g.new_load = true;
+		anim_holder = g.ae.create_animf(&(g.draw_list[mon_holder].x), 1.0, 1.1, 0.1);
+		while (!g.ae.is_donef(anim_holder) && !ie.get_pressed_key(input_check) && !ie.get_button_pressed(input_check)) {}
+		if (ie.get_pressed_key(input_check) || ie.get_button_pressed(input_check)) {
+			g.ae.finishf(anim_holder);
+			break;
+		}
+		g.draw_list[trainer_holder].tex = g.tex[safepath + string("images/opening-player1.png")];
+		anim_holder = g.ae.create_animf(&(g.draw_list[mon_holder].x), 1.0, 1.1, 0.1);
+		while (!g.ae.is_donef(anim_holder) && !ie.get_pressed_key(input_check) && !ie.get_button_pressed(input_check)) {}
+		if (ie.get_pressed_key(input_check) || ie.get_button_pressed(input_check)) {
+			g.ae.finishf(anim_holder);
+			break;
+		}
+		g.draw_list[trainer_holder].tex = g.tex[safepath + string("images/opening-player2.png")];
+		anim_holder = g.ae.create_animf(&(g.draw_list[mon_holder].x), 1.0, 1.1, 0.1);
+		while (!g.ae.is_donef(anim_holder) && !ie.get_pressed_key(input_check) && !ie.get_button_pressed(input_check)) {}
+		if (ie.get_pressed_key(input_check) || ie.get_button_pressed(input_check)) {
+			g.ae.finishf(anim_holder);
+			break;
+		}
+		g.draw_list[trainer_holder].tex = g.tex[safepath + string("images/opening-player1.png")];
+		anim_holder = g.ae.create_animf(&(g.draw_list[mon_holder].x), 1.0, 1.1, 0.1);
+		while (!g.ae.is_donef(anim_holder) && !ie.get_pressed_key(input_check) && !ie.get_button_pressed(input_check)) {}
+		if (ie.get_pressed_key(input_check) || ie.get_button_pressed(input_check)) {
+			g.ae.finishf(anim_holder);
+			break;
+		}
+		g.draw_list[trainer_holder].tex = g.tex[safepath + string("images/opening-player0.png")];
+		anim_holder = g.ae.create_animf(&(g.draw_list[mon_holder].x), 1.0, 1.1, 0.1);
+		while (!g.ae.is_donef(anim_holder) && !ie.get_pressed_key(input_check) && !ie.get_button_pressed(input_check)) {}
+		if (ie.get_pressed_key(input_check) || ie.get_button_pressed(input_check)) {
+			g.ae.finishf(anim_holder);
+			break;
+		}
+		anim_holder = g.ae.create_animf(&(g.draw_list[mon_holder].x), 1.0, -0.4, 0.5);
+		while (!g.ae.is_donef(anim_holder) && !ie.get_pressed_key(input_check) && !ie.get_button_pressed(input_check)) {}
+		if (ie.get_pressed_key(input_check) || ie.get_button_pressed(input_check)) {
+			g.ae.finishf(anim_holder);
+			break;
+		}
+		anim_holder = g.ae.create_animf(&time_holder, 1.0, -0.4, 2.0);
+		while (!g.ae.is_donef(anim_holder) && !ie.get_pressed_key(input_check) && !ie.get_button_pressed(input_check)) {}
+		if (ie.get_pressed_key(input_check) || ie.get_button_pressed(input_check)) {
+			g.ae.finishf(anim_holder);
+			break;
+		}
+	}
 
 	vector<int> picks;
 	picks = do_menu(string("OPENING_MENU"));
@@ -9499,7 +9579,6 @@ void engine::main() {
 		mc.inventory_storage.push_back(p);
 	}
 	e.play_level_music();
-	srand(tim.get_current_time());
 	while (true) {
 		deltat = tim.delta(time_index);
 		while (deltat < 1.0/120.0)
