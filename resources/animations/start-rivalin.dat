@@ -1,0 +1,7 @@
+CREATE_SPRITE images/start-rival0.png 0.0 -0.3 -0.3 0.7 0.7
+CREATE_SPRITE images/start-rival1.png 0.3 -0.3 -0.3 0.7 0.7
+CREATE_SPRITE images/start-rival2.png 0.6 -0.3 -0.3 0.7 0.7
+CREATE_SPRITE images/start-rival3.png 0.9 -0.3 -0.3 0.7 0.7
+CREATE_SPRITE images/start-rival4.png 1.2 -0.3 -0.3 0.7 0.7
+CREATE_SPRITE images/start-rival5.png 1.5 -0.3 -0.3 0.7 0.7
+CREATE_SPRITE images/start-rival5.png 1.8 -0.3 -0.3 0.7 0.7

@@ -9336,7 +9336,7 @@ void engine::main() {
 	anim_holder = g.ae.create_animf(&(g.draw_list[quad_holder].y), 1.0, 0.1, 0.25);
 	se.play_sound(string("sound_effects/general/sfx_intro_crash.mp3"));
 	while (!g.ae.is_donef(anim_holder)) {} // OR INPUT
-	quad_holder = g.push_quad_load(1.0, 0.2, 0.5625*2, 0.1, safepath + string("images/opening-version.png"));
+	quad_holder = g.push_quad_load(1.0, 0.15, 0.5625*2, 0.1, safepath + string("images/opening-version.png"));
 	anim_holder = g.ae.create_animf(&(g.draw_list[quad_holder].x), 1.0, 1.1, 0.5);
 	while (!g.ae.is_donef(anim_holder)) {} // OR INPUT
 	anim_holder = g.ae.create_animf(&(g.draw_list[quad_holder].x), 1.0, -0.5, 0.5);
@@ -9402,6 +9402,7 @@ void engine::main() {
 			break;
 		}
 	}
+	se.play_cry(opening_mon);
 
 	vector<int> picks;
 	picks = do_menu(string("OPENING_MENU"));
@@ -9567,16 +9568,56 @@ void engine::main() {
 
 	deltat = tim.delta(time_index);
 	if (!mc.team[0].defined) {
-		// New Game
+		quad_holder = g.push_quad_load(-1.0, -1.0, 2.0, 2.0, safepath + string("images/offwhite.png"));
 		e.mc.loc.x = 3.0;
 		e.mc.loc.y = 6.0;
 		e.mc.loc.level = "home";
-		e.mc.dir = DOWN;
+		e.mc.dir = UP;
 		e.mc.money = 3000;
 		pair<string, int> p;
 		p.first = string("POTION");
 		p.second = 1;
 		mc.inventory_storage.push_back(p);
+		anim_holder = g.ae.create_anim_scene(string("start-oakin"));
+		while (!g.ae.is_dones(anim_holder)) {}
+		do_alert(string("Hello there! Welcome to the world of POK{e-accent}MON!"));
+		do_alert(string("My name is OAK! People call me the POK{e-accent}MON PROF!"));
+		anim_holder = g.ae.create_anim_scene(string("start-oakout"));
+		while (!g.ae.is_dones(anim_holder)) {}
+		anim_holder = g.ae.create_anim_scene(string("start-nidoin"));
+		while (!g.ae.is_dones(anim_holder)) {}
+		do_alert(string("This world is inhabited by creatures called POK{e-accent}MON!"));
+		do_alert(string("For some people, POK{e-accent}MON are pets. Others use them for fights."));
+		do_alert(string("Myself..."));
+		do_alert(string("I study POK{e-accent}MON as a profession."));
+		anim_holder = g.ae.create_anim_scene(string("start-nidoout"));
+		while (!g.ae.is_dones(anim_holder)) {}
+		anim_holder = g.ae.create_anim_scene(string("start-playerin"));
+		while (!g.ae.is_dones(anim_holder)) {}
+		do_alert(string("First, what is your name?"));
+		while (mc.name == "") {
+			mc.name = get_input_string();
+		}
+		do_alert(string("Right! So your name is {PLAYER_NAME}!"));
+		anim_holder = g.ae.create_anim_scene(string("start-playerout"));
+		while (!g.ae.is_dones(anim_holder)) {}
+		anim_holder = g.ae.create_anim_scene(string("start-rivalin"));
+		while (!g.ae.is_dones(anim_holder)) {}
+		do_alert(string("This is my grandson. He's been your rival since you were a baby."));
+		do_alert(string("...Erm, what is his name again?"));
+		while (mc.rivalname == "") {
+			mc.rivalname = get_input_string();
+		}
+		do_alert(string("That's right! I remember now! His name is {RIVAL_NAME}!"));
+		anim_holder = g.ae.create_anim_scene(string("start-rivalout"));
+		while (!g.ae.is_dones(anim_holder)) {}
+		anim_holder = g.ae.create_anim_scene(string("start-playerin"));
+		while (!g.ae.is_dones(anim_holder)) {}
+		do_alert(string("Your very own POK{e-accent}MON legend is about to unfold!"));
+		do_alert(string("A world of dreams and adventures with POK{e-accent}MON awaits!"));
+		do_alert(string("Let's go!"));
+		anim_holder = g.ae.create_anim_scene(string("start-playershrink"));
+		while (!g.ae.is_dones(anim_holder)) {}
 	}
 	e.play_level_music();
 	while (true) {
