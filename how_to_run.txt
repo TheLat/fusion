@@ -1,0 +1,5 @@
+Windows:
+Open the "Release" folder and double-click "fusion.exe"
+
+OSX:
+Double-click "mac_version.command"
