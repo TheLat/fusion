@@ -39,10 +39,10 @@ input::input() {
     i_down = 245;
     i_left = 243;
     i_right = 244;
-    i_confirm = 0;
-    i_cancel = 1;
-    i_start = 6;
-    i_select = 7;
+    i_confirm = 68;
+    i_cancel = 101;
+    i_start = 65;
+    i_select = 54;
 	ifstream f("../osx_keybinds.dat");
 #else
 	i_up = 38;
@@ -432,7 +432,7 @@ unsigned char input::get_pressed_key(bool& pressed) {
 	for (int i = 0; i < 16 * 16; ++i) {
 		if (key_press[i]) {
 			pressed = true;
-			return unsigned char(i);
+			return char(i);
 		}
 	}
 	return 0;
