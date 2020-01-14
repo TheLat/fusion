@@ -87,7 +87,7 @@ MENU:ALERT:I wonder which is stronger, male or female POK{e-accent}MON?
 END
 route13-sign3 blank 50 6
 INTERACTIONS
-MENU:ALERT:TRAINER TIPS|MENU:ALERT:Use SELECT to switch items in the ITEM window!|MENU:ALERT:TODO: THIS
+MENU:ALERT:TRAINER TIPS|MENU:ALERT:This is a very strange fence layout.
 END
 route13-bush1 bush 51 5
 INTERACTIONS

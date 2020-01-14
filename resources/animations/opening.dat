@@ -6,37 +6,37 @@ CREATE_SPRITE images/opening-gengar0.png 0.0 1.0 1.0 0.8 0.8
 CREATE_SPRITE images/opening-gengar1.png 0.0 1.0 1.0 0.8 0.8
 CREATE_SPRITE images/opening-gengar2.png 0.0 1.0 1.0 0.8 0.8
 CREATE_SPRITE images/gamestart06.png 0.0 -1.0 -1.0 2.0 2.0
-SPLINE_TRANSFORM 1 0.0 1.0 -1.0 -0.65 0.8 0.8 -0.3 -0.65 0.8 0.8
-SPLINE_TRANSFORM 4 0.0 1.0 0.2 -0.565 0.8 0.8 -0.7 -0.565 0.8 0.8
-PLAY_SOUND sound_effects/general/sfx_intro_hip.mp3 1.0
-SPLINE_TRANSFORM 1 1.0 1.4 -0.3 -0.65 0.8 0.8 -0.2 -0.5 0.8 0.8 -0.1 -0.65 0.8 0.8
-PLAY_SOUND sound_effects/general/sfx_intro_hop.mp3 1.4
-SPLINE_TRANSFORM 1 1.4 1.8 -0.1 -0.65 0.8 0.8 -0.2 -0.5 0.8 0.8 -0.3 -0.65 0.8 0.8
+SPLINE_TRANSFORM 1 0.0 2.0 -1.0 -0.65 0.8 0.8 -0.3 -0.65 0.8 0.8
+SPLINE_TRANSFORM 4 0.0 2.0 0.2 -0.565 0.8 0.8 -0.7 -0.565 0.8 0.8
 PLAY_SOUND sound_effects/general/sfx_intro_hip.mp3 2.0
 SPLINE_TRANSFORM 1 2.0 2.4 -0.3 -0.65 0.8 0.8 -0.2 -0.5 0.8 0.8 -0.1 -0.65 0.8 0.8
-PLAY_SOUND sound_effects/general/sfx_intro_hip.mp3 2.4
+PLAY_SOUND sound_effects/general/sfx_intro_hop.mp3 2.4
 SPLINE_TRANSFORM 1 2.4 2.8 -0.1 -0.65 0.8 0.8 -0.2 -0.5 0.8 0.8 -0.3 -0.65 0.8 0.8
-SPLINE_TRANSFORM 5 3.5 3.75 -0.7 -0.565 0.8 0.8 -0.75 -0.565 0.8 0.8
-SPLINE_TRANSFORM 4 3.5 4.0 1.0 1.0 0.8 0.8 1.0 1.0 0.8 0.8
-SPLINE_TRANSFORM 6 3.75 4.0 -0.75 -0.565 0.8 0.8 -0.6 -0.565 0.8 0.8
-SPLINE_TRANSFORM 5 3.75 4.0 1.0 1.0 0.8 0.8 1.0 1.0 0.8 0.8
-SPLINE_TRANSFORM 4 4.5 5.0 -0.6 -0.565 0.8 0.8 -0.7 -0.565 0.8 0.8
-SPLINE_TRANSFORM 5 4.0 4.5 1.0 1.0 0.8 0.8 1.0 1.0 0.8 0.8
-SPLINE_TRANSFORM 6 4.5 5.0 1.0 1.0 0.8 0.8 1.0 1.0 0.8 0.8
-PLAY_SOUND sound_effects/general/sfx_intro_raise.mp3 3.5
-PLAY_SOUND sound_effects/general/sfx_intro_crash.mp3 3.8
-PLAY_SOUND sound_effects/general/sfx_intro_hip.mp3 4.0
-SPLINE_TRANSFORM 2 4.0 4.5 -0.3 -0.65 0.8 0.8 -0.2 -0.4 0.8 0.8 -0.1 -0.65 0.8 0.8
-SPLINE_TRANSFORM 1 4.0 4.5 1.0 1.0 0.8 0.8 1.0 1.0 0.8 0.8
+PLAY_SOUND sound_effects/general/sfx_intro_hip.mp3 3.0
+SPLINE_TRANSFORM 1 3.0 3.4 -0.3 -0.65 0.8 0.8 -0.2 -0.5 0.8 0.8 -0.1 -0.65 0.8 0.8
+PLAY_SOUND sound_effects/general/sfx_intro_hip.mp3 3.4
+SPLINE_TRANSFORM 1 3.4 3.8 -0.1 -0.65 0.8 0.8 -0.2 -0.5 0.8 0.8 -0.3 -0.65 0.8 0.8
+SPLINE_TRANSFORM 5 4.5 4.75 -0.7 -0.565 0.8 0.8 -0.75 -0.565 0.8 0.8
+SPLINE_TRANSFORM 4 4.5 5.0 1.0 1.0 0.8 0.8 1.0 1.0 0.8 0.8
+SPLINE_TRANSFORM 6 4.75 5.0 -0.75 -0.565 0.8 0.8 -0.6 -0.565 0.8 0.8
+SPLINE_TRANSFORM 5 4.75 5.0 1.0 1.0 0.8 0.8 1.0 1.0 0.8 0.8
+SPLINE_TRANSFORM 4 5.5 6.0 -0.6 -0.565 0.8 0.8 -0.7 -0.565 0.8 0.8
+SPLINE_TRANSFORM 5 5.0 6.5 1.0 1.0 0.8 0.8 1.0 1.0 0.8 0.8
+SPLINE_TRANSFORM 6 5.5 6.0 1.0 1.0 0.8 0.8 1.0 1.0 0.8 0.8
+PLAY_SOUND sound_effects/general/sfx_intro_raise.mp3 4.5
+PLAY_SOUND sound_effects/general/sfx_intro_crash.mp3 4.8
 PLAY_SOUND sound_effects/general/sfx_intro_hip.mp3 5.0
-SPLINE_TRANSFORM 1 5.0 5.4 -0.1 -0.65 0.8 0.8 -0.0 -0.5 0.8 0.8 0.1 -0.65 0.8 0.8
-PLAY_SOUND sound_effects/general/sfx_intro_hop.mp3 5.4
-SPLINE_TRANSFORM 1 5.4 5.8 0.1 -0.65 0.8 0.8 -0.0 -0.5 0.8 0.8 -0.1 -0.65 0.8 0.8
-SPLINE_TRANSFORM 2 5.0 5.5 1.0 1.0 0.8 0.8 1.0 1.0 0.8 0.8
-SPLINE_TRANSFORM 2 6.5 7.5 -0.1 -0.65 0.8 0.8 -0.1 -0.65 0.8 0.8
-SPLINE_TRANSFORM 1 6.5 7.5 1.0 1.0 0.8 0.8 1.0 1.0 0.8 0.8
-SPLINE_TRANSFORM 3 7.5 8.25 -0.1 -0.65 0.8 0.8 -0.8 -0.4 0.8 0.8
-SPLINE_TRANSFORM 2 7.5 8.25 1.0 1.0 0.8 0.8 1.0 1.0 0.8 0.8
-SPLINE_TRANSFORM 1 7.5 8.25 1.0 1.0 0.8 0.8 1.0 1.0 0.8 0.8
-PLAY_SOUND sound_effects/general/sfx_intro_lunge.mp3 7.5
-SPLINE_TRANSFORM SCREEN_EFFECTS 7.5 8.25 0.0 0.0 0.0 0.0 0.0 0.0 1.0 0.0
+SPLINE_TRANSFORM 2 5.0 5.5 -0.3 -0.65 0.8 0.8 -0.2 -0.4 0.8 0.8 -0.1 -0.65 0.8 0.8
+SPLINE_TRANSFORM 1 5.0 5.5 1.0 1.0 0.8 0.8 1.0 1.0 0.8 0.8
+PLAY_SOUND sound_effects/general/sfx_intro_hip.mp3 6.0
+SPLINE_TRANSFORM 1 6.0 6.4 -0.1 -0.65 0.8 0.8 -0.0 -0.5 0.8 0.8 0.1 -0.65 0.8 0.8
+PLAY_SOUND sound_effects/general/sfx_intro_hop.mp3 6.4
+SPLINE_TRANSFORM 1 6.4 6.8 0.1 -0.65 0.8 0.8 -0.0 -0.5 0.8 0.8 -0.1 -0.65 0.8 0.8
+SPLINE_TRANSFORM 2 6.0 6.5 1.0 1.0 0.8 0.8 1.0 1.0 0.8 0.8
+SPLINE_TRANSFORM 2 7.5 8.5 -0.1 -0.65 0.8 0.8 -0.1 -0.65 0.8 0.8
+SPLINE_TRANSFORM 1 7.5 8.5 1.0 1.0 0.8 0.8 1.0 1.0 0.8 0.8
+SPLINE_TRANSFORM 3 8.5 9.25 -0.1 -0.65 0.8 0.8 -0.8 -0.4 0.8 0.8
+SPLINE_TRANSFORM 2 8.5 9.25 1.0 1.0 0.8 0.8 1.0 1.0 0.8 0.8
+SPLINE_TRANSFORM 1 8.5 9.25 1.0 1.0 0.8 0.8 1.0 1.0 0.8 0.8
+PLAY_SOUND sound_effects/general/sfx_intro_lunge.mp3 8.5
+SPLINE_TRANSFORM SCREEN_EFFECTS 8.5 9.25 0.0 0.0 0.0 0.0 0.0 0.0 1.0 0.0
