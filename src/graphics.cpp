@@ -11,7 +11,7 @@ extern bool safe_getline(ifstream &f, string& s);
 
 extern string safepath;
 extern void input_tick();
-
+extern int resolution;
 double tile_anim_dur = 48000.0;
 
 GLuint graphics::load_image(string filename) {
@@ -217,7 +217,7 @@ void graphics::initRendering() {
 #endif
 	glGenTextures(1, &r_tex);
     glBindTexture(GL_TEXTURE_2D, r_tex);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 160*4,144*4, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, resolution,(resolution*9)/10, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 #ifdef __APPLE__
@@ -396,7 +396,7 @@ void graphics::drawScene() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glMatrixMode(GL_MODELVIEW); //Switch to the drawing perspective
 	glLoadIdentity(); //Reset the drawing perspective
-	glViewport(0,0,160*4,144*4);
+	glViewport(0,0,resolution,(resolution*9)/10);
 	glColor3f(1.0f, 1.0f, 1.0f);
 	for (unsigned i = 0; i < draw_list_copy.size(); i++) {
 		draw_quad(draw_list_copy[i]);

@@ -391,6 +391,7 @@ public:
 	void init_special();
 	void init_types();
 	void init_game_timer();
+	int get_resolution();
 	int weightedrand();
 	void handle_teleport();
 	int get_tile(double y, double x);

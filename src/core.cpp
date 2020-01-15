@@ -6486,6 +6486,19 @@ void engine::init_swimming() {
 	}
 }
 
+int engine::get_resolution() {
+	int res = 640;
+	string line;
+	ifstream f("../resolution.txt");
+	while (f.is_open()) {
+		while (safe_getline(f, line)) {
+			res = stoi(line);
+		}
+		f.close();
+	}
+	return res;
+}
+
 void engine::init_exp() {
 	string line;
 	ifstream f("../resources/data/exp.dat");

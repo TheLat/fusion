@@ -18,6 +18,7 @@ graphics g;
 soundengine se;
 timer tim;
 extern string safepath;
+int resolution;
 
 bool safe_getline(ifstream &f, string& s) {
 	bool ret = std::getline(f, s) ? true : false;
@@ -405,9 +406,10 @@ int main(int argc, char** argv) {
 
 
 	//Initialize GLUT
+	resolution = e.get_resolution();
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
-	glutInitWindowSize(160*4, 144*4); //Set the window size
+	glutInitWindowSize(resolution, (resolution*9)/10); //Set the window size
 	//Create the window
 	glutCreateWindow("Pokemon Fusion");
 	g.initRendering(); //Initialize rendering
