@@ -9345,7 +9345,7 @@ void engine::main() {
 	bool input_check = false;
 	srand(tim.get_current_time());
 	while (!ie.get_pressed_key(input_check) && !ie.get_button_pressed(input_check)) {
-		opening_mon = to_string(int(random(0.0, 151.0))) + string("-") + to_string(int(random(0.0, 151.0)));
+		opening_mon = to_string(int(random(1.0, 151.0))) + string("-") + to_string(int(random(1.0, 151.0)));
 		anim_holder = g.ae.create_animf(&(g.draw_list[mon_holder].x), -0.4, -1.8, 0.5);
 		while (!g.ae.is_donef(anim_holder) && !ie.get_pressed_key(input_check) && !ie.get_button_pressed(input_check)) {}
 		if (ie.get_pressed_key(input_check) || ie.get_button_pressed(input_check)) {
