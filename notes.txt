@@ -1,2 +1,5 @@
 TO FIX:
-Correctly set up default OSX keybinds.
+Skippable opening
+Make new game check if player name is empty string
+Crash bugs in capturing Nido-fusions west of Viridian?
+Make bonk sound non-blocking
