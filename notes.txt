@@ -3,3 +3,4 @@ Skippable opening
 Make new game check if player name is empty string
 Crash bugs in capturing Nido-fusions west of Viridian?
 Make bonk sound non-blocking
+Don't take keyboard input when not in focus (windows only)
