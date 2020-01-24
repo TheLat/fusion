@@ -5,3 +5,4 @@ Crash bugs in capturing Nido-fusions west of Viridian?
 Make bonk sound non-blocking
 Don't take keyboard input when not in focus (windows only)
 Crash bug related to leveling up and capturing?
+Speed-up button?
