@@ -7186,7 +7186,7 @@ void engine::update_level() {
 }
 
 void engine::draw_level() {
-	float xp, xl, yp, yl;
+	double xp, xl, yp, yl;
 	string curr_level = mc.loc.level;
 	double curr_x = mc.loc.x;
 	double curr_y = mc.loc.y;
@@ -7198,17 +7198,17 @@ void engine::draw_level() {
 	for (unsigned y = max(0, unsigned(curr_y - 4.0)); y < maxy; ++y) {
 		unsigned maxx = min(int(l->data[y].size()), max(int(curr_x + 7.0), 0));
 		for (unsigned x = max(0, unsigned(curr_x - 5.0)); x < maxx; ++x) {
-			xp = -1.0f + (float(x) / 5.0f) - ((curr_x - 4.5f) / 5.0f);
-			yp = (-float(y) / 4.5f) - (0.5f / 4.5f) + (curr_y / 4.5f);
-			xl = 1.0f / 5.0f;
-			yl = 1.0 / 4.5f;
-			if (xp < -1.0f && xp + xl < -1.0f)
+			xp = -1.0 + (double(x) / 5.0) - ((curr_x - 4.5) / 5.0);
+			yp = (-double(y) / 4.5) - (0.5 / 4.5) + (curr_y / 4.5);
+			xl = 1.0 / 5.0;
+			yl = 1.0 / 4.5;
+			if (xp < -1.0 && xp + xl < -1.0)
 				continue;
-			if (yp < -1.0f && yp + yl < -1.0f)
+			if (yp < -1.0 && yp + yl < -1.0)
 				continue;
-			if (xp > 1.0f && xp + xl > 1.0f)
+			if (xp > 1.0 && xp + xl > 1.0)
 				continue;
-			if (yp > 1.0f && yp + yl > 1.0f)
+			if (yp > 1.0 && yp + yl > 1.0)
 				continue;
 			if (water_render[l->data[y][x]])
 			    g.push_quad_load(xp, yp, xl, yl, waterstring);
@@ -7231,17 +7231,17 @@ void engine::draw_level() {
 		for (unsigned y = max(0, unsigned(curr_y - levels[curr_level].neighbors[i].y - 4.0)); y < maxy; ++y) {
 			unsigned maxx = min(int(levels[levels[curr_level].neighbors[i].level].data[y].size()), max(int(curr_x - levels[curr_level].neighbors[i].x + 7.0), 0));
 			for (unsigned x = max(0, unsigned(curr_x - levels[curr_level].neighbors[i].x - 5.0)); x < maxx; ++x) {
-				xp = -1.0f + (float(x + levels[curr_level].neighbors[i].x) / 5.0f) - ((curr_x - 4.5f) / 5.0f);
-				yp = (-float(y + levels[curr_level].neighbors[i].y) / 4.5f) - (0.5f / 4.5f) + (curr_y / 4.5f);
-				xl = 1.0f / 5.0f;
-				yl = 1.0 / 4.5f;
-				if (xp < -1.0f && xp + xl < -1.0f)
+				xp = -1.0 + (double(x + levels[curr_level].neighbors[i].x) / 5.0) - ((curr_x - 4.5) / 5.0);
+				yp = (-double(y + levels[curr_level].neighbors[i].y) / 4.5) - (0.5 / 4.5) + (curr_y / 4.5);
+				xl = 1.0 / 5.0;
+				yl = 1.0 / 4.5;
+				if (xp < -1.0 && xp + xl < -1.0)
 					continue;
-				if (yp < -1.0f && yp + yl < -1.0f)
+				if (yp < -1.0 && yp + yl < -1.0)
 					continue;
-				if (xp > 1.0f && xp + xl > 1.0f)
+				if (xp > 1.0 && xp + xl > 1.0)
 					continue;
-				if (yp > 1.0f && yp + yl > 1.0f)
+				if (yp > 1.0 && yp + yl > 1.0)
 					continue;
 				if (water_render[levels[levels[curr_level].neighbors[i].level].data[y][x]])
 				    g.push_quad_load(xp, yp, xl, yl, waterstring);

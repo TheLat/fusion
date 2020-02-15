@@ -10,4 +10,3 @@ Change Route 1 level range to 2-2
 Infinite Eevees if box 1 is full or almost full?
 Absorb works on underground Pokemon
 Crash on smart trainers.  Maybe fixed?
-Tearing
