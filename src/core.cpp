@@ -1125,10 +1125,15 @@ bool engine::use_item(string filter, std::vector<int> &choices, string &ret) {
 		}
 		if (is_menu(base)) {
 			string menu = base;
-			menu.erase(menu.find(":"), menu.size());
-			base.erase(0, base.find(":") + 1);
-			if (do_effect(mc.team[choices[2]], base, choices[choices.size() - 1]))
+			if (menu.find(":") != -1) {
+				menu.erase(menu.find(":"), menu.size());
+				base.erase(0, base.find(":") + 1);
+				if (do_effect(mc.team[choices[2]], base, choices[choices.size() - 1]))
+					success = true;
+			}
+			else {
 				success = true;
+			}
 		}
 		else if (base.find("CAPTURE") == 0) {
 			ret = base;

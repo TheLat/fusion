@@ -297,6 +297,7 @@ void menu::create_menu(string file, string choice, string text_override, string 
 						t.length = 1.0;
 						t.s = map_names[i];
 						raw.push_back(t);
+						followup.push_back(string(""));
 					}
 					t.xmin = -1.0;
 					t.ymin = 0.8;

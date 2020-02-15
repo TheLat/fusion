@@ -4,7 +4,6 @@ Make bonk sound non-blocking
 Don't take keyboard input when not in focus (windows only)
 Crash bug related to leveling up and capturing?
 Speed-up button?
-Crash bug on hitting accept/confirm from town map
 Move queue not cleared at start of fight
 Change Route 1 level range to 2-2
 Infinite Eevees if box 1 is full or almost full?
