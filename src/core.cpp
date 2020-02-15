@@ -3676,6 +3676,7 @@ int engine::get_smart_move(mon& attacker, mon& defender, trainer& t, bool skip_r
 					mon defendercopy;
 					defendercopy = defender;
 					bool applied = false;
+					attacker.pp[i]--;
 					for (unsigned j = 0; j < moves[attacker.moves[i]].target.size(); ++j) {
 						if (moves[attacker.moves[i]].target[j] != "KO") {
 							applied = applied || apply_status(defendercopy, moves[attacker.moves[i]].target[j], true, true);
@@ -3726,12 +3727,14 @@ int engine::get_smart_move(mon& attacker, mon& defender, trainer& t, bool skip_r
 						self_damage *= double(holder_turns_to_live - 1) / double(max(holder_turns_to_live, 1));
 						self_heal *= double(holder_turns_to_live - 1) / double(max(holder_turns_to_live, 1));
 					}
+					attacker.pp[i]++;
 				}
 			}
 			else if ((self_damage + self_heal) == 0.0 && moves[attacker.moves[i]].self.size() != 0) {
 				if (!no_depth) {
 					mon attackercopy;
 					attackercopy = attacker;
+					attackercopy.pp[i]--;
 					bool applied = false;
 					for (unsigned j = 0; j < moves[attacker.moves[i]].self.size(); ++j) {
 						if (moves[attacker.moves[i]].self[j].find("HEAL:") == -1) {
