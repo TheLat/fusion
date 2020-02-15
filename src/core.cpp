@@ -9331,12 +9331,23 @@ void engine::main() {
 	unsigned mon_holder = 0;
 	string opening_mon = string("1-1");
 	double time_holder = 0.0;
+	bool input_check = false;
 	anim_holder = g.ae.create_anim_scene(string("gamestart"));
-	while (!g.ae.is_dones(anim_holder)) {} // OR INPUT
+	while (!g.ae.is_dones(anim_holder)) {
+		if (ie.get_pressed_key(input_check) || ie.get_button_pressed(input_check)) {
+			g.ae.finishs(anim_holder);
+			break;
+		}
+	}
 	g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
 	se.play_music(string("music/01-opening-intro.mp3,music/01-opening-loop.mp3"));
 	anim_holder = g.ae.create_anim_scene(string("opening"));
-	while (!g.ae.is_dones(anim_holder)) {} // OR INPUT
+	while (!g.ae.is_dones(anim_holder)) {
+		if (ie.get_pressed_key(input_check) || ie.get_button_pressed(input_check)) {
+			g.ae.finishs(anim_holder);
+			break;
+		}
+	}
 	g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
 	quad_holder = g.push_quad_load(-1.0, -1.0, 2.0, 2.0, safepath + string("images/offwhite.png"));
 	quad_holder = g.push_quad_load(-0.8, 1.0, 1.6, 0.8, safepath + string("images/opening-title.png"));
@@ -9355,7 +9366,6 @@ void engine::main() {
 	anim_holder = g.ae.create_animf(&(g.draw_list[quad_holder].x), 1.0, -0.5, 0.5);
 	se.play_sound(string("sound_effects/general/sfx_intro_whoosh.mp3"));
 	while (!g.ae.is_donef(anim_holder)) {} // OR INPUT
-	bool input_check = false;
 	srand(tim.get_current_time());
 	while (!ie.get_pressed_key(input_check) && !ie.get_button_pressed(input_check)) {
 		opening_mon = to_string(int(random(1.0, 151.0))) + string("-") + to_string(int(random(1.0, 151.0)));
