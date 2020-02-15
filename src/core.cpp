@@ -9590,7 +9590,7 @@ void engine::main() {
 	}
 
 	deltat = tim.delta(time_index);
-	if (!mc.team[0].defined) {
+	if (mc.name == "") {
 		quad_holder = g.push_quad_load(-1.0, -1.0, 2.0, 2.0, safepath + string("images/offwhite.png"));
 		e.mc.loc.x = 3.0;
 		e.mc.loc.y = 6.0;
