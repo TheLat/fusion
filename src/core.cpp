@@ -134,207 +134,207 @@ void engine::play_level_music() {
 }
 
 string engine::get_input_string() {
-	string out = "";
-	std::vector<int> choices;
-	choices = do_menu(string("NAME_MENU13"));
-	choices = remove_cancels(choices);
-	for (unsigned i = 0; i < choices.size(); ++i) {
-		switch (choices[i]) {
+	string input_string_out = "";
+	std::vector<int> menuchoices;
+	menuchoices = do_menu(string("NAME_MENU13"));
+	menuchoices = remove_cancels(menuchoices);
+	for (unsigned i = 0; i < menuchoices.size(); ++i) {
+		switch (menuchoices[i]) {
 		case 0:
-			out = out + string("A");
+			input_string_out = input_string_out + string("A");
 			break;
 		case 1:
-			out = out + string("B");
+			input_string_out = input_string_out + string("B");
 			break;
 		case 2:
-			out = out + string("C");
+			input_string_out = input_string_out + string("C");
 			break;
 		case 3:
-			out = out + string("D");
+			input_string_out = input_string_out + string("D");
 			break;
 		case 4:
-			out = out + string("E");
+			input_string_out = input_string_out + string("E");
 			break;
 		case 5:
-			out = out + string("F");
+			input_string_out = input_string_out + string("F");
 			break;
 		case 6:
-			out = out + string("G");
+			input_string_out = input_string_out + string("G");
 			break;
 		case 7:
-			out = out + string("H");
+			input_string_out = input_string_out + string("H");
 			break;
 		case 8:
-			out = out + string("I");
+			input_string_out = input_string_out + string("I");
 			break;
 		case 9:
-			out = out + string("J");
+			input_string_out = input_string_out + string("J");
 			break;
 		case 10:
-			out = out + string("K");
+			input_string_out = input_string_out + string("K");
 			break;
 		case 11:
-			out = out + string("L");
+			input_string_out = input_string_out + string("L");
 			break;
 		case 12:
-			out = out + string("M");
+			input_string_out = input_string_out + string("M");
 			break;
 		case 13:
-			out = out + string("N");
+			input_string_out = input_string_out + string("N");
 			break;
 		case 14:
-			out = out + string("O");
+			input_string_out = input_string_out + string("O");
 			break;
 		case 15:
-			out = out + string("P");
+			input_string_out = input_string_out + string("P");
 			break;
 		case 16:
-			out = out + string("Q");
+			input_string_out = input_string_out + string("Q");
 			break;
 		case 17:
-			out = out + string("R");
+			input_string_out = input_string_out + string("R");
 			break;
 		case 18:
-			out = out + string("S");
+			input_string_out = input_string_out + string("S");
 			break;
 		case 19:
-			out = out + string("T");
+			input_string_out = input_string_out + string("T");
 			break;
 		case 20:
-			out = out + string("U");
+			input_string_out = input_string_out + string("U");
 			break;
 		case 21:
-			out = out + string("V");
+			input_string_out = input_string_out + string("V");
 			break;
 		case 22:
-			out = out + string("W");
+			input_string_out = input_string_out + string("W");
 			break;
 		case 23:
-			out = out + string("X");
+			input_string_out = input_string_out + string("X");
 			break;
 		case 24:
-			out = out + string("Y");
+			input_string_out = input_string_out + string("Y");
 			break;
 		case 25:
-			out = out + string("Z");
+			input_string_out = input_string_out + string("Z");
 			break;
 		case 26:
-			out = out + string("a");
+			input_string_out = input_string_out + string("a");
 			break;
 		case 27:
-			out = out + string("b");
+			input_string_out = input_string_out + string("b");
 			break;
 		case 28:
-			out = out + string("c");
+			input_string_out = input_string_out + string("c");
 			break;
 		case 29:
-			out = out + string("d");
+			input_string_out = input_string_out + string("d");
 			break;
 		case 30:
-			out = out + string("e");
+			input_string_out = input_string_out + string("e");
 			break;
 		case 31:
-			out = out + string("f");
+			input_string_out = input_string_out + string("f");
 			break;
 		case 32:
-			out = out + string("g");
+			input_string_out = input_string_out + string("g");
 			break;
 		case 33:
-			out = out + string("h");
+			input_string_out = input_string_out + string("h");
 			break;
 		case 34:
-			out = out + string("i");
+			input_string_out = input_string_out + string("i");
 			break;
 		case 35:
-			out = out + string("j");
+			input_string_out = input_string_out + string("j");
 			break;
 		case 36:
-			out = out + string("k");
+			input_string_out = input_string_out + string("k");
 			break;
 		case 37:
-			out = out + string("l");
+			input_string_out = input_string_out + string("l");
 			break;
 		case 38:
-			out = out + string("m");
+			input_string_out = input_string_out + string("m");
 			break;
 		case 39:
-			out = out + string("n");
+			input_string_out = input_string_out + string("n");
 			break;
 		case 40:
-			out = out + string("o");
+			input_string_out = input_string_out + string("o");
 			break;
 		case 41:
-			out = out + string("p");
+			input_string_out = input_string_out + string("p");
 			break;
 		case 42:
-			out = out + string("q");
+			input_string_out = input_string_out + string("q");
 			break;
 		case 43:
-			out = out + string("r");
+			input_string_out = input_string_out + string("r");
 			break;
 		case 44:
-			out = out + string("s");
+			input_string_out = input_string_out + string("s");
 			break;
 		case 45:
-			out = out + string("t");
+			input_string_out = input_string_out + string("t");
 			break;
 		case 46:
-			out = out + string("u");
+			input_string_out = input_string_out + string("u");
 			break;
 		case 47:
-			out = out + string("v");
+			input_string_out = input_string_out + string("v");
 			break;
 		case 48:
-			out = out + string("w");
+			input_string_out = input_string_out + string("w");
 			break;
 		case 49:
-			out = out + string("x");
+			input_string_out = input_string_out + string("x");
 			break;
 		case 50:
-			out = out + string("y");
+			input_string_out = input_string_out + string("y");
 			break;
 		case 51:
-			out = out + string("z");
+			input_string_out = input_string_out + string("z");
 			break;
 		case 52:
-			out = out + string(".");
+			input_string_out = input_string_out + string(".");
 			break;
 		case 53:
-			out = out + string("?");
+			input_string_out = input_string_out + string("?");
 			break;
 		case 54:
-			out = out + string("{TIMES}");
+			input_string_out = input_string_out + string("{TIMES}");
 			break;
 		case 55:
-			out = out + string("(");
+			input_string_out = input_string_out + string("(");
 			break;
 		case 56:
-			out = out + string(")");
+			input_string_out = input_string_out + string(")");
 			break;
 		case 57:
-			out = out + string(";");
+			input_string_out = input_string_out + string(";");
 			break;
 		case 58:
-			out = out + string(":");
+			input_string_out = input_string_out + string(":");
 			break;
 		case 59:
-			out = out + string("[");
+			input_string_out = input_string_out + string("[");
 			break;
 		case 60:
-			out = out + string("]");
+			input_string_out = input_string_out + string("]");
 			break;
 		case 61:
-			out = out + string("{PK}");
+			input_string_out = input_string_out + string("{PK}");
 			break;
 		case 62:
-			out = out + string("{MN}");
+			input_string_out = input_string_out + string("{MN}");
 			break;
 		default:
-			out = out;
+			input_string_out = input_string_out;
 			break;
 		}
 	}
-	return out;
+	return input_string_out;
 }
 
 string engine::get_special_string(string in) {
@@ -8739,13 +8739,14 @@ void engine::do_interaction(character& npc) {
 							mc.caught[mc.storage[i][j].number] = true;
 							mon_created = true;
 							do_menu(string("ALERT"), all_mon[mc.storage[i][j].number].name + string(" was sent to box ") + to_string(i + 1) + string("."));
-							break;
 						}
 					}
 				}
-				do_alert("Storage is full!");
-				advance = false;
-				break;
+				if (!mon_created) {
+					do_alert("Storage is full!");
+					advance = false;
+					break;
+				}
 			}
 		}
 		else if (s.find("SET_FACE:") == 0) {

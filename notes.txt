@@ -5,6 +5,5 @@ Don't take keyboard input when not in focus (windows only)
 Crash bug related to leveling up and capturing?
 Speed-up button?
 Move queue not cleared at start of fight
-Infinite Eevees if box 1 is full or almost full?
 Absorb works on underground Pokemon
 Crash on smart trainers.  Maybe fixed?
