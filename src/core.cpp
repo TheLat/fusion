@@ -3931,6 +3931,11 @@ bool engine::battle(trainer& t) { // trainer battle
 	mc.enemy_selected = 0;
 	for (i = 0; i < 6; ++i) {
 		if (mc.team[i].defined) {
+			mc.team[i].queue.clear();
+		}
+	}
+	for (i = 0; i < 6; ++i) {
+		if (mc.team[i].defined) {
 			if (!is_KO(mc.team[i])) {
 				mc.selected = i;
 				break;
@@ -4081,7 +4086,7 @@ bool engine::battle(trainer& t) { // trainer battle
 		if (mc.team[mc.selected].queue.size() == 0) {
 			bool any_valid_moves;
 			any_valid_moves = false;
-			for (unsigned i = 0; i < 4; ++i) {
+			for (i = 0; i < 4; ++i) {
 				if (is_valid_move(mc.team[mc.selected], i)) {
 					any_valid_moves = true;
 				}
@@ -4481,12 +4486,12 @@ bool engine::battle(trainer& t) { // trainer battle
             }
 			do_alert(string("Enemy ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string(" fainted!"));
 			int count = 0;
-			for (unsigned i = 0; i < 6; ++i) {
+			for (i = 0; i < 6; ++i) {
 				if ((mc.enemy_team[mc.enemy_selected].fought[i] || in_inventory(string("EXP.ALL"))) && mc.team[i].defined && !is_KO(mc.team[i])) {
 					count++;
 				}
 			}
-			for (unsigned i = 0; i < 6; ++i) {
+			for (i = 0; i < 6; ++i) {
 				if ((mc.enemy_team[mc.enemy_selected].fought[i] || in_inventory(string("EXP.ALL"))) && mc.team[i].defined && !is_KO(mc.team[i])) {
 					gain_exp(mc.team[i], mc.enemy_team[mc.enemy_selected], count, in_inventory(string("EXP.ALL")) ? 0.85 : 1.0);
 					rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
@@ -4499,7 +4504,7 @@ bool engine::battle(trainer& t) { // trainer battle
 			if (num_KO + 1 >= t.no_switch && random(0.0, 1.0) <= t.skill) {
 				smart_switch = true;
 			}
-			for (unsigned i = 0; i < 6; ++i) {
+			for (i = 0; i < 6; ++i) {
 				if (smart_switch) {
 					if (mc.enemy_team[i].defined && !is_KO(mc.enemy_team[i])) {
 						double temp3;
@@ -4556,7 +4561,7 @@ bool engine::battle(trainer& t) { // trainer battle
 	if (t.win_message != "")
 		do_alert(t.win_message);
 	int level = 0;
-	for (int i = 0; i < 6; ++i) {
+	for (i = 0; i < 6; ++i) {
 		if (mc.enemy_team[i].defined) {
 			level = max(level, mc.enemy_team[i].level);
 		}
@@ -4601,6 +4606,11 @@ bool engine::battle() { // wild pokemon
 	g.push_box(-1.1f, -1.1f, 2.2f, 2.2f);
 	mc.selected = -1;
 	mc.extra_winnings = 0;
+	for (i = 0; i < 6; ++i) {
+		if (mc.team[i].defined) {
+			mc.team[i].queue.clear();
+		}
+	}
 	for (i = 0; i < 6; ++i) {
 		if (mc.team[i].defined) {
 			if (!is_KO(mc.team[i])) {
@@ -4681,7 +4691,7 @@ bool engine::battle() { // wild pokemon
 		if (mc.team[mc.selected].queue.size() == 0) {
 			bool any_valid_moves;
 			any_valid_moves = false;
-			for (unsigned i = 0; i < 4; ++i) {
+			for (i = 0; i < 4; ++i) {
 				if (is_valid_move(mc.team[mc.selected], i)) {
 					any_valid_moves = true;
 				}
@@ -4803,13 +4813,13 @@ bool engine::battle() { // wild pokemon
 							mc.enemy_team[mc.enemy_selected].nickname = get_input_string();
 						}
 						int count = 0;
-						for (unsigned i = 0; i < 6; ++i) {
+						for (i = 0; i < 6; ++i) {
 							if (mc.enemy_team[mc.enemy_selected].fought[i] && mc.team[i].defined && !is_KO(mc.team[i])) {
 								count++;
 							}
 						}
 						bool found = false;
-						for (int i = 0; i < 6; ++i) {
+						for (i = 0; i < 6; ++i) {
 							if (!mc.team[i].defined) {
 								mc.team[i] = mc.enemy_team[mc.enemy_selected];
 								mc.team[i].wild = false;
@@ -4819,7 +4829,7 @@ bool engine::battle() { // wild pokemon
 							}
 						}
 						if (!found) {
-							for (int i = 0; i < STORAGE_MAX && !found; ++i) {
+							for (i = 0; i < STORAGE_MAX && !found; ++i) {
 								for (int j = 0; j < STORAGE_MAX && !found; ++j) {
 									if (!mc.storage[i][j].defined) {
 										found = true;
@@ -4843,12 +4853,12 @@ bool engine::battle() { // wild pokemon
 						    do_alert(get_nickname(mc.enemy_team[mc.enemy_selected]) + string(" was added to the POK{e-accent}DEX!"));
 						}
 						count = 0;
-						for (unsigned i = 0; i < 6; ++i) {
+						for (i = 0; i < 6; ++i) {
 							if ((mc.enemy_team[mc.enemy_selected].fought[i] || in_inventory(string("EXP.ALL"))) && mc.team[i].defined && !is_KO(mc.team[i])) {
 								count++;
 							}
 						}
-						for (unsigned i = 0; i < 6; ++i) {
+						for (i = 0; i < 6; ++i) {
 							if ((mc.enemy_team[mc.enemy_selected].fought[i] || in_inventory(string("EXP.ALL"))) && mc.team[i].defined && !is_KO(mc.team[i])) {
 								gain_exp(mc.team[i], mc.enemy_team[mc.enemy_selected], count, in_inventory(string("EXP.ALL")) ? 0.85 : 1.0);
 								rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
@@ -5014,12 +5024,12 @@ bool engine::battle() { // wild pokemon
 		    se.play_music(string("music/08-wild-victory-intro.mp3,music/08-wild-victory-loop.mp3"));
 			do_alert(string("Enemy ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string(" fainted!"));
 			int count = 0;
-			for (unsigned i = 0; i < 6; ++i) {
+			for (i = 0; i < 6; ++i) {
 				if ((mc.enemy_team[mc.enemy_selected].fought[i] || in_inventory(string("EXP.ALL"))) && mc.team[i].defined && !is_KO(mc.team[i])) {
 					count++;
 				}
 			}
-			for (unsigned i = 0; i < 6; ++i) {
+			for (i = 0; i < 6; ++i) {
 				if ((mc.enemy_team[mc.enemy_selected].fought[i] || in_inventory(string("EXP.ALL"))) && mc.team[i].defined && !is_KO(mc.team[i])) {
 					gain_exp(mc.team[i], mc.enemy_team[mc.enemy_selected], count, in_inventory(string("EXP.ALL")) ? 0.85 : 1.0);
 				}
