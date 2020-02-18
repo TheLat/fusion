@@ -330,7 +330,7 @@ public:
 	bool create_move(mon& m, string move, int index, bool overrule = false);
 	void clear_queue(mon& m);
 	double random(double min, double max);
-	void heal_damage(mon& m, int heal_amount);
+	void heal_damage(mon& m, int heal_amount, bool silent = false);
 	void deal_damage(mon& m, int damage_amount);
 	bool status_immunity(mon& m, string move);
 	bool remove_status_wildcard(mon& m, string s, bool all = false);
