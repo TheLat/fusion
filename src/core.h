@@ -120,7 +120,7 @@ public:
 	vector<int> damage_dealt;
 	map<int, bool> fought;
 	mon* original;
-	mon() { defined = false; disabled_move = -1; last_damage = 0; original = 0; }
+	mon() { defined = false; disabled_move = -1; last_damage = 0; original = 0; hp_bar_index = -1}
 	mon& operator=(mon& m) {
 		for (int i = 0; i < SIZE; ++i) {
 			this->IV[i] = m.IV[i];
@@ -330,7 +330,7 @@ public:
 	bool create_move(mon& m, string move, int index, bool overrule = false);
 	void clear_queue(mon& m);
 	double random(double min, double max);
-	void heal_damage(mon& m, int heal_amount, bool silent = false);
+	void heal_damage(mon& m, int heal_amount);
 	void deal_damage(mon& m, int damage_amount);
 	bool status_immunity(mon& m, string move);
 	bool remove_status_wildcard(mon& m, string s, bool all = false);

@@ -2238,27 +2238,22 @@ double engine::random(double min, double max) {
 	return min + t * delta;
 }
 
-void engine::heal_damage(mon& m, int heal_amount, bool silent) {
+void engine::heal_damage(mon& m, int heal_amount) {
 	if (heal_amount < 0) {
 		return;
 	}
 	if (heal_amount + m.curr_hp > get_stat(m, HP))
 	    heal_amount = get_stat(m, HP) - m.curr_hp;
-	if (!silent) {
-		unsigned anim_holder = 0;
-		anim_holder = g.ae.create_animi(&(m.curr_hp), m.curr_hp, m.curr_hp + heal_amount, 0.5);
-		while (!g.ae.is_donei(anim_holder)) {
-			resize_hp_bars(m);
-			if (m.hud_index)
-				rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
-		}
-		resize_hp_bars(m);
-		if (m.hud_index)
-			rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
+    unsigned anim_holder = 0;
+    anim_holder = g.ae.create_animi(&(m.curr_hp), m.curr_hp, m.curr_hp + heal_amount, 0.5);
+    while (!g.ae.is_donei(anim_holder)) {
+	    resize_hp_bars(m);
+	    if (m.hud_index)
+	    	rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
 	}
-	else {
-		m.curr_hp = m.curr_hp + heal_amount;
-	}
+	resize_hp_bars(m);
+	if (m.hud_index)
+		rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
 }
 
 void engine::deal_damage(mon& m, int damage_amount) {
@@ -2526,12 +2521,12 @@ bool engine::apply_status(mon& m, string s, bool skip_chance, bool silent) {
 				do_alert(string("Disabled ") + m.moves[m.disabled_move] + string("!"));
 		}
 		else if (s2 == "HEAL") {
-			heal_damage(m, int(double(get_stat(m, HP)) * (double(value) / 100.0)), silent);
+			heal_damage(m, int(double(get_stat(m, HP)) * (double(value) / 100.0)));
 		}
 		else if (s2 == "VAMPIRE") {
 		    int old_hp = m.curr_hp;
-			heal_damage(m, max(int(double(m.last_damage) * (double(value) / 100.0)), 0), silent);
-			if (old_hp != m.curr_hp && !silent)
+			heal_damage(m, max(int(double(m.last_damage) * (double(value) / 100.0)), 0));
+			if (old_hp != m.curr_hp)
     			do_alert(string("Stole the opponent's health!"));
 		}
 		else if (s2 == "SELF_LEVEL") {
@@ -2551,7 +2546,7 @@ bool engine::apply_status(mon& m, string s, bool skip_chance, bool silent) {
 					do_alert(get_nickname(m) + string(" created a SUBSTITUTE!"));
 				m.stored_hp = m.curr_hp;
 				m.curr_hp = 0;
-				heal_damage(m, dam + 1, silent);
+				heal_damage(m, dam + 1);
 				m.status.push_back(s2);
 			}
 		}
