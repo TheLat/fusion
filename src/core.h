@@ -120,7 +120,7 @@ public:
 	vector<int> damage_dealt;
 	map<int, bool> fought;
 	mon* original;
-	mon() { defined = false; disabled_move = -1; last_damage = 0; original = 0; hp_bar_index = -1; }
+	mon() { defined = false; disabled_move = -1; last_damage = 0; original = 0; hp_bar_index = 0; }
 	mon& operator=(mon& m) {
 		for (int i = 0; i < SIZE; ++i) {
 			this->IV[i] = m.IV[i];
