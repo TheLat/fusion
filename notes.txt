@@ -7,3 +7,6 @@ Speed-up button?
 Move queue not cleared at start of fight
 Absorb works on underground Pokemon
 Crash on smart trainers.  Maybe fixed?
+Input when not in focus
+Inventory scroll wrap.
+NPCs telling you how Dig and Teleport work.
