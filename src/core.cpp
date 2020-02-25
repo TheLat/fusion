@@ -4769,7 +4769,7 @@ bool engine::battle() { // wild pokemon
 					o.erase(0, o.find(":") + 1);
 					float capture_power = stof(o);
 					out = attempt_capture(capture_power, mc.enemy_team[mc.enemy_selected]);
-					unsigned clear_point = g.draw_list.size();
+					unsigned clear_point2 = g.draw_list.size();
 					string anim_name = string("capture");
 					if (capture_power < 1.5)
 					    anim_name += string("1");
@@ -4783,7 +4783,7 @@ bool engine::battle() { // wild pokemon
 					unsigned anim_holder = g.ae.create_anim_scene(anim_name, mc.team[mc.selected].sprite_index, mc.enemy_team[mc.enemy_selected].sprite_index);
 					while (!g.ae.is_dones(anim_holder)) {}
                     if (out < 4)
-                        g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
+                        g.draw_list.erase(g.draw_list.begin() + clear_point2, g.draw_list.end());
 					switch (out) {
 					case 0:
 						do_alert("Oh, no! The POK{e-accent}MON broke free!");
