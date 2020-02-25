@@ -10098,7 +10098,14 @@ void engine::save_game() {
 	while (it2 != mc.used_tms.end()) {
 		if (it2->second) {
 			f << string("\n");
-			f << it2->first;
+			if (it2->first.size() == 3) {
+				string used_tm_holder = it2->first;
+				used_tm_holder.insert(2, "0");
+				f << used_tm_holder;
+			}
+			else {
+				f << it2->first;
+			}
 		}
 		it2++;
 	}
