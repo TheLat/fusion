@@ -2,6 +2,7 @@
 
 BASEDIR=$(dirname "$0")
 cd $BASEDIR
+chmod +x *.dylib
 cd Release
-echo "$PWD"
+chmod +x *
 ./fusion
