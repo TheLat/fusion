@@ -7,6 +7,8 @@ extern soundengine se;
 
 mutex mutex2;
 
+map<string, int> stored_values;
+
 void menu::create_menu(string file, string choice, string text_override, string followup_override) {
 	image im;
 	box b;
@@ -61,6 +63,9 @@ void menu::create_menu(string file, string choice, string text_override, string 
 				}
 				else if (temp1 == "CANCEL_OPTION") {
 					cancel_option = stoi(temp2);
+				}
+				else if (temp1 == "CACHE") {
+					cache = temp2;
 				}
 				else if (temp1 == "GENERATE_SELECTION") {
 					t.height = 0.1;
@@ -1488,6 +1493,9 @@ void menu::input(bool up, bool down, bool left, bool right, bool select, bool st
 
 vector<int> menu::main() {
 	vector<int> choice;
+	if (cache != "") {
+		selection = stored_values[cache];
+	}
 	while (!done || (done && (selection >= 0) && (selection < (int)followup.size()) && (followup[selection] != ""))) {
 		mutex2.lock();
 		if ((etype == SELECT || etype == SCROLL) && cursor == -1) {
@@ -1535,6 +1543,9 @@ vector<int> menu::main() {
 			vector<int> out;
 			if (followup[selection] == "")
 				break;
+			if (cache != "") {
+				stored_values[cache] = selection;
+			}
 			out = do_menu(followup[selection]);
 			if (discard_choice) {
 			    done = true;
