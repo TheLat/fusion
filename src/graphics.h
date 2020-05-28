@@ -16,7 +16,7 @@
 #include "anim.h"
 
 using namespace std;
-extern mutex m;
+extern mutex mut;
 extern timer tim;
 class quad {
 public:

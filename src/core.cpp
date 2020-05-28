@@ -644,7 +644,7 @@ string engine::get_special_string(string in) {
 			if (!all_mon[temp].defined)
 				return string("");
 			string o = to_string(all_mon[temp].weight);
-			string out = "";
+			out = "";
 			for (unsigned i = 0; i < o.size(); ++i) {
 				out = out + o[i];
 				if (o[i] == '.') {
@@ -1036,7 +1036,7 @@ string engine::get_special_string(string in) {
 		return mc.name;
 	}
 	else if (in.find("{BOX_NUMBER}") != -1) {
-		string out = to_string(mc.box_number + 1);
+		out = to_string(mc.box_number + 1);
 		if (mc.box_number < 9)
 			out = string(" ") + out;
 		in.insert(in.find("{BOX_NUMBER}"), out);
@@ -1167,30 +1167,30 @@ bool engine::use_item(string filter, std::vector<int> &choices, string &ret) {
 			int tier = stoi(s);
 			bool first = int(random(0.0, 2.0)) == 1;
 			vector<int> combination;
-			vector<int> base;
+			vector<int> base_enc;
 			for (unsigned i = 0; i < levels[mc.loc.level].encounters.size(); ++i) {
 				combination.push_back(levels[mc.loc.level].encounters[i]);
 			}
 			if (tier == 0) {
 				for (unsigned i = 0; i < levels[mc.loc.level].water_encounters_old.size(); ++i) {
 					combination.push_back(levels[mc.loc.level].water_encounters_old[i]);
-					base.push_back(levels[mc.loc.level].water_encounters_old[i]);
+					base_enc.push_back(levels[mc.loc.level].water_encounters_old[i]);
 				}
 			}
 			else if (tier == 1) {
 				for (unsigned i = 0; i < levels[mc.loc.level].water_encounters_good.size(); ++i) {
 					combination.push_back(levels[mc.loc.level].water_encounters_good[i]);
-					base.push_back(levels[mc.loc.level].water_encounters_good[i]);
+					base_enc.push_back(levels[mc.loc.level].water_encounters_good[i]);
 				}
 			}
 			else if (tier == 2) {
 				for (unsigned i = 0; i < levels[mc.loc.level].water_encounters_super.size(); ++i) {
 					combination.push_back(levels[mc.loc.level].water_encounters_super[i]);
-					base.push_back(levels[mc.loc.level].water_encounters_super[i]);
+					base_enc.push_back(levels[mc.loc.level].water_encounters_super[i]);
 				}
 			}
 			int part1 = combination[int(random(0.0, combination.size()))];
-			int part2 = base[int(random(0.0, base.size()))];
+			int part2 = base_enc[int(random(0.0, base_enc.size()))];
 			if (first) {
 				encounter = to_string(part1) + string("-") + to_string(part2);
 			}
@@ -2065,7 +2065,7 @@ bool engine::level_up(mon& out, bool confirm_learn) {
                         se.unmute_music();
                         unsigned anim_holder = g.ae.create_animf(&t, 1.0, 0.5, 8.0);
                         unsigned anim_holder2 = 0;
-                        double counter = 0.0;
+                        double counterd = 0.0;
                         while (!g.ae.is_donef(anim_holder)) {
                             if (player_cancel) {
                                 g.ae.finishf(anim_holder);
@@ -2080,11 +2080,11 @@ bool engine::level_up(mon& out, bool confirm_learn) {
                                 stop = true;
                                 break;
                             }
-                            counter = counter + 0.7;
-                            while (counter > 1.0) {
-                                counter -= 1.0;
+                            counterd = counterd + 0.7;
+                            while (counterd > 1.0) {
+                                counterd -= 1.0;
                             }
-                            if (counter > t) {
+                            if (counterd > t) {
                                 g.draw_list[next].x = -0.4;
                                 g.draw_list[current].x = -2.0;
                             }
@@ -2646,7 +2646,7 @@ void engine::do_move_animation(mon& attacker, mon& defender, string move) {
     		anim_holder = g.ae.create_anim_scene(moves[move].animation, attacker.sprite_index, defender.sprite_index);
         while (!g.ae.is_dones(anim_holder)) {
 		}
-		m.lock();
+		mut.lock();
 		// reset screen
         g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
         g.r_quad.x = -1.0;
@@ -2657,7 +2657,7 @@ void engine::do_move_animation(mon& attacker, mon& defender, string move) {
         g.r_effects.y = 0.0;
         g.r_effects.height = 0.0;
         g.r_effects.width = 0.0;
-        m.unlock();
+        mut.unlock();
     }
 }
 
@@ -2768,9 +2768,9 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 		}
 		else if (moves[move].special[i] == "RANDOM") {
 			std::map<string, power>::iterator it = moves.begin();
-			int i = int(random(1, moves.size() - 1));
-			while (i > 0) {
-				i--;
+			int j = int(random(1, moves.size() - 1));
+			while (j > 0) {
+				j--;
 				it++;
 			}
 			while (it->second.queue_only) {
@@ -2827,16 +2827,16 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 					attacker.IV[im] = attacker.original->IV[im];
 					attacker.EV[im] = attacker.original->EV[im];
 				}
-				for (unsigned i = 0; i < 4; ++i) {
-					attacker.pp[i] = 5;
+				for (unsigned j = 0; j < 4; ++j) {
+					attacker.pp[j] = 5;
 				}
 				attacker.curr_hp = min(get_stat(attacker, HP), attacker.original->curr_hp);
 				attacker.queue.clear();
 				attacker.enemy = attacker.original->enemy;
 				attacker.wild = attacker.original->wild;
-				for (unsigned i = 0; i < 4; ++i) {
-				    if (attacker.original->moves[i] == move) {
-				        attacker.original->pp[i]--;
+				for (unsigned j = 0; j < 4; ++j) {
+				    if (attacker.original->moves[j] == move) {
+				        attacker.original->pp[j]--;
 				    }
 				}
 				if (attacker.enemy) {
@@ -3893,13 +3893,13 @@ vector<int> engine::remove_cancels(vector<int> v) {
 	return v;
 }
 
-void engine::rebuild_battle_hud(mon& p, mon& e) {
-	m.lock();
-	if (p.hp_bar_index != 0 && e.hp_bar_index != 0) {
+void engine::rebuild_battle_hud(mon& p, mon& enemy) {
+	mut.lock();
+	if (p.hp_bar_index != 0 && enemy.hp_bar_index != 0) {
 		unsigned clear_point = p.hud_index;
 		g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
-		g.push_text(-0.9f, 0.8f, 1.5f, 0.1f, 0.1f, get_nickname(e));
-		g.push_text(-0.6f, 0.7f, 0.5f, 0.1f, 0.1f, string("{LEVEL}") + to_string(e.level));
+		g.push_text(-0.9f, 0.8f, 1.5f, 0.1f, 0.1f, get_nickname(enemy));
+		g.push_text(-0.6f, 0.7f, 0.5f, 0.1f, 0.1f, string("{LEVEL}") + to_string(enemy.level));
 		g.push_text(1.0f - (float(get_nickname(p).length() * 0.1f)), -0.1f, 0.0f, 0.1f, 0.1f, get_nickname(p));
 		g.push_text(0.4f, -0.2f, 0.5f, 0.1f, 0.1f, string("{LEVEL}") + to_string(p.level));
 		string formatted_hp = "";
@@ -3907,14 +3907,14 @@ void engine::rebuild_battle_hud(mon& p, mon& e) {
 		g.push_text(0.8f - (float(formatted_hp.length())*0.1f), -0.4f, 0.8f, 0.1f, 0.1f, formatted_hp);
 		g.draw_list[p.sprite_index].filename = safepath + string("images/") + p.number + string("-back.png");
 		g.draw_list[p.sprite_index].tex = g.tex[g.draw_list[p.sprite_index].filename];
-		g.draw_list[e.sprite_index].filename = safepath + string("images/") + e.number + string(".png");
-		g.draw_list[e.sprite_index].tex = g.tex[g.draw_list[e.sprite_index].filename];
+		g.draw_list[enemy.sprite_index].filename = safepath + string("images/") + enemy.number + string(".png");
+		g.draw_list[enemy.sprite_index].tex = g.tex[g.draw_list[enemy.sprite_index].filename];
 		resize_exp_bar(p);
 		resize_hp_bars(p);
-		resize_hp_bars(e);
+		resize_hp_bars(enemy);
 		g.new_load = true;
 	}
-	m.unlock();
+	mut.unlock();
 }
 
 bool engine::battle(trainer& t) { // trainer battle
@@ -4162,7 +4162,7 @@ bool engine::battle(trainer& t) { // trainer battle
 				if (o.find("CAPTURE") == 0) {
 				    o.erase(0, o.find(":") + 1);
 					float capture_power = stof(o);
-					unsigned clear_point = g.draw_list.size();
+					unsigned clear_point2 = g.draw_list.size();
 					string anim_name = string("capture");
 					if (capture_power < 1.5)
 					    anim_name += string("1");
@@ -4176,7 +4176,7 @@ bool engine::battle(trainer& t) { // trainer battle
 					unsigned anim_holder = g.ae.create_anim_scene(anim_name, mc.team[mc.selected].sprite_index, mc.enemy_team[mc.enemy_selected].sprite_index);
 					while (!g.ae.is_dones(anim_holder)) {}
 					do_alert(string("You can't do that!"));
-					g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
+					g.draw_list.erase(g.draw_list.begin() + clear_point2, g.draw_list.end());
 				}
 				if (o.find("FLEE") == 0) {
 				    apply_status(mc.team[mc.selected], string("FLEE"));
@@ -4485,15 +4485,15 @@ bool engine::battle(trainer& t) { // trainer battle
                 g.draw_list.erase(g.draw_list.begin() + cp, g.draw_list.end());
             }
 			do_alert(string("Enemy ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string(" fainted!"));
-			int count = 0;
+			int count2 = 0;
 			for (i = 0; i < 6; ++i) {
 				if ((mc.enemy_team[mc.enemy_selected].fought[i] || in_inventory(string("EXP.ALL"))) && mc.team[i].defined && !is_KO(mc.team[i])) {
-					count++;
+					count2++;
 				}
 			}
 			for (i = 0; i < 6; ++i) {
 				if ((mc.enemy_team[mc.enemy_selected].fought[i] || in_inventory(string("EXP.ALL"))) && mc.team[i].defined && !is_KO(mc.team[i])) {
-					gain_exp(mc.team[i], mc.enemy_team[mc.enemy_selected], count, in_inventory(string("EXP.ALL")) ? 0.85 : 1.0);
+					gain_exp(mc.team[i], mc.enemy_team[mc.enemy_selected], count2, in_inventory(string("EXP.ALL")) ? 0.85 : 1.0);
 					rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
 				}
 			}
@@ -5023,15 +5023,15 @@ bool engine::battle() { // wild pokemon
             }
 		    se.play_music(string("music/08-wild-victory-intro.mp3,music/08-wild-victory-loop.mp3"));
 			do_alert(string("Enemy ") + get_nickname(mc.enemy_team[mc.enemy_selected]) + string(" fainted!"));
-			int count = 0;
+			int count2 = 0;
 			for (i = 0; i < 6; ++i) {
 				if ((mc.enemy_team[mc.enemy_selected].fought[i] || in_inventory(string("EXP.ALL"))) && mc.team[i].defined && !is_KO(mc.team[i])) {
-					count++;
+					count2++;
 				}
 			}
 			for (i = 0; i < 6; ++i) {
 				if ((mc.enemy_team[mc.enemy_selected].fought[i] || in_inventory(string("EXP.ALL"))) && mc.team[i].defined && !is_KO(mc.team[i])) {
-					gain_exp(mc.team[i], mc.enemy_team[mc.enemy_selected], count, in_inventory(string("EXP.ALL")) ? 0.85 : 1.0);
+					gain_exp(mc.team[i], mc.enemy_team[mc.enemy_selected], count2, in_inventory(string("EXP.ALL")) ? 0.85 : 1.0);
 				}
 			}
 			break;
@@ -5647,7 +5647,7 @@ void engine::init_level(string levelname) {
 			while (line != "DATA" && line != "ENCOUNTERS" && line != "LEVELS" && line != "TELEPORT" && line != "END" && line.find("WATER_ENCOUNTERS_") != 0) {
 				string s, s2, s3;
 				unsigned i = 1;
-				unsigned count = 1;
+				count = 1;
 				s = line;
 				s2 = s;
 				s.erase(0, s.find(" ") + 1);
@@ -6258,7 +6258,6 @@ void engine::init_mon() {
 			pair<string, string> tempev;
 			safe_getline(f, temp);
 			while (temp.find("TM") != 0) {
-				pair<string, string> tempev;
 				line = temp;
 				line.erase(line.find(":"), line.length());
 				temp.erase(0, temp.find(":") + 1);
@@ -7048,27 +7047,27 @@ void engine::player_input(bool up, bool down, bool left, bool right, bool select
 						int choice = int(random(0.0, double(levels[mc.loc.level].mega_encounters.size())));
 						int choice2 = int(random(0.0, double(levels[mc.loc.level].mega_encounters.size())));
 						encounter = std::to_string(levels[mc.loc.level].mega_encounters[choice]) + string("-") + std::to_string(levels[mc.loc.level].mega_encounters[choice2]);
-						int l = int(random(levels[mc.loc.level].mega_level_range.first, levels[mc.loc.level].mega_level_range.second + 1));
-						if (l == 0) {
+						int l2 = int(random(levels[mc.loc.level].mega_level_range.first, levels[mc.loc.level].mega_level_range.second + 1));
+						if (l2 == 0) {
 							for (unsigned k = 0; k < 6; ++k) {
-								if (mc.team[k].defined && !is_KO(mc.team[k]) && mc.team[k].level > l)
-									l = mc.team[k].level;
+								if (mc.team[k].defined && !is_KO(mc.team[k]) && mc.team[k].level > l2)
+									l2 = mc.team[k].level;
 							}
 						}
-						encounter_level = l;
+						encounter_level = l2;
 					}
 					else {
 						int choice = int(random(0.0, double(levels[mc.loc.level].encounters.size())));
 						int choice2 = int(random(0.0, double(levels[mc.loc.level].encounters.size())));
 						encounter = std::to_string(levels[mc.loc.level].encounters[choice]) + string("-") + std::to_string(levels[mc.loc.level].encounters[choice2]);
-						int l = int(random(levels[mc.loc.level].level_range.first, levels[mc.loc.level].level_range.second + 1));
-						if (l == 0) {
+						int l2 = int(random(levels[mc.loc.level].level_range.first, levels[mc.loc.level].level_range.second + 1));
+						if (l2 == 0) {
 							for (unsigned k = 0; k < 6; ++k) {
-								if (mc.team[k].defined && !is_KO(mc.team[k]) && mc.team[k].level > l)
-									l = mc.team[k].level;
+								if (mc.team[k].defined && !is_KO(mc.team[k]) && mc.team[k].level > l2)
+									l2 = mc.team[k].level;
 							}
 						}
-						encounter_level = l;
+						encounter_level = l2;
 					}
 				}
 			}
@@ -7088,8 +7087,8 @@ void engine::player_input(bool up, bool down, bool left, bool right, bool select
 					}
 					int part1 = combination[int(random(0.0, combination.size()))];
 					int part2 = base[int(random(0.0, base.size()))];
-					int l = int(random(levels[mc.loc.level].level_range.first, levels[mc.loc.level].level_range.second + 1));
-					encounter_level = l;
+					int l2 = int(random(levels[mc.loc.level].level_range.first, levels[mc.loc.level].level_range.second + 1));
+					encounter_level = l2;
 					if (first) {
 						encounter = to_string(part1) + string("-") + to_string(part2);
 					}
@@ -7164,8 +7163,8 @@ void engine::player_input(bool up, bool down, bool left, bool right, bool select
 }
 
 void engine::create_menu(string s, string choice, string text_override, string followup_override) {
-	menu* m = new menu;
-	menus.push_back(m);
+	menu* mymenu = new menu;
+	menus.push_back(mymenu);
 	menus[menus.size() - 1]->create_menu(s, choice, text_override, followup_override);
 	menus[menus.size() - 1]->push_menu();
 }
@@ -7185,7 +7184,7 @@ vector<int> engine::do_menu(string menu, string choice, string text_override, st
 
 void engine::update_level() {
 	tim.update(time_index);
-	m.lock();
+	mut.lock();
 	g.draw_list.clear();
 	draw_level();
 	draw_characters();
@@ -7193,7 +7192,7 @@ void engine::update_level() {
 	if (levels[mc.loc.level].dark && !has_move_in_party(string("FLASH"))) {
 	    g.push_quad_load(-1.0, -1.0, 2.0, 2.0, safepath + string("images/darkness.png"));
 	}
-	m.unlock();
+	mut.unlock();
 	double delta = tim.delta(time_index);
 	while (delta < 1.0 / 120.0) {
 		delta = tim.delta(time_index);
@@ -7242,7 +7241,7 @@ void engine::draw_level() {
 	}
 	for (unsigned i = 0; i < l->neighbors.size(); ++i) {
 		level* n = &(levels[l->neighbors[i].level]);
-		unsigned maxy = min(int(levels[levels[curr_level].neighbors[i].level].data.size()), max(int(curr_y - levels[curr_level].neighbors[i].y + 6.0), 0));
+		maxy = min(int(levels[levels[curr_level].neighbors[i].level].data.size()), max(int(curr_y - levels[curr_level].neighbors[i].y + 6.0), 0));
 		for (unsigned y = max(0, unsigned(curr_y - levels[curr_level].neighbors[i].y - 4.0)); y < maxy; ++y) {
 			unsigned maxx = min(int(levels[levels[curr_level].neighbors[i].level].data[y].size()), max(int(curr_x - levels[curr_level].neighbors[i].x + 7.0), 0));
 			for (unsigned x = max(0, unsigned(curr_x - levels[curr_level].neighbors[i].x - 5.0)); x < maxx; ++x) {
@@ -7305,7 +7304,7 @@ void engine::draw_special() {
 	}
 	for (unsigned i = 0; i < l->neighbors.size(); ++i) {
 		level* n = &(levels[l->neighbors[i].level]);
-		unsigned maxy = min(int(levels[levels[curr_level].neighbors[i].level].data.size()), max(int(curr_y - levels[curr_level].neighbors[i].y + 6.0), 0));
+		maxy = min(int(levels[levels[curr_level].neighbors[i].level].data.size()), max(int(curr_y - levels[curr_level].neighbors[i].y + 6.0), 0));
 		for (unsigned y = max(0, unsigned(curr_y - levels[curr_level].neighbors[i].y - 4.0)); y < maxy; ++y) {
 			unsigned maxx = min(int(levels[levels[curr_level].neighbors[i].level].data[y].size()), max(int(curr_x - levels[curr_level].neighbors[i].x + 7.0), 0));
 			for (unsigned x = max(0, unsigned(curr_x - levels[curr_level].neighbors[i].x - 5.0)); x < maxx; ++x) {
@@ -9764,10 +9763,10 @@ void engine::main() {
 			if (choices[0] == 1) {
 				if (choices.size() == 4) {
 					if (choices[2] == 1) {
-						mon holder;
-						holder = mc.team[choices[1]];
+						mon mholder;
+						mholder = mc.team[choices[1]];
 						mc.team[choices[1]] = mc.team[choices[3]];
-						mc.team[choices[3]] = holder;
+						mc.team[choices[3]] = mholder;
 						mc.team[choices[1]].wild = false;
 						mc.team[choices[1]].enemy = false;
 						mc.team[choices[3]].wild = false;
@@ -9806,7 +9805,7 @@ void engine::main() {
 			else if (offset == 0 && choices[0] == 6) { // SPECIAL
 				if (holder_array[choices[choices.size() - 1]] == string("TELEPORT")) {
 					se.play_sound(string("sound_effects/general/sfx_teleport_enter_1.mp3"));
-					unsigned anim_holder = g.ae.create_anim_scene(string("screendark"));
+					anim_holder = g.ae.create_anim_scene(string("screendark"));
 					while (!g.ae.is_dones(anim_holder)) {}
 					mc.loc = mc.last_center;
 					mc.movement = string("player");
@@ -9818,7 +9817,7 @@ void engine::main() {
 				else if (holder_array[choices[choices.size() - 1]] == string("DIG")) {
 					if (levels[mc.loc.level].dungeon) {
 						se.play_sound(string("sound_effects/general/sfx_teleport_enter_1.mp3"));
-						unsigned anim_holder = g.ae.create_anim_scene(string("screendark"));
+						anim_holder = g.ae.create_anim_scene(string("screendark"));
 						while (!g.ae.is_dones(anim_holder)) {}
 						mc.loc = mc.last_non_dungeon;
 						mc.movement = string("player");
@@ -9869,9 +9868,9 @@ void engine::main() {
 				else if (holder_array[choices[choices.size() - 1]] == string("SOFTBOILED")) {
 					choices = do_menu(string("SOFTBOILED_MON_SELECT"));
 					choices = remove_cancels(choices);
-					string m = string("SOFTBOILED");
+					string mystring = string("SOFTBOILED");
 					if (choices.size() > 0) {
-						if (!has_move(mc.team[choices[0]], m)) {
+						if (!has_move(mc.team[choices[0]], mystring)) {
 							do_alert(get_nickname(mc.team[choices[0]]) + string(" doesn't know SOFTBOILED!"));
 						}
 						else {

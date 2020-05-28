@@ -17,7 +17,7 @@ using namespace std;
 
 class graphics;
 extern graphics g;
-extern mutex m;
+extern mutex mut;
 
 extern bool is_menu(string s);
 

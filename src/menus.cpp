@@ -1270,7 +1270,7 @@ void menu::update_reserves() {
 }
 
 void menu::push_menu() {
-	m.lock();
+	mut.lock();
 	index = g.draw_list.size();
 	for (unsigned i = 0; i < boxes.size(); ++i) {
 		g.push_box(boxes[i].xmin, boxes[i].ymin, boxes[i].length, boxes[i].height);
@@ -1330,14 +1330,14 @@ void menu::push_menu() {
 			}
 		}
 	}
-	m.unlock();
+	mut.unlock();
 }
 
 void menu::pop_menu() {
-	m.lock();
+	mut.lock();
 	cursor = -1;
 	g.draw_list.erase(g.draw_list.begin() + index, g.draw_list.end());
-	m.unlock();
+	mut.unlock();
 }
 
 void menu::process_strings() {

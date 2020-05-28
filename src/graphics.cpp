@@ -98,7 +98,7 @@ GLuint graphics::load_image(string filename) {
 		step = (int)png_get_channels(png_ptr, info_ptr);
 		size = height * width* step;
 		image = new unsigned char[size]; // allocate 4 bytes per pixel
-		int i = 0;
+		i = 0;
 		for (int y = height - 1; y >= 0; --y) {
 			for (int x = 0; x < width*step; ++x) {
 				image[i] = row_pointers[y][x];
@@ -371,7 +371,7 @@ void graphics::drawScene() {
 	}
 	wobble_counter += tim.delta(wobble_index);
 	std::vector<quad> draw_list_copy;
-	m.lock();
+	mut.lock();
 	if (new_load) {
 		new_load = false;
 		std::map<string, GLuint>::iterator it;
@@ -385,7 +385,7 @@ void graphics::drawScene() {
 		}
 	}
 	draw_list_copy = draw_list;
-	m.unlock();
+	mut.unlock();
 	//Clear information from last draw
 #ifdef __APPLE__
 	glBindFramebuffer(GL_FRAMEBUFFER, fbo);

@@ -10,7 +10,7 @@ class engine;
 class level;
 extern graphics g;
 extern engine e;
-extern mutex m;
+extern mutex mut;
 extern string get_special_string(string in);
 extern void push_hp_bar_if_exists(float x, float y, int index);
 extern void push_storage_hp_bar_if_exists(float x, float y, int index);

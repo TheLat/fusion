@@ -12,7 +12,7 @@
 
 
 using namespace std;
-mutex m;
+mutex mut;
 engine e;
 graphics g;
 soundengine se;
