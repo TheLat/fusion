@@ -2890,7 +2890,7 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
             }
             else {
                 g.draw_list[attacker.sprite_index].x = -1.0;
-                g.draw_list[attacker.sprite_index].y = -0.422;
+                g.draw_list[attacker.sprite_index].y = -0.424;
                 g.draw_list[attacker.sprite_index].height = 0.9;
                 g.draw_list[attacker.sprite_index].width = 0.9;
             }
@@ -3990,9 +3990,9 @@ bool engine::battle(trainer& t) { // trainer battle
 	g.r_quad.height = 2.0;
 	g.r_quad.width = 2.0;
 	unsigned enemy_trainer_sprite = g.push_quad_load(2.1f, 0.1f, 0.9f, 0.9f, safepath + string("images/") + t.image);
-	unsigned player_sprite = g.push_quad_load(-10.0f, -0.422f, 0.9f, 0.9f, safepath + string("images/player-back.png"));
+	unsigned player_sprite = g.push_quad_load(-10.0f, -0.424f, 0.9f, 0.9f, safepath + string("images/player-back.png"));
 	unsigned enemy_sprite = g.push_quad_load(2.1f, 0.1f, 0.9f, 0.9f, safepath + string("images/") + mc.enemy_team[mc.enemy_selected].number + string(".png"));
-	unsigned team_sprite = g.push_quad_load(-10.0f, -0.422f, 0.9f, 0.9f, safepath + string("images/") + mc.team[mc.selected].number + string("-back.png"));
+	unsigned team_sprite = g.push_quad_load(-10.0f, -0.424f, 0.9f, 0.9f, safepath + string("images/") + mc.team[mc.selected].number + string("-back.png"));
 	g.push_box(-1.0f, -1.0f, 2.0f, 0.6f);
 	mc.team[mc.selected].queue.clear();
 	mc.team[mc.selected].last_move = "";
@@ -4360,7 +4360,7 @@ bool engine::battle(trainer& t) { // trainer battle
 				}
 				if (num_alive_in_team == 1) {
                     g.draw_list[team_sprite].x = -1.0;
-                    g.draw_list[team_sprite].y = -0.422;
+                    g.draw_list[team_sprite].y = -0.424;
                     g.draw_list[team_sprite].width = 0.9;
                     g.draw_list[team_sprite].height = 0.9;
 				    do_alert(get_nickname(mc.team[mc.selected]) + string(" is too scared to move!"));
@@ -4620,8 +4620,8 @@ bool engine::battle() { // wild pokemon
 		}
 	}
 	unsigned enemy_sprite = g.push_quad_load(-1.9f, 0.1f, 0.9f, 0.9f, safepath + string("images/") + mc.enemy_team[mc.enemy_selected].number + string(".png"));
-	unsigned player_sprite = g.push_quad_load(1.0f, -0.422f, 0.9f, 0.9f, safepath + string("images/player-back.png"));
-	unsigned team_sprite = g.push_quad_load(-10.0f, -0.422f, 0.9f, 0.9f, safepath + string("images/") + mc.team[mc.selected].number + string("-back.png"));
+	unsigned player_sprite = g.push_quad_load(1.0f, -0.424f, 0.9f, 0.9f, safepath + string("images/player-back.png"));
+	unsigned team_sprite = g.push_quad_load(-10.0f, -0.424f, 0.9f, 0.9f, safepath + string("images/") + mc.team[mc.selected].number + string("-back.png"));
 	g.push_box(-1.0f, -1.0f, 2.0f, 0.6f);
 	mc.team[mc.selected].queue.clear();
 	mc.team[mc.selected].last_move = "";
@@ -5001,7 +5001,7 @@ bool engine::battle() { // wild pokemon
 				mc.enemy_team[mc.enemy_selected].fought[mc.selected] = true;
 			rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
 			g.draw_list[team_sprite].x = -2.0;
-			g.draw_list[team_sprite].y = -0.422;
+			g.draw_list[team_sprite].y = -0.424;
 			g.draw_list[team_sprite].width = 0.9;
 			g.draw_list[team_sprite].height = 0.9;
             cp = g.draw_list.size();

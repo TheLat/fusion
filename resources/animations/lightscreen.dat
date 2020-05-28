@@ -1,14 +1,14 @@
 PLAY_SOUND sound_effects/combat/lightscreen.mp3 0.0
 CREATE_SPRITE images/transparent-50.png 0.0 -1.0 -1.0 2.0 2.0
-CREATE_SPRITE images/lightscreen.png 0.0 -0.1 -0.422 0.8 0.8
+CREATE_SPRITE images/lightscreen.png 0.0 -0.1 -0.424 0.8 0.8
 HIDE_SPRITE 1 +0.125
-CREATE_SPRITE images/lightscreen.png +0.125 -0.1 -0.422 0.8 0.8
+CREATE_SPRITE images/lightscreen.png +0.125 -0.1 -0.424 0.8 0.8
 HIDE_SPRITE 2 +0.125
-CREATE_SPRITE images/lightscreen.png +0.125 -0.1 -0.422 0.8 0.8
+CREATE_SPRITE images/lightscreen.png +0.125 -0.1 -0.424 0.8 0.8
 HIDE_SPRITE 3 +0.125
-CREATE_SPRITE images/lightscreen.png +0.375 -0.1 -0.422 0.8 0.8
+CREATE_SPRITE images/lightscreen.png +0.375 -0.1 -0.424 0.8 0.8
 HIDE_SPRITE 4 +0.125
-CREATE_SPRITE images/lightscreen.png +0.125 -0.1 -0.422 0.8 0.8
+CREATE_SPRITE images/lightscreen.png +0.125 -0.1 -0.424 0.8 0.8
 HIDE_SPRITE 5 +0.125
-CREATE_SPRITE images/lightscreen.png +0.125 -0.1 -0.422 0.8 0.8
+CREATE_SPRITE images/lightscreen.png +0.125 -0.1 -0.424 0.8 0.8
 HIDE_SPRITE 6 +0.125
