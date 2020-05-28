@@ -6,3 +6,4 @@ Move queue not cleared at start of fight
 Absorb works on underground Pokemon
 Inventory scroll wrap.
 NPCs telling you how Dig and Teleport work.
+Page down for single-column selection menus
