@@ -19,7 +19,8 @@ public:
 	string last_music;
 	bool holder;
 	void init_sounds();
-	void play_sound(string s);
+	bool is_playing(int chan);
+	int play_sound(string s);
 	void play_sound_blocking(string s);
 	void play_music(string s);
 	void play_cry(string s, bool blocking=false);

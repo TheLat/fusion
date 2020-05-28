@@ -19,7 +19,7 @@ extern soundengine se;
 typedef std::map<string, std::map<string, float> >::iterator type_iter;
 extern bool safe_getline(ifstream &f, string& s);
 
-
+int bonk_sound = -1;
 input ie;
 string safepath = string("../resources/");
 
@@ -121,7 +121,9 @@ void engine::push_storage_hp_bar_if_exists(float x, float y, int index) {
 
 void engine::collision() {
 	update_level();
-	se.play_sound_blocking(string("sound_effects/general/sfx_collision.mp3"));
+	if (!se.is_playing(bonk_sound)) {
+		bonk_sound = se.play_sound(string("sound_effects/general/sfx_collision.mp3"));
+	}
 }
 
 void engine::play_level_music() {

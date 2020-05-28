@@ -35,8 +35,17 @@ void soundengine::init_sounds() {
 	music2 = 0;
 }
 
-void soundengine::play_sound(string s) {
+bool soundengine::is_playing(int chan) {
+	bool playing = false;
+	if (chan < 0 || chan >= SOUND_CHANNELS)
+		return false;
+	(channels[chan])->isPlaying(&playing);
+	return playing;
+}
+
+int soundengine::play_sound(string s) {
 	FMOD_RESULT       result;
+	int ret;
 	float volume = get_sfx_volume();
 	if (sounds[s] == 0) {
 		result = system->createSound((safepath + s).c_str(), FMOD_DEFAULT, 0, &sounds[s]);
@@ -46,7 +55,9 @@ void soundengine::play_sound(string s) {
 	result = system->playSound(sounds[s], 0, true, &(channels[channel_index]));
 	result = (channels[channel_index])->setVolume(volume);
 	result = (channels[channel_index])->setPaused(false);
+	ret = channel_index;
 	channel_index = (channel_index+1) % SOUND_CHANNELS;
+	return ret;
 }
 
 void soundengine::play_sound_blocking(string s) {
