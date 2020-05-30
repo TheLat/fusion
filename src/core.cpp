@@ -2875,6 +2875,7 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 	    if (in_special(move, string("ANIMATE_ON_MISS"))) {
 	    	do_move_animation(attacker, defender, move);
 	    }
+		attacker.last_damage = 0;
 		defender.last_hit_physical = 0;
 		bool no_animate = false;
 		for (unsigned i = 0; i < moves[move].self.size(); ++i) {
