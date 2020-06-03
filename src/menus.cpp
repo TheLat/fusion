@@ -1472,6 +1472,18 @@ void menu::input(bool up, bool down, bool left, bool right, bool select, bool st
 				selection++;
 			}
 		}
+		if (right) {
+			scroll += selection_cap;
+			if (scroll + selection_cap > max) {
+				scroll = max - (selection_cap - 1);
+			}
+		}
+		if (left) {
+			scroll -= selection_cap;
+			if (scroll < 0) {
+				scroll = 0;
+			}
+		}
 		if (confirm | start) {
 			done = true;
 			mutex2.unlock();
