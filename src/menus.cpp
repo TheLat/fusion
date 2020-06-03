@@ -1457,7 +1457,11 @@ void menu::input(bool up, bool down, bool left, bool right, bool select, bool st
 	}
 	else if (etype == SCROLL) {
 		if (up) {
-			if (selection - 1 < 0 && selection + scroll - 1 >= 0) {
+			if (selection == 0 && scroll == 0) {
+				scroll = max - (selection_cap - 1);
+				selection = selection_cap - 1;
+			}
+			else if (selection - 1 < 0 && selection + scroll - 1 >= 0) {
 				scroll--;
 			}
 			else if (selection - 1 >= 0) {
@@ -1465,7 +1469,11 @@ void menu::input(bool up, bool down, bool left, bool right, bool select, bool st
 			}
 		}
 		if (down) {
-			if (selection + 1 >= selection_cap && selection + scroll + 1 <= max) {
+			if (selection == selection_cap - 1 && scroll == max - (selection_cap - 1)) {
+				scroll = 0;
+				selection = 0;
+			}
+			else if (selection + 1 >= selection_cap && selection + scroll + 1 <= max) {
 				scroll++;
 			}
 			else if (selection + 1 < selection_cap) {
