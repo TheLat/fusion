@@ -4,6 +4,7 @@
 using namespace std;
 
 class timer {
+	double speedup;
 public:
 	unsigned create();
 	void update(unsigned index);

@@ -1,5 +1,7 @@
 #include "timer.h"
+#include <string>
 #include <vector>
+#include <fstream>
 #ifdef __APPLE__
 #include <sys/time.h>
 #else
@@ -13,7 +15,17 @@ vector<LARGE_INTEGER> holders;
 LARGE_INTEGER freq;
 #endif
 
+extern bool safe_getline(ifstream &f, string& s);
+
 timer::timer() {
+	string line;
+	speedup = 1.0;
+	ifstream f((string("../speedup.txt")));
+	if (f.is_open()) {
+		safe_getline(f, line);
+		speedup = stof(line);
+	}
+	f.close();
 #ifdef __APPLE__
 
 #else
@@ -48,13 +60,13 @@ double timer::delta(unsigned index) {
     gettimeofday(&temp, NULL);
     double f = (temp.tv_sec - holders[index].tv_sec);
     f += (temp.tv_usec - holders[index].tv_usec)/1000000.0;
-    return f;
+    return f * speedup;
 #else
 	LARGE_INTEGER temp;
 	QueryPerformanceCounter(&temp);
 	double f = 1.0 / freq.QuadPart;
 	f = (temp.QuadPart - holders[index].QuadPart) * f;
-	return f;
+	return f * speedup;
 #endif
 }
 
