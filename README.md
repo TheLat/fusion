@@ -53,7 +53,7 @@ List of changes:
 - Moltres learns Fire Blast.
 - Gust is a flying move.  This makes early life hard for Bulbasaur.
 - Butterfree weighs 12.5 pounds, used to be 70 pounds.  What the hell?
-- Beedrill weights 15 pounds.
+- Beedrill weighs 15 pounds.
 - Changed Rage to greatly increase attack, defense, and special when attacked.
 - Increased damage to self on miss of Jump Kick and Hi Jump Kick.
 - Lowered Jump Kick's power.
