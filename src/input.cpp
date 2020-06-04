@@ -25,11 +25,16 @@ struct DI_ENUM_CONTEXT
 bool use_controller = false;
 
 extern bool safe_getline(ifstream &f, string& s);
+extern bool has_menu();
 timer tim2;
 
 input::input() {
-    time_index = tim2.create();
-    tim2.update(time_index);
+	time_index = tim2.create();
+	tim2.update(time_index);
+	repeater1 = tim2.create();
+	tim2.update(repeater1);
+	repeater2 = tim2.create();
+	tim2.update(repeater2);
     for (unsigned i = 0; i < 16*16; ++i) {
         key_down[i] = false;
         key_press[i] = false;
@@ -381,6 +386,36 @@ void input::tick() {
 		key_down[i] = got_input;
 	}
 #endif
+	if (has_menu()) {
+		bool any_input = false;
+		for (unsigned i = 0; i < 16 * 16 * 2; ++i) {
+			if (key_down[i]) {
+				any_input = true;
+			}
+		}
+		if (any_input) {
+			if (tim2.delta(repeater1) < 0.75) {
+				tim2.update(repeater2);
+			}
+			else {
+				if (tim2.delta(repeater2) > 0.1) {
+					tim2.update(repeater2);
+					for (unsigned i = 0; i < 16 * 16 * 2; ++i) {
+						key_down[i] = false;
+						key_press[i] = false;
+					}
+				}
+			}
+		}
+		else {
+			tim2.update(repeater1);
+			tim2.update(repeater2);
+		}
+	}
+	else {
+		tim2.update(repeater1);
+		tim2.update(repeater2);
+	}
 }
 
 void input::keydown(bool &up, bool &down, bool &left, bool &right, bool &confirm, bool &cancel, bool &start, bool &select) {

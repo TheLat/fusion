@@ -7174,6 +7174,10 @@ void engine::create_menu(string s, string choice, string text_override, string f
 	menus[menus.size() - 1]->push_menu();
 }
 
+bool has_menu() {
+	return e.menus.size() != 0;
+}
+
 vector<int> engine::do_alert(string s) {
 	return do_menu(string("ALERT"), s);
 }

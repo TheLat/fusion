@@ -1,3 +1,2 @@
 TO FIX:
 Don't take keyboard input when not in focus (windows only)
-Rapid input for menus when key held down?

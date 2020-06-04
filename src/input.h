@@ -13,6 +13,7 @@ private:
 	unsigned char i_up, i_down, i_left, i_right, i_confirm, i_cancel, i_start, i_select;
 	unsigned char u_up, u_down, u_left, u_right, u_confirm, u_cancel, u_start, u_select;
 	int c_up, c_down, c_left, c_right, c_confirm, c_cancel, c_start, c_select;
+	unsigned repeater1, repeater2;
 public:
 	unsigned char get_pressed_key(bool& pressed);
 	int get_button_pressed(bool& pressed);
