@@ -20,6 +20,8 @@ timer tim;
 extern string safepath;
 int resolution;
 
+const char* windowTitle = "Pokemon Fusion";
+
 bool safe_getline(ifstream &f, string& s) {
 	bool ret = std::getline(f, s) ? true : false;
 	while (s.find(string("\r")) != -1)
@@ -411,7 +413,7 @@ int main(int argc, char** argv) {
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
 	glutInitWindowSize(resolution, (resolution*9)/10); //Set the window size
 	//Create the window
-	glutCreateWindow("Pokemon Fusion");
+	glutCreateWindow(windowTitle);
 	g.initRendering(); //Initialize rendering
 	e.init_characters();
 	//Set handler functions for drawing, keypresses, and window resizes

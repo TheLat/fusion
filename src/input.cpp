@@ -19,7 +19,7 @@ struct DI_ENUM_CONTEXT
 	DIJOYCONFIG* pPreferredJoyCfg;
 	bool bPreferredJoyCfgValid;
 };
-
+extern const char* windowTitle;
 #endif
 
 bool use_controller = false;
@@ -282,7 +282,7 @@ void input::tick() {
 	}
 	for (unsigned i = 0; i < 16 * 16; ++i) {
 		bool got_input;
-		got_input = GetAsyncKeyState(i) != 0;
+		got_input = (GetAsyncKeyState(i) != 0) && (FindWindow(NULL, windowTitle) == GetForegroundWindow());
 		if (use_controller) {
 			if (i == i_up) {
 				if (c_up != UNBOUND && c_up >= 0) {
