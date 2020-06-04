@@ -20,7 +20,7 @@ MENU:ALERT:Have you heard about BILL?|MENU:ALERT:Everyone calls him a POK{e-acce
 END
 cerulean-center-man man2 8 6 WANDER
 INTERACTIONS
-MENU:ALERT:That BILL!|MENU:ALERT:I heard he'll do whatever it takes to get rare POK{e-accent}MON!
+MENU:ALERT:DIG and TELEPORT are moves that can be used outside of combat!|MENU:ALERT:DIG will take you to the entrance if you're in a cave!|MENU:ALERT:TELEPORT will take you to the last POK{e-accent}MON CENTER you used, no matter where you are!
 END
 cerulean-center-cableclub woman 11 2
 INTERACTIONS

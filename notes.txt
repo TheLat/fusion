@@ -1,4 +1,3 @@
 TO FIX:
 Don't take keyboard input when not in focus (windows only)
-NPCs telling you how Dig and Teleport work.
 Rapid input for menus when key held down?
