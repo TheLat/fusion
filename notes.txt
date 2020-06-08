@@ -1,1 +1,3 @@
 TO FIX:
+Quick Attack during Wrap
+Teleport having a "failed" message.
