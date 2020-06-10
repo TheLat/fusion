@@ -2121,8 +2121,8 @@ bool engine::level_up(mon& out, bool confirm_learn) {
 		for (unsigned x = 0; x < all_mon[out.number].learned.size(); ++x) {
 			if (all_mon[out.number].learned[x].first == out.level || (all_mon[out.number].learned[x].first == 0 && evolved) || (all_mon[out.number].learned[x].first == 0 && !confirm_learn && out.level == 1)) {
 				if (!confirm_learn) {
-					create_move(out, all_mon[out.number].learned[x].second, counter % 4);
-					counter++;
+					if (create_move(out, all_mon[out.number].learned[x].second, counter % 4))
+						counter++;
 				}
 				else {
 					learn_move(out, all_mon[out.number].learned[x].second);

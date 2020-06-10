@@ -1,6 +1,5 @@
 TO FIX:
 Quick Attack during Wrap
 Teleport having a "failed" message.
-Possible crash bug with gastly/jynx trainer in Tower
 Does Sand Attack persist?
 TM gone after canceling learning move from Pokemon that knows 4 moves.
