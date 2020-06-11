@@ -1375,6 +1375,9 @@ bool engine::use_item(string filter, std::vector<int> &choices, string &ret) {
 				}
 				mc.used_tms[record] = true;
 			}
+			else {
+				return false;
+			}
 			success = true;
 		}
 		else if (base.find("HM") == 0) {

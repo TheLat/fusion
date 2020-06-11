@@ -1,5 +1,4 @@
 TO FIX:
 Quick Attack during Wrap
 Does Sand Attack persist?
-TM gone after canceling learning move from Pokemon that knows 4 moves.
 Rapid-fire doesn't work on mac
