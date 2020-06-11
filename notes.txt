@@ -1,4 +1,3 @@
 TO FIX:
-Quick Attack during Wrap
 Does Sand Attack persist?
 Rapid-fire doesn't work on mac

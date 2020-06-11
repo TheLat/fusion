@@ -5057,6 +5057,12 @@ bool engine::battle() { // wild pokemon
 void engine::do_turn(mon& m1, mon& m2) {
 	bool m1first = in_special(m1.queue[0], string("FIRST"));
 	bool m2first = in_special(m2.queue[0], string("FIRST"));
+	if (m1first && in_special(m1.queue[0], string("UNAVOIDABLE"))) {
+		m2first = false;
+	}
+	if (m2first && in_special(m2.queue[0], string("UNAVOIDABLE"))) {
+		m1first = false;
+	}
 	if (m1first && !m2first) {
 		do_turn_inner(m1, m2);
 	}
