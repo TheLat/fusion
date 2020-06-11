@@ -3075,7 +3075,7 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 				attacker.queue.push_back(temp);
 		}
 	}
-	if (!self_on_miss_only || (self_on_miss_only && miss)) {
+	if ((!self_on_miss_only && !miss) || (self_on_miss_only && miss)) {
 	    for (unsigned j = 0; j < moves[move].self.size(); ++j) {
 			if (moves[move].self[j].find("RECOIL") == -1) {
 			    if (in_status(attacker, string("SUBSTITUTE")) && moves[move].self[j].find("KO") != -1) {
