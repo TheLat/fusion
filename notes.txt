@@ -1,3 +1,1 @@
 TO FIX:
-Does Sand Attack persist?
-Rapid-fire doesn't work on mac
