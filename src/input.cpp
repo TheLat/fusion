@@ -1,5 +1,4 @@
 #include "input.h"
-#include "timer.h"
 #include <stdio.h>
 #include <iostream>
 #include <fstream>
@@ -26,15 +25,10 @@ bool use_controller = false;
 
 extern bool safe_getline(ifstream &f, string& s);
 extern bool has_menu();
-timer tim2;
 
 input::input() {
-	time_index = tim2.create();
-	tim2.update(time_index);
-	repeater1 = tim2.create();
-	tim2.update(repeater1);
-	repeater2 = tim2.create();
-	tim2.update(repeater2);
+	repeater1 = 0.0;
+	repeater2 = 0.0;
     for (unsigned i = 0; i < 16*16; ++i) {
         key_down[i] = false;
         key_press[i] = false;
@@ -132,7 +126,7 @@ input::input() {
 #endif
 }
 
-void input::tick() {
+void input::tick(double deltat) {
 #ifdef __APPLE__
     GetKeys((BigEndianUInt32*) &keyMap);
     for (unsigned i = 0; i < 16; ++i)  {
@@ -394,12 +388,14 @@ void input::tick() {
 			}
 		}
 		if (any_input) {
-			if (tim2.delta(repeater1) < 0.75) {
-				tim2.update(repeater2);
+			repeater1 += deltat;
+			repeater2 += deltat;
+			if (repeater1 < 0.75) {
+				repeater2 = 0.0;
 			}
 			else {
-				if (tim2.delta(repeater2) > 0.1) {
-					tim2.update(repeater2);
+				if (repeater2 > 0.1) {
+					repeater2 = 0.0;
 					for (unsigned i = 0; i < 16 * 16 * 2; ++i) {
 						key_down[i] = false;
 						key_press[i] = false;
@@ -408,13 +404,13 @@ void input::tick() {
 			}
 		}
 		else {
-			tim2.update(repeater1);
-			tim2.update(repeater2);
+			repeater1 = 0.0;
+			repeater2 = 0.0;
 		}
 	}
 	else {
-		tim2.update(repeater1);
-		tim2.update(repeater2);
+		repeater1 = 0.0;
+		repeater2 = 0.0;
 	}
 }
 
@@ -479,7 +475,7 @@ bool input::get_and_set_key(int mapping) {
 	bool got_input, got_input2;
 	got_input = false;
 	got_input2 = false;
-	tick();
+	tick(0.0);
 	key = get_pressed_key(got_input);
 #ifdef __APPLE__
 #else
@@ -487,7 +483,7 @@ bool input::get_and_set_key(int mapping) {
 		button = get_button_pressed(got_input2);
 #endif
 	while (got_input || got_input2) {
-		tick();
+		tick(0.0);
 		key = get_pressed_key(got_input);
 #ifdef __APPLE__
 #else
@@ -496,7 +492,7 @@ bool input::get_and_set_key(int mapping) {
 #endif
 	}
 	while (!got_input && !got_input2) {
-		tick();
+		tick(0.0);
 		key = get_pressed_key(got_input);
 #ifdef __APPLE__
 #else

@@ -395,7 +395,7 @@ public:
 	int weightedrand();
 	void handle_teleport();
 	int get_tile(double y, double x);
-	void input();
+	void input(double deltat);
 	void collision();
 	void play_level_music();
 	void player_input(bool up, bool down, bool left, bool right, bool select, bool start, bool confirm, bool cancel);

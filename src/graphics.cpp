@@ -10,7 +10,7 @@
 extern bool safe_getline(ifstream &f, string& s);
 
 extern string safepath;
-extern void input_tick();
+extern void input_tick(double deltat);
 extern int resolution;
 double tile_anim_dur = 48000.0;
 
@@ -348,7 +348,7 @@ void graphics::animate() {
 		deltat = tim.delta(time_index);
 	tim.update(time_index);
 	ae.tick(deltat);
-	input_tick();
+	input_tick(deltat);
 }
 
 void graphics::drawScene() {

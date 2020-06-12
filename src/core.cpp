@@ -65,8 +65,8 @@ GLuint get_character_tex(character& c) {
 	//g.tex[c->image + string("-") + get_direction_string(c->dir) + string("-0.bmp")]
 }
 
-void input_tick() {
-    e.input();
+void input_tick(double deltat) {
+    e.input(deltat);
 }
 
 string get_direction_string(direction dir) {
@@ -6704,8 +6704,8 @@ int engine::get_tile(double y, double x) {
 	return levels[mc.loc.level].data[int(y)][int(x)];
 }
 
-void engine::input() {
-    ie.tick();
+void engine::input(double deltat) {
+    ie.tick(deltat);
     bool iconfirm, icancel, istart, iselect;
     bool fake;
 	if (menus.size() == 0) {
