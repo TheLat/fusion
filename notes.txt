@@ -1,3 +1,4 @@
 TO FIX:
 Clamp continuing after KO
 PC in Fusion Lab
+No indication from Pokeflute that it did anything.
