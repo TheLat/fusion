@@ -1543,7 +1543,6 @@ vector<int> menu::main() {
 		if (autoclose && etype == ALERT) {
 		    done = g.ae.is_donei(anim_index);
 		}
-		mutex2.unlock();
 		if (anim_images.size() > 0) {
 			for (unsigned i = 0; i < anim_images.size(); ++i) {
 				if (anim_images[i].filename != string("")) {
@@ -1555,6 +1554,7 @@ vector<int> menu::main() {
 				g.new_load = true;
 			}
 		}
+		mutex2.unlock();
 		if (etype == AUTO_FOLLOWUP) {
 			done = true;
 			selection = 0;
