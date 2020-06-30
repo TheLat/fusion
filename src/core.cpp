@@ -2243,14 +2243,14 @@ double engine::random(double min, double max) {
 	return min + t * delta;
 }
 
-void engine::heal_damage(mon& m, int heal_amount) {
+void engine::heal_damage(mon& m, int heal_amount, bool silent) {
 	if (heal_amount < 0) {
 		return;
 	}
 	if (heal_amount + m.curr_hp > get_stat(m, HP))
 	    heal_amount = get_stat(m, HP) - m.curr_hp;
     unsigned anim_holder = 0;
-    anim_holder = g.ae.create_animi(&(m.curr_hp), m.curr_hp, m.curr_hp + heal_amount, 0.5);
+    anim_holder = g.ae.create_animi(&(m.curr_hp), m.curr_hp, m.curr_hp + heal_amount, !silent ? 0.25 : 0.0001);
     while (!g.ae.is_donei(anim_holder)) {
 	    resize_hp_bars(m);
 	    if (m.hud_index)
@@ -2530,11 +2530,11 @@ bool engine::apply_status(mon& m, string s, bool skip_chance, bool silent) {
 				do_alert(string("Disabled ") + m.moves[m.disabled_move] + string("!"));
 		}
 		else if (s2 == "HEAL") {
-			heal_damage(m, int(double(get_stat(m, HP)) * (double(value) / 100.0)));
+			heal_damage(m, int(double(get_stat(m, HP)) * (double(value) / 100.0)), silent);
 		}
 		else if (s2 == "VAMPIRE") {
 		    int old_hp = m.curr_hp;
-			heal_damage(m, max(int(double(m.last_damage) * (double(value) / 100.0)), 0));
+			heal_damage(m, max(int(double(m.last_damage) * (double(value) / 100.0)), 0), silent);
 			if (old_hp != m.curr_hp)
     			do_alert(string("Stole the opponent's health!"));
 		}
@@ -2555,7 +2555,7 @@ bool engine::apply_status(mon& m, string s, bool skip_chance, bool silent) {
 					do_alert(get_nickname(m) + string(" created a SUBSTITUTE!"));
 				m.stored_hp = m.curr_hp;
 				m.curr_hp = 0;
-				heal_damage(m, dam + 1);
+				heal_damage(m, dam + 1, silent);
 				m.status.push_back(s2);
 			}
 		}
@@ -3464,6 +3464,8 @@ float engine::get_hp_percent(mon& m) {
 }
 
 bool engine::is_valid_move(mon& m, unsigned i) {
+	if (i > 3)
+		return false;
 	if (!moves[m.moves[i]].defined)
 		return false;
 	if (m.pp[i] <= 0)
@@ -4275,6 +4277,7 @@ bool engine::battle(trainer& t) { // trainer battle
 				mc.enemy_team[mc.enemy_selected].turn_count = 1;
 			}
 			else {
+				count = 0.0;
 				for (i = 0; i < 4; i++) {
 					if (is_valid_move(mc.enemy_team[mc.enemy_selected], i))
 						count = count + 1.0;
@@ -4283,23 +4286,15 @@ bool engine::battle(trainer& t) { // trainer battle
 					mc.enemy_team[mc.enemy_selected].queue.push_back(string("STRUGGLE"));
 				}
 				else {
-					index = int(random(0.0, count));
+					bool has_valid_moves = false;
+					index = int(random(0.0, 4.0));
+					while (!is_valid_move(mc.enemy_team[mc.enemy_selected], index))
+						index = int(random(0.0, 4.0));
 					if (random(0.0, 1.0) <= t.skill) {
 						double temp3;
 						index = get_smart_move(mc.enemy_team[mc.enemy_selected], copy, t, false, 0, a, b, false, temp3);
 					}
-					int choice = -1;
-					for (i = 0; i <= index; ++i) {
-						if (!is_valid_move(mc.enemy_team[mc.enemy_selected], i))
-							choice++;
-						choice++;
-					}
-					if (choice == -1) {
-						mc.enemy_team[mc.enemy_selected].queue.push_back(string("STRUGGLE"));
-					}
-					else {
-						mc.enemy_team[mc.enemy_selected].queue.push_back(mc.enemy_team[mc.enemy_selected].moves[choice]);
-					}
+					mc.enemy_team[mc.enemy_selected].queue.push_back(mc.enemy_team[mc.enemy_selected].moves[index]);
 				}
 			}
 		}
