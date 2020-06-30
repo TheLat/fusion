@@ -368,24 +368,42 @@ void animation_engine::tick(double delta) {
 }
 
 bool animation_engine::is_donef(unsigned index) {
+	safetyf.lock();
+	bool ret = false;
 	if (index >= animf.size()) {
-		return true;
+		ret = true;
 	}
-	return animf[index].done;
+	else {
+		ret = animf[index].done;
+	}
+	safetyf.unlock();
+	return ret;
 }
 
 bool animation_engine::is_donei(unsigned index) {
+	safetyi.lock();
+	bool ret = false;
 	if (index >= animi.size()) {
-		return true;
+		ret = true;
 	}
-	return animi[index].done;
+	else {
+		ret = animi[index].done;
+	}
+	safetyi.unlock();
+	return ret;
 }
 
 bool animation_engine::is_dones(unsigned index) {
+	safetys.lock();
+	bool ret = false;
 	if (index >= anims.size()) {
-		return true;
+		ret = true;
 	}
-	return anims[index].done;
+	else {
+		ret = anims[index].done;
+	}
+	safetys.unlock();
+	return ret;
 }
 
 
