@@ -331,7 +331,7 @@ public:
 	void clear_queue(mon& m);
 	double random(double min, double max);
 	void heal_damage(mon& m, int heal_amount);
-	void deal_damage(mon& m, int damage_amount);
+	void deal_damage(mon& m, int damage_amount, bool silent = false);
 	bool status_immunity(mon& m, string move);
 	bool remove_status_wildcard(mon& m, string s, bool all = false);
 	bool remove_status(mon& m, string s, bool all = false);

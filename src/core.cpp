@@ -2261,14 +2261,14 @@ void engine::heal_damage(mon& m, int heal_amount) {
 		rebuild_battle_hud(mc.team[mc.selected], mc.enemy_team[mc.enemy_selected]);
 }
 
-void engine::deal_damage(mon& m, int damage_amount) {
+void engine::deal_damage(mon& m, int damage_amount, bool silent) {
 	if (damage_amount <= 0) {
 		return;
 	}
 	if (damage_amount > m.curr_hp)
 	    damage_amount = m.curr_hp;
 	unsigned anim_holder = 0;
-	anim_holder = g.ae.create_animi(&(m.curr_hp), m.curr_hp, m.curr_hp - damage_amount, 0.25);
+	anim_holder = g.ae.create_animi(&(m.curr_hp), m.curr_hp, m.curr_hp - damage_amount, !silent ? 0.25 : 0.0001);
 	while (!g.ae.is_donei(anim_holder)) {
         if (m.curr_hp < 0)
             m.curr_hp = 0;
@@ -2482,18 +2482,20 @@ bool engine::apply_status(mon& m, string s, bool skip_chance, bool silent) {
 		    double anim_flip = 1.0;
 			if (!m.enemy)
 			    anim_flip = -1.0;
-		    se.play_sound(string("sound_effects/combat/imhit.mp3"));
-			g.r_quad.x = -1.0 + anim_flip*3.0/160.0;
-			anim_holder = g.ae.create_animf(&(irrelevant), 0.0, 1.0, 1.0/16.0);
-			while (!g.ae.is_donef(anim_holder)) {}
-			g.r_quad.x = -1.0 + anim_flip*-2.0/160.0;
-			anim_holder = g.ae.create_animf(&(irrelevant), 0.0, 1.0, 1.0/16.0);
-			while (!g.ae.is_donef(anim_holder)) {}
-			g.r_quad.x = -1.0 + anim_flip*1.0/160.0;
-			anim_holder = g.ae.create_animf(&(irrelevant), 0.0, 1.0, 1.0/16.0);
-			while (!g.ae.is_donef(anim_holder)) {}
-			g.r_quad.x = -1.0;
-			deal_damage(m, m.curr_hp / 2);
+			if (!silent) {
+				se.play_sound(string("sound_effects/combat/imhit.mp3"));
+				g.r_quad.x = -1.0 + anim_flip * 3.0 / 160.0;
+				anim_holder = g.ae.create_animf(&(irrelevant), 0.0, 1.0, 1.0 / 16.0);
+				while (!g.ae.is_donef(anim_holder)) {}
+				g.r_quad.x = -1.0 + anim_flip * -2.0 / 160.0;
+				anim_holder = g.ae.create_animf(&(irrelevant), 0.0, 1.0, 1.0 / 16.0);
+				while (!g.ae.is_donef(anim_holder)) {}
+				g.r_quad.x = -1.0 + anim_flip * 1.0 / 160.0;
+				anim_holder = g.ae.create_animf(&(irrelevant), 0.0, 1.0, 1.0 / 16.0);
+				while (!g.ae.is_donef(anim_holder)) {}
+				g.r_quad.x = -1.0;
+			}
+			deal_damage(m, m.curr_hp / 2, silent);
 		}
 		else if (s2 == "KO") {
 		    unsigned anim_holder;
@@ -2501,18 +2503,20 @@ bool engine::apply_status(mon& m, string s, bool skip_chance, bool silent) {
 		    double anim_flip = 1.0;
 			if (!m.enemy)
 			    anim_flip = -1.0;
-		    se.play_sound(string("sound_effects/combat/imhitsuper.mp3"));
-			g.r_quad.x = -1.0 + anim_flip*4.5/160.0;
-			anim_holder = g.ae.create_animf(&(irrelevant), 0.0, 1.0, 1.0/16.0);
-			while (!g.ae.is_donef(anim_holder)) {}
-			g.r_quad.x = -1.0 + anim_flip*-3.0/160.0;
-			anim_holder = g.ae.create_animf(&(irrelevant), 0.0, 1.0, 1.0/16.0);
-			while (!g.ae.is_donef(anim_holder)) {}
-			g.r_quad.x = -1.0 + anim_flip*1.5/160.0;
-			anim_holder = g.ae.create_animf(&(irrelevant), 0.0, 1.0, 1.0/16.0);
-			while (!g.ae.is_donef(anim_holder)) {}
-			g.r_quad.x = -1.0;
-			deal_damage(m, m.curr_hp);
+			if (!silent) {
+				se.play_sound(string("sound_effects/combat/imhitsuper.mp3"));
+				g.r_quad.x = -1.0 + anim_flip * 4.5 / 160.0;
+				anim_holder = g.ae.create_animf(&(irrelevant), 0.0, 1.0, 1.0 / 16.0);
+				while (!g.ae.is_donef(anim_holder)) {}
+				g.r_quad.x = -1.0 + anim_flip * -3.0 / 160.0;
+				anim_holder = g.ae.create_animf(&(irrelevant), 0.0, 1.0, 1.0 / 16.0);
+				while (!g.ae.is_donef(anim_holder)) {}
+				g.r_quad.x = -1.0 + anim_flip * 1.5 / 160.0;
+				anim_holder = g.ae.create_animf(&(irrelevant), 0.0, 1.0, 1.0 / 16.0);
+				while (!g.ae.is_donef(anim_holder)) {}
+				g.r_quad.x = -1.0;
+			}
+			deal_damage(m, m.curr_hp, silent);
 		}
 		else if (s2 == "DISABLE") {
 			m.disabled_move = int(random(0.0, 4.0));
@@ -2537,7 +2541,7 @@ bool engine::apply_status(mon& m, string s, bool skip_chance, bool silent) {
 		else if (s2 == "SELF_LEVEL") {
 		}
 		else if (s2 == "EXACT_DAMAGE") {
-			deal_damage(m, value);
+			deal_damage(m, value, silent);
 		}
 		else if (s2 == "SUBSTITUTE") {
 			if (get_stat(m, HP) / 4 >= m.curr_hp) {
@@ -2546,7 +2550,7 @@ bool engine::apply_status(mon& m, string s, bool skip_chance, bool silent) {
 			}
 			else {
 				int dam = get_stat(m, HP) / 4;
-				deal_damage(m, dam);
+				deal_damage(m, dam, silent);
 				if (!silent)
 					do_alert(get_nickname(m) + string(" created a SUBSTITUTE!"));
 				m.stored_hp = m.curr_hp;
