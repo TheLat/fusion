@@ -14,6 +14,7 @@ END
 saffron-gym-clerk clerk 10 15 DOWN
 INTERACTIONS
 MENU:ALERT:Yo! Champ in making!|MENU:ALERT:SABRINA's POK{e-accent}MON use psychic power instead of force!|MENU:ALERT:Fighting POK{e-accent}MON are weak against psychic POK{e-accent}MON!|MENU:ALERT:They get creamed before they can even aim a punch!|NO_ADVANCE
+MENU:ALERT:Psychic power, huh?|MENU:ALERT:If I had that, I'd make a bundle at the slots!
 END
 saffron-gym-boy1 boy 17 13 DOWN
 FORCE_INTERACTION
@@ -87,7 +88,7 @@ MENU:ALERT:Psychic POK{e-accent}MON fear only ghosts and bugs!
 END
 saffron-gym-sabrina woman3 9 8 DOWN
 INTERACTIONS
-MENU:ALERT:I had a vision of your arrival!|MENU:ALERT:I have had psychic powers since I was a child.|MENU:ALERT:I first learned to bend spoons with my mind.|MENU:ALERT:I dislike fighting, but if you wish, I will show you my powers!|BATTLE:saffron-gym-sabrina|{NO_ADVANCE}{SET:MARSHBADGE:1|MENU:ALERT:Wait, please take this TM with you!|GIVE_ITEM:TM46|MENU:ALERT:TM46 is PSYWAVE! It uses powerful psychic waves to inflict damage!}
+MENU:ALERT:I had a vision of your arrival!|MENU:ALERT:I have had psychic powers since I was a child.|MENU:ALERT:I first learned to bend spoons with my mind.|MENU:ALERT:I dislike fighting, but if you wish, I will show you my powers!|BATTLE:saffron-gym-sabrina|{NO_ADVANCE}{SET:MARSHBADGE:1|MENU:ALERT:Wait, please take this TM with you!|GIVE_ITEM:TM46|MENU:ALERT:TM46 is PSYWAVE! It uses powerful psychic waves to inflict damage!|ADVANCE:saffron-gym-board|ADVANCE:saffron-gym-clerk}
 MENU:ALERT:Everyone has psychic power! People just don't realize it!
 END
 TRAINERS
