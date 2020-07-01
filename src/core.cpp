@@ -3168,6 +3168,11 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
             do_alert(get_nickname(defender) + string(" fell asleep!"));
         }
     }
+	if (in_special(move, string("CLEAR_QUEUE_ON_KO"))) {
+		if (is_KO(defender)) {
+			attacker.queue.clear();
+		}
+	}
 	return success;
 }
 

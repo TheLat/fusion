@@ -1,3 +1,2 @@
 TO FIX:
-Clamp continuing after KO
 No indication from Pokeflute that it did anything.
