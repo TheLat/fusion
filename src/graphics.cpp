@@ -288,7 +288,7 @@ void graphics::handleResize(int w, int h) {
 	gluOrtho2D(-1, 1, -1, 1);
 }
 
-unsigned graphics::push_quad(float x, float y, float width, float height, GLuint texture, string filename) {
+unsigned graphics::push_quad(float x, float y, float width, float height, GLuint texture, string filename, bool animated) {
 	quad q;
 	q.x = x;
 	q.y = y;
@@ -296,8 +296,14 @@ unsigned graphics::push_quad(float x, float y, float width, float height, GLuint
 	q.height = height;
 	q.tex = texture;
 	q.half = false;
+	q.animated = animated;
 	if (texture == 0)
 		q.filename = filename;
+	if (animated) {
+		q.anim_filename = filename;
+		q.filename = filename;
+		q.filename.insert(q.filename.find("-.") + 1, to_string(fast_frame % 8));
+	}
 	draw_list.push_back(q);
 	return draw_list.size() - 1;
 }
@@ -310,6 +316,7 @@ unsigned graphics::push_quad_half(float x, float y, float width, float height, G
 	q.height = height;
 	q.tex = texture;
 	q.half = true;
+	q.animated = false;
 	if (texture == 0)
 		q.filename = filename;
 	draw_list.push_back(q);
@@ -372,6 +379,16 @@ void graphics::drawScene() {
 	wobble_counter += tim.delta(wobble_index);
 	std::vector<quad> draw_list_copy;
 	mut.lock();
+	for (unsigned i = 0; i < draw_list.size(); ++i) {
+		if (draw_list[i].animated) {
+			draw_list[i].filename = draw_list[i].anim_filename;
+			draw_list[i].filename.insert(draw_list[i].filename.find("-.") + 1, to_string(fast_frame % 8));
+			if (!tex[draw_list[i].filename]) {
+				new_load = true;
+			}
+			draw_list[i].tex = tex[draw_list[i].filename];
+		}
+	}
 	if (new_load) {
 		new_load = false;
 		std::map<string, GLuint>::iterator it;
@@ -549,16 +566,20 @@ unsigned graphics::push_hp_bar(float xmin, float ymin, float hp) {
 	return ret;
 }
 
-unsigned graphics::push_quad_load(float x, float y, float width, float height, string filename) {
-	if (!tex[filename]) {
+unsigned graphics::push_quad_load(float x, float y, float width, float height, string filename, bool animated) {
+	string temp_filename = filename;
+	if (animated) {
+		temp_filename.insert(temp_filename.find("-.") + 1, to_string(fast_frame % 8));
+	}
+	if (!tex[temp_filename]) {
 #ifdef __APPLE__
-        tex[filename] = 0;
+        tex[temp_filename] = 0;
 #else
-		tex[filename] = load_image(filename);
+		tex[temp_filename] = load_image(temp_filename);
 #endif
 		new_load = true;
 	}
-	return push_quad(x, y, width, height, tex[filename], filename);
+	return push_quad(x, y, width, height, tex[temp_filename], filename, animated);
 }
 
 void graphics::alert(string s) {

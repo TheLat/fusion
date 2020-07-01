@@ -468,6 +468,8 @@ string engine::get_special_string(string in) {
 			int index = stoi(temp);
 			if (!mc.team[index].defined)
 				return string("");
+			if (mc.team[index].curr_hp == 0)
+				return all_mon[mc.team[index].number].body + string("-ko");
 			if (mc.team[index].curr_hp < get_stat(mc.team[index], HP) / 2)
 				return all_mon[mc.team[index].number].body + string("-injured");
 			return all_mon[mc.team[index].number].body;

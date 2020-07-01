@@ -27,6 +27,8 @@ public:
 	bool half;
 	GLuint tex;
 	string filename;
+	bool animated;
+	string anim_filename;
 };
 
 class string_lookup_data {
@@ -69,7 +71,7 @@ public:
 
 	//Called when the window is resized
 	void handleResize(int w, int h);
-	unsigned push_quad(float x, float y, float width, float height, GLuint texture, string filename = string(""));
+	unsigned push_quad(float x, float y, float width, float height, GLuint texture, string filename = string(""), bool animated = false);
 	unsigned push_quad_half(float x, float y, float width, float height, GLuint texture, string filename = string(""));
 	void draw_quad(quad &q);
 
@@ -82,7 +84,7 @@ public:
 	void push_arrow_box_left(float xmin, float ymin, float length, float height);
 	void push_arrow_box_right(float xmin, float ymin, float length, float height);
 	unsigned push_hp_bar(float xmin, float ymin, float hp);
-	unsigned push_quad_load(float x, float y, float width, float height, string filename);
+	unsigned push_quad_load(float x, float y, float width, float height, string filename, bool animated = false);
 	void alert(string s);
 };
 

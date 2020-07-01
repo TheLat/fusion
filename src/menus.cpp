@@ -4,7 +4,7 @@
 extern bool safe_getline(ifstream &f, string& s);
 extern string safepath;
 extern soundengine se;
-
+extern mutex mut;
 mutex mutex2;
 
 map<string, int> stored_values;
@@ -1293,7 +1293,7 @@ void menu::push_menu() {
 	anim_images_start = g.draw_list.size();
 	for (unsigned i = 0; i < anim_images.size(); ++i) {
 		if (anim_images[i].filename != string(""))
-			g.push_quad_load(anim_images[i].xmin, anim_images[i].ymin, anim_images[i].length, anim_images[i].height, safepath + string("images/") + anim_images[i].filename + string("-") + to_string(g.fast_frame % 8) + string(".png"));
+			g.push_quad_load(anim_images[i].xmin, anim_images[i].ymin, anim_images[i].length, anim_images[i].height, safepath + string("images/") + anim_images[i].filename + string("-") + string(".png"), true);
 	}
 	for (unsigned i = 0; i < display.size(); ++i) {
 		int temp;
@@ -1542,17 +1542,6 @@ vector<int> menu::main() {
 		}
 		if (autoclose && etype == ALERT) {
 		    done = g.ae.is_donei(anim_index);
-		}
-		if (anim_images.size() > 0) {
-			for (unsigned i = 0; i < anim_images.size(); ++i) {
-				if (anim_images[i].filename != string("")) {
-					if (!g.tex[safepath + string("images/") + anim_images[i].filename + string("-") + to_string(g.fast_frame % 8) + string(".png")])
-						g.draw_list[anim_images_start + i].filename = safepath + string("images/") + anim_images[i].filename + string("-") + to_string(g.fast_frame % 8) + string(".png");
-					else
-						g.draw_list[anim_images_start + i].tex = g.tex[safepath + string("images/") + anim_images[i].filename + string("-") + to_string(g.fast_frame % 8) + string(".png")];
-				}
-				g.new_load = true;
-			}
 		}
 		mutex2.unlock();
 		if (etype == AUTO_FOLLOWUP) {
