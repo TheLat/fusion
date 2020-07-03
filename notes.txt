@@ -1,2 +1,3 @@
 TO FIX:
 Coach in Cinnabar Gym doesn't have NO_ADVANCE
+Tombstoner?
