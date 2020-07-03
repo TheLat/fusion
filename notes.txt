@@ -1,2 +1,2 @@
 TO FIX:
-No indication from Pokeflute that it did anything.
+Cleanup all transformed pokemon on fight start.
