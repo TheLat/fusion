@@ -1,2 +1,1 @@
 TO FIX:
-Cleanup all transformed pokemon on fight start.

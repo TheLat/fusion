@@ -3953,6 +3953,7 @@ bool engine::battle(trainer& t) { // trainer battle
 			mc.team[i].queue.clear();
 			mc.enemy_team[i].queue.clear();
 		}
+		mc.enemy_team[i].original = 0;
 	}
 	for (i = 0; i < 6; ++i) {
 		if (mc.team[i].defined) {
@@ -4624,6 +4625,7 @@ bool engine::battle() { // wild pokemon
 			mc.team[i].queue.clear();
 			mc.enemy_team[i].queue.clear();
 		}
+		mc.enemy_team[i].original = 0;
 	}
 	for (i = 0; i < 6; ++i) {
 		if (mc.team[i].defined) {
