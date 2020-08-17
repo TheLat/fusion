@@ -4915,7 +4915,7 @@ bool engine::battle() { // wild pokemon
 		if (count == 0.0) {
 			mc.enemy_team[mc.enemy_selected].queue.push_back(string("STRUGGLE"));
 		}
-		else {
+		else if (mc.enemy_team[mc.enemy_selected].queue.size() == 0){
 			index = int(random(0.0, count));
 			int choice = -1;
 			for (i = 0; i <= index; ++i) {
