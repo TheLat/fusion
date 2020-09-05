@@ -1,9 +1,12 @@
 #ifdef __APPLE__
 #else
+#ifdef __SWITCH__
+#else
 #include <Windows.h>
 #include "GL/glew.h"
 #include <gl/GL.h>
 #include <gl/GLU.h>
+#endif
 #endif
 #include <sstream>
 #include "graphics.h"
@@ -21,8 +24,12 @@ GLuint graphics::load_image(string filename) {
 	FILE* f;
 	#ifdef __APPLE__
     f = fopen((filename).c_str(), "rb");
+	#else
+	#ifdef __SWITCH__
+	f = fopen((filename).c_str(), "rb");
     #else
 	fopen_s(&f, (filename).c_str(), "rb");
+	#endif
 	#endif
 	if (f == 0)
 		return 0;
@@ -211,9 +218,14 @@ void graphics::initRendering() {
 	glGenFramebuffers(1, &fbo);
 	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 #else
+#ifdef __SWITCH__
+	glGenFramebuffers(1, &fbo);
+	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
+#else
 	glewInit();
 	glGenFramebuffersEXT(1, &fbo);
 	glBindFramebufferEXT(GL_FRAMEBUFFER, fbo);
+#endif
 #endif
 	glGenTextures(1, &r_tex);
     glBindTexture(GL_TEXTURE_2D, r_tex);
@@ -224,8 +236,13 @@ void graphics::initRendering() {
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, r_tex, 0);
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 #else
+#ifdef __SWITCH__
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, r_tex, 0);
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+#else
 	glFramebufferTexture2DEXT(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, r_tex, 0);
 	glBindFramebufferEXT(GL_FRAMEBUFFER, 0);
+#endif
 #endif
 
     r_quad.x = -1.0;
@@ -279,13 +296,16 @@ void graphics::initRendering() {
 }
 
 void graphics::handleResize(int w, int h) {
+#ifdef __SWITCH__
+#else
 	//Tell OpenGL how to convert from coordinates to pixel values
 	double ratio = 160.0 / 144.0;
 	glViewport(0, 0, w, h);
-	glMatrixMode(GL_PROJECTION); //Switch to setting the camera perspective
+	//glMatrixMode(GL_PROJECTION); //Switch to setting the camera perspective
 								 //Set the camera perspective
-	glLoadIdentity(); //Reset the camera
+	//glLoadIdentity(); //Reset the camera
 	gluOrtho2D(-1, 1, -1, 1);
+#endif
 }
 
 unsigned graphics::push_quad(float x, float y, float width, float height, GLuint texture, string filename, bool animated) {
@@ -325,6 +345,30 @@ unsigned graphics::push_quad_half(float x, float y, float width, float height, G
 
 void graphics::draw_quad(quad &q) {
 	glBindTexture(GL_TEXTURE_2D, q.tex);
+#ifdef __SWITCH__
+	if (!q.half) {
+		GLfloat squareVertices[] = {
+			float(q.x), float(q.y), 0.0f,
+			float(q.x + q.width), float(q.y), 0.0f,
+			float(q.x + q.width), float(q.y + q.height), 0.0f,
+			float(q.x),  float(q.y + q.height), 0.0f,
+		};
+		GLfloat textureVertices[] = {
+			0.0f, 0.0f,
+			1.0f, 0.0f,
+			1.0f, 1.0f,
+			0.0f, 1.0f,
+		};
+		glEnableVertexAttribArray(0);
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, squareVertices);
+		glEnableVertexAttribArray(2);
+		glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 0, textureVertices);
+		glDrawArrays(GL_QUADS, 0, 4);
+	}
+	else {
+		// TODO:  HALF QUADS AND VERIFY THAT THIS WORKS
+	}
+#else
 	glBegin(GL_QUADS);
 	if (!q.half) {
         glTexCoord2f(0.0f, 0.0f);
@@ -347,6 +391,7 @@ void graphics::draw_quad(quad &q) {
         glVertex3f(q.x, q.y + q.height, 0.0f);
 	}
 	glEnd();
+#endif
 }
 
 void graphics::animate() {
@@ -407,14 +452,18 @@ void graphics::drawScene() {
 #ifdef __APPLE__
 	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 #else
+#ifdef __SWITCH__
+	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
+#else
 	glBindFramebufferEXT(GL_FRAMEBUFFER, fbo);
+#endif
 #endif
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glMatrixMode(GL_MODELVIEW); //Switch to the drawing perspective
-	glLoadIdentity(); //Reset the drawing perspective
+	//glMatrixMode(GL_MODELVIEW); //Switch to the drawing perspective
+	//glLoadIdentity(); //Reset the drawing perspective
 	glViewport(0,0,resolution,(resolution*9)/10);
-	glColor3f(1.0f, 1.0f, 1.0f);
+	//glColor3f(1.0f, 1.0f, 1.0f);
 	for (unsigned i = 0; i < draw_list_copy.size(); i++) {
 		draw_quad(draw_list_copy[i]);
 	}
@@ -424,7 +473,11 @@ void graphics::drawScene() {
 #ifdef __APPLE__
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 #else
+#ifdef __SWITCH__
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+#else
 	glBindFramebufferEXT(GL_FRAMEBUFFER, 0);
+#endif
 #endif
     glUseProgram(ProgramID);
     GLuint invert_loc = glGetUniformLocation(ProgramID, "invert");
@@ -444,11 +497,15 @@ void graphics::drawScene() {
 	else
 		glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
+	//glMatrixMode(GL_MODELVIEW);
+	//glLoadIdentity();
 	draw_quad(r_quad); // render screen texture to screen
+#ifdef __SWITCH__
+	// TODO:  Look for eglSwapBuffers(s_display, s_surface); in the sample program.
+#else
 	glutSwapBuffers();
 	glutPostRedisplay();
+#endif
     glUseProgram(0);
 }
 

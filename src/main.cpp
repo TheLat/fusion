@@ -1,3 +1,6 @@
+#ifdef __SWITCH__
+#include <switch.h> 
+#endif
 #include <mutex>
 #include <iostream>
 #include <fstream>
@@ -340,7 +343,8 @@ void animate() {
 	}
 }
 
-int main(int argc, char** argv) {
+int main(int argc, char *argv[])
+{
 	e.mc.values[string("SFXVOLUME")] = 4;
 	e.mc.values[string("MUSICVOLUME")] = 4;
 	printf("Loading types...");

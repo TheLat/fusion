@@ -1,7 +1,13 @@
 #ifndef GRAPHICS_HEADER
 #define GRAPHICS_HEADER
 
+#ifdef __SWITCH__
+#include <EGL/egl.h>
+#include <EGL/eglext.h>
+#include <glad/glad.h>
+#else
 #include "GL/glut.h"
+#endif
 #include "PNG/png.h"
 #include <map>
 #include <vector>

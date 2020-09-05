@@ -6,6 +6,8 @@
 #ifdef __APPLE__
 #include <Carbon/Carbon.h>
 #else
+#ifdef __SWITCH__
+#else
 #include <windows.h>
 #define DIRECTINPUT_VERSION 0x0800
 #define UNBOUND 200
@@ -19,6 +21,7 @@ struct DI_ENUM_CONTEXT
 	bool bPreferredJoyCfgValid;
 };
 extern const char* windowTitle;
+#endif
 #endif
 
 bool use_controller = false;
