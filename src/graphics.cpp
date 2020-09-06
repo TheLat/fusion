@@ -361,12 +361,28 @@ void graphics::draw_quad(quad &q) {
 		};
 		glEnableVertexAttribArray(0);
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, squareVertices);
-		glEnableVertexAttribArray(2);
-		glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 0, textureVertices);
+		glEnableVertexAttribArray(8);
+		glVertexAttribPointer(8, 2, GL_FLOAT, GL_FALSE, 0, textureVertices);
 		glDrawArrays(GL_QUADS, 0, 4);
 	}
 	else {
-		// TODO:  HALF QUADS AND VERIFY THAT THIS WORKS
+		GLfloat squareVertices[] = {
+			float(q.x), float(q.y + (q.height / 2.0)), 0.0f,
+			float(q.x + q.width), float(q.y + (q.height/2.0)), 0.0f,
+			float(q.x + q.width), float(q.y + q.height), 0.0f,
+			float(q.x),  float(q.y + q.height), 0.0f,
+		};
+		GLfloat textureVertices[] = {
+			0.0f, 0.5f,
+			1.0f, 0.5f,
+			1.0f, 1.0f,
+			0.0f, 1.0f,
+		};
+		glEnableVertexAttribArray(0);
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, squareVertices);
+		glEnableVertexAttribArray(8);
+		glVertexAttribPointer(8, 2, GL_FLOAT, GL_FALSE, 0, textureVertices);
+		glDrawArrays(GL_QUADS, 0, 4);
 	}
 #else
 	glBegin(GL_QUADS);
