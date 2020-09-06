@@ -47,6 +47,17 @@ input::input() {
     i_select = 54;
 	ifstream f("../osx_keybinds.dat");
 #else
+#ifdef __SWITCH__
+	i_up = 0;
+	i_down = 1;
+	i_left = 2;
+	i_right = 3;
+	i_confirm = 4;
+	i_cancel = 5;
+	i_start = 6;
+	i_select = 7;
+	ifstream f;
+#else
 	i_up = 38;
 	i_down = 40;
 	i_left = 37;
@@ -56,6 +67,7 @@ input::input() {
 	i_start = 219;
 	i_select = 221;
 	ifstream f("../windows_keybinds.dat");
+#endif
 #endif
 	string line;
 	u_up = i_up;
@@ -99,7 +111,19 @@ input::input() {
 #ifdef __APPLE__
 	ifstream f2("../osx_user_keybinds.dat");
 #else
+#ifdef __SWITCH__
+	i_up = 0;
+	i_down = 1;
+	i_left = 2;
+	i_right = 3;
+	i_confirm = 4;
+	i_cancel = 5;
+	i_start = 6;
+	i_select = 7;
+	ifstream f2;
+#else
 	ifstream f2("../windows_user_keybinds.dat");
+#endif
 #endif
 	if (!f2.is_open()) {
 		f2.close();
@@ -125,7 +149,10 @@ input::input() {
 	}
 #ifdef __APPLE__
 #else
+#ifdef __SWITCH__
+#else
 	init_controller();
+#endif
 #endif
 }
 
@@ -158,6 +185,9 @@ void input::tick(double deltat) {
             key_press[(i*16) + 7] = true;
         key_down[(i*16) + 7] = (keyMap[i] & 128) != 0;
     }
+#else
+#ifdef __SWITCH__
+	// TODO:  Get Switch input
 #else
 	if (use_controller) {
 		HRESULT hr;
@@ -383,6 +413,7 @@ void input::tick(double deltat) {
 		key_down[i] = got_input;
 	}
 #endif
+#endif
 	if (has_menu()) {
 		bool any_input = false;
 		for (unsigned i = 0; i < 16 * 16 * 2; ++i) {
@@ -445,6 +476,8 @@ int input::get_button_pressed(bool& pressed) {
 	pressed = false;
 #ifdef __APPLE__
 #else
+#ifdef __SWITCH__
+#else
 	if (use_controller) {
 		for (int i = 0; i < 164; ++i) {
 			if (controller[i] > 500) {
@@ -457,6 +490,7 @@ int input::get_button_pressed(bool& pressed) {
 			}
 		}
 	}
+#endif
 #endif
 	return 0;
 }
@@ -482,16 +516,22 @@ bool input::get_and_set_key(int mapping) {
 	key = get_pressed_key(got_input);
 #ifdef __APPLE__
 #else
+#ifdef __SWITCH__
+#else
 	if (use_controller)
 		button = get_button_pressed(got_input2);
+#endif
 #endif
 	while (got_input || got_input2) {
 		tick(0.0);
 		key = get_pressed_key(got_input);
 #ifdef __APPLE__
 #else
+#ifdef __SWITCH__
+#else
 		if (use_controller)
 			button = get_button_pressed(got_input2);
+#endif
 #endif
 	}
 	while (!got_input && !got_input2) {
@@ -499,17 +539,24 @@ bool input::get_and_set_key(int mapping) {
 		key = get_pressed_key(got_input);
 #ifdef __APPLE__
 #else
+#ifdef __SWITCH__
+#else
 		if (use_controller)
 			button = get_button_pressed(got_input2);
 #endif
+#endif
 	}
 #ifdef __APPLE__
+	return set_key(key, mapping);
+#else
+#ifdef __SWITCH__
 	return set_key(key, mapping);
 #else
 	if (got_input2)
 		return set_button(button, mapping);	
 	else
 		return set_key(key, mapping);
+#endif
 #endif
 }
 
@@ -710,18 +757,26 @@ void input::save_bindings() {
 #ifdef __APPLE__
 	ofstream f("../osx_user_keybinds.dat");
 #else
+#ifdef __SWITCH__
+	ofstream f;
+#else
 	ofstream f("../windows_user_keybinds.dat");
 #endif
-	f << int(u_up) << string("\n");
-	f << int(u_down) << string("\n");
-	f << int(u_left) << string("\n");
-	f << int(u_right) << string("\n");
-	f << int(u_confirm) << string("\n");
-	f << int(u_cancel) << string("\n");
-	f << int(u_start) << string("\n");
-	f << int(u_select);
-	f.close();
+#endif
+	if (f.is_open()) {
+		f << int(u_up) << string("\n");
+		f << int(u_down) << string("\n");
+		f << int(u_left) << string("\n");
+		f << int(u_right) << string("\n");
+		f << int(u_confirm) << string("\n");
+		f << int(u_cancel) << string("\n");
+		f << int(u_start) << string("\n");
+		f << int(u_select);
+		f.close();
+	}
 #ifdef __APPLE__
+#else
+#ifdef __SWITCH__
 #else
 	ofstream f2("../controller_keybinds.dat");
 	f2 << int(c_up) << string("\n");
@@ -734,9 +789,12 @@ void input::save_bindings() {
 	f2 << int(c_select);
 	f2.close();
 #endif
+#endif
 }
 
 #ifdef __APPLE__
+#else
+#ifdef __SWITCH__
 #else
 BOOL CALLBACK EnumJoysticksCallback(const DIDEVICEINSTANCE* pdidInstance,
 	VOID* pContext)
@@ -776,9 +834,13 @@ BOOL CALLBACK EnumObjectsCallback(const DIDEVICEOBJECTINSTANCE* pdidoi,
 }
 
 #endif
+#endif
+
 
 void input::init_controller() {
 #ifdef __APPLE__
+#else
+#ifdef __SWITCH__
 #else
 	c_up = UNBOUND;
 	c_down = UNBOUND;
@@ -854,12 +916,16 @@ void input::init_controller() {
 		f.close();
 	}
 #endif
+#endif
 }
 
 input::~input() {
 #ifdef __APPLE__
 #else
+#ifdef __SWITCH__
+#else
 	if (use_controller)
 		g_pJoystick->Unacquire();
+#endif
 #endif
 }
