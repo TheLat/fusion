@@ -7,6 +7,7 @@
 #include <Carbon/Carbon.h>
 #else
 #ifdef __SWITCH__
+#include <switch.h>
 #else
 #include <windows.h>
 #define DIRECTINPUT_VERSION 0x0800
@@ -187,7 +188,33 @@ void input::tick(double deltat) {
     }
 #else
 #ifdef __SWITCH__
-	// TODO:  Get Switch input
+	hidScanInput();
+	u64 kDown = hidKeysDown(CONTROLLER_P1_AUTO);
+
+	if (!key_down[i_up] && (bool(kDown & KEY_DUP) || bool(kDown & KEY_LSTICK_UP)))
+		key_press[i_up] = (bool(kDown & KEY_DUP) || bool(kDown & KEY_LSTICK_UP));
+	key_down[i_up] = (bool(kDown & KEY_DUP) || bool(kDown & KEY_LSTICK_UP));
+	if (!key_down[i_down] && (bool(kDown & KEY_DDOWN) || bool(kDown & KEY_LSTICK_DOWN)))
+		key_press[i_down] = (bool(kDown & KEY_DDOWN) || bool(kDown & KEY_LSTICK_DOWN));
+	key_down[i_down] = (bool(kDown & KEY_DDOWN) || bool(kDown & KEY_LSTICK_DOWN));
+	if (!key_down[i_left] && (bool(kDown & KEY_DLEFT) || bool(kDown & KEY_LSTICK_LEFT)))
+		key_press[i_left] = (bool(kDown & KEY_DLEFT) || bool(kDown & KEY_LSTICK_LEFT));
+	key_down[i_left] = (bool(kDown & KEY_DLEFT) || bool(kDown & KEY_LSTICK_LEFT));
+	if (!key_down[i_right] && (bool(kDown & KEY_DRIGHT) || bool(kDown & KEY_LSTICK_RIGHT)))
+		key_press[i_right] = (bool(kDown & KEY_DRIGHT) || bool(kDown & KEY_LSTICK_RIGHT));
+	key_down[i_right] = (bool(kDown & KEY_DRIGHT) || bool(kDown & KEY_LSTICK_RIGHT));
+	if (!key_down[i_confirm] && bool(kDown & KEY_A))
+		key_press[i_confirm] = bool(kDown & KEY_A);
+	key_down[i_confirm] = bool(kDown & KEY_A);
+	if (!key_down[i_cancel] && bool(kDown & KEY_B))
+		key_press[i_cancel] = bool(kDown & KEY_B);
+	key_down[i_cancel] = bool(kDown & KEY_B);
+	if (!key_down[i_start] && bool(kDown & KEY_PLUS))
+		key_press[i_start] = bool(kDown & KEY_PLUS);
+	key_down[i_start] = bool(kDown & KEY_PLUS);
+	if (!key_down[i_select] && bool(kDown & KEY_MINUS))
+		key_press[i_select] = bool(kDown & KEY_MINUS);
+	key_down[i_select] = bool(kDown & KEY_MINUS);
 #else
 	if (use_controller) {
 		HRESULT hr;
