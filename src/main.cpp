@@ -511,6 +511,7 @@ int main(int argc, char *argv[])
 	printf("Initializing game clock...");
 	e.init_game_timer();
 	printf("Done!\n");
+	resolution = e.get_resolution();
 
 
 #ifdef __SWITCH__
@@ -528,7 +529,6 @@ int main(int argc, char *argv[])
 	}
 #else
 	//Initialize GLUT
-	resolution = e.get_resolution();
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
 	glutInitWindowSize(resolution, (resolution*9)/10); //Set the window size

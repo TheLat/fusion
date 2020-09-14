@@ -6526,9 +6526,9 @@ void engine::init_swimming() {
 }
 
 int engine::get_resolution() {
-	int res = 640;
+	int res = 800;
 	string line;
-	ifstream f("../resolution.txt");
+	ifstream f("../resources/data/resolution.dat");
 	while (f.is_open()) {
 		while (safe_getline(f, line)) {
 			res = stoi(line);
