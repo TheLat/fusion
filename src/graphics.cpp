@@ -10,6 +10,11 @@
 #endif
 #include <sstream>
 #include "graphics.h"
+#ifdef __SWITCH__
+extern EGLDisplay s_display;
+extern EGLContext s_context;
+extern EGLSurface s_surface;
+#endif
 extern bool safe_getline(ifstream &f, string& s);
 
 extern string safepath;
@@ -517,7 +522,7 @@ void graphics::drawScene() {
 	//glLoadIdentity();
 	draw_quad(r_quad); // render screen texture to screen
 #ifdef __SWITCH__
-	// TODO:  Look for eglSwapBuffers(s_display, s_surface); in the sample program.
+	eglSwapBuffers(s_display, s_surface);
 #else
 	glutSwapBuffers();
 	glutPostRedisplay();
