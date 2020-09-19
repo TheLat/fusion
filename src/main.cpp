@@ -515,6 +515,9 @@ int main(int argc, char *argv[])
 
 
 #ifdef __SWITCH__
+	Result rc = romfsInit();
+	if (R_FAILED(rc))
+		printf("romfsInit: %08X\n", rc);
 	setMesaConfig();
 	if (!initEgl(nwindowGetDefault()))
 		return EXIT_FAILURE;

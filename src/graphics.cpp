@@ -134,7 +134,7 @@ GLuint graphics::load_image(string filename) {
 }
 
 void graphics::load_tile(string filename, int index) {
-	tiles[index] = load_image("../resources/" + filename);
+	tiles[index] = load_image(safepath + filename);
 }
 
 void graphics::initRendering() {
@@ -149,7 +149,7 @@ void graphics::initRendering() {
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	ifstream f("../resources/data/level_sprites.dat");
+	ifstream f((safepath + string("data/level_sprites.dat")).c_str());
 	string tmp;
 	safe_getline(f, tmp);
 	int total = stoi(tmp);
@@ -165,24 +165,24 @@ void graphics::initRendering() {
 	}
 
 
-	ifstream f2("../resources/data/menu_sprites.dat");
+	ifstream f2((safepath + string("data/menu_sprites.dat")).c_str());
 	while (f2.is_open()) {
 		while (safe_getline(f2, tmp)) {
-			tex[tmp] = load_image("../resources/menu_sprites/" + tmp);
+			tex[tmp] = load_image((safepath + string("menu_sprites/") + tmp));
 		}
 		f2.close();
 	}
 
 
-	ifstream f4("../resources/data/character_sprites.dat");
+	ifstream f4((safepath + string("data/character_sprites.dat")).c_str());
 	while (f4.is_open()) {
 		while (safe_getline(f4, tmp)) {
-			tex[tmp] = load_image("../resources/characters/" + tmp);
+			tex[tmp] = load_image((safepath + string("characters/") + tmp));
 		}
 		f4.close();
 	}
 
-	ifstream f3("../resources/data/string_lookup.dat");
+	ifstream f3((safepath + string("data/string_lookup.dat")).c_str());
 	string l1, l2;
 	while (f3.is_open()) {
 		while (safe_getline(f3, tmp)) {
@@ -208,7 +208,7 @@ void graphics::initRendering() {
 		f3.close();
 	}
 
-    ifstream f5("../resources/data/offset_letters.dat");
+    ifstream f5((safepath + string("data/offset_letters.dat")).c_str());
 	while (f5.is_open()) {
 		while (safe_getline(f5, tmp)) {
 			offset_letters[tmp] = true;
@@ -260,14 +260,14 @@ void graphics::initRendering() {
 	int InfoLogLength;
     FragmentShaderID = glCreateShader(GL_FRAGMENT_SHADER);
     string FragmentShaderCode;
-	ifstream FragmentShaderStream("../shaders/post.shader", std::ios::in);
+	ifstream FragmentShaderStream((safepath + string("shaders/post.shader")).c_str(), std::ios::in);
 	if(FragmentShaderStream.is_open()){
 		stringstream sstr;
 		sstr << FragmentShaderStream.rdbuf();
 		FragmentShaderCode = sstr.str();
 		FragmentShaderStream.close();
 	}
-	printf("Compiling shader : %s\n", "../shaders/post.shader");
+	printf("Compiling shader : %s\n", (safepath + string("shaders/post.shader")).c_str());
 	char const * FragmentSourcePointer = FragmentShaderCode.c_str();
 	glShaderSource(FragmentShaderID, 1, &FragmentSourcePointer , NULL);
 	glCompileShader(FragmentShaderID);

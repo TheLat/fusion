@@ -21,7 +21,11 @@ extern bool safe_getline(ifstream &f, string& s);
 
 int bonk_sound = -1;
 input ie;
+#ifdef __SWITCH__
+string safepath = string("romfs:/");
+#else
 string safepath = string("../resources/");
+#endif
 
 int min(int a, int b) {
 	if (a < b) {
@@ -5408,7 +5412,7 @@ int engine::get_stat(mon& m, STAT s, bool ignore_buffs, bool ignore_debuffs) {
 }
 
 void engine::init_items() {
-	ifstream f("../resources/data/items.dat");
+	ifstream f((safepath + string("data/items.dat")).c_str());
 	string line;
 	string key;
 	string temp;
@@ -5464,7 +5468,7 @@ void engine::init_characters() {
 }
 
 void engine::init_levels() {
-	ifstream f("../resources/data/levels.dat");
+	ifstream f((safepath + string("data/levels.dat")).c_str());
 	string line;
 	while (f.is_open()) {
 		while (safe_getline(f, line)) {
@@ -5475,7 +5479,7 @@ void engine::init_levels() {
 }
 
 void engine::init_level(string levelname) {
-	ifstream f(("../resources/levels/" + levelname + ".dat").c_str());
+	ifstream f((safepath + string("levels/") + levelname + ".dat").c_str());
 	string line;
 	std::vector<int> empty;
 	unsigned count;
@@ -5978,7 +5982,7 @@ void engine::init_level(string levelname) {
 
 void engine::init_moves() {
 	string line, key;
-	ifstream f("../resources/data/moves.dat");
+	ifstream f((safepath + string("data/moves.dat")).c_str());
 	char a = f.get();
 	while (a != EOF && f.is_open()) {
 		line = "";
@@ -6165,7 +6169,7 @@ void engine::init_moves() {
 
 void engine::init_tm() {
 	string line, index;
-	ifstream f("../resources/data/TM.dat");
+	ifstream f((safepath + string("data/TM.dat")).c_str());
 	while (safe_getline(f, line)) {
 		index = line;
 		index.erase(index.find(":"), index.size());
@@ -6177,7 +6181,7 @@ void engine::init_tm() {
 
 void engine::init_hm() {
 	string line, index;
-	ifstream f("../resources/data/HM.dat");
+	ifstream f((safepath + string("data/HM.dat")).c_str());
 	while (safe_getline(f, line)) {
 		index = line;
 		index.erase(index.find(":"), index.size());
@@ -6189,7 +6193,7 @@ void engine::init_hm() {
 
 void engine::init_mon() {
 	string line, key, temp;
-	ifstream f("../resources/data/mon.dat");
+	ifstream f((safepath + string("data/mon.dat")).c_str());
 	char a = 1;
 	int level = 0;
 	while (f.is_open() && !f.eof()) {
@@ -6325,7 +6329,7 @@ void engine::init_mon() {
 
 void engine::init_status() {
 	string line, key;
-	ifstream f("../resources/data/status.dat");
+	ifstream f((safepath + string("data/status.dat")).c_str());
 	char a = f.get();
 	while (f.is_open()) {
 		line = "";
@@ -6371,7 +6375,7 @@ void engine::init_status() {
 
 void engine::init_blocking() {
 	string line;
-	ifstream f("../resources/data/blocking-tiles.dat");
+	ifstream f((safepath + string("data/blocking-tiles.dat")).c_str());
 	while (f.is_open()) {
 		while (safe_getline(f, line)) {
 			blocking[stoi(line)] = true;
@@ -6382,7 +6386,7 @@ void engine::init_blocking() {
 
 void engine::init_animating() {
 	string line;
-	ifstream f("../resources/data/animating-tiles.dat");
+	ifstream f((safepath + string("data/animating-tiles.dat")).c_str());
 	while (f.is_open()) {
 		while (safe_getline(f, line)) {
 			animating[stoi(line)] = true;
@@ -6393,7 +6397,7 @@ void engine::init_animating() {
 
 void engine::init_npc_blocking() {
 	string line;
-	ifstream f("../resources/data/npc-blocking-tiles.dat");
+	ifstream f((safepath + string("data/npc-blocking-tiles.dat")).c_str());
 	while (f.is_open()) {
 		while (safe_getline(f, line)) {
 			npc_blocking[stoi(line)] = true;
@@ -6404,35 +6408,35 @@ void engine::init_npc_blocking() {
 
 void engine::init_slide() {
 	string line;
-	ifstream f1("../resources/data/slidedown-tiles.dat");
+	ifstream f1((safepath + string("data/slidedown-tiles.dat")).c_str());
 	while (f1.is_open()) {
 		while (safe_getline(f1, line)) {
 			slidedown[stoi(line)] = true;
 		}
 		f1.close();
 	}
-	ifstream f2("../resources/data/slideleft-tiles.dat");
+	ifstream f2((safepath + string("data/slideleft-tiles.dat")).c_str());
 	while (f2.is_open()) {
 		while (safe_getline(f2, line)) {
 			slideleft[stoi(line)] = true;
 		}
 		f2.close();
 	}
-	ifstream f3("../resources/data/slideright-tiles.dat");
+	ifstream f3((safepath + string("data/slideright-tiles.dat")).c_str());
 	while (f3.is_open()) {
 		while (safe_getline(f3, line)) {
 			slideright[stoi(line)] = true;
 		}
 		f3.close();
 	}
-	ifstream f4("../resources/data/slideup-tiles.dat");
+	ifstream f4((safepath + string("data/slideup-tiles.dat")).c_str());
 	while (f4.is_open()) {
 		while (safe_getline(f4, line)) {
 			slideup[stoi(line)] = true;
 		}
 		f4.close();
 	}
-	ifstream f5("../resources/data/slidestop-tiles.dat");
+	ifstream f5((safepath + string("data/slidestop-tiles.dat")).c_str());
 	while (f5.is_open()) {
 		while (safe_getline(f5, line)) {
 			slidestop[stoi(line)] = true;
@@ -6443,7 +6447,7 @@ void engine::init_slide() {
 
 void engine::init_jumpdown() {
 	string line;
-	ifstream f("../resources/data/jumpdown-tiles.dat");
+	ifstream f((safepath + string("data/jumpdown-tiles.dat")).c_str());
 	while (f.is_open()) {
 		while (safe_getline(f, line)) {
 			jumpdown[stoi(line)] = true;
@@ -6454,7 +6458,7 @@ void engine::init_jumpdown() {
 
 void engine::init_jumpright() {
 	string line;
-	ifstream f("../resources/data/jumpright-tiles.dat");
+	ifstream f((safepath + string("data/jumpright-tiles.dat")).c_str());
 	while (f.is_open()) {
 		while (safe_getline(f, line)) {
 			jumpright[stoi(line)] = true;
@@ -6465,7 +6469,7 @@ void engine::init_jumpright() {
 
 void engine::init_jumpleft() {
 	string line;
-	ifstream f("../resources/data/jumpleft-tiles.dat");
+	ifstream f((safepath + string("data/jumpleft-tiles.dat")).c_str());
 	while (f.is_open()) {
 		while (safe_getline(f, line)) {
 			jumpleft[stoi(line)] = true;
@@ -6476,7 +6480,7 @@ void engine::init_jumpleft() {
 
 void engine::init_encounter_tiles() {
 	string line;
-	ifstream f("../resources/data/encounter-tiles.dat");
+	ifstream f((safepath + string("data/encounter-tiles.dat")).c_str());
 	while (f.is_open()) {
 		while (safe_getline(f, line)) {
 			encounter_tile[stoi(line)] = true;
@@ -6487,7 +6491,7 @@ void engine::init_encounter_tiles() {
 
 void engine::init_grass() {
 	string line;
-	ifstream f("../resources/data/grass-render.dat");
+	ifstream f((safepath + string("data/grass-render.dat")).c_str());
 	while (f.is_open()) {
 		while (safe_getline(f, line)) {
 			grass_render[stoi(line)] = true;
@@ -6498,7 +6502,7 @@ void engine::init_grass() {
 
 void engine::init_draw_over() {
 	string line;
-	ifstream f("../resources/data/drawover-tiles.dat");
+	ifstream f((safepath + string("data/drawover-tiles.dat")).c_str());
 	while (f.is_open()) {
 		while (safe_getline(f, line)) {
 			draw_over[stoi(line)] = true;
@@ -6509,14 +6513,14 @@ void engine::init_draw_over() {
 
 void engine::init_swimming() {
 	string line;
-	ifstream f("../resources/data/water-tiles.dat");
+	ifstream f((safepath + string("data/water-tiles.dat")).c_str());
 	while (f.is_open()) {
 		while (safe_getline(f, line)) {
 			water[stoi(line)] = true;
 		}
 		f.close();
 	}
-	ifstream f2("../resources/data/water-render.dat");
+	ifstream f2((safepath + string("data/water-render.dat")).c_str());
 	while (f2.is_open()) {
 		while (safe_getline(f2, line)) {
 			water_render[stoi(line)] = true;
@@ -6528,7 +6532,7 @@ void engine::init_swimming() {
 int engine::get_resolution() {
 	int res = 800;
 	string line;
-	ifstream f("../resources/data/resolution.dat");
+	ifstream f((safepath + string("data/resolution.dat")).c_str());
 	while (f.is_open()) {
 		while (safe_getline(f, line)) {
 			res = stoi(line);
@@ -6540,7 +6544,7 @@ int engine::get_resolution() {
 
 void engine::init_exp() {
 	string line;
-	ifstream f("../resources/data/exp.dat");
+	ifstream f((safepath + string("data/exp.dat")).c_str());
 	while (f.is_open()) {
 		while (safe_getline(f, line)) {
 			level_to_exp.push_back(stoi(line));
@@ -6551,7 +6555,7 @@ void engine::init_exp() {
 
 void engine::init_special() {
 	string line;
-	ifstream f("../resources/data/special.dat");
+	ifstream f((safepath + string("data/special.dat")).c_str());
 	while (f.is_open()) {
 		while (safe_getline(f, line)) {
 			special_case[line] = true;
@@ -6565,7 +6569,7 @@ void engine::init_game_timer() {
 
 void engine::init_types() {
 	string line;
-	ifstream f("../resources/data/types.dat");
+	ifstream f((safepath + string("data/types.dat")).c_str());
 	char a = 1;
 	while (f.is_open()) {
 		while (a && a != EOF) {
@@ -6590,7 +6594,7 @@ void engine::init_types() {
 		}
 	}
 
-	ifstream f2("../resources/data/types.dat");
+	ifstream f2((safepath + string("data/types.dat")).c_str());
 	a = 1;
 	string attack, defense, mul;
 	while (f2.is_open()) {
@@ -10023,7 +10027,7 @@ void engine::pack_storage() {
 }
 
 void engine::save_game() {
-	ofstream f("../SAVE.dat");
+	ofstream f((safepath + string("SAVE.dat")).c_str());
 	f << string("WARNING: Editing this file can easily corrupt game state.\n");
 	f << string("NAME:") + mc.name;
 	f << string("\nRIVAL_NAME:") + mc.rivalname;
@@ -10238,7 +10242,7 @@ void engine::save_mon(ofstream& f, mon& m) {
 }
 
 void engine::load_game() {
-	ifstream f("../SAVE.dat");
+	ifstream f((safepath + string("SAVE.dat")).c_str());
 	string line;
 	string temp;
 	if (!f.is_open()) {

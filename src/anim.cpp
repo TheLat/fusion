@@ -8,6 +8,7 @@ extern bool safe_getline(ifstream &f, string& s);
 extern soundengine se;
 extern graphics g;
 
+extern string safepath;
 
 frame animation_engine::spline_frame(double t, vector<frame> &frames) {
 	frame temp;
@@ -63,7 +64,7 @@ unsigned animation_engine::create_anim_scene(string scene, int attacker, int def
     string line, s;
     double t = 0.0;
     temp.current_time = 0.0;
-    ifstream f((string("../resources/animations/") + scene + string(".dat")).c_str());
+    ifstream f((safepath + string("animations/") + scene + string(".dat")).c_str());
     while (f.is_open()) {
         while (safe_getline(f, line)) {
             s = line;
@@ -309,7 +310,7 @@ void animation_engine::tick(double delta) {
 	                // TODO
 	                break;
 	            case CREATE_SPRITE:
-	                anims[i].sprites.push_back(g.push_quad_load(anims[i].elements[j].x1, anims[i].elements[j].y1, anims[i].elements[j].x2, anims[i].elements[j].y2, string("../resources/") + anims[i].elements[j].resource));
+	                anims[i].sprites.push_back(g.push_quad_load(anims[i].elements[j].x1, anims[i].elements[j].y1, anims[i].elements[j].x2, anims[i].elements[j].y2, safepath + anims[i].elements[j].resource));
 	                break;
 				case HIDE_SPRITE:
 					q = &(g.draw_list[anims[i].sprites[anims[i].elements[j].index]]);
@@ -320,7 +321,7 @@ void animation_engine::tick(double delta) {
 					break;
 	            case PLAY_SOUND:
 	                if (anims[i].elements[j].resource.find("/") != -1)
-    	                se.play_sound(string("../resources/") + anims[i].elements[j].resource);
+    	                se.play_sound(safepath + anims[i].elements[j].resource);
     	            else
     	                se.play_cry(anims[i].elements[j].resource);
 	                break;
