@@ -5981,189 +5981,147 @@ void engine::init_level(string levelname) {
 }
 
 void engine::init_moves() {
-	string line, key;
+	string line, key, holder;
 	ifstream f((safepath + string("data/moves.dat")).c_str());
-	char a = f.get();
-	while (a != EOF && f.is_open()) {
-		line = "";
-		while (a != ':') {
-			line = line + a;
-			a = f.get();
-		}
-		while (a == ':' || a == ' ')
-			a = f.get();
-		if (line == "MOVE") {
-			line = "";
-			while (a != '\r' && a != '\n') {
-				line = line + a;
-				a = f.get();
+	bool done = false;
+	while (f.is_open()) {
+		while (safe_getline(f, line)) {
+			if (line.find("MOVE: ") != std::string::npos) {
+				key = line;
+				key.erase(0, key.find(" ") + 1);
+				moves[key].defined = true;
+				moves[key].name = key;
 			}
-			key = line;
-			moves[key].defined = true;
-			moves[key].name = key;
-		}
-		else if (line == "TYPE") {
-			line = "";
-			while (a != '\r' && a != '\n') {
-				line = line + a;
-				a = f.get();
+			else if (line.find("TYPE: ") != std::string::npos) {
+				line.erase(0, line.find(" ") + 1);
+				moves[key].type = line;
 			}
-			moves[key].type = line;
-		}
-		else if (line == "ANIMATION") {
-			line = "";
-			while (a != '\r' && a != '\n') {
-				line = line + a;
-				a = f.get();
+			else if (line.find("ANIMATION: ") != std::string::npos) {
+				line.erase(0, line.find(" ") + 1);
+				moves[key].animation = line;
 			}
-			moves[key].animation = line;
-		}
-		else if (line == "POWER") {
-			line = "";
-			while (a != '\r' && a != '\n') {
-				line = line + a;
-				a = f.get();
+			else if (line.find("POWER: ") != std::string::npos) {
+				line.erase(0, line.find(" ") + 1);
+				moves[key].pow = line;
 			}
-			moves[key].pow = line;
-		}
-		else if (line == "DEFENSE") {
-			line = "";
-			while (a != '\r' && a != '\n') {
-				line = line + a;
-				a = f.get();
-			}
-			if (line == "SPECIAL") {
-				moves[key].attack = SPECIAL;
-				moves[key].defense = SPECIAL;
-			}
-		}
-		else if (line == "CRITICAL") {
-			line = "";
-			while (a != '\r' && a != '\n') {
-				line = line + a;
-				a = f.get();
-			}
-			if (line == "HIGH") {
-				moves[key].crit_chance = 8.0f;
-			}
-			else if (line == "NORMAL") {
-				moves[key].crit_chance = 1.0f;
-			}
-			else if (line == "NONE") {
-				moves[key].crit_chance = 0.0f;
-			}
-		}
-		else if (line == "QUEUE_ONLY") {
-			line = "";
-			while (a != '\r' && a != '\n') {
-				line = line + a;
-				a = f.get();
-			}
-			if (line == "YES") {
-				moves[key].queue_only = true;
-			}
-		}
-		else if (line == "ACC") {
-			line = "";
-			while (a != '\r' && a != '\n') {
-				line = line + a;
-				a = f.get();
-			}
-			moves[key].acc = stoi(line);
-		}
-		else if (line == "PP") {
-			line = "";
-			while (a != '\r' && a != '\n') {
-				line = line + a;
-				a = f.get();
-			}
-			moves[key].pp = stoi(line);
-		}
-		else if (line == "SELF") {
-			while (a != '\r' && a != '\n' && a != EOF) {
-				line = "";
-				while (a != ' ' && a != '\r' && a != '\n' && a != EOF) {
-					line = line + a;
-					a = f.get();
+			else if (line.find("DEFENSE: ") != std::string::npos) {
+				line.erase(0, line.find(" ") + 1);
+				if (line == "SPECIAL") {
+					moves[key].attack = SPECIAL;
+					moves[key].defense = SPECIAL;
 				}
-				while (a == ' ')
-					a = f.get();
-				moves[key].self.push_back(line);
 			}
-		}
-		else if (line == "TARGET") {
-			while (a != '\r' && a != '\n' && a != EOF) {
-				line = "";
-				while (a != ' ' && a != '\r' && a != '\n' && a != EOF) {
-					line = line + a;
-					a = f.get();
+			else if (line.find("CRITICAL: ") != std::string::npos) {
+				line.erase(0, line.find(" ") + 1);
+				if (line == "HIGH") {
+					moves[key].crit_chance = 8.0f;
 				}
-				while (a == ' ')
-					a = f.get();
-				moves[key].target.push_back(line);
-			}
-		}
-		else if (line == "QUEUE") {
-			while (a != '\r' && a != '\n' && a != EOF) {
-				line = "";
-				while (a != ' ' && a != '\r' && a != '\n' && a != EOF) {
-					line = line + a;
-					a = f.get();
+				else if (line == "NORMAL") {
+					moves[key].crit_chance = 1.0f;
 				}
-				while (a == ' ')
-					a = f.get();
-				moves[key].queue.push_back(line);
-			}
-		}
-		else if (line == "SPECIAL") {
-			while (a != '\r' && a != '\n' && a != EOF) {
-				line = "";
-				while (a != ' ' && a != '\r' && a != '\n' && a != EOF) {
-					line = line + a;
-					a = f.get();
+				else if (line == "NONE") {
+					moves[key].crit_chance = 0.0f;
 				}
-				while (a == ' ')
-					a = f.get();
-				moves[key].special.push_back(line);
 			}
-		}
-		else if (line == "ADDITIONAL") {
-			while (a != '\r' && a != '\n' && a != EOF) {
-				line = "";
-				while (a != ' ' && a != '\r' && a != '\n' && a != EOF) {
-					line = line + a;
-					a = f.get();
+			else if (line.find("QUEUE_ONLY: ") != std::string::npos) {
+				line.erase(0, line.find(" ") + 1);
+				if (line == "YES") {
+					moves[key].queue_only = true;
 				}
-				while (a == ' ')
-					a = f.get();
-				moves[key].additional.push_back(line);
+			}
+			else if (line.find("ACC: ") != std::string::npos) {
+				line.erase(0, line.find(" ") + 1);
+				moves[key].acc = stoi(line);
+			}
+			else if (line.find("PP: ") != std::string::npos) {
+				line.erase(0, line.find(" ") + 1);
+				moves[key].pp = stoi(line);
+			}
+			else if (line.find("SELF: ") != std::string::npos) {
+				line.erase(0, line.find(" ") + 1);
+				done = false;
+				while (!done) {
+					holder = line;
+					if (line.find(" ") != std::string::npos) {
+						holder.erase(holder.find(" "), holder.length());
+						line.erase(0, line.find(" ") + 1);
+					}
+					else {
+						done = true;
+					}
+					moves[key].self.push_back(holder);
+				}
+			}
+			else if (line.find("TARGET: ") != std::string::npos) {
+				line.erase(0, line.find(" ") + 1);
+				done = false;
+				while (!done) {
+					holder = line;
+					if (line.find(" ") != std::string::npos) {
+						holder.erase(holder.find(" "), holder.length());
+						line.erase(0, line.find(" ") + 1);
+					}
+					else {
+						done = true;
+					}
+					moves[key].target.push_back(holder);
+				}
+			}
+			else if (line.find("QUEUE: ") != std::string::npos) {
+				line.erase(0, line.find(" ") + 1);
+				done = false;
+				while (!done) {
+					holder = line;
+					if (line.find(" ") != std::string::npos) {
+						holder.erase(holder.find(" "), holder.length());
+						line.erase(0, line.find(" ") + 1);
+					}
+					else {
+						done = true;
+					}
+					moves[key].queue.push_back(holder);
+				}
+			}
+			else if (line.find("SPECIAL: ") != std::string::npos) {
+				line.erase(0, line.find(" ") + 1);
+				done = false;
+				while (!done) {
+					holder = line;
+					if (line.find(" ") != std::string::npos) {
+						holder.erase(holder.find(" "), holder.length());
+						line.erase(0, line.find(" ") + 1);
+					}
+					else {
+						done = true;
+					}
+					moves[key].special.push_back(holder);
+				}
+			}
+			else if (line.find("ADDITIONAL: ") != std::string::npos) {
+				line.erase(0, line.find(" ") + 1);
+				done = false;
+				while (!done) {
+					holder = line;
+					if (line.find(" ") != std::string::npos) {
+						holder.erase(holder.find(" "), holder.length());
+						line.erase(0, line.find(" ") + 1);
+					}
+					else {
+						done = true;
+					}
+					moves[key].additional.push_back(holder);
+				}
+			}
+			else if (line.find("DESC: ") != std::string::npos) {
+				line.erase(0, line.find(" ") + 1);
+				moves[key].desc = line;
+			}
+			else if (line.find("NOTES: ") != std::string::npos) {
+				line.erase(0, line.find(" ") + 1);
+				moves[key].notes = line;
 			}
 		}
-		else if (line == "DESC") {
-			line = "";
-			while (a != '\r' && a != '\n' && a != EOF) {
-				line = line + a;
-				a = f.get();
-			}
-			moves[key].desc = line;
-		}
-		else if (line == "NOTES") {
-			line = "";
-			while (a != '\r' && a != '\n' && a != EOF) {
-				line = line + a;
-				a = f.get();
-			}
-			moves[key].notes = line;
-		}
-
-		while (a != '\n' && a != EOF)
-			a = f.get();
-		while (a == '\n' && a != EOF)
-			a = f.get();
-		if (a == EOF) {
-			f.close();
-			break;
-		}
+		f.close();
 	}
 }
 
@@ -6328,49 +6286,41 @@ void engine::init_mon() {
 }
 
 void engine::init_status() {
-	string line, key;
+	string line, key, holder;
 	ifstream f((safepath + string("data/status.dat")).c_str());
-	char a = f.get();
 	while (f.is_open()) {
-		line = "";
-		while (a == '\r' || a == '\n')
-			a = f.get();
-		while (a != ':' && a != '\n') {
-			line = line + a;
-			a = f.get();
-			if (a == EOF) {
-				f.close();
-				return;
+		while (safe_getline(f, line)) {
+			key = line;
+			if (line.find(":") != std::string::npos) {
+				key.erase(key.find(":"), key.length());
+				line.erase(0, line.find(":") + 1);
+			}
+			else {
+				line = "";
+			}
+			status[key].defined = true;
+			status[key].name = key;
+			while (line != "") {
+				holder = line;
+				if (holder.find(" ") != std::string::npos) {
+					holder.erase(holder.find(" "), holder.length());
+					line.erase(0, line.find(" ") + 1);
+				}
+				else {
+					line = "";
+				}
+				if (holder == "NONVOLATILE")
+					status[key].nonvolatile = true;
+				else if (holder == "CHANCE")
+					status[key].chance = true;
+				else if (holder == "SINGLETON")
+					status[key].singleton = true;
+				else if (holder == "SPECIALCASE")
+					status[key].specialcase = true;
 			}
 		}
-		key = line;
-		status[key].defined = true;
-		status[key].name = line;
-		while (true) {
-			if (a == '\n')
-				break;
-			while (a == ' ' || a == ':') {
-				a = f.get();
-			}
-			line = "";
-			while (a != ' ' && a != ':' && a != '\n') {
-				line = line + a;
-				a = f.get();
-			}
-			if (line == "NONVOLATILE")
-				status[key].nonvolatile = true;
-			else if (line == "CHANCE")
-				status[key].chance = true;
-			else if (line == "SINGLETON")
-				status[key].singleton = true;
-			else if (line == "SPECIALCASE")
-				status[key].specialcase = true;
-		}
-		while (a != '\n') {
-			a = f.get();
-		}
+		f.close();
 	}
-	f.close();
 }
 
 void engine::init_blocking() {
