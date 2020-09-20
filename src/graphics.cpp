@@ -249,10 +249,14 @@ void graphics::initRendering() {
 	glBindFramebufferEXT(GL_FRAMEBUFFER, 0);
 #endif
 #endif
-
+#ifdef __SWITCH__
+	r_quad.x = 0.625;
+	r_quad.width = 1.25;
+#else
     r_quad.x = -1.0;
+	r_quad.width = 2.0;
+#endif
     r_quad.y = -1.0;
-    r_quad.width = 2.0;
     r_quad.height = 2.0;
     r_quad.tex = r_tex;
 
