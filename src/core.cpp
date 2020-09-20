@@ -6572,18 +6572,9 @@ void engine::init_types() {
 	ifstream f((safepath + string("data/types.dat")).c_str());
 	char a = 1;
 	while (f.is_open()) {
-		while (a && a != EOF) {
-			a = f.get();
-			if (a != ':')
-				line = line + a;
-			if (a == ':') {
-				types[line];
-				while (a != '\n' && a != 0) {
-					a = f.get();
-				}
-				line = "";
-				continue;
-			}
+		while (safe_getline(f, line)) {
+			line.erase(line.find(":"), line.length());
+			types[line];
 		}
 		f.close();
 	}
@@ -6597,47 +6588,35 @@ void engine::init_types() {
 	ifstream f2((safepath + string("data/types.dat")).c_str());
 	a = 1;
 	string attack, defense, mul;
+	bool done = false;
 	while (f2.is_open()) {
-		while (a && a != EOF) {
-			a = f2.get();
-			if (a == '\r')
-				a = f2.get();
-			if (a == '\n')
-				a = f2.get();
-			if (a != ':')
-				attack = attack + a;
-			if (a == ':') {
-				while (a == ':' || a == ' ') {
-					a = f2.get();
+		while (safe_getline(f2, line)) {
+			done = false;
+			attack = line;
+			attack.erase(attack.find(":"), attack.length());
+			line.erase(0, line.find(" ") + 1);
+			while (line.find("x") != std::string::npos) {
+				defense = line;
+				defense.erase(defense.find("x"), defense.length());
+				mul = line;
+				mul.erase(0, mul.find("x") + 1);
+				if (line.find(" ") != std::string::npos) {
+					line.erase(0, line.find(" ") + 1);
+					mul.erase(mul.find(" "), mul.length());
 				}
-				while (true) {
-					defense = "";
-					mul = "";
-					while (a != 'x') {
-						defense = defense + a;
-						a = f2.get();
-					}
-					a = f2.get();
-					while (a != ' ' && a != '\r' && a != '\n') {
-						mul = mul + a;
-						a = f2.get();
-					}
-					if (mul == "2") {
-						types[attack][defense] = 2.0f;
-					}
-					else if (mul == "0.5") {
-						types[attack][defense] = 0.5f;
-					}
-					else if (mul == "0") {
-						types[attack][defense] = 0.0f;
-					}
-					while (a == ' ')
-						a = f2.get();
-					if (a == '\n' || a == '\r')
-						break;
+				else
+					done = true;
+				if (mul == "2") {
+					types[attack][defense] = 2.0f;
 				}
-				attack = "";
-				continue;
+				else if (mul == "0.5") {
+					types[attack][defense] = 0.5f;
+				}
+				else if (mul == "0") {
+					types[attack][defense] = 0.0f;
+				}
+				if (done)
+					break;
 			}
 		}
 		f2.close();
