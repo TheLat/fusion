@@ -8,6 +8,9 @@ extern bool safe_getline(ifstream &f, string& s);
 extern string safepath;
 extern engine e;
 void soundengine::init_sounds() {
+#ifdef __SWITCH__
+	// TODO:  Initialize sounds and sound system
+#else
 	FMOD::Channel    *channel = 0;
 	FMOD_RESULT       result;
 	unsigned int      version;
@@ -33,17 +36,24 @@ void soundengine::init_sounds() {
 	}
 	music1 = 0;
 	music2 = 0;
+#endif
 }
 
 bool soundengine::is_playing(int chan) {
 	bool playing = false;
+#ifdef __SWITCH__
+#else
 	if (chan < 0 || chan >= SOUND_CHANNELS)
 		return false;
 	(channels[chan])->isPlaying(&playing);
+#endif
 	return playing;
 }
 
 int soundengine::play_sound(string s) {
+#ifdef __SWITCH__
+	return 0;
+#else
 	FMOD_RESULT       result;
 	int ret;
 	float volume = get_sfx_volume();
@@ -58,9 +68,12 @@ int soundengine::play_sound(string s) {
 	ret = channel_index;
 	channel_index = (channel_index+1) % SOUND_CHANNELS;
 	return ret;
+#endif
 }
 
 void soundengine::play_sound_blocking(string s) {
+#ifdef __SWITCH__
+#else
 	FMOD_RESULT       result;
 	float volume = get_sfx_volume();
 	bool playing = false;
@@ -77,9 +90,12 @@ void soundengine::play_sound_blocking(string s) {
 		result = (channels[channel_index])->isPlaying(&playing);
 	}
 	channel_index = (channel_index+1) % SOUND_CHANNELS;
+#endif
 }
 
 void soundengine::play_music(string s) {
+#ifdef __SWITCH__
+#else
 	FMOD_RESULT       result;
 	string s1;
 	string s2;
@@ -139,9 +155,12 @@ void soundengine::play_music(string s) {
         music1->setVolume(volume);
 		music1->setPaused(false);
 	}
+#endif
 }
 
 void soundengine::play_cry(string s, bool blocking) {
+#ifdef __SWITCH__
+#else
 	FMOD_RESULT       result;
 	string s1, s2;
 	bool playing = false;
@@ -209,9 +228,12 @@ void soundengine::play_cry(string s, bool blocking) {
         }
     }
 	channel_index = (channel_index+2) % SOUND_CHANNELS;
+#endif
 }
 
 void soundengine::mute_music(bool partial) {
+#ifdef __SWITCH__
+#else
     float volume = 0.0;
     if (partial)
         volume = 0.5*get_music_volume();
@@ -225,9 +247,12 @@ void soundengine::mute_music(bool partial) {
         music2->setVolume(volume);
         music2->setPaused(false);
     }
+#endif
 }
 
 void soundengine::unmute_music() {
+#ifdef __SWITCH__
+#else
     float volume = get_music_volume();
     if (music1) {
         music1->setPaused(true);
@@ -239,6 +264,7 @@ void soundengine::unmute_music() {
         music2->setVolume(volume);
         music2->setPaused(false);
     }
+#endif
 }
 
 void soundengine::update_volumes() {

@@ -5469,12 +5469,16 @@ void engine::init_characters() {
 
 void engine::init_levels() {
 	ifstream f((safepath + string("data/levels.dat")).c_str());
+	vector<string> lines;
 	string line;
 	while (f.is_open()) {
 		while (safe_getline(f, line)) {
-			init_level(line);
+			lines.push_back(line);
 		}
 		f.close();
+	}
+	for (unsigned i = 0; i < lines.size(); ++i) {
+		init_level(lines[i]);
 	}
 }
 
@@ -6283,6 +6287,7 @@ void engine::init_mon() {
 			}
 		}
 	}
+	f.close();
 }
 
 void engine::init_status() {
@@ -6481,6 +6486,8 @@ void engine::init_swimming() {
 
 int engine::get_resolution() {
 	int res = 800;
+#ifdef __SWITCH__
+#else
 	string line;
 	ifstream f((safepath + string("data/resolution.dat")).c_str());
 	while (f.is_open()) {
@@ -6489,6 +6496,7 @@ int engine::get_resolution() {
 		}
 		f.close();
 	}
+#endif
 	return res;
 }
 

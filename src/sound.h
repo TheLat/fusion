@@ -1,7 +1,10 @@
 #ifndef SOUND_HEADER
 #define SOUND_HEADER
 
+#ifdef __SWITCH__
+#else
 #include "fmod/fmod.hpp"
+#endif
 #include <map>
 #include <string>
 
@@ -10,10 +13,14 @@ using namespace std;
 
 class soundengine {
 private:
+#ifdef __SWITCH__
+	// TODO:  Switch sound map and sound system
+#else
 	std::map<string, FMOD::Sound*> sounds;
 	FMOD::System *system;
 	FMOD::Channel *music1, *music2;
 	FMOD::Channel *channels[8];
+#endif
 	int channel_index;
 public:
 	string last_music;
