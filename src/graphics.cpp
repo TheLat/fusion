@@ -354,7 +354,6 @@ unsigned graphics::push_quad_half(float x, float y, float width, float height, G
 
 void graphics::draw_quad(quad &q) {
 	glBindTexture(GL_TEXTURE_2D, q.tex);
-#ifdef __SWITCH__
 	if (!q.half) {
 		GLfloat squareVertices[] = {
 			float(q.x), float(q.y), 0.0f,
@@ -393,30 +392,6 @@ void graphics::draw_quad(quad &q) {
 		glVertexAttribPointer(8, 2, GL_FLOAT, GL_FALSE, 0, textureVertices);
 		glDrawArrays(GL_QUADS, 0, 4);
 	}
-#else
-	glBegin(GL_QUADS);
-	if (!q.half) {
-        glTexCoord2f(0.0f, 0.0f);
-        glVertex3f(q.x, q.y, 0.0f);
-        glTexCoord2f(1.0f, 0.0f);
-        glVertex3f(q.x + q.width, q.y, 0.0f);
-        glTexCoord2f(1.0f, 1.0f);
-        glVertex3f(q.x + q.width, q.y + q.height, 0.0f);
-        glTexCoord2f(0.0f, 1.0f);
-        glVertex3f(q.x, q.y + q.height, 0.0f);
-	}
-	else {
-        glTexCoord2f(0.0f, 0.5f);
-        glVertex3f(q.x, q.y + (q.height/2.0), 0.0f);
-        glTexCoord2f(1.0f, 0.5f);
-        glVertex3f(q.x + q.width, q.y + (q.height/2.0), 0.0f);
-        glTexCoord2f(1.0f, 1.0f);
-        glVertex3f(q.x + q.width, q.y + q.height, 0.0f);
-        glTexCoord2f(0.0f, 1.0f);
-        glVertex3f(q.x, q.y + q.height, 0.0f);
-	}
-	glEnd();
-#endif
 }
 
 void graphics::animate() {
