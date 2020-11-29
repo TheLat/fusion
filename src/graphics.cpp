@@ -16,6 +16,7 @@ extern EGLContext s_context;
 extern EGLSurface s_surface;
 #endif
 extern bool safe_getline(ifstream &f, string& s);
+extern void log(const char *format, const char *value = 0);
 
 extern string safepath;
 extern void input_tick(double deltat);
@@ -271,7 +272,7 @@ void graphics::initRendering() {
 		FragmentShaderCode = sstr.str();
 		FragmentShaderStream.close();
 	}
-	printf("Compiling shader : %s\n", (safepath + string("shaders/post.shader")).c_str());
+	log("Compiling shader : %s\n", (safepath + string("shaders/post.shader")).c_str());
 	char const * FragmentSourcePointer = FragmentShaderCode.c_str();
 	glShaderSource(FragmentShaderID, 1, &FragmentSourcePointer , NULL);
 	glCompileShader(FragmentShaderID);
@@ -282,10 +283,10 @@ void graphics::initRendering() {
 	if ( InfoLogLength > 0 ){
 		std::vector<char> FragmentShaderErrorMessage(InfoLogLength+1);
 		glGetShaderInfoLog(FragmentShaderID, InfoLogLength, NULL, &FragmentShaderErrorMessage[0]);
-		printf("%s\n", &FragmentShaderErrorMessage[0]);
+		log("%s\n", &FragmentShaderErrorMessage[0]);
 	}
 
-	printf("Linking program\n");
+	log("Linking program\n");
 	ProgramID = glCreateProgram();
 	glAttachShader(ProgramID, FragmentShaderID);
 	glLinkProgram(ProgramID);
@@ -296,7 +297,7 @@ void graphics::initRendering() {
 	if ( InfoLogLength > 0 ){
 		std::vector<char> ProgramErrorMessage(InfoLogLength+1);
 		glGetProgramInfoLog(ProgramID, InfoLogLength, NULL, &ProgramErrorMessage[0]);
-		printf("%s\n", &ProgramErrorMessage[0]);
+		log("%s\n", &ProgramErrorMessage[0]);
 	}
 	glDetachShader(ProgramID, FragmentShaderID);
 	glDeleteShader(FragmentShaderID);
@@ -410,7 +411,7 @@ void graphics::drawScene() {
 	double deltat = tim.delta(index2);
 	tim.update(index2);
 	deltat = 1.0 / deltat;
-	printf("%f fps\n", deltat);
+	log("%f fps\n", deltat);
 	//*/
 	tim.update(wobble_index);
 	if (ae.is_donei(frame_anim_holder)) {

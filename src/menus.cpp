@@ -1,6 +1,7 @@
 #include "menus.h"
 #include "sound.h"
 
+extern void log(const char *format, const char *value = 0);
 extern bool safe_getline(ifstream &f, string& s);
 extern string safepath;
 extern soundengine se;

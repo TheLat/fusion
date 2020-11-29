@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <fstream>
+extern void log(const char *format, const char *value = 0);
 #ifdef __APPLE__
 #include <sys/time.h>
 #else

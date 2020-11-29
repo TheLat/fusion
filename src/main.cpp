@@ -14,7 +14,14 @@
 #include "sound.h"
 #include "timer.h"
 
-
+void log(const char *format, const char *value = 0) {
+	if (value) {
+		printf(format, value);
+	}
+	else {
+		printf(format);
+	}
+}
 
 using namespace std;
 mutex mut;
@@ -451,7 +458,7 @@ int main(int argc, char *argv[])
 #ifdef __SWITCH__
 	Result rc = romfsInit();
 	if (R_FAILED(rc))
-		printf("romfsInit: %08X\n", rc);
+		log("romfsInit: %08X\n", to_string(rc).c_str());
 	setMesaConfig();
 	if (!initEgl(nwindowGetDefault()))
 		return EXIT_FAILURE;
@@ -459,67 +466,67 @@ int main(int argc, char *argv[])
 #endif
 	e.mc.values[string("SFXVOLUME")] = 4;
 	e.mc.values[string("MUSICVOLUME")] = 4;
-	printf("Loading types...");
+	log("Loading types...");
 	e.init_types();
-	printf("Done!\n");
-	printf("Loading special effects...");
+	log("Done!\n");
+	log("Loading special effects...");
 	e.init_special();
-	printf("Done!\n");
-	printf("Loading EXP table...");
+	log("Done!\n");
+	log("Loading EXP table...");
 	e.init_exp();
-	printf("Done!\n");
-	printf("Loading status table...");
+	log("Done!\n");
+	log("Loading status table...");
 	e.init_status();
-	printf("Done!\n");
-	printf("Loading move database...");
+	log("Done!\n");
+	log("Loading move database...");
 	e.init_moves();
-	printf("Done!\n");
-	printf("Loading blocking tiles...");
+	log("Done!\n");
+	log("Loading blocking tiles...");
 	e.init_blocking();
 	e.init_npc_blocking();
-	printf("Done!\n");
-	printf("Loading animating tiles...");
+	log("Done!\n");
+	log("Loading animating tiles...");
 	e.init_animating();
-	printf("Done!\n");
-	printf("Loading jumping tiles...");
+	log("Done!\n");
+	log("Loading jumping tiles...");
 	e.init_jumpdown();
 	e.init_jumpleft();
 	e.init_jumpright();
-	printf("Done!\n");
-	printf("Loading slide tiles...");
+	log("Done!\n");
+	log("Loading slide tiles...");
 	e.init_slide();
-	printf("Done!\n");
-	printf("Loading encounter tiles...");
+	log("Done!\n");
+	log("Loading encounter tiles...");
 	e.init_encounter_tiles();
-	printf("Done!\n");
-	printf("Loading grass tiles...");
+	log("Done!\n");
+	log("Loading grass tiles...");
 	e.init_grass();
-	printf("Done!\n");
-	printf("Loading draw over tiles...");
+	log("Done!\n");
+	log("Loading draw over tiles...");
 	e.init_draw_over();
-	printf("Done!\n");
-	printf("Loading swimming tiles...");
+	log("Done!\n");
+	log("Loading swimming tiles...");
 	e.init_swimming();
-	printf("Done!\n");
-	printf("Loading items...");
+	log("Done!\n");
+	log("Loading items...");
 	e.init_items();
-	printf("Done!\n");
-	printf("Loading HM and TM definitions...");
+	log("Done!\n");
+	log("Loading HM and TM definitions...");
 	e.init_hm();
 	e.init_tm();
-	printf("Done!\n");
-	printf("Loading mon database...");
+	log("Done!\n");
+	log("Loading mon database...");
 	e.init_mon();
-	printf("Done!\n");
-	printf("Loading levels...");
+	log("Done!\n");
+	log("Loading levels...");
 	e.init_levels();
-	printf("Done!\n");
-	printf("Loading sounds...");
+	log("Done!\n");
+	log("Loading sounds...");
 	se.init_sounds();
-	printf("Done!\n");
-	printf("Initializing game clock...");
+	log("Done!\n");
+	log("Initializing game clock...");
 	e.init_game_timer();
-	printf("Done!\n");
+	log("Done!\n");
 	resolution = e.get_resolution();
 
 
