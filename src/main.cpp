@@ -456,13 +456,15 @@ _fail0:
 int main(int argc, char *argv[])
 {
 #ifdef __SWITCH__
-	Result rc = romfsInit();
-	if (R_FAILED(rc))
-		log("romfsInit: %08X\n", to_string(rc).c_str());
+	socketInitializeDefault();
+	nxlinkStdio();
 	setMesaConfig();
 	if (!initEgl(nwindowGetDefault()))
 		return EXIT_FAILURE;
 	gladLoadGL();
+	Result rc = romfsInit();
+	if (R_FAILED(rc))
+		log("romfsInit: %08X\n", to_string(rc).c_str());
 #endif
 	e.mc.values[string("SFXVOLUME")] = 4;
 	e.mc.values[string("MUSICVOLUME")] = 4;

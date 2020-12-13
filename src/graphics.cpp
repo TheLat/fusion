@@ -123,6 +123,9 @@ GLuint graphics::load_image(string filename) {
 	}
 	fclose(f);
 	glGenTextures(1, &ret);
+#ifdef __SWITCH__
+	glActiveTexture(GL_TEXTURE0);
+#endif
 	glBindTexture(GL_TEXTURE_2D, ret);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
@@ -234,6 +237,9 @@ void graphics::initRendering() {
 #endif
 #endif
 	glGenTextures(1, &r_tex);
+#ifdef __SWITCH__
+	glActiveTexture(GL_TEXTURE0);
+#endif
     glBindTexture(GL_TEXTURE_2D, r_tex);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, resolution,(resolution*9)/10, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -463,7 +469,7 @@ void graphics::drawScene() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	//glMatrixMode(GL_MODELVIEW); //Switch to the drawing perspective
 	//glLoadIdentity(); //Reset the drawing perspective
-	glViewport(0,0,resolution,(resolution*9)/10);
+	//glViewport(0,0,resolution,(resolution*9)/10);
 	//glColor3f(1.0f, 1.0f, 1.0f);
 	for (unsigned i = 0; i < draw_list_copy.size(); i++) {
 		draw_quad(draw_list_copy[i]);
