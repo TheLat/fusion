@@ -1,0 +1,4 @@
+Dependencies to compile:
+pacman -S switch-dev switch-sdl2 switch-sdl2_mixer switch-mesa switch-glad switch-glm switch-libpng
+
+The Switch port is not an official Nintendo release.  The necessary steps to put this on your Switch will void the warranty.
