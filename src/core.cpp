@@ -9429,7 +9429,7 @@ void engine::main() {
 			g.push_text(-0.9f, -1.0f, 1.8f, 0.3f, 0.1f, string("Press a button for UP"));
 			success = ie.get_and_set_key(0);
 			if (!success)
-				do_alert("Unable to remind that key to UP");
+				do_alert("Unable to rebind that key to UP");
 		}
 		success = false;
 		while (!success) {
@@ -9437,7 +9437,7 @@ void engine::main() {
 			g.push_text(-0.9f, -1.0f, 1.8f, 0.3f, 0.1f, string("Press a button for DOWN"));
 			success = ie.get_and_set_key(1);
 			if (!success)
-				do_alert("Unable to remind that key to DOWN");
+				do_alert("Unable to rebind that key to DOWN");
 		}
 		success = false;
 		while (!success) {
@@ -9445,7 +9445,7 @@ void engine::main() {
 			g.push_text(-0.9f, -1.0f, 1.8f, 0.3f, 0.1f, string("Press a button for LEFT"));
 			success = ie.get_and_set_key(3);
 			if (!success)
-				do_alert("Unable to remind that key to LEFT");
+				do_alert("Unable to rebind that key to LEFT");
 		}
 		success = false;
 		while (!success) {
@@ -9453,7 +9453,7 @@ void engine::main() {
 			g.push_text(-0.9f, -1.0f, 1.8f, 0.3f, 0.1f, string("Press a button for RIGHT"));
 			success = ie.get_and_set_key(2);
 			if (!success)
-				do_alert("Unable to remind that key to RIGHT");
+				do_alert("Unable to rebind that key to RIGHT");
 		}
 		success = false;
 		while (!success) {
@@ -9461,7 +9461,7 @@ void engine::main() {
 			g.push_text(-0.9f, -1.0f, 1.8f, 0.3f, 0.1f, string("Press a button for CONFIRM/INTERACT"));
 			success = ie.get_and_set_key(4);
 			if (!success)
-				do_alert("Unable to remind that key to CONFIRM/INTERACT");
+				do_alert("Unable to rebind that key to CONFIRM/INTERACT");
 		}
 		success = false;
 		while (!success) {
@@ -9469,7 +9469,7 @@ void engine::main() {
 			g.push_text(-0.9f, -1.0f, 1.8f, 0.3f, 0.1f, string("Press a button for CANCEL"));
 			success = ie.get_and_set_key(5);
 			if (!success)
-				do_alert("Unable to remind that key to CANCEL");
+				do_alert("Unable to rebind that key to CANCEL");
 		}
 		success = false;
 		while (!success) {
@@ -9477,7 +9477,7 @@ void engine::main() {
 			g.push_text(-0.9f, -1.0f, 1.8f, 0.3f, 0.1f, string("Press a button for START"));
 			success = ie.get_and_set_key(6);
 			if (!success)
-				do_alert("Unable to remind that key to START");
+				do_alert("Unable to rebind that key to START");
 		}
 		success = false;
 		while (!success) {
@@ -9485,7 +9485,7 @@ void engine::main() {
 			g.push_text(-0.9f, -1.0f, 1.8f, 0.3f, 0.1f, string("Press a button for SELECT"));
 			success = ie.get_and_set_key(7);
 			if (!success)
-				do_alert("Unable to remind that key to SELECT");
+				do_alert("Unable to rebind that key to SELECT");
 		}
 		g.draw_list.erase(g.draw_list.begin() + cp, g.draw_list.end());
 		picks.clear();
@@ -9509,7 +9509,7 @@ void engine::main() {
 					g.push_text(-0.9f, -1.0f, 1.8f, 0.3f, 0.1f, string("Press a button for UP"));
 					success = ie.get_and_set_key(0);
 					if (!success)
-						do_alert("Unable to remind that key to UP");
+						do_alert("Unable to rebind that key to UP");
 				}
 				success = false;
 				while (!success) {
@@ -9517,7 +9517,7 @@ void engine::main() {
 					g.push_text(-0.9f, -1.0f, 1.8f, 0.3f, 0.1f, string("Press a button for DOWN"));
 					success = ie.get_and_set_key(1);
 					if (!success)
-						do_alert("Unable to remind that key to DOWN");
+						do_alert("Unable to rebind that key to DOWN");
 				}
 				success = false;
 				while (!success) {
@@ -9525,7 +9525,7 @@ void engine::main() {
 					g.push_text(-0.9f, -1.0f, 1.8f, 0.3f, 0.1f, string("Press a button for LEFT"));
 					success = ie.get_and_set_key(3);
 					if (!success)
-						do_alert("Unable to remind that key to LEFT");
+						do_alert("Unable to rebind that key to LEFT");
 				}
 				success = false;
 				while (!success) {
@@ -9533,7 +9533,7 @@ void engine::main() {
 					g.push_text(-0.9f, -1.0f, 1.8f, 0.3f, 0.1f, string("Press a button for RIGHT"));
 					success = ie.get_and_set_key(2);
 					if (!success)
-						do_alert("Unable to remind that key to RIGHT");
+						do_alert("Unable to rebind that key to RIGHT");
 				}
 				success = false;
 				while (!success) {
@@ -9541,7 +9541,7 @@ void engine::main() {
 					g.push_text(-0.9f, -1.0f, 1.8f, 0.3f, 0.1f, string("Press a button for CONFIRM/INTERACT"));
 					success = ie.get_and_set_key(4);
 					if (!success)
-						do_alert("Unable to remind that key to CONFIRM/INTERACT");
+						do_alert("Unable to rebind that key to CONFIRM/INTERACT");
 				}
 				success = false;
 				while (!success) {
@@ -9549,7 +9549,7 @@ void engine::main() {
 					g.push_text(-0.9f, -1.0f, 1.8f, 0.3f, 0.1f, string("Press a button for CANCEL"));
 					success = ie.get_and_set_key(5);
 					if (!success)
-						do_alert("Unable to remind that key to CANCEL");
+						do_alert("Unable to rebind that key to CANCEL");
 				}
 				success = false;
 				while (!success) {
@@ -9557,7 +9557,7 @@ void engine::main() {
 					g.push_text(-0.9f, -1.0f, 1.8f, 0.3f, 0.1f, string("Press a button for START"));
 					success = ie.get_and_set_key(6);
 					if (!success)
-						do_alert("Unable to remind that key to START");
+						do_alert("Unable to rebind that key to START");
 				}
 				success = false;
 				while (!success) {
@@ -9565,7 +9565,7 @@ void engine::main() {
 					g.push_text(-0.9f, -1.0f, 1.8f, 0.3f, 0.1f, string("Press a button for SELECT"));
 					success = ie.get_and_set_key(7);
 					if (!success)
-						do_alert("Unable to remind that key to SELECT");
+						do_alert("Unable to rebind that key to SELECT");
 				}
 				g.draw_list.erase(g.draw_list.begin() + cp, g.draw_list.end());
 				picks.clear();
