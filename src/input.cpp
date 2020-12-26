@@ -337,6 +337,8 @@ void input::tick(double deltat) {
 	}
 	for (unsigned i = 0; i < 16 * 16; ++i) {
 		bool got_input;
+		if (i == 1)
+			continue; // Do not allow mouse click events to count.
 		got_input = (GetAsyncKeyState(i) != 0) && (FindWindow(NULL, windowTitle) == GetForegroundWindow());
 		if (use_controller) {
 			if (i == i_up) {
