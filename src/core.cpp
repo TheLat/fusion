@@ -4462,6 +4462,7 @@ bool engine::battle(trainer& t) { // trainer battle
 				    do_alert(string("{PLAYER_NAME} blacked out!"));
                     unsigned anim_holder = g.ae.create_anim_scene(string("screendark"));
                     while (!g.ae.is_dones(anim_holder)) {}
+					mc.movement = string("player");
                 }
 				g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
 				team_clear_volatile();
@@ -4989,6 +4990,7 @@ bool engine::battle() { // wild pokemon
                 unsigned anim_holder = g.ae.create_anim_scene(string("screendark"));
                 while (!g.ae.is_dones(anim_holder)) {}
 				g.draw_list.erase(g.draw_list.begin() + clear_point, g.draw_list.end());
+				mc.movement = string("player");
 				team_clear_volatile();
 				return false;
 			}
