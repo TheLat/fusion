@@ -3,7 +3,6 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-extern void log(const char *format, const char *value = 0);
 #ifdef __APPLE__
 #include <Carbon/Carbon.h>
 #else
@@ -228,11 +227,11 @@ void input::tick(double deltat) {
 		}
 		else {
 			if (FAILED(hr = g_pJoystick->GetDeviceState(sizeof(DIJOYSTATE2), &cs))) {
-				log("\nUnable to get controller state.");
+				printf("\nUnable to get controller state.");
 			}
 			else {
 				if (FAILED(g_pJoystick->GetDeviceState(sizeof(DIJOYSTATE2), &cs))) {
-					log("\nUnable to get controller state.");
+					printf("\nUnable to get controller state.");
 				}
 				else {
 					controller[0] = cs.lX;
@@ -882,7 +881,7 @@ void input::init_controller() {
 	c_select = UNBOUND;
 	HRESULT hr;
 	if (FAILED(hr = DirectInput8Create(GetModuleHandle(NULL), DIRECTINPUT_VERSION, IID_IDirectInput8, (VOID**)&g_pDI, NULL))) {
-		log("Unable to create DirectInput8 device.  Contining without controller.\n");
+		printf("Unable to create DirectInput8 device.  Contining without controller.\n");
 		return;
 	}
 
@@ -893,7 +892,7 @@ void input::init_controller() {
 
 	IDirectInputJoyConfig8* pJoyConfig = NULL;
 	if (FAILED(hr = g_pDI->QueryInterface(IID_IDirectInputJoyConfig8, (void**)&pJoyConfig))) {
-		log("Unable to query interface.  Continuing without controller.\n");
+		printf("Unable to query interface.  Continuing without controller.\n");
 		return;
 	}
 	PreferredJoyCfg.dwSize = sizeof(PreferredJoyCfg);
@@ -904,22 +903,22 @@ void input::init_controller() {
 		pJoyConfig = NULL;
 	}
 	if (FAILED(hr = g_pDI->EnumDevices(DI8DEVCLASS_GAMECTRL, EnumJoysticksCallback, &enumContext, DIEDFL_ALLDEVICES))) {
-		log("Unable to enumerate devices.  Continuing without controller.\n");
+		printf("Unable to enumerate devices.  Continuing without controller.\n");
 		return;
 	}
 	if (g_pJoystick == NULL) {
-		log("Unable to find controller.  Continuing without controller.\n");
+		printf("Unable to find controller.  Continuing without controller.\n");
 		return;
 	}
 	if (FAILED(g_pJoystick->SetDataFormat(&c_dfDIJoystick2))) {
-		log("Unable to set controller format.  Continuing without controller.\n");
+		printf("Unable to set controller format.  Continuing without controller.\n");
 		return;
 	}
 	if (FAILED(g_pJoystick->EnumObjects(EnumObjectsCallback, (VOID*)0, DIDFT_ALL))) {
-		log("Unable to enumerate controller's objects.  Continuing without controller.\n");
+		printf("Unable to enumerate controller's objects.  Continuing without controller.\n");
 		return;
 	}
-	log("Controller detected.\n");
+	printf("Controller detected.\n");
 	use_controller = true;
 	ifstream f("../controller_keybinds.dat");
 	string line;

@@ -14,15 +14,6 @@
 #include "sound.h"
 #include "timer.h"
 
-void log(const char *format, const char *value = 0) {
-	if (value) {
-		printf(format, value);
-	}
-	else {
-		printf(format);
-	}
-}
-
 using namespace std;
 mutex mut;
 engine e;
@@ -464,71 +455,71 @@ int main(int argc, char *argv[])
 	gladLoadGL();
 	Result rc = romfsInit();
 	if (R_FAILED(rc))
-		log("romfsInit: %08X\n", to_string(rc).c_str());
+		printf("romfsInit: %08X\n", to_string(rc).c_str());
 #endif
 	e.mc.values[string("SFXVOLUME")] = 4;
 	e.mc.values[string("MUSICVOLUME")] = 4;
-	log("Loading types...");
+	printf("Loading types...");
 	e.init_types();
-	log("Done!\n");
-	log("Loading special effects...");
+	printf("Done!\n");
+	printf("Loading special effects...");
 	e.init_special();
-	log("Done!\n");
-	log("Loading EXP table...");
+	printf("Done!\n");
+	printf("Loading EXP table...");
 	e.init_exp();
-	log("Done!\n");
-	log("Loading status table...");
+	printf("Done!\n");
+	printf("Loading status table...");
 	e.init_status();
-	log("Done!\n");
-	log("Loading move database...");
+	printf("Done!\n");
+	printf("Loading move database...");
 	e.init_moves();
-	log("Done!\n");
-	log("Loading blocking tiles...");
+	printf("Done!\n");
+	printf("Loading blocking tiles...");
 	e.init_blocking();
 	e.init_npc_blocking();
-	log("Done!\n");
-	log("Loading animating tiles...");
+	printf("Done!\n");
+	printf("Loading animating tiles...");
 	e.init_animating();
-	log("Done!\n");
-	log("Loading jumping tiles...");
+	printf("Done!\n");
+	printf("Loading jumping tiles...");
 	e.init_jumpdown();
 	e.init_jumpleft();
 	e.init_jumpright();
-	log("Done!\n");
-	log("Loading slide tiles...");
+	printf("Done!\n");
+	printf("Loading slide tiles...");
 	e.init_slide();
-	log("Done!\n");
-	log("Loading encounter tiles...");
+	printf("Done!\n");
+	printf("Loading encounter tiles...");
 	e.init_encounter_tiles();
-	log("Done!\n");
-	log("Loading grass tiles...");
+	printf("Done!\n");
+	printf("Loading grass tiles...");
 	e.init_grass();
-	log("Done!\n");
-	log("Loading draw over tiles...");
+	printf("Done!\n");
+	printf("Loading draw over tiles...");
 	e.init_draw_over();
-	log("Done!\n");
-	log("Loading swimming tiles...");
+	printf("Done!\n");
+	printf("Loading swimming tiles...");
 	e.init_swimming();
-	log("Done!\n");
-	log("Loading items...");
+	printf("Done!\n");
+	printf("Loading items...");
 	e.init_items();
-	log("Done!\n");
-	log("Loading HM and TM definitions...");
+	printf("Done!\n");
+	printf("Loading HM and TM definitions...");
 	e.init_hm();
 	e.init_tm();
-	log("Done!\n");
-	log("Loading mon database...");
+	printf("Done!\n");
+	printf("Loading mon database...");
 	e.init_mon();
-	log("Done!\n");
-	log("Loading levels...");
+	printf("Done!\n");
+	printf("Loading levels...");
 	e.init_levels();
-	log("Done!\n");
-	log("Loading sounds...");
+	printf("Done!\n");
+	printf("Loading sounds...");
 	se.init_sounds();
-	log("Done!\n");
-	log("Initializing game clock...");
+	printf("Done!\n");
+	printf("Initializing game clock...");
 	e.init_game_timer();
-	log("Done!\n");
+	printf("Done!\n");
 	resolution = e.get_resolution();
 
 

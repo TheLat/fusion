@@ -3,7 +3,6 @@
 #include "graphics.h"
 
 mutex safetyi, safetyf, safetys;
-extern void log(const char *format, const char *value = 0);
 extern bool safe_getline(ifstream &f, string& s);
 extern soundengine se;
 extern graphics g;

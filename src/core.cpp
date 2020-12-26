@@ -15,7 +15,6 @@ bool player_cancel = false;
 double move_time = 0.26666;
 unsigned time_index;
 extern soundengine se;
-extern void log(const char *format, const char *value = 0);
 typedef std::map<string, std::map<string, float> >::iterator type_iter;
 extern bool safe_getline(ifstream &f, string& s);
 
@@ -5830,7 +5829,7 @@ void engine::init_level(string levelname) {
 							}
 							create_move(d.team[i], s2, count, true);
 							if (!moves[s2].defined) {
-								log("\nERROR: Invalid move %s defined", s2.c_str());
+								printf("\nERROR: Invalid move %s defined", s2.c_str());
 							}
 							if (s3.find(",") != -1) {
 								s3.erase(0, s3.find(",") + 1);
