@@ -931,6 +931,11 @@ string engine::get_special_string(string in) {
 		else if (parse == "MOVE_POWER") {
 			if (!moves[temp].defined)
 				return string("-");
+			if (moves[temp].pow == "0") {
+				if (moves[temp].queue.size() != 0) {
+					return moves[moves[temp].queue[0]].pow;
+				}
+			}
 			return moves[temp].pow;
 		}
 		else if (parse == "MOVE_ACC") {
