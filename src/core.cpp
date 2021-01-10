@@ -4034,7 +4034,9 @@ bool engine::battle(trainer& t) { // trainer battle
 	for (i = 0; i < 6; ++i) {
 		if (!mc.team[i].defined)
 			g.push_quad_load(0.3f + ball_offset, -0.4f, 0.1f, 0.1f, safepath + string("images/ball-empty.png"));
-		else if (mc.team[i].status.size() != 0 || mc.team[i].curr_hp <= 0)
+		else if (mc.team[i].curr_hp <= 0)
+			g.push_quad_load(0.3f + ball_offset, -0.4f, 0.1f, 0.1f, safepath + string("images/ball-ko.png"));
+		else if (mc.team[i].status.size() != 0)
 			g.push_quad_load(0.3f + ball_offset, -0.4f, 0.1f, 0.1f, safepath + string("images/ball-bad.png"));
 		else
 			g.push_quad_load(0.3f + ball_offset, -0.4f, 0.1f, 0.1f, safepath + string("images/ball.png"));
@@ -4045,7 +4047,9 @@ bool engine::battle(trainer& t) { // trainer battle
 	for (i = 0; i < 6; ++i) {
 		if (!mc.enemy_team[i].defined)
 			enemy_ball_status_sprite_holder = g.push_quad_load(-0.9f + ball_offset, 0.9f, 0.1f, 0.1f, safepath + string("images/ball-empty.png"));
-		else if (mc.enemy_team[i].status.size() != 0 || mc.enemy_team[i].curr_hp <= 0)
+		else if (mc.enemy_team[i].curr_hp <= 0)
+			enemy_ball_status_sprite_holder = g.push_quad_load(-0.9f + ball_offset, 0.9f, 0.1f, 0.1f, safepath + string("images/ball-ko.png"));
+		else if (mc.enemy_team[i].status.size() != 0)
 			enemy_ball_status_sprite_holder = g.push_quad_load(-0.9f + ball_offset, 0.9f, 0.1f, 0.1f, safepath + string("images/ball-bad.png"));
 		else
 			enemy_ball_status_sprite_holder = g.push_quad_load(-0.9f + ball_offset, 0.9f, 0.1f, 0.1f, safepath + string("images/ball.png"));
@@ -4664,7 +4668,9 @@ bool engine::battle() { // wild pokemon
 	for (i = 0; i < 6; ++i) {
 		if (!mc.team[i].defined)
 			g.push_quad_load(0.3f + ball_offset, -0.4f, 0.1f, 0.1f, safepath + string("images/ball-empty.png"));
-		else if (mc.team[i].status.size() != 0 || mc.team[i].curr_hp <= 0)
+		else if (mc.team[i].curr_hp <= 0)
+			g.push_quad_load(0.3f + ball_offset, -0.4f, 0.1f, 0.1f, safepath + string("images/ball-ko.png"));
+		else if (mc.team[i].status.size() != 0)
 			g.push_quad_load(0.3f + ball_offset, -0.4f, 0.1f, 0.1f, safepath + string("images/ball-bad.png"));
 		else
 			g.push_quad_load(0.3f + ball_offset, -0.4f, 0.1f, 0.1f, safepath + string("images/ball.png"));
