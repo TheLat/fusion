@@ -1,5 +1,5 @@
 NAME
-    Pok{e-accent}mon Tower
+Pok{e-accent}mon Tower
 MAP
 0.7925
 0.1225
@@ -56,6 +56,15 @@ END
 lavender-tower-lower-woman5 elder 1 32 RIGHT
 INTERACTIONS
 MENU:ALERT:There's a particularly angry wayward GHOST haunting the tower, much nastier than the usual spirits.|MENU:ALERT:Even we haven't been able to unmask it.  Maybe we could with the help of a SILPH SCOPE...
+END
+lavendar-tower-lower-ghost blank 0 34
+FORCE_INTERACTION
+2 0
+1 1
+1 -1
+END
+INTERACTIONS
+IN_INVENTORY:SILPH SCOPE|{MENU:ALERT:Be gone... {NEWLINE} Intruders...|MOVE:PLAYER:1,0|MENU:ALERT:Pushed back by an unseen force!}{DEACTIVATE:lavendar-tower-lower-ghost}
 END
 TRAINERS
 lavender-tower-city-0 65 0.65 0.65 {RIVAL_NAME} rival2.png {{RIVAL_NAME}: What? You stinker! {NEWLINE} I took it easy on you, too!}{{RIVAL_NAME}: Yeah! Am I great or what?} 25-25:31:THUNDERBOLT,SWIFT,THUNDER WAVE,QUICK ATTACK|22-28:30:SLASH,DIG,PECK,FURY ATTACK|9-9:32
