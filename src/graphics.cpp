@@ -1,12 +1,8 @@
-#ifdef __APPLE__
-#else
-#ifdef __SWITCH__
-#else
+#ifdef _WIN32
 #include <Windows.h>
 #include "GL/glew.h"
 #include <gl/GL.h>
 #include <gl/GLU.h>
-#endif
 #endif
 #include <sstream>
 #include "graphics.h"
@@ -27,15 +23,15 @@ GLuint graphics::load_image(string filename) {
 	int i;
 	unsigned char* image = 0;
 	FILE* f;
-	#ifdef __APPLE__
+#ifdef __APPLE__
     f = fopen((filename).c_str(), "rb");
-	#else
-	#ifdef __SWITCH__
+#endif
+#ifdef __SWITCH__
 	f = fopen((filename).c_str(), "rb");
-    #else
+#endif
+#ifdef _WIN32
 	fopen_s(&f, (filename).c_str(), "rb");
-	#endif
-	#endif
+#endif
 	if (f == 0)
 		return 0;
 	int height = 0;
@@ -225,15 +221,15 @@ void graphics::initRendering() {
 #ifdef __APPLE__
 	glGenFramebuffers(1, &fbo);
 	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
-#else
+#endif
 #ifdef __SWITCH__
 	glGenFramebuffers(1, &fbo);
 	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
-#else
+#endif
+#ifdef _WIN32
 	glewInit();
 	glGenFramebuffersEXT(1, &fbo);
 	glBindFramebufferEXT(GL_FRAMEBUFFER, fbo);
-#endif
 #endif
 	glGenTextures(1, &r_tex);
 #ifdef __SWITCH__
@@ -246,14 +242,14 @@ void graphics::initRendering() {
 #ifdef __APPLE__
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, r_tex, 0);
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
-#else
+#endif
 #ifdef __SWITCH__
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, r_tex, 0);
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-#else
+#endif
+#ifdef _WIN32
 	glFramebufferTexture2DEXT(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, r_tex, 0);
 	glBindFramebufferEXT(GL_FRAMEBUFFER, 0);
-#endif
 #endif
 #ifdef __SWITCH__
 	r_quad.x = 0.625;
@@ -474,12 +470,12 @@ void graphics::drawScene() {
 	//Clear information from last draw
 #ifdef __APPLE__
 	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
-#else
+#endif
 #ifdef __SWITCH__
 	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
-#else
-	glBindFramebufferEXT(GL_FRAMEBUFFER, fbo);
 #endif
+#ifdef _WIN32
+	glBindFramebufferEXT(GL_FRAMEBUFFER, fbo);
 #endif
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -495,12 +491,12 @@ void graphics::drawScene() {
 
 #ifdef __APPLE__
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-#else
+#endif
 #ifdef __SWITCH__
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-#else
-	glBindFramebufferEXT(GL_FRAMEBUFFER, 0);
 #endif
+#ifdef _WIN32
+	glBindFramebufferEXT(GL_FRAMEBUFFER, 0);
 #endif
     glUseProgram(ProgramID);
     GLuint invert_loc = glGetUniformLocation(ProgramID, "invert");
@@ -654,7 +650,11 @@ unsigned graphics::push_quad_load(float x, float y, float width, float height, s
 	if (!tex[temp_filename]) {
 #ifdef __APPLE__
         tex[temp_filename] = 0;
-#else
+#endif
+#ifdef __SWITCH__
+		tex[temp_filename] = 0;
+#endif
+#ifdef _WIN32
 		tex[temp_filename] = load_image(temp_filename);
 #endif
 		new_load = true;
