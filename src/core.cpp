@@ -17,7 +17,7 @@ unsigned time_index;
 extern soundengine se;
 typedef std::map<string, std::map<string, float> >::iterator type_iter;
 extern bool safe_getline(ifstream &f, string& s);
-extern bool shutdown;
+extern bool fusionshutdown;
 
 int bonk_sound = -1;
 input ie;
@@ -7154,6 +7154,10 @@ vector<int> engine::do_alert(string s) {
 }
 
 vector<int> engine::do_menu(string menu, string choice, string text_override, string followup_override) {
+	printf(menu.c_str());
+	printf("\n");
+	printf(choice.c_str());
+	printf("\n");
 	vector<int> out;
 	create_menu(menu, choice, text_override, followup_override);
 	out = menus[menus.size() - 1]->main();
@@ -9652,7 +9656,7 @@ void engine::main() {
 		if (player_select) {
 			picks = do_menu(string("ALERT_NO_YES"), string("Are you sure you want to quit?"));
 			if (picks[picks.size() - 1] == 1) {
-				shutdown = true;
+				fusionshutdown = true;
 				break;
 			}
 		}
