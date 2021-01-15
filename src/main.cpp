@@ -22,6 +22,7 @@ soundengine se;
 timer tim;
 extern string safepath;
 int resolution;
+bool shutdown = false;
 
 const char* windowTitle = "Pokemon Fusion";
 
@@ -328,17 +329,25 @@ void handleResize(int w, int h) {
 }
 
 void drawScene() {
+	if (shutdown) {
+#ifdef _WIN32
+		exit(0);
+#endif
+#ifdef __APPLE__
+		glutLeaveMainLoop();
+#endif
+	}
 	g.drawScene();
 }
 
 void core_main() {
-	while (true) {
+	while (!shutdown) {
 		e.main();
 	}
 }
 
 void animate() {
-	while (true) {
+	while (!shutdown) {
 		g.animate();
 	}
 }
@@ -528,10 +537,13 @@ int main(int argc, char *argv[])
 	e.init_characters();
 	thread t1(core_main);
 	thread t2(animate);
-	while (appletMainLoop())
+	while (!shutdown)
 	{
 		drawScene();
 	}
+	romfsExit();
+	socketExit();
+	deinitEgl();
 #else
 	//Initialize GLUT
 	glutInit(&argc, argv);

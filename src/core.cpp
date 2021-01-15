@@ -17,6 +17,7 @@ unsigned time_index;
 extern soundengine se;
 typedef std::map<string, std::map<string, float> >::iterator type_iter;
 extern bool safe_getline(ifstream &f, string& s);
+extern bool shutdown;
 
 int bonk_sound = -1;
 input ie;
@@ -9648,6 +9649,13 @@ void engine::main() {
 		npc_wander(deltat);
 		if (player_up || player_down || player_left || player_right || player_select || player_start || player_confirm || player_cancel)
 			player_input(player_up, player_down, player_left, player_right, player_select, player_start, player_confirm, player_cancel);
+		if (player_select) {
+			picks = do_menu(string("ALERT_NO_YES"), string("Are you sure you want to quit?"));
+			if (picks[picks.size() - 1] == 1) {
+				shutdown = true;
+				break;
+			}
+		}
 		player_up = false;
 		player_down = false;
 		player_left = false;
