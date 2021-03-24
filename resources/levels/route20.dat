@@ -96,7 +96,7 @@ FORCE_INTERACTION
 END
 INTERACTIONS
 PLAY_MUSIC:music/14-trainer-girl-appears-intro.mp3,music/14-trainer-girl-appears-loop.mp3|!:route20-swimmer7|MOVE_TO_PLAYER|MENU:ALERT:My boyfriend gave me big pearls!|BATTLE:route20-swimmer7|{NO_ADVANCE}{DISABLE_FORCE}
-MENU:ALERT:Will my pearls will grow bigger inside CLOYSTER?
+MENU:ALERT:Will my pearls grow bigger inside CLOYSTER?
 END
 route20-swimmer8 manswim 22 16 DOWN
 FORCE_INTERACTION
