@@ -25,7 +25,6 @@ extern string safepath;
 extern void input_tick(double deltat);
 extern int resolution;
 double tile_anim_dur = 48000.0;
-static GLuint s_program = 0;
 
 #ifdef __SWITCH__
 static const char* const vertexShaderSource = R"text(
@@ -75,6 +74,11 @@ static const char* const postprocessfragmentShaderSource = R"text(
     out vec4 fragColor;
 
     uniform sampler2D tex_diffuse;
+	uniform float invert;
+	uniform float contrast;
+	uniform float brightness;
+	uniform float offset;
+	uniform float wobble;
 
     void main()
     {
@@ -329,7 +333,12 @@ void graphics::initRendering() {
 	glActiveTexture(GL_TEXTURE0);
 #endif
     glBindTexture(GL_TEXTURE_2D, r_tex);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, resolution,(resolution*9)/10, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
+#ifdef __SWITCH__
+	// TODO:  Verify that it works while docked
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 1280, 720, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
+#else
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, resolution, (resolution * 9) / 10, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
+#endif
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 #ifdef __APPLE__
@@ -345,7 +354,7 @@ void graphics::initRendering() {
 	glBindFramebufferEXT(GL_FRAMEBUFFER, 0);
 #endif
 #ifdef __SWITCH__
-	r_quad.x = 0.625;
+	r_quad.x = -0.625;
 	r_quad.width = 1.25;
 #else
     r_quad.x = -1.0;
@@ -354,18 +363,31 @@ void graphics::initRendering() {
     r_quad.y = -1.0;
     r_quad.height = 2.0;
     r_quad.tex = r_tex;
+	PreProgram = 0;
 #ifdef __SWITCH__
 	GLint vsh = createAndCompileShader(GL_VERTEX_SHADER, vertexShaderSource);
 	GLint fsh = createAndCompileShader(GL_FRAGMENT_SHADER, fragmentShaderSource);
 
-	s_program = glCreateProgram();
-	glAttachShader(s_program, vsh);
-	glAttachShader(s_program, fsh);
-	glLinkProgram(s_program);
-	//glDeleteShader(vsh);
-	//glDeleteShader(fsh);
+	PreProgram = glCreateProgram();
+	glAttachShader(PreProgram, vsh);
+	glAttachShader(PreProgram, fsh);
+	glLinkProgram(PreProgram);
+	glDeleteShader(vsh);
+	glDeleteShader(fsh);
 #endif
 
+	glUseProgram(PreProgram);
+#ifdef __SWITCH__
+	vsh = createAndCompileShader(GL_VERTEX_SHADER, vertexShaderSource);
+	fsh = createAndCompileShader(GL_FRAGMENT_SHADER, postprocessfragmentShaderSource);
+
+	PostProgram = glCreateProgram();
+	glAttachShader(PostProgram, vsh);
+	glAttachShader(PostProgram, fsh);
+	glLinkProgram(PreProgram);
+	glDeleteShader(vsh);
+	glDeleteShader(fsh);
+#else
 	GLint Result = GL_FALSE;
 	int InfoLogLength;
     FragmentShaderID = glCreateShader(GL_FRAGMENT_SHADER);
@@ -392,20 +414,21 @@ void graphics::initRendering() {
 	}
 
 	printf("Linking program\n");
-	ProgramID = glCreateProgram();
-	glAttachShader(ProgramID, FragmentShaderID);
-	glLinkProgram(ProgramID);
+	PostProgram = glCreateProgram();
+	glAttachShader(PostProgram, FragmentShaderID);
+	glLinkProgram(PostProgram);
 
 	// Check the program
-	glGetProgramiv(ProgramID, GL_LINK_STATUS, &Result);
-	glGetProgramiv(ProgramID, GL_INFO_LOG_LENGTH, &InfoLogLength);
+	glGetProgramiv(PostProgram, GL_LINK_STATUS, &Result);
+	glGetProgramiv(PostProgram, GL_INFO_LOG_LENGTH, &InfoLogLength);
 	if ( InfoLogLength > 0 ){
 		std::vector<char> ProgramErrorMessage(InfoLogLength+1);
-		glGetProgramInfoLog(ProgramID, InfoLogLength, NULL, &ProgramErrorMessage[0]);
+		glGetProgramInfoLog(PostProgram, InfoLogLength, NULL, &ProgramErrorMessage[0]);
 		printf("%s\n", &ProgramErrorMessage[0]);
 	}
-	glDetachShader(ProgramID, FragmentShaderID);
+	glDetachShader(PostProgram, FragmentShaderID);
 	glDeleteShader(FragmentShaderID);
+#endif
 
 	wobble_index = tim.create();
 #ifdef __SWITCH__
@@ -473,8 +496,6 @@ unsigned graphics::push_quad_half(float x, float y, float width, float height, G
 void graphics::draw_quad(quad &q) {
 	glBindTexture(GL_TEXTURE_2D, q.tex);
 #ifdef __SWITCH__
-	GLuint text_loc = glGetUniformLocation(s_program, "tex_diffuse");
-	glUniform1i(text_loc, q.tex);
 	if (!q.half) {
 		/*
 		GLfloat squareVertices[] = {
@@ -522,6 +543,22 @@ void graphics::draw_quad(quad &q) {
 			0.0f, 1.0f,
 		};
 		*/
+		Vertex vertex_list[] =
+		{
+			// First triangle
+			{ { float(q.x),				float(q.y + (q.height / 2.0)),	+0.5f },{ 0.0f, 0.5f } },
+			{ { float(q.x + q.width),	float(q.y + (q.height / 2.0)),	+0.5f },{ 1.0f, 0.5f } },
+			{ { float(q.x + q.width),	float(q.y + q.height),			+0.5f },{ 1.0f, 1.0f } },
+			// Second triangle
+			{ { float(q.x + q.width),	float(q.y + q.height),			+0.5f },{ 1.0f, 1.0f } },
+			{ { float(q.x),				float(q.y + q.height),			+0.5f },{ 0.0f, 1.0f } },
+			{ { float(q.x),				float(q.y + (q.height / 2.0)),	+0.5f },{ 0.0f, 0.5f } },
+		};
+		glBindVertexArray(s_vao);
+		glBindBuffer(GL_ARRAY_BUFFER, s_vbo);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(vertex_list), vertex_list, GL_STATIC_DRAW);
+		glDrawArrays(GL_TRIANGLES, 0, vertex_list_count);
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
 	}
 #else
 	glBegin(GL_QUADS);
@@ -600,7 +637,9 @@ void graphics::drawScene() {
 	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 #endif
 #ifdef __SWITCH__
-	//glBindFramebuffer(GL_FRAMEBUFFER, fbo);
+	GLuint text_loc;
+	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
+	text_loc = glGetUniformLocation(PreProgram, "tex_diffuse");
 #endif
 #ifdef _WIN32
 	glBindFramebufferEXT(GL_FRAMEBUFFER, fbo);
@@ -612,6 +651,9 @@ void graphics::drawScene() {
 	//glViewport(0,0,resolution,(resolution*9)/10);
 	//glColor3f(1.0f, 1.0f, 1.0f);
 	for (unsigned i = 0; i < draw_list_copy.size(); i++) {
+#ifdef __SWITCH__
+		glUniform1i(text_loc, draw_list_copy[i].tex);
+#endif
 		draw_quad(draw_list_copy[i]);
 	}
 	//glutSwapBuffers(); //Send the 3D scene to the screen
@@ -621,45 +663,40 @@ void graphics::drawScene() {
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 #endif
 #ifdef __SWITCH__
-	//glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 #endif
 #ifdef _WIN32
 	glBindFramebufferEXT(GL_FRAMEBUFFER, 0);
 #endif
-    glUseProgram(ProgramID);
-#ifdef __SWITCH__
-	glUseProgram(s_program);
-#endif
-    GLuint invert_loc = glGetUniformLocation(ProgramID, "invert");
+    glUseProgram(PostProgram);
+    GLuint invert_loc = glGetUniformLocation(PostProgram, "invert");
     glUniform1f(invert_loc, r_effects.x);
-    GLuint contrast_loc = glGetUniformLocation(ProgramID, "contrast");
+    GLuint contrast_loc = glGetUniformLocation(PostProgram, "contrast");
     glUniform1f(contrast_loc, r_effects.y+1.0);
-    GLuint brightness_loc = glGetUniformLocation(ProgramID, "brightness");
+    GLuint brightness_loc = glGetUniformLocation(PostProgram, "brightness");
     glUniform1f(brightness_loc, r_effects.width);
-    GLuint offset_loc = glGetUniformLocation(ProgramID, "offset");
+    GLuint offset_loc = glGetUniformLocation(PostProgram, "offset");
     glUniform1f(offset_loc, wobble_counter*50.0);
-    GLuint wobble_loc = glGetUniformLocation(ProgramID, "wobble");
+    GLuint wobble_loc = glGetUniformLocation(PostProgram, "wobble");
     glUniform1f(wobble_loc, 0.025 * r_effects.height);
     if (r_effects.height == 0.0)
         wobble_counter = 0.0;
-	if (r_effects.x > 0.5)
-		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-	else
-		glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
-#ifdef __SWITCH__
-#else
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
 	//glMatrixMode(GL_MODELVIEW);
 	//glLoadIdentity();
-	draw_quad(r_quad); // render screen texture to screen
+#ifdef __SWITCH__
+	text_loc = glGetUniformLocation(PostProgram, "tex_diffuse");
+	glUniform1i(text_loc, r_quad.tex);
 #endif
+	draw_quad(r_quad); // render screen texture to screen
 #ifdef __SWITCH__
 	eglSwapBuffers(s_display, s_surface);
 #else
 	glutSwapBuffers();
 	glutPostRedisplay();
 #endif
-    glUseProgram(s_program);
+    glUseProgram(PreProgram);
 }
 
 int graphics::next_chunk(string& s, int index) {

@@ -53,7 +53,8 @@ private:
 	GLuint r_tex;
 	GLuint VertexArrayID;
 	GLuint FragmentShaderID;
-	GLuint ProgramID;
+	GLuint PostProgram;
+	GLuint PreProgram;
 	unsigned frame_anim_holder, fast_frame_anim_holder;
 public:
 	int frame, fast_frame;
