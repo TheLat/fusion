@@ -10,6 +10,14 @@
 extern EGLDisplay s_display;
 extern EGLContext s_context;
 extern EGLSurface s_surface;
+static GLuint s_vao, s_vbo;
+
+typedef struct
+{
+	float position[3];
+	float texcoord[2];
+} Vertex;
+#define vertex_list_count (sizeof(vertex_list)/sizeof(vertex_list[0]))
 #endif
 extern bool safe_getline(ifstream &f, string& s);
 
@@ -17,6 +25,91 @@ extern string safepath;
 extern void input_tick(double deltat);
 extern int resolution;
 double tile_anim_dur = 48000.0;
+static GLuint s_program = 0;
+
+#ifdef __SWITCH__
+static const char* const vertexShaderSource = R"text(
+    #version 320 es
+    precision mediump float;
+
+    layout (location = 0) in vec3 inPos;
+    layout (location = 1) in vec2 inTexCoord;
+
+    out vec2 vtxTexCoord;
+
+    void main()
+    {
+        // Calculate position
+        vec4 pos = vec4(inPos, 1.0);
+        gl_Position = pos;
+
+        // Calculate texcoord
+        vtxTexCoord = inTexCoord;
+    }
+)text";
+
+static const char* const fragmentShaderSource = R"text(
+    #version 320 es
+    precision mediump float;
+
+    in vec2 vtxTexCoord;
+
+    out vec4 fragColor;
+
+    uniform sampler2D tex_diffuse;
+
+    void main()
+    {
+        vec4 texDiffuseColor = texture(tex_diffuse, vtxTexCoord);
+
+        fragColor = vec4(texDiffuseColor.rgb, texDiffuseColor.a);
+    }
+)text";
+
+static const char* const postprocessfragmentShaderSource = R"text(
+    #version 320 es
+    precision mediump float;
+
+    in vec2 vtxTexCoord;
+
+    out vec4 fragColor;
+
+    uniform sampler2D tex_diffuse;
+
+    void main()
+    {
+        vec4 texDiffuseColor = texture(tex_diffuse, vtxTexCoord);
+
+        fragColor = vec4(texDiffuseColor.rgb, texDiffuseColor.a);
+    }
+)text";
+
+static GLuint createAndCompileShader(GLenum type, const char* source)
+{
+	GLint success;
+	GLchar msg[512];
+
+	GLuint handle = glCreateShader(type);
+	if (!handle)
+	{
+		printf("%u: cannot create shader", type);
+		return 0;
+	}
+	glShaderSource(handle, 1, &source, nullptr);
+	glCompileShader(handle);
+	glGetShaderiv(handle, GL_COMPILE_STATUS, &success);
+
+	if (success == GL_FALSE)
+	{
+		glGetShaderInfoLog(handle, sizeof(msg), nullptr, msg);
+		printf("%u: %s\n", type, msg);
+		glDeleteShader(handle);
+		return 0;
+	}
+
+	return handle;
+}
+#endif
 
 GLuint graphics::load_image(string filename) {
 	GLuint ret = 0;
@@ -261,6 +354,17 @@ void graphics::initRendering() {
     r_quad.y = -1.0;
     r_quad.height = 2.0;
     r_quad.tex = r_tex;
+#ifdef __SWITCH__
+	GLint vsh = createAndCompileShader(GL_VERTEX_SHADER, vertexShaderSource);
+	GLint fsh = createAndCompileShader(GL_FRAGMENT_SHADER, fragmentShaderSource);
+
+	s_program = glCreateProgram();
+	glAttachShader(s_program, vsh);
+	glAttachShader(s_program, fsh);
+	glLinkProgram(s_program);
+	//glDeleteShader(vsh);
+	//glDeleteShader(fsh);
+#endif
 
 	GLint Result = GL_FALSE;
 	int InfoLogLength;
@@ -304,6 +408,18 @@ void graphics::initRendering() {
 	glDeleteShader(FragmentShaderID);
 
 	wobble_index = tim.create();
+#ifdef __SWITCH__
+	glGenVertexArrays(1, &s_vao);
+	glGenBuffers(1, &s_vbo);
+	glBindVertexArray(s_vao);
+	glBindBuffer(GL_ARRAY_BUFFER, s_vbo);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, position));
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, texcoord));
+	glEnableVertexAttribArray(1);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindVertexArray(0);
+#endif
 }
 
 void graphics::handleResize(int w, int h) {
@@ -357,7 +473,10 @@ unsigned graphics::push_quad_half(float x, float y, float width, float height, G
 void graphics::draw_quad(quad &q) {
 	glBindTexture(GL_TEXTURE_2D, q.tex);
 #ifdef __SWITCH__
+	GLuint text_loc = glGetUniformLocation(s_program, "tex_diffuse");
+	glUniform1i(text_loc, q.tex);
 	if (!q.half) {
+		/*
 		GLfloat squareVertices[] = {
 			float(q.x), float(q.y), 0.0f,
 			float(q.x + q.width), float(q.y), 0.0f,
@@ -370,13 +489,26 @@ void graphics::draw_quad(quad &q) {
 			1.0f, 1.0f,
 			0.0f, 1.0f,
 		};
-		glEnableVertexAttribArray(0);
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, squareVertices);
-		glEnableVertexAttribArray(8);
-		glVertexAttribPointer(8, 2, GL_FLOAT, GL_FALSE, 0, textureVertices);
-		glDrawArrays(GL_QUADS, 0, 4);
+		*/
+		Vertex vertex_list[] =
+		{
+			// First triangle
+			{ { float(q.x),				float(q.y),				+0.5f },{ 0.0f, 0.0f } },
+			{ { float(q.x + q.width),	float(q.y),				+0.5f },{ 1.0f, 0.0f } },
+			{ { float(q.x + q.width),	float(q.y + q.height),	+0.5f },{ 1.0f, 1.0f } },
+			// Second triangle
+			{ { float(q.x + q.width),	float(q.y + q.height),	+0.5f },{ 1.0f, 1.0f } },
+			{ { float(q.x),				float(q.y + q.height),	+0.5f },{ 0.0f, 1.0f } },
+			{ { float(q.x),				float(q.y),				+0.5f },{ 0.0f, 0.0f } },
+		};
+		glBindVertexArray(s_vao);
+		glBindBuffer(GL_ARRAY_BUFFER, s_vbo);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(vertex_list), vertex_list, GL_STATIC_DRAW);
+		glDrawArrays(GL_TRIANGLES, 0, vertex_list_count);
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
 	}
 	else {
+		/*
 		GLfloat squareVertices[] = {
 			float(q.x), float(q.y + (q.height / 2.0)), 0.0f,
 			float(q.x + q.width), float(q.y + (q.height/2.0)), 0.0f,
@@ -389,11 +521,7 @@ void graphics::draw_quad(quad &q) {
 			1.0f, 1.0f,
 			0.0f, 1.0f,
 		};
-		glEnableVertexAttribArray(0);
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, squareVertices);
-		glEnableVertexAttribArray(8);
-		glVertexAttribPointer(8, 2, GL_FLOAT, GL_FALSE, 0, textureVertices);
-		glDrawArrays(GL_QUADS, 0, 4);
+		*/
 	}
 #else
 	glBegin(GL_QUADS);
@@ -472,7 +600,7 @@ void graphics::drawScene() {
 	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 #endif
 #ifdef __SWITCH__
-	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
+	//glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 #endif
 #ifdef _WIN32
 	glBindFramebufferEXT(GL_FRAMEBUFFER, fbo);
@@ -493,12 +621,15 @@ void graphics::drawScene() {
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 #endif
 #ifdef __SWITCH__
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	//glBindFramebuffer(GL_FRAMEBUFFER, 0);
 #endif
 #ifdef _WIN32
 	glBindFramebufferEXT(GL_FRAMEBUFFER, 0);
 #endif
     glUseProgram(ProgramID);
+#ifdef __SWITCH__
+	glUseProgram(s_program);
+#endif
     GLuint invert_loc = glGetUniformLocation(ProgramID, "invert");
     glUniform1f(invert_loc, r_effects.x);
     GLuint contrast_loc = glGetUniformLocation(ProgramID, "contrast");
@@ -515,17 +646,20 @@ void graphics::drawScene() {
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	else
 		glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+#ifdef __SWITCH__
+#else
 	glClear(GL_COLOR_BUFFER_BIT);
 	//glMatrixMode(GL_MODELVIEW);
 	//glLoadIdentity();
 	draw_quad(r_quad); // render screen texture to screen
+#endif
 #ifdef __SWITCH__
 	eglSwapBuffers(s_display, s_surface);
 #else
 	glutSwapBuffers();
 	glutPostRedisplay();
 #endif
-    glUseProgram(0);
+    glUseProgram(s_program);
 }
 
 int graphics::next_chunk(string& s, int index) {
