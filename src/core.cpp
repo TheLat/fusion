@@ -7169,7 +7169,7 @@ vector<int> engine::do_menu(string menu, string choice, string text_override, st
 void engine::update_level() {
 	tim.update(time_index);
 	mut.lock();
-	g.draw_list.clear();
+	g.draw_list.erase(g.draw_list.begin(), g.draw_list.end());
 	draw_level();
 	draw_characters();
 	draw_special();
@@ -7181,6 +7181,21 @@ void engine::update_level() {
 	while (delta < 1.0 / 120.0) {
 		delta = tim.delta(time_index);
 	}
+}
+
+void engine::push_tile(double xp, double yp, double xl, double yl, int ID) {
+#ifdef __SWITCH__
+	string tmp;
+	tmp = to_string(ID);
+	if (ID < 100)
+		tmp = '0' + tmp;
+	if (ID < 10)
+		tmp = '0' + tmp;
+	tmp = tmp + ".png";
+	g.push_quad_load(xp, yp, xl, yl, safepath + string("level_sprites/") + tmp);
+#else
+	g.push_quad(xp, yp, xl, yl, g.tiles[ID]);
+#endif
 }
 
 void engine::draw_level() {
@@ -7208,8 +7223,9 @@ void engine::draw_level() {
 				continue;
 			if (yp > 1.0 && yp + yl > 1.0)
 				continue;
-			if (water_render[l->data[y][x]])
-			    g.push_quad_load(xp, yp, xl, yl, waterstring);
+			if (water_render[l->data[y][x]]) {
+				g.push_quad_load(xp, yp, xl, yl, waterstring);
+			}
 			if (grass_render[l->data[y][x]]) {
 			    if (offwhitetex == 0) {
 			        g.push_quad_load(xp, yp, xl, yl, offwhite);
@@ -7218,9 +7234,10 @@ void engine::draw_level() {
 			        g.push_quad(xp, yp, xl, yl, offwhitetex);
 			    }
 			}
-			g.push_quad(xp, yp, xl, yl, g.tiles[l->data[y][x]]);
-			if (animating[l->data[y][x]])
-			    g.push_quad_load(xp, yp, xl, yl, safepath + string("images/") + to_string(l->data[y][x]) + string("-frame") + to_string(g.frame%8) + string(".png"));
+			push_tile(xp, yp, xl, yl, l->data[y][x]);
+			if (animating[l->data[y][x]]) {
+				g.push_quad_load(xp, yp, xl, yl, safepath + string("images/") + to_string(l->data[y][x]) + string("-frame") + to_string(g.frame % 8) + string(".png"));
+			}
 		}
 	}
 	for (unsigned i = 0; i < l->neighbors.size(); ++i) {
@@ -7251,7 +7268,7 @@ void engine::draw_level() {
                         g.push_quad(xp, yp, xl, yl, offwhitetex);
                     }
                 }
-				g.push_quad(xp, yp, xl, yl, g.tiles[levels[levels[curr_level].neighbors[i].level].data[y][x]]);
+				push_tile(xp, yp, xl, yl, levels[levels[curr_level].neighbors[i].level].data[y][x]);
                 if (animating[levels[levels[curr_level].neighbors[i].level].data[y][x]])
                     g.push_quad_load(xp, yp, xl, yl, safepath + string("images/") + to_string(levels[levels[curr_level].neighbors[i].level].data[y][x]) + string("-frame") + to_string(g.frame%8) + string(".png"));
 			}
@@ -7282,7 +7299,7 @@ void engine::draw_special() {
 			if (yp > 1.0f && yp + yl > 1.0f)
 				continue;
 			if (grass_render[l->data[y][x]]) {
-			    g.push_quad(xp, yp, xl, yl, g.tiles[l->data[y][x]]);
+			    push_tile(xp, yp, xl, yl, l->data[y][x]);
 			}
 		}
 	}
@@ -7305,7 +7322,7 @@ void engine::draw_special() {
 				if (yp > 1.0f && yp + yl > 1.0f)
 					continue;
 				if (grass_render[levels[levels[curr_level].neighbors[i].level].data[y][x]])
-				    g.push_quad(xp, yp, xl, yl, g.tiles[levels[levels[curr_level].neighbors[i].level].data[y][x]]);
+				    push_tile(xp, yp, xl, yl, levels[levels[curr_level].neighbors[i].level].data[y][x]);
 			}
 		}
 	}
@@ -7357,7 +7374,7 @@ void engine::draw_special() {
 			if (yp > 1.0f && yp + yl > 1.0f)
 				continue;
 			if (draw_over[l->data[y][x]]) {
-			    g.push_quad(xp, yp, xl, yl, g.tiles[l->data[y][x]]);
+			    push_tile(xp, yp, xl, yl, l->data[y][x]);
 			}
 		}
 	}
@@ -9645,6 +9662,13 @@ void engine::main() {
 		while (!g.ae.is_dones(anim_holder)) {}
 	}
 	e.play_level_music();
+	int onlyonce1 = true;
+	bool onlyonce2 = true;
+	bool onlyonce3 = true;
+	bool onlyonce4 = true;
+	bool onlyonce5 = true;
+	bool onlyonce6 = true;
+	bool onlyonce7 = true;
 	while (true) {
 		deltat = tim.delta(time_index);
 		while (deltat < 1.0/120.0)

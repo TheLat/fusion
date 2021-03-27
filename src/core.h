@@ -404,6 +404,7 @@ public:
 	vector<int> do_menu(string menu, string choice = "", string text_override = "", string followup_override = "");
 	void do_move_animation(mon& attacker, mon& defender, string move);
 	void update_level();
+	void push_tile(double xp, double yp, double xl, double yl, int ID);
 	void draw_level();
 	void draw_special();
 	void draw_characters();
