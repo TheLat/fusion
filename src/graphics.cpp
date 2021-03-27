@@ -353,13 +353,8 @@ void graphics::initRendering() {
 	glFramebufferTexture2DEXT(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, r_tex, 0);
 	glBindFramebufferEXT(GL_FRAMEBUFFER, 0);
 #endif
-#ifdef __SWITCH__
-	r_quad.x = -0.625;
-	r_quad.width = 1.25;
-#else
     r_quad.x = -1.0;
 	r_quad.width = 2.0;
-#endif
     r_quad.y = -1.0;
     r_quad.height = 2.0;
     r_quad.tex = r_tex;
@@ -688,8 +683,14 @@ void graphics::drawScene() {
 #ifdef __SWITCH__
 	text_loc = glGetUniformLocation(PostProgram, "tex_diffuse");
 	glUniform1i(text_loc, r_quad.tex);
-#endif
+	quad t_quad;
+	t_quad = r_quad;
+	t_quad.x *= 0.625;
+	t_quad.width *= 0.625;
+	draw_quad(t_quad);
+#else
 	draw_quad(r_quad); // render screen texture to screen
+#endif
 #ifdef __SWITCH__
 	eglSwapBuffers(s_display, s_surface);
 #else
