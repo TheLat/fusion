@@ -189,7 +189,7 @@ void input::tick(double deltat) {
 #else
 #ifdef __SWITCH__
 	hidScanInput();
-	u64 kDown = hidKeysDown(CONTROLLER_P1_AUTO);
+	u64 kDown = hidKeysHeld(CONTROLLER_P1_AUTO);
 
 	if (!key_down[i_up] && (bool(kDown & KEY_DUP) || bool(kDown & KEY_LSTICK_UP)))
 		key_press[i_up] = (bool(kDown & KEY_DUP) || bool(kDown & KEY_LSTICK_UP));
