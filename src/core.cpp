@@ -10012,7 +10012,11 @@ void engine::pack_storage() {
 }
 
 void engine::save_game() {
+#ifdef __SWITCH__
+	ofstream f("/pokemon-fusion-save.dat");
+#else
 	ofstream f((safepath + string("SAVE.dat")).c_str());
+#endif
 	f << string("WARNING: Editing this file can easily corrupt game state.\n");
 	f << string("NAME:") + mc.name;
 	f << string("\nRIVAL_NAME:") + mc.rivalname;
@@ -10227,7 +10231,11 @@ void engine::save_mon(ofstream& f, mon& m) {
 }
 
 void engine::load_game() {
+#ifdef __SWITCH__
+	ifstream f("/pokemon-fusion-save.dat");
+#else
 	ifstream f((safepath + string("SAVE.dat")).c_str());
+#endif
 	string line;
 	string temp;
 	if (!f.is_open()) {
