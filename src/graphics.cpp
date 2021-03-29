@@ -82,9 +82,11 @@ static const char* const postprocessfragmentShaderSource = R"text(
 
     void main()
     {
-        vec4 texDiffuseColor = texture(tex_diffuse, vtxTexCoord);
-
-        fragColor = vec4(texDiffuseColor.rgb, texDiffuseColor.a);
+		vec2 texcoord = vtxTexCoord;
+		texcoord[0] = texcoord[0] + (wobble*(sin((texcoord[1]*100.0) + offset)));
+        vec4 texDiffuseColor = texture(tex_diffuse, texcoord);
+		texDiffuseColor = vec4(((1.0 - invert) * texDiffuseColor.r) + (invert*(1.0 - texDiffuseColor.r)), ((1.0 - invert) * texDiffuseColor.g) +  (invert*(1.0 - texDiffuseColor.g)), ((1.0 - invert) * texDiffuseColor.b) +  (invert*(1.0 - texDiffuseColor.b)), 1.0);
+        fragColor = vec4(pow(texDiffuseColor.r + brightness,contrast), pow(texDiffuseColor.g + brightness,contrast), pow(texDiffuseColor.b + brightness,contrast), 1.0);;
     }
 )text";
 
@@ -373,15 +375,15 @@ void graphics::initRendering() {
 
 	glUseProgram(PreProgram);
 #ifdef __SWITCH__
-	vsh = createAndCompileShader(GL_VERTEX_SHADER, vertexShaderSource);
-	fsh = createAndCompileShader(GL_FRAGMENT_SHADER, postprocessfragmentShaderSource);
+	GLint vsh2 = createAndCompileShader(GL_VERTEX_SHADER, vertexShaderSource);
+	GLint fsh2 = createAndCompileShader(GL_FRAGMENT_SHADER, postprocessfragmentShaderSource);
 
 	PostProgram = glCreateProgram();
-	glAttachShader(PostProgram, vsh);
-	glAttachShader(PostProgram, fsh);
-	glLinkProgram(PreProgram);
-	glDeleteShader(vsh);
-	glDeleteShader(fsh);
+	glAttachShader(PostProgram, vsh2);
+	glAttachShader(PostProgram, fsh2);
+	glLinkProgram(PostProgram);
+	glDeleteShader(vsh2);
+	glDeleteShader(fsh2);
 #else
 	GLint Result = GL_FALSE;
 	int InfoLogLength;
