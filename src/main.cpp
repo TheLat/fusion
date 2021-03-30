@@ -580,6 +580,7 @@ int main(int argc, char *argv[])
 		socketExit();
 		s_nxlinkSock = -1;
 	}
+	g.cleanup();
 	deinitEgl();
 	romfsExit();
 #else

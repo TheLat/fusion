@@ -61,6 +61,10 @@ public:
 	quad r_quad;
 	quad r_effects;
 	animation_engine ae;
+	std::vector<GLuint> to_delete_textures;
+	std::vector<GLuint> to_delete_buffers;
+	std::vector<GLuint> to_delete_frames;
+	std::vector<GLuint> to_delete_vertex_arrays;
 	std::map<int, GLuint> tiles;
 	std::map<string, GLuint> tex;
 	std::map<string, string_lookup_data> string_lookup;
@@ -71,6 +75,7 @@ public:
 	graphics() { new_load = false; }
 
 	GLuint load_image(string filename);
+	void cleanup();
 	void load_tile(string filename, int index);
 
 	//Initializes 3D rendering

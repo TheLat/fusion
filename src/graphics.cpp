@@ -217,6 +217,7 @@ GLuint graphics::load_image(string filename) {
 	}
 	fclose(f);
 	glGenTextures(1, &ret);
+	to_delete_textures.push_back(ret);
 #ifdef __SWITCH__
 	glActiveTexture(GL_TEXTURE0);
 #endif
@@ -330,7 +331,9 @@ void graphics::initRendering() {
 	glGenFramebuffersEXT(1, &fbo);
 	glBindFramebufferEXT(GL_FRAMEBUFFER, fbo);
 #endif
+	to_delete_frames.push_back(fbo);
 	glGenTextures(1, &r_tex);
+	to_delete_textures.push_back(r_tex);
 #ifdef __SWITCH__
 	glActiveTexture(GL_TEXTURE0);
 #endif
@@ -430,7 +433,9 @@ void graphics::initRendering() {
 	wobble_index = tim.create();
 #ifdef __SWITCH__
 	glGenVertexArrays(1, &s_vao);
+	to_delete_vertex_arrays.push_back(s_vao);
 	glGenBuffers(1, &s_vbo);
+	to_delete_buffers.push_back(s_vbo);
 	glBindVertexArray(s_vao);
 	glBindBuffer(GL_ARRAY_BUFFER, s_vbo);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, position));
@@ -841,4 +846,23 @@ void graphics::alert(string s) {
 	unsigned x = 0;
 	x = push_text(-0.9f, -0.9f, 1.8f, 0.4f, 0.1f, s);
 	x = x + 1;
+}
+
+void graphics::cleanup() {
+	for (unsigned i = 0; i < to_delete_textures.size(); ++i) {
+		glDeleteTextures(1, &(to_delete_textures[i]));
+	}
+	for (unsigned i = 0; i < to_delete_frames.size(); ++i) {
+		glDeleteFramebuffers(1, &(to_delete_frames[i]));
+	}
+	for (unsigned i = 0; i < to_delete_buffers.size(); ++i) {
+		glDeleteBuffers(1, &(to_delete_buffers[i]));
+	}
+	for (unsigned i = 0; i < to_delete_vertex_arrays.size(); ++i) {
+		glDeleteVertexArrays(1, &(to_delete_vertex_arrays[i]));
+	}
+	glDeleteProgram(PostProgram);
+#ifdef __SWITCH__
+	glDeleteProgram(PreProgram);
+#endif
 }
