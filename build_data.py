@@ -25,19 +25,23 @@ for filename in os.listdir("resources/characters"):
 
 for filename in os.listdir("resources/cries"):
     if filename != ".DS_Store":
-        sounds.append("cries/" + filename)
+        if ".wav" not in filename:
+            sounds.append("cries/" + filename)
 
 for filename in os.listdir("resources/sound_effects/combat"):
     if filename != ".DS_Store":
-        sounds.append("sound_effects/combat/" + filename)
+        if ".wav" not in filename:
+            sounds.append("sound_effects/combat/" + filename)
 
 for filename in os.listdir("resources/sound_effects/general"):
     if filename != ".DS_Store":
-        sounds.append("sound_effects/general/" + filename)
+        if ".wav" not in filename:
+            sounds.append("sound_effects/general/" + filename)
 
 for filename in os.listdir("resources/music"):
     if filename != ".DS_Store":
-        sounds.append("music/" + filename)
+        if ".wav" not in filename:
+            sounds.append("music/" + filename)
 
 f = open("resources/data/levels.dat", 'w')
 for l in levels:
