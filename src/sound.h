@@ -2,6 +2,8 @@
 #define SOUND_HEADER
 
 #ifdef __SWITCH__
+#include <SDL.h>
+#include <SDL_mixer.h>
 #else
 #include "fmod/fmod.hpp"
 #endif
@@ -15,6 +17,8 @@ class soundengine {
 private:
 #ifdef __SWITCH__
 	// TODO:  Switch sound map and sound system
+	std::map<string, Mix_Music*> music;
+	std::map<string, Mix_Chunk*> sounds;
 #else
 	std::map<string, FMOD::Sound*> sounds;
 	FMOD::System *system;
@@ -36,6 +40,7 @@ public:
 	void update_volumes();
 	float get_sfx_volume();
 	float get_music_volume();
+	void cleanup();
 };
 
 #endif

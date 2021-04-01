@@ -7154,10 +7154,6 @@ vector<int> engine::do_alert(string s) {
 }
 
 vector<int> engine::do_menu(string menu, string choice, string text_override, string followup_override) {
-	printf(menu.c_str());
-	printf("\n");
-	printf(choice.c_str());
-	printf("\n");
 	vector<int> out;
 	create_menu(menu, choice, text_override, followup_override);
 	out = menus[menus.size() - 1]->main();
@@ -9447,7 +9443,11 @@ void engine::main() {
 	se.play_cry(opening_mon);
 
 	vector<int> picks;
+#ifdef __SWITCH__
+	picks = do_menu(string("OPENING_MENU_SWITCH"));
+#else
 	picks = do_menu(string("OPENING_MENU"));
+#endif
 	picks = remove_cancels(picks);
 	if (picks[0] == 1) {
 	}
@@ -9455,6 +9455,9 @@ void engine::main() {
 		load_game();
 	}
 	else if (picks[0] == 2) {
+#ifdef __SWITCH__
+		fusionshutdown = true;
+#else
 		bool success = false;
 		unsigned cp = g.draw_list.size();
 		g.push_box(-1.1f, -1.1f, 2.2f, 2.2f);
@@ -9524,9 +9527,14 @@ void engine::main() {
 		g.draw_list.erase(g.draw_list.begin() + cp, g.draw_list.end());
 		picks.clear();
 		ie.save_bindings();
+#endif
 	}
 	while (picks.size() == 0) {
+#ifdef __SWITCH__
+		picks = do_menu(string("OPENING_MENU_SWITCH"));
+#else
 		picks = do_menu(string("OPENING_MENU"));
+#endif
 		picks = remove_cancels(picks);
 		if (picks.size() != 0) {
 			if (picks[0] == 1) {
@@ -9535,6 +9543,9 @@ void engine::main() {
 				load_game();
 			}
 			else if (picks[0] == 2) {
+#ifdef __SWITCH__
+				fusionshutdown = true;
+#else
 				bool success = false;
 				unsigned cp = g.draw_list.size();
 				g.push_box(-1.1f, -1.1f, 2.2f, 2.2f);
@@ -9604,12 +9615,13 @@ void engine::main() {
 				g.draw_list.erase(g.draw_list.begin() + cp, g.draw_list.end());
 				picks.clear();
 				ie.save_bindings();
+#endif
 			}
 		}
 	}
 
 	deltat = tim.delta(time_index);
-	if (mc.name == "") {
+	if (mc.name == "" && !fusionshutdown) {
 		quad_holder = g.push_quad_load(-1.0, -1.0, 2.0, 2.0, safepath + string("images/offwhite.png"));
 		e.mc.loc.x = 3.0;
 		e.mc.loc.y = 6.0;
@@ -9662,14 +9674,7 @@ void engine::main() {
 		while (!g.ae.is_dones(anim_holder)) {}
 	}
 	e.play_level_music();
-	int onlyonce1 = true;
-	bool onlyonce2 = true;
-	bool onlyonce3 = true;
-	bool onlyonce4 = true;
-	bool onlyonce5 = true;
-	bool onlyonce6 = true;
-	bool onlyonce7 = true;
-	while (true) {
+	while (!fusionshutdown) {
 		deltat = tim.delta(time_index);
 		while (deltat < 1.0/120.0)
 			deltat = tim.delta(time_index);

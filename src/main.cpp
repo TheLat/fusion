@@ -581,6 +581,7 @@ int main(int argc, char *argv[])
 		s_nxlinkSock = -1;
 	}
 	g.cleanup();
+	se.cleanup();
 	deinitEgl();
 	romfsExit();
 #else

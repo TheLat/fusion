@@ -527,7 +527,11 @@ int input::get_button_pressed(bool& pressed) {
 unsigned char input::get_pressed_key(bool& pressed) {
 	pressed = false;
 	for (int i = 0; i < 16 * 16; ++i) {
+#ifdef __SWITCH__
+		if (key_down[i]) {
+#else
 		if (key_press[i]) {
+#endif
 			pressed = true;
 			return char(i);
 		}
