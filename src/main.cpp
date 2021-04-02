@@ -332,11 +332,9 @@ void handleResize(int w, int h) {
 
 void drawScene() {
 	if (fusionshutdown) {
-#ifdef _WIN32
+#ifdef __SWITCH__
+#else
 		exit(0);
-#endif
-#ifdef __APPLE__
-		glutLeaveMainLoop();
 #endif
 	}
 	g.drawScene();

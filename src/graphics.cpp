@@ -859,7 +859,11 @@ void graphics::cleanup() {
 		glDeleteBuffers(1, &(to_delete_buffers[i]));
 	}
 	for (unsigned i = 0; i < to_delete_vertex_arrays.size(); ++i) {
+#ifdef __APPLE__
+		glDeleteVertexArraysAPPLE(1, &(to_delete_vertex_arrays[i]));
+#else
 		glDeleteVertexArrays(1, &(to_delete_vertex_arrays[i]));
+#endif
 	}
 	glDeleteProgram(PostProgram);
 #ifdef __SWITCH__
