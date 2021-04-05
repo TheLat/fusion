@@ -89,8 +89,10 @@ Concerning Fusions:
 A note to modders:
   In the unlikely event that someone takes this engine and sets out to make it work for later generations of the games, here is how things work:
   - All mon data is defined in resources/original/pokemon.dat and the format is fairly straight-forward.  Tricky parts are "BODY" which references which body is shown in the team view screen, found in resources/images.  There is also "SWITCH: YES" which specifies that the type order should be reversed if it's the second parent.  This is used to make things more intuitive with things that have wings.  Zubat has "SWITCH: YES" so a Zubat-Charmander is Poison-fire, but a Charmander-Zubat is Fire-Flying.  If a pokemon is the first parent in a fusion, it contributes every even move, if it's the second parent, every odd move.  I've changed the order of some moves to make it more intuitive (see Gyarados).  Once you've added things, just run the fusion.py script in the same folder and it will generate resources/data/mon.dat, which is an enormous file.  You will need to change code and the fusion.py script to support Special Attack and Special Defense, which appeared in later games.  Likewise, you'll need to update menus.
+  - The game uses .mp3 files for all sound and you should convert the non-music sound files to .wav, if you want to support the Nintendo Switch port.
   - Menus are all loaded when invoked and reloaded every time.  This is true for animations, too.  This makes testing a lot faster.  Some menus, such as the pokedex and the shop, are dynamically generated in menus.cpp.
   - resources/data/types.dat is where vulnerabilities and resistances are defined.
+  - Run the build_data.py script to generate all needed data files (like pre-loaded images for menus and level tiles)
   - Level data and scripting is complicated at the best of times.
     - MAP: Where the location shows up on x-y on your map, as well as what its index is.
     - DUNGEON specifies that it is a dungeon and you can exit out of it by using DIG.
@@ -106,7 +108,42 @@ A note to modders:
     - NEIGHBORS specifies other levels to be drawn at an offset.  This allows you to seamlessly travel between two levels.
     - ENCOUNTERS specifies which of the original 151 you can encounter.  What you may fight in random encounters is a randomly generated fusion from the list of regular encouners.
     - WATER_ENCOUNTERS_* specifies what you'll face with fishing and SUPER is also your surfing encounters.  What you will fight is guaranteed to be part something from the water pool and the other part will be randomly selected from the counters + the appropriate water pool.
+	- MEGA_ENCOUNTERS and MEGA_LEVELS allow you to specify a different encounter pool and level range for special encounters that only happen 5% of the time.  I used this to give special encounters that, if you caught them, would feel like winning the lottery.
     - LEVELS specifies the level range of random encounters.
-    - DATA sucks and I'm sorry.  It's all the level tiles in resources/level_sprites, defined in rows.  Number of spaces don't matter.  New lines define new rows.  You'll have to change how level tiles are parsed if you have more than 1000 tiles because of the assumed starting 0's.
-
- 
+    - DATA sucks and the developer is sorry.  It's all the level tiles in resources/level_sprites, defined in rows.  Number of spaces don't matter.  New lines define new rows.  Assumed starting 0's are only for tiles with values less than 1000, so you don't actually need to change parsing if you have more than that.
+  - Fusion sprites are generated with the image-fusion/back-fuse.py and image-fusion/front-fuse.py (this was written for version 5.4.1 of pillow, which has turned out to have security vulnerabilities, so you should probably update it), which is based on the work of https://pokemon.alexonsager.net/ with a little more complexity.  You can pass it a parameter to specify a single value and it will only create fusions that contain that pokemon.  These were written in WSL and OSX, so they may not work on Windows.  You have to do some prep work and careful placing.
+    - Front view requirements
+	  - [number].png is the base image of the original pokemon.
+	  - [number]-deepmask.png is a mask for what is never drawn over on the body.  Often blank, but see Butterfree and the Pidgeot-Butterfree fusion for a good example.
+	  - [number]-face.png is the face that will be applied to the body when fusing.  This can either be a face, a jaw, or a complete head.
+	  - [number]-mask.png is the mask that limits where the face can be drawn.  This is only used if a face is being applied to the body, not a jaw or head.  Bulbasaur contributes a face.  Charmeleon contributes a jaw.  Blastoise contributes a head.
+	  - [number]-noface.png is the body when it is accepting a face.
+	  - [number]-nohead.png is the body when accepting a head.
+	  - [number]-nojaw.png is the body when accepting a jaw.
+	  - fdata.txt
+	    - NUMBER: The number of the pokemon
+		- FACE_USES: Can be "noface" "nojaw" or "nohead"
+		- USE_MASK: Specifies to use the [number]-mask.png mask
+		- FACEBOUNDS: Specifies the bounding box for the face that will be mapped onto the body
+		- JAWBOUNDS: Specifies the 2 points on the jaw that will be mapped onto the body
+		- HEADBOUNDS: Specifies the center point and radius of the head to be mapped onto the body
+		- BOUNDS: Specifies the bounding box on the body where the face will be applied.
+		- JAWS: Specifies the points on the body that the jaw will be mapped to.
+		- HEAD: Specifies the center point and radius of where the head will go.
+		- PRIMARY, SECONDARY, TERTIARY: 5-colors that make up the primary, secondary, and tertiary colors of the pokemon.
+	- Back view requirements
+	  - [number]-colors.png is the image that will be used if only colors are being replaced.
+	  - [number]-crest.png is the crest of the pokemon, which only shows up for some pokemon, like Fearow and Pidgeot.
+	  - [number]-deepmask.png is the mask that nothing can draw over.
+	  - [number]-face.png is the face that gets stretched, rotated, and applied to the body.  The developer had to create a few of these from other pokemon.
+	  - [number]-mask.png is the mask that the face can never draw over.
+	  - [number]-noeyes.png is the body that the face will be applied to.
+	  - [number]-original.png is the original pokemon to only be used for the unfused version.
+	  - bdata.txt
+	    - NUMBER: the number of the pokemon
+		- FACE_USES: Always "no_eyes" unless you only want to not supply a face.
+		- EYEBOUNDS: Points of the face that attach to the body.
+		- CRESTBOUNDS:  Center point and radius of the crest image that will be applied to the body.
+		- EYE: Points on the body that the face is attached to.
+		- CREST:  Center point and radius of where the crest image is applied to the body.
+		- PRIMARY, SECONDARY, TERTIARY: 5-colors that make up the primary, secondary, and tertiary colors of the pokemon.
