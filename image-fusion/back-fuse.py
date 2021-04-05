@@ -95,7 +95,7 @@ def make_image(i, j):
     for x in range(0,im2.size[0]):
         for y in range(0,im2.size[1]):
             offset = 0
-            r = range(0, len(data[j]['PRIMARY']))
+            r = list(range(0, len(data[j]['PRIMARY'])))
             r.reverse()
             for index in r:
                 offset = offset + 1
@@ -122,100 +122,108 @@ def make_image(i, j):
                 offset = offset + 1
                 if px2[(x,y)] == (255,0,255 - offset,0):
                     px2[(x,y)] = data[i]['TERTIARY'][index]
+    loopmax = 0
     if "EYEBOUNDS" in data[i].keys():
-        for e in data[j]["EYE"]:
-            x11 = float(data[i]["EYEBOUNDS"]["X1"])
-            x12 = float(data[i]["EYEBOUNDS"]["X2"])
-            dx1 = (x12 - x11)
-            x21 = float(e["X1"])
-            x22 = float(e["X2"])
-            dx2 = (x22 - x21)
-            y11 = float(data[i]["EYEBOUNDS"]["Y1"] + 80)
-            y12 = float(data[i]["EYEBOUNDS"]["Y2"] + 80)
-            dy1 = (y12 - y11)
-            y21 = float(e["Y1"] + 80)
-            y22 = float(e["Y2"] + 80)
-            if data[j]["VFLIP"]:
-                y21 = float(e["Y1"])
-                y22 = float(e["Y2"])
-            dy2 = (y22 - y21)
-            l1 = math.sqrt(dx1*dx1 + dy1*dy1)
-            l2 = math.sqrt(dx2*dx2 + dy2*dy2)
-            theta = math.acos(max(min(((dx1*dx2) + (dy1*dy2))/(l1*l2),1.0),-1.0))
-            if (dx1*dy2 - dx2*dy1) > 0:
-                theta *= -1.0
-            thetas = math.sin(theta)
-            thetac = math.cos(theta)
-            for x in range(0,im2.size[0]):
-                for y in range(0,im2.size[1]):
-                    if data[j]["px3"][(x, y)] == (0, 0, 0, 255) and px2[(x,y)][3] != 0:
-                        continue
-                    xtarg1, ytarg1 = transform(x11, x21, y11, y21, l1, l2, thetas, thetac, float(x) - 0.5, float(y) - 0.5)
-                    xtarg2, ytarg2 = transform(x11, x21, y11, y21, l1, l2, thetas, thetac, float(x) + 0.5, float(y) + 0.5)
-                    if xtarg1 < 0:
-                        continue
-                    if xtarg2 < 0:
-                        continue
-                    if ytarg1 < 0:
-                        continue
-                    if ytarg2 < 0:
-                        continue
-                    if xtarg1 > data[i]["im1"].size[0]:
-                        continue
-                    if xtarg2 > data[i]["im1"].size[0]:
-                        continue
-                    if ytarg1 > data[i]["im1"].size[1]:
-                        continue
-                    if ytarg2 > data[i]["im1"].size[1]:
-                        continue
-                    try:
-                        px = get_subsampling_pixel(data[i]["px1"], xtarg1, ytarg1, xtarg2, ytarg2)
-                        if px[3] == 0:
-                            continue
-                        px2[(x,y)] = px
-                    except:
-                        pass
+        loopmax = max(loopmax, len(data[j]["EYE"]))
     if "CRESTBOUNDS" in data[i].keys():
-        for b in data[j]['CREST']:
-            x1 = float(b['X'])
-            x2 = float(data[i]['CRESTBOUNDS']['X'])
-            y1 = float(b['Y'] + 80)
-            y2 = float(data[i]['CRESTBOUNDS']['Y'] + 80)
-            if data[j]["VFLIP"]:
-                y1 = float(b['Y'])
-            w1 = float(b['WIDTH'])
-            w2 = float(data[i]['CRESTBOUNDS']['WIDTH'])
-            for x in range(0,im2.size[0]):
-                for y in range(0,im2.size[1]):
-                    if data[j]["px4"][(x, y)] == (0, 0, 0, 255) and px2[(x,y)][3] != 0:
-                        continue
-                    xtarg1 = ((w2/w1)*float((x - 0.5) - x1) + (x2))
-                    xtarg2 = ((w2/w1)*float((x + 0.5) - x1) + (x2))
-                    ytarg1 = (abs((w2/w1))*float((y - 0.5) - y1) + (y2))
-                    ytarg2 = (abs((w2/w1))*float((y + 0.5) - y1) + (y2))
-                    if xtarg1 < 0:
-                        continue
-                    if xtarg2 < 0:
-                        continue
-                    if ytarg1 < 0:
-                        continue
-                    if ytarg2 < 0:
-                        continue
-                    if xtarg1 > data[i]["im1"].size[0]:
-                        continue
-                    if xtarg2 > data[i]["im1"].size[0]:
-                        continue
-                    if ytarg1 > data[i]["im1"].size[1]:
-                        continue
-                    if ytarg2 > data[i]["im1"].size[1]:
-                        continue
-                    try:
-                        px = get_subsampling_pixel(data[i]["px5"], xtarg1, ytarg1, xtarg2, ytarg2)
-                        if px[3] == 0:
+        loopmax = max(loopmax, len(data[j]['CREST']))
+    for z in range(0, loopmax):
+        if "EYEBOUNDS" in data[i].keys():
+            if z < len(data[j]["EYE"]):
+                e = data[j]["EYE"][z]
+                x11 = float(data[i]["EYEBOUNDS"]["X1"])
+                x12 = float(data[i]["EYEBOUNDS"]["X2"])
+                dx1 = (x12 - x11)
+                x21 = float(e["X1"])
+                x22 = float(e["X2"])
+                dx2 = (x22 - x21)
+                y11 = float(data[i]["EYEBOUNDS"]["Y1"] + 80)
+                y12 = float(data[i]["EYEBOUNDS"]["Y2"] + 80)
+                dy1 = (y12 - y11)
+                y21 = float(e["Y1"] + 80)
+                y22 = float(e["Y2"] + 80)
+                if data[j]["VFLIP"]:
+                    y21 = float(e["Y1"])
+                    y22 = float(e["Y2"])
+                dy2 = (y22 - y21)
+                l1 = math.sqrt(dx1*dx1 + dy1*dy1)
+                l2 = math.sqrt(dx2*dx2 + dy2*dy2)
+                theta = math.acos(max(min(((dx1*dx2) + (dy1*dy2))/(l1*l2),1.0),-1.0))
+                if (dx1*dy2 - dx2*dy1) > 0:
+                    theta *= -1.0
+                thetas = math.sin(theta)
+                thetac = math.cos(theta)
+                for x in range(0,im2.size[0]):
+                    for y in range(0,im2.size[1]):
+                        if data[j]["px3"][(x, y)] == (0, 0, 0, 255) and px2[(x,y)][3] != 0:
                             continue
-                        px2[(x,y)] = px
-                    except:
-                        pass
+                        xtarg1, ytarg1 = transform(x11, x21, y11, y21, l1, l2, thetas, thetac, float(x) - 0.5, float(y) - 0.5)
+                        xtarg2, ytarg2 = transform(x11, x21, y11, y21, l1, l2, thetas, thetac, float(x) + 0.5, float(y) + 0.5)
+                        if xtarg1 < 0:
+                            continue
+                        if xtarg2 < 0:
+                            continue
+                        if ytarg1 < 0:
+                            continue
+                        if ytarg2 < 0:
+                            continue
+                        if xtarg1 > data[i]["im1"].size[0]:
+                            continue
+                        if xtarg2 > data[i]["im1"].size[0]:
+                            continue
+                        if ytarg1 > data[i]["im1"].size[1]:
+                            continue
+                        if ytarg2 > data[i]["im1"].size[1]:
+                            continue
+                        try:
+                            px = get_subsampling_pixel(data[i]["px1"], xtarg1, ytarg1, xtarg2, ytarg2)
+                            if px[3] == 0:
+                                continue
+                            px2[(x,y)] = px
+                        except:
+                            pass
+        if "CRESTBOUNDS" in data[i].keys():
+            if z < len(data[j]['CREST']):
+                b = data[j]['CREST'][z]
+                x1 = float(b['X'])
+                x2 = float(data[i]['CRESTBOUNDS']['X'])
+                y1 = float(b['Y'] + 80)
+                y2 = float(data[i]['CRESTBOUNDS']['Y'] + 80)
+                if data[j]["VFLIP"]:
+                    y1 = float(b['Y'])
+                w1 = float(b['WIDTH'])
+                w2 = float(data[i]['CRESTBOUNDS']['WIDTH'])
+                for x in range(0,im2.size[0]):
+                    for y in range(0,im2.size[1]):
+                        if data[j]["px4"][(x, y)] == (0, 0, 0, 255) and px2[(x,y)][3] != 0:
+                            continue
+                        xtarg1 = ((w2/w1)*float((x - 0.5) - x1) + (x2))
+                        xtarg2 = ((w2/w1)*float((x + 0.5) - x1) + (x2))
+                        ytarg1 = (abs((w2/w1))*float((y - 0.5) - y1) + (y2))
+                        ytarg2 = (abs((w2/w1))*float((y + 0.5) - y1) + (y2))
+                        if xtarg1 < 0:
+                            continue
+                        if xtarg2 < 0:
+                            continue
+                        if ytarg1 < 0:
+                            continue
+                        if ytarg2 < 0:
+                            continue
+                        if xtarg1 > data[i]["im1"].size[0]:
+                            continue
+                        if xtarg2 > data[i]["im1"].size[0]:
+                            continue
+                        if ytarg1 > data[i]["im1"].size[1]:
+                            continue
+                        if ytarg2 > data[i]["im1"].size[1]:
+                            continue
+                        try:
+                            px = get_subsampling_pixel(data[i]["px5"], xtarg1, ytarg1, xtarg2, ytarg2)
+                            if px[3] == 0:
+                                continue
+                            px2[(x,y)] = px
+                        except:
+                            pass
     if data[j]["VFLIP"]:
         im2 = im2.transpose(Image.FLIP_TOP_BOTTOM)
         px2 = im2.load()
@@ -333,7 +341,7 @@ f.close()
 
 # palette smoothing, fills in intermediate colors for low-color palettes
 for i in range(1, len(data) + 1):
-    r = range(2, len(data[i]['PRIMARY']))
+    r = list(range(2, len(data[i]['PRIMARY'])))
     r.reverse()
     for j in r:
         if data[i]["PRIMARY"][j] == data[i]["PRIMARY"][j-1]:
