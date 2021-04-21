@@ -3106,6 +3106,24 @@ bool engine::use_move(mon& attacker, mon& defender, string move, bool skip_accur
 	if (!miss && repeat != 1) {
 		do_alert(string("Hit ") + to_string(repeat) + string(" times!"));
 	}
+	if (miss) {
+		bool is_self_ko = false;
+		bool is_no_animate_self_ko = false;
+		for (unsigned j = 0; j < moves[move].self.size(); ++j) {
+			if (moves[move].self[j] == string("KO")) {
+				is_self_ko = true;
+			}
+			if (moves[move].self[j] == string("NO_ANIMATE")) {
+				is_no_animate_self_ko = true;
+			}
+		}
+		if (is_self_ko) {
+			if (is_no_animate_self_ko) {
+				apply_status(attacker, string("NO_ANIMATE"), true, true);
+			}
+			apply_status(attacker, string("KO"), true, true);
+		}
+	}
 	if (attacker.queue.size() > 0) {
 		if (attacker.queue[0] == move) {
 			attacker.queue.erase(attacker.queue.begin());
